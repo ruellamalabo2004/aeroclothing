@@ -1,3 +1,5 @@
+.Signup
+
 * {
   font-family: 'Albert Sans', sans-serif;
   margin: 0;
@@ -51,11 +53,10 @@ body {
 
 .header-icons {
   display: flex;
-  align-items: center; /* Align with nav-links and login button */
+  align-items: center;
   gap: 22px;
-  height: 100%; /* Ensure it takes full header height */
+  height: 100%;
 }
-
 
 .header-icon {
   width: 17px;
@@ -105,13 +106,35 @@ body {
   width: 571px;
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 511px;
-  margin-bottom: 15px;
-}
+/* First Name & Middle Name, Last Name & Gender */
+.form-group-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .name-input, 
+  .dob-input, 
+  .gender-input {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid black;
+    background: white;
+    color: black;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  /* Date of Birth (Now below Last Name & Gender) */
+  .form-group-full {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
 
 .email-input, 
 .password-input {
@@ -125,7 +148,17 @@ body {
   box-sizing: border-box;
   margin-bottom: 15px;
 }
-
+.suffix-input {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid black;
+    background: white;
+    color: black;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
 /* Checkbox Container */
 .checkbox-container {
   display: flex;
@@ -133,6 +166,7 @@ body {
   align-items: center;
   width: 100%;
   margin-top: 10px;
+  gap: 8px;
   margin-bottom: 20px;
 }
 
@@ -140,6 +174,7 @@ body {
   font-size: 14px;
   display: flex;
   align-items: center;
+  gap: 8px; /* Adds space between checkbox and text */
 }
 
 .forgot-password {
@@ -160,18 +195,6 @@ body {
   border-radius: 5px;
   font-size: 16px;
   margin-bottom: 20px;
-}
-
-/* Create Account */
-.create-account {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.create-account a {
-  color: #E5383B;
-  text-decoration: none;
 }
 
 /* Right Image (Now touching bottom of header) */
@@ -207,8 +230,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* Create Account Button */
-.create-account-button {
+button.create-account-button {
   width: 100%;
   height: 50px;
   border: 2px solid black;
@@ -218,11 +240,12 @@ body {
   border-radius: 5px;
   font-size: 16px;
   transition: all 0.3s ease;
+  display: block !important;
 }
 
 .create-account-button:hover {
-  background: black;
-  color: white;
+  background: black !important;
+  color: white !important;
 }
 
 /* Responsive Styles */
