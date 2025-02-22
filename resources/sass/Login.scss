@@ -1,135 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;700&display=swap');
+
+/* Apply Albert Sans to all elements */
+* {
+  font-family: 'Albert Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+/* Header */
 .login-header {
-    width: 100%;
-    height: 75px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 50px;
-    background: white;
-    color: black;
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-
-      .logo {
-        width: 225px;
-        height: auto;
-      }
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 23px;
-      justify-content: center;
-      flex-grow: 1;
-
-      a {
-        color: black;
-        text-decoration: none;
-        font-weight: medium;
-        font-size: 15px;
-        font-family: 'Albert Sans', sans-serif;
-        display: flex;
-        align-items: center;
-      }
-
-      .support-link {
-        display: flex;
-        align-items: center;
-
-        &::after {
-          content: "▼";
-          font-size: 12px;
-          margin-left: 5px;
-        }
-      }
-    }
-
-    .header-icons {
-      display: flex;
-      gap: 22px;
-    }
-
-    .login-button {
-      width: 102px;
-      height: 32px;
-      background: #E5383B;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 2px;
-    }
+  width: 100%;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  background: white;
+  color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
+/* Navigation */
+.nav-links {
+  display: flex;
+  gap: 23px;
+  justify-content: center;
+  flex-grow: 1;
+  font-weight: 500;
+}
+
+.nav-links a {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.support-link::after {
+  content: "▼";
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center; /* Align with nav-links and login button */
+  gap: 22px;
+  height: 100%; /* Ensure it takes full header height */
+}
+
+
+.header-icon {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+/* Login Button */
+.login-button {
+  width: 102px;
+  height: 32px;
+  background: #E5383B;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+/* Login Container */
 .login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-top: 50px;
-
-    h2 {
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    p {
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 20px;
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 150px;
 }
 
+.login-container h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.login-container p {
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 30px;
+}
+
+/* Login Form */
 .login-form {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  border-radius: 8px;
+  width: 571px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 511px;
+  margin-bottom: 15px;
+}
+
+.email-input, 
+.password-input {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  border: 1px solid black;
+  background: white;
+  color: black;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+/* Checkbox Container */
+.checkbox-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.checkbox-container label {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.forgot-password {
+  font-size: 14px;
+  color: #E5383B;
+  text-decoration: none;
+}
+
+/* Sign-In Button */
+.sign-in-button {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Create Account */
+.create-account {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.create-account a {
+  color: #E5383B;
+  text-decoration: none;
+}
+
+/* Right Image (Now touching bottom of header) */
+.right-image-container {
+  position: absolute;
+  width: 645px;
+  height: 500px;
+  top: 75px;
+  right: 0;
+}
+
+/* Left Image (Now more visible on desktop) */
+.left-image-container {
+  position: absolute;
+  width: 500px;
+  height: auto;
+  top: 450px;
+  left: 0px;
+}
+
+/* Separator Line */
+.separator {
+  width: 100%;
+  height: 1px;
+  background: #ccc;
+  margin: 20px 0;
+}
+
+/* Create Account Text */
+.create-account-text {
+  font-size: 14px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+/* Create Account Button */
+.create-account-button {
+  width: 100%;
+  height: 50px;
+  border: 2px solid black;
+  background: white;
+  color: black;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.create-account-button:hover {
+  background: black;
+  color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .right-image-container {
+    width: 500px;
+    height: auto;
+  }
+
+  .left-image-container {
+    width: 400px;
+    top: 500px;
+  }
+
+  .login-form {
+    width: 90%;
+  }
+
+  .form-group {
+    width: 90%;
+  }
+}
+
+@media (max-width: 992px) {
+  .login-header {
+    padding: 0 20px;
+  }
+
+  .nav-links {
+    display: none; /* Hide links for mobile */
+  }
+
+  .header-icons {
+    gap: 15px;
+  }
+
+  .login-container {
+    margin-top: 120px;
+  }
+
+  .login-form {
+    width: 80%;
+  }
+
+  .right-image-container,
+  .left-image-container {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container h2 {
+    font-size: 28px;
+  }
+
+  .login-container p {
+    font-size: 14px;
+  }
+
+  .login-form {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .email-input, 
+  .password-input {
+    width: 100%;
+  }
+
+  .sign-in-button {
+    width: 100%;
+  }
+
+  .checkbox-container {
     flex-direction: column;
-    align-items: center;
-    padding: 30px;
-    border-radius: 8px;
-    width: 350px;
+    align-items: flex-start;
+  }
 
-    input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 14px;
-      width: 511px;
+  .login-header {
+    height: 60px;
+    padding: 0 15px;
+  }
+}
 
-      &::placeholder {
-        color: #aaa;
-        font-size: 14px;
-      }
-    }
+@media (max-width: 480px) {
+  .login-container h2 {
+    font-size: 24px;
+  }
 
-    .checkbox-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      margin-top: 10px;
+  .login-container p {
+    font-size: 13px;
+  }
 
-      label {
-        font-size: 14px;
-      }
+  .login-header {
+    height: 55px;
+    padding: 0 10px;
+  }
 
-      .forgot-password {
-        font-size: 14px;
-        color: #E5383B;
-        text-decoration: none;
-      }
-    }
+  .login-form {
+    width: 95%;
+  }
 
-    .sign-in-button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 20px;
-      background: black;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      font-size: 16px;
-    }
+  .form-group {
+    width: 100%;
+  }
 }
