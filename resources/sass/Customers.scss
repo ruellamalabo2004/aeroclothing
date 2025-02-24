@@ -1,0 +1,194 @@
+/* 📌 General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+}
+
+/* 📌 Main Content */
+main {
+    padding: 20px;
+    margin: 0;
+}
+
+/* 📌 Heading */
+h1 {
+    font-size: 24px;
+    color: #161A1D;
+    margin: 0 0 15px 0;
+}
+
+/* 📌 Customers Links */
+.customers-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.customers-label {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+}
+
+.links-container {
+    display: flex;
+    gap: 15px;
+}
+
+.links-container a {
+    text-decoration: none;
+    color: #2196F3;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.links-container a:hover {
+    color: #1976D2;
+    background: rgba(33, 150, 243, 0.1);
+}
+
+.links-container a.active {
+    color: #1976D2;
+    background: rgba(33, 150, 243, 0.1);
+    font-weight: bold;
+}
+
+/* 📌 Search Bar */
+.customers-search {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 250px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    margin-left: auto;
+}
+
+.customers-search:focus {
+    border-color: #2196F3;
+    box-shadow: 0 0 3px rgba(33, 150, 243, 0.3);
+}
+
+/* 📌 Customers Table Container */
+.customers-table-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+/* 📌 Customers Table */
+.customers-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.customers-table th,
+.customers-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.customers-table th {
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+}
+
+.customers-table td {
+    color: #666;
+}
+
+.customers-table .action-img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px; /* Reduced from 25px for three icons */
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.customers-table .action-img:last-child {
+    margin-right: 0;
+}
+
+.customers-table .action-img:hover {
+    opacity: 0.7;
+}
+
+.customers-table .status-frame {
+    display: inline-block;
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f8f9fa;
+    color: #333;
+    font-size: 12px;
+}
+
+.customers-table .status-active {
+    border-color: #4CAF50;
+    background: #E8F5E9;
+    color: #2E7D32;
+}
+
+.customers-table .status-archived {
+    border-color: #E5383B;
+    background: #FFEBEE;
+    color: #C62828;
+}
+
+/* 📌 Responsive Design */
+@media (max-width: 768px) {
+    main {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .customers-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .links-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .customers-search {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .customers-table th,
+    .customers-table td {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .customers-table .action-img {
+        width: 16px;
+        height: 16px;
+        margin-right: 10px; /* Reduced for mobile */
+    }
+
+    .customers-table .action-img:last-child {
+        margin-right: 0;
+    }
+
+    .customers-table .status-frame {
+        padding: 2px 6px;
+        font-size: 10px;
+    }
+}
