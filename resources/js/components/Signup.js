@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Signup = () => {
   const [firstName, setFirstName] = useState('');
@@ -9,14 +10,84 @@ const Signup = () => {
   const [dob, setDob] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+  const [showPopup, setShowPopup] = useState(false); // Single state for any popup
+  const [isSuccess, setIsSuccess] = useState(false); // Track if it's a success or error
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Signing up with:', { firstName, middleName, lastName, suffix, gender, dob, email, password });
+    setLoading(true);
+    setMessage('');
+    setShowPopup(false); // Reset popup state
+
+    const age = new Date().getFullYear() - new Date(dob).getFullYear();
+
+    const requestData = {
+      first_name: firstName,
+      middle_name: middleName,
+      last_name: lastName,
+      suffix: suffix,
+      gender: gender,
+      date_of_birth: dob,
+      age: age,
+      email: email,
+      password: password
+    };
+
+    console.log("Sending data to API:", requestData);
+
+    try {
+      const response = await axios.post('http://localhost:8000/api/register', requestData);
+
+      setMessage('Registration successful!'); // Set the success message
+      setIsSuccess(true); // Mark as success
+      setShowPopup(true); // Show the popup
+
+      console.log('User Registered:', response.data);
+
+      localStorage.setItem('token', response.data.token);
+
+      // Hide popup and redirect after 3 seconds
+      setTimeout(() => {
+        setShowPopup(false); // Hide the popup
+        window.location.href = '/login';
+      }, 3000);
+    } catch (error) {
+      setIsSuccess(false); // Mark as error
+      if (error.response) {
+        console.error('Error:', error.response.data);
+        setMessage(error.response.data.message || 'Registration failed.');
+      } else {
+        setMessage('Something went wrong. Please try again.');
+      }
+      setShowPopup(true); // Show the error popup
+
+      // Hide error popup after 3 seconds (you can adjust this timing)
+      setTimeout(() => {
+        setShowPopup(false);
+      }, 3000);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
+      {/* Success/Error Popup Notification */}
+      {showPopup && (
+        <div className={`notification-popup ${isSuccess ? 'success' : 'error'}`}>
+          <div className="notification-content">
+            <img 
+              src={isSuccess ? '/imgs/Check.svg' : '/imgs/Error.svg'} 
+              alt={isSuccess ? 'Success' : 'Error'} 
+              className="notification-icon" 
+            />
+            <p>{message}</p>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <header className="login-header">
         <div className="logo-container">
@@ -50,6 +121,8 @@ const Signup = () => {
       <div className="login-container">
         <h2>CREATE NEW ACCOUNT</h2>
         <p>Enter your details to sign up</p>
+
+        {message && !showPopup && <p className="message">{message}</p>} {/* Show error messages below form if no popup is active */}
 
         <div className="login-form">
           <form onSubmit={handleSubmit}>
@@ -96,9 +169,9 @@ const Signup = () => {
                 required
               >
                 <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
               </select>
             </div>
 
@@ -138,18 +211,8 @@ const Signup = () => {
             </div>
 
             {/* Signup Button */}
-            <button type="submit" className="sign-in-button">Sign Up</button>
-
-            {/* Separator Line */}
-            <div className="separator"></div>
-
-            {/* Already Have Account */}
-            <p className="create-account-text">Already have an account?</p>
-            <button 
-              className="create-account-button" 
-              onClick={() => window.location.href = '/login'}
-            >
-              Login
+            <button type="submit" className="sign-in-button" disabled={loading}>
+              {loading ? 'Signing up...' : 'Sign Up'}
             </button>
           </form>
         </div>

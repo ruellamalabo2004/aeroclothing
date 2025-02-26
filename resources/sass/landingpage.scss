@@ -1,0 +1,270 @@
+// landingpage.scss
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;700&display=swap');
+
+* {
+  font-family: 'Albert Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: #f5f5f5;
+  text-align: center;
+}
+
+  /* Header */
+  .login-header {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    background: white;
+    color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+
+/* Navigation */
+.nav-links {
+  display: flex;
+  gap: 23px;
+  justify-content: center;
+  flex-grow: 1;
+  font-weight: 500;
+}
+
+.nav-links a {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.support-link::after {
+  content: "▼";
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+/* Header Icons */
+.header-icons {
+  display: flex;
+  align-items: center; /* Align with nav-links and login button */
+  gap: 22px;
+  height: 100%; /* Ensure it takes full header height */
+}
+
+.header-icon {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+/* Login Button */
+.login-button {
+  width: 102px;
+  height: 32px;
+  background: #E5383B;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+/* Slider Container */
+.slider-container {
+  width: 100%;
+  flex-shrink: 0;
+  margin-top: 75px; /* Match header height to start directly below it */
+}
+
+/* Slider Image */
+.slider-image {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure image fills container without distortion */
+  display: block;
+}
+
+/* Content Styles */
+.landing-page h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #000000;
+  margin: 20px 0;
+}
+
+.landing-page p {
+  font-size: 18px;
+  color: #333333;
+  margin-bottom: 30px;
+}
+
+.btn.btn-primary {
+  display: inline-block;
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  background: #E5383B;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.btn.btn-primary:hover {
+  background: #c93033;
+}
+
+/* Responsive Styles for Header and Logo */
+@media (max-width: 1200px) {
+  .login-header {
+    padding: 0 20px; /* Reduce padding for medium screens, matching login.scss */
+  }
+
+  .logo-container img.logo {
+    max-width: 100%; /* Ensure it doesn’t exceed container width */
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  .header-icons {
+    gap: 15px;
+  }
+
+  .slider-image {
+    height: 600px; /* Reduce height for medium screens */
+  }
+
+  .landing-page h1 {
+    font-size: 40px;
+  }
+
+  .landing-page p {
+    font-size: 16px;
+  }
+
+  .btn.btn-primary {
+    width: 180px;
+    height: 45px;
+    line-height: 45px;
+  }
+}
+
+@media (max-width: 992px) {
+  .login-header {
+    padding: 0 20px; /* Match login.scss for mobile */
+    height: 60px; /* Reduce height for tablets, matching login.scss */
+  }
+
+  .logo-container img.logo {
+    max-width: 100%; /* Ensure it doesn’t exceed container width */
+  }
+
+  .nav-links {
+    display: none; /* Hide links for mobile, matching login.scss */
+  }
+
+  .header-icons {
+    gap: 15px;
+  }
+
+  .slider-image {
+    height: 500px; /* Further reduce for tablets */
+  }
+
+  .landing-page h1 {
+    font-size: 36px;
+  }
+
+  .landing-page p {
+    font-size: 14px;
+  }
+
+  .btn.btn-primary {
+    width: 160px;
+    height: 40px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-header {
+    padding: 0 15px; /* Match login.scss for mobile */
+    height: 60px; /* Match login.scss for mobile */
+  }
+
+  .logo-container img.logo {
+    max-width: 100%; /* Ensure it doesn’t exceed container width */
+  }
+
+  .header-icons {
+    gap: 8px;
+  }
+
+  .slider-image {
+    height: 400px; /* Adjust for smaller screens */
+  }
+
+  .landing-page h1 {
+    font-size: 28px;
+  }
+
+  .landing-page p {
+    font-size: 12px;
+  }
+
+  .btn.btn-primary {
+    width: 140px;
+    height: 35px;
+    line-height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-header {
+    padding: 0 10px; /* Match login.scss for mobile */
+    height: 55px; /* Match login.scss for mobile */
+  }
+
+  .logo-container img.logo {
+    max-width: 100%; /* Ensure it doesn’t exceed container width */
+  }
+
+  .header-icons {
+    gap: 5px;
+  }
+
+  .slider-image {
+    height: 300px; /* Smallest size for mobile */
+  }
+
+  .landing-page h1 {
+    font-size: 24px;
+  }
+
+  .landing-page p {
+    font-size: 10px;
+  }
+
+  .btn.btn-primary {
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+  }
+}
