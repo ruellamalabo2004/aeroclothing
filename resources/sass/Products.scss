@@ -1,153 +1,154 @@
 /* 📌 General Styles */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Arial", sans-serif;
-}
-
-main {
-  padding: 20px;
-  margin: 0;
-}
-
-h1 {
-  font-size: 24px;
-  color: #161A1D;
-  margin: 0 0 15px 0;
-}
-
-/* 📌 Products Header */
-.products-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-/* 📌 Product Links */
-.product-links {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-
-  .products-label {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+  }
+  
+  main {
+    padding: 20px;
+    margin: 0;
+  }
+  
+  h1 {
+    font-size: 24px;
+    color: #161A1D;
+    margin: 0 0 15px 0;
+  }
+  
+  /* 📌 Products Header */
+  .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  /* 📌 Product Links */
+  .product-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  
+    .products-label {
       font-size: 14px;
       color: #333;
       font-weight: bold;
-  }
-
-  .links-container {
+    }
+  
+    .links-container {
       display: flex;
       gap: 15px;
-
+  
       a {
-          text-decoration: none;
-          color: #2196F3;
-          font-size: 14px;
-          padding: 5px 10px; /* Added padding for better hover area */
-          border-radius: 4px; /* Rounded corners for hover effect */
-          transition: all 0.3s ease; /* Smooth transition for all properties */
-
-          &:hover {
-              color: #1976D2;
-              background: rgba(33, 150, 243, 0.1); /* Light blue background on hover */
-          }
-
-          &.active {
-              color: #1976D2; /* Same color as hover */
-              background: rgba(33, 150, 243, 0.1); /* Same background as hover */
-              font-weight: bold; /* Keep bold for active state */
-          }
+        text-decoration: none;
+        color: #2196F3;
+        font-size: 14px;
+        padding: 5px 10px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+  
+        &:hover {
+          color: #1976D2;
+          background: rgba(33, 150, 243, 0.1);
+        }
+  
+        &.active {
+          color: #1976D2;
+          background: rgba(33, 150, 243, 0.1);
+          font-weight: bold;
+        }
       }
+    }
   }
-}
-
-/* 📌 Header Right (Search and Button) */
-.header-right {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-/* 📌 Search Bar */
-.search-bar {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  width: 250px;
-  outline: none;
-
-  &:focus {
+  
+  /* 📌 Header Right (Search and Button) */
+  .header-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  /* 📌 Search Bar */
+  .search-bar {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 250px;
+    outline: none;
+  
+    &:focus {
       border-color: #2196F3;
       box-shadow: 0 0 3px rgba(33, 150, 243, 0.3);
+    }
   }
-}
-
-/* 📌 Add Product Button */
-.add-product-btn {
-  background: #E5383B;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s;
-  margin-right: 0;
-
-  &:hover {
+  
+  /* 📌 Add Product Button */
+  .add-product-btn {
+    background: #E5383B;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+    margin-right: 0;
+  
+    &:hover {
       background: #C93033;
+    }
   }
-}
-
-/* 📌 Products Table Container */
-.products-table-container {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  overflow-x: auto;
-}
-
-/* 📌 Products Table */
-.products-table {
-  width: 100%;
-  border-collapse: collapse;
-
-  th, td {
+  
+  /* 📌 Products Table Container */
+  .products-table-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+  }
+  
+  /* 📌 Products Table */
+  .products-table {
+    width: 100%;
+    border-collapse: collapse;
+  
+    th,
+    td {
       padding: 12px 15px;
       text-align: left;
       border-bottom: 1px solid #ddd;
-  }
-
-  th {
+    }
+  
+    th {
       background: #f8f9fa;
       font-weight: bold;
       color: #333;
-  }
-
-  td {
+    }
+  
+    td {
       color: #666;
-  }
-
-  .action-img {
+    }
+  
+    .action-img {
       width: 20px;
       height: 20px;
       margin-right: 10px;
       cursor: pointer;
       transition: opacity 0.3s;
-
+  
       &:last-child {
-          margin-right: 0;
+        margin-right: 0;
       }
-
+  
       &:hover {
-          opacity: 0.7;
+        opacity: 0.7;
       }
-  }
-
-  .status-frame {
+    }
+  
+    .status-frame {
       display: inline-block;
       padding: 4px 8px;
       border: 1px solid #ddd;
@@ -155,85 +156,349 @@ h1 {
       background: #f8f9fa;
       color: #333;
       font-size: 12px;
-
+  
       &.status-published {
-          border-color: #4CAF50;
-          background: #e8f5e9;
-          color: #2E7D32;
+        border-color: #4CAF50;
+        background: #e8f5e9;
+        color: #2E7D32;
       }
-
+  
       &.status-archived {
-          border-color: #E5383B;
-          background: #ffebee;
-          color: #C62828;
+        border-color: #E5383B;
+        background: #ffebee;
+        color: #C62828;
       }
+    }
+  }
+  
+  /* 📌 Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+ /* 📌 Updated Modal Styles for Add Product Form (Wider and Longer) */
+.edit-modal-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 1200px; /* Increased width for a wider modal */
+  padding: 30px; /* Increased padding for more space */
+  min-height: 700px; /* Added minimum height for a longer modal */
+
+  @media (max-width: 768px) {
+    max-width: 90%; /* Ensure it scales down on mobile */
+    padding: 15px;
+    min-height: auto; /* Reset height on mobile for responsiveness */
   }
 }
 
-/* 📌 Responsive Design */
-@media (max-width: 768px) {
-  main {
-      padding: 10px;
+.edit-modal-content {
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  padding: 20px;
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #007bff;
   }
 
-  h1 {
-      font-size: 20px;
-  }
+  .product-form-container {
+    display: flex;
+    gap: 30px; /* Increased gap for wider layout */
+    margin-bottom: 20px;
 
-  .products-header {
+    @media (max-width: 768px) {
       flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-  }
+      gap: 15px;
+    }
 
-  .product-links {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
+    .product-info,
+    .product-images-payments {
+      flex: 1;
+    }
 
-      .links-container {
-          flex-direction: column;
-          gap: 10px;
-
-          a {
-              padding: 5px 0; /* Adjusted padding for mobile */
-          }
+    .product-info {
+      h3 {
+        color: #007bff;
+        margin-bottom: 15px;
+        font-size: 16px;
       }
+
+      form > div {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+      }
+
+      select,
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px; /* Slightly increased padding for larger inputs */
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      textarea {
+        height: 120px; /* Increased height for description textarea */
+        resize: vertical;
+      }
+
+      .price-quantity-row {
+        display: flex;
+        gap: 15px; /* Increased gap for price/quantity inputs */
+
+        div {
+          flex: 1;
+        }
+      }
+
+      .size-selection-box {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px; /* Slightly increased gap for sizes */
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+
+        .size-option {
+          padding: 6px 12px; /* Slightly increased padding for size options */
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          cursor: pointer;
+          user-select: none;
+          background: white;
+
+          &.selected {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+          }
+        }
+      }
+    }
+
+    .product-images-payments {
+      .image-section,
+      .payment-section {
+        margin-bottom: 25px; /* Increased margin for more vertical space */
+      }
+
+      .image-section {
+        h3 {
+          color: #007bff;
+          margin-bottom: 15px;
+          font-size: 16px;
+        }
+
+        .image-upload {
+          border: 1px dashed #ddd;
+          padding: 25px; /* Increased padding for larger upload area */
+          text-align: center;
+          border-radius: 4px;
+          background: #f9f9f9;
+          cursor: pointer;
+
+          .upload-area {
+            .cloud-icon {
+              font-size: 28px; /* Slightly larger cloud icon */
+              color: #666;
+            }
+
+            p {
+              margin: 8px 0; /* Increased margin for text */
+              color: #666;
+            }
+
+            .note {
+              color: red;
+              font-size: 14px; /* Slightly larger note text */
+            }
+          }
+
+          .image-inputs {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .file-input {
+              display: block; /* Ensure the file input is visible */
+              padding: 8px;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+              cursor: pointer;
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .payment-section {
+        h3 {
+          color: #007bff;
+          margin-bottom: 15px;
+          font-size: 16px;
+        }
+
+        .payment-selection-box {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px; /* Slightly increased gap for payment options */
+          padding: 12px;
+
+          .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 6px 12px; /* Slightly increased padding for payment options */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            user-select: none;
+            background: white;
+            gap: 8px; /* Increased gap between text/icon */
+
+            &.selected {
+              background-color: #007bff;
+              color: white;
+              border-color: #007bff;
+            }
+
+            img {
+              height: 24px; /* Slightly larger payment icons */
+              width: auto;
+            }
+          }
+        }
+      }
+    }
   }
 
-  .header-right {
+  .modal-actions {
+    display: flex;
+    gap: 15px; /* Increased gap between buttons */
+    justify-content: flex-end;
+
+    .cancel-btn {
+      background: #ddd;
+      color: #333;
+      border: none;
+      padding: 10px 20px; /* Slightly increased padding for buttons */
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s;
+
+      &:hover {
+        background: #ccc;
+      }
+    }
+
+    .publish-btn {
+      background: #00cc00;
+      color: white;
+      border: none;
+      padding: 10px 20px; /* Slightly increased padding for buttons */
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s;
+
+      &:hover {
+        background: #009900;
+      }
+    }
+  }
+}
+
+  
+  /* 📌 Responsive Design */
+  @media (max-width: 768px) {
+    main {
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 20px;
+    }
+  
+    .products-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    .product-links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+  
+      .links-container {
+        flex-direction: column;
+        gap: 10px;
+  
+        a {
+          padding: 5px 0;
+        }
+      }
+    }
+  
+    .header-right {
       flex-direction: column;
       align-items: flex-start;
       width: 100%;
       gap: 10px;
-
+  
       .search-bar {
-          width: 100%;
+        width: 100%;
       }
-
+  
       .add-product-btn {
-          align-self: flex-start;
+        align-self: flex-start;
       }
-  }
-
-  .products-table {
-      th, td {
-          padding: 8px 10px;
-          font-size: 12px;
+    }
+  
+    .products-table {
+      th,
+      td {
+        padding: 8px 10px;
+        font-size: 12px;
       }
-
+  
       .action-img {
-          width: 16px;
-          height: 16px;
-          margin-right: 15px;
-          &:last-child {
-              margin-right: 0;
-          }
+        width: 16px;
+        height: 16px;
+        margin-right: 15px;
+  
+        &:last-child {
+          margin-right: 0;
+        }
       }
-
+  
       .status-frame {
-          padding: 2px 6px;
-          font-size: 10px;
+        padding: 2px 6px;
+        font-size: 10px;
       }
+    }
+  
+    .edit-modal-container {
+      width: 90%;
+      padding: 15px;
+    }
   }
-}

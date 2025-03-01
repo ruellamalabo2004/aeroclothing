@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { Line, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -113,102 +113,103 @@ export default function Dashboard() {
           )}
         </div>
         <nav className="rounded-nav-links">
-          <Link
+          <NavLink
             to="/dashboard"
+            end // Ensure exact match for /dashboard only
+            className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
-            className={location.pathname === "/dashboard" ? "active" : ""}
           >
             <img src="/imgs/Dashboard.svg" alt="Dashboard" className="nav-icon" />
             Dashboard
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/dashboard/products"
+            className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
-            className={location.pathname === "/dashboard/products" ? "active" : ""}
           >
             <img src="/imgs/Products.svg" alt="Products" className="nav-icon" />
             Products
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/dashboard/orders"
+            className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
-            className={location.pathname === "/dashboard/orders" ? "active" : ""}
           >
             <img src="/imgs/Orders.svg" alt="Orders" className="nav-icon" />
             Orders
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/dashboard/inventory"
+            className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
-            className={location.pathname === "/dashboard/inventory" ? "active" : ""}
           >
             <img src="/imgs/Inventory.svg" alt="Inventory" className="nav-icon" />
             Inventory
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/dashboard/customers"
+            className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
-            className={location.pathname === "/dashboard/customers" ? "active" : ""}
           >
             <img src="/imgs/Customers.svg" alt="Customers" className="nav-icon" />
             Customers
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/dashboard/users"
+            className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
-            className={location.pathname === "/dashboard/users" ? "active" : ""}
           >
             <img src="/imgs/Users.svg" alt="Users" className="nav-icon" />
             Users
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/dashboard/brand"
+            className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
-            className={location.pathname === "/brand" ? "active" : ""}
           >
             <img src="/imgs/Brands.svg" alt="Brand" className="nav-icon" />
             Brand
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/dashboard/transactions"
+            className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
-            className={location.pathname === "/dashboard/transactions" ? "active" : ""}
           >
             <img src="/imgs/Transactions.svg" alt="Transactions" className="nav-icon" />
             Transactions
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/dashboard/coupons"
+            className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
-            className={location.pathname === "/dashboard/coupons" ? "active" : ""}
           >
             <img src="/imgs/Coupons.svg" alt="Coupons" className="nav-icon" />
             Coupons
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/dashboard/inbox"
+            className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
-            className={location.pathname === "/dashboard/inbox" ? "active" : ""}
           >
             <img src="/imgs/Inbox.svg" alt="Inbox" className="nav-icon" />
             Inbox
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/dashboard/reviews"
+            className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
-            className={location.pathname === "/dashboard/reviews" ? "active" : ""}
           >
             <img src="/imgs/Reviews.svg" alt="Reviews" className="nav-icon" />
             Reviews
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/dashboard/reports"
+            className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
-            className={location.pathname === "/dashboard/reports" ? "active" : ""}
           >
             <img src="/imgs/Reports.svg" alt="Reports" className="nav-icon" />
             Reports
-          </Link>
+          </NavLink>
           <hr className="separator" />
           <div className="settings-container">
             <div className="settings-header" onClick={() => setSettingsOpen(!settingsOpen)}>
@@ -284,7 +285,7 @@ export default function Dashboard() {
                   <div className="card-content">
                     <img src="/imgs/totalc.svg" alt="Total Customers" className="card-image" />
                     <div className="card-text">
-                      <div className="card-number">0</div>  
+                      <div className="card-number">0</div>
                       <div className="card-title">Total Customers</div>
                     </div>
                   </div>

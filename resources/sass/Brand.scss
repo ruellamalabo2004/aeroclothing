@@ -1,0 +1,280 @@
+/* 📌 General Styles (unchanged) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+}
+
+/* 📌 Main Content (unchanged) */
+main {
+    padding: 20px;
+    margin: 0;
+}
+
+/* 📌 Heading (unchanged) */
+h1 {
+    font-size: 24px;
+    color: #161A1D;
+    margin: 0 0 15px 0;
+}
+
+/* 📌 Brands Links */
+.brands-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.brands-label {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+}
+
+.links-container {
+    display: flex;
+    gap: 15px;
+}
+
+.links-container a {
+    text-decoration: none;
+    color: #2196F3;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.links-container a:hover {
+    color: #1976D2;
+    background: rgba(33, 150, 243, 0.1);
+}
+
+.links-container a.active {
+    color: #1976D2;
+    background: rgba(33, 150, 243, 0.1);
+    font-weight: bold;
+}
+
+/* 📌 Search Bar */
+.brands-search {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 250px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    margin-left: auto; /* Pushes search bar to the right */
+}
+
+.brands-search:focus {
+    border-color: #2196F3;
+    box-shadow: 0 0 3px rgba(33, 150, 243, 0.3);
+}
+
+/* 📌 Brands Table Container */
+.brands-table-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+/* 📌 Brands Table */
+.brands-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.brands-table th,
+.brands-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.brands-table th {
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+}
+
+.brands-table td {
+    color: #666;
+}
+
+.brands-table .action-img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.brands-table .action-img:last-child {
+    margin-right: 0;
+}
+
+.brands-table .action-img:hover {
+    opacity: 0.7;
+}
+/* 📌 Add New Brand Button */
+.add-brand-btn {
+    background: #d32f2f; /* Specified color */
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-left: 10px; /* Space from search bar */
+}
+
+.add-brand-btn:hover {
+    background: #b71c1c; /* Darker shade on hover */
+}
+
+/* 📌 Modal Overlay */
+.brands-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+/* 📌 Modal */
+.brands-modal {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.brands-modal h2 {
+    font-size: 20px;
+    color: #161A1D;
+    margin-bottom: 15px;
+}
+
+/* 📌 Form Group */
+.brands-form-group {
+    margin-bottom: 15px;
+}
+
+.brands-form-group label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.brands-form-group input,
+.brands-form-group select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.brands-form-group input:focus,
+.brands-form-group select:focus {
+    border-color: #d32f2f; /* Match button color */
+    box-shadow: 0 0 3px rgba(211, 47, 47, 0.3);
+}
+
+/* 📌 Modal Actions */
+.brands-modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.brands-save-btn,
+.brands-cancel-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.brands-save-btn {
+    background: #d32f2f; /* Match button color */
+    color: #fff;
+}
+
+.brands-save-btn:hover {
+    background: #b71c1c;
+}
+
+.brands-cancel-btn {
+    background: #ddd;
+    color: #333;
+}
+
+.brands-cancel-btn:hover {
+    background: #ccc;
+}
+
+/* 📌 Responsive Design */
+@media (max-width: 768px) {
+    .brands-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .brands-search {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .add-brand-btn {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .brands-modal {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .brands-modal h2 {
+        font-size: 18px;
+    }
+
+    .brands-form-group input,
+    .brands-form-group select {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .brands-modal-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .brands-save-btn,
+    .brands-cancel-btn {
+        width: 100%;
+        padding: 10px;
+    }
+}

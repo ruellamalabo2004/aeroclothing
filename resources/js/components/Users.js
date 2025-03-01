@@ -1,52 +1,17 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 
 export default function Users() {
   const [activeTab, setActiveTab] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [users, setUsers] = useState([]);
 
-  const users = [
-    {
-      id: 1,
-      name: "John Doe",
-      email: "john.doe@example.com",
-      role: "Customer",
-      lastLogin: "2025-02-20 10:30",
-      createdAt: "2025-01-01 09:00",
-      updatedAt: "2025-02-15 14:00",
-      status: "Active",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      email: "jane.smith@example.com",
-      role: "Admin",
-      lastLogin: "2025-02-21 15:45",
-      createdAt: "2025-01-02 12:00",
-      updatedAt: "2025-02-20 16:00",
-      status: "Active",
-    },
-    {
-      id: 3,
-      name: "Alice Johnson",
-      email: "alice.johnson@example.com",
-      role: "Customer",
-      lastLogin: "2025-02-19 09:15",
-      createdAt: "2025-01-03 08:30",
-      updatedAt: "2025-02-18 10:00",
-      status: "Archived",
-    },
-    {
-      id: 4,
-      name: "Bob Brown",
-      email: "bob.brown@example.com",
-      role: "Admin",
-      lastLogin: "2025-02-18 13:00",
-      createdAt: "2025-01-04 11:00",
-      updatedAt: "2025-02-17 15:00",
-      status: "Active",
-    },
-  ];
+  // Fetch users from API
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/users")
+      .then((res) => res.json())
+      .then((data) => setUsers(data))
+      .catch((error) => console.error("Error fetching users:", error));
+  }, []);
 
   const filteredUsers = users.filter((user) => {
     const matchesTab =
