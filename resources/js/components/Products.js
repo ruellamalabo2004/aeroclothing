@@ -4,518 +4,496 @@ export default function Products() {
   const [activeTab, setActiveTab] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
-  const [isAdding, setIsAdding] = useState(false);
-  const [isViewing, setIsViewing] = useState(null);
-  const [isEditing, setIsEditing] = useState(null);
-  const [isArchiving, setIsArchiving] = useState(null);
-  const [newProduct, setNewProduct] = useState({
-    category: "",
-    name: "",
-    type: "",
-    subType: "",
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [formData, setFormData] = useState({
+    product_name: "",
+    category: "Womens",
+    product_type: "Tops",
     sizes: [],
     price: "",
-    quantity: 0,
     description: "",
-    status: "Published",
-    images: [],
-    paymentMethods: []
+    status: "available",
+    image_1: null,
+    brand: "",
+    colors: [],
   });
+  const [editProductId, setEditProductId] = useState(null);
+  const [isArchiveModalOpen, setIsArchiveModalOpen] = useState(false);
+  const [productToArchive, setProductToArchive] = useState(null);
 
-  // Fetch products from backend
+  const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
+  const ITEMS_PER_PAGE = 15;
+
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.error("Error fetching products:", error));
+    const fetchProducts = async () => {
+      setIsLoading(true);
+      try {
+        const res = await fetch("http://127.0.0.1:8000/api/products");
+        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+        const data = await res.json();
+        setProducts(Array.isArray(data) ? data : data.data || []);
+      } catch (error) {
+        console.error("Error fetching products:", error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchProducts();
   }, []);
 
   const filteredProducts = products.filter((product) => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesTab =
-      activeTab === "All" || product.status.toLowerCase() === activeTab.toLowerCase();
-    return matchesSearch && matchesTab;
+      activeTab === "All" ||
+      (activeTab === "Published" && product.status === "available") ||
+      (activeTab === "Archived" && product.status === "archived");
+    const matchesSearch = product.product_name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    return matchesTab && matchesSearch;
   });
 
-  const categoryOptions = [
-    "Men's Clothing",
-    "Women's Clothing",
-    "Kid's Clothing Girl",
-    "Boys Clothing (Kids)"
-  ];
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedProducts = filteredProducts.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE
+  );
 
-  const typeOptions = {
-    "Men's Clothing": ["Tops", "Bottoms", "Jacket", "Swimwear"],
-    "Women's Clothing": ["Tops", "Bottoms", "Jacket", "Swimwear"],
-    "Kid's Clothing Girl": ["Tops", "Bottoms"],
-    "Boys Clothing (Kids)": ["Tops", "Bottoms"]
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const newValue = name === "price" ? Number(value) : value;
+    setFormData((prev) => ({ ...prev, [name]: newValue }));
   };
 
-  const subTypeOptions = {
-    Tops: ["Shirt", "T-shirt", "Hoodie"],
-    Bottoms: ["Pants", "Shorts", "Skirt"],
-    Jacket: ["Windbreaker", "Denim", "Leather"],
-    Swimwear: ["One-piece", "Bikini", "Trunks"]
+  const handleSizeChange = (e) => {
+    const selectedSizes = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    );
+    setFormData((prev) => ({ ...prev, sizes: selectedSizes }));
   };
 
-  const sizeOptions = ["XS", "S", "M", "L", "XL", "XXL"];
-
-  const paymentOptions = [
-    "Visa/Mastercard",
-    "GCash",
-    "Grab",
-    "Maya",
-    "Cash on Delivery"
-  ];
-
-  const handleSizeToggle = (size) => {
-    setNewProduct(prev => ({
-      ...prev,
-      sizes: prev.sizes.includes(size)
-        ? prev.sizes.filter(s => s !== size)
-        : [...prev.sizes, size]
-    }));
+  const handleBrandChange = (e) => {
+    setFormData((prev) => ({ ...prev, brand: e.target.value }));
   };
 
-  const handlePaymentToggle = (method) => {
-    setNewProduct(prev => ({
-      ...prev,
-      paymentMethods: prev.paymentMethods.includes(method)
-        ? prev.paymentMethods.filter(m => m !== method)
-        : [...prev.paymentMethods, method]
-    }));
+  const handleColorsChange = (e) => {
+    const selectedColors = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    );
+    setFormData((prev) => ({ ...prev, colors: selectedColors }));
   };
 
-  const handleImageChange = (e, index) => {
+  const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const newImages = [...newProduct.images];
-      newImages[index] = file;
-      setNewProduct(prev => ({ ...prev, images: newImages }));
+      setFormData((prev) => ({ ...prev, image_1: file }));
     }
   };
 
-  // Add New Product
-  const addNewProduct = () => {
-    const formData = new FormData();
-    Object.entries(newProduct).forEach(([key, value]) => {
-      if (key === "images") {
-        value.forEach((image, index) => {
-          if (image) formData.append(`image${index}`, image);
-        });
-      } else if (Array.isArray(value)) {
-        formData.append(key, JSON.stringify(value));
-      } else {
-        formData.append(key, value);
+  const openAddModal = () => {
+    setFormData({
+      product_name: "",
+      category: "Womens",
+      product_type: "Tops",
+      sizes: [],
+      price: "",
+      description: "",
+      status: "available",
+      image_1: null,
+      brand: "",
+      colors: [],
+    });
+    setIsEditing(false);
+    setEditProductId(null);
+    setIsModalOpen(true);
+  };
+
+  const openEditModal = (product) => {
+    setFormData({
+      product_name: product.product_name || "",
+      category: product.category || "Womens",
+      product_type: product.product_type || "Tops",
+      sizes: Array.isArray(product.sizes) ? product.sizes : product.sizes ? JSON.parse(product.sizes) : [],
+      price: product.price || "",
+      description: product.description || "",
+      status: product.status || "available",
+      image_1: null,
+      brand: product.brand || "",
+      colors: Array.isArray(product.colors) ? product.colors : product.colors ? JSON.parse(product.colors) : [],
+    });
+    setEditProductId(product.id);
+    setIsEditing(true);
+    setIsModalOpen(true);
+  };
+
+  const saveProduct = async () => {
+    setIsLoading(true);
+    const formDataObj = new FormData();
+    Object.keys(formData).forEach((key) => {
+      if (key === "sizes" || key === "colors") {
+        formDataObj.append(key, JSON.stringify(formData[key]));
+      } else if (key === "image_1" && formData.image_1 instanceof File) {
+        formDataObj.append("image_1", formData.image_1);
+      } else if (formData[key] !== null && formData[key] !== undefined) {
+        formDataObj.append(key, formData[key]);
       }
     });
 
-    fetch("http://127.0.0.1:8000/api/products", {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    if (isEditing) {
+      formDataObj.append('_method', 'PUT');
+    }
+
+    try {
+      const url = isEditing
+        ? `http://127.0.0.1:8000/api/products/${editProductId}`
+        : "http://127.0.0.1:8000/api/products";
+      const method = isEditing ? "POST" : "POST";
+
+      const res = await fetch(url, {
+        method,
+        body: formDataObj,
+      });
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`Failed to ${isEditing ? "update" : "add"} product: ${errorText}`);
+      }
+
+      const data = await res.json();
+
+      if (isEditing) {
+        setProducts((prev) =>
+          prev.map((p) => (p.id === editProductId ? { ...p, ...data } : p))
+        );
+      } else {
         setProducts((prev) => [...prev, data]);
-        setIsAdding(false);
-        setNewProduct({
-          category: "",
-          name: "",
-          type: "",
-          subType: "",
-          sizes: [],
-          price: "",
-          quantity: 0,
-          description: "",
-          status: "Published",
-          images: [],
-          paymentMethods: []
-        });
-      })
-      .catch((error) => console.error("Error adding product:", error));
+      }
+      
+      setIsModalOpen(false);
+      setEditProductId(null);
+      setIsEditing(false);
+    } catch (error) {
+      console.error(`Error ${isEditing ? "updating" : "adding"} product:`, error);
+      alert(`Failed to ${isEditing ? "update" : "add"} product: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  // View Product
-  const handleViewClick = (product) => {
-    setIsViewing(product);
-    setIsEditing(null);
-    setIsAdding(false);
-    setIsArchiving(null);
+  const archiveProduct = async (productId) => {
+    setIsLoading(true);
+    try {
+      const res = await fetch(`http://127.0.0.1:8000/api/products/${productId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: 'archived' }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Failed to archive product: ${res.status}`);
+      }
+
+      const updatedProduct = await res.json();
+      setProducts((prev) =>
+        prev.map((p) => (p.id === productId ? { ...p, ...updatedProduct } : p))
+      );
+      setIsArchiveModalOpen(false);
+      setProductToArchive(null);
+    } catch (error) {
+      console.error('Error archiving product:', error);
+      alert(`Failed to archive product: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  // Edit Product
-  const handleEditClick = (product) => {
-    setIsEditing({ ...product });
-    setIsViewing(null);
-    setIsAdding(false);
-    setIsArchiving(null);
-  };
-
-  const handleEditChange = (e) => {
-    setIsEditing({ ...isEditing, [e.target.name]: e.target.value });
-  };
-
-  const saveEditedProduct = () => {
-    fetch(`http://127.0.0.1:8000/api/products/${isEditing.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(isEditing),
-    })
-      .then((res) => res.json())
-      .then((updatedProduct) => {
-        setProducts(
-          products.map((p) => (p.id === updatedProduct.id ? updatedProduct : p))
-        );
-        setIsEditing(null);
-      })
-      .catch((error) => console.error("Error updating product:", error));
-  };
-
-  // Archive Product with Confirmation
   const handleArchiveClick = (product) => {
-    setIsArchiving(product);
+    setProductToArchive(product);
+    setIsArchiveModalOpen(true);
   };
 
-  const confirmArchive = () => {
-    const updatedProduct = { ...isArchiving, status: "Archived" };
-    fetch(`http://127.0.0.1:8000/api/products/${isArchiving.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedProduct),
-    })
-      .then((res) => res.json())
-      .then((archivedProduct) => {
-        setProducts(
-          products.map((p) => (p.id === archivedProduct.id ? archivedProduct : p))
-        );
-        setIsArchiving(null);
-      })
-      .catch((error) => console.error("Error archiving product:", error));
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
   };
 
   return (
     <main>
       <h1>Products</h1>
-      <div className="products-header">
-        <div className="product-links">
-          <span className="products-label">Products:</span>
-          <div className="links-container">
-            {["All", "Published", "Archived"].map((tab) => (
-              <a
-                key={tab}
-                href="#"
-                className={activeTab === tab ? "active" : ""}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setActiveTab(tab);
-                }}
-              >
-                {tab}
-              </a>
-            ))}
-          </div>
+      <div className="transactions-links">
+        <span className="transactions-label">Products:</span>
+        <div className="links-container">
+          {["All", "Published", "Archived"].map((tab) => (
+            <button
+              key={tab}
+              className={activeTab === tab ? "active" : ""}
+              onClick={() => setActiveTab(tab)}
+            >
+              {tab}
+            </button>
+          ))}
         </div>
-        <div className="header-right">
-          <input
-            type="text"
-            placeholder="Search products..."
-            className="search-bar"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <button className="add-product-btn" onClick={() => setIsAdding(true)}>
-            Add New Product
-          </button>
-        </div>
+        <input
+          type="text"
+          placeholder="Search products..."
+          className="transactions-search"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button className="add-product-btn" onClick={openAddModal} disabled={isLoading}>
+          Add New Product
+        </button>
       </div>
 
-      <div className="products-table-container">
-        <table className="products-table">
+      <div className="transactions-table-container">
+        <table className="transactions-table">
           <thead>
             <tr>
               <th>Actions</th>
-              <th>Product</th>
-              <th>Price</th>
+              <th>Image</th>
+              <th>Product Name</th>
               <th>Category</th>
               <th>Type</th>
-              <th>Quantity</th>
-              <th>Payment Methods</th>
+              <th>Sizes</th>
+              <th>Brand</th>
+              <th>Colors</th>
+              <th>Price</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {filteredProducts.map((product) => (
-              <tr key={product.id}>
-                <td>
-                  <img
-                    src="/imgs/view.svg"
-                    alt="View"
-                    className="action-img"
-                    onClick={() => handleViewClick(product)}
-                  />
-                  <img
-                    src="/imgs/edit.svg"
-                    alt="Edit"
-                    className="action-img"
-                    onClick={() => handleEditClick(product)}
-                  />
-                  <img
-                    src="/imgs/archive.svg"
-                    alt="Archive"
-                    className="action-img"
-                    onClick={() => handleArchiveClick(product)}
-                  />
-                </td>
-                <td>{product.name}</td>
-                <td>{product.price}</td>
-                <td>{product.category}</td>
-                <td>{product.type}</td>
-                <td>{product.quantity}</td>
-                <td>{product.paymentMethods?.join(", ")}</td>
-                <td>
-                  <span
-                    className={`status-frame status-${product.status.toLowerCase().replace(/\s+/g, "-")}`}
-                  >
-                    {product.status}
-                  </span>
-                </td>
+            {isLoading ? (
+              <tr>
+                <td colSpan="10">Loading...</td>
               </tr>
-            ))}
+            ) : paginatedProducts.length > 0 ? (
+              paginatedProducts.map((product) => (
+                <tr key={product.id}>
+                  <td>
+                    <img src="/imgs/view.svg" alt="View" className="action-img" />
+                    <img
+                      src="/imgs/edit.svg"
+                      alt="Edit"
+                      className="action-img"
+                      onClick={() => openEditModal(product)}
+                      style={{ cursor: "pointer" }}
+                    />
+                    <img
+                      src="/imgs/archive.svg"
+                      alt="Archive"
+                      className="action-img"
+                      onClick={() => handleArchiveClick(product)}
+                      style={{ cursor: "pointer" }}
+                    />
+                  </td>
+                  <td>
+                    {product.image_1 ? (
+                      <img
+                        src={`${BASE_IMAGE_URL}/${product.image_1}`}
+                        alt={product.product_name}
+                        style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                        onError={(e) =>
+                          (e.target.src = "/placeholder.png")
+                        }
+                      />
+                    ) : (
+                      <img
+                        src="/placeholder.png"
+                        alt="No Image"
+                        style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                      />
+                    )}
+                  </td>
+                  <td>{product.product_name}</td>
+                  <td>{product.category}</td>
+                  <td>{product.product_type}</td>
+                  <td>{Array.isArray(product.sizes) ? product.sizes.join(", ") : product.sizes || "N/A"}</td>
+                  <td>{product.brand || "N/A"}</td>
+                  <td>{Array.isArray(product.colors) ? product.colors.join(", ") : product.colors || "N/A"}</td>
+                  <td>₱{product.price}</td>
+                  <td>
+                    <span
+                      className={`status-frame status-${product.status.toLowerCase()}`}
+                    >
+                      {product.status === "available" ? "Published" : "Archived"}
+                    </span>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="10">No products available</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
 
-      {/* Add Product Modal */}
-      {isAdding && (
-        <div className="modal-overlay" onClick={() => setIsAdding(false)}>
-          <div className="edit-modal-container" onClick={(e) => e.stopPropagation()}>
+      <div className="pagination-controls">
+        <button onClick={handlePrevPage} disabled={currentPage === 1 || isLoading}>
+          Previous
+        </button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button onClick={handleNextPage} disabled={currentPage === totalPages || isLoading}>
+          Next
+        </button>
+      </div>
+
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={() => !isLoading && setIsModalOpen(false)}>
+          <div
+            className="edit-modal-container"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="edit-modal-content">
-              <h2>Add New Product</h2>
-              <div className="product-form-container">
-                <div className="product-info">
-                  <h3>Product Information</h3>
-                  <form>
-                    <div>
-                      <label>Category</label>
-                      <select
-                        value={newProduct.category}
-                        onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value, type: "", subType: "" })}
-                      >
-                        <option value="">Select Category</option>
-                        {categoryOptions.map(cat => (
-                          <option key={cat} value={cat}>{cat}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div>
-                      <label>Product Name</label>
-                      <input
-                        type="text"
-                        value={newProduct.name}
-                        onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-                      />
-                    </div>
-
-                    {newProduct.category && (
-                      <div>
-                        <label>Product Type</label>
-                        <select
-                          value={newProduct.type}
-                          onChange={(e) => setNewProduct({ ...newProduct, type: e.target.value, subType: "" })}
-                        >
-                          <option value="">Select Type</option>
-                          {typeOptions[newProduct.category].map(type => (
-                            <option key={type} value={type}>{type}</option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
-
-                    {newProduct.type && (
-                      <div>
-                        <label>Sub Product Type</label>
-                        <select
-                          value={newProduct.subType}
-                          onChange={(e) => setNewProduct({ ...newProduct, subType: e.target.value })}
-                        >
-                          <option value="">Select Sub Type</option>
-                          {subTypeOptions[newProduct.type].map(sub => (
-                            <option key={sub} value={sub}>{sub}</option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
-
-                    <div>
-                      <label>Sizes</label>
-                      <div className="size-selection-box">
-                        {sizeOptions.map(size => (
-                          <span
-                            key={size}
-                            className={`size-option ${newProduct.sizes.includes(size) ? "selected" : ""}`}
-                            onClick={() => handleSizeToggle(size)}
-                          >
-                            {size}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="price-quantity-row">
-                      <div>
-                        <label>Price</label>
-                        <input
-                          type="number"
-                          value={newProduct.price}
-                          onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-                        />
-                      </div>
-                      <div>
-                        <label>Quantity</label>
-                        <input
-                          type="number"
-                          value={newProduct.quantity}
-                          onChange={(e) => setNewProduct({ ...newProduct, quantity: e.target.value })}
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label>Description</label>
-                      <textarea
-                        value={newProduct.description}
-                        onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
-                      />
-                    </div>
-
-                    <div>
-                      <label>Status</label>
-                      <select
-                        value={newProduct.status}
-                        onChange={(e) => setNewProduct({ ...newProduct, status: e.target.value })}
-                      >
-                        <option value="Published">Published</option>
-                        <option value="Archived">Archived</option>
-                      </select>
-                    </div>
-                  </form>
-                </div>
-
-                <div className="product-images-payments">
-                  <div className="image-section">
-                    <h3>Image Product</h3>
-                    <div className="image-upload">
-                      <div className="upload-area" onClick={() => document.querySelector('.image-inputs input').click()}>
-                        <span className="cloud-icon">☁</span>
-                        <p>Drop your image here or Click to Browse</p>
-                        <p className="note">Note: Format photos SVG, PNG, or JPG</p>
-                      </div>
-                      <div className="image-inputs">
-                        {[0, 1, 2, 3].map(index => (
-                          <input
-                            key={index}
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => handleImageChange(e, index)}
-                            className="file-input"
-                            multiple={false} // Ensure only one file per input
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="payment-section">
-                    <h3>Payment Methods</h3>
-                    <div className="payment-selection-box">
-                      {paymentOptions.map(method => (
-                        <span
-                          key={method}
-                          className={`payment-option ${newProduct.paymentMethods.includes(method) ? "selected" : ""}`}
-                          onClick={() => handlePaymentToggle(method)}
-                        >
-                          {method}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="modal-actions">
-                <button type="button" className="cancel-btn" onClick={() => setIsAdding(false)}>
-                  Cancel
-                </button>
-                <button type="button" className="publish-btn" onClick={() => {
-                  setNewProduct({ ...newProduct, status: "Published" });
-                  addNewProduct();
-                }}>
-                  Publish
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* View Product Modal */}
-      {isViewing && (
-        <div className="modal-overlay" onClick={() => setIsViewing(null)}>
-          <div className="edit-modal-container" onClick={(e) => e.stopPropagation()}>
-            <div className="edit-modal-content">
-              <h2>Product Details</h2>
-              <p><strong>Name:</strong> {isViewing.name}</p>
-              <p><strong>Price:</strong> {isViewing.price}</p>
-              <p><strong>Category:</strong> {isViewing.category}</p>
-              <p><strong>Type:</strong> {isViewing.type}</p>
-              <p><strong>Sub Type:</strong> {isViewing.subType}</p>
-              <p><strong>Sizes:</strong> {isViewing.sizes?.join(", ")}</p>
-              <p><strong>Quantity:</strong> {isViewing.quantity}</p>
-              <p><strong>Description:</strong> {isViewing.description}</p>
-              <p><strong>Payment Methods:</strong> {isViewing.paymentMethods?.join(", ")}</p>
-              <p><strong>Status:</strong> {isViewing.status}</p>
-              <div className="modal-actions">
-                <button
-                  type="button"
-                  className="cancel-btn"
-                  onClick={() => setIsViewing(null)}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Edit Product Modal */}
-      {isEditing && (
-        <div className="modal-overlay" onClick={() => setIsEditing(null)}>
-          <div className="edit-modal-container" onClick={(e) => e.stopPropagation()}>
-            <div className="edit-modal-content">
-              <h2>Edit Product</h2>
+              <h2>{isEditing ? "Edit Product" : "Add New Product"}</h2>
               <form>
-                {Object.keys(isEditing).map(
-                  (key) =>
-                    key !== "id" && key !== "images" && (
-                      <div key={key}>
-                        <label>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
-                        <input
-                          type={key === "quantity" ? "number" : "text"}
-                          name={key}
-                          value={isEditing[key]}
-                          onChange={handleEditChange}
-                        />
-                      </div>
-                    )
+                <label>Product Name</label>
+                <input
+                  type="text"
+                  name="product_name"
+                  value={formData.product_name}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                />
+
+                <label>Category</label>
+                <select
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                >
+                  <option value="Womens">Womens</option>
+                  <option value="Mens">Mens</option>
+                  <option value="Girls">Girls</option>
+                  <option value="Boys">Boys</option>
+                </select>
+
+                <label>Product Type</label>
+                <select
+                  name="product_type"
+                  value={formData.product_type}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                >
+                  <option value="Tops">Tops</option>
+                  <option value="Bottoms">Bottoms</option>
+                  <option value="Jacket">Jacket</option>
+                  <option value="Swimwear">Swimwear</option>
+                </select>
+
+                <label>Sizes</label>
+                <select
+                  multiple
+                  name="sizes"
+                  value={formData.sizes}
+                  onChange={handleSizeChange}
+                  disabled={isLoading}
+                >
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                </select>
+
+                <label>Brand</label>
+                <select
+                  name="brand"
+                  value={formData.brand}
+                  onChange={handleBrandChange}
+                  disabled={isLoading}
+                >
+                  <option value="">Select Brand</option>
+                  <option value="1">Brand A</option>
+                  <option value="2">Brand B</option>
+                  <option value="3">Brand C</option>
+                </select>
+
+                <label>Colors</label>
+                <select
+                  multiple
+                  name="colors"
+                  value={formData.colors}
+                  onChange={handleColorsChange}
+                  disabled={isLoading}
+                >
+                  <option value="Red">Red</option>
+                  <option value="Blue">Blue</option>
+                  <option value="Green">Green</option>
+                  <option value="Black">Black</option>
+                  <option value="White">White</option>
+                </select>
+
+                <label>Price</label>
+                <input
+                  type="number"
+                  name="price"
+                  value={formData.price}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                />
+
+                <label>Description</label>
+                <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                />
+
+                <label>Status</label>
+                <select
+                  name="status"
+                  value={formData.status}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                >
+                  <option value="available">Published</option>
+                  <option value="archived">Archived</option>
+                </select>
+
+                <label>Product Image</label>
+                <input
+                  type="file"
+                  name="image_1"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  disabled={isLoading}
+                />
+                {isEditing && formData.image_1 === null && (
+                  <p>Current image: {products.find((p) => p.id === editProductId)?.image_1}</p>
                 )}
+
                 <div className="modal-actions">
-                  <button type="button" className="cancel-btn" onClick={() => setIsEditing(null)}>
-                    Cancel
+                  <button
+                    type="button"
+                    className="save-btn"
+                    onClick={saveProduct}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Saving..." : isEditing ? "Save Changes" : "Save Product"}
                   </button>
-                  <button type="button" className="save-btn" onClick={saveEditedProduct}>
-                    Save Changes
+                  <button
+                    type="button"
+                    className="cancel-btn"
+                    onClick={() => setIsModalOpen(false)}
+                    disabled={isLoading}
+                  >
+                    Cancel
                   </button>
                 </div>
               </form>
@@ -524,19 +502,31 @@ export default function Products() {
         </div>
       )}
 
-      {/* Archive Confirmation Popup */}
-      {isArchiving && (
-        <div className="modal-overlay" onClick={() => setIsArchiving(null)}>
-          <div className="edit-modal-container" onClick={(e) => e.stopPropagation()}>
-            <div className="edit-modal-content">
-              <h2>Archive this product?</h2>
-              <p>Are you sure you want to archive "{isArchiving.name}"?</p>
+      {isArchiveModalOpen && (
+        <div className="modal-overlay" onClick={() => !isLoading && setIsArchiveModalOpen(false)}>
+          <div
+            className="archive-modal-container"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="archive-modal-content">
+              <h3>Archive this product?</h3>
+              <p>Are you sure you want to archive "{productToArchive?.product_name}"?</p>
               <div className="modal-actions">
-                <button type="button" className="cancel-btn" onClick={() => setIsArchiving(null)}>
+                <button
+                  type="button"
+                  className="cancel-btn"
+                  onClick={() => setIsArchiveModalOpen(false)}
+                  disabled={isLoading}
+                >
                   Cancel
                 </button>
-                <button type="button" className="save-btn" onClick={confirmArchive}>
-                  Yes
+                <button
+                  type="button"
+                  className="archive-btn"
+                  onClick={() => archiveProduct(productToArchive.id)}
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Archiving..." : "Yes"}
                 </button>
               </div>
             </div>

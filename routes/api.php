@@ -7,7 +7,17 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DropdownController;
+use App\Http\Controllers\UserController;
 
+
+
+//user
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
+Route::post('/users', [UserController::class, 'store']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+Route::patch('/users/{id}/archive', [UserController::class, 'archive']);
+Route::patch('/users/{id}/restore', [UserController::class, 'restore']);
 //login
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/dropdowns', [DropdownController::class, 'getDropdowns']);
@@ -21,12 +31,10 @@ Route::delete('/orders/{id}/archive', [OrderController::class, 'archive']);
 Route::post('/orders/{id}/restore', [OrderController::class, 'restore']);
 
 // Product routes
-Route::get('/products', [ProductController::class, 'index']);
-Route::post('/products', [ProductController::class, 'store']);
-Route::get('/products/{id}', [ProductController::class, 'show']);
+Route::apiResource('products', ProductController::class);
 Route::put('/products/{id}', [ProductController::class, 'update']);
-Route::patch('/products/{id}/status', [ProductController::class, 'updateStatus']);
-Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+
+
 
 /*
 |--------------------------------------------------------------------------

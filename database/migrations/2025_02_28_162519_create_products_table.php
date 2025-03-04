@@ -9,26 +9,22 @@ return new class extends Migration {
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
-            $table->string('type');
-            $table->string('sub_type');
-            $table->text('size'); // Will store multiple sizes as JSON
-            $table->string('product_name', 100);
-            $table->text('description');
-            $table->decimal('price', 10, 2);
-            $table->integer('stock_quantity');
-            $table->json('payment_methods'); // Multiple payment methods as JSON
-            $table->enum('status', ['Published', 'Archived'])->default('Published');
+            $table->string('category')->index(); // Index for faster lookups
+            $table->string('product_name');
+            $table->string('product_type');
+            $table->string('brand'); // Added brand column (dropdown selection)
+            $table->json('sizes');
+            $table->json('colors'); // Added colors column (multi-select)
+            $table->decimal('price', 10, 2)->comment('Price in PHP'); // Clarified currency
+            $table->text('description')->nullable();
+            $table->string('image_1')->nullable();
+            $table->enum('status', ['available', 'archived'])->default('available')->index(); // Index for filtering
             $table->timestamps();
-            $table->softDeletes();
-    
-            //$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
-    
-    
 
-    public function down() {
+    public function down()
+    {
         Schema::dropIfExists('products');
     }
 };
