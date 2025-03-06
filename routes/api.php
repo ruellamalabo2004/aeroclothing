@@ -46,13 +46,12 @@ Route::put('/products/{id}', [ProductController::class, 'update']);
 | which is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-// Invetory Routes
-Route::get('/inventory', [InventoryController::class, 'index']);
-Route::post('/inventory', [InventoryController::class, 'store']);
-Route::put('/inventory/{inventory}', [InventoryController::class, 'update']);
-Route::delete('/inventory/{inventory}', [InventoryController::class, 'destroy']);
-Route::post('/inventory/{id}/restore', [InventoryController::class, 'restore']);
-
+Route::prefix('inventory')->group(function () {
+    Route::get('/', [InventoryController::class, 'index']);
+    Route::post('/', [InventoryController::class, 'store']);
+    Route::put('/{id}', [InventoryController::class, 'update']);
+    Route::delete('/{id}', [InventoryController::class, 'destroy']);
+});
 // User Registration Route
 Route::post('/register', [AuthController::class, 'register']);
 

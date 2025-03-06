@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Outlet, NavLink, useLocation } from "react-router-dom";
+import { Outlet, NavLink, useLocation, useNavigate } from "react-router-dom"; // Added useNavigate
 import { Line, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -26,9 +26,9 @@ ChartJS.register(
 );
 
 export default function Dashboard() {
-  const [settingsOpen, setSettingsOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate(); // Hook for navigation
   const lineChartRef = useRef(null);
   const barChartRef = useRef(null);
 
@@ -95,6 +95,17 @@ export default function Dashboard() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Logout function with confirmation
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      // Perform logout actions here (e.g., clear auth token, reset state)
+      // For this example, we'll just redirect to login
+      navigate("/login");
+      setSidebarOpen(false); // Close sidebar on logout
+    }
+  };
+
   const isDashboardRoot = location.pathname === "/dashboard";
 
   return (
@@ -115,7 +126,7 @@ export default function Dashboard() {
         <nav className="rounded-nav-links">
           <NavLink
             to="/dashboard"
-            end // Ensure exact match for /dashboard only
+            end
             className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
           >
@@ -163,36 +174,12 @@ export default function Dashboard() {
             Users
           </NavLink>
           <NavLink
-            to="/dashboard/brand"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <img src="/imgs/Brands.svg" alt="Brand" className="nav-icon" />
-            Brand
-          </NavLink>
-          <NavLink
             to="/dashboard/transactions"
             className={({ isActive }) => (isActive ? "active" : "")}
             onClick={() => setSidebarOpen(false)}
           >
             <img src="/imgs/Transactions.svg" alt="Transactions" className="nav-icon" />
             Transactions
-          </NavLink>
-          <NavLink
-            to="/dashboard/coupons"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <img src="/imgs/Coupons.svg" alt="Coupons" className="nav-icon" />
-            Coupons
-          </NavLink>
-          <NavLink
-            to="/dashboard/inbox"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <img src="/imgs/Inbox.svg" alt="Inbox" className="nav-icon" />
-            Inbox
           </NavLink>
           <NavLink
             to="/dashboard/reviews"
@@ -211,44 +198,29 @@ export default function Dashboard() {
             Reports
           </NavLink>
           <hr className="separator" />
-          <div className="settings-container">
-            <div className="settings-header" onClick={() => setSettingsOpen(!settingsOpen)}>
-              <img src="/imgs/Settings.svg" alt="Settings" className="nav-icon" />
-              <span>Settings</span>
-            </div>
-            {settingsOpen && (
-              <ul className="settings-list">
-                <li><a href="/settings/account">Account</a></li>
-                <li><a href="/settings/notifications">Notifications</a></li>
-                <li><a href="/settings/payments">Payments</a></li>
-                <li><a href="/settings/checkout">Checkout</a></li>
-                <li><a href="/settings/shipping">Shipping & Delivery</a></li>
-              </ul>
-            )}
+          <NavLink
+            to="/dashboard/admin-settings"
+            className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={() => setSidebarOpen(false)}
+          >
+            <img src="/imgs/Settings.svg" alt="Admin Settings" className="nav-icon" />
+            Admin Settings
+          </NavLink>
+          <div className="nav-link" onClick={handleLogout}>
+            <img src="/imgs/Logout.svg" alt="Log Out" className="nav-icon" />
+            Log Out
           </div>
         </nav>
       </div>
 
       <div className="main-content">
-        <div className="header-container">
-          {!sidebarOpen && (
-            <div className="hamburger hamburger-open" onClick={() => setSidebarOpen(true)}>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          )}
-          <div className="header-right">
-            <div className="profile">
-              <img src="/imgs/profile.svg" alt="Profile" className="profile-pic" />
-              <div className="profile-info">
-                <span className="username">Ruella Malabo Jr.</span>
-                <span className="role">Admin</span>
-              </div>
-            </div>
+        {!sidebarOpen && (
+          <div className="hamburger hamburger-open" onClick={() => setSidebarOpen(true)}>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
-        </div>
-
+        )}
         <div className="page-content">
           {isDashboardRoot ? (
             <main>

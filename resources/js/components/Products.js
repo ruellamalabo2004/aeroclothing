@@ -47,7 +47,7 @@ export default function Products() {
   const filteredProducts = products.filter((product) => {
     const matchesTab =
       activeTab === "All" ||
-      (activeTab === "Published" && product.status === "available") ||
+      (activeTab === "Available" && product.status === "available") ||
       (activeTab === "Archived" && product.status === "archived");
     const matchesSearch = product.product_name
       .toLowerCase()
@@ -233,7 +233,7 @@ export default function Products() {
       <div className="transactions-links">
         <span className="transactions-label">Products:</span>
         <div className="links-container">
-          {["All", "Published", "Archived"].map((tab) => (
+          {["All", "Available", "Archived"].map((tab) => (
             <button
               key={tab}
               className={activeTab === tab ? "active" : ""}
@@ -325,7 +325,7 @@ export default function Products() {
                     <span
                       className={`status-frame status-${product.status.toLowerCase()}`}
                     >
-                      {product.status === "available" ? "Published" : "Archived"}
+                      {product.status === "available" ? "Available" : "Archived"}
                     </span>
                   </td>
                 </tr>

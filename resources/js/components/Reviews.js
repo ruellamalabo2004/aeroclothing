@@ -5,7 +5,6 @@ export default function Reviews() {
   const [selectedReview, setSelectedReview] = useState(null);
   const [replyText, setReplyText] = useState("");
 
-  // Fetch reviews from API (using dummy data for now)
   useEffect(() => {
     const dummyReviews = [
       {

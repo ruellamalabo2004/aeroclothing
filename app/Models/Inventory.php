@@ -10,19 +10,23 @@ class Inventory extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'inventory';
+    protected $fillable = ['product_id', 'stock_quantity', 'status'];
 
-    protected $primaryKey = 'id';
+    public function product()
+    {
+        return $this->belongsTo(Product::class); // Ensure this is correct
+    }
 
-    protected $fillable = [
-        'product',
-        'category',
-        'type',
-        'price',
-        'sizes',
-        'stock_quantity',
-        'status'
-    ];
-
-    protected $dates = ['archived_at', 'created_at', 'updated_at'];
+    protected static function booted()
+    {
+        static::saving(function ($inventory) {
+            if ($inventory->stock_quantity <= 0) {
+                $inventory->status = 'Out of Stock';
+            } elseif ($inventory->stock_quantity <= 10) {
+                $inventory->status = 'Low Stock';
+            } else {
+                $inventory->status = 'Available';
+            }
+        });
+    }
 }

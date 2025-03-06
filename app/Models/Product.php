@@ -13,33 +13,58 @@ class Product extends Model
         'category',
         'product_name',
         'product_type',
-        'brand', // Added brand
+        'brand',
         'sizes',
-        'colors', // Added colors
+        'colors',
         'price',
+        'quantity', 
         'description',
         'image_1',
         'status',
     ];
 
     protected $casts = [
-        'sizes' => 'array', // Automatically converts JSON to an array
-        'colors' => 'array', // Automatically converts JSON to an array
+        'sizes' => 'array',
+        'colors' => 'array',
     ];
 
-    /**
-     * Get the full image URL for image_1
-     */
     public function getImage1Attribute($value)
     {
         return $value ? asset('storage/' . $value) : null;
     }
 
-    /**
-     * Scope to get only available products
-     */
+    
+    public function setQuantityAttribute($value)
+    {
+        $this->attributes['quantity'] = $value;
+        // Automatically update status based on quantity
+        $this->attributes['status'] = $this->determineStatus($value);
+    }
+
+  
+    protected function determineStatus($quantity)
+    {
+        if ($quantity <= 0) {
+            return 'out_of_stock';
+        }
+      
+        return $this->attributes['status'] === 'archived' ? 'archived' : 'available';
+    }
+
+   
     public function scopeAvailable($query)
     {
         return $query->where('status', 'available');
+    }
+
+   
+    public function scopeOutOfStock($query)
+    {
+        return $query->where('status', 'out_of_stock');
+    }
+
+    public function scopeArchived($query)
+    {
+        return $query->where('status', 'archived');
     }
 }

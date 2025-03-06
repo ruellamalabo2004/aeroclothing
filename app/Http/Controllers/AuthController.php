@@ -36,7 +36,8 @@ class AuthController extends Controller
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $role, // Save the role
+            'role' => $role,
+            'status' => 'Active', // Ensure new users are Active
         ]);
 
         // Create profile
@@ -79,6 +80,13 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid email or password'], 401);
         }
 
+        // Check if user is archived
+        if ($user->status === 'Archived') {
+            return response()->json([
+                'message' => 'Your account was suspended, please contact support'
+            ], 403);
+        }
+
         // Generate token using Laravel Passport
         $token = $user->createToken('MyApp')->accessToken;
 
@@ -88,7 +96,7 @@ class AuthController extends Controller
             'user' => [
                 'id' => $user->id,
                 'email' => $user->email,
-                'role' => $user->role // Fetch role from database
+                'role' => $user->role
             ]
         ], 200);
     }

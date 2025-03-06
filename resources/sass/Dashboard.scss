@@ -64,10 +64,12 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Added spacing between links */
+    gap: 10px;
+    margin-top: 10px;
 }
 
-.rounded-nav-links a {
+.rounded-nav-links a,
+.rounded-nav-links .nav-link { /* Added .nav-link for logout styling */
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -75,38 +77,33 @@
     padding: 12px;
     border-radius: 8px;
     transition: all 0.3s ease;
-
-    &:hover {
-        background: rgba(255, 255, 255, 0.2);
-    }
-
-    &.active {
-        background: rgba(255, 255, 255, 0.2);
-        font-weight: bold;
-    }
+    cursor: pointer; /* Added for clickable div */
 }
 
-.rounded-nav-links a .nav-icon {
+.rounded-nav-links a:hover,
+.rounded-nav-links .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.rounded-nav-links a.active {
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+}
+
+.rounded-nav-links a .nav-icon,
+.rounded-nav-links .nav-link .nav-icon {
     width: 20px;
     height: 20px;
     margin-right: 10px;
 }
 
-/* 📌 Header Styles */
-.header-container {
-    position: fixed;
-    top: 0;
-    left: 250px;
-    width: calc(100% - 250px);
-    height: 75px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0 20px;
-    background: #fff;
-    border-bottom: 1px solid #e0e0e0;
-    z-index: 1000;
-    transition: left 0.3s ease, width 0.3s ease;
+/* 📌 Separator Line */
+.separator {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
+    border: none;
 }
 
 /* 📌 Hamburger Menu (Base Styles) */
@@ -119,7 +116,14 @@
     display: none;
 }
 
-/* Hamburger for Opening (in Header) */
+/* Hamburger for Opening (in Main Content) */
+.hamburger-open {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
 .hamburger-open span {
     background: #161A1D;
 }
@@ -149,7 +153,6 @@
 
 /* 📌 Page Content */
 .page-content {
-    margin-top: 75px;
     padding: 20px;
 }
 
@@ -248,108 +251,8 @@
     overflow: hidden;
 }
 
-/* 📌 Profile Section */
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-right: 20px;
-}
-
-.profile {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-}
-
-.profile .profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.profile .profile-info {
-    display: flex;
-    flex-direction: column;
-    margin-left: 15px;
-    text-align: left;
-}
-
-.profile .profile-info .username {
-    font-weight: bold;
-}
-
-.profile .profile-info .role {
-    font-size: 12px;
-    color: gray;
-}
-
-/* 📌 Settings Section */
-.settings-container {
-    width: 100%;
-}
-
-.settings-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-
-.settings-header:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* 📌 Settings List with Bullets and Scrollbar */
-.settings-list {
-    list-style-type: disc;
-    padding-left: 40px;
-    margin-top: 5px;
-    width: 100%;
-    max-height: 150px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-.settings-list li {
-    padding: 5px 0;
-}
-
-.settings-list a {
-    text-decoration: none;
-    color: white;
-    transition: 0.3s;
-}
-
-.settings-list a:hover {
-    text-decoration: underline;
-}
-
-/* 📌 Custom Scrollbar Styling */
-.settings-list::-webkit-scrollbar {
-    width: 8px;
-}
-
-.settings-list::-webkit-scrollbar-track {
-    background: #161A1D;
-}
-
-.settings-list::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 4px;
-}
-
-.settings-list::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.8);
-}
-
 /* 📌 Media Queries for Responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .rounded-sidebar {
         transform: translateX(-250px);
     }
@@ -363,26 +266,8 @@
         width: 100%;
     }
 
-    .header-container {
-        left: 0;
-        width: 100%;
-        justify-content: space-between;
-    }
-
     .hamburger {
         display: flex;
-    }
-
-    .header-right {
-        margin-right: 10px;
-    }
-
-    .profile .profile-info {
-        display: none;
-    }
-
-    .profile .profile-pic {
-        margin-left: 0;
     }
 
     .hamburger-close {
@@ -430,4 +315,4 @@
         flex: none;
         width: 100%;
     }
-}   
+}

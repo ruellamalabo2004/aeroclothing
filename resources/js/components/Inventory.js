@@ -8,30 +8,39 @@ export default function Inventory() {
   const [viewItem, setViewItem] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All");
+  const [isLoading, setIsLoading] = useState(true); // Added loading state
+  const [error, setError] = useState(null); // Added error state
   const [newItem, setNewItem] = useState({
-    product: "",
-    category: "",
-    type: "",
-    price: "",
-    sizes: "",
+    product_id: "",
     stock_quantity: "",
     status: "Available",
   });
 
   // Fetch inventory data
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/api/inventory")
-      .then((response) => setInventory(response.data))
-      .catch((error) => console.error("Error fetching inventory:", error));
+    const fetchInventory = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/inventory");
+        console.log("Fetched inventory:", response.data); // Debug response
+        setInventory(response.data);
+      } catch (error) {
+        console.error("Error fetching inventory:", error.response?.data || error.message);
+        setError(error.response?.data?.message || "Failed to load inventory. Please try again.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchInventory();
   }, []);
 
-  // Handle input change for new product
+  // Handle input change for new inventory item
   const handleNewItemChange = (e) => {
     setNewItem({ ...newItem, [e.target.name]: e.target.value });
   };
 
-  // Add new product
+  // Add new inventory item
   const handleAddProduct = () => {
     axios
       .post("http://127.0.0.1:8000/api/inventory", newItem)
@@ -39,21 +48,23 @@ export default function Inventory() {
         setInventory([...inventory, response.data.data]);
         setShowAddForm(false);
         setNewItem({
-          product: "",
-          category: "",
-          type: "",
-          price: "",
-          sizes: "",
+          product_id: "",
           stock_quantity: "",
           status: "Available",
         });
       })
-      .catch((error) => console.error("Error adding new product:", error));
+      .catch((error) => console.error("Error adding inventory item:", error));
   };
 
   // Handle Edit Click
   const handleEditClick = (item) => {
-    setSelectedItem(item);
+    setSelectedItem({
+      id: item.id,
+      product_id: item.product_id,
+      stock_quantity: item.stock_quantity,
+      status: item.status,
+      product: item.product,
+    });
     setViewItem(null);
     setShowAddForm(false);
   };
@@ -73,11 +84,15 @@ export default function Inventory() {
   // Handle Save Edit
   const handleSave = () => {
     axios
-      .put(`http://127.0.0.1:8000/api/inventory/${selectedItem.id}`, selectedItem)
+      .put(`http://127.0.0.1:8000/api/inventory/${selectedItem.id}`, {
+        product_id: selectedItem.product_id,
+        stock_quantity: selectedItem.stock_quantity,
+        status: selectedItem.status,
+      })
       .then(() => {
         setInventory(
           inventory.map((item) =>
-            item.id === selectedItem.id ? selectedItem : item
+            item.id === selectedItem.id ? { ...item, ...selectedItem } : item
           )
         );
         setSelectedItem(null);
@@ -88,22 +103,19 @@ export default function Inventory() {
   // Handle Archive
   const handleArchive = (id) => {
     axios
-      .delete(`http://127.0.0.1:8000/api/inventory/${id}/archive`)
+      .delete(`http://127.0.0.1:8000/api/inventory/${id}`)
       .then(() => setInventory(inventory.filter((item) => item.id !== id)))
       .catch((error) => console.error("Error archiving item:", error));
   };
 
   // Filtered inventory based on search query and active filter
   const filteredInventory = inventory.filter((item) => {
-    const matchesSearch = item.product
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+    const productName = item.product?.product_name || ""; // Null-safe access
+    const matchesSearch = productName.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesFilter =
       activeFilter === "All" ||
       (activeFilter === "Available" && item.status === "Available") ||
-      (activeFilter === "Low Stock" &&
-        item.stock_quantity > 0 &&
-        item.stock_quantity <= 10) ||
+      (activeFilter === "Low Stock" && item.status === "Low Stock") ||
       (activeFilter === "Out of Stock" && item.status === "Out of Stock");
     return matchesSearch && matchesFilter;
   });
@@ -151,10 +163,7 @@ export default function Inventory() {
             />
             <div className="inventory-card-text">
               <div className="inventory-card-number">
-                {
-                  inventory.filter((item) => item.status === "Out of Stock")
-                    .length
-                }
+                {inventory.filter((item) => item.status === "Out of Stock").length}
               </div>
               <div className="inventory-card-title">Out of Stock</div>
             </div>
@@ -172,9 +181,7 @@ export default function Inventory() {
                 <a
                   href="#"
                   key={tab}
-                  className={`inventory-link ${
-                    activeFilter === tab ? "active" : ""
-                  }`}
+                  className={`inventory-link ${activeFilter === tab ? "active" : ""}`}
                   onClick={(e) => {
                     e.preventDefault();
                     setActiveFilter(tab);
@@ -193,52 +200,21 @@ export default function Inventory() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <button
-          className="add-product-btn"
-          onClick={() => setShowAddForm(true)}
-        >
-          Add Product
+        <button className="add-product-btn" onClick={() => setShowAddForm(true)}>
+          Add Inventory Item
         </button>
       </div>
 
-      {/* Add Product Form */}
+      {/* Add Inventory Form */}
       {showAddForm && (
         <div className="add-form">
-          <h2>Add New Product</h2>
-          <input
-            type="text"
-            name="product"
-            value={newItem.product}
-            onChange={handleNewItemChange}
-            placeholder="Product Name"
-          />
-          <input
-            type="text"
-            name="category"
-            value={newItem.category}
-            onChange={handleNewItemChange}
-            placeholder="Category"
-          />
-          <input
-            type="text"
-            name="type"
-            value={newItem.type}
-            onChange={handleNewItemChange}
-            placeholder="Type"
-          />
+          <h2>Add New Inventory Item</h2>
           <input
             type="number"
-            name="price"
-            value={newItem.price}
+            name="product_id"
+            value={newItem.product_id}
             onChange={handleNewItemChange}
-            placeholder="Price"
-          />
-          <input
-            type="text"
-            name="sizes"
-            value={newItem.sizes}
-            onChange={handleNewItemChange}
-            placeholder="Sizes"
+            placeholder="Product ID"
           />
           <input
             type="number"
@@ -247,6 +223,15 @@ export default function Inventory() {
             onChange={handleNewItemChange}
             placeholder="Stock Quantity"
           />
+          <select
+            name="status"
+            value={newItem.status}
+            onChange={handleNewItemChange}
+          >
+            <option value="Available">Available</option>
+            <option value="Low Stock">Low Stock</option>
+            <option value="Out of Stock">Out of Stock</option>
+          </select>
           <button onClick={handleAddProduct}>Save</button>
           <button onClick={() => setShowAddForm(false)}>Cancel</button>
         </div>
@@ -257,11 +242,11 @@ export default function Inventory() {
         <div className="add-form">
           <h2>Item Details</h2>
           <p><strong>ID:</strong> {viewItem.id}</p>
-          <p><strong>Product:</strong> {viewItem.product}</p>
-          <p><strong>Category:</strong> {viewItem.category}</p>
-          <p><strong>Type:</strong> {viewItem.type}</p>
-          <p><strong>Price:</strong> {viewItem.price}</p>
-          <p><strong>Sizes:</strong> {viewItem.sizes}</p>
+          <p><strong>Product:</strong> {viewItem.product?.product_name || "N/A"}</p>
+          <p><strong>Category:</strong> {viewItem.product?.category || "N/A"}</p>
+          <p><strong>Type:</strong> {viewItem.product?.product_type || "N/A"}</p>
+          <p><strong>Price:</strong> {viewItem.product?.price || "N/A"}</p>
+          <p><strong>Sizes:</strong> {viewItem.product?.sizes?.join(", ") || "N/A"}</p>
           <p><strong>Stock Quantity:</strong> {viewItem.stock_quantity}</p>
           <p><strong>Status:</strong> {viewItem.status}</p>
           <button onClick={() => setViewItem(null)}>Close</button>
@@ -271,41 +256,12 @@ export default function Inventory() {
       {/* Edit Item Form */}
       {selectedItem && (
         <div className="add-form">
-          <h2>Edit Item</h2>
+          <h2>Edit Inventory Item</h2>
           <label>Product:</label>
           <input
             type="text"
-            name="product"
-            value={selectedItem.product}
-            onChange={handleFormChange}
-          />
-          <label>Category:</label>
-          <input
-            type="text"
-            name="category"
-            value={selectedItem.category}
-            onChange={handleFormChange}
-          />
-          <label>Type:</label>
-          <input
-            type="text"
-            name="type"
-            value={selectedItem.type}
-            onChange={handleFormChange}
-          />
-          <label>Price:</label>
-          <input
-            type="number"
-            name="price"
-            value={selectedItem.price}
-            onChange={handleFormChange}
-          />
-          <label>Sizes:</label>
-          <input
-            type="text"
-            name="sizes"
-            value={selectedItem.sizes}
-            onChange={handleFormChange}
+            value={selectedItem.product?.product_name || "N/A"}
+            disabled
           />
           <label>Stock Quantity:</label>
           <input
@@ -331,72 +287,82 @@ export default function Inventory() {
 
       {/* Inventory Table */}
       {!selectedItem && !viewItem && !showAddForm && (
-        <table className="inventory-table">
-          <thead>
-            <tr>
-              <th>Actions</th>
-              <th>ID</th>
-              <th>Product</th>
-              <th>Category</th>
-              <th>Type</th>
-              <th>Price</th>
-              <th>Sizes</th>
-              <th>Stock Quantity</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredInventory.length > 0 ? (
-              filteredInventory.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    <img
-                      src="/imgs/view.svg"
-                      alt="View"
-                      className="action-img"
-                      onClick={() => handleViewClick(item)}
-                      style={{ cursor: "pointer", marginRight: "8px" }}
-                    />
-                    <img
-                      src="/imgs/edit.svg"
-                      alt="Edit"
-                      className="action-img"
-                      onClick={() => handleEditClick(item)}
-                      style={{ cursor: "pointer", marginRight: "8px" }}
-                    />
-                    <img
-                      src="/imgs/archive.svg"
-                      alt="Archive"
-                      className="action-img"
-                      onClick={() => handleArchive(item.id)}
-                      style={{ cursor: "pointer" }}
-                    />
-                  </td>
-                  <td>{item.id}</td>
-                  <td>{item.product}</td>
-                  <td>{item.category}</td>
-                  <td>{item.type}</td>
-                  <td>{item.price}</td>
-                  <td>{item.sizes}</td>
-                  <td>{item.stock_quantity}</td>
-                  <td>
-  <span
-    className={`status-frame status-${item.status.toLowerCase().replace(/\s+/g, "-")}`}
-  >
-    {item.status}
-  </span>
-</td>
+        <>
+          {isLoading ? (
+            <p>Loading inventory...</p>
+          ) : error ? (
+            <p style={{ color: "red" }}>{error}</p>
+          ) : (
+            <table className="inventory-table">
+              <thead>
+                <tr>
+                  <th>Actions</th>
+                  <th>ID</th>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Type</th>
+                  <th>Price</th>
+                  <th>Sizes</th>
+                  <th>Stock Quantity</th>
+                  <th>Status</th>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="9" style={{ textAlign: "center" }}>
-                  No inventory found.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {filteredInventory.length > 0 ? (
+                  filteredInventory.map((item) => (
+                    <tr key={item.id}>
+                      <td>
+                        <img
+                          src="/imgs/view.svg"
+                          alt="View"
+                          className="action-img"
+                          onClick={() => handleViewClick(item)}
+                          style={{ cursor: "pointer", marginRight: "8px" }}
+                        />
+                        <img
+                          src="/imgs/edit.svg"
+                          alt="Edit"
+                          className="action-img"
+                          onClick={() => handleEditClick(item)}
+                          style={{ cursor: "pointer", marginRight: "8px" }}
+                        />
+                        <img
+                          src="/imgs/archive.svg"
+                          alt="Archive"
+                          className="action-img"
+                          onClick={() => handleArchive(item.id)}
+                          style={{ cursor: "pointer" }}
+                        />
+                      </td>
+                      <td>{item.id}</td>
+                      <td>{item.product?.product_name || "N/A"}</td>
+                      <td>{item.product?.category || "N/A"}</td>
+                      <td>{item.product?.product_type || "N/A"}</td>
+                      <td>{item.product?.price || "N/A"}</td>
+                      <td>{item.product?.sizes?.join(", ") || "N/A"}</td>
+                      <td>{item.stock_quantity}</td>
+                      <td>
+                        <span
+                          className={`status-frame status-${item.status
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")}`}
+                        >
+                          {item.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="9" style={{ textAlign: "center" }}>
+                      No inventory found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          )}
+        </>
       )}
     </main>
   );

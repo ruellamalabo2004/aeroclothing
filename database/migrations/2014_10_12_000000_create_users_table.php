@@ -12,6 +12,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('email', 100)->unique();
             $table->string('password', 100);
+            $table->string('status')->default('Active'); // Added is_active column
             $table->timestamps();
             $table->timestamp('archive_at')->nullable();
         });

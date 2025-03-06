@@ -8,11 +8,8 @@ import Products from "./Products";
 import Orders from "./Orders";
 import Inventory from "./Inventory";
 import Customers from "./Customers";
-import Coupons from "./Coupons";
 import Users from "./Users";
 import Transactions from "./Transactions";
-import Brand from "./Brand"; 
-import Inbox from "./Inbox";
 import Reviews from "./Reviews";
 import Reports from "./Reports";
 import HomePage from "./HomePage"; // For customers
@@ -131,9 +128,6 @@ const App = () => {
           <Route path="customers" element={<Customers />} />
           <Route path="users" element={<Users />} />
           <Route path="transactions" element={<Transactions />} />
-          <Route path="brand" element={<Brand />} />
-          <Route path="coupons" element={<Coupons />} />
-          <Route path="inbox" element={<Inbox />} />
           <Route path="reviews" element={<Reviews />} />
           <Route path="reports" element={<Reports />} />
         </Route>

@@ -100137,658 +100137,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/Brand.js":
-/*!******************************************!*\
-  !*** ./resources/js/components/Brand.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Brand)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
-function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-
-
-function Brand() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("All"),
-    _useState2 = _slicedToArray(_useState, 2),
-    activeTab = _useState2[0],
-    setActiveTab = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState4 = _slicedToArray(_useState3, 2),
-    searchTerm = _useState4[0],
-    setSearchTerm = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState6 = _slicedToArray(_useState5, 2),
-    brands = _useState6[0],
-    setBrands = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState8 = _slicedToArray(_useState7, 2),
-    isModalOpen = _useState8[0],
-    setIsModalOpen = _useState8[1]; // State for modal visibility
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-      brand_name: "",
-      email: "",
-      contact_number: "",
-      item_stock: 0,
-      total_sales: 0,
-      status: "Active"
-    }),
-    _useState10 = _slicedToArray(_useState9, 2),
-    newBrand = _useState10[0],
-    setNewBrand = _useState10[1];
-
-  // Fetch brands from API
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetch("http://127.0.0.1:8000/api/brands").then(function (res) {
-      return res.json();
-    }).then(function (data) {
-      return setBrands(data);
-    })["catch"](function (error) {
-      return console.error("Error fetching brands:", error);
-    });
-  }, []);
-  var filteredBrands = brands.filter(function (brand) {
-    var matchesTab = activeTab === "All" || brand.status === (activeTab === "Archived" ? "Archived" : "Active");
-    var matchesSearch = brand.brand_name.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesTab && matchesSearch;
-  });
-
-  // Handle input changes in the modal
-  var handleInputChange = function handleInputChange(e) {
-    var _e$target = e.target,
-      name = _e$target.name,
-      value = _e$target.value;
-    setNewBrand(function (prev) {
-      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, value));
-    });
-  };
-
-  // Handle form submission
-  var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    fetch("http://127.0.0.1:8000/api/brands", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newBrand)
-    }).then(function (res) {
-      return res.json();
-    }).then(function (data) {
-      setBrands(function (prev) {
-        return [].concat(_toConsumableArray(prev), [data]);
-      }); // Add new brand to list
-      setIsModalOpen(false); // Close modal
-      setNewBrand({
-        // Reset form
-        brand_name: "",
-        email: "",
-        contact_number: "",
-        item_stock: 0,
-        total_sales: 0,
-        status: "Active"
-      });
-    })["catch"](function (error) {
-      return console.error("Error adding brand:", error);
-    });
-  };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
-      children: "Brand"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "brands-links",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-        className: "brands-label",
-        children: "Brands:"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "links-container",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          href: "#",
-          className: activeTab === "All" ? "active" : "",
-          onClick: function onClick(e) {
-            e.preventDefault();
-            setActiveTab("All");
-          },
-          children: "All"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          href: "#",
-          className: activeTab === "Archived" ? "active" : "",
-          onClick: function onClick(e) {
-            e.preventDefault();
-            setActiveTab("Archived");
-          },
-          children: "Archived"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "text",
-        placeholder: "Search brands...",
-        className: "brands-search",
-        value: searchTerm,
-        onChange: function onChange(e) {
-          return setSearchTerm(e.target.value);
-        }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        className: "add-brand-btn",
-        onClick: function onClick() {
-          return setIsModalOpen(true);
-        },
-        children: "Add New Brand"
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "brands-table-container",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
-        className: "brands-table",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Actions"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Brand Name"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Email"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Contact Number"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Item Stock"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Total Sales"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Status"
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-          children: filteredBrands.map(function (brand) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                  src: "/imgs/view.svg",
-                  alt: "View",
-                  className: "action-img"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                  src: "/imgs/edit.svg",
-                  alt: "Edit",
-                  className: "action-img"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                  src: "/imgs/archive.svg",
-                  alt: "Archive",
-                  className: "action-img"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: brand.brand_name
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: brand.email
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: brand.contact_number
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: brand.item_stock
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: brand.total_sales
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: brand.status
-              })]
-            }, brand.id);
-          })
-        })]
-      })
-    }), isModalOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "brands-modal-overlay",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "brands-modal",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-          children: "Add New Brand"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
-          onSubmit: handleSubmit,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "brands-form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Brand Name"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "text",
-              name: "brand_name",
-              value: newBrand.brand_name,
-              onChange: handleInputChange,
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "brands-form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Email"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "email",
-              name: "email",
-              value: newBrand.email,
-              onChange: handleInputChange,
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "brands-form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Contact Number"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "text",
-              name: "contact_number",
-              value: newBrand.contact_number,
-              onChange: handleInputChange,
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "brands-form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Item Stock"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "number",
-              name: "item_stock",
-              value: newBrand.item_stock,
-              onChange: handleInputChange,
-              min: "0",
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "brands-form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Total Sales"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "number",
-              name: "total_sales",
-              value: newBrand.total_sales,
-              onChange: handleInputChange,
-              min: "0",
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "brands-form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Status"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-              name: "status",
-              value: newBrand.status,
-              onChange: handleInputChange,
-              required: true,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Active",
-                children: "Active"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Archived",
-                children: "Archived"
-              })]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "brands-modal-actions",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-              type: "submit",
-              className: "brands-save-btn",
-              children: "Save"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-              type: "button",
-              className: "brands-cancel-btn",
-              onClick: function onClick() {
-                return setIsModalOpen(false);
-              },
-              children: "Cancel"
-            })]
-          })]
-        })]
-      })
-    })]
-  });
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Coupons.js":
-/*!********************************************!*\
-  !*** ./resources/js/components/Coupons.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Coupons)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
-function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-
-
-function Coupons() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("All"),
-    _useState2 = _slicedToArray(_useState, 2),
-    activeTab = _useState2[0],
-    setActiveTab = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState4 = _slicedToArray(_useState3, 2),
-    searchTerm = _useState4[0],
-    setSearchTerm = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState6 = _slicedToArray(_useState5, 2),
-    coupons = _useState6[0],
-    setCoupons = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState8 = _slicedToArray(_useState7, 2),
-    isModalOpen = _useState8[0],
-    setIsModalOpen = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-      coupon_code: "",
-      name: "",
-      type: "Percentage",
-      discount: 0,
-      applies_to: "",
-      duration: "",
-      usage_limits: 0
-    }),
-    _useState10 = _slicedToArray(_useState9, 2),
-    newCoupon = _useState10[0],
-    setNewCoupon = _useState10[1];
-
-  // Fetch coupons from API
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetch("http://127.0.0.1:8000/api/coupons").then(function (res) {
-      return res.json();
-    }).then(function (data) {
-      return setCoupons(data);
-    })["catch"](function (error) {
-      return console.error("Error fetching coupons:", error);
-    });
-  }, []);
-  var filteredCoupons = coupons.filter(function (coupon) {
-    var matchesTab = activeTab === "All" || coupon.status === (activeTab === "Archived" ? "Archived" : "Active");
-    var matchesSearch = coupon.name.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesTab && matchesSearch;
-  });
-
-  // Handle input changes in the modal
-  var handleInputChange = function handleInputChange(e) {
-    var _e$target = e.target,
-      name = _e$target.name,
-      value = _e$target.value;
-    setNewCoupon(function (prev) {
-      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, value));
-    });
-  };
-
-  // Handle form submission
-  var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    fetch("http://127.0.0.1:8000/api/coupons", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newCoupon)
-    }).then(function (res) {
-      return res.json();
-    }).then(function (data) {
-      setCoupons(function (prev) {
-        return [].concat(_toConsumableArray(prev), [data]);
-      });
-      setIsModalOpen(false);
-      setNewCoupon({
-        coupon_code: "",
-        name: "",
-        type: "Percentage",
-        discount: 0,
-        applies_to: "",
-        duration: "",
-        usage_limits: 0
-      });
-    })["catch"](function (error) {
-      return console.error("Error adding coupon:", error);
-    });
-  };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
-      children: "Coupons"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "coupons-links",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-        className: "coupons-label",
-        children: "Coupons:"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "links-container",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          href: "#",
-          className: activeTab === "All" ? "active" : "",
-          onClick: function onClick(e) {
-            e.preventDefault();
-            setActiveTab("All");
-          },
-          children: "All"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          href: "#",
-          className: activeTab === "Archived" ? "active" : "",
-          onClick: function onClick(e) {
-            e.preventDefault();
-            setActiveTab("Archived");
-          },
-          children: "Archived"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "text",
-        placeholder: "Search coupons...",
-        className: "coupons-search",
-        value: searchTerm,
-        onChange: function onChange(e) {
-          return setSearchTerm(e.target.value);
-        }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        className: "add-coupon-btn",
-        onClick: function onClick() {
-          return setIsModalOpen(true);
-        },
-        children: "Add New Coupon"
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "coupons-table-container",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
-        className: "coupons-table",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Actions"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Coupon Code"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Name"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Type"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Discount"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Applies To"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Duration"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Usage Limits"
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-          children: filteredCoupons.map(function (coupon) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                  src: "/imgs/view.svg",
-                  alt: "View",
-                  className: "action-img"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                  src: "/imgs/edit.svg",
-                  alt: "Edit",
-                  className: "action-img"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                  src: "/imgs/archive.svg",
-                  alt: "Archive",
-                  className: "action-img"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: coupon.coupon_code
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: coupon.name
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: coupon.type
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: coupon.discount
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: coupon.applies_to
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: coupon.duration
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: coupon.usage_limits
-              })]
-            }, coupon.id);
-          })
-        })]
-      })
-    }), isModalOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "coupons-modal-overlay",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "coupons-modal",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-          children: "Add New Coupon"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
-          onSubmit: handleSubmit,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "coupons-form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Coupon Code"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "text",
-              name: "coupon_code",
-              value: newCoupon.coupon_code,
-              onChange: handleInputChange,
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "coupons-form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Name"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "text",
-              name: "name",
-              value: newCoupon.name,
-              onChange: handleInputChange,
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "coupons-form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Type"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-              name: "type",
-              value: newCoupon.type,
-              onChange: handleInputChange,
-              required: true,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Percentage",
-                children: "Percentage"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Fixed",
-                children: "Fixed"
-              })]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "coupons-form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Discount"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "number",
-              name: "discount",
-              value: newCoupon.discount,
-              onChange: handleInputChange,
-              min: "0",
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "coupons-form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Applies To"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "text",
-              name: "applies_to",
-              value: newCoupon.applies_to,
-              onChange: handleInputChange,
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "coupons-form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Duration"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "text",
-              name: "duration",
-              value: newCoupon.duration,
-              onChange: handleInputChange,
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "coupons-form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Usage Limits"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "number",
-              name: "usage_limits",
-              value: newCoupon.usage_limits,
-              onChange: handleInputChange,
-              min: "0",
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "coupons-modal-actions",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-              type: "submit",
-              className: "coupons-save-btn",
-              children: "Save"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-              type: "button",
-              className: "coupons-cancel-btn",
-              onClick: function onClick() {
-                return setIsModalOpen(false);
-              },
-              children: "Cancel"
-            })]
-          })]
-        })]
-      })
-    })]
-  });
-}
-
-/***/ }),
-
 /***/ "./resources/js/components/Customers.js":
 /*!**********************************************!*\
   !*** ./resources/js/components/Customers.js ***!
@@ -100974,7 +100322,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
-
+ // Added useNavigate
 
 
 
@@ -100984,13 +100332,10 @@ chart_js__WEBPACK_IMPORTED_MODULE_2__.Chart.register(chart_js__WEBPACK_IMPORTED_
 function Dashboard() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
-    settingsOpen = _useState2[0],
-    setSettingsOpen = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState4 = _slicedToArray(_useState3, 2),
-    sidebarOpen = _useState4[0],
-    setSidebarOpen = _useState4[1];
+    sidebarOpen = _useState2[0],
+    setSidebarOpen = _useState2[1];
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)(); // Hook for navigation
   var lineChartRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var barChartRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var lineData = {
@@ -101080,6 +100425,17 @@ function Dashboard() {
       return window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  // Logout function with confirmation
+  var handleLogout = function handleLogout() {
+    var confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      // Perform logout actions here (e.g., clear auth token, reset state)
+      // For this example, we'll just redirect to login
+      navigate("/login");
+      setSidebarOpen(false); // Close sidebar on logout
+    }
+  };
   var isDashboardRoot = location.pathname === "/dashboard";
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "rounded-dashboard-container",
@@ -101105,8 +100461,7 @@ function Dashboard() {
         className: "rounded-nav-links",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
           to: "/dashboard",
-          end: true // Ensure exact match for /dashboard only
-          ,
+          end: true,
           className: function className(_ref) {
             var isActive = _ref.isActive;
             return isActive ? "active" : "";
@@ -101190,23 +100545,9 @@ function Dashboard() {
             className: "nav-icon"
           }), "Users"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard/brand",
+          to: "/dashboard/transactions",
           className: function className(_ref7) {
             var isActive = _ref7.isActive;
-            return isActive ? "active" : "";
-          },
-          onClick: function onClick() {
-            return setSidebarOpen(false);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Brands.svg",
-            alt: "Brand",
-            className: "nav-icon"
-          }), "Brand"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard/transactions",
-          className: function className(_ref8) {
-            var isActive = _ref8.isActive;
             return isActive ? "active" : "";
           },
           onClick: function onClick() {
@@ -101218,37 +100559,9 @@ function Dashboard() {
             className: "nav-icon"
           }), "Transactions"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard/coupons",
-          className: function className(_ref9) {
-            var isActive = _ref9.isActive;
-            return isActive ? "active" : "";
-          },
-          onClick: function onClick() {
-            return setSidebarOpen(false);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Coupons.svg",
-            alt: "Coupons",
-            className: "nav-icon"
-          }), "Coupons"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard/inbox",
-          className: function className(_ref10) {
-            var isActive = _ref10.isActive;
-            return isActive ? "active" : "";
-          },
-          onClick: function onClick() {
-            return setSidebarOpen(false);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Inbox.svg",
-            alt: "Inbox",
-            className: "nav-icon"
-          }), "Inbox"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
           to: "/dashboard/reviews",
-          className: function className(_ref11) {
-            var isActive = _ref11.isActive;
+          className: function className(_ref8) {
+            var isActive = _ref8.isActive;
             return isActive ? "active" : "";
           },
           onClick: function onClick() {
@@ -101261,8 +100574,8 @@ function Dashboard() {
           }), "Reviews"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
           to: "/dashboard/reports",
-          className: function className(_ref12) {
-            var isActive = _ref12.isActive;
+          className: function className(_ref9) {
+            var isActive = _ref9.isActive;
             return isActive ? "active" : "";
           },
           onClick: function onClick() {
@@ -101275,81 +100588,38 @@ function Dashboard() {
           }), "Reports"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("hr", {
           className: "separator"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
+          to: "/dashboard/admin-settings",
+          className: function className(_ref10) {
+            var isActive = _ref10.isActive;
+            return isActive ? "active" : "";
+          },
+          onClick: function onClick() {
+            return setSidebarOpen(false);
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+            src: "/imgs/Settings.svg",
+            alt: "Admin Settings",
+            className: "nav-icon"
+          }), "Admin Settings"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "settings-container",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "settings-header",
-            onClick: function onClick() {
-              return setSettingsOpen(!settingsOpen);
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-              src: "/imgs/Settings.svg",
-              alt: "Settings",
-              className: "nav-icon"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-              children: "Settings"
-            })]
-          }), settingsOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
-            className: "settings-list",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-                href: "/settings/account",
-                children: "Account"
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-                href: "/settings/notifications",
-                children: "Notifications"
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-                href: "/settings/payments",
-                children: "Payments"
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-                href: "/settings/checkout",
-                children: "Checkout"
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-                href: "/settings/shipping",
-                children: "Shipping & Delivery"
-              })
-            })]
-          })]
+          className: "nav-link",
+          onClick: handleLogout,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+            src: "/imgs/Logout.svg",
+            alt: "Log Out",
+            className: "nav-icon"
+          }), "Log Out"]
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "main-content",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "header-container",
-        children: [!sidebarOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "hamburger hamburger-open",
-          onClick: function onClick() {
-            return setSidebarOpen(true);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {})]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "header-right",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "profile",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-              src: "/imgs/profile.svg",
-              alt: "Profile",
-              className: "profile-pic"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-              className: "profile-info",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                className: "username",
-                children: "Ruella Malabo Jr."
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                className: "role",
-                children: "Admin"
-              })]
-            })]
-          })
-        })]
+      children: [!sidebarOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "hamburger hamburger-open",
+        onClick: function onClick() {
+          return setSidebarOpen(true);
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {})]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "page-content",
         children: isDashboardRoot ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
@@ -101470,228 +100740,6 @@ function Dashboard() {
 
 /***/ }),
 
-/***/ "./resources/js/components/Inbox.js":
-/*!******************************************!*\
-  !*** ./resources/js/components/Inbox.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Inbox)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-
-
-function Inbox() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState2 = _slicedToArray(_useState, 2),
-    conversations = _useState2[0],
-    setConversations = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState4 = _slicedToArray(_useState3, 2),
-    selectedConversation = _useState4[0],
-    setSelectedConversation = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState6 = _slicedToArray(_useState5, 2),
-    newMessage = _useState6[0],
-    setNewMessage = _useState6[1];
-
-  // Fetch conversations from API (using dummy data with profile pics for now)
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var dummyConversations = [{
-      id: 1,
-      customer_name: "John Doe",
-      profile_pic: "/imgs/profile.svg",
-      // Default or customer-specific image
-      last_message: "Hi, I need help!",
-      timestamp: "2023-10-01 10:00"
-    }, {
-      id: 2,
-      customer_name: "Jane Smith",
-      profile_pic: "/imgs/profile.svg",
-      last_message: "Order issue",
-      timestamp: "2023-10-01 09:30"
-    }];
-    setConversations(dummyConversations);
-
-    // Uncomment to fetch from API
-    /*
-    fetch("http://127.0.0.1:8000/api/inbox/conversations")
-      .then((res) => res.json())
-      .then((data) => setConversations(data))
-      .catch((error) => console.error("Error fetching conversations:", error));
-    */
-  }, []);
-
-  // Dummy messages for selected conversation (replace with API fetch)
-  var getMessages = function getMessages(conversationId) {
-    var dummyMessages = {
-      1: [{
-        id: 1,
-        sender: "John Doe",
-        text: "Hi, I need help!",
-        timestamp: "2023-10-01 10:00"
-      }, {
-        id: 2,
-        sender: "Admin",
-        text: "Hello! How can I assist you?",
-        timestamp: "2023-10-01 10:01"
-      }],
-      2: [{
-        id: 1,
-        sender: "Jane Smith",
-        text: "Order issue",
-        timestamp: "2023-10-01 09:30"
-      }, {
-        id: 2,
-        sender: "Admin",
-        text: "Can you provide more details?",
-        timestamp: "2023-10-01 09:32"
-      }]
-    };
-    return dummyMessages[conversationId] || [];
-  };
-  var handleSendMessage = function handleSendMessage(e) {
-    e.preventDefault();
-    if (!newMessage.trim() || !selectedConversation) return;
-    var message = {
-      id: Date.now(),
-      // Temporary ID
-      sender: "Admin",
-      text: newMessage,
-      timestamp: new Date().toISOString()
-    };
-
-    // Update local state (replace with API call)
-    setConversations(function (prev) {
-      return prev.map(function (conv) {
-        return conv.id === selectedConversation.id ? _objectSpread(_objectSpread({}, conv), {}, {
-          last_message: newMessage,
-          timestamp: message.timestamp
-        }) : conv;
-      });
-    });
-    setNewMessage("");
-
-    // Uncomment to send to API
-    /*
-    fetch(`http://127.0.0.1:8000/api/inbox/conversations/${selectedConversation.id}/messages`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(message),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // Update state with API response if needed
-      })
-      .catch((error) => console.error("Error sending message:", error));
-    */
-  };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
-      children: "Inbox"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "inbox-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "inbox-conversations",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-          children: "Conversations"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
-          children: conversations.map(function (conv) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
-              className: (selectedConversation === null || selectedConversation === void 0 ? void 0 : selectedConversation.id) === conv.id ? "active" : "",
-              onClick: function onClick() {
-                return setSelectedConversation(conv);
-              },
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                src: conv.profile_pic,
-                alt: conv.customer_name,
-                className: "inbox-profile-pic"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "inbox-conversation-info",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                  className: "inbox-customer-name",
-                  children: conv.customer_name
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                  className: "inbox-last-message",
-                  children: conv.last_message
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                className: "inbox-timestamp",
-                children: conv.timestamp
-              })]
-            }, conv.id);
-          })
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "inbox-chat",
-        children: selectedConversation ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "inbox-chat-header",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
-              children: selectedConversation.customer_name
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "inbox-messages",
-            children: getMessages(selectedConversation.id).map(function (msg) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                className: "inbox-message ".concat(msg.sender === "Admin" ? "sent" : "received"),
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                  className: "inbox-message-content",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-                    children: msg.text
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                    className: "inbox-message-timestamp",
-                    children: msg.timestamp
-                  })]
-                })
-              }, msg.id);
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
-            className: "inbox-message-form",
-            onSubmit: handleSendMessage,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "text",
-              value: newMessage,
-              onChange: function onChange(e) {
-                return setNewMessage(e.target.value);
-              },
-              placeholder: "Type a message...",
-              className: "inbox-message-input"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-              type: "submit",
-              className: "inbox-send-btn",
-              children: "Send"
-            })]
-          })]
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "inbox-no-selection",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-            children: "Select a conversation to start chatting"
-          })
-        })
-      })]
-    })]
-  });
-}
-
-/***/ }),
-
 /***/ "./resources/js/components/Inventory.js":
 /*!**********************************************!*\
   !*** ./resources/js/components/Inventory.js ***!
@@ -101716,6 +100764,9 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -101726,6 +100777,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 function Inventory() {
+  var _viewItem$product, _viewItem$product2, _viewItem$product3, _viewItem$product4, _viewItem$product5, _selectedItem$product;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     inventory = _useState2[0],
@@ -101750,55 +100802,93 @@ function Inventory() {
     _useState12 = _slicedToArray(_useState11, 2),
     activeFilter = _useState12[0],
     setActiveFilter = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-      product: "",
-      category: "",
-      type: "",
-      price: "",
-      sizes: "",
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState14 = _slicedToArray(_useState13, 2),
+    isLoading = _useState14[0],
+    setIsLoading = _useState14[1]; // Added loading state
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState16 = _slicedToArray(_useState15, 2),
+    error = _useState16[0],
+    setError = _useState16[1]; // Added error state
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      product_id: "",
       stock_quantity: "",
       status: "Available"
     }),
-    _useState14 = _slicedToArray(_useState13, 2),
-    newItem = _useState14[0],
-    setNewItem = _useState14[1];
+    _useState18 = _slicedToArray(_useState17, 2),
+    newItem = _useState18[0],
+    setNewItem = _useState18[1];
 
   // Fetch inventory data
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("http://127.0.0.1:8000/api/inventory").then(function (response) {
-      return setInventory(response.data);
-    })["catch"](function (error) {
-      return console.error("Error fetching inventory:", error);
-    });
+    var fetchInventory = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var response, _error$response, _error$response2;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              setIsLoading(true);
+              setError(null);
+              _context.prev = 2;
+              _context.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("http://127.0.0.1:8000/api/inventory");
+            case 5:
+              response = _context.sent;
+              console.log("Fetched inventory:", response.data); // Debug response
+              setInventory(response.data);
+              _context.next = 14;
+              break;
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](2);
+              console.error("Error fetching inventory:", ((_error$response = _context.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context.t0.message);
+              setError(((_error$response2 = _context.t0.response) === null || _error$response2 === void 0 || (_error$response2 = _error$response2.data) === null || _error$response2 === void 0 ? void 0 : _error$response2.message) || "Failed to load inventory. Please try again.");
+            case 14:
+              _context.prev = 14;
+              setIsLoading(false);
+              return _context.finish(14);
+            case 17:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee, null, [[2, 10, 14, 17]]);
+      }));
+      return function fetchInventory() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+    fetchInventory();
   }, []);
 
-  // Handle input change for new product
+  // Handle input change for new inventory item
   var handleNewItemChange = function handleNewItemChange(e) {
     setNewItem(_objectSpread(_objectSpread({}, newItem), {}, _defineProperty({}, e.target.name, e.target.value)));
   };
 
-  // Add new product
+  // Add new inventory item
   var handleAddProduct = function handleAddProduct() {
     axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("http://127.0.0.1:8000/api/inventory", newItem).then(function (response) {
       setInventory([].concat(_toConsumableArray(inventory), [response.data.data]));
       setShowAddForm(false);
       setNewItem({
-        product: "",
-        category: "",
-        type: "",
-        price: "",
-        sizes: "",
+        product_id: "",
         stock_quantity: "",
         status: "Available"
       });
     })["catch"](function (error) {
-      return console.error("Error adding new product:", error);
+      return console.error("Error adding inventory item:", error);
     });
   };
 
   // Handle Edit Click
   var handleEditClick = function handleEditClick(item) {
-    setSelectedItem(item);
+    setSelectedItem({
+      id: item.id,
+      product_id: item.product_id,
+      stock_quantity: item.stock_quantity,
+      status: item.status,
+      product: item.product
+    });
     setViewItem(null);
     setShowAddForm(false);
   };
@@ -101817,9 +100907,13 @@ function Inventory() {
 
   // Handle Save Edit
   var handleSave = function handleSave() {
-    axios__WEBPACK_IMPORTED_MODULE_2__["default"].put("http://127.0.0.1:8000/api/inventory/".concat(selectedItem.id), selectedItem).then(function () {
+    axios__WEBPACK_IMPORTED_MODULE_2__["default"].put("http://127.0.0.1:8000/api/inventory/".concat(selectedItem.id), {
+      product_id: selectedItem.product_id,
+      stock_quantity: selectedItem.stock_quantity,
+      status: selectedItem.status
+    }).then(function () {
       setInventory(inventory.map(function (item) {
-        return item.id === selectedItem.id ? selectedItem : item;
+        return item.id === selectedItem.id ? _objectSpread(_objectSpread({}, item), selectedItem) : item;
       }));
       setSelectedItem(null);
     })["catch"](function (error) {
@@ -101829,7 +100923,7 @@ function Inventory() {
 
   // Handle Archive
   var handleArchive = function handleArchive(id) {
-    axios__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"]("http://127.0.0.1:8000/api/inventory/".concat(id, "/archive")).then(function () {
+    axios__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"]("http://127.0.0.1:8000/api/inventory/".concat(id)).then(function () {
       return setInventory(inventory.filter(function (item) {
         return item.id !== id;
       }));
@@ -101840,8 +100934,10 @@ function Inventory() {
 
   // Filtered inventory based on search query and active filter
   var filteredInventory = inventory.filter(function (item) {
-    var matchesSearch = item.product.toLowerCase().includes(searchQuery.toLowerCase());
-    var matchesFilter = activeFilter === "All" || activeFilter === "Available" && item.status === "Available" || activeFilter === "Low Stock" && item.stock_quantity > 0 && item.stock_quantity <= 10 || activeFilter === "Out of Stock" && item.status === "Out of Stock";
+    var _item$product;
+    var productName = ((_item$product = item.product) === null || _item$product === void 0 ? void 0 : _item$product.product_name) || ""; // Null-safe access
+    var matchesSearch = productName.toLowerCase().includes(searchQuery.toLowerCase());
+    var matchesFilter = activeFilter === "All" || activeFilter === "Available" && item.status === "Available" || activeFilter === "Low Stock" && item.status === "Low Stock" || activeFilter === "Out of Stock" && item.status === "Out of Stock";
     return matchesSearch && matchesFilter;
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
@@ -101948,48 +101044,38 @@ function Inventory() {
         onClick: function onClick() {
           return setShowAddForm(true);
         },
-        children: "Add Product"
+        children: "Add Inventory Item"
       })]
     }), showAddForm && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "add-form",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-        children: "Add New Product"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "text",
-        name: "product",
-        value: newItem.product,
-        onChange: handleNewItemChange,
-        placeholder: "Product Name"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "text",
-        name: "category",
-        value: newItem.category,
-        onChange: handleNewItemChange,
-        placeholder: "Category"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "text",
-        name: "type",
-        value: newItem.type,
-        onChange: handleNewItemChange,
-        placeholder: "Type"
+        children: "Add New Inventory Item"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: "number",
-        name: "price",
-        value: newItem.price,
+        name: "product_id",
+        value: newItem.product_id,
         onChange: handleNewItemChange,
-        placeholder: "Price"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "text",
-        name: "sizes",
-        value: newItem.sizes,
-        onChange: handleNewItemChange,
-        placeholder: "Sizes"
+        placeholder: "Product ID"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: "number",
         name: "stock_quantity",
         value: newItem.stock_quantity,
         onChange: handleNewItemChange,
         placeholder: "Stock Quantity"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+        name: "status",
+        value: newItem.status,
+        onChange: handleNewItemChange,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "Available",
+          children: "Available"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "Low Stock",
+          children: "Low Stock"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "Out of Stock",
+          children: "Out of Stock"
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
         onClick: handleAddProduct,
         children: "Save"
@@ -102010,23 +101096,23 @@ function Inventory() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
           children: "Product:"
-        }), " ", viewItem.product]
+        }), " ", ((_viewItem$product = viewItem.product) === null || _viewItem$product === void 0 ? void 0 : _viewItem$product.product_name) || "N/A"]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
           children: "Category:"
-        }), " ", viewItem.category]
+        }), " ", ((_viewItem$product2 = viewItem.product) === null || _viewItem$product2 === void 0 ? void 0 : _viewItem$product2.category) || "N/A"]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
           children: "Type:"
-        }), " ", viewItem.type]
+        }), " ", ((_viewItem$product3 = viewItem.product) === null || _viewItem$product3 === void 0 ? void 0 : _viewItem$product3.product_type) || "N/A"]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
           children: "Price:"
-        }), " ", viewItem.price]
+        }), " ", ((_viewItem$product4 = viewItem.product) === null || _viewItem$product4 === void 0 ? void 0 : _viewItem$product4.price) || "N/A"]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
           children: "Sizes:"
-        }), " ", viewItem.sizes]
+        }), " ", ((_viewItem$product5 = viewItem.product) === null || _viewItem$product5 === void 0 || (_viewItem$product5 = _viewItem$product5.sizes) === null || _viewItem$product5 === void 0 ? void 0 : _viewItem$product5.join(", ")) || "N/A"]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
           children: "Stock Quantity:"
@@ -102044,42 +101130,13 @@ function Inventory() {
     }), selectedItem && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "add-form",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-        children: "Edit Item"
+        children: "Edit Inventory Item"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
         children: "Product:"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: "text",
-        name: "product",
-        value: selectedItem.product,
-        onChange: handleFormChange
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-        children: "Category:"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "text",
-        name: "category",
-        value: selectedItem.category,
-        onChange: handleFormChange
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-        children: "Type:"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "text",
-        name: "type",
-        value: selectedItem.type,
-        onChange: handleFormChange
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-        children: "Price:"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "number",
-        name: "price",
-        value: selectedItem.price,
-        onChange: handleFormChange
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-        children: "Sizes:"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "text",
-        name: "sizes",
-        value: selectedItem.sizes,
-        onChange: handleFormChange
+        value: ((_selectedItem$product = selectedItem.product) === null || _selectedItem$product === void 0 ? void 0 : _selectedItem$product.product_name) || "N/A",
+        disabled: true
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
         children: "Stock Quantity:"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
@@ -102112,98 +101169,108 @@ function Inventory() {
         },
         children: "Cancel"
       })]
-    }), !selectedItem && !viewItem && !showAddForm && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
-      className: "inventory-table",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-            children: "Actions"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-            children: "ID"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-            children: "Product"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-            children: "Category"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-            children: "Type"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-            children: "Price"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-            children: "Sizes"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-            children: "Stock Quantity"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-            children: "Status"
-          })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-        children: filteredInventory.length > 0 ? filteredInventory.map(function (item) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                src: "/imgs/view.svg",
-                alt: "View",
-                className: "action-img",
-                onClick: function onClick() {
-                  return handleViewClick(item);
-                },
-                style: {
-                  cursor: "pointer",
-                  marginRight: "8px"
-                }
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                src: "/imgs/edit.svg",
-                alt: "Edit",
-                className: "action-img",
-                onClick: function onClick() {
-                  return handleEditClick(item);
-                },
-                style: {
-                  cursor: "pointer",
-                  marginRight: "8px"
-                }
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                src: "/imgs/archive.svg",
-                alt: "Archive",
-                className: "action-img",
-                onClick: function onClick() {
-                  return handleArchive(item.id);
-                },
-                style: {
-                  cursor: "pointer"
-                }
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              children: item.id
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              children: item.product
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              children: item.category
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              children: item.type
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              children: item.price
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              children: item.sizes
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              children: item.stock_quantity
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                className: "status-frame status-".concat(item.status.toLowerCase().replace(/\s+/g, "-")),
-                children: item.status
-              })
+    }), !selectedItem && !viewItem && !showAddForm && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+      children: isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: "Loading inventory..."
+      }) : error ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        style: {
+          color: "red"
+        },
+        children: error
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
+        className: "inventory-table",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Actions"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "ID"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Product"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Category"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Type"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Price"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Sizes"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Stock Quantity"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Status"
             })]
-          }, item.id);
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-            colSpan: "9",
-            style: {
-              textAlign: "center"
-            },
-            children: "No inventory found."
           })
-        })
-      })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
+          children: filteredInventory.length > 0 ? filteredInventory.map(function (item) {
+            var _item$product2, _item$product3, _item$product4, _item$product5, _item$product6;
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                  src: "/imgs/view.svg",
+                  alt: "View",
+                  className: "action-img",
+                  onClick: function onClick() {
+                    return handleViewClick(item);
+                  },
+                  style: {
+                    cursor: "pointer",
+                    marginRight: "8px"
+                  }
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                  src: "/imgs/edit.svg",
+                  alt: "Edit",
+                  className: "action-img",
+                  onClick: function onClick() {
+                    return handleEditClick(item);
+                  },
+                  style: {
+                    cursor: "pointer",
+                    marginRight: "8px"
+                  }
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                  src: "/imgs/archive.svg",
+                  alt: "Archive",
+                  className: "action-img",
+                  onClick: function onClick() {
+                    return handleArchive(item.id);
+                  },
+                  style: {
+                    cursor: "pointer"
+                  }
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: item.id
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: ((_item$product2 = item.product) === null || _item$product2 === void 0 ? void 0 : _item$product2.product_name) || "N/A"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: ((_item$product3 = item.product) === null || _item$product3 === void 0 ? void 0 : _item$product3.category) || "N/A"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: ((_item$product4 = item.product) === null || _item$product4 === void 0 ? void 0 : _item$product4.product_type) || "N/A"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: ((_item$product5 = item.product) === null || _item$product5 === void 0 ? void 0 : _item$product5.price) || "N/A"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: ((_item$product6 = item.product) === null || _item$product6 === void 0 || (_item$product6 = _item$product6.sizes) === null || _item$product6 === void 0 ? void 0 : _item$product6.join(", ")) || "N/A"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: item.stock_quantity
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                  className: "status-frame status-".concat(item.status.toLowerCase().replace(/\s+/g, "-")),
+                  children: item.status
+                })
+              })]
+            }, item.id);
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+              colSpan: "9",
+              style: {
+                textAlign: "center"
+              },
+              children: "No inventory found."
+            })
+          })
+        })]
+      })
     })]
   });
 }
@@ -102985,7 +102052,7 @@ function Products() {
     fetchProducts();
   }, []);
   var filteredProducts = products.filter(function (product) {
-    var matchesTab = activeTab === "All" || activeTab === "Published" && product.status === "available" || activeTab === "Archived" && product.status === "archived";
+    var matchesTab = activeTab === "All" || activeTab === "Available" && product.status === "available" || activeTab === "Archived" && product.status === "archived";
     var matchesSearch = product.product_name.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesTab && matchesSearch;
   });
@@ -103233,7 +102300,7 @@ function Products() {
         children: "Products:"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "links-container",
-        children: ["All", "Published", "Archived"].map(function (tab) {
+        children: ["All", "Available", "Archived"].map(function (tab) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
             className: activeTab === tab ? "active" : "",
             onClick: function onClick() {
@@ -103356,7 +102423,7 @@ function Products() {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                   className: "status-frame status-".concat(product.status.toLowerCase()),
-                  children: product.status === "available" ? "Published" : "Archived"
+                  children: product.status === "available" ? "Available" : "Archived"
                 })
               })]
             }, product.id);
@@ -103796,8 +102863,6 @@ function Reviews() {
     _useState6 = _slicedToArray(_useState5, 2),
     replyText = _useState6[0],
     setReplyText = _useState6[1];
-
-  // Fetch reviews from API (using dummy data for now)
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var dummyReviews = [{
       id: 1,
@@ -103990,8 +103055,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Login */ "./resources/js/components/Login.js");
 /* harmony import */ var _Signup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Signup */ "./resources/js/components/Signup.js");
 /* harmony import */ var _Dashboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Dashboard */ "./resources/js/components/Dashboard.js");
@@ -103999,28 +103064,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Orders__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Orders */ "./resources/js/components/Orders.js");
 /* harmony import */ var _Inventory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Inventory */ "./resources/js/components/Inventory.js");
 /* harmony import */ var _Customers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Customers */ "./resources/js/components/Customers.js");
-/* harmony import */ var _Coupons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Coupons */ "./resources/js/components/Coupons.js");
-/* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Users */ "./resources/js/components/Users.js");
-/* harmony import */ var _Transactions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Transactions */ "./resources/js/components/Transactions.js");
-/* harmony import */ var _Brand__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Brand */ "./resources/js/components/Brand.js");
-/* harmony import */ var _Inbox__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Inbox */ "./resources/js/components/Inbox.js");
-/* harmony import */ var _Reviews__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Reviews */ "./resources/js/components/Reviews.js");
-/* harmony import */ var _Reports__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Reports */ "./resources/js/components/Reports.js");
-/* harmony import */ var _HomePage__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./HomePage */ "./resources/js/components/HomePage.js");
-/* harmony import */ var _HomePage__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_HomePage__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
-/* harmony import */ var slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! slick-carousel/slick/slick.css */ "./node_modules/slick-carousel/slick/slick.css");
-/* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! slick-carousel/slick/slick-theme.css */ "./node_modules/slick-carousel/slick/slick-theme.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Users */ "./resources/js/components/Users.js");
+/* harmony import */ var _Transactions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Transactions */ "./resources/js/components/Transactions.js");
+/* harmony import */ var _Reviews__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Reviews */ "./resources/js/components/Reviews.js");
+/* harmony import */ var _Reports__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Reports */ "./resources/js/components/Reports.js");
+/* harmony import */ var _HomePage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./HomePage */ "./resources/js/components/HomePage.js");
+/* harmony import */ var _HomePage__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_HomePage__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
+/* harmony import */ var slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! slick-carousel/slick/slick.css */ "./node_modules/slick-carousel/slick/slick.css");
+/* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! slick-carousel/slick/slick-theme.css */ "./node_modules/slick-carousel/slick/slick-theme.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-
-
-
 
 
 
@@ -104044,7 +103103,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  // Import slick-carousel theme CSS
 
 var LandingPage = function LandingPage() {
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_21__.useNavigate)(); // Initialize navigate hook
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_18__.useNavigate)(); // Initialize navigate hook
 
   var handleLoginClick = function handleLoginClick() {
     navigate('/login'); // Navigate to /login on click
@@ -104068,72 +103127,72 @@ var LandingPage = function LandingPage() {
     // Auto-play speed (3 seconds)
     arrows: true // Show navigation arrows
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)("div", {
     className: "landing-page",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsxs)("header", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)("header", {
       className: "login-header",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
         className: "logo-container",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("img", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
           src: "/imgs/logo.svg",
           alt: "Logo",
           className: "logo"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsxs)("nav", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)("nav", {
         className: "nav-links",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("a", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("a", {
           href: "#home",
           children: "HOME"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("a", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("a", {
           href: "#shop",
           children: "SHOP"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("a", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("a", {
           href: "#about",
           children: "ABOUT US"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("a", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("a", {
           href: "#support",
           className: "support-link",
           children: "SUPPORT"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)("div", {
         className: "header-icons",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("img", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
           src: "/imgs/Search.svg",
           alt: "Search",
           className: "header-icon"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("img", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
           src: "/imgs/Wish.svg",
           alt: "Wishlist",
           className: "header-icon"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("img", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
           src: "/imgs/Cart.svg",
           alt: "Cart",
           className: "header-icon"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("button", {
           className: "login-button",
           onClick: handleLoginClick,
           children: "Login"
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
       className: "slider-container",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsxs)(react_slick__WEBPACK_IMPORTED_MODULE_17__["default"], _objectSpread(_objectSpread({}, sliderSettings), {}, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("img", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(react_slick__WEBPACK_IMPORTED_MODULE_14__["default"], _objectSpread(_objectSpread({}, sliderSettings), {}, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
             src: "/imgs/slider1.svg" // Your first clothing image
             ,
             alt: "Clothing 1",
             className: "slider-image"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("img", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
             src: "/imgs/slider2.svg" // Add more clothing images as needed
             ,
             alt: "Clothing 2",
             className: "slider-image"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)("img", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
             src: "/imgs/slider3.svg" // Add more clothing images as needed
             ,
             alt: "Clothing 3",
@@ -104153,13 +103212,13 @@ var ProtectedRoute = function ProtectedRoute(_ref) {
   var role = localStorage.getItem("role"); // Get user role
 
   if (!token) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Navigate, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Navigate, {
       to: "/login",
       replace: true
     }); // Redirect if not logged in
   }
   if (!allowedRoles.includes(role)) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Navigate, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Navigate, {
       to: "/",
       replace: true
     }); // Redirect if role is not allowed
@@ -104167,62 +103226,53 @@ var ProtectedRoute = function ProtectedRoute(_ref) {
   return element;
 };
 var App = function App() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_22__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Routes, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Routes, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
         path: "/login",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
         path: "/signup",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Signup__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Signup__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
         path: "/",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(LandingPage, {})
-      }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(LandingPage, {})
+      }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
         path: "/home",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)((_HomePage__WEBPACK_IMPORTED_MODULE_16___default()), {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)((_HomePage__WEBPACK_IMPORTED_MODULE_13___default()), {}),
           allowedRoles: ["customer"]
         })
-      }), "  ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
+      }), "  ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
         path: "/dashboard",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Dashboard__WEBPACK_IMPORTED_MODULE_4__["default"], {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Dashboard__WEBPACK_IMPORTED_MODULE_4__["default"], {}),
           allowedRoles: ["admin"]
         }),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
           path: "products",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Products__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Products__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
           path: "orders",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Orders__WEBPACK_IMPORTED_MODULE_6__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Orders__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
           path: "inventory",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Inventory__WEBPACK_IMPORTED_MODULE_7__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Inventory__WEBPACK_IMPORTED_MODULE_7__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
           path: "customers",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Customers__WEBPACK_IMPORTED_MODULE_8__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Customers__WEBPACK_IMPORTED_MODULE_8__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
           path: "users",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Users__WEBPACK_IMPORTED_MODULE_10__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Users__WEBPACK_IMPORTED_MODULE_9__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
           path: "transactions",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Transactions__WEBPACK_IMPORTED_MODULE_11__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "brand",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Brand__WEBPACK_IMPORTED_MODULE_12__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "coupons",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Coupons__WEBPACK_IMPORTED_MODULE_9__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "inbox",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Inbox__WEBPACK_IMPORTED_MODULE_13__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Transactions__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
           path: "reviews",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Reviews__WEBPACK_IMPORTED_MODULE_14__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Reviews__WEBPACK_IMPORTED_MODULE_11__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
           path: "reports",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_Reports__WEBPACK_IMPORTED_MODULE_15__["default"], {})
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Reports__WEBPACK_IMPORTED_MODULE_12__["default"], {})
         })]
       })]
     })
@@ -104231,7 +103281,7 @@ var App = function App() {
 
 // Mount React App
 if (document.getElementById("root")) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(App, {}), document.getElementById("root"));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(App, {}), document.getElementById("root"));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
@@ -104768,6 +103818,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
@@ -104800,6 +103855,14 @@ function Users() {
     _useState10 = _slicedToArray(_useState9, 2),
     error = _useState10[0],
     setError = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState12 = _slicedToArray(_useState11, 2),
+    showArchiveDialog = _useState12[0],
+    setShowArchiveDialog = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState14 = _slicedToArray(_useState13, 2),
+    userToArchive = _useState14[0],
+    setUserToArchive = _useState14[1];
 
   // Fetch users from API
   var fetchUsers = /*#__PURE__*/function () {
@@ -104813,8 +103876,8 @@ function Users() {
             _context.next = 4;
             return fetch("http://127.0.0.1:8000/api/users", {
               headers: {
-                "Content-Type": "application/json"
-                // "Authorization": `Bearer ${yourToken}`
+                "Content-Type": "application/json",
+                "Accept": "application/json"
               }
             });
           case 4:
@@ -104830,7 +103893,7 @@ function Users() {
           case 9:
             data = _context.sent;
             console.log("Raw API Response:", data);
-            userData = Array.isArray(data) ? data : data.data ? data.data : data.users || [];
+            userData = Array.isArray(data) ? data : data.data || data.users || [];
             console.log("Processed Users:", userData);
             setUsers(userData);
             _context.next = 20;
@@ -104858,79 +103921,179 @@ function Users() {
     fetchUsers();
   }, []);
 
-  // Archive user (set status to Archived)
-  var archiveUser = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(userId) {
-      var response;
+  // Archive User
+  var archiveUser = function archiveUser(userId) {
+    console.log("Initiating archive for user ID:", userId);
+    setUserToArchive(userId);
+    setShowArchiveDialog(true);
+  };
+  var confirmArchive = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var response, errorData, responseData;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return fetch("http://127.0.0.1:8000/api/users/".concat(userId, "/archive"), {
-              method: "POST",
-              // Using POST to avoid 405; adjust endpoint if needed
-              headers: {
-                "Content-Type": "application/json"
-                // "Authorization": `Bearer ${yourToken}`
-              },
-              body: JSON.stringify({
-                status: "Archived"
-              })
-            });
-          case 3:
-            response = _context2.sent;
-            if (response.ok) {
-              _context2.next = 6;
+            if (userToArchive) {
+              _context2.next = 3;
               break;
             }
-            throw new Error("Failed to archive user: ".concat(response.status));
-          case 6:
+            console.log("No user selected to archive");
+            return _context2.abrupt("return");
+          case 3:
+            _context2.prev = 3;
+            setLoading(true);
+            console.log("Sending archive request for user:", userToArchive);
             _context2.next = 8;
-            return fetchUsers();
+            return fetch("http://127.0.0.1:8000/api/users/".concat(userToArchive, "/archive"), {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              }
+            });
           case 8:
-            _context2.next = 14;
+            response = _context2.sent;
+            if (response.ok) {
+              _context2.next = 15;
+              break;
+            }
+            _context2.next = 12;
+            return response.json();
+          case 12:
+            errorData = _context2.sent;
+            console.error("Archive response error:", errorData);
+            throw new Error("Failed to archive user: ".concat(response.status, " - ").concat(errorData.message || 'Unknown error'));
+          case 15:
+            _context2.next = 17;
+            return response.json();
+          case 17:
+            responseData = _context2.sent;
+            console.log("Archive successful, response:", responseData);
+            setUsers(users.map(function (user) {
+              return user.id === userToArchive ? _objectSpread(_objectSpread({}, user), {}, {
+                status: "Archived"
+              }) : user;
+            }));
+            setShowArchiveDialog(false);
+            setUserToArchive(null);
+            setError(null);
+            _context2.next = 29;
             break;
-          case 10:
-            _context2.prev = 10;
-            _context2.t0 = _context2["catch"](0);
+          case 25:
+            _context2.prev = 25;
+            _context2.t0 = _context2["catch"](3);
             console.error("Error archiving user:", _context2.t0);
             setError(_context2.t0.message);
-          case 14:
+          case 29:
+            _context2.prev = 29;
+            setLoading(false);
+            return _context2.finish(29);
+          case 32:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 10]]);
+      }, _callee2, null, [[3, 25, 29, 32]]);
     }));
-    return function archiveUser(_x) {
+    return function confirmArchive() {
       return _ref2.apply(this, arguments);
     };
   }();
+  var cancelArchive = function cancelArchive() {
+    console.log("Archive cancelled");
+    setShowArchiveDialog(false);
+    setUserToArchive(null);
+  };
 
-  // Enhanced role display function
+  // Restore Archived User
+  var restoreUser = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(userId) {
+      var response, errorData, responseData;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            setLoading(true);
+            _context3.next = 4;
+            return fetch("http://127.0.0.1:8000/api/users/".concat(userId, "/restore"), {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              }
+            });
+          case 4:
+            response = _context3.sent;
+            if (response.ok) {
+              _context3.next = 10;
+              break;
+            }
+            _context3.next = 8;
+            return response.json();
+          case 8:
+            errorData = _context3.sent;
+            throw new Error("Failed to restore user: ".concat(response.status, " - ").concat(errorData.message || 'Unknown error'));
+          case 10:
+            _context3.next = 12;
+            return response.json();
+          case 12:
+            responseData = _context3.sent;
+            console.log("Restore successful, response:", responseData);
+            setUsers(users.map(function (user) {
+              return user.id === userId ? _objectSpread(_objectSpread({}, user), {}, {
+                status: "Active"
+              }) : user;
+            }));
+            setError(null);
+            _context3.next = 22;
+            break;
+          case 18:
+            _context3.prev = 18;
+            _context3.t0 = _context3["catch"](0);
+            console.error("Error restoring user:", _context3.t0);
+            setError(_context3.t0.message);
+          case 22:
+            _context3.prev = 22;
+            setLoading(false);
+            return _context3.finish(22);
+          case 25:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[0, 18, 22, 25]]);
+    }));
+    return function restoreUser(_x) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
   var getRoleDisplay = function getRoleDisplay(user) {
     if (user.role) return user.role;
-    if (user.roles) return Array.isArray(user.roles) ? user.roles.join(", ") : user.roles;
+    if (user.roles && Array.isArray(user.roles) && user.roles.length > 0) return user.roles.join(", ");
     if (user.type) return user.type;
     if (user.is_admin !== undefined) return user.is_admin ? "Admin" : "Customer";
     return "N/A";
   };
-
-  // Filter users
   var filteredUsers = users.filter(function (user) {
     var _user$email;
     var isActive = user.status === "Active";
     var isArchived = user.status === "Archived";
-    var matchesTab = activeTab === "All" || (activeTab === "Archived" ? isArchived : isActive);
+    var matchesTab = activeTab === "All" || (activeTab === "Archived" ? isArchived : activeTab === "Active" ? isActive : false);
     var matchesSearch = ((_user$email = user.email) === null || _user$email === void 0 ? void 0 : _user$email.toLowerCase().includes(searchTerm.toLowerCase())) || false;
     return matchesTab && matchesSearch;
   });
-
-  // Format timestamp
   var formatDate = function formatDate(timestamp) {
     return timestamp ? new Date(timestamp).toLocaleString() : "N/A";
   };
+  var getStatusStyle = function getStatusStyle(status) {
+    return {
+      padding: "2px 8px",
+      borderRadius: "4px",
+      border: "1px solid ".concat(status === "Active" ? "green" : "red"),
+      color: status === "Active" ? "green" : "red",
+      display: "inline-block"
+    };
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
+    className: "users-main",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
       children: "Users"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -104946,6 +104109,12 @@ function Users() {
             return setActiveTab("All");
           },
           children: "All"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          className: activeTab === "Active" ? "active" : "",
+          onClick: function onClick() {
+            return setActiveTab("Active");
+          },
+          children: "Active"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
           className: activeTab === "Archived" ? "active" : "",
           onClick: function onClick() {
@@ -104969,69 +104138,105 @@ function Users() {
       }) : error ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
         className: "error-message",
         children: ["Error: ", error]
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
-        className: "users-table",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Actions"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "User ID"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Email"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Role"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Status"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Created At"
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-          children: filteredUsers.length > 0 ? filteredUsers.map(function (user) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                  src: "/imgs/view.svg",
-                  alt: "View",
-                  className: "action-img"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                  src: "/imgs/edit.svg",
-                  alt: "Edit",
-                  className: "action-img",
-                  style: {
-                    cursor: "pointer"
-                  }
-                  // Add onClick handler for edit if needed
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                  src: "/imgs/archive.svg",
-                  alt: "Archive",
-                  className: "action-img",
-                  onClick: function onClick() {
-                    return archiveUser(user.id);
-                  },
-                  style: {
-                    cursor: "pointer"
-                  },
-                  disabled: user.status === "Archived" // Disable if already archived
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: user.id || "N/A"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: user.email || "N/A"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: getRoleDisplay(user)
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: user.status || "N/A"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: formatDate(user.created_at)
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
+          className: "users-table",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Actions"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "User ID"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Email"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Role"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Created At"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Status"
               })]
-            }, user.id || Math.random());
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              colSpan: "6",
-              children: "No users found."
             })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
+            children: filteredUsers.length > 0 ? filteredUsers.map(function (user) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                    src: "/imgs/view.svg",
+                    alt: "View",
+                    className: "action-img"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                    src: "/imgs/edit.svg",
+                    alt: "Edit",
+                    className: "action-img",
+                    style: {
+                      cursor: "pointer"
+                    }
+                  }), user.status !== "Archived" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                    src: "/imgs/archive.svg",
+                    alt: "Archive",
+                    className: "action-img",
+                    onClick: function onClick() {
+                      return archiveUser(user.id);
+                    },
+                    style: {
+                      cursor: "pointer"
+                    }
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                    src: "/imgs/restore.svg",
+                    alt: "Restore",
+                    className: "action-img",
+                    onClick: function onClick() {
+                      return restoreUser(user.id);
+                    },
+                    style: {
+                      cursor: "pointer"
+                    }
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                  children: user.id || "N/A"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                  children: user.email || "N/A"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                  children: getRoleDisplay(user)
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                  children: formatDate(user.created_at)
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                    style: getStatusStyle(user.status),
+                    children: user.status || "N/A"
+                  })
+                })]
+              }, user.id);
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                colSpan: "6",
+                children: "No users found."
+              })
+            })
+          })]
+        }), showArchiveDialog && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "modal-overlay",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "modal-content",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+              children: "Confirm Archive"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+              children: "Are you sure you want to archive this user?"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "modal-buttons",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                onClick: confirmArchive,
+                className: "confirm-btn",
+                disabled: loading,
+                children: loading ? "Archiving..." : "Yes, Archive"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                onClick: cancelArchive,
+                className: "cancel-btn",
+                disabled: loading,
+                children: "Cancel"
+              })]
+            })]
           })
         })]
       })
