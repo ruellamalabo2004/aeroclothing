@@ -8,9 +8,13 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DropdownController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
 
+Route::apiResource('brands', BrandController::class);
 
-
+//Category
+Route::apiResource('categories', CategoryController::class);
 //user
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
@@ -33,7 +37,7 @@ Route::post('/orders/{id}/restore', [OrderController::class, 'restore']);
 // Product routes
 Route::apiResource('products', ProductController::class);
 Route::put('/products/{id}', [ProductController::class, 'update']);
-
+Route::get('/products/count', [ProductController::class, 'getProductCount']);
 
 
 /*
@@ -46,12 +50,11 @@ Route::put('/products/{id}', [ProductController::class, 'update']);
 | which is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::prefix('inventory')->group(function () {
-    Route::get('/', [InventoryController::class, 'index']);
-    Route::post('/', [InventoryController::class, 'store']);
-    Route::put('/{id}', [InventoryController::class, 'update']);
-    Route::delete('/{id}', [InventoryController::class, 'destroy']);
-});
+Route::get('/inventory', [InventoryController::class, 'index']);
+Route::post('/inventory', [InventoryController::class, 'store']);
+Route::put('/inventory/{id}', [InventoryController::class, 'update']);
+Route::delete('/inventory/{id}', [InventoryController::class, 'destroy']);
+
 // User Registration Route
 Route::post('/register', [AuthController::class, 'register']);
 

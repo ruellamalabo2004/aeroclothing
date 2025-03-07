@@ -1,32 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 
 export default function Products() {
   const [activeTab, setActiveTab] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]); // Dynamic categories
+  const [brands, setBrands] = useState([]); // Dynamic brands
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [formData, setFormData] = useState({
     product_name: "",
-    category: "Womens",
-    product_type: "Tops",
+    category: "", // Will be set to category ID
+    product_type: "",
     sizes: [],
     price: "",
     description: "",
     status: "available",
     image_1: null,
-    brand: "",
+    brand: "", // Will be set to brand ID
     colors: [],
   });
   const [editProductId, setEditProductId] = useState(null);
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState(false);
   const [productToArchive, setProductToArchive] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
+  const uploadAreaRef = useRef(null);
   const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
-  const ITEMS_PER_PAGE = 15;
+  const ITEMS_PER_PAGE = 10;
 
+  // Fetch products
   useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);
@@ -43,6 +49,48 @@ export default function Products() {
     };
     fetchProducts();
   }, []);
+
+  // Fetch categories from API
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/categories")
+      .then((response) => {
+        setCategories(response.data);
+        if (response.data.length > 0) {
+          setFormData((prev) => ({ ...prev, category: response.data[0].id }));
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  }, []);
+
+  // Fetch brands from API
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/brands")
+      .then((response) => {
+        setBrands(response.data);
+        if (response.data.length > 0) {
+          setFormData((prev) => ({ ...prev, brand: response.data[0].id }));
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching brands:", error);
+      });
+  }, []);
+
+  // Handle Escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape" && !isLoading) {
+        setIsModalOpen(false);
+        setIsArchiveModalOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [isLoading]);
 
   const filteredProducts = products.filter((product) => {
     const matchesTab =
@@ -90,24 +138,59 @@ export default function Products() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
+    if (file && isValidFile(file)) {
       setFormData((prev) => ({ ...prev, image_1: file }));
+      const reader = new FileReader();
+      reader.onload = () => setImagePreview(reader.result);
+      reader.readAsDataURL(file);
+    } else {
+      alert("Please select a valid image file (PNG, JPG, JPEG, GIF) under 2MB.");
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (file && isValidFile(file)) {
+      setFormData((prev) => ({ ...prev, image_1: file }));
+      const reader = new FileReader();
+      reader.onload = () => setImagePreview(reader.result);
+      reader.readAsDataURL(file);
+    } else {
+      alert("Please drop a valid image file (PNG, JPG, JPEG, GIF) under 2MB.");
+    }
+  };
+
+  const isValidFile = (file) => {
+    const validTypes = ["image/png", "image/jpeg", "image/jpg", "image/gif"];
+    const maxSize = 2 * 1024 * 1024; // 2MB to match backend
+    return validTypes.includes(file.type) && file.size <= maxSize;
+  };
+
+  const triggerFileInput = () => {
+    if (uploadAreaRef.current) {
+      uploadAreaRef.current.querySelector(".file-input").click();
     }
   };
 
   const openAddModal = () => {
     setFormData({
       product_name: "",
-      category: "Womens",
-      product_type: "Tops",
+      category: categories[0]?.id || "",
+      product_type: "",
       sizes: [],
       price: "",
       description: "",
       status: "available",
       image_1: null,
-      brand: "",
+      brand: brands[0]?.id || "",
       colors: [],
     });
+    setImagePreview(null);
     setIsEditing(false);
     setEditProductId(null);
     setIsModalOpen(true);
@@ -116,56 +199,92 @@ export default function Products() {
   const openEditModal = (product) => {
     setFormData({
       product_name: product.product_name || "",
-      category: product.category || "Womens",
-      product_type: product.product_type || "Tops",
-      sizes: Array.isArray(product.sizes) ? product.sizes : product.sizes ? JSON.parse(product.sizes) : [],
+      category: product.category_id || categories[0]?.id || "", // Use category_id
+      product_type: product.product_type || "",
+      sizes: Array.isArray(product.sizes)
+        ? product.sizes
+        : product.sizes
+        ? JSON.parse(product.sizes)
+        : [],
       price: product.price || "",
       description: product.description || "",
       status: product.status || "available",
       image_1: null,
-      brand: product.brand || "",
-      colors: Array.isArray(product.colors) ? product.colors : product.colors ? JSON.parse(product.colors) : [],
+      brand: product.brand_id || brands[0]?.id || "", // Use brand_id
+      colors: Array.isArray(product.colors)
+        ? product.colors
+        : product.colors
+        ? JSON.parse(product.colors)
+        : [],
     });
+    setImagePreview(
+      product.image_1 ? `${BASE_IMAGE_URL}/${product.image_1}` : null
+    );
     setEditProductId(product.id);
     setIsEditing(true);
     setIsModalOpen(true);
   };
 
   const saveProduct = async () => {
+    // Validate required fields
+    if (!formData.product_name) {
+      alert("Product name is required.");
+      return;
+    }
+    if (!formData.category) {
+      alert("Please select a category.");
+      return;
+    }
+    if (!formData.brand) {
+      alert("Please select a brand.");
+      return;
+    }
+    if (!formData.product_type) {
+      alert("Please select a product type.");
+      return;
+    }
+    if (formData.sizes.length === 0) {
+      alert("Please select at least one size.");
+      return;
+    }
+    if (formData.colors.length === 0) {
+      alert("Please select at least one color.");
+      return;
+    }
+    if (!formData.price || formData.price < 0) {
+      alert("Price is required and must be non-negative.");
+      return;
+    }
+
     setIsLoading(true);
     const formDataObj = new FormData();
-    Object.keys(formData).forEach((key) => {
-      if (key === "sizes" || key === "colors") {
-        formDataObj.append(key, JSON.stringify(formData[key]));
-      } else if (key === "image_1" && formData.image_1 instanceof File) {
-        formDataObj.append("image_1", formData.image_1);
-      } else if (formData[key] !== null && formData[key] !== undefined) {
-        formDataObj.append(key, formData[key]);
-      }
-    });
+    formDataObj.append("category_id", formData.category);
+    formDataObj.append("brand_id", formData.brand);
+    formDataObj.append("product_name", formData.product_name);
+    formDataObj.append("product_type", formData.product_type);
+    formData.sizes.forEach((size) => formDataObj.append("sizes[]", size)); // Send as array
+    formData.colors.forEach((color) => formDataObj.append("colors[]", color)); // Send as array
+    formDataObj.append("price", formData.price);
+    formDataObj.append("description", formData.description || ""); // Nullable
+    formDataObj.append("status", formData.status);
+    if (formData.image_1 instanceof File) {
+      formDataObj.append("image_1", formData.image_1);
+    }
 
     if (isEditing) {
-      formDataObj.append('_method', 'PUT');
+      formDataObj.append("_method", "PUT");
     }
 
     try {
+      console.log("Sending FormData:", Object.fromEntries(formDataObj)); // Debug
       const url = isEditing
         ? `http://127.0.0.1:8000/api/products/${editProductId}`
         : "http://127.0.0.1:8000/api/products";
-      const method = isEditing ? "POST" : "POST";
-
-      const res = await fetch(url, {
-        method,
-        body: formDataObj,
+      const response = await axios.post(url, formDataObj, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
-      if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(`Failed to ${isEditing ? "update" : "add"} product: ${errorText}`);
-      }
-
-      const data = await res.json();
-
+      const data = response.data;
       if (isEditing) {
         setProducts((prev) =>
           prev.map((p) => (p.id === editProductId ? { ...p, ...data } : p))
@@ -173,13 +292,19 @@ export default function Products() {
       } else {
         setProducts((prev) => [...prev, data]);
       }
-      
+
       setIsModalOpen(false);
       setEditProductId(null);
       setIsEditing(false);
+      setImagePreview(null);
+      alert("Product " + (isEditing ? "updated" : "added") + " successfully!");
     } catch (error) {
-      console.error(`Error ${isEditing ? "updating" : "adding"} product:`, error);
-      alert(`Failed to ${isEditing ? "update" : "add"} product: ${error.message}`);
+      console.error("Error response:", error.response?.data);
+      const errorMessage =
+        error.response?.data?.message +
+        ": " +
+        Object.values(error.response?.data?.errors || {}).flat().join(", ");
+      alert(`Failed to ${isEditing ? "update" : "add"} product: ${errorMessage || error.message}`);
     } finally {
       setIsLoading(false);
     }
@@ -189,17 +314,12 @@ export default function Products() {
     setIsLoading(true);
     try {
       const res = await fetch(`http://127.0.0.1:8000/api/products/${productId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ status: 'archived' }),
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: "archived" }),
       });
 
-      if (!res.ok) {
-        throw new Error(`Failed to archive product: ${res.status}`);
-      }
-
+      if (!res.ok) throw new Error(`Failed to archive product: ${res.status}`);
       const updatedProduct = await res.json();
       setProducts((prev) =>
         prev.map((p) => (p.id === productId ? { ...p, ...updatedProduct } : p))
@@ -207,7 +327,7 @@ export default function Products() {
       setIsArchiveModalOpen(false);
       setProductToArchive(null);
     } catch (error) {
-      console.error('Error archiving product:', error);
+      console.error("Error archiving product:", error);
       alert(`Failed to archive product: ${error.message}`);
     } finally {
       setIsLoading(false);
@@ -229,34 +349,42 @@ export default function Products() {
 
   return (
     <main>
-      <h1>Products</h1>
-      <div className="transactions-links">
-        <span className="transactions-label">Products:</span>
-        <div className="links-container">
-          {["All", "Available", "Archived"].map((tab) => (
-            <button
-              key={tab}
-              className={activeTab === tab ? "active" : ""}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          ))}
+      <h1 style={{ color: "#000000", marginBottom: "20px" }}>Products</h1>
+      <div className="products-links">
+        <div className="left-section">
+          <span className="products-label">Products:</span>
+          <div className="links-container">
+            {["All", "Available", "Archived"].map((tab) => (
+              <button
+                key={tab}
+                className={activeTab === tab ? "active" : ""}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
         </div>
-        <input
-          type="text"
-          placeholder="Search products..."
-          className="transactions-search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button className="add-product-btn" onClick={openAddModal} disabled={isLoading}>
-          Add New Product
-        </button>
+        <div className="right-section">
+          <input
+            type="text"
+            placeholder="Search products..."
+            className="products-search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button
+            className="add-product-btn"
+            onClick={openAddModal}
+            disabled={isLoading}
+          >
+            Add New Product
+          </button>
+        </div>
       </div>
 
-      <div className="transactions-table-container">
-        <table className="transactions-table">
+      <div className="products-table-container">
+        <table className="products-table">
           <thead>
             <tr>
               <th>Actions</th>
@@ -301,25 +429,35 @@ export default function Products() {
                       <img
                         src={`${BASE_IMAGE_URL}/${product.image_1}`}
                         alt={product.product_name}
-                        style={{ width: "50px", height: "50px", objectFit: "cover" }}
-                        onError={(e) =>
-                          (e.target.src = "/placeholder.png")
-                        }
+                        style={{ width: "40px", height: "40px", objectFit: "cover" }}
+                        onError={(e) => (e.target.src = "/placeholder.png")}
                       />
                     ) : (
                       <img
                         src="/placeholder.png"
                         alt="No Image"
-                        style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                        style={{ width: "40px", height: "40px", objectFit: "cover" }}
                       />
                     )}
                   </td>
                   <td>{product.product_name}</td>
-                  <td>{product.category}</td>
+                  <td>
+                    {categories.find((cat) => cat.id === product.category_id)?.name || "N/A"}
+                  </td>
                   <td>{product.product_type}</td>
-                  <td>{Array.isArray(product.sizes) ? product.sizes.join(", ") : product.sizes || "N/A"}</td>
-                  <td>{product.brand || "N/A"}</td>
-                  <td>{Array.isArray(product.colors) ? product.colors.join(", ") : product.colors || "N/A"}</td>
+                  <td>
+                    {Array.isArray(product.sizes)
+                      ? product.sizes.join(", ")
+                      : product.sizes || "N/A"}
+                  </td>
+                  <td>
+                    {brands.find((brand) => brand.id === product.brand_id)?.name || "N/A"}
+                  </td>
+                  <td>
+                    {Array.isArray(product.colors)
+                      ? product.colors.join(", ")
+                      : product.colors || "N/A"}
+                  </td>
                   <td>₱{product.price}</td>
                   <td>
                     <span
@@ -340,144 +478,216 @@ export default function Products() {
       </div>
 
       <div className="pagination-controls">
-        <button onClick={handlePrevPage} disabled={currentPage === 1 || isLoading}>
+        <button
+          className="pagination-btn"
+          onClick={handlePrevPage}
+          disabled={currentPage === 1 || isLoading}
+        >
           Previous
         </button>
         <span>
           Page {currentPage} of {totalPages}
         </span>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages || isLoading}>
+        <button
+          className="pagination-btn"
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages || isLoading}
+        >
           Next
         </button>
       </div>
 
       {isModalOpen && (
-        <div className="modal-overlay" onClick={() => !isLoading && setIsModalOpen(false)}>
+        <div
+          className="modal-overlay"
+          onClick={() => !isLoading && setIsModalOpen(false)}
+        >
           <div
             className="edit-modal-container"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="edit-modal-content">
               <h2>{isEditing ? "Edit Product" : "Add New Product"}</h2>
-              <form>
-                <label>Product Name</label>
-                <input
-                  type="text"
-                  name="product_name"
-                  value={formData.product_name}
-                  onChange={handleChange}
-                  disabled={isLoading}
-                />
-
-                <label>Category</label>
-                <select
-                  name="category"
-                  value={formData.category}
-                  onChange={handleChange}
-                  disabled={isLoading}
-                >
-                  <option value="Womens">Womens</option>
-                  <option value="Mens">Mens</option>
-                  <option value="Girls">Girls</option>
-                  <option value="Boys">Boys</option>
-                </select>
-
-                <label>Product Type</label>
-                <select
-                  name="product_type"
-                  value={formData.product_type}
-                  onChange={handleChange}
-                  disabled={isLoading}
-                >
-                  <option value="Tops">Tops</option>
-                  <option value="Bottoms">Bottoms</option>
-                  <option value="Jacket">Jacket</option>
-                  <option value="Swimwear">Swimwear</option>
-                </select>
-
-                <label>Sizes</label>
-                <select
-                  multiple
-                  name="sizes"
-                  value={formData.sizes}
-                  onChange={handleSizeChange}
-                  disabled={isLoading}
-                >
-                  <option value="XS">XS</option>
-                  <option value="S">S</option>
-                  <option value="M">M</option>
-                  <option value="L">L</option>
-                  <option value="XL">XL</option>
-                </select>
-
-                <label>Brand</label>
-                <select
-                  name="brand"
-                  value={formData.brand}
-                  onChange={handleBrandChange}
-                  disabled={isLoading}
-                >
-                  <option value="">Select Brand</option>
-                  <option value="1">Brand A</option>
-                  <option value="2">Brand B</option>
-                  <option value="3">Brand C</option>
-                </select>
-
-                <label>Colors</label>
-                <select
-                  multiple
-                  name="colors"
-                  value={formData.colors}
-                  onChange={handleColorsChange}
-                  disabled={isLoading}
-                >
-                  <option value="Red">Red</option>
-                  <option value="Blue">Blue</option>
-                  <option value="Green">Green</option>
-                  <option value="Black">Black</option>
-                  <option value="White">White</option>
-                </select>
-
-                <label>Price</label>
-                <input
-                  type="number"
-                  name="price"
-                  value={formData.price}
-                  onChange={handleChange}
-                  disabled={isLoading}
-                />
-
-                <label>Description</label>
-                <textarea
-                  name="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                  disabled={isLoading}
-                />
-
-                <label>Status</label>
-                <select
-                  name="status"
-                  value={formData.status}
-                  onChange={handleChange}
-                  disabled={isLoading}
-                >
-                  <option value="available">Published</option>
-                  <option value="archived">Archived</option>
-                </select>
-
-                <label>Product Image</label>
-                <input
-                  type="file"
-                  name="image_1"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  disabled={isLoading}
-                />
-                {isEditing && formData.image_1 === null && (
-                  <p>Current image: {products.find((p) => p.id === editProductId)?.image_1}</p>
-                )}
-
+              <div className="custom-form-layout">
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Product Name</label>
+                    <input
+                      type="text"
+                      name="product_name"
+                      value={formData.product_name}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Colors</label>
+                    <select
+                      multiple
+                      name="colors"
+                      value={formData.colors}
+                      onChange={handleColorsChange}
+                      disabled={isLoading}
+                      required
+                    >
+                      <option value="Red">Red</option>
+                      <option value="Blue">Blue</option>
+                      <option value="Green">Green</option>
+                      <option value="Black">Black</option>
+                      <option value="White">White</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Category</label>
+                    <select
+                      name="category"
+                      value={formData.category}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                      required
+                    >
+                      <option value="">Select Category</option>
+                      {categories.map((cat) => (
+                        <option key={cat.id} value={cat.id}>
+                          {cat.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Price</label>
+                    <input
+                      type="number"
+                      name="price"
+                      value={formData.price}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                      min="0"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Product Type</label>
+                    <select
+                      name="product_type"
+                      value={formData.product_type}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                      required
+                    >
+                      <option value="">Select Type</option>
+                      <option value="Tops">Tops</option>
+                      <option value="Bottoms">Bottoms</option>
+                      <option value="Jacket">Jacket</option>
+                      <option value="Swimwear">Swimwear</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Description</label>
+                    <textarea
+                      name="description"
+                      value={formData.description}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                    />
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Sizes</label>
+                    <select
+                      multiple
+                      name="sizes"
+                      value={formData.sizes}
+                      onChange={handleSizeChange}
+                      disabled={isLoading}
+                      required
+                    >
+                      <option value="XS">XS</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Status</label>
+                    <select
+                      name="status"
+                      value={formData.status}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                      required
+                    >
+                      <option value="available">Published</option>
+                      <option value="archived">Archived</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Brand</label>
+                    <select
+                      name="brand"
+                      value={formData.brand}
+                      onChange={handleBrandChange}
+                      disabled={isLoading}
+                      required
+                    >
+                      <option value="">Select Brand</option>
+                      {brands.map((brand) => (
+                        <option key={brand.id} value={brand.id}>
+                          {brand.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div
+                    className="form-group image-upload"
+                    ref={uploadAreaRef}
+                    onDragOver={handleDragOver}
+                    onDrop={handleDrop}
+                  >
+                    <label>Product Image</label>
+                    <div className="upload-area" onClick={triggerFileInput}>
+                      {imagePreview ? (
+                        <img
+                          src={imagePreview}
+                          alt="Preview"
+                          style={{ maxWidth: "100%", maxHeight: "120px" }}
+                        />
+                      ) : (
+                        <>
+                          <div className="upload-icon"></div>
+                          <p>Drag and drop or</p>
+                          <span>Browse</span>
+                          <p className="note">
+                            Supported formats: PNG, JPG, JPEG, GIF (Max 2MB)
+                          </p>
+                        </>
+                      )}
+                      <input
+                        type="file"
+                        name="image_1"
+                        accept="image/*"
+                        className="file-input"
+                        onChange={handleFileChange}
+                        disabled={isLoading}
+                      />
+                    </div>
+                    {isEditing && formData.image_1 === null && imagePreview && (
+                      <p>
+                        Current image:{" "}
+                        {products.find((p) => p.id === editProductId)?.image_1}
+                      </p>
+                    )}
+                  </div>
+                </div>
                 <div className="modal-actions">
                   <button
                     type="button"
@@ -485,7 +695,11 @@ export default function Products() {
                     onClick={saveProduct}
                     disabled={isLoading}
                   >
-                    {isLoading ? "Saving..." : isEditing ? "Save Changes" : "Save Product"}
+                    {isLoading
+                      ? "Saving..."
+                      : isEditing
+                      ? "Save Changes"
+                      : "Save Product"}
                   </button>
                   <button
                     type="button"
@@ -496,21 +710,27 @@ export default function Products() {
                     Cancel
                   </button>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
       )}
 
       {isArchiveModalOpen && (
-        <div className="modal-overlay" onClick={() => !isLoading && setIsArchiveModalOpen(false)}>
+        <div
+          className="modal-overlay"
+          onClick={() => !isLoading && setIsArchiveModalOpen(false)}
+        >
           <div
             className="archive-modal-container"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="archive-modal-content">
               <h3>Archive this product?</h3>
-              <p>Are you sure you want to archive "{productToArchive?.product_name}"?</p>
+              <p>
+                Are you sure you want to archive "
+                {productToArchive?.product_name}"?
+              </p>
               <div className="modal-actions">
                 <button
                   type="button"

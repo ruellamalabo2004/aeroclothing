@@ -8,11 +8,11 @@ use App\Models\Product;
 
 class InventoryController extends Controller
 {
-    // Get all inventory items with product details (including archived if needed)
+    // Get all inventory items with product details (including category and brand)
     public function index()
     {
         try {
-            $inventory = Inventory::with('product')->withTrashed()->get();
+            $inventory = Inventory::with(['product.category', 'product.brand'])->withTrashed()->get();
             return response()->json($inventory);
         } catch (\Exception $e) {
             return response()->json([
@@ -21,7 +21,6 @@ class InventoryController extends Controller
             ], 500);
         }
     }
-    
 
     // Store a new inventory item for an existing product
     public function store(Request $request)
@@ -31,17 +30,19 @@ class InventoryController extends Controller
             'stock_quantity' => 'required|integer|min:1',
             'status' => 'required|string|in:Available,Low Stock,Out of Stock',
         ]);
-    
+
         $inventory = Inventory::create($validatedData);
-    
+
+        // Load product with category and brand after creation
+        $inventory->load(['product.category', 'product.brand']);
+
         return response()->json(['data' => $inventory], 201);
     }
-    
 
     // Show a single inventory item by ID with product details
     public function show($id)
     {
-        $inventory = Inventory::with('product')->withTrashed()->find($id);
+        $inventory = Inventory::with(['product.category', 'product.brand'])->withTrashed()->find($id);
 
         if (!$inventory) {
             return response()->json(['message' => 'Inventory item not found'], 404);
@@ -67,9 +68,12 @@ class InventoryController extends Controller
 
         $inventory->update($request->only(['product_id', 'stock_quantity', 'status']));
 
+        // Load product with category and brand after update
+        $inventory->load(['product.category', 'product.brand']);
+
         return response()->json([
             'message' => 'Inventory item updated successfully',
-            'data' => $inventory->load('product'),
+            'data' => $inventory,
         ]);
     }
 
@@ -98,7 +102,13 @@ class InventoryController extends Controller
 
         $inventory->restore();
 
-        return response()->json(['message' => 'Inventory item restored successfully']);
+        // Load product with category and brand after restore
+        $inventory->load(['product.category', 'product.brand']);
+
+        return response()->json([
+            'message' => 'Inventory item restored successfully',
+            'data' => $inventory,
+        ]);
     }
 
     // Restock an inventory item (increase stock_quantity)
@@ -117,9 +127,12 @@ class InventoryController extends Controller
         $inventory->stock_quantity += $request->quantity;
         $inventory->save(); // Triggers status update in model (if using booted method)
 
+        // Load product with category and brand after restock
+        $inventory->load(['product.category', 'product.brand']);
+
         return response()->json([
             'message' => "Restocked. New quantity: {$inventory->stock_quantity}",
-            'data' => $inventory->load('product'),
+            'data' => $inventory,
         ]);
     }
 
@@ -139,9 +152,12 @@ class InventoryController extends Controller
         $inventory->stock_quantity = max(0, $inventory->stock_quantity - $request->quantity);
         $inventory->save(); // Triggers status update in model (if using booted method)
 
+        // Load product with category and brand after reduction
+        $inventory->load(['product.category', 'product.brand']);
+
         return response()->json([
             'message' => "Stock reduced. New quantity: {$inventory->stock_quantity}",
-            'data' => $inventory->load('product'),
+            'data' => $inventory,
         ]);
     }
 }

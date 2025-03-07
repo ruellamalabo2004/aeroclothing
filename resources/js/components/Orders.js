@@ -55,14 +55,14 @@ export default function Orders() {
 
   const confirmArchive = () => {
     axios
-      .post(`http://localhost:8000/api/orders/${isArchiving.id}/archive`) // Adjusted to POST for archiving
+      .post(`http://localhost:8000/api/orders/${isArchiving.id}/archive`)
       .then(() => {
-        setOrders(orders.filter((order) => order.id !== isArchiving.id)); // Remove from list
-        setIsArchiving(null); // Close popup
+        setOrders(orders.filter((order) => order.id !== isArchiving.id));
+        setIsArchiving(null);
       })
       .catch((error) => {
         console.error("Error archiving order:", error.response ? error.response.data : error.message);
-        setIsArchiving(null); // Close popup even if error occurs
+        setIsArchiving(null);
       });
   };
 
@@ -70,7 +70,6 @@ export default function Orders() {
     <main>
       <h1>Orders</h1>
 
-      {/* Order Summary Cards */}
       <div className="orders-cards-container">
         {orderCards.map((order) => (
           <div className="orders-card" key={order.status}>

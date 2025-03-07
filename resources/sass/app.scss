@@ -6,9 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
-@import url( './Login.scss');
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;700&display=swap');
+@import url('./Brand.scss');
+@import url('./Customers.scss');
+@import url('./Login.scss');
 @import url('./Signup.scss');
 @import url('./Dashboard.scss');
 @import url('./Products.scss');
@@ -19,4 +19,5 @@
 @import url('./Transactions.scss');
 @import url('./Reviews.scss');
 @import url('./Reports.scss');
+@import url('./AdminSettings.scss');
 @import 'landingPage'; 

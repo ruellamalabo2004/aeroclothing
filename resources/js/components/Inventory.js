@@ -37,16 +37,16 @@ export default function Inventory() {
   // Handle input change for new inventory item
   const handleNewItemChange = (e) => {
     const { name, value } = e.target;
-    setNewItem(prev => ({
+    setNewItem((prev) => ({
       ...prev,
-      [name]: name === "stock_quantity" ? parseInt(value) || 0 : value
+      [name]: name === "stock_quantity" ? parseInt(value) || 0 : value,
     }));
   };
 
   // Add new inventory item
   const handleAddProduct = () => {
     console.log("Sending data to API:", newItem); // Log what you're sending
-  
+
     axios
       .post("http://127.0.0.1:8000/api/inventory", newItem)
       .then((response) => {
@@ -64,7 +64,6 @@ export default function Inventory() {
         alert(error.response?.data?.message || "Failed to add stock.");
       });
   };
-  
 
   // Handle Edit Click
   const handleEditClick = (item) => {
@@ -89,9 +88,9 @@ export default function Inventory() {
   // Handle Input Changes for Edit Form
   const handleFormChange = (e) => {
     const { name, value } = e.target;
-    setSelectedItem(prev => ({
+    setSelectedItem((prev) => ({
       ...prev,
-      [name]: name === "stock_quantity" ? parseInt(value) || 0 : value
+      [name]: name === "stock_quantity" ? parseInt(value) || 0 : value,
     }));
   };
 
@@ -106,13 +105,16 @@ export default function Inventory() {
           status: selectedItem.status,
         }
       );
-      
-      setInventory(inventory.map((item) =>
-        item.id === selectedItem.id ? { ...item, ...response.data.data } : item
-      ));
+
+      setInventory((prevInventory) =>
+        prevInventory.map((item) =>
+          item.id === selectedItem.id ? { ...item, ...response.data.data } : item
+        )
+      );
       setSelectedItem(null);
     } catch (error) {
       console.error("Error updating item:", error.response?.data || error);
+      alert(error.response?.data?.message || "Failed to update inventory item.");
     }
   };
 
@@ -120,9 +122,10 @@ export default function Inventory() {
   const handleArchive = async (id) => {
     try {
       await axios.delete(`http://127.0.0.1:8000/api/inventory/${id}`);
-      setInventory(inventory.filter((item) => item.id !== id));
+      setInventory((prevInventory) => prevInventory.filter((item) => item.id !== id));
     } catch (error) {
-      console.error("Error archiving item:", error);
+      console.error("Error archiving item:", error.response?.data || error);
+      alert(error.response?.data?.message || "Failed to archive inventory item.");
     }
   };
 
@@ -131,8 +134,7 @@ export default function Inventory() {
     const productName = item.product?.product_name || "";
     const matchesSearch = productName.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesFilter =
-      activeFilter === "All" ||
-      item.status === activeFilter;
+      activeFilter === "All" || item.status === activeFilter;
     return matchesSearch && matchesFilter;
   });
 
@@ -261,7 +263,7 @@ export default function Inventory() {
           <h2>Item Details</h2>
           <p><strong>ID:</strong> {viewItem.id}</p>
           <p><strong>Product:</strong> {viewItem.product?.product_name || "N/A"}</p>
-          <p><strong>Category:</strong> {viewItem.product?.category || "N/A"}</p>
+          <p><strong>Category:</strong> {viewItem.product?.category?.name || "N/A"}</p>
           <p><strong>Type:</strong> {viewItem.product?.product_type || "N/A"}</p>
           <p><strong>Price:</strong> {viewItem.product?.price || "N/A"}</p>
           <p><strong>Sizes:</strong> {viewItem.product?.sizes?.join(", ") || "N/A"}</p>
@@ -316,7 +318,6 @@ export default function Inventory() {
               <thead>
                 <tr>
                   <th>Actions</th>
-                  <th>ID</th>
                   <th>Product</th>
                   <th>Category</th>
                   <th>Type</th>
@@ -353,9 +354,8 @@ export default function Inventory() {
                           style={{ cursor: "pointer" }}
                         />
                       </td>
-                      <td>{item.id}</td>
                       <td>{item.product?.product_name || "N/A"}</td>
-                      <td>{item.product?.category || "N/A"}</td>
+                      <td>{item.product?.category?.name || "N/A"}</td>
                       <td>{item.product?.product_type || "N/A"}</td>
                       <td>{item.product?.price || "N/A"}</td>
                       <td>{item.product?.sizes?.join(", ") || "N/A"}</td>
@@ -373,7 +373,7 @@ export default function Inventory() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="9" style={{ textAlign: "center" }}>
+                    <td colSpan="8" style={{ textAlign: "center" }}>
                       No inventory found.
                     </td>
                   </tr>

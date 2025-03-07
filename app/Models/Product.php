@@ -10,14 +10,13 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category',
+        'category_id',  // Use category_id instead of category
+        'brand_id',     // Use brand_id instead of brand
         'product_name',
         'product_type',
-        'brand',
         'sizes',
         'colors',
         'price',
-        'quantity', 
         'description',
         'image_1',
         'status',
@@ -28,48 +27,34 @@ class Product extends Model
         'colors' => 'array',
     ];
 
+    // Accessor to get the full image URL
     public function getImage1Attribute($value)
     {
         return $value ? asset('storage/' . $value) : null;
     }
-
+    public function inventory()
+    {
+        return $this->hasOne(Inventory::class);
+    }
     
-    public function setQuantityAttribute($value)
+    // Relationships
+    public function category()
     {
-        $this->attributes['quantity'] = $value;
-        // Automatically update status based on quantity
-        $this->attributes['status'] = $this->determineStatus($value);
+        return $this->belongsTo(Category::class, 'category_id');
     }
-
-  
-    protected function determineStatus($quantity)
+    public function brand()
     {
-        if ($quantity <= 0) {
-            return 'out_of_stock';
-        }
-      
-        return $this->attributes['status'] === 'archived' ? 'archived' : 'available';
+        return $this->belongsTo(Brand::class, 'brand_id');
     }
-
-   
+    // Scope for available products
     public function scopeAvailable($query)
     {
         return $query->where('status', 'available');
     }
 
-   
-    public function scopeOutOfStock($query)
-    {
-        return $query->where('status', 'out_of_stock');
-    }
-
+    // Scope for archived products
     public function scopeArchived($query)
     {
         return $query->where('status', 'archived');
     }
-    public function inventory()
-{
-    return $this->hasOne(Inventory::class, 'product_id');
-}
-
 }

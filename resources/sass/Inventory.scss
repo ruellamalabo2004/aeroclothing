@@ -219,19 +219,34 @@ h1 {
 }
 
 .inventory-table th {
-  background: #f8f9fa;
+  background: #d32f2f;
   font-weight: bold;
-  color: #333;
+  color: #ffffff;
 }
 
+/* Add curved corners to the first and last th in the header row */
+.inventory-table thead tr th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.inventory-table thead tr th:last-child {
+  border-top-right-radius: 8px;
+}
+
+/* Ensure the table header background is consistent */
+.inventory-table thead {
+  background: #d32f2f;
+}
+
+/* Rest of the table styles */
 .inventory-table td {
-  color: #666;
+  color: #000000;
 }
 
 .inventory-table .action-img {
   width: 20px;
   height: 20px;
-  margin-right: 10px;
+  margin-right: 5px;
   cursor: pointer;
   transition: opacity 0.3s;
 }

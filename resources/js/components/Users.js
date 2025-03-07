@@ -153,14 +153,6 @@ export default function Users() {
   const formatDate = (timestamp) =>
     timestamp ? new Date(timestamp).toLocaleString() : "N/A";
 
-  const getStatusStyle = (status) => ({
-    padding: "2px 8px",
-    borderRadius: "4px",
-    border: `1px solid ${status === "Active" ? "green" : "red"}`,
-    color: status === "Active" ? "green" : "red",
-    display: "inline-block",
-  });
-
   return (
     <main className="users-main">
       <h1>Users</h1>
@@ -235,7 +227,7 @@ export default function Users() {
                       <td>{getRoleDisplay(user)}</td>
                       <td>{formatDate(user.created_at)}</td>
                       <td>
-                        <span style={getStatusStyle(user.status)}>
+                        <span className={`status-frame status-${user.status?.toLowerCase()}`}>
                           {user.status || "N/A"}
                         </span>
                       </td>

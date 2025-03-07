@@ -6,8 +6,17 @@
     font-family: "Arial", sans-serif;
 }
 
+/* 📌 Main Content */
+main {
+    padding: 20px;
+}
 
-
+/* 📌 Heading */
+h1 {
+    font-size: 24px;
+    color: #161A1D;
+    margin: 0 0 15px 0;
+}
 
 /* 📌 Users Links */
 .users-links {
@@ -90,9 +99,9 @@
 }
 
 .users-table th {
-    background: #f8f9fa;
+    background: #d32f2f;
     font-weight: bold;
-    color: #333;
+    color: #ffffff;
 }
 
 .users-table td {
@@ -102,7 +111,7 @@
 .users-table .action-img {
     width: 20px;
     height: 20px;
-    margin-right: 8px; /* Consistent with Orders spacing */
+    margin-right: 5px; /* Consistent with Orders spacing */
     cursor: pointer;
     transition: opacity 0.3s;
 }
@@ -113,6 +122,26 @@
 
 .users-table .action-img:hover {
     opacity: 0.7;
+}
+
+/* 📌 Status Frame Styles */
+.status-frame {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+
+    &.status-active {
+        border: 1px solid #4CAF50; /* Green border */
+        color: #4CAF50; /* Green text */
+        background: #e8f5e9; /* Light green background */
+    }
+
+    &.status-archived {
+        border: 1px solid #dc3545; /* Red border */
+        color: #dc3545; /* Red text */
+        background: #ffebee; /* Light red background */
+    }
 }
 
 /* 📌 Modal Overlay (Archive Confirmation) */
@@ -251,6 +280,11 @@
 
     .users-table .action-img:last-child {
         margin-right: 0;
+    }
+
+    .status-frame {
+        padding: 2px 6px;
+        font-size: 11px;
     }
 
     .modal-content {

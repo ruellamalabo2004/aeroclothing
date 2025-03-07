@@ -9,16 +9,16 @@ return new class extends Migration {
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('category')->index(); // Index for faster lookups
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade'); // Proper foreign key
+            $table->foreignId('brand_id')->constrained('brands')->onDelete('cascade'); // Proper foreign key
             $table->string('product_name');
             $table->string('product_type');
-            $table->string('brand'); // Added brand column (dropdown selection)
             $table->json('sizes');
-            $table->json('colors'); // Added colors column (multi-select)
-            $table->decimal('price', 10, 2)->comment('Price in PHP'); // Clarified currency
+            $table->json('colors');
+            $table->decimal('price', 10, 2)->comment('Price in PHP');
             $table->text('description')->nullable();
             $table->string('image_1')->nullable();
-            $table->enum('status', ['available', 'archived'])->default('available')->index(); // Index for filtering
+            $table->enum('status', ['available', 'archived'])->default('available');
             $table->timestamps();
         });
     }

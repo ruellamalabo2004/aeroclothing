@@ -100137,6 +100137,292 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/AdminSettings.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/AdminSettings.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ AdminSettings)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+function AdminSettings() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState2 = _slicedToArray(_useState, 2),
+    categoryName = _useState2[0],
+    setCategoryName = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState4 = _slicedToArray(_useState3, 2),
+    brandName = _useState4[0],
+    setBrandName = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      siteName: "My Store",
+      currency: "PHP",
+      // Hardcoded to PHP
+      maintenanceMode: false
+    }),
+    _useState6 = _slicedToArray(_useState5, 2),
+    generalSettings = _useState6[0],
+    setGeneralSettings = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState8 = _slicedToArray(_useState7, 2),
+    message = _useState8[0],
+    setMessage = _useState8[1];
+
+  // Handle adding a new category
+  var handleAddCategory = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
+      var response, _error$response;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            e.preventDefault();
+            _context.prev = 1;
+            _context.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("http://127.0.0.1:8000/api/categories", {
+              name: categoryName
+            });
+          case 4:
+            response = _context.sent;
+            setMessage("Category \"".concat(response.data.name, "\" added successfully!"));
+            setCategoryName("");
+            _context.next = 12;
+            break;
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](1);
+            setMessage("Error adding category: " + (((_error$response = _context.t0.response) === null || _error$response === void 0 || (_error$response = _error$response.data) === null || _error$response === void 0 ? void 0 : _error$response.message) || _context.t0.message));
+          case 12:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[1, 9]]);
+    }));
+    return function handleAddCategory(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  // Handle adding a new brand
+  var handleAddBrand = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+      var response, _error$response2;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            e.preventDefault();
+            _context2.prev = 1;
+            _context2.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("http://127.0.0.1:8000/api/brands", {
+              name: brandName
+            });
+          case 4:
+            response = _context2.sent;
+            setMessage("Brand \"".concat(response.data.name, "\" added successfully!"));
+            setBrandName("");
+            _context2.next = 12;
+            break;
+          case 9:
+            _context2.prev = 9;
+            _context2.t0 = _context2["catch"](1);
+            setMessage("Error adding brand: " + (((_error$response2 = _context2.t0.response) === null || _error$response2 === void 0 || (_error$response2 = _error$response2.data) === null || _error$response2 === void 0 ? void 0 : _error$response2.message) || _context2.t0.message));
+          case 12:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[1, 9]]);
+    }));
+    return function handleAddBrand(_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  // Handle general settings changes
+  var handleSettingsChange = function handleSettingsChange(e) {
+    var _e$target = e.target,
+      name = _e$target.name,
+      value = _e$target.value,
+      type = _e$target.type,
+      checked = _e$target.checked;
+    setGeneralSettings(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, type === "checkbox" ? checked : value));
+    });
+  };
+
+  // Handle saving general settings
+  var handleSaveSettings = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(e) {
+      var _error$response3;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            e.preventDefault();
+            _context3.prev = 1;
+            _context3.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].put("http://127.0.0.1:8000/api/settings", generalSettings);
+          case 4:
+            setMessage("Settings saved successfully!");
+            _context3.next = 10;
+            break;
+          case 7:
+            _context3.prev = 7;
+            _context3.t0 = _context3["catch"](1);
+            setMessage("Error saving settings: " + (((_error$response3 = _context3.t0.response) === null || _error$response3 === void 0 || (_error$response3 = _error$response3.data) === null || _error$response3 === void 0 ? void 0 : _error$response3.message) || _context3.t0.message));
+          case 10:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[1, 7]]);
+    }));
+    return function handleSaveSettings(_x3) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "admin-settings",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+      children: "Admin Settings"
+    }), message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "message",
+      children: message
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "settings-container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+        className: "settings-section",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+          children: "Add New Category"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+          onSubmit: handleAddCategory,
+          className: "settings-form",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              htmlFor: "categoryName",
+              children: "Category Name:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              id: "categoryName",
+              value: categoryName,
+              onChange: function onChange(e) {
+                return setCategoryName(e.target.value);
+              },
+              placeholder: "Enter category name",
+              required: true
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            type: "submit",
+            className: "submit-btn",
+            children: "Add Category"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+        className: "settings-section",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+          children: "Add New Brand"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+          onSubmit: handleAddBrand,
+          className: "settings-form",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              htmlFor: "brandName",
+              children: "Brand Name:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              id: "brandName",
+              value: brandName,
+              onChange: function onChange(e) {
+                return setBrandName(e.target.value);
+              },
+              placeholder: "Enter brand name",
+              required: true
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            type: "submit",
+            className: "submit-btn",
+            children: "Add Brand"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+        className: "settings-section",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+          children: "General Settings"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+          onSubmit: handleSaveSettings,
+          className: "settings-form",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              htmlFor: "siteName",
+              children: "Site Name:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              id: "siteName",
+              name: "siteName",
+              value: generalSettings.siteName,
+              onChange: handleSettingsChange,
+              placeholder: "Enter site name"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Currency:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              className: "currency-display",
+              children: "\u20B1 (PHP)"
+            }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "hidden",
+              name: "currency",
+              value: generalSettings.currency
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group checkbox-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              htmlFor: "maintenanceMode",
+              children: "Maintenance Mode:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "checkbox",
+              id: "maintenanceMode",
+              name: "maintenanceMode",
+              checked: generalSettings.maintenanceMode,
+              onChange: handleSettingsChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            type: "submit",
+            className: "submit-btn",
+            children: "Save Settings"
+          })]
+        })]
+      })]
+    })]
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Customers.js":
 /*!**********************************************!*\
   !*** ./resources/js/components/Customers.js ***!
@@ -100311,10 +100597,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/dist/index.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -100322,7 +100613,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
- // Added useNavigate
+
+
 
 
 
@@ -100334,15 +100626,19 @@ function Dashboard() {
     _useState2 = _slicedToArray(_useState, 2),
     sidebarOpen = _useState2[0],
     setSidebarOpen = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState4 = _slicedToArray(_useState3, 2),
+    totalProducts = _useState4[0],
+    setTotalProducts = _useState4[1];
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)(); // Hook for navigation
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
   var lineChartRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var barChartRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var lineData = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     datasets: [{
       label: "Revenue ($)",
-      data: [],
+      data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       borderColor: "#d32f2f",
       backgroundColor: "rgba(211, 47, 47, 0.2)",
       fill: true,
@@ -100351,7 +100647,7 @@ function Dashboard() {
   };
   var lineOptions = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "top"
@@ -100389,7 +100685,7 @@ function Dashboard() {
   };
   var barOptions = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "top"
@@ -100416,24 +100712,55 @@ function Dashboard() {
     }
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Fetch products from the backend and count them
+    var fetchTotalProducts = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("http://127.0.0.1:8000/api/products/");
+            case 3:
+              response = _context.sent;
+              // Assuming response.data is an array of products
+              setTotalProducts(response.data.length);
+              _context.next = 11;
+              break;
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              console.error("Error fetching products:", _context.t0);
+              setTotalProducts(0); // Set to 0 if there's an error
+            case 11:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee, null, [[0, 7]]);
+      }));
+      return function fetchTotalProducts() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+    fetchTotalProducts();
     var handleResize = function handleResize() {
       if (lineChartRef.current) lineChartRef.current.resize();
       if (barChartRef.current) barChartRef.current.resize();
+      if (window.innerWidth >= 768) {
+        setSidebarOpen(false);
+      }
     };
     window.addEventListener("resize", handleResize);
     return function () {
       return window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  // Logout function with confirmation
   var handleLogout = function handleLogout() {
     var confirmLogout = window.confirm("Are you sure you want to logout?");
     if (confirmLogout) {
-      // Perform logout actions here (e.g., clear auth token, reset state)
-      // For this example, we'll just redirect to login
       navigate("/login");
-      setSidebarOpen(false); // Close sidebar on logout
+      setSidebarOpen(false);
     }
   };
   var isDashboardRoot = location.pathname === "/dashboard";
@@ -100457,160 +100784,163 @@ function Dashboard() {
           },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {})]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("nav", {
-        className: "rounded-nav-links",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard",
-          end: true,
-          className: function className(_ref) {
-            var isActive = _ref.isActive;
-            return isActive ? "active" : "";
-          },
-          onClick: function onClick() {
-            return setSidebarOpen(false);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Dashboard.svg",
-            alt: "Dashboard",
-            className: "nav-icon"
-          }), "Dashboard"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard/products",
-          className: function className(_ref2) {
-            var isActive = _ref2.isActive;
-            return isActive ? "active" : "";
-          },
-          onClick: function onClick() {
-            return setSidebarOpen(false);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Products.svg",
-            alt: "Products",
-            className: "nav-icon"
-          }), "Products"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard/orders",
-          className: function className(_ref3) {
-            var isActive = _ref3.isActive;
-            return isActive ? "active" : "";
-          },
-          onClick: function onClick() {
-            return setSidebarOpen(false);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Orders.svg",
-            alt: "Orders",
-            className: "nav-icon"
-          }), "Orders"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard/inventory",
-          className: function className(_ref4) {
-            var isActive = _ref4.isActive;
-            return isActive ? "active" : "";
-          },
-          onClick: function onClick() {
-            return setSidebarOpen(false);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Inventory.svg",
-            alt: "Inventory",
-            className: "nav-icon"
-          }), "Inventory"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard/customers",
-          className: function className(_ref5) {
-            var isActive = _ref5.isActive;
-            return isActive ? "active" : "";
-          },
-          onClick: function onClick() {
-            return setSidebarOpen(false);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Customers.svg",
-            alt: "Customers",
-            className: "nav-icon"
-          }), "Customers"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard/users",
-          className: function className(_ref6) {
-            var isActive = _ref6.isActive;
-            return isActive ? "active" : "";
-          },
-          onClick: function onClick() {
-            return setSidebarOpen(false);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Users.svg",
-            alt: "Users",
-            className: "nav-icon"
-          }), "Users"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard/transactions",
-          className: function className(_ref7) {
-            var isActive = _ref7.isActive;
-            return isActive ? "active" : "";
-          },
-          onClick: function onClick() {
-            return setSidebarOpen(false);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Transactions.svg",
-            alt: "Transactions",
-            className: "nav-icon"
-          }), "Transactions"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard/reviews",
-          className: function className(_ref8) {
-            var isActive = _ref8.isActive;
-            return isActive ? "active" : "";
-          },
-          onClick: function onClick() {
-            return setSidebarOpen(false);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Reviews.svg",
-            alt: "Reviews",
-            className: "nav-icon"
-          }), "Reviews"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard/reports",
-          className: function className(_ref9) {
-            var isActive = _ref9.isActive;
-            return isActive ? "active" : "";
-          },
-          onClick: function onClick() {
-            return setSidebarOpen(false);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Reports.svg",
-            alt: "Reports",
-            className: "nav-icon"
-          }), "Reports"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("hr", {
-          className: "separator"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-          to: "/dashboard/admin-settings",
-          className: function className(_ref10) {
-            var isActive = _ref10.isActive;
-            return isActive ? "active" : "";
-          },
-          onClick: function onClick() {
-            return setSidebarOpen(false);
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Settings.svg",
-            alt: "Admin Settings",
-            className: "nav-icon"
-          }), "Admin Settings"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "nav-link",
-          onClick: handleLogout,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/imgs/Logout.svg",
-            alt: "Log Out",
-            className: "nav-icon"
-          }), "Log Out"]
-        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "sidebar-content",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("nav", {
+          className: "rounded-nav-links",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+            to: "/dashboard",
+            end: true,
+            className: function className(_ref2) {
+              var isActive = _ref2.isActive;
+              return isActive ? "active" : "";
+            },
+            onClick: function onClick() {
+              return setSidebarOpen(false);
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: "/imgs/Dashboard.svg",
+              alt: "Dashboard",
+              className: "nav-icon"
+            }), "Dashboard"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+            to: "/dashboard/products",
+            className: function className(_ref3) {
+              var isActive = _ref3.isActive;
+              return isActive ? "active" : "";
+            },
+            onClick: function onClick() {
+              return setSidebarOpen(false);
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: "/imgs/Products.svg",
+              alt: "Products",
+              className: "nav-icon"
+            }), "Products"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+            to: "/dashboard/orders",
+            className: function className(_ref4) {
+              var isActive = _ref4.isActive;
+              return isActive ? "active" : "";
+            },
+            onClick: function onClick() {
+              return setSidebarOpen(false);
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: "/imgs/Orders.svg",
+              alt: "Orders",
+              className: "nav-icon"
+            }), "Orders"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+            to: "/dashboard/inventory",
+            className: function className(_ref5) {
+              var isActive = _ref5.isActive;
+              return isActive ? "active" : "";
+            },
+            onClick: function onClick() {
+              return setSidebarOpen(false);
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: "/imgs/Inventory.svg",
+              alt: "Inventory",
+              className: "nav-icon"
+            }), "Inventory"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+            to: "/dashboard/customers",
+            className: function className(_ref6) {
+              var isActive = _ref6.isActive;
+              return isActive ? "active" : "";
+            },
+            onClick: function onClick() {
+              return setSidebarOpen(false);
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: "/imgs/Customers.svg",
+              alt: "Customers",
+              className: "nav-icon"
+            }), "Customers"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+            to: "/dashboard/users",
+            className: function className(_ref7) {
+              var isActive = _ref7.isActive;
+              return isActive ? "active" : "";
+            },
+            onClick: function onClick() {
+              return setSidebarOpen(false);
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: "/imgs/Users.svg",
+              alt: "Users",
+              className: "nav-icon"
+            }), "Users"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+            to: "/dashboard/transactions",
+            className: function className(_ref8) {
+              var isActive = _ref8.isActive;
+              return isActive ? "active" : "";
+            },
+            onClick: function onClick() {
+              return setSidebarOpen(false);
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: "/imgs/Transactions.svg",
+              alt: "Transactions",
+              className: "nav-icon"
+            }), "Transactions"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+            to: "/dashboard/reviews",
+            className: function className(_ref9) {
+              var isActive = _ref9.isActive;
+              return isActive ? "active" : "";
+            },
+            onClick: function onClick() {
+              return setSidebarOpen(false);
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: "/imgs/Reviews.svg",
+              alt: "Reviews",
+              className: "nav-icon"
+            }), "Reviews"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+            to: "/dashboard/reports",
+            className: function className(_ref10) {
+              var isActive = _ref10.isActive;
+              return isActive ? "active" : "";
+            },
+            onClick: function onClick() {
+              return setSidebarOpen(false);
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: "/imgs/Reports.svg",
+              alt: "Reports",
+              className: "nav-icon"
+            }), "Reports"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("hr", {
+            className: "separator"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+            to: "/dashboard/adminsettings",
+            className: function className(_ref11) {
+              var isActive = _ref11.isActive;
+              return isActive ? "active" : "";
+            },
+            onClick: function onClick() {
+              return setSidebarOpen(false);
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: "/imgs/Settings.svg",
+              alt: "Admin Settings",
+              className: "nav-icon"
+            }), "Admin Settings"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "nav-link logout",
+            onClick: handleLogout,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: "/imgs/Logout.svg",
+              alt: "Log Out",
+              className: "nav-icon"
+            }), "Log Out"]
+          })]
+        })
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "main-content",
@@ -100624,6 +100954,7 @@ function Dashboard() {
         className: "page-content",
         children: isDashboardRoot ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+            className: "dashboard-header",
             children: "Dashboard"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
             className: "card-container",
@@ -100677,7 +101008,7 @@ function Dashboard() {
                   className: "card-text",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                     className: "card-number",
-                    children: "0"
+                    children: totalProducts
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                     className: "card-title",
                     children: "Total Products"
@@ -100708,14 +101039,14 @@ function Dashboard() {
             className: "charts-container",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "line-chart",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_5__.Line, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_6__.Line, {
                 ref: lineChartRef,
                 data: lineData,
                 options: lineOptions
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "bar-chart",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_5__.Bar, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_6__.Bar, {
                 ref: barChartRef,
                 data: barData,
                 options: barOptions
@@ -100922,7 +101253,7 @@ function Inventory() {
   // Handle Save Edit
   var handleSave = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-      var response, _error$response4;
+      var response, _error$response4, _error$response5;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -100935,17 +101266,20 @@ function Inventory() {
             });
           case 3:
             response = _context2.sent;
-            setInventory(inventory.map(function (item) {
-              return item.id === selectedItem.id ? _objectSpread(_objectSpread({}, item), response.data.data) : item;
-            }));
+            setInventory(function (prevInventory) {
+              return prevInventory.map(function (item) {
+                return item.id === selectedItem.id ? _objectSpread(_objectSpread({}, item), response.data.data) : item;
+              });
+            });
             setSelectedItem(null);
-            _context2.next = 11;
+            _context2.next = 12;
             break;
           case 8:
             _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
             console.error("Error updating item:", ((_error$response4 = _context2.t0.response) === null || _error$response4 === void 0 ? void 0 : _error$response4.data) || _context2.t0);
-          case 11:
+            alert(((_error$response5 = _context2.t0.response) === null || _error$response5 === void 0 || (_error$response5 = _error$response5.data) === null || _error$response5 === void 0 ? void 0 : _error$response5.message) || "Failed to update inventory item.");
+          case 12:
           case "end":
             return _context2.stop();
         }
@@ -100959,6 +101293,7 @@ function Inventory() {
   // Handle Archive
   var handleArchive = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(id) {
+      var _error$response6, _error$response7;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
@@ -100966,16 +101301,19 @@ function Inventory() {
             _context3.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"]("http://127.0.0.1:8000/api/inventory/".concat(id));
           case 3:
-            setInventory(inventory.filter(function (item) {
-              return item.id !== id;
-            }));
-            _context3.next = 9;
+            setInventory(function (prevInventory) {
+              return prevInventory.filter(function (item) {
+                return item.id !== id;
+              });
+            });
+            _context3.next = 10;
             break;
           case 6:
             _context3.prev = 6;
             _context3.t0 = _context3["catch"](0);
-            console.error("Error archiving item:", _context3.t0);
-          case 9:
+            console.error("Error archiving item:", ((_error$response6 = _context3.t0.response) === null || _error$response6 === void 0 ? void 0 : _error$response6.data) || _context3.t0);
+            alert(((_error$response7 = _context3.t0.response) === null || _error$response7 === void 0 || (_error$response7 = _error$response7.data) === null || _error$response7 === void 0 ? void 0 : _error$response7.message) || "Failed to archive inventory item.");
+          case 10:
           case "end":
             return _context3.stop();
         }
@@ -101156,7 +101494,7 @@ function Inventory() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
           children: "Category:"
-        }), " ", ((_viewItem$product2 = viewItem.product) === null || _viewItem$product2 === void 0 ? void 0 : _viewItem$product2.category) || "N/A"]
+        }), " ", ((_viewItem$product2 = viewItem.product) === null || _viewItem$product2 === void 0 || (_viewItem$product2 = _viewItem$product2.category) === null || _viewItem$product2 === void 0 ? void 0 : _viewItem$product2.name) || "N/A"]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
           children: "Type:"
@@ -101241,8 +101579,6 @@ function Inventory() {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
               children: "Actions"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "ID"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
               children: "Product"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
               children: "Category"
@@ -101297,11 +101633,9 @@ function Inventory() {
                   }
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: item.id
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                 children: ((_item$product2 = item.product) === null || _item$product2 === void 0 ? void 0 : _item$product2.product_name) || "N/A"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: ((_item$product3 = item.product) === null || _item$product3 === void 0 ? void 0 : _item$product3.category) || "N/A"
+                children: ((_item$product3 = item.product) === null || _item$product3 === void 0 || (_item$product3 = _item$product3.category) === null || _item$product3 === void 0 ? void 0 : _item$product3.name) || "N/A"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                 children: ((_item$product4 = item.product) === null || _item$product4 === void 0 ? void 0 : _item$product4.product_type) || "N/A"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
@@ -101319,7 +101653,7 @@ function Inventory() {
             }, item.id);
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              colSpan: "9",
+              colSpan: "8",
               style: {
                 textAlign: "center"
               },
@@ -101668,15 +102002,14 @@ function Orders() {
     setIsArchiving(order); // Show confirmation popup
   };
   var confirmArchive = function confirmArchive() {
-    axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("http://localhost:8000/api/orders/".concat(isArchiving.id, "/archive")) // Adjusted to POST for archiving
-    .then(function () {
+    axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("http://localhost:8000/api/orders/".concat(isArchiving.id, "/archive")).then(function () {
       setOrders(orders.filter(function (order) {
         return order.id !== isArchiving.id;
-      })); // Remove from list
-      setIsArchiving(null); // Close popup
+      }));
+      setIsArchiving(null);
     })["catch"](function (error) {
       console.error("Error archiving order:", error.response ? error.response.data : error.message);
-      setIsArchiving(null); // Close popup even if error occurs
+      setIsArchiving(null);
     });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
@@ -101981,6 +102314,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Products)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
@@ -102003,6 +102337,7 @@ function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" !=
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
+
 function Products() {
   var _products$find;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("All"),
@@ -102017,51 +102352,68 @@ function Products() {
     _useState6 = _slicedToArray(_useState5, 2),
     products = _useState6[0],
     setProducts = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState8 = _slicedToArray(_useState7, 2),
-    isModalOpen = _useState8[0],
-    setIsModalOpen = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    categories = _useState8[0],
+    setCategories = _useState8[1]; // Dynamic categories
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState10 = _slicedToArray(_useState9, 2),
-    isEditing = _useState10[0],
-    setIsEditing = _useState10[1];
+    brands = _useState10[0],
+    setBrands = _useState10[1]; // Dynamic brands
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState12 = _slicedToArray(_useState11, 2),
-    isLoading = _useState12[0],
-    setIsLoading = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    isModalOpen = _useState12[0],
+    setIsModalOpen = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState14 = _slicedToArray(_useState13, 2),
-    currentPage = _useState14[0],
-    setCurrentPage = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    isEditing = _useState14[0],
+    setIsEditing = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState16 = _slicedToArray(_useState15, 2),
+    isLoading = _useState16[0],
+    setIsLoading = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState18 = _slicedToArray(_useState17, 2),
+    currentPage = _useState18[0],
+    setCurrentPage = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       product_name: "",
-      category: "Womens",
-      product_type: "Tops",
+      category: "",
+      // Will be set to category ID
+      product_type: "",
       sizes: [],
       price: "",
       description: "",
       status: "available",
       image_1: null,
       brand: "",
+      // Will be set to brand ID
       colors: []
     }),
-    _useState16 = _slicedToArray(_useState15, 2),
-    formData = _useState16[0],
-    setFormData = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState18 = _slicedToArray(_useState17, 2),
-    editProductId = _useState18[0],
-    setEditProductId = _useState18[1];
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState20 = _slicedToArray(_useState19, 2),
-    isArchiveModalOpen = _useState20[0],
-    setIsArchiveModalOpen = _useState20[1];
+    formData = _useState20[0],
+    setFormData = _useState20[1];
   var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState22 = _slicedToArray(_useState21, 2),
-    productToArchive = _useState22[0],
-    setProductToArchive = _useState22[1];
+    editProductId = _useState22[0],
+    setEditProductId = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState24 = _slicedToArray(_useState23, 2),
+    isArchiveModalOpen = _useState24[0],
+    setIsArchiveModalOpen = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState26 = _slicedToArray(_useState25, 2),
+    productToArchive = _useState26[0],
+    setProductToArchive = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState28 = _slicedToArray(_useState27, 2),
+    imagePreview = _useState28[0],
+    setImagePreview = _useState28[1];
+  var uploadAreaRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
-  var ITEMS_PER_PAGE = 15;
+  var ITEMS_PER_PAGE = 10;
+
+  // Fetch products
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var fetchProducts = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -102108,6 +102460,52 @@ function Products() {
     }();
     fetchProducts();
   }, []);
+
+  // Fetch categories from API
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("http://127.0.0.1:8000/api/categories").then(function (response) {
+      setCategories(response.data);
+      if (response.data.length > 0) {
+        setFormData(function (prev) {
+          return _objectSpread(_objectSpread({}, prev), {}, {
+            category: response.data[0].id
+          });
+        });
+      }
+    })["catch"](function (error) {
+      console.error("Error fetching categories:", error);
+    });
+  }, []);
+
+  // Fetch brands from API
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("http://127.0.0.1:8000/api/brands").then(function (response) {
+      setBrands(response.data);
+      if (response.data.length > 0) {
+        setFormData(function (prev) {
+          return _objectSpread(_objectSpread({}, prev), {}, {
+            brand: response.data[0].id
+          });
+        });
+      }
+    })["catch"](function (error) {
+      console.error("Error fetching brands:", error);
+    });
+  }, []);
+
+  // Handle Escape key
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var handleEscape = function handleEscape(e) {
+      if (e.key === "Escape" && !isLoading) {
+        setIsModalOpen(false);
+        setIsArchiveModalOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+    return function () {
+      return window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isLoading]);
   var filteredProducts = products.filter(function (product) {
     var matchesTab = activeTab === "All" || activeTab === "Available" && product.status === "available" || activeTab === "Archived" && product.status === "archived";
     var matchesSearch = product.product_name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -102154,92 +102552,180 @@ function Products() {
   };
   var handleFileChange = function handleFileChange(e) {
     var file = e.target.files[0];
-    if (file) {
+    if (file && isValidFile(file)) {
       setFormData(function (prev) {
         return _objectSpread(_objectSpread({}, prev), {}, {
           image_1: file
         });
       });
+      var reader = new FileReader();
+      reader.onload = function () {
+        return setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert("Please select a valid image file (PNG, JPG, JPEG, GIF) under 2MB.");
+    }
+  };
+  var handleDragOver = function handleDragOver(e) {
+    e.preventDefault();
+  };
+  var handleDrop = function handleDrop(e) {
+    e.preventDefault();
+    var file = e.dataTransfer.files[0];
+    if (file && isValidFile(file)) {
+      setFormData(function (prev) {
+        return _objectSpread(_objectSpread({}, prev), {}, {
+          image_1: file
+        });
+      });
+      var reader = new FileReader();
+      reader.onload = function () {
+        return setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert("Please drop a valid image file (PNG, JPG, JPEG, GIF) under 2MB.");
+    }
+  };
+  var isValidFile = function isValidFile(file) {
+    var validTypes = ["image/png", "image/jpeg", "image/jpg", "image/gif"];
+    var maxSize = 2 * 1024 * 1024; // 2MB to match backend
+    return validTypes.includes(file.type) && file.size <= maxSize;
+  };
+  var triggerFileInput = function triggerFileInput() {
+    if (uploadAreaRef.current) {
+      uploadAreaRef.current.querySelector(".file-input").click();
     }
   };
   var openAddModal = function openAddModal() {
+    var _categories$, _brands$;
     setFormData({
       product_name: "",
-      category: "Womens",
-      product_type: "Tops",
+      category: ((_categories$ = categories[0]) === null || _categories$ === void 0 ? void 0 : _categories$.id) || "",
+      product_type: "",
       sizes: [],
       price: "",
       description: "",
       status: "available",
       image_1: null,
-      brand: "",
+      brand: ((_brands$ = brands[0]) === null || _brands$ === void 0 ? void 0 : _brands$.id) || "",
       colors: []
     });
+    setImagePreview(null);
     setIsEditing(false);
     setEditProductId(null);
     setIsModalOpen(true);
   };
   var openEditModal = function openEditModal(product) {
+    var _categories$2, _brands$2;
     setFormData({
       product_name: product.product_name || "",
-      category: product.category || "Womens",
-      product_type: product.product_type || "Tops",
+      category: product.category_id || ((_categories$2 = categories[0]) === null || _categories$2 === void 0 ? void 0 : _categories$2.id) || "",
+      // Use category_id
+      product_type: product.product_type || "",
       sizes: Array.isArray(product.sizes) ? product.sizes : product.sizes ? JSON.parse(product.sizes) : [],
       price: product.price || "",
       description: product.description || "",
       status: product.status || "available",
       image_1: null,
-      brand: product.brand || "",
+      brand: product.brand_id || ((_brands$2 = brands[0]) === null || _brands$2 === void 0 ? void 0 : _brands$2.id) || "",
+      // Use brand_id
       colors: Array.isArray(product.colors) ? product.colors : product.colors ? JSON.parse(product.colors) : []
     });
+    setImagePreview(product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_1) : null);
     setEditProductId(product.id);
     setIsEditing(true);
     setIsModalOpen(true);
   };
   var saveProduct = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-      var formDataObj, url, method, res, errorText, data;
+      var formDataObj, url, response, data, _error$response, _error$response2, _error$response3, errorMessage;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
-            setIsLoading(true);
-            formDataObj = new FormData();
-            Object.keys(formData).forEach(function (key) {
-              if (key === "sizes" || key === "colors") {
-                formDataObj.append(key, JSON.stringify(formData[key]));
-              } else if (key === "image_1" && formData.image_1 instanceof File) {
-                formDataObj.append("image_1", formData.image_1);
-              } else if (formData[key] !== null && formData[key] !== undefined) {
-                formDataObj.append(key, formData[key]);
-              }
-            });
-            if (isEditing) {
-              formDataObj.append('_method', 'PUT');
+            if (formData.product_name) {
+              _context2.next = 3;
+              break;
             }
-            _context2.prev = 4;
-            url = isEditing ? "http://127.0.0.1:8000/api/products/".concat(editProductId) : "http://127.0.0.1:8000/api/products";
-            method = isEditing ? "POST" : "POST";
-            _context2.next = 9;
-            return fetch(url, {
-              method: method,
-              body: formDataObj
-            });
+            alert("Product name is required.");
+            return _context2.abrupt("return");
+          case 3:
+            if (formData.category) {
+              _context2.next = 6;
+              break;
+            }
+            alert("Please select a category.");
+            return _context2.abrupt("return");
+          case 6:
+            if (formData.brand) {
+              _context2.next = 9;
+              break;
+            }
+            alert("Please select a brand.");
+            return _context2.abrupt("return");
           case 9:
-            res = _context2.sent;
-            if (res.ok) {
+            if (formData.product_type) {
+              _context2.next = 12;
+              break;
+            }
+            alert("Please select a product type.");
+            return _context2.abrupt("return");
+          case 12:
+            if (!(formData.sizes.length === 0)) {
               _context2.next = 15;
               break;
             }
-            _context2.next = 13;
-            return res.text();
-          case 13:
-            errorText = _context2.sent;
-            throw new Error("Failed to ".concat(isEditing ? "update" : "add", " product: ").concat(errorText));
+            alert("Please select at least one size.");
+            return _context2.abrupt("return");
           case 15:
-            _context2.next = 17;
-            return res.json();
-          case 17:
-            data = _context2.sent;
+            if (!(formData.colors.length === 0)) {
+              _context2.next = 18;
+              break;
+            }
+            alert("Please select at least one color.");
+            return _context2.abrupt("return");
+          case 18:
+            if (!(!formData.price || formData.price < 0)) {
+              _context2.next = 21;
+              break;
+            }
+            alert("Price is required and must be non-negative.");
+            return _context2.abrupt("return");
+          case 21:
+            setIsLoading(true);
+            formDataObj = new FormData();
+            formDataObj.append("category_id", formData.category);
+            formDataObj.append("brand_id", formData.brand);
+            formDataObj.append("product_name", formData.product_name);
+            formDataObj.append("product_type", formData.product_type);
+            formData.sizes.forEach(function (size) {
+              return formDataObj.append("sizes[]", size);
+            }); // Send as array
+            formData.colors.forEach(function (color) {
+              return formDataObj.append("colors[]", color);
+            }); // Send as array
+            formDataObj.append("price", formData.price);
+            formDataObj.append("description", formData.description || ""); // Nullable
+            formDataObj.append("status", formData.status);
+            if (formData.image_1 instanceof File) {
+              formDataObj.append("image_1", formData.image_1);
+            }
+            if (isEditing) {
+              formDataObj.append("_method", "PUT");
+            }
+            _context2.prev = 34;
+            console.log("Sending FormData:", Object.fromEntries(formDataObj)); // Debug
+            url = isEditing ? "http://127.0.0.1:8000/api/products/".concat(editProductId) : "http://127.0.0.1:8000/api/products";
+            _context2.next = 39;
+            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].post(url, formDataObj, {
+              headers: {
+                "Content-Type": "multipart/form-data"
+              }
+            });
+          case 39:
+            response = _context2.sent;
+            data = response.data;
             if (isEditing) {
               setProducts(function (prev) {
                 return prev.map(function (p) {
@@ -102254,22 +102740,25 @@ function Products() {
             setIsModalOpen(false);
             setEditProductId(null);
             setIsEditing(false);
-            _context2.next = 28;
+            setImagePreview(null);
+            alert("Product " + (isEditing ? "updated" : "added") + " successfully!");
+            _context2.next = 54;
             break;
-          case 24:
-            _context2.prev = 24;
-            _context2.t0 = _context2["catch"](4);
-            console.error("Error ".concat(isEditing ? "updating" : "adding", " product:"), _context2.t0);
-            alert("Failed to ".concat(isEditing ? "update" : "add", " product: ").concat(_context2.t0.message));
-          case 28:
-            _context2.prev = 28;
+          case 49:
+            _context2.prev = 49;
+            _context2.t0 = _context2["catch"](34);
+            console.error("Error response:", (_error$response = _context2.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data);
+            errorMessage = ((_error$response2 = _context2.t0.response) === null || _error$response2 === void 0 || (_error$response2 = _error$response2.data) === null || _error$response2 === void 0 ? void 0 : _error$response2.message) + ": " + Object.values(((_error$response3 = _context2.t0.response) === null || _error$response3 === void 0 || (_error$response3 = _error$response3.data) === null || _error$response3 === void 0 ? void 0 : _error$response3.errors) || {}).flat().join(", ");
+            alert("Failed to ".concat(isEditing ? "update" : "add", " product: ").concat(errorMessage || _context2.t0.message));
+          case 54:
+            _context2.prev = 54;
             setIsLoading(false);
-            return _context2.finish(28);
-          case 31:
+            return _context2.finish(54);
+          case 57:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[4, 24, 28, 31]]);
+      }, _callee2, null, [[34, 49, 54, 57]]);
     }));
     return function saveProduct() {
       return _ref2.apply(this, arguments);
@@ -102285,12 +102774,12 @@ function Products() {
             _context3.prev = 1;
             _context3.next = 4;
             return fetch("http://127.0.0.1:8000/api/products/".concat(productId), {
-              method: 'PUT',
+              method: "PUT",
               headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
               },
               body: JSON.stringify({
-                status: 'archived'
+                status: "archived"
               })
             });
           case 4:
@@ -102317,7 +102806,7 @@ function Products() {
           case 15:
             _context3.prev = 15;
             _context3.t0 = _context3["catch"](1);
-            console.error('Error archiving product:', _context3.t0);
+            console.error("Error archiving product:", _context3.t0);
             alert("Failed to archive product: ".concat(_context3.t0.message));
           case 19:
             _context3.prev = 19;
@@ -102349,41 +102838,51 @@ function Products() {
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+      style: {
+        color: "#000000",
+        marginBottom: "20px"
+      },
       children: "Products"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "transactions-links",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-        className: "transactions-label",
-        children: "Products:"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "links-container",
-        children: ["All", "Available", "Archived"].map(function (tab) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-            className: activeTab === tab ? "active" : "",
-            onClick: function onClick() {
-              return setActiveTab(tab);
-            },
-            children: tab
-          }, tab);
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "text",
-        placeholder: "Search products...",
-        className: "transactions-search",
-        value: searchTerm,
-        onChange: function onChange(e) {
-          return setSearchTerm(e.target.value);
-        }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        className: "add-product-btn",
-        onClick: openAddModal,
-        disabled: isLoading,
-        children: "Add New Product"
+      className: "products-links",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "left-section",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          className: "products-label",
+          children: "Products:"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "links-container",
+          children: ["All", "Available", "Archived"].map(function (tab) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+              className: activeTab === tab ? "active" : "",
+              onClick: function onClick() {
+                return setActiveTab(tab);
+              },
+              children: tab
+            }, tab);
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "right-section",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          type: "text",
+          placeholder: "Search products...",
+          className: "products-search",
+          value: searchTerm,
+          onChange: function onChange(e) {
+            return setSearchTerm(e.target.value);
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          className: "add-product-btn",
+          onClick: openAddModal,
+          disabled: isLoading,
+          children: "Add New Product"
+        })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "transactions-table-container",
+      className: "products-table-container",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
-        className: "transactions-table",
+        className: "products-table",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
@@ -102415,6 +102914,7 @@ function Products() {
               children: "Loading..."
             })
           }) : paginatedProducts.length > 0 ? paginatedProducts.map(function (product) {
+            var _categories$find, _brands$find;
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
@@ -102447,8 +102947,8 @@ function Products() {
                   src: "".concat(BASE_IMAGE_URL, "/").concat(product.image_1),
                   alt: product.product_name,
                   style: {
-                    width: "50px",
-                    height: "50px",
+                    width: "40px",
+                    height: "40px",
                     objectFit: "cover"
                   },
                   onError: function onError(e) {
@@ -102458,21 +102958,25 @@ function Products() {
                   src: "/placeholder.png",
                   alt: "No Image",
                   style: {
-                    width: "50px",
-                    height: "50px",
+                    width: "40px",
+                    height: "40px",
                     objectFit: "cover"
                   }
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                 children: product.product_name
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: product.category
+                children: ((_categories$find = categories.find(function (cat) {
+                  return cat.id === product.category_id;
+                })) === null || _categories$find === void 0 ? void 0 : _categories$find.name) || "N/A"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                 children: product.product_type
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                 children: Array.isArray(product.sizes) ? product.sizes.join(", ") : product.sizes || "N/A"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: product.brand || "N/A"
+                children: ((_brands$find = brands.find(function (brand) {
+                  return brand.id === product.brand_id;
+                })) === null || _brands$find === void 0 ? void 0 : _brands$find.name) || "N/A"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                 children: Array.isArray(product.colors) ? product.colors.join(", ") : product.colors || "N/A"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
@@ -102495,12 +102999,14 @@ function Products() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "pagination-controls",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        className: "pagination-btn",
         onClick: handlePrevPage,
         disabled: currentPage === 1 || isLoading,
         children: "Previous"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
         children: ["Page ", currentPage, " of ", totalPages]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        className: "pagination-btn",
         onClick: handleNextPage,
         disabled: currentPage === totalPages || isLoading,
         children: "Next"
@@ -102519,164 +103025,240 @@ function Products() {
           className: "edit-modal-content",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
             children: isEditing ? "Edit Product" : "Add New Product"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Product Name"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "text",
-              name: "product_name",
-              value: formData.product_name,
-              onChange: handleChange,
-              disabled: isLoading
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Category"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-              name: "category",
-              value: formData.category,
-              onChange: handleChange,
-              disabled: isLoading,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Womens",
-                children: "Womens"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Mens",
-                children: "Mens"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Girls",
-                children: "Girls"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Boys",
-                children: "Boys"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "custom-form-layout",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "form-row",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "form-group",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                  children: "Product Name"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                  type: "text",
+                  name: "product_name",
+                  value: formData.product_name,
+                  onChange: handleChange,
+                  disabled: isLoading,
+                  required: true
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "form-group",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                  children: "Colors"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+                  multiple: true,
+                  name: "colors",
+                  value: formData.colors,
+                  onChange: handleColorsChange,
+                  disabled: isLoading,
+                  required: true,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "Red",
+                    children: "Red"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "Blue",
+                    children: "Blue"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "Green",
+                    children: "Green"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "Black",
+                    children: "Black"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "White",
+                    children: "White"
+                  })]
+                })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Product Type"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-              name: "product_type",
-              value: formData.product_type,
-              onChange: handleChange,
-              disabled: isLoading,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Tops",
-                children: "Tops"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Bottoms",
-                children: "Bottoms"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Jacket",
-                children: "Jacket"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Swimwear",
-                children: "Swimwear"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "form-row",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "form-group",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                  children: "Category"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+                  name: "category",
+                  value: formData.category,
+                  onChange: handleChange,
+                  disabled: isLoading,
+                  required: true,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "",
+                    children: "Select Category"
+                  }), categories.map(function (cat) {
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                      value: cat.id,
+                      children: cat.name
+                    }, cat.id);
+                  })]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "form-group",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                  children: "Price"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                  type: "number",
+                  name: "price",
+                  value: formData.price,
+                  onChange: handleChange,
+                  disabled: isLoading,
+                  min: "0",
+                  required: true
+                })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Sizes"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-              multiple: true,
-              name: "sizes",
-              value: formData.sizes,
-              onChange: handleSizeChange,
-              disabled: isLoading,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "XS",
-                children: "XS"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "S",
-                children: "S"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "M",
-                children: "M"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "L",
-                children: "L"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "XL",
-                children: "XL"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "form-row",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "form-group",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                  children: "Product Type"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+                  name: "product_type",
+                  value: formData.product_type,
+                  onChange: handleChange,
+                  disabled: isLoading,
+                  required: true,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "",
+                    children: "Select Type"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "Tops",
+                    children: "Tops"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "Bottoms",
+                    children: "Bottoms"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "Jacket",
+                    children: "Jacket"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "Swimwear",
+                    children: "Swimwear"
+                  })]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "form-group",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                  children: "Description"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("textarea", {
+                  name: "description",
+                  value: formData.description,
+                  onChange: handleChange,
+                  disabled: isLoading
+                })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Brand"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-              name: "brand",
-              value: formData.brand,
-              onChange: handleBrandChange,
-              disabled: isLoading,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "",
-                children: "Select Brand"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "1",
-                children: "Brand A"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "2",
-                children: "Brand B"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "3",
-                children: "Brand C"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "form-row",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "form-group",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                  children: "Sizes"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+                  multiple: true,
+                  name: "sizes",
+                  value: formData.sizes,
+                  onChange: handleSizeChange,
+                  disabled: isLoading,
+                  required: true,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "XS",
+                    children: "XS"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "S",
+                    children: "S"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "M",
+                    children: "M"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "L",
+                    children: "L"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "XL",
+                    children: "XL"
+                  })]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "form-group",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                  children: "Status"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+                  name: "status",
+                  value: formData.status,
+                  onChange: handleChange,
+                  disabled: isLoading,
+                  required: true,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "available",
+                    children: "Published"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "archived",
+                    children: "Archived"
+                  })]
+                })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Colors"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-              multiple: true,
-              name: "colors",
-              value: formData.colors,
-              onChange: handleColorsChange,
-              disabled: isLoading,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Red",
-                children: "Red"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Blue",
-                children: "Blue"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Green",
-                children: "Green"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "Black",
-                children: "Black"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "White",
-                children: "White"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "form-row",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "form-group",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                  children: "Brand"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+                  name: "brand",
+                  value: formData.brand,
+                  onChange: handleBrandChange,
+                  disabled: isLoading,
+                  required: true,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                    value: "",
+                    children: "Select Brand"
+                  }), brands.map(function (brand) {
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                      value: brand.id,
+                      children: brand.name
+                    }, brand.id);
+                  })]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "form-group image-upload",
+                ref: uploadAreaRef,
+                onDragOver: handleDragOver,
+                onDrop: handleDrop,
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                  children: "Product Image"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                  className: "upload-area",
+                  onClick: triggerFileInput,
+                  children: [imagePreview ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                    src: imagePreview,
+                    alt: "Preview",
+                    style: {
+                      maxWidth: "100%",
+                      maxHeight: "120px"
+                    }
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                      className: "upload-icon"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+                      children: "Drag and drop or"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                      children: "Browse"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+                      className: "note",
+                      children: "Supported formats: PNG, JPG, JPEG, GIF (Max 2MB)"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                    type: "file",
+                    name: "image_1",
+                    accept: "image/*",
+                    className: "file-input",
+                    onChange: handleFileChange,
+                    disabled: isLoading
+                  })]
+                }), isEditing && formData.image_1 === null && imagePreview && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+                  children: ["Current image:", " ", (_products$find = products.find(function (p) {
+                    return p.id === editProductId;
+                  })) === null || _products$find === void 0 ? void 0 : _products$find.image_1]
+                })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Price"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "number",
-              name: "price",
-              value: formData.price,
-              onChange: handleChange,
-              disabled: isLoading
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Description"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("textarea", {
-              name: "description",
-              value: formData.description,
-              onChange: handleChange,
-              disabled: isLoading
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Status"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-              name: "status",
-              value: formData.status,
-              onChange: handleChange,
-              disabled: isLoading,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "available",
-                children: "Published"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                value: "archived",
-                children: "Archived"
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Product Image"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "file",
-              name: "image_1",
-              accept: "image/*",
-              onChange: handleFileChange,
-              disabled: isLoading
-            }), isEditing && formData.image_1 === null && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-              children: ["Current image: ", (_products$find = products.find(function (p) {
-                return p.id === editProductId;
-              })) === null || _products$find === void 0 ? void 0 : _products$find.image_1]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
               className: "modal-actions",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
@@ -103112,8 +103694,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Login */ "./resources/js/components/Login.js");
 /* harmony import */ var _Signup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Signup */ "./resources/js/components/Signup.js");
 /* harmony import */ var _Dashboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Dashboard */ "./resources/js/components/Dashboard.js");
@@ -103127,16 +103709,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Reports__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Reports */ "./resources/js/components/Reports.js");
 /* harmony import */ var _HomePage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./HomePage */ "./resources/js/components/HomePage.js");
 /* harmony import */ var _HomePage__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_HomePage__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
-/* harmony import */ var slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! slick-carousel/slick/slick.css */ "./node_modules/slick-carousel/slick/slick.css");
-/* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! slick-carousel/slick/slick-theme.css */ "./node_modules/slick-carousel/slick/slick-theme.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _AdminSettings__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./AdminSettings */ "./resources/js/components/AdminSettings.js");
+/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
+/* harmony import */ var slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! slick-carousel/slick/slick.css */ "./node_modules/slick-carousel/slick/slick.css");
+/* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! slick-carousel/slick/slick-theme.css */ "./node_modules/slick-carousel/slick/slick-theme.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
 
 
 
@@ -103160,7 +103744,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  // Import slick-carousel theme CSS
 
 var LandingPage = function LandingPage() {
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_18__.useNavigate)(); // Initialize navigate hook
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_19__.useNavigate)(); // Initialize navigate hook
 
   var handleLoginClick = function handleLoginClick() {
     navigate('/login'); // Navigate to /login on click
@@ -103184,72 +103768,72 @@ var LandingPage = function LandingPage() {
     // Auto-play speed (3 seconds)
     arrows: true // Show navigation arrows
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("div", {
     className: "landing-page",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)("header", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("header", {
       className: "login-header",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
         className: "logo-container",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("img", {
           src: "/imgs/logo.svg",
           alt: "Logo",
           className: "logo"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)("nav", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("nav", {
         className: "nav-links",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("a", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("a", {
           href: "#home",
           children: "HOME"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("a", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("a", {
           href: "#shop",
           children: "SHOP"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("a", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("a", {
           href: "#about",
           children: "ABOUT US"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("a", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("a", {
           href: "#support",
           className: "support-link",
           children: "SUPPORT"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("div", {
         className: "header-icons",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("img", {
           src: "/imgs/Search.svg",
           alt: "Search",
           className: "header-icon"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("img", {
           src: "/imgs/Wish.svg",
           alt: "Wishlist",
           className: "header-icon"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("img", {
           src: "/imgs/Cart.svg",
           alt: "Cart",
           className: "header-icon"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("button", {
           className: "login-button",
           onClick: handleLoginClick,
           children: "Login"
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
       className: "slider-container",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(react_slick__WEBPACK_IMPORTED_MODULE_14__["default"], _objectSpread(_objectSpread({}, sliderSettings), {}, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(react_slick__WEBPACK_IMPORTED_MODULE_15__["default"], _objectSpread(_objectSpread({}, sliderSettings), {}, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("img", {
             src: "/imgs/slider1.svg" // Your first clothing image
             ,
             alt: "Clothing 1",
             className: "slider-image"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("img", {
             src: "/imgs/slider2.svg" // Add more clothing images as needed
             ,
             alt: "Clothing 2",
             className: "slider-image"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("img", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("img", {
             src: "/imgs/slider3.svg" // Add more clothing images as needed
             ,
             alt: "Clothing 3",
@@ -103269,13 +103853,13 @@ var ProtectedRoute = function ProtectedRoute(_ref) {
   var role = localStorage.getItem("role"); // Get user role
 
   if (!token) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Navigate, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Navigate, {
       to: "/login",
       replace: true
     }); // Redirect if not logged in
   }
   if (!allowedRoles.includes(role)) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Navigate, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Navigate, {
       to: "/",
       replace: true
     }); // Redirect if role is not allowed
@@ -103283,53 +103867,56 @@ var ProtectedRoute = function ProtectedRoute(_ref) {
   return element;
 };
 var App = function App() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Routes, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Routes, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
         path: "/login",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
         path: "/signup",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Signup__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_Signup__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
         path: "/",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(LandingPage, {})
-      }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(LandingPage, {})
+      }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
         path: "/home",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)((_HomePage__WEBPACK_IMPORTED_MODULE_13___default()), {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)((_HomePage__WEBPACK_IMPORTED_MODULE_13___default()), {}),
           allowedRoles: ["customer"]
         })
-      }), "  ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+      }), "  ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
         path: "/dashboard",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Dashboard__WEBPACK_IMPORTED_MODULE_4__["default"], {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_Dashboard__WEBPACK_IMPORTED_MODULE_4__["default"], {}),
           allowedRoles: ["admin"]
         }),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
           path: "products",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Products__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_Products__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
           path: "orders",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Orders__WEBPACK_IMPORTED_MODULE_6__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_Orders__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
           path: "inventory",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Inventory__WEBPACK_IMPORTED_MODULE_7__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_Inventory__WEBPACK_IMPORTED_MODULE_7__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
           path: "customers",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Customers__WEBPACK_IMPORTED_MODULE_8__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_Customers__WEBPACK_IMPORTED_MODULE_8__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
           path: "users",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Users__WEBPACK_IMPORTED_MODULE_9__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_Users__WEBPACK_IMPORTED_MODULE_9__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
           path: "transactions",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Transactions__WEBPACK_IMPORTED_MODULE_10__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_Transactions__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
           path: "reviews",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Reviews__WEBPACK_IMPORTED_MODULE_11__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_Reviews__WEBPACK_IMPORTED_MODULE_11__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
           path: "reports",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Reports__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_Reports__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
+          path: "adminsettings",
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_AdminSettings__WEBPACK_IMPORTED_MODULE_14__["default"], {})
         })]
       })]
     })
@@ -103338,7 +103925,7 @@ var App = function App() {
 
 // Mount React App
 if (document.getElementById("root")) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(App, {}), document.getElementById("root"));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(App, {}), document.getElementById("root"));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
@@ -104140,15 +104727,6 @@ function Users() {
   var formatDate = function formatDate(timestamp) {
     return timestamp ? new Date(timestamp).toLocaleString() : "N/A";
   };
-  var getStatusStyle = function getStatusStyle(status) {
-    return {
-      padding: "2px 8px",
-      borderRadius: "4px",
-      border: "1px solid ".concat(status === "Active" ? "green" : "red"),
-      color: status === "Active" ? "green" : "red",
-      display: "inline-block"
-    };
-  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
     className: "users-main",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
@@ -104216,6 +104794,7 @@ function Users() {
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
             children: filteredUsers.length > 0 ? filteredUsers.map(function (user) {
+              var _user$status;
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
@@ -104260,7 +104839,7 @@ function Users() {
                   children: formatDate(user.created_at)
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                    style: getStatusStyle(user.status),
+                    className: "status-frame status-".concat((_user$status = user.status) === null || _user$status === void 0 ? void 0 : _user$status.toLowerCase()),
                     children: user.status || "N/A"
                   })
                 })]

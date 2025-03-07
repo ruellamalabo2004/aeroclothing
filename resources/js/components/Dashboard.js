@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Outlet, NavLink, useLocation, useNavigate } from "react-router-dom"; // Added useNavigate
+import { Outlet, NavLink, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { Line, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -27,8 +28,9 @@ ChartJS.register(
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [totalProducts, setTotalProducts] = useState(0);
   const location = useLocation();
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
   const lineChartRef = useRef(null);
   const barChartRef = useRef(null);
 
@@ -37,7 +39,7 @@ export default function Dashboard() {
     datasets: [
       {
         label: "Revenue ($)",
-        data: [],
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         borderColor: "#d32f2f",
         backgroundColor: "rgba(211, 47, 47, 0.2)",
         fill: true,
@@ -48,7 +50,7 @@ export default function Dashboard() {
 
   const lineOptions = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: { position: "top" },
       title: { display: true, text: "Monthly Revenue Statistics" },
@@ -74,7 +76,7 @@ export default function Dashboard() {
 
   const barOptions = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: { position: "top" },
       title: { display: true, text: "Top Selling Categories" },
@@ -86,23 +88,37 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
+    // Fetch products from the backend and count them
+    const fetchTotalProducts = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/products/");
+        // Assuming response.data is an array of products
+        setTotalProducts(response.data.length);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setTotalProducts(0); // Set to 0 if there's an error
+      }
+    };
+
+    fetchTotalProducts();
+
     const handleResize = () => {
       if (lineChartRef.current) lineChartRef.current.resize();
       if (barChartRef.current) barChartRef.current.resize();
+      if (window.innerWidth >= 768) {
+        setSidebarOpen(false);
+      }
     };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Logout function with confirmation
   const handleLogout = () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
     if (confirmLogout) {
-      // Perform logout actions here (e.g., clear auth token, reset state)
-      // For this example, we'll just redirect to login
       navigate("/login");
-      setSidebarOpen(false); // Close sidebar on logout
+      setSidebarOpen(false);
     }
   };
 
@@ -123,94 +139,96 @@ export default function Dashboard() {
             </div>
           )}
         </div>
-        <nav className="rounded-nav-links">
-          <NavLink
-            to="/dashboard"
-            end
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <img src="/imgs/Dashboard.svg" alt="Dashboard" className="nav-icon" />
-            Dashboard
-          </NavLink>
-          <NavLink
-            to="/dashboard/products"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <img src="/imgs/Products.svg" alt="Products" className="nav-icon" />
-            Products
-          </NavLink>
-          <NavLink
-            to="/dashboard/orders"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <img src="/imgs/Orders.svg" alt="Orders" className="nav-icon" />
-            Orders
-          </NavLink>
-          <NavLink
-            to="/dashboard/inventory"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <img src="/imgs/Inventory.svg" alt="Inventory" className="nav-icon" />
-            Inventory
-          </NavLink>
-          <NavLink
-            to="/dashboard/customers"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <img src="/imgs/Customers.svg" alt="Customers" className="nav-icon" />
-            Customers
-          </NavLink>
-          <NavLink
-            to="/dashboard/users"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <img src="/imgs/Users.svg" alt="Users" className="nav-icon" />
-            Users
-          </NavLink>
-          <NavLink
-            to="/dashboard/transactions"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <img src="/imgs/Transactions.svg" alt="Transactions" className="nav-icon" />
-            Transactions
-          </NavLink>
-          <NavLink
-            to="/dashboard/reviews"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <img src="/imgs/Reviews.svg" alt="Reviews" className="nav-icon" />
-            Reviews
-          </NavLink>
-          <NavLink
-            to="/dashboard/reports"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <img src="/imgs/Reports.svg" alt="Reports" className="nav-icon" />
-            Reports
-          </NavLink>
-          <hr className="separator" />
-          <NavLink
-            to="/dashboard/admin-settings"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <img src="/imgs/Settings.svg" alt="Admin Settings" className="nav-icon" />
-            Admin Settings
-          </NavLink>
-          <div className="nav-link" onClick={handleLogout}>
-            <img src="/imgs/Logout.svg" alt="Log Out" className="nav-icon" />
-            Log Out
-          </div>
-        </nav>
+        <div className="sidebar-content">
+          <nav className="rounded-nav-links">
+            <NavLink
+              to="/dashboard"
+              end
+              className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setSidebarOpen(false)}
+            >
+              <img src="/imgs/Dashboard.svg" alt="Dashboard" className="nav-icon" />
+              Dashboard
+            </NavLink>
+            <NavLink
+              to="/dashboard/products"
+              className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setSidebarOpen(false)}
+            >
+              <img src="/imgs/Products.svg" alt="Products" className="nav-icon" />
+              Products
+            </NavLink>
+            <NavLink
+              to="/dashboard/orders"
+              className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setSidebarOpen(false)}
+            >
+              <img src="/imgs/Orders.svg" alt="Orders" className="nav-icon" />
+              Orders
+            </NavLink>
+            <NavLink
+              to="/dashboard/inventory"
+              className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setSidebarOpen(false)}
+            >
+              <img src="/imgs/Inventory.svg" alt="Inventory" className="nav-icon" />
+              Inventory
+            </NavLink>
+            <NavLink
+              to="/dashboard/customers"
+              className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setSidebarOpen(false)}
+            >
+              <img src="/imgs/Customers.svg" alt="Customers" className="nav-icon" />
+              Customers
+            </NavLink>
+            <NavLink
+              to="/dashboard/users"
+              className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setSidebarOpen(false)}
+            >
+              <img src="/imgs/Users.svg" alt="Users" className="nav-icon" />
+              Users
+            </NavLink>
+            <NavLink
+              to="/dashboard/transactions"
+              className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setSidebarOpen(false)}
+            >
+              <img src="/imgs/Transactions.svg" alt="Transactions" className="nav-icon" />
+              Transactions
+            </NavLink>
+            <NavLink
+              to="/dashboard/reviews"
+              className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setSidebarOpen(false)}
+            >
+              <img src="/imgs/Reviews.svg" alt="Reviews" className="nav-icon" />
+              Reviews
+            </NavLink>
+            <NavLink
+              to="/dashboard/reports"
+              className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setSidebarOpen(false)}
+            >
+              <img src="/imgs/Reports.svg" alt="Reports" className="nav-icon" />
+              Reports
+            </NavLink>
+            <hr className="separator" />
+            <NavLink
+              to="/dashboard/adminsettings"
+              className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setSidebarOpen(false)}
+            >
+              <img src="/imgs/Settings.svg" alt="Admin Settings" className="nav-icon" />
+              Admin Settings
+            </NavLink>
+            <div className="nav-link logout" onClick={handleLogout}>
+              <img src="/imgs/Logout.svg" alt="Log Out" className="nav-icon" />
+              Log Out
+            </div>
+          </nav>
+        </div>
       </div>
 
       <div className="main-content">
@@ -224,7 +242,7 @@ export default function Dashboard() {
         <div className="page-content">
           {isDashboardRoot ? (
             <main>
-              <h1>Dashboard</h1>
+              <h1 className="dashboard-header">Dashboard</h1>
               <div className="card-container">
                 <div className="card-body">
                   <div className="card-content">
@@ -248,7 +266,7 @@ export default function Dashboard() {
                   <div className="card-content">
                     <img src="/imgs/totalp.svg" alt="Total Products" className="card-image" />
                     <div className="card-text">
-                      <div className="card-number">0</div>
+                      <div className="card-number">{totalProducts}</div>
                       <div className="card-title">Total Products</div>
                     </div>
                   </div>

@@ -12,7 +12,8 @@ import Users from "./Users";
 import Transactions from "./Transactions";
 import Reviews from "./Reviews";
 import Reports from "./Reports";
-import HomePage from "./HomePage"; // For customers
+import HomePage from "./HomePage"; 
+import AdminSettings from "./AdminSettings"; // For customers
 
 // Create a Static Landing Page Component
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
@@ -130,6 +131,7 @@ const App = () => {
           <Route path="transactions" element={<Transactions />} />
           <Route path="reviews" element={<Reviews />} />
           <Route path="reports" element={<Reports />} />
+          <Route path="adminsettings" element={<AdminSettings />} />
         </Route>
       </Routes>
     </Router>
