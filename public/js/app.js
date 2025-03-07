@@ -100805,14 +100805,14 @@ function Inventory() {
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
     _useState14 = _slicedToArray(_useState13, 2),
     isLoading = _useState14[0],
-    setIsLoading = _useState14[1]; // Added loading state
+    setIsLoading = _useState14[1];
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState16 = _slicedToArray(_useState15, 2),
     error = _useState16[0],
-    setError = _useState16[1]; // Added error state
+    setError = _useState16[1];
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       product_id: "",
-      stock_quantity: "",
+      stock_quantity: 0,
       status: "Available"
     }),
     _useState18 = _slicedToArray(_useState17, 2),
@@ -100823,7 +100823,7 @@ function Inventory() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var fetchInventory = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var response, _error$response, _error$response2;
+        var response, _error$response;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
@@ -100834,24 +100834,23 @@ function Inventory() {
               return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("http://127.0.0.1:8000/api/inventory");
             case 5:
               response = _context.sent;
-              console.log("Fetched inventory:", response.data); // Debug response
               setInventory(response.data);
-              _context.next = 14;
+              _context.next = 13;
               break;
-            case 10:
-              _context.prev = 10;
+            case 9:
+              _context.prev = 9;
               _context.t0 = _context["catch"](2);
-              console.error("Error fetching inventory:", ((_error$response = _context.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context.t0.message);
-              setError(((_error$response2 = _context.t0.response) === null || _error$response2 === void 0 || (_error$response2 = _error$response2.data) === null || _error$response2 === void 0 ? void 0 : _error$response2.message) || "Failed to load inventory. Please try again.");
-            case 14:
-              _context.prev = 14;
+              console.error("Error fetching inventory:", _context.t0);
+              setError(((_error$response = _context.t0.response) === null || _error$response === void 0 || (_error$response = _error$response.data) === null || _error$response === void 0 ? void 0 : _error$response.message) || "Failed to load inventory.");
+            case 13:
+              _context.prev = 13;
               setIsLoading(false);
-              return _context.finish(14);
-            case 17:
+              return _context.finish(13);
+            case 16:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[2, 10, 14, 17]]);
+        }, _callee, null, [[2, 9, 13, 16]]);
       }));
       return function fetchInventory() {
         return _ref.apply(this, arguments);
@@ -100862,12 +100861,20 @@ function Inventory() {
 
   // Handle input change for new inventory item
   var handleNewItemChange = function handleNewItemChange(e) {
-    setNewItem(_objectSpread(_objectSpread({}, newItem), {}, _defineProperty({}, e.target.name, e.target.value)));
+    var _e$target = e.target,
+      name = _e$target.name,
+      value = _e$target.value;
+    setNewItem(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, name === "stock_quantity" ? parseInt(value) || 0 : value));
+    });
   };
 
   // Add new inventory item
   var handleAddProduct = function handleAddProduct() {
+    console.log("Sending data to API:", newItem); // Log what you're sending
+
     axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("http://127.0.0.1:8000/api/inventory", newItem).then(function (response) {
+      console.log("Success:", response.data); // Log the response from Laravel
       setInventory([].concat(_toConsumableArray(inventory), [response.data.data]));
       setShowAddForm(false);
       setNewItem({
@@ -100876,7 +100883,9 @@ function Inventory() {
         status: "Available"
       });
     })["catch"](function (error) {
-      return console.error("Error adding inventory item:", error);
+      var _error$response2, _error$response3;
+      console.error("Error response:", ((_error$response2 = error.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.data) || error);
+      alert(((_error$response3 = error.response) === null || _error$response3 === void 0 || (_error$response3 = _error$response3.data) === null || _error$response3 === void 0 ? void 0 : _error$response3.message) || "Failed to add stock.");
     });
   };
 
@@ -100885,7 +100894,7 @@ function Inventory() {
     setSelectedItem({
       id: item.id,
       product_id: item.product_id,
-      stock_quantity: item.stock_quantity,
+      stock_quantity: parseInt(item.stock_quantity) || 0,
       status: item.status,
       product: item.product
     });
@@ -100902,42 +100911,87 @@ function Inventory() {
 
   // Handle Input Changes for Edit Form
   var handleFormChange = function handleFormChange(e) {
-    setSelectedItem(_objectSpread(_objectSpread({}, selectedItem), {}, _defineProperty({}, e.target.name, e.target.value)));
+    var _e$target2 = e.target,
+      name = _e$target2.name,
+      value = _e$target2.value;
+    setSelectedItem(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, name === "stock_quantity" ? parseInt(value) || 0 : value));
+    });
   };
 
   // Handle Save Edit
-  var handleSave = function handleSave() {
-    axios__WEBPACK_IMPORTED_MODULE_2__["default"].put("http://127.0.0.1:8000/api/inventory/".concat(selectedItem.id), {
-      product_id: selectedItem.product_id,
-      stock_quantity: selectedItem.stock_quantity,
-      status: selectedItem.status
-    }).then(function () {
-      setInventory(inventory.map(function (item) {
-        return item.id === selectedItem.id ? _objectSpread(_objectSpread({}, item), selectedItem) : item;
-      }));
-      setSelectedItem(null);
-    })["catch"](function (error) {
-      return console.error("Error updating item:", error);
-    });
-  };
+  var handleSave = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var response, _error$response4;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].put("http://127.0.0.1:8000/api/inventory/".concat(selectedItem.id), {
+              product_id: selectedItem.product_id,
+              stock_quantity: parseInt(selectedItem.stock_quantity) || 0,
+              status: selectedItem.status
+            });
+          case 3:
+            response = _context2.sent;
+            setInventory(inventory.map(function (item) {
+              return item.id === selectedItem.id ? _objectSpread(_objectSpread({}, item), response.data.data) : item;
+            }));
+            setSelectedItem(null);
+            _context2.next = 11;
+            break;
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](0);
+            console.error("Error updating item:", ((_error$response4 = _context2.t0.response) === null || _error$response4 === void 0 ? void 0 : _error$response4.data) || _context2.t0);
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[0, 8]]);
+    }));
+    return function handleSave() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
 
   // Handle Archive
-  var handleArchive = function handleArchive(id) {
-    axios__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"]("http://127.0.0.1:8000/api/inventory/".concat(id)).then(function () {
-      return setInventory(inventory.filter(function (item) {
-        return item.id !== id;
-      }));
-    })["catch"](function (error) {
-      return console.error("Error archiving item:", error);
-    });
-  };
+  var handleArchive = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(id) {
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"]("http://127.0.0.1:8000/api/inventory/".concat(id));
+          case 3:
+            setInventory(inventory.filter(function (item) {
+              return item.id !== id;
+            }));
+            _context3.next = 9;
+            break;
+          case 6:
+            _context3.prev = 6;
+            _context3.t0 = _context3["catch"](0);
+            console.error("Error archiving item:", _context3.t0);
+          case 9:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[0, 6]]);
+    }));
+    return function handleArchive(_x) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
 
   // Filtered inventory based on search query and active filter
   var filteredInventory = inventory.filter(function (item) {
     var _item$product;
-    var productName = ((_item$product = item.product) === null || _item$product === void 0 ? void 0 : _item$product.product_name) || ""; // Null-safe access
+    var productName = ((_item$product = item.product) === null || _item$product === void 0 ? void 0 : _item$product.product_name) || "";
     var matchesSearch = productName.toLowerCase().includes(searchQuery.toLowerCase());
-    var matchesFilter = activeFilter === "All" || activeFilter === "Available" && item.status === "Available" || activeFilter === "Low Stock" && item.status === "Low Stock" || activeFilter === "Out of Stock" && item.status === "Out of Stock";
+    var matchesFilter = activeFilter === "All" || item.status === activeFilter;
     return matchesSearch && matchesFilter;
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
@@ -101055,13 +101109,15 @@ function Inventory() {
         name: "product_id",
         value: newItem.product_id,
         onChange: handleNewItemChange,
-        placeholder: "Product ID"
+        placeholder: "Product ID",
+        min: "0"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: "number",
         name: "stock_quantity",
         value: newItem.stock_quantity,
         onChange: handleNewItemChange,
-        placeholder: "Stock Quantity"
+        placeholder: "Stock Quantity",
+        min: "0"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
         name: "status",
         value: newItem.status,
@@ -101143,7 +101199,8 @@ function Inventory() {
         type: "number",
         name: "stock_quantity",
         value: selectedItem.stock_quantity,
-        onChange: handleFormChange
+        onChange: handleFormChange,
+        min: "0"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
         children: "Status:"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {

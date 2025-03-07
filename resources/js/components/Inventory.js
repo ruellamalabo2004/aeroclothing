@@ -8,11 +8,11 @@ export default function Inventory() {
   const [viewItem, setViewItem] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All");
-  const [isLoading, setIsLoading] = useState(true); // Added loading state
-  const [error, setError] = useState(null); // Added error state
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [newItem, setNewItem] = useState({
     product_id: "",
-    stock_quantity: "",
+    stock_quantity: 0,
     status: "Available",
   });
 
@@ -23,11 +23,10 @@ export default function Inventory() {
       setError(null);
       try {
         const response = await axios.get("http://127.0.0.1:8000/api/inventory");
-        console.log("Fetched inventory:", response.data); // Debug response
         setInventory(response.data);
       } catch (error) {
-        console.error("Error fetching inventory:", error.response?.data || error.message);
-        setError(error.response?.data?.message || "Failed to load inventory. Please try again.");
+        console.error("Error fetching inventory:", error);
+        setError(error.response?.data?.message || "Failed to load inventory.");
       } finally {
         setIsLoading(false);
       }
@@ -37,14 +36,21 @@ export default function Inventory() {
 
   // Handle input change for new inventory item
   const handleNewItemChange = (e) => {
-    setNewItem({ ...newItem, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setNewItem(prev => ({
+      ...prev,
+      [name]: name === "stock_quantity" ? parseInt(value) || 0 : value
+    }));
   };
 
   // Add new inventory item
   const handleAddProduct = () => {
+    console.log("Sending data to API:", newItem); // Log what you're sending
+  
     axios
       .post("http://127.0.0.1:8000/api/inventory", newItem)
       .then((response) => {
+        console.log("Success:", response.data); // Log the response from Laravel
         setInventory([...inventory, response.data.data]);
         setShowAddForm(false);
         setNewItem({
@@ -53,15 +59,19 @@ export default function Inventory() {
           status: "Available",
         });
       })
-      .catch((error) => console.error("Error adding inventory item:", error));
+      .catch((error) => {
+        console.error("Error response:", error.response?.data || error);
+        alert(error.response?.data?.message || "Failed to add stock.");
+      });
   };
+  
 
   // Handle Edit Click
   const handleEditClick = (item) => {
     setSelectedItem({
       id: item.id,
       product_id: item.product_id,
-      stock_quantity: item.stock_quantity,
+      stock_quantity: parseInt(item.stock_quantity) || 0,
       status: item.status,
       product: item.product,
     });
@@ -78,45 +88,51 @@ export default function Inventory() {
 
   // Handle Input Changes for Edit Form
   const handleFormChange = (e) => {
-    setSelectedItem({ ...selectedItem, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setSelectedItem(prev => ({
+      ...prev,
+      [name]: name === "stock_quantity" ? parseInt(value) || 0 : value
+    }));
   };
 
   // Handle Save Edit
-  const handleSave = () => {
-    axios
-      .put(`http://127.0.0.1:8000/api/inventory/${selectedItem.id}`, {
-        product_id: selectedItem.product_id,
-        stock_quantity: selectedItem.stock_quantity,
-        status: selectedItem.status,
-      })
-      .then(() => {
-        setInventory(
-          inventory.map((item) =>
-            item.id === selectedItem.id ? { ...item, ...selectedItem } : item
-          )
-        );
-        setSelectedItem(null);
-      })
-      .catch((error) => console.error("Error updating item:", error));
+  const handleSave = async () => {
+    try {
+      const response = await axios.put(
+        `http://127.0.0.1:8000/api/inventory/${selectedItem.id}`,
+        {
+          product_id: selectedItem.product_id,
+          stock_quantity: parseInt(selectedItem.stock_quantity) || 0,
+          status: selectedItem.status,
+        }
+      );
+      
+      setInventory(inventory.map((item) =>
+        item.id === selectedItem.id ? { ...item, ...response.data.data } : item
+      ));
+      setSelectedItem(null);
+    } catch (error) {
+      console.error("Error updating item:", error.response?.data || error);
+    }
   };
 
   // Handle Archive
-  const handleArchive = (id) => {
-    axios
-      .delete(`http://127.0.0.1:8000/api/inventory/${id}`)
-      .then(() => setInventory(inventory.filter((item) => item.id !== id)))
-      .catch((error) => console.error("Error archiving item:", error));
+  const handleArchive = async (id) => {
+    try {
+      await axios.delete(`http://127.0.0.1:8000/api/inventory/${id}`);
+      setInventory(inventory.filter((item) => item.id !== id));
+    } catch (error) {
+      console.error("Error archiving item:", error);
+    }
   };
 
   // Filtered inventory based on search query and active filter
   const filteredInventory = inventory.filter((item) => {
-    const productName = item.product?.product_name || ""; // Null-safe access
+    const productName = item.product?.product_name || "";
     const matchesSearch = productName.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesFilter =
       activeFilter === "All" ||
-      (activeFilter === "Available" && item.status === "Available") ||
-      (activeFilter === "Low Stock" && item.status === "Low Stock") ||
-      (activeFilter === "Out of Stock" && item.status === "Out of Stock");
+      item.status === activeFilter;
     return matchesSearch && matchesFilter;
   });
 
@@ -215,6 +231,7 @@ export default function Inventory() {
             value={newItem.product_id}
             onChange={handleNewItemChange}
             placeholder="Product ID"
+            min="0"
           />
           <input
             type="number"
@@ -222,6 +239,7 @@ export default function Inventory() {
             value={newItem.stock_quantity}
             onChange={handleNewItemChange}
             placeholder="Stock Quantity"
+            min="0"
           />
           <select
             name="status"
@@ -269,6 +287,7 @@ export default function Inventory() {
             name="stock_quantity"
             value={selectedItem.stock_quantity}
             onChange={handleFormChange}
+            min="0"
           />
           <label>Status:</label>
           <select

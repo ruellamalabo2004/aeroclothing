@@ -11,30 +11,32 @@ class InventoryController extends Controller
     // Get all inventory items with product details (including archived if needed)
     public function index()
     {
-        $inventory = Inventory::with('product')->withTrashed()->get();
-        return response()->json($inventory);
+        try {
+            $inventory = Inventory::with('product')->withTrashed()->get();
+            return response()->json($inventory);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error fetching inventory',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
+    
 
     // Store a new inventory item for an existing product
     public function store(Request $request)
     {
-        $request->validate([
-            'product_id' => 'required|exists:products,id', // Ensure the product exists
-            'stock_quantity' => 'required|integer|min:0',
-            'status' => 'sometimes|string|in:Available,Low Stock,Out of Stock', // Optional, auto-set in model
+        $validatedData = $request->validate([
+            'product_id' => 'required|exists:products,id', // Ensures product_id exists
+            'stock_quantity' => 'required|integer|min:1',
+            'status' => 'required|string|in:Available,Low Stock,Out of Stock',
         ]);
-
-        $inventory = Inventory::create([
-            'product_id' => $request->product_id,
-            'stock_quantity' => $request->stock_quantity,
-            'status' => $request->status ?? 'Available', // Default if not provided
-        ]);
-
-        return response()->json([
-            'message' => 'Inventory item added successfully',
-            'data' => $inventory->load('product'), // Include product details
-        ], 201);
+    
+        $inventory = Inventory::create($validatedData);
+    
+        return response()->json(['data' => $inventory], 201);
     }
+    
 
     // Show a single inventory item by ID with product details
     public function show($id)

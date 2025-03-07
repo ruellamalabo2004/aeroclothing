@@ -12,71 +12,176 @@
   z-index: 1000;
 }
 
-/* 📌 Updated Modal Container (Smaller, Compact) */
+/* 📌 Updated Modal Container */
 .edit-modal-container {
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   width: 70%;
   max-width: 800px;
-  padding: 15px;
+  padding: 20px;
+  max-height: 90vh;
   overflow-y: auto;
+  overflow-x: hidden;
 
   h2 {
-    font-size: 18px;
-    margin-bottom: 12px;
-    color: #007bff;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
   }
 
-  form {
+  .two-column-form {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    gap: 30px;
+    width: 100%;
+    box-sizing: border-box;
 
-    label {
-      display: block;
-      margin-bottom: 2px;
-      color: #333;
+    .left-column,
+    .right-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      min-width: 0;
+
+      h3 {
+        font-size: 18px;
+        color: #007bff;
+        margin-bottom: 10px;
+        font-weight: bold;
+        text-align: left;
+      }
     }
 
-    select,
-    input,
-    textarea {
-      width: 100%;
-      padding: 6px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 12px;
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      label {
+        font-size: 14px;
+        color: #555;
+        font-weight: 500;
+      }
+
+      select,
+      input:not([type="file"]) {
+        width: 100%;
+        max-width: 250px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        box-sizing: border-box;
+        background: #fff;
+        transition: border-color 0.3s;
+
+        &:focus {
+          border-color: #007bff;
+          outline: none;
+        }
+      }
+
+      textarea {
+        width: 100%;
+        max-width: 250px;
+        height: 100px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        box-sizing: border-box;
+        resize: vertical;
+        background: #fff;
+        transition: border-color 0.3s;
+
+        &:focus {
+          border-color: #007bff;
+          outline: none;
+        }
+      }
+
+      select[multiple] {
+        width: 100%;
+        max-width: 250px;
+        height: 100px;
+        padding: 8px;
+      }
     }
 
-    textarea {
-      height: 80px;
-      resize: vertical;
-    }
+    .image-upload {
+      .upload-area {
+        border: 2px dashed #ccc;
+        border-radius: 4px;
+        padding: 20px;
+        text-align: center;
+        background: #fafafa;
+        cursor: pointer;
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 250px;
+        box-sizing: border-box;
 
-    select[multiple] {
-      height: 60px;
+        .upload-icon {
+          width: 40px;
+          height: 40px;
+          background: url('/imgs/cloud-upload.svg') no-repeat center;
+          background-size: contain;
+          margin-bottom: 10px;
+        }
+
+        p {
+          margin: 5px 0;
+          color: #666;
+          font-size: 14px;
+        }
+
+        .note {
+          color: #e74c3c;
+          font-size: 12px;
+        }
+
+        span {
+          color: #007bff;
+          cursor: pointer;
+        }
+      }
+
+      .file-input {
+        display: none;
+      }
     }
   }
 
   .modal-actions {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     justify-content: flex-end;
-    margin-top: 12px;
+    margin-top: 25px;
 
     .save-btn {
       background: #2196F3;
       color: white;
       border: none;
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 4px;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 14px;
       transition: background 0.3s;
 
       &:hover {
         background: #1976D2;
+      }
+
+      &:disabled {
+        background: #ccc;
+        cursor: not-allowed;
       }
     }
 
@@ -84,38 +189,68 @@
       background: #ddd;
       color: #333;
       border: none;
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 4px;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 14px;
       transition: background 0.3s;
 
       &:hover {
         background: #ccc;
+      }
+
+      &:disabled {
+        background: #bbb;
+        cursor: not-allowed;
       }
     }
   }
 
   @media (max-width: 768px) {
     width: 85%;
-    padding: 12px;
-    max-height: 70vh;
+    padding: 15px;
+
+    .two-column-form {
+      flex-direction: column;
+      gap: 25px;
+
+      .form-group {
+        select,
+        input:not([type="file"]),
+        textarea,
+        .upload-area {
+          width: 100%;
+          max-width: none;
+        }
+
+        select[multiple] {
+          width: 100%;
+          max-width: none;
+        }
+      }
+    }
   }
 
   @media (max-width: 480px) {
-    padding: 8px;
-    form {
-      gap: 6px;
+    width: 90%;
+    padding: 10px;
+
+    h2 {
+      font-size: 20px;
     }
+
+    .two-column-form {
+      gap: 20px;
+    }
+
     .modal-actions {
       flex-direction: column;
-      gap: 6px;
-      margin-top: 8px;
+      gap: 8px;
     }
   }
 }
 
-/* 📌 Products Links (Replaces Products Header) */
+/* 📌 Rest of your SCSS remains unchanged (products-links, products-table-container, etc.) */
 .products-links {
   display: flex;
   align-items: center;
@@ -187,7 +322,6 @@
   }
 }
 
-/* 📌 Products Table Container (Replaces Products Table Container) */
 .products-table-container {
   background: #fff;
   border-radius: 8px;
@@ -195,7 +329,6 @@
   overflow-x: auto;
 }
 
-/* 📌 Products Table (Replaces Products Table) */
 .products-table {
   width: 100%;
   border-collapse: collapse;
@@ -256,7 +389,6 @@
   }
 }
 
-/* 📌 Pagination Controls (Updated to match the provided design) */
 .pagination-controls {
   margin-top: 20px;
   text-align: center;
@@ -325,7 +457,6 @@
   }
 }
 
-/* 📌 Responsive Design */
 @media (max-width: 768px) {
   main {
     padding: 10px;
@@ -378,14 +509,13 @@
   }
 }
 
-/* 📌 Archive Modal Styles */
 .archive-modal-container {
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   width: 400px;
   padding: 20px;
-  border: 2px solid #E5383B; /* Red frame */
+  border: 2px solid #E5383B;
 
   .archive-modal-content {
     text-align: center;
@@ -393,7 +523,7 @@
     h3 {
       font-size: 18px;
       margin-bottom: 15px;
-      color: #E5383B; /* Red title */
+      color: #E74C3C;
     }
 
     p {
@@ -423,7 +553,7 @@
       }
 
       .archive-btn {
-        background: #E5383B; /* Red button */
+        background: #E74C3C;
         color: white;
         border: none;
         padding: 6px 14px;
@@ -433,7 +563,7 @@
         transition: background 0.3s;
 
         &:hover {
-          background: #C93033; /* Darker red on hover */
+          background: #C0392B;
         }
       }
     }
@@ -460,4 +590,4 @@
       }
     }
   }
-}
+} 
