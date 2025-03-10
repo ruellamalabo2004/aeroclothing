@@ -5,22 +5,22 @@ export default function Products() {
   const [activeTab, setActiveTab] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]); // Dynamic categories
-  const [brands, setBrands] = useState([]); // Dynamic brands
+  const [categories, setCategories] = useState([]);
+  const [brands, setBrands] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [formData, setFormData] = useState({
     product_name: "",
-    category: "", // Will be set to category ID
+    category: "",
     product_type: "",
     sizes: [],
     price: "",
     description: "",
     status: "available",
     image_1: null,
-    brand: "", // Will be set to brand ID
+    brand: "",
     colors: [],
   });
   const [editProductId, setEditProductId] = useState(null);
@@ -29,10 +29,10 @@ export default function Products() {
   const [imagePreview, setImagePreview] = useState(null);
 
   const uploadAreaRef = useRef(null);
-  const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
+  const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage"; // Ensure this matches your server setup
   const ITEMS_PER_PAGE = 10;
 
-  // Fetch products
+  // Fetch products with enhanced debugging
   useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);
@@ -40,7 +40,13 @@ export default function Products() {
         const res = await fetch("http://127.0.0.1:8000/api/products");
         if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
         const data = await res.json();
-        setProducts(Array.isArray(data) ? data : data.data || []);
+        console.log("Fetched Products:", data);
+        // Log each image URL for verification
+        const productList = Array.isArray(data) ? data : data.data || [];
+        productList.forEach((product) => {
+          console.log("Product Image URL:", `${BASE_IMAGE_URL}/${product.image_1}`);
+        });
+        setProducts(productList);
       } catch (error) {
         console.error("Error fetching products:", error.message);
       } finally {
@@ -50,7 +56,7 @@ export default function Products() {
     fetchProducts();
   }, []);
 
-  // Fetch categories from API
+  // Fetch categories
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/api/categories")
@@ -65,7 +71,7 @@ export default function Products() {
       });
   }, []);
 
-  // Fetch brands from API
+  // Fetch brands
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/api/brands")
@@ -167,7 +173,7 @@ export default function Products() {
 
   const isValidFile = (file) => {
     const validTypes = ["image/png", "image/jpeg", "image/jpg", "image/gif"];
-    const maxSize = 2 * 1024 * 1024; // 2MB to match backend
+    const maxSize = 2 * 1024 * 1024; // 2MB
     return validTypes.includes(file.type) && file.size <= maxSize;
   };
 
@@ -199,7 +205,7 @@ export default function Products() {
   const openEditModal = (product) => {
     setFormData({
       product_name: product.product_name || "",
-      category: product.category_id || categories[0]?.id || "", // Use category_id
+      category: product.category_id || categories[0]?.id || "",
       product_type: product.product_type || "",
       sizes: Array.isArray(product.sizes)
         ? product.sizes
@@ -209,8 +215,8 @@ export default function Products() {
       price: product.price || "",
       description: product.description || "",
       status: product.status || "available",
-      image_1: null,
-      brand: product.brand_id || brands[0]?.id || "", // Use brand_id
+      image_1: null, // Keep as null unless a new image is uploaded
+      brand: product.brand_id || brands[0]?.id || "",
       colors: Array.isArray(product.colors)
         ? product.colors
         : product.colors
@@ -226,7 +232,6 @@ export default function Products() {
   };
 
   const saveProduct = async () => {
-    // Validate required fields
     if (!formData.product_name) {
       alert("Product name is required.");
       return;
@@ -262,13 +267,20 @@ export default function Products() {
     formDataObj.append("brand_id", formData.brand);
     formDataObj.append("product_name", formData.product_name);
     formDataObj.append("product_type", formData.product_type);
-    formData.sizes.forEach((size) => formDataObj.append("sizes[]", size)); // Send as array
-    formData.colors.forEach((color) => formDataObj.append("colors[]", color)); // Send as array
+    formData.sizes.forEach((size) => formDataObj.append("sizes[]", size));
+    formData.colors.forEach((color) => formDataObj.append("colors[]", color));
     formDataObj.append("price", formData.price);
-    formDataObj.append("description", formData.description || ""); // Nullable
+    formDataObj.append("description", formData.description || "");
     formDataObj.append("status", formData.status);
+
     if (formData.image_1 instanceof File) {
       formDataObj.append("image_1", formData.image_1);
+    } else if (isEditing) {
+      const existingProduct = products.find((p) => p.id === editProductId);
+      if (existingProduct?.image_1) {
+        // Optionally preserve existing image path if backend requires it
+        // formDataObj.append("image_1", existingProduct.image_1);
+      }
     }
 
     if (isEditing) {
@@ -276,7 +288,7 @@ export default function Products() {
     }
 
     try {
-      console.log("Sending FormData:", Object.fromEntries(formDataObj)); // Debug
+      console.log("Sending FormData:", [...formDataObj.entries()]);
       const url = isEditing
         ? `http://127.0.0.1:8000/api/products/${editProductId}`
         : "http://127.0.0.1:8000/api/products";
@@ -304,7 +316,11 @@ export default function Products() {
         error.response?.data?.message +
         ": " +
         Object.values(error.response?.data?.errors || {}).flat().join(", ");
-      alert(`Failed to ${isEditing ? "update" : "add"} product: ${errorMessage || error.message}`);
+      alert(
+        `Failed to ${isEditing ? "update" : "add"} product: ${
+          errorMessage || error.message
+        }`
+      );
     } finally {
       setIsLoading(false);
     }
@@ -429,20 +445,34 @@ export default function Products() {
                       <img
                         src={`${BASE_IMAGE_URL}/${product.image_1}`}
                         alt={product.product_name}
-                        style={{ width: "40px", height: "40px", objectFit: "cover" }}
-                        onError={(e) => (e.target.src = "/placeholder.png")}
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          objectFit: "cover",
+                        }}
+                        onError={(e) => {
+                          console.error(
+                            `Failed to load image: ${BASE_IMAGE_URL}/${product.image_1}`
+                          );
+                          e.target.src = "/placeholder.png"; // Ensure this exists in public folder
+                        }}
                       />
                     ) : (
                       <img
                         src="/placeholder.png"
                         alt="No Image"
-                        style={{ width: "40px", height: "40px", objectFit: "cover" }}
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          objectFit: "cover",
+                        }}
                       />
                     )}
                   </td>
                   <td>{product.product_name}</td>
                   <td>
-                    {categories.find((cat) => cat.id === product.category_id)?.name || "N/A"}
+                    {categories.find((cat) => cat.id === product.category_id)
+                      ?.name || "N/A"}
                   </td>
                   <td>{product.product_type}</td>
                   <td>
@@ -451,7 +481,8 @@ export default function Products() {
                       : product.sizes || "N/A"}
                   </td>
                   <td>
-                    {brands.find((brand) => brand.id === product.brand_id)?.name || "N/A"}
+                    {brands.find((brand) => brand.id === product.brand_id)
+                      ?.name || "N/A"}
                   </td>
                   <td>
                     {Array.isArray(product.colors)

@@ -91,7 +91,6 @@ class ProductController extends Controller
             $imagePath = $request->file('image_1')->store('product_images', 'public');
             $product->image_1 = $imagePath;
         }
-
         $product->update($request->except('image_1'));
 
         // Load relationships after update

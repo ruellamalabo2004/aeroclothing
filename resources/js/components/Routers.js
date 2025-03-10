@@ -50,7 +50,7 @@ const LandingPage = () => {
           <a href="#home">HOME</a>
           <a href="#shop">SHOP</a>
           <a href="#about">ABOUT US</a>
-          <a href="#support" className="support-link">SUPPORT</a>
+          <a href="#support">SUPPORT</a>
         </nav>
         <div className="header-icons">
           <img src="/imgs/Search.svg" alt="Search" className="header-icon" />
@@ -118,8 +118,13 @@ const App = () => {
         {/* Static Landing Page Route */}
         <Route path="/" element={<LandingPage />} /> {/* Landing page is shown on '/' */}
 
-        {/* Customer Route */}
-        <Route path="/home" element={<ProtectedRoute element={<HomePage />} allowedRoles={["customer"]} />} />  {/* Customer homepage is '/home' */}
+       {/* Customer Routes */}
+       <Route
+          path="/homepage"
+          element={<ProtectedRoute element={<HomePage />} allowedRoles={["customer"]} />}
+        />
+        
+
 
         {/* Admin Route & Nested Routes */}
         <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} allowedRoles={["admin"]} />}>
