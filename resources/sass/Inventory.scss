@@ -142,7 +142,8 @@ h1 {
   border-color: #d32f2f;
 }
 
-.add-product-btn {
+.add-product-btn,
+.archive-selected-btn { 
   padding: 6px 12px;
   background: #d32f2f;
   color: #fff;
@@ -152,6 +153,15 @@ h1 {
   cursor: pointer;
   transition: background 0.3s ease;
   margin-left: 20px;
+
+  &:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background: #b71c1c;
+  }
 }
 
 /* 📌 Add Form */
@@ -244,8 +254,8 @@ h1 {
 }
 
 .inventory-table .action-img {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   margin-right: 5px;
   cursor: pointer;
   transition: opacity 0.3s;
@@ -266,22 +276,56 @@ h1 {
   font-size: 12px;
 
   &.status-available {
-    border-color: #4CAF50; /* Green border for Available */
-    background: #e8f5e9;   /* Light green background */
-    color: #2E7D32;        /* Dark green text */
+    border-color: #4CAF50;
+    background: #e8f5e9;
+    color: #2E7D32;
   }
 
   &.status-low-stock {
-    border-color: #FFA500; /* Orange border for Low Stock */
-    background: #fff3e0;   /* Light orange background */
-    color: #EF6C00;        /* Dark orange text */
+    border-color: #FFA500;
+    background: #fff3e0;
+    color: #EF6C00;
   }
 
   &.status-out-of-stock {
-    border-color: #E5383B; /* Red border for Out of Stock */
-    background: #ffebee;   /* Light red background */
-    color: #C62828;        /* Dark red text */
+    border-color: #E5383B;
+    background: #ffebee;
+    color: #C62828;
   }
+}
+
+/* 📌 Pagination Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.pagination-btn {
+  padding: 8px 16px;
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background: #b71c1c;
+  }
+}
+
+.pagination-info {
+  font-size: 16px;
+  color: #333;
 }
 
 /* 📌 Responsive Design */
@@ -352,7 +396,8 @@ h1 {
     margin-top: 10px;
   }
 
-  .add-product-btn {
+  .add-product-btn,
+  .archive-selected-btn {
     margin-left: 0;
     margin-top: 10px;
     width: 100%;
@@ -373,5 +418,19 @@ h1 {
   .status-frame {
     padding: 3px 6px;
     font-size: 11px;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pagination-btn {
+    width: 100%;
+    padding: 6px 12px;
+  }
+
+  .pagination-info {
+    font-size: 14px;
   }
 }

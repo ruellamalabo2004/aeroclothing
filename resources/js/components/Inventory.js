@@ -1,91 +1,68 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage"; // Ensure this matches your server setup
+
 export default function Inventory() {
+  const [products, setProducts] = useState([]);
   const [inventory, setInventory] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedItem, setSelectedItem] = useState(null);
-  const [viewItem, setViewItem] = useState(null);
-  const [showAddForm, setShowAddForm] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [newItem, setNewItem] = useState({
-    product_id: "",
-    stock_quantity: 0,
-    status: "Available",
-  });
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1); // New state for current page
+  const productsPerPage = 10; // Limit of 10 products per page
 
-  // Fetch inventory data
   useEffect(() => {
-    const fetchInventory = async () => {
+    const fetchData = async () => {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/inventory");
-        setInventory(response.data);
+        const productsRes = await fetch("http://127.0.0.1:8000/api/products");
+        if (!productsRes.ok) throw new Error(`HTTP error! Status: ${productsRes.status}`);
+        const productsData = await productsRes.json();
+        const productList = Array.isArray(productsData) ? productsData : productsData.data || [];
+        productList.forEach((product) => {
+          console.log("Product Image URL:", `${BASE_IMAGE_URL}/${product.image_1}`);
+        });
+
+        const inventoryResponse = await axios.get("http://127.0.0.1:8000/api/inventory");
+
+        setProducts(productList);
+        setInventory(inventoryResponse.data);
       } catch (error) {
-        console.error("Error fetching inventory:", error);
-        setError(error.response?.data?.message || "Failed to load inventory.");
+        console.error("Error fetching data:", error.message);
+        setError(error.message || "Failed to load data.");
       } finally {
         setIsLoading(false);
       }
     };
-    fetchInventory();
+    fetchData();
   }, []);
 
-  // Handle input change for new inventory item
-  const handleNewItemChange = (e) => {
-    const { name, value } = e.target;
-    setNewItem((prev) => ({
-      ...prev,
-      [name]: name === "stock_quantity" ? parseInt(value) || 0 : value,
-    }));
-  };
+  const mergedProducts = products.map(product => {
+    const inventoryItem = inventory.find(item => item.product_id === product.id);
+    return {
+      ...product,
+      stock_quantity: inventoryItem?.stock_quantity || 0,
+      status: inventoryItem?.status || "Out of Stock",
+      inventory_id: inventoryItem?.id,
+      image: product.image_1 ? `${BASE_IMAGE_URL}/${product.image_1}` : null
+    };
+  });
 
-  // Add new inventory item
-  const handleAddProduct = () => {
-    console.log("Sending data to API:", newItem); // Log what you're sending
-
-    axios
-      .post("http://127.0.0.1:8000/api/inventory", newItem)
-      .then((response) => {
-        console.log("Success:", response.data); // Log the response from Laravel
-        setInventory([...inventory, response.data.data]);
-        setShowAddForm(false);
-        setNewItem({
-          product_id: "",
-          stock_quantity: "",
-          status: "Available",
-        });
-      })
-      .catch((error) => {
-        console.error("Error response:", error.response?.data || error);
-        alert(error.response?.data?.message || "Failed to add stock.");
-      });
-  };
-
-  // Handle Edit Click
   const handleEditClick = (item) => {
     setSelectedItem({
-      id: item.id,
-      product_id: item.product_id,
-      stock_quantity: parseInt(item.stock_quantity) || 0,
+      id: item.inventory_id,
+      product_id: item.id,
+      stock_quantity: item.stock_quantity || 0,
       status: item.status,
-      product: item.product,
+      product: item
     });
-    setViewItem(null);
-    setShowAddForm(false);
   };
 
-  // Handle View Click
-  const handleViewClick = (item) => {
-    setViewItem(item);
-    setSelectedItem(null);
-    setShowAddForm(false);
-  };
-
-  // Handle Input Changes for Edit Form
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setSelectedItem((prev) => ({
@@ -94,79 +71,118 @@ export default function Inventory() {
     }));
   };
 
-  // Handle Save Edit
   const handleSave = async () => {
     try {
-      const response = await axios.put(
-        `http://127.0.0.1:8000/api/inventory/${selectedItem.id}`,
-        {
-          product_id: selectedItem.product_id,
-          stock_quantity: parseInt(selectedItem.stock_quantity) || 0,
-          status: selectedItem.status,
-        }
-      );
+      let response;
+      const data = {
+        product_id: selectedItem.product_id,
+        stock_quantity: parseInt(selectedItem.stock_quantity) || 0,
+        status: selectedItem.status,
+      };
 
-      setInventory((prevInventory) =>
-        prevInventory.map((item) =>
-          item.id === selectedItem.id ? { ...item, ...response.data.data } : item
-        )
-      );
+      if (selectedItem.id) {
+        response = await axios.put(
+          `http://127.0.0.1:8000/api/inventory/${selectedItem.id}`,
+          data
+        );
+      } else {
+        response = await axios.post(
+          "http://127.0.0.1:8000/api/inventory",
+          data
+        );
+      }
+
+      setInventory((prev) => {
+        if (selectedItem.id) {
+          return prev.map((item) =>
+            item.id === selectedItem.id ? response.data.data : item
+          );
+        }
+        return [...prev, response.data.data];
+      });
       setSelectedItem(null);
     } catch (error) {
-      console.error("Error updating item:", error.response?.data || error);
-      alert(error.response?.data?.message || "Failed to update inventory item.");
+      console.error("Error saving item:", error.response?.data || error);
+      alert(error.response?.data?.message || "Failed to save inventory item.");
     }
   };
 
-  // Handle Archive
-  const handleArchive = async (id) => {
+  const handleCheckboxChange = (item) => {
+    setSelectedItems((prev) => {
+      if (prev.some(selected => selected.id === item.id)) {
+        return prev.filter(selected => selected.id !== item.id);
+      }
+      return [...prev, item];
+    });
+  };
+
+  const handleMultipleArchive = async () => {
+    if (selectedItems.length === 0) {
+      alert("Please select at least one item to archive.");
+      return;
+    }
+
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/inventory/${id}`);
-      setInventory((prevInventory) => prevInventory.filter((item) => item.id !== id));
+      const archivePromises = selectedItems
+        .filter(item => item.inventory_id)
+        .map(item => 
+          axios.delete(`http://127.0.0.1:8000/api/inventory/${item.inventory_id}`)
+        );
+      
+      await Promise.all(archivePromises);
+      
+      setInventory((prevInventory) => 
+        prevInventory.filter(item => 
+          !selectedItems.some(selected => selected.inventory_id === item.id)
+        )
+      );
+      setSelectedItems([]);
+      alert("Selected items archived successfully.");
     } catch (error) {
-      console.error("Error archiving item:", error.response?.data || error);
-      alert(error.response?.data?.message || "Failed to archive inventory item.");
+      console.error("Error archiving items:", error.response?.data || error);
+      alert(error.response?.data?.message || "Failed to archive items.");
     }
   };
 
-  // Filtered inventory based on search query and active filter
-  const filteredInventory = inventory.filter((item) => {
-    const productName = item.product?.product_name || "";
+  const filteredProducts = mergedProducts.filter((item) => {
+    const productName = item.product_name || "";
     const matchesSearch = productName.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesFilter =
       activeFilter === "All" || item.status === activeFilter;
     return matchesSearch && matchesFilter;
   });
 
+  // Pagination logic
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    setSelectedItems([]); // Clear selections when changing pages
+  };
+
   return (
     <main>
       <h1>Inventory Management</h1>
 
-      {/* Product Statistics Cards */}
       <div className="inventory-card-container">
         <div className="inventory-card-body">
           <div className="inventory-card-content">
-            <img
-              src="/imgs/totalp.svg"
-              alt="Total Products"
-              className="inventory-card-image"
-            />
+            <img src="/imgs/totalp.svg" alt="Total Products" className="inventory-card-image" />
             <div className="inventory-card-text">
-              <div className="inventory-card-number">{inventory.length}</div>
+              <div className="inventory-card-number">{mergedProducts.length}</div>
               <div className="inventory-card-title">Total Products</div>
             </div>
           </div>
         </div>
         <div className="inventory-card-body">
           <div className="inventory-card-content">
-            <img
-              src="/imgs/availablep.svg"
-              alt="Available Products"
-              className="inventory-card-image"
-            />
+            <img src="/imgs/availablep.svg" alt="Available Products" className="inventory-card-image" />
             <div className="inventory-card-text">
               <div className="inventory-card-number">
-                {inventory.filter((item) => item.status === "Available").length}
+                {mergedProducts.filter((item) => item.status === "Available").length}
               </div>
               <div className="inventory-card-title">Available Products</div>
             </div>
@@ -174,14 +190,21 @@ export default function Inventory() {
         </div>
         <div className="inventory-card-body">
           <div className="inventory-card-content">
-            <img
-              src="/imgs/outofstock.svg"
-              alt="Out of Stock"
-              className="inventory-card-image"
-            />
+            <img src="/imgs/lowstock.svg" alt="Low Stock" className="inventory-card-image" />
             <div className="inventory-card-text">
               <div className="inventory-card-number">
-                {inventory.filter((item) => item.status === "Out of Stock").length}
+                {mergedProducts.filter((item) => item.status === "Low Stock").length}
+              </div>
+              <div className="inventory-card-title">Low Stock</div>
+            </div>
+          </div>
+        </div>
+        <div className="inventory-card-body">
+          <div className="inventory-card-content">
+            <img src="/imgs/outofstock.svg" alt="Out of Stock" className="inventory-card-image" />
+            <div className="inventory-card-text">
+              <div className="inventory-card-number">
+                {mergedProducts.filter((item) => item.status === "Out of Stock").length}
               </div>
               <div className="inventory-card-title">Out of Stock</div>
             </div>
@@ -189,7 +212,6 @@ export default function Inventory() {
         </div>
       </div>
 
-      {/* Links Container, Search Bar, and Add Product Button */}
       <div className="inventory-actions">
         <div className="inventory-links-container">
           <div className="inventory-links">
@@ -203,6 +225,7 @@ export default function Inventory() {
                   onClick={(e) => {
                     e.preventDefault();
                     setActiveFilter(tab);
+                    setCurrentPage(1); // Reset to first page when filter changes
                   }}
                 >
                   {tab}
@@ -215,65 +238,21 @@ export default function Inventory() {
             className="inventory-search"
             placeholder="Search by Product Name..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setCurrentPage(1); // Reset to first page when search changes
+            }}
           />
         </div>
-        <button className="add-product-btn" onClick={() => setShowAddForm(true)}>
-          Add Inventory Item
+        <button 
+          className="archive-selected-btn"
+          onClick={handleMultipleArchive}
+          disabled={selectedItems.length === 0}
+        >
+          Archive Selected
         </button>
       </div>
 
-      {/* Add Inventory Form */}
-      {showAddForm && (
-        <div className="add-form">
-          <h2>Add New Inventory Item</h2>
-          <input
-            type="number"
-            name="product_id"
-            value={newItem.product_id}
-            onChange={handleNewItemChange}
-            placeholder="Product ID"
-            min="0"
-          />
-          <input
-            type="number"
-            name="stock_quantity"
-            value={newItem.stock_quantity}
-            onChange={handleNewItemChange}
-            placeholder="Stock Quantity"
-            min="0"
-          />
-          <select
-            name="status"
-            value={newItem.status}
-            onChange={handleNewItemChange}
-          >
-            <option value="Available">Available</option>
-            <option value="Low Stock">Low Stock</option>
-            <option value="Out of Stock">Out of Stock</option>
-          </select>
-          <button onClick={handleAddProduct}>Save</button>
-          <button onClick={() => setShowAddForm(false)}>Cancel</button>
-        </div>
-      )}
-
-      {/* View Item Details */}
-      {viewItem && (
-        <div className="add-form">
-          <h2>Item Details</h2>
-          <p><strong>ID:</strong> {viewItem.id}</p>
-          <p><strong>Product:</strong> {viewItem.product?.product_name || "N/A"}</p>
-          <p><strong>Category:</strong> {viewItem.product?.category?.name || "N/A"}</p>
-          <p><strong>Type:</strong> {viewItem.product?.product_type || "N/A"}</p>
-          <p><strong>Price:</strong> {viewItem.product?.price || "N/A"}</p>
-          <p><strong>Sizes:</strong> {viewItem.product?.sizes?.join(", ") || "N/A"}</p>
-          <p><strong>Stock Quantity:</strong> {viewItem.stock_quantity}</p>
-          <p><strong>Status:</strong> {viewItem.status}</p>
-          <button onClick={() => setViewItem(null)}>Close</button>
-        </div>
-      )}
-
-      {/* Edit Item Form */}
       {selectedItem && (
         <div className="add-form">
           <h2>Edit Inventory Item</h2>
@@ -284,7 +263,7 @@ export default function Inventory() {
             disabled
           />
           <label>Stock Quantity:</label>
-          <input
+          <achine-input
             type="number"
             name="stock_quantity"
             value={selectedItem.stock_quantity}
@@ -306,59 +285,69 @@ export default function Inventory() {
         </div>
       )}
 
-      {/* Inventory Table */}
-      {!selectedItem && !viewItem && !showAddForm && (
+      {!selectedItem && (
         <>
           {isLoading ? (
             <p>Loading inventory...</p>
           ) : error ? (
             <p style={{ color: "red" }}>{error}</p>
           ) : (
-            <table className="inventory-table">
-              <thead>
-                <tr>
-                  <th>Actions</th>
-                  <th>Product</th>
-                  <th>Category</th>
-                  <th>Type</th>
-                  <th>Price</th>
-                  <th>Sizes</th>
-                  <th>Stock Quantity</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredInventory.length > 0 ? (
-                  filteredInventory.map((item) => (
+            <>
+              <table className="inventory-table">
+                <thead>
+                  <tr>
+                    <th>Select</th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    <th>Sizes</th>
+                    <th>Stock Quantity</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentProducts.map((item) => (
                     <tr key={item.id}>
                       <td>
                         <img
-                          src="/imgs/view.svg"
-                          alt="View"
+                          src={selectedItems.some(selected => selected.id === item.id) 
+                            ? "/imgs/checkbox2.svg" 
+                            : "/imgs/checkmarkbox.svg"}
+                          alt="Checkbox"
                           className="action-img"
-                          onClick={() => handleViewClick(item)}
+                          onClick={() => handleCheckboxChange(item)}
                           style={{ cursor: "pointer", marginRight: "8px" }}
                         />
                         <img
-                          src="/imgs/edit.svg"
+                          src="/imgs/editing.svg"
                           alt="Edit"
                           className="action-img"
                           onClick={() => handleEditClick(item)}
                           style={{ cursor: "pointer", marginRight: "8px" }}
                         />
                         <img
-                          src="/imgs/archive.svg"
+                          src="/imgs/archiving.svg"
                           alt="Archive"
                           className="action-img"
-                          onClick={() => handleArchive(item.id)}
+                          onClick={() => handleArchive(item.inventory_id, item.id)}
                           style={{ cursor: "pointer" }}
                         />
                       </td>
-                      <td>{item.product?.product_name || "N/A"}</td>
-                      <td>{item.product?.category?.name || "N/A"}</td>
-                      <td>{item.product?.product_type || "N/A"}</td>
-                      <td>{item.product?.price || "N/A"}</td>
-                      <td>{item.product?.sizes?.join(", ") || "N/A"}</td>
+                      <td>
+                        <img 
+                          src={item.image || "/imgs/default-product.jpg"} 
+                          alt={item.product_name} 
+                          className="product-image"
+                          style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                        />
+                      </td>
+                      <td>{item.product_name || "N/A"}</td>
+                      <td>{item.category?.name || "N/A"}</td>
+                      <td>{item.product_type || "N/A"}</td>
+                      <td>{item.price || "N/A"}</td>
+                      <td>{item.sizes?.join(", ") || "N/A"}</td>
                       <td>{item.stock_quantity}</td>
                       <td>
                         <span
@@ -370,16 +359,31 @@ export default function Inventory() {
                         </span>
                       </td>
                     </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="8" style={{ textAlign: "center" }}>
-                      No inventory found.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+                  ))}
+                </tbody>
+              </table>
+
+              {/* Pagination Controls */}
+              <div className="pagination">
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="pagination-btn"
+                >
+                  Previous
+                </button>
+                <span className="pagination-info">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="pagination-btn"
+                >
+                  Next
+                </button>
+              </div>
+            </>
           )}
         </>
       )}

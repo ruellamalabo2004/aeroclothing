@@ -114222,54 +114222,52 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage"; // Ensure this matches your server setup
+
 function Inventory() {
-  var _viewItem$product, _viewItem$product2, _viewItem$product3, _viewItem$product4, _viewItem$product5, _selectedItem$product;
+  var _selectedItem$product;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
-    inventory = _useState2[0],
-    setInventory = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    products = _useState2[0],
+    setProducts = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState4 = _slicedToArray(_useState3, 2),
-    searchQuery = _useState4[0],
-    setSearchQuery = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    inventory = _useState4[0],
+    setInventory = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState6 = _slicedToArray(_useState5, 2),
-    selectedItem = _useState6[0],
-    setSelectedItem = _useState6[1];
+    searchQuery = _useState6[0],
+    setSearchQuery = _useState6[1];
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState8 = _slicedToArray(_useState7, 2),
-    viewItem = _useState8[0],
-    setViewItem = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    selectedItem = _useState8[0],
+    setSelectedItem = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("All"),
     _useState10 = _slicedToArray(_useState9, 2),
-    showAddForm = _useState10[0],
-    setShowAddForm = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("All"),
+    activeFilter = _useState10[0],
+    setActiveFilter = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
     _useState12 = _slicedToArray(_useState11, 2),
-    activeFilter = _useState12[0],
-    setActiveFilter = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    isLoading = _useState12[0],
+    setIsLoading = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState14 = _slicedToArray(_useState13, 2),
-    isLoading = _useState14[0],
-    setIsLoading = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    error = _useState14[0],
+    setError = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState16 = _slicedToArray(_useState15, 2),
-    error = _useState16[0],
-    setError = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-      product_id: "",
-      stock_quantity: 0,
-      status: "Available"
-    }),
+    selectedItems = _useState16[0],
+    setSelectedItems = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
     _useState18 = _slicedToArray(_useState17, 2),
-    newItem = _useState18[0],
-    setNewItem = _useState18[1];
+    currentPage = _useState18[0],
+    setCurrentPage = _useState18[1]; // New state for current page
+  var productsPerPage = 10; // Limit of 10 products per page
 
-  // Fetch inventory data
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var fetchInventory = /*#__PURE__*/function () {
+    var fetchData = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var response, _error$response;
+        var productsRes, productsData, productList, inventoryResponse;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
@@ -114277,176 +114275,210 @@ function Inventory() {
               setError(null);
               _context.prev = 2;
               _context.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("http://127.0.0.1:8000/api/inventory");
+              return fetch("http://127.0.0.1:8000/api/products");
             case 5:
-              response = _context.sent;
-              setInventory(response.data);
-              _context.next = 13;
+              productsRes = _context.sent;
+              if (productsRes.ok) {
+                _context.next = 8;
+                break;
+              }
+              throw new Error("HTTP error! Status: ".concat(productsRes.status));
+            case 8:
+              _context.next = 10;
+              return productsRes.json();
+            case 10:
+              productsData = _context.sent;
+              productList = Array.isArray(productsData) ? productsData : productsData.data || [];
+              productList.forEach(function (product) {
+                console.log("Product Image URL:", "".concat(BASE_IMAGE_URL, "/").concat(product.image_1));
+              });
+              _context.next = 15;
+              return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("http://127.0.0.1:8000/api/inventory");
+            case 15:
+              inventoryResponse = _context.sent;
+              setProducts(productList);
+              setInventory(inventoryResponse.data);
+              _context.next = 24;
               break;
-            case 9:
-              _context.prev = 9;
+            case 20:
+              _context.prev = 20;
               _context.t0 = _context["catch"](2);
-              console.error("Error fetching inventory:", _context.t0);
-              setError(((_error$response = _context.t0.response) === null || _error$response === void 0 || (_error$response = _error$response.data) === null || _error$response === void 0 ? void 0 : _error$response.message) || "Failed to load inventory.");
-            case 13:
-              _context.prev = 13;
+              console.error("Error fetching data:", _context.t0.message);
+              setError(_context.t0.message || "Failed to load data.");
+            case 24:
+              _context.prev = 24;
               setIsLoading(false);
-              return _context.finish(13);
-            case 16:
+              return _context.finish(24);
+            case 27:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[2, 9, 13, 16]]);
+        }, _callee, null, [[2, 20, 24, 27]]);
       }));
-      return function fetchInventory() {
+      return function fetchData() {
         return _ref.apply(this, arguments);
       };
     }();
-    fetchInventory();
+    fetchData();
   }, []);
-
-  // Handle input change for new inventory item
-  var handleNewItemChange = function handleNewItemChange(e) {
+  var mergedProducts = products.map(function (product) {
+    var inventoryItem = inventory.find(function (item) {
+      return item.product_id === product.id;
+    });
+    return _objectSpread(_objectSpread({}, product), {}, {
+      stock_quantity: (inventoryItem === null || inventoryItem === void 0 ? void 0 : inventoryItem.stock_quantity) || 0,
+      status: (inventoryItem === null || inventoryItem === void 0 ? void 0 : inventoryItem.status) || "Out of Stock",
+      inventory_id: inventoryItem === null || inventoryItem === void 0 ? void 0 : inventoryItem.id,
+      image: product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_1) : null
+    });
+  });
+  var handleEditClick = function handleEditClick(item) {
+    setSelectedItem({
+      id: item.inventory_id,
+      product_id: item.id,
+      stock_quantity: item.stock_quantity || 0,
+      status: item.status,
+      product: item
+    });
+  };
+  var handleFormChange = function handleFormChange(e) {
     var _e$target = e.target,
       name = _e$target.name,
       value = _e$target.value;
-    setNewItem(function (prev) {
-      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, name === "stock_quantity" ? parseInt(value) || 0 : value));
-    });
-  };
-
-  // Add new inventory item
-  var handleAddProduct = function handleAddProduct() {
-    console.log("Sending data to API:", newItem); // Log what you're sending
-
-    axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("http://127.0.0.1:8000/api/inventory", newItem).then(function (response) {
-      console.log("Success:", response.data); // Log the response from Laravel
-      setInventory([].concat(_toConsumableArray(inventory), [response.data.data]));
-      setShowAddForm(false);
-      setNewItem({
-        product_id: "",
-        stock_quantity: "",
-        status: "Available"
-      });
-    })["catch"](function (error) {
-      var _error$response2, _error$response3;
-      console.error("Error response:", ((_error$response2 = error.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.data) || error);
-      alert(((_error$response3 = error.response) === null || _error$response3 === void 0 || (_error$response3 = _error$response3.data) === null || _error$response3 === void 0 ? void 0 : _error$response3.message) || "Failed to add stock.");
-    });
-  };
-
-  // Handle Edit Click
-  var handleEditClick = function handleEditClick(item) {
-    setSelectedItem({
-      id: item.id,
-      product_id: item.product_id,
-      stock_quantity: parseInt(item.stock_quantity) || 0,
-      status: item.status,
-      product: item.product
-    });
-    setViewItem(null);
-    setShowAddForm(false);
-  };
-
-  // Handle View Click
-  var handleViewClick = function handleViewClick(item) {
-    setViewItem(item);
-    setSelectedItem(null);
-    setShowAddForm(false);
-  };
-
-  // Handle Input Changes for Edit Form
-  var handleFormChange = function handleFormChange(e) {
-    var _e$target2 = e.target,
-      name = _e$target2.name,
-      value = _e$target2.value;
     setSelectedItem(function (prev) {
       return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, name === "stock_quantity" ? parseInt(value) || 0 : value));
     });
   };
-
-  // Handle Save Edit
   var handleSave = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-      var response, _error$response4, _error$response5;
+      var response, data, _error$response, _error$response2;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
-            _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].put("http://127.0.0.1:8000/api/inventory/".concat(selectedItem.id), {
+            data = {
               product_id: selectedItem.product_id,
               stock_quantity: parseInt(selectedItem.stock_quantity) || 0,
               status: selectedItem.status
-            });
-          case 3:
+            };
+            if (!selectedItem.id) {
+              _context2.next = 8;
+              break;
+            }
+            _context2.next = 5;
+            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].put("http://127.0.0.1:8000/api/inventory/".concat(selectedItem.id), data);
+          case 5:
             response = _context2.sent;
-            setInventory(function (prevInventory) {
-              return prevInventory.map(function (item) {
-                return item.id === selectedItem.id ? _objectSpread(_objectSpread({}, item), response.data.data) : item;
-              });
-            });
-            setSelectedItem(null);
-            _context2.next = 12;
+            _context2.next = 11;
             break;
           case 8:
-            _context2.prev = 8;
+            _context2.next = 10;
+            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("http://127.0.0.1:8000/api/inventory", data);
+          case 10:
+            response = _context2.sent;
+          case 11:
+            setInventory(function (prev) {
+              if (selectedItem.id) {
+                return prev.map(function (item) {
+                  return item.id === selectedItem.id ? response.data.data : item;
+                });
+              }
+              return [].concat(_toConsumableArray(prev), [response.data.data]);
+            });
+            setSelectedItem(null);
+            _context2.next = 19;
+            break;
+          case 15:
+            _context2.prev = 15;
             _context2.t0 = _context2["catch"](0);
-            console.error("Error updating item:", ((_error$response4 = _context2.t0.response) === null || _error$response4 === void 0 ? void 0 : _error$response4.data) || _context2.t0);
-            alert(((_error$response5 = _context2.t0.response) === null || _error$response5 === void 0 || (_error$response5 = _error$response5.data) === null || _error$response5 === void 0 ? void 0 : _error$response5.message) || "Failed to update inventory item.");
-          case 12:
+            console.error("Error saving item:", ((_error$response = _context2.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context2.t0);
+            alert(((_error$response2 = _context2.t0.response) === null || _error$response2 === void 0 || (_error$response2 = _error$response2.data) === null || _error$response2 === void 0 ? void 0 : _error$response2.message) || "Failed to save inventory item.");
+          case 19:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 8]]);
+      }, _callee2, null, [[0, 15]]);
     }));
     return function handleSave() {
       return _ref2.apply(this, arguments);
     };
   }();
-
-  // Handle Archive
-  var handleArchive = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(id) {
-      var _error$response6, _error$response7;
+  var handleCheckboxChange = function handleCheckboxChange(item) {
+    setSelectedItems(function (prev) {
+      if (prev.some(function (selected) {
+        return selected.id === item.id;
+      })) {
+        return prev.filter(function (selected) {
+          return selected.id !== item.id;
+        });
+      }
+      return [].concat(_toConsumableArray(prev), [item]);
+    });
+  };
+  var handleMultipleArchive = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var archivePromises, _error$response3, _error$response4;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
-            _context3.prev = 0;
-            _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"]("http://127.0.0.1:8000/api/inventory/".concat(id));
+            if (!(selectedItems.length === 0)) {
+              _context3.next = 3;
+              break;
+            }
+            alert("Please select at least one item to archive.");
+            return _context3.abrupt("return");
           case 3:
+            _context3.prev = 3;
+            archivePromises = selectedItems.filter(function (item) {
+              return item.inventory_id;
+            }).map(function (item) {
+              return axios__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"]("http://127.0.0.1:8000/api/inventory/".concat(item.inventory_id));
+            });
+            _context3.next = 7;
+            return Promise.all(archivePromises);
+          case 7:
             setInventory(function (prevInventory) {
               return prevInventory.filter(function (item) {
-                return item.id !== id;
+                return !selectedItems.some(function (selected) {
+                  return selected.inventory_id === item.id;
+                });
               });
             });
-            _context3.next = 10;
+            setSelectedItems([]);
+            alert("Selected items archived successfully.");
+            _context3.next = 16;
             break;
-          case 6:
-            _context3.prev = 6;
-            _context3.t0 = _context3["catch"](0);
-            console.error("Error archiving item:", ((_error$response6 = _context3.t0.response) === null || _error$response6 === void 0 ? void 0 : _error$response6.data) || _context3.t0);
-            alert(((_error$response7 = _context3.t0.response) === null || _error$response7 === void 0 || (_error$response7 = _error$response7.data) === null || _error$response7 === void 0 ? void 0 : _error$response7.message) || "Failed to archive inventory item.");
-          case 10:
+          case 12:
+            _context3.prev = 12;
+            _context3.t0 = _context3["catch"](3);
+            console.error("Error archiving items:", ((_error$response3 = _context3.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.data) || _context3.t0);
+            alert(((_error$response4 = _context3.t0.response) === null || _error$response4 === void 0 || (_error$response4 = _error$response4.data) === null || _error$response4 === void 0 ? void 0 : _error$response4.message) || "Failed to archive items.");
+          case 16:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 6]]);
+      }, _callee3, null, [[3, 12]]);
     }));
-    return function handleArchive(_x) {
+    return function handleMultipleArchive() {
       return _ref3.apply(this, arguments);
     };
   }();
-
-  // Filtered inventory based on search query and active filter
-  var filteredInventory = inventory.filter(function (item) {
-    var _item$product;
-    var productName = ((_item$product = item.product) === null || _item$product === void 0 ? void 0 : _item$product.product_name) || "";
+  var filteredProducts = mergedProducts.filter(function (item) {
+    var productName = item.product_name || "";
     var matchesSearch = productName.toLowerCase().includes(searchQuery.toLowerCase());
     var matchesFilter = activeFilter === "All" || item.status === activeFilter;
     return matchesSearch && matchesFilter;
   });
+
+  // Pagination logic
+  var indexOfLastProduct = currentPage * productsPerPage;
+  var indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  var currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  var totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  var handlePageChange = function handlePageChange(pageNumber) {
+    setCurrentPage(pageNumber);
+    setSelectedItems([]); // Clear selections when changing pages
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
       children: "Inventory Management"
@@ -114464,7 +114496,7 @@ function Inventory() {
             className: "inventory-card-text",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "inventory-card-number",
-              children: inventory.length
+              children: mergedProducts.length
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "inventory-card-title",
               children: "Total Products"
@@ -114483,12 +114515,33 @@ function Inventory() {
             className: "inventory-card-text",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "inventory-card-number",
-              children: inventory.filter(function (item) {
+              children: mergedProducts.filter(function (item) {
                 return item.status === "Available";
               }).length
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "inventory-card-title",
               children: "Available Products"
+            })]
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "inventory-card-body",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "inventory-card-content",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+            src: "/imgs/lowstock.svg",
+            alt: "Low Stock",
+            className: "inventory-card-image"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "inventory-card-text",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "inventory-card-number",
+              children: mergedProducts.filter(function (item) {
+                return item.status === "Low Stock";
+              }).length
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "inventory-card-title",
+              children: "Low Stock"
             })]
           })]
         })
@@ -114504,7 +114557,7 @@ function Inventory() {
             className: "inventory-card-text",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "inventory-card-number",
-              children: inventory.filter(function (item) {
+              children: mergedProducts.filter(function (item) {
                 return item.status === "Out of Stock";
               }).length
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -114532,6 +114585,7 @@ function Inventory() {
                 onClick: function onClick(e) {
                   e.preventDefault();
                   setActiveFilter(tab);
+                  setCurrentPage(1); // Reset to first page when filter changes
                 },
                 children: tab
               }, tab);
@@ -114543,98 +114597,15 @@ function Inventory() {
           placeholder: "Search by Product Name...",
           value: searchQuery,
           onChange: function onChange(e) {
-            return setSearchQuery(e.target.value);
+            setSearchQuery(e.target.value);
+            setCurrentPage(1); // Reset to first page when search changes
           }
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        className: "add-product-btn",
-        onClick: function onClick() {
-          return setShowAddForm(true);
-        },
-        children: "Add Inventory Item"
-      })]
-    }), showAddForm && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "add-form",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-        children: "Add New Inventory Item"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "number",
-        name: "product_id",
-        value: newItem.product_id,
-        onChange: handleNewItemChange,
-        placeholder: "Product ID",
-        min: "0"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "number",
-        name: "stock_quantity",
-        value: newItem.stock_quantity,
-        onChange: handleNewItemChange,
-        placeholder: "Stock Quantity",
-        min: "0"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-        name: "status",
-        value: newItem.status,
-        onChange: handleNewItemChange,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-          value: "Available",
-          children: "Available"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-          value: "Low Stock",
-          children: "Low Stock"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-          value: "Out of Stock",
-          children: "Out of Stock"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        onClick: handleAddProduct,
-        children: "Save"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        onClick: function onClick() {
-          return setShowAddForm(false);
-        },
-        children: "Cancel"
-      })]
-    }), viewItem && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "add-form",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-        children: "Item Details"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
-          children: "ID:"
-        }), " ", viewItem.id]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
-          children: "Product:"
-        }), " ", ((_viewItem$product = viewItem.product) === null || _viewItem$product === void 0 ? void 0 : _viewItem$product.product_name) || "N/A"]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
-          children: "Category:"
-        }), " ", ((_viewItem$product2 = viewItem.product) === null || _viewItem$product2 === void 0 || (_viewItem$product2 = _viewItem$product2.category) === null || _viewItem$product2 === void 0 ? void 0 : _viewItem$product2.name) || "N/A"]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
-          children: "Type:"
-        }), " ", ((_viewItem$product3 = viewItem.product) === null || _viewItem$product3 === void 0 ? void 0 : _viewItem$product3.product_type) || "N/A"]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
-          children: "Price:"
-        }), " ", ((_viewItem$product4 = viewItem.product) === null || _viewItem$product4 === void 0 ? void 0 : _viewItem$product4.price) || "N/A"]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
-          children: "Sizes:"
-        }), " ", ((_viewItem$product5 = viewItem.product) === null || _viewItem$product5 === void 0 || (_viewItem$product5 = _viewItem$product5.sizes) === null || _viewItem$product5 === void 0 ? void 0 : _viewItem$product5.join(", ")) || "N/A"]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
-          children: "Stock Quantity:"
-        }), " ", viewItem.stock_quantity]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
-          children: "Status:"
-        }), " ", viewItem.status]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        onClick: function onClick() {
-          return setViewItem(null);
-        },
-        children: "Close"
+        className: "archive-selected-btn",
+        onClick: handleMultipleArchive,
+        disabled: selectedItems.length === 0,
+        children: "Archive Selected"
       })]
     }), selectedItem && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "add-form",
@@ -114648,7 +114619,7 @@ function Inventory() {
         disabled: true
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
         children: "Stock Quantity:"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("achine-input", {
         type: "number",
         name: "stock_quantity",
         value: selectedItem.stock_quantity,
@@ -114679,7 +114650,7 @@ function Inventory() {
         },
         children: "Cancel"
       })]
-    }), !selectedItem && !viewItem && !showAddForm && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    }), !selectedItem && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
       children: isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
         children: "Loading inventory..."
       }) : error ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
@@ -114687,94 +114658,123 @@ function Inventory() {
           color: "red"
         },
         children: error
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
-        className: "inventory-table",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Actions"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Product"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Category"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Type"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Price"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Sizes"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Stock Quantity"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              children: "Status"
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-          children: filteredInventory.length > 0 ? filteredInventory.map(function (item) {
-            var _item$product2, _item$product3, _item$product4, _item$product5, _item$product6;
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                  src: "/imgs/view.svg",
-                  alt: "View",
-                  className: "action-img",
-                  onClick: function onClick() {
-                    return handleViewClick(item);
-                  },
-                  style: {
-                    cursor: "pointer",
-                    marginRight: "8px"
-                  }
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                  src: "/imgs/edit.svg",
-                  alt: "Edit",
-                  className: "action-img",
-                  onClick: function onClick() {
-                    return handleEditClick(item);
-                  },
-                  style: {
-                    cursor: "pointer",
-                    marginRight: "8px"
-                  }
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                  src: "/imgs/archive.svg",
-                  alt: "Archive",
-                  className: "action-img",
-                  onClick: function onClick() {
-                    return handleArchive(item.id);
-                  },
-                  style: {
-                    cursor: "pointer"
-                  }
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: ((_item$product2 = item.product) === null || _item$product2 === void 0 ? void 0 : _item$product2.product_name) || "N/A"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: ((_item$product3 = item.product) === null || _item$product3 === void 0 || (_item$product3 = _item$product3.category) === null || _item$product3 === void 0 ? void 0 : _item$product3.name) || "N/A"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: ((_item$product4 = item.product) === null || _item$product4 === void 0 ? void 0 : _item$product4.product_type) || "N/A"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: ((_item$product5 = item.product) === null || _item$product5 === void 0 ? void 0 : _item$product5.price) || "N/A"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: ((_item$product6 = item.product) === null || _item$product6 === void 0 || (_item$product6 = _item$product6.sizes) === null || _item$product6 === void 0 ? void 0 : _item$product6.join(", ")) || "N/A"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: item.stock_quantity
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                  className: "status-frame status-".concat(item.status.toLowerCase().replace(/\s+/g, "-")),
-                  children: item.status
-                })
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
+          className: "inventory-table",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Select"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Image"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Product"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Category"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Type"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Price"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Sizes"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Stock Quantity"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Status"
               })]
-            }, item.id);
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              colSpan: "8",
-              style: {
-                textAlign: "center"
-              },
-              children: "No inventory found."
             })
-          })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
+            children: currentProducts.map(function (item) {
+              var _item$category, _item$sizes;
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                    src: selectedItems.some(function (selected) {
+                      return selected.id === item.id;
+                    }) ? "/imgs/checkbox2.svg" : "/imgs/checkmarkbox.svg",
+                    alt: "Checkbox",
+                    className: "action-img",
+                    onClick: function onClick() {
+                      return handleCheckboxChange(item);
+                    },
+                    style: {
+                      cursor: "pointer",
+                      marginRight: "8px"
+                    }
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                    src: "/imgs/editing.svg",
+                    alt: "Edit",
+                    className: "action-img",
+                    onClick: function onClick() {
+                      return handleEditClick(item);
+                    },
+                    style: {
+                      cursor: "pointer",
+                      marginRight: "8px"
+                    }
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                    src: "/imgs/archiving.svg",
+                    alt: "Archive",
+                    className: "action-img",
+                    onClick: function onClick() {
+                      return handleArchive(item.inventory_id, item.id);
+                    },
+                    style: {
+                      cursor: "pointer"
+                    }
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                    src: item.image || "/imgs/default-product.jpg",
+                    alt: item.product_name,
+                    className: "product-image",
+                    style: {
+                      width: "50px",
+                      height: "50px",
+                      objectFit: "cover"
+                    }
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                  children: item.product_name || "N/A"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                  children: ((_item$category = item.category) === null || _item$category === void 0 ? void 0 : _item$category.name) || "N/A"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                  children: item.product_type || "N/A"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                  children: item.price || "N/A"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                  children: ((_item$sizes = item.sizes) === null || _item$sizes === void 0 ? void 0 : _item$sizes.join(", ")) || "N/A"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                  children: item.stock_quantity
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                    className: "status-frame status-".concat(item.status.toLowerCase().replace(/\s+/g, "-")),
+                    children: item.status
+                  })
+                })]
+              }, item.id);
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "pagination",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            onClick: function onClick() {
+              return handlePageChange(currentPage - 1);
+            },
+            disabled: currentPage === 1,
+            className: "pagination-btn",
+            children: "Previous"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+            className: "pagination-info",
+            children: ["Page ", currentPage, " of ", totalPages]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            onClick: function onClick() {
+              return handlePageChange(currentPage + 1);
+            },
+            disabled: currentPage === totalPages,
+            className: "pagination-btn",
+            children: "Next"
+          })]
         })]
       })
     })]
