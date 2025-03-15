@@ -10,8 +10,15 @@ use App\Http\Controllers\DropdownController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProfileController;
+
+
+Route::middleware('auth:sanctum')->get('/customer/profile', [ProfileController::class, 'getProfile']);
+Route::middleware('auth:sanctum')->post('/customer/profile', [ProfileController::class, 'updateProfile']);
+
 
 Route::apiResource('brands', BrandController::class);
+Route::get('/customers', [UserController::class, 'getCustomers']);
 
 //Category
 Route::apiResource('categories', CategoryController::class);

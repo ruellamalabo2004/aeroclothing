@@ -167,10 +167,13 @@ const HomePage = () => {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isSupportOpen, setIsSupportOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [products, setProducts] = useState([]);
   const [imagePreview, setImagePreview] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
+  const [userProfile, setUserProfile] = useState(null);
   
-  const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage"; // Define base URL
+  const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
 
   const items = [];
 
@@ -185,7 +188,14 @@ const HomePage = () => {
     { label: "SHIPPING", path: "/customer/support/shipping" },
     { label: "RETURNS", path: "/customer/support/returns" },
     { label: "CONTACT US", path: "/customer/support/contact-us" },
-    { label: "TERMS AND SERVICE", path: "/customer/support/terms-and-service" }
+    { label: "TERMS AND SERVICE", path: "/customer/support/terms-and-service" },
+    { label: "FAQS", path: "/customer/support/faqs" }
+  ];
+
+  const profileItems = [
+    { label: "My Profile", path: "/profile", icon: "/imgs/myprofile.svg" },
+    { label: "My Orders", path: "/customer/orders", icon: "/imgs/myorders.svg" },
+    { label: "Logout", path: "/logout", icon: "/imgs/logouts.svg" },
   ];
 
   useEffect(() => {
@@ -193,38 +203,38 @@ const HomePage = () => {
       .get("http://127.0.0.1:8000/api/products")
       .then((response) => {
         console.log("Products:", response.data);
-  
-        // Ensure we extract products correctly
         const products = Array.isArray(response.data) ? response.data : response.data.data || [];
-  
         const updatedProducts = products
           .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
           .slice(0, 4)
           .map((product) => {
             console.log("Product Keys:", Object.keys(product));
             console.log("Full Product:", product);
-  
             return {
               ...product,
               imagePreview: product.image_1
                 ? `${BASE_IMAGE_URL}/${product.image_1}`
                 : "/default-image.jpg",
-              productName: product.name || product.title || product.product_name || "Unnamed Product", // Try multiple fields
+              productName: product.name || product.title || product.product_name || "Unnamed Product",
             };
           });
-  
         setProducts(updatedProducts);
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
       });
   }, [BASE_IMAGE_URL]);
-  
 
- 
-  const handleProfileClick = () => {
-    navigate('/profile');
-  };
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/user/profile")
+      .then((response) => {
+        setUserProfile(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching profile:", error);
+      });
+  }, []);
 
   const handleRatingChange = (item) => (newRating) => {
     setRatings(prev => ({
@@ -242,6 +252,21 @@ const HomePage = () => {
         return [...prev, product];
       }
     });
+  };
+
+  const handleAddToCart = (product) => () => {
+    setCartItems((prev) => {
+      const exists = prev.some((item) => item.id === product.id);
+      if (!exists) {
+        return [...prev, { ...product, quantity: 1 }];
+      }
+      return prev;
+    });
+    console.log(`${product.productName} added to cart`);
+  };
+
+  const handleBuyNow = (product) => () => {
+    navigate('/checkout', { state: { product } });
   };
 
   const handleWishlistToggle = () => {
@@ -287,6 +312,11 @@ const HomePage = () => {
     setIsSupportOpen(!isSupportOpen);
   };
 
+  const handleProfileToggle = (e) => {
+    e.preventDefault();
+    setIsProfileOpen(!isProfileOpen);
+  };
+
   const handleOutsideClick = (e) => {
     if (!e.target.closest('.notification-container') && !e.target.closest('.header-icon')) {
       setIsNotificationOpen(false);
@@ -297,16 +327,19 @@ const HomePage = () => {
     if (!e.target.closest('.support-container') && !e.target.closest('.support-link')) {
       setIsSupportOpen(false);
     }
+    if (!e.target.closest('.profile-container') && !e.target.closest('.profile-button')) {
+      setIsProfileOpen(false);
+    }
   };
 
   useEffect(() => {
-    if (isNotificationOpen || isWishlistOpen || isSupportOpen) {
+    if (isNotificationOpen || isWishlistOpen || isSupportOpen || isProfileOpen) {
       document.addEventListener('click', handleOutsideClick);
     }
     return () => {
       document.removeEventListener('click', handleOutsideClick);
     };
-  }, [isNotificationOpen, isWishlistOpen, isSupportOpen]);
+  }, [isNotificationOpen, isWishlistOpen, isSupportOpen, isProfileOpen]);
 
   const sliderSettings = {
     dots: true,
@@ -419,64 +452,92 @@ const HomePage = () => {
             </div>
           </div>
           <img src="/imgs/Cart.svg" alt="Cart" className="header-icon" />
-          <button className="profile-button" onClick={handleProfileClick}>
-            <img src="/imgs/Profile.svg" alt="Profile" />
-          </button>
+          <div className="profile-container">
+            <button 
+              className={`profile-button ${isProfileOpen ? 'active' : ''}`} 
+              onClick={handleProfileToggle}
+            >
+              {userProfile?.profilePicture ? (
+                <img 
+                  src={`${BASE_IMAGE_URL}/${userProfile.profilePicture}`} 
+                  alt="Profile" 
+                  className="profile-pic"
+                />
+              ) : (
+                <img src="/imgs/Profile.svg" alt="Profile" />
+              )}
+            </button>
+            <div className={`profile-dropdown ${!isProfileOpen ? 'hidden' : ''}`}>
+              {profileItems.map((item, index) => (
+                <React.Fragment key={index}>
+                  <Link to={item.path} className="profile-item">
+                    <img 
+                      src={item.icon} 
+                      alt={`${item.label} icon`} 
+                      className="profile-item-icon" 
+                    />
+                    {item.label}
+                  </Link>
+                  {index === 1 && <hr className="profile-separator" />}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
         </div>
       </header>
 
       <div className="slider-container">
-    <Slider {...sliderSettings}>
-      <div>
-        <img src="/imgs/slider1.svg" alt="Clothing 1" className="slider-image" />
-        <button className="slider-shop-now-button">SHOP NOW</button>
+        <Slider {...sliderSettings}>
+          <div>
+            <img src="/imgs/slider1.svg" alt="Clothing 1" className="slider-image" />
+            <button className="slider-shop-now-button">SHOP NOW</button>
+          </div>
+          <div>
+            <img src="/imgs/slider2.svg" alt="Clothing 2" className="slider-image" />
+            <button className="slider-shop-now-button">SHOP NOW</button>
+          </div>
+          <div>
+            <img src="/imgs/slider3.svg" alt="Clothing 3" className="slider-image" />
+            <button className="slider-shop-now-button">SHOP NOW</button>
+          </div>
+        </Slider>
       </div>
-      <div>
-        <img src="/imgs/slider2.svg" alt="Clothing 2" className="slider-image" />
-        <button className="slider-shop-now-button">SHOP NOW</button>
-      </div>
-      <div>
-        <img src="/imgs/slider3.svg" alt="Clothing 3" className="slider-image" />
-        <button className="slider-shop-now-button">SHOP NOW</button>
-      </div>
-    </Slider>
-  </div>
 
-  <section className="top-selling-section">
-    <h2>NEW ARRIVALS</h2>
-    <div className="top-selling-items">
-      {(isSearchOpen && filteredItems.length > 0 ? filteredItems : items).map(item => (
-        <div 
-          className="top-selling-item" 
-          key={item.id}
-          onClick={() => handleItemClick(item)}
-          style={{ cursor: 'pointer' }}
-        >
-          <div className="item-header">
-            <p className="item-name">{item.name}</p>
-            <RiHeart3Fill 
-              className={`heart ${wishlistedItems.some(w => w.id === item.id) ? 'wishlisted' : ''}`}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleWishlistClick(item)();
-              }}
-            />
-          </div>
-          <div className="price-container">
-            <p className="item-price">{item.price}</p>
-            <StarRating 
-              rating={ratings[item.id]}
-              onRatingChange={handleRatingChange(item.id)}
-            />
-            {item.discount && <span className="discount">{item.discount}</span>}
-          </div>
+      <section className="top-selling-section">
+        <h2>NEW ARRIVALS</h2>
+        <div className="top-selling-items">
+          {(isSearchOpen && filteredItems.length > 0 ? filteredItems : items).map(item => (
+            <div 
+              className="top-selling-item" 
+              key={item.id}
+              onClick={() => handleItemClick(item)}
+              style={{ cursor: 'pointer' }}
+            >
+              <div className="item-header">
+                <p className="item-name">{item.name}</p>
+                <RiHeart3Fill 
+                  className={`heart ${wishlistedItems.some(w => w.id === item.id) ? 'wishlisted' : ''}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleWishlistClick(item)();
+                  }}
+                />
+              </div>
+              <div className="price-container">
+                <p className="item-price">{item.price}</p>
+                <StarRating 
+                  rating={ratings[item.id]}
+                  onRatingChange={handleRatingChange(item.id)}
+                />
+                {item.discount && <span className="discount">{item.discount}</span>}
+              </div>
+            </div>
+          ))}
+          {isSearchOpen && filteredItems.length === 0 && (
+            <p className="no-results">No items found</p>
+          )}
         </div>
-      ))}
-      {isSearchOpen && filteredItems.length === 0 && (
-        <p className="no-results">No items found</p>
-      )}
-    </div>
-    <div className="new-product-image-containers">
+        <div className="new-product-image-containers">
           {products.length > 0 ? (
             products.map((product) => (
               <div key={product.id} className="product-container">
@@ -485,6 +546,20 @@ const HomePage = () => {
                     src={product.imagePreview || '/default-image.jpg'} 
                     alt={product.productName || 'Product'} 
                   />
+                  <div className="product-actions">
+                    <button 
+                      className="add-to-cart-btn"
+                      onClick={handleAddToCart(product)}
+                    >
+                      <img src="/imgs/addcart.svg" alt="Add to Cart" className="action-icon" />
+                    </button>
+                    <button 
+                      className="buy-now-btn"
+                      onClick={handleBuyNow(product)}
+                    >
+                      <img src="/imgs/buynow.svg" alt="Buy Now" className="action-icon" />
+                    </button>
+                  </div>
                 </div>
                 <div className="product-name-container">
                   <h3 className="product-name">{product.productName || "Unnamed Product"}</h3>
@@ -501,14 +576,14 @@ const HomePage = () => {
           ) : (
             <p>No products available.</p>
           )}
-</div>
+        </div>
 
-    <ShopByCategory />
-    <FeaturedItems />
-  </section>
+        <ShopByCategory />
+        <FeaturedItems />
+      </section>
 
-  <Footer />
-</div>
+      <Footer />
+    </div>
   );
 };
 

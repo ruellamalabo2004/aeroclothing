@@ -203,10 +203,10 @@ export default function Users() {
                     <tr key={user.id}>
                       <td>
                         <img src="/imgs/view.svg" alt="View" className="action-img" />
-                        <img src="/imgs/edit.svg" alt="Edit" className="action-img" style={{ cursor: "pointer" }} />
+                        <img src="/imgs/editing.svg" alt="Edit" className="action-img" style={{ cursor: "pointer" }} />
                         {user.status !== "Archived" ? (
                           <img
-                            src="/imgs/archive.svg"
+                            src="/imgs/archiving.svg"
                             alt="Archive"
                             className="action-img"
                             onClick={() => archiveUser(user.id)}

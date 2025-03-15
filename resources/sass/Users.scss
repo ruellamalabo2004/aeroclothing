@@ -105,13 +105,13 @@ h1 {
 }
 
 .users-table td {
-    color: #666;
+    color: #000000;
 }
 
 .users-table .action-img {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px; /* Consistent with Orders spacing */
+    width: 16px;
+    height: 16px;
+    margin-right: 8px; /* Consistent with Orders spacing */
     cursor: pointer;
     transition: opacity 0.3s;
 }

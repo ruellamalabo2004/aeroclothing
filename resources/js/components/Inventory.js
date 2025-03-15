@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Header from "../components/Header";
 
-const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage"; // Ensure this matches your server setup
+const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
 
 export default function Inventory() {
   const [products, setProducts] = useState([]);
@@ -12,8 +13,8 @@ export default function Inventory() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1); // New state for current page
-  const productsPerPage = 10; // Limit of 10 products per page
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 10;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,9 +25,6 @@ export default function Inventory() {
         if (!productsRes.ok) throw new Error(`HTTP error! Status: ${productsRes.status}`);
         const productsData = await productsRes.json();
         const productList = Array.isArray(productsData) ? productsData : productsData.data || [];
-        productList.forEach((product) => {
-          console.log("Product Image URL:", `${BASE_IMAGE_URL}/${product.image_1}`);
-        });
 
         const inventoryResponse = await axios.get("http://127.0.0.1:8000/api/inventory");
 
@@ -58,7 +56,7 @@ export default function Inventory() {
       id: item.inventory_id,
       product_id: item.id,
       stock_quantity: item.stock_quantity || 0,
-      status: item.status,
+      status: item.status || "Out of Stock",
       product: item
     });
   };
@@ -67,28 +65,35 @@ export default function Inventory() {
     const { name, value } = e.target;
     setSelectedItem((prev) => ({
       ...prev,
-      [name]: name === "stock_quantity" ? parseInt(value) || 0 : value,
+      [name]: name === "stock_quantity" ? Number(value) : value,
     }));
   };
 
   const handleSave = async () => {
+    if (!selectedItem.product_id || selectedItem.stock_quantity === undefined) {
+      alert("Product ID and stock quantity are required");
+      return;
+    }
+
     try {
-      let response;
       const data = {
         product_id: selectedItem.product_id,
-        stock_quantity: parseInt(selectedItem.stock_quantity) || 0,
-        status: selectedItem.status,
+        stock_quantity: Number(selectedItem.stock_quantity),
+        status: selectedItem.status || "Out of Stock",
       };
 
+      let response;
       if (selectedItem.id) {
         response = await axios.put(
           `http://127.0.0.1:8000/api/inventory/${selectedItem.id}`,
-          data
+          data,
+          { headers: { 'Content-Type': 'application/json' } }
         );
       } else {
         response = await axios.post(
           "http://127.0.0.1:8000/api/inventory",
-          data
+          data,
+          { headers: { 'Content-Type': 'application/json' } }
         );
       }
 
@@ -101,9 +106,13 @@ export default function Inventory() {
         return [...prev, response.data.data];
       });
       setSelectedItem(null);
+      alert("Inventory updated successfully");
     } catch (error) {
       console.error("Error saving item:", error.response?.data || error);
-      alert(error.response?.data?.message || "Failed to save inventory item.");
+      const errorMessage = error.response?.data?.message || 
+                          error.response?.data?.errors?.stock_quantity?.[0] || 
+                          "Failed to save inventory item";
+      alert(errorMessage);
     }
   };
 
@@ -152,7 +161,6 @@ export default function Inventory() {
     return matchesSearch && matchesFilter;
   });
 
-  // Pagination logic
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -160,7 +168,7 @@ export default function Inventory() {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    setSelectedItems([]); // Clear selections when changing pages
+    setSelectedItems([]);
   };
 
   return (
@@ -225,7 +233,7 @@ export default function Inventory() {
                   onClick={(e) => {
                     e.preventDefault();
                     setActiveFilter(tab);
-                    setCurrentPage(1); // Reset to first page when filter changes
+                    setCurrentPage(1);
                   }}
                 >
                   {tab}
@@ -240,7 +248,7 @@ export default function Inventory() {
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
-              setCurrentPage(1); // Reset to first page when search changes
+              setCurrentPage(1);
             }}
           />
         </div>
@@ -256,32 +264,41 @@ export default function Inventory() {
       {selectedItem && (
         <div className="add-form">
           <h2>Edit Inventory Item</h2>
-          <label>Product:</label>
-          <input
-            type="text"
-            value={selectedItem.product?.product_name || "N/A"}
-            disabled
-          />
-          <label>Stock Quantity:</label>
-          <achine-input
-            type="number"
-            name="stock_quantity"
-            value={selectedItem.stock_quantity}
-            onChange={handleFormChange}
-            min="0"
-          />
-          <label>Status:</label>
-          <select
-            name="status"
-            value={selectedItem.status}
-            onChange={handleFormChange}
-          >
-            <option value="Available">Available</option>
-            <option value="Low Stock">Low Stock</option>
-            <option value="Out of Stock">Out of Stock</option>
-          </select>
-          <button onClick={handleSave}>Save</button>
-          <button onClick={() => setSelectedItem(null)}>Cancel</button>
+          <div>
+            <label>Product:</label>
+            <input
+              type="text"
+              value={selectedItem.product?.product_name || "N/A"}
+              disabled
+            />
+          </div>
+          <div>
+            <label>Stock Quantity:</label>
+            <input
+              type="number"
+              name="stock_quantity"
+              value={selectedItem.stock_quantity || 0}
+              onChange={handleFormChange}
+              min="0"
+              required
+            />
+          </div>
+          <div>
+            <label>Status:</label>
+            <select
+              name="status"
+              value={selectedItem.status || "Out of Stock"}
+              onChange={handleFormChange}
+            >
+              <option value="Available">Available</option>
+              <option value="Low Stock">Low Stock</option>
+              <option value="Out of Stock">Out of Stock</option>
+            </select>
+          </div>
+          <div>
+            <button onClick={handleSave}>Save</button>
+            <button onClick={() => setSelectedItem(null)}>Cancel</button>
+          </div>
         </div>
       )}
 
@@ -331,7 +348,7 @@ export default function Inventory() {
                           src="/imgs/archiving.svg"
                           alt="Archive"
                           className="action-img"
-                          onClick={() => handleArchive(item.inventory_id, item.id)}
+                          onClick={() => handleMultipleArchive([item])}
                           style={{ cursor: "pointer" }}
                         />
                       </td>
@@ -363,7 +380,6 @@ export default function Inventory() {
                 </tbody>
               </table>
 
-              {/* Pagination Controls */}
               <div className="pagination">
                 <button
                   onClick={() => handlePageChange(currentPage - 1)}

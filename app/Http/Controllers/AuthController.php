@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        // Validate input
+     
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|min:6',
@@ -29,10 +29,9 @@ class AuthController extends Controller
             return response()->json(['errors' => $validator->errors()], 400);
         }
 
-        // Determine role based on email domain
         $role = str_ends_with($request->email, '@admin.com') ? 'admin' : 'customer';
 
-        // Create user
+   
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -40,7 +39,6 @@ class AuthController extends Controller
             'status' => 'Active', // Ensure new users are Active
         ]);
 
-        // Create profile
         Profile::create([
             'user_id' => $user->id,
             'first_name' => $request->first_name,
@@ -61,9 +59,11 @@ class AuthController extends Controller
         ], 201);
     }
 
+
+    
     public function login(Request $request)
     {
-        // Validate input
+       
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required'
@@ -73,21 +73,21 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid credentials', 'errors' => $validator->errors()], 400);
         }
 
-        // Check if user exists
+  
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json(['message' => 'Invalid email or password'], 401);
         }
 
-        // Check if user is archived
+      
         if ($user->status === 'Archived') {
             return response()->json([
                 'message' => 'Your account was suspended, please contact support'
             ], 403);
         }
 
-        // Generate token using Laravel Passport
+       
         $token = $user->createToken('MyApp')->accessToken;
 
         return response()->json([

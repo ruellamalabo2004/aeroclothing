@@ -1,0 +1,142 @@
+/* 📌 Dashboard Header */
+.dashboard-header {
+    background: #ffffff; /* White background as per reference */
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    position: fixed; /* Fixed header */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Above other content */
+    height: 60px; /* Fixed height */
+  }
+  
+  /* 📌 Header Content */
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align user info to the right */
+    width: 100%;
+    /* Removed margin-left since sidebar offset is not needed */
+  }
+  
+  /* 📌 User Info Container */
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between notification, profile pic, and details */
+  }
+  
+  /* 📌 Notification Icon Wrapper */
+  .icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* 📌 Notification Icon */
+  .notification-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+  
+  /* 📌 Notification Badge */
+  .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #d32f2f; /* Matches your theme color */
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: bold;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* 📌 Profile Picture */
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Circular profile picture */
+    object-fit: cover;
+    border: 2px solid #d32f2f; /* Matches your theme color */
+  }
+  
+  /* 📌 User Details */
+  .user-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* 📌 User Name Wrapper (for name and dropdown) */
+  .user-name-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between name and dropdown arrow */
+  }
+  
+  /* 📌 User Name */
+  .user-name {
+    font-size: 14px; /* Matches reference */
+    font-weight: bold;
+    color: #161A1D; /* Matches your h1 color */
+    margin: 0;
+  }
+  
+  /* 📌 User Role */
+  .user-role {
+    font-size: 12px;
+    color: #757575; /* Matches your inventory-card-title color */
+    margin: 2px 0 0 0;
+  }
+  
+  /* 📌 Dropdown Arrow */
+  .dropdown-arrow {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  
+  /* 📌 Responsive Design */
+  @media (max-width: 768px) {
+    .dashboard-header {
+      padding: 10px 15px;
+      height: 50px;
+    }
+  
+    .notification-icon {
+      width: 20px;
+      height: 20px;
+    }
+  
+    .badge {
+      width: 14px;
+      height: 14px;
+      font-size: 8px;
+    }
+  
+    .profile-pic {
+      width: 35px;
+      height: 35px;
+    }
+  
+    .user-name {
+      font-size: 12px;
+    }
+  
+    .user-role {
+      font-size: 10px;
+    }
+  
+    .dropdown-arrow {
+      width: 14px;
+      height: 14px;
+    }
+  }

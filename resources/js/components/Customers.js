@@ -1,44 +1,41 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Customers() {
   const [activeTab, setActiveTab] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [customers, setCustomers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const customers = [
-    {
-      id: 1,
-      name: "John Doe",
-      totalOrders: 5,
-      totalSpent: "PHP 2495.00",
-      orderDate: "2025-02-20",
-      paymentMethod: "Credit Card",
-      status: "Active",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      totalOrders: 3,
-      totalSpent: "PHP 2397.00",
-      orderDate: "2025-02-21",
-      paymentMethod: "PayPal",
-      status: "Archived",
-    },
-    {
-      id: 3,
-      name: "Alice Johnson",
-      totalOrders: 2,
-      totalSpent: "PHP 1198.00",
-      orderDate: "2025-02-22",
-      paymentMethod: "Cash on Delivery",
-      status: "Active",
-    },
-  ];
+  // Fetch customers from Laravel API
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get("http://127.0.0.1:8000/api/customers");
+        console.log("Customers API Response:", response.data);
+        setCustomers(response.data.data || []);
+      } catch (error) {
+        console.error("Error fetching customers:", error);
+        setError("Failed to load customers");
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchCustomers();
+  }, []);
+
+  // Filter customers based on status and search input
   const filteredCustomers = customers.filter((customer) => {
     const matchesTab =
-      activeTab === "All" || customer.status === (activeTab === "Archived" ? "Archived" : "Active");
-    const matchesSearch = customer.name.toLowerCase().includes(searchTerm.toLowerCase());
+      activeTab === "All" ||
+      customer.status === (activeTab === "Archived" ? "Archived" : "Active");
+    const matchesSearch =
+      customer.full_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      customer.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      false;
     return matchesTab && matchesSearch;
   });
 
@@ -78,40 +75,62 @@ export default function Customers() {
         />
       </div>
       <div className="customers-table-container">
-        <table className="customers-table">
-          <thead>
-            <tr>
-              <th>Actions</th>
-              <th>Customer Name</th>
-              <th>Total Orders</th>
-              <th>Total Spent</th>
-              <th>Order Date</th>
-              <th>Payment Method</th>
-              <th>Order Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredCustomers.map((customer) => (
-              <tr key={customer.id}>
-                <td>
-                  <img src="/imgs/view.svg" alt="View" className="action-img" />
-                  <img src="/imgs/edit.svg" alt="Edit" className="action-img" />
-                  <img src="/imgs/archive.svg" alt="Archive" className="action-img" />
-                </td>
-                <td>{customer.name}</td>
-                <td>{customer.totalOrders}</td>
-                <td>{customer.totalSpent}</td>
-                <td>{customer.orderDate}</td>
-                <td>{customer.paymentMethod}</td>
-                <td>
-                  <span className={`status-frame status-${customer.status.toLowerCase()}`}>
-                    {customer.status}
-                  </span>
-                </td>
+        {loading ? (
+          <div>Loading customers...</div>
+        ) : error ? (
+          <div>{error}</div>
+        ) : customers.length === 0 ? (
+          <div>No customers found</div>
+        ) : (
+          <table className="customers-table">
+            <thead>
+              <tr>
+                <th>Actions</th>
+                <th>Customer Name</th>
+                <th>Email</th>
+                <th>Status</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filteredCustomers.map((customer) => (
+                <tr key={customer.id}>
+                  <td>
+                    <img src="/imgs/view.svg" alt="View" className="action-img" />
+                    <img src="/imgs/editing.svg" alt="Edit" className="action-img" />
+                    <img
+                      src="/imgs/archiving.svg"
+                      alt="Archive"
+                      className="action-img"
+                      onClick={async () => {
+                        try {
+                          await axios.post(
+                            `http://127.0.0.1:8000/api/users/${customer.id}/archive`
+                          );
+                          setCustomers((prev) =>
+                            prev.map((c) =>
+                              c.id === customer.id ? { ...c, status: "Archived" } : c
+                            )
+                          );
+                        } catch (err) {
+                          console.error("Error archiving:", err);
+                        }
+                      }}
+                    />
+                  </td>
+                  <td>{customer.full_name?.trim() || "N/A"}</td>
+                  <td>{customer.email || "N/A"}</td>
+                  <td>
+                    <span
+                      className={`status-frame status-${customer.status?.toLowerCase() || "unknown"}`}
+                    >
+                      {customer.status || "Unknown"}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </main>
   );

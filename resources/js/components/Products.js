@@ -426,14 +426,14 @@ export default function Products() {
                   <td>
                     <img src="/imgs/view.svg" alt="View" className="action-img" />
                     <img
-                      src="/imgs/edit.svg"
+                      src="/imgs/editing.svg"
                       alt="Edit"
                       className="action-img"
                       onClick={() => openEditModal(product)}
                       style={{ cursor: "pointer" }}
                     />
                     <img
-                      src="/imgs/archive.svg"
+                      src="/imgs/archiving.svg"
                       alt="Archive"
                       className="action-img"
                       onClick={() => handleArchiveClick(product)}

@@ -14,6 +14,8 @@ import Reviews from "./Reviews";
 import Reports from "./Reports";
 import HomePage from "./HomePage"; 
 import AdminSettings from "./AdminSettings"; // For customers
+import Profile from "./Profile";
+
 
 // Create a Static Landing Page Component
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
@@ -122,6 +124,10 @@ const App = () => {
        <Route
           path="/homepage"
           element={<ProtectedRoute element={<HomePage />} allowedRoles={["customer"]} />}
+        />
+        <Route
+          path="/profile"
+          element={<ProtectedRoute element={<Profile />} allowedRoles={["customer"]} />}
         />
         
 
