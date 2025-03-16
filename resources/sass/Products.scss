@@ -253,6 +253,148 @@
   }
 }
 
+.view-modal-container {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 600px;
+  padding: 25px;
+  max-height: 90vh;
+  overflow-y: auto;
+  margin-left: 0;
+  margin-top: 20px;
+  border-left: 4px solid #E5383B;
+
+  .view-modal-content {
+    h2 {
+      font-size: 28px;
+      margin-bottom: 25px;
+      color: #333333;
+      font-weight: 600;
+      text-align: left;
+      border-bottom: 2px solid #E5383B;
+      padding-bottom: 10px;
+    }
+
+    .view-product-details {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+
+      .view-product-image {
+        flex: 1;
+        img {
+          border-radius: 8px;
+          border: 1px solid #e0e0e0;
+        }
+      }
+
+      .view-product-info {
+        flex: 2;
+        p {
+          margin: 10px 0;
+          font-size: 14px;
+          color: #333333;
+
+          strong {
+            color: #555555;
+            font-weight: 500;
+            margin-right: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+        }
+      }
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+
+      .close-btn {
+        background: #ffffff;
+        color: #E5383B;
+        border: 2px solid #E5383B;
+        padding: 10px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background 0.3s, color 0.3s, transform 0.1s;
+
+        &:hover:not(:disabled) {
+          background: #E5383B;
+          color: #ffffff;
+          transform: translateY(-2px);
+        }
+
+        &:disabled {
+          border-color: #cccccc;
+          color: #888888;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+
+    .view-modal-content {
+      h2 {
+        font-size: 22px;
+      }
+
+      .view-product-details {
+        flex-direction: column;
+        gap: 15px;
+
+        .view-product-image {
+          text-align: center;
+          img {
+            max-width: 150px;
+            max-height: 150px;
+          }
+        }
+      }
+
+      .modal-actions {
+        flex-direction: column;
+        gap: 10px;
+
+        .close-btn {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+
+    .view-modal-content {
+      h2 {
+        font-size: 20px;
+      }
+
+      .view-product-details {
+        gap: 10px;
+
+        .view-product-info {
+          p {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
 /* 📌 Rest of your SCSS */
 .products-links {
   display: flex;

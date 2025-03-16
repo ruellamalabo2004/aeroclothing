@@ -59,7 +59,29 @@ class AuthController extends Controller
             ]
         ], 201);
     }
-
+    public function changePassword(Request $request)
+    {
+        // Validate input
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+    
+        $user = Auth::user();
+    
+        // Check if the current password is correct
+        if (!Hash::check($request->current_password, $user->password)) {
+            throw ValidationException::withMessages([
+                'current_password' => ['The current password is incorrect.'],
+            ]);
+        }
+    
+        // Update password
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+    
+        return response()->json(['message' => 'Password updated successfully'], 200);
+    }
     public function profile()
     {
         $user = Auth::user();
@@ -132,7 +154,14 @@ class AuthController extends Controller
             'profile_image' => $profile->profile_pic ? asset("storage/{$profile->profile_pic}") : null // Return profile_pic
         ]);
     }
-
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+    
+        return response()->json([
+            'message' => 'Successfully logged out'
+        ]);
+    }
     
     public function login(Request $request)
     {
@@ -157,8 +186,9 @@ class AuthController extends Controller
                 'message' => 'Your account was suspended, please contact support'
             ], 403);
         }
-    
-        
+
+
+
     
         $token = $user->createToken('MyApp')->accessToken;
     

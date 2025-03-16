@@ -135,9 +135,26 @@ const ChangePassword = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    navigate('/login');
+    axios.post('http://127.0.0.1:8000/api/logout', {}, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    })
+    .then(response => {
+      console.log(response.data.message);
+      alert('Logged out successfully!');
+      localStorage.removeItem('token'); // Remove token
+      localStorage.removeItem('role'); // Remove role
+      window.location.href = '/login'; // Redirect to login page
+    })
+    .catch(error => {
+      console.error('Logout failed:', error);
+      alert('Failed to log out.');
+      // Optionally handle specific errors (e.g., 401 Unauthorized)
+      if (error.response?.status === 401) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        navigate('/login');
+      }
+    });
   };
 
   const handleInputChange = (e) => {
@@ -157,24 +174,41 @@ const ChangePassword = () => {
 
   const handleSave = () => {
     if (passwordData.newPassword !== passwordData.confirmPassword) {
-      alert('New password and confirmation do not match!');
+      alert("New password and confirmation do not match!");
       return;
     }
-
+  
+    const token = localStorage.getItem("token");
+  
+    if (!token) {
+      alert("You are not authenticated. Please log in again.");
+      return;
+    }
+  
     const formData = new FormData();
-    formData.append('currentPassword', passwordData.currentPassword);
-    formData.append('newPassword', passwordData.newPassword);
-
+    formData.append("current_password", passwordData.currentPassword);
+    formData.append("new_password", passwordData.newPassword);
+    formData.append("new_password_confirmation", passwordData.confirmPassword);
+  
     axios
-      .post('http://127.0.0.1:8000/api/change-password', formData)
+      .post("http://127.0.0.1:8000/api/change-password", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
-        console.log('Password updated:', response.data);
-        alert('Password updated successfully!');
-        setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
+        console.log("Password updated:", response.data);
+        alert("Password updated successfully!");
+        setPasswordData({ currentPassword: "", newPassword: "", confirmPassword: "" });
       })
       .catch((error) => {
-        console.error('Error updating password:', error);
-        alert('Failed to update password.');
+        console.error("Error updating password:", error);
+        if (error.response && error.response.data.errors) {
+          console.log("Validation Errors:", error.response.data.errors);
+          alert(`Error: ${JSON.stringify(error.response.data.errors)}`);
+        } else {
+          alert("Failed to update password.");
+        }
       });
   };
 
@@ -206,7 +240,7 @@ const ChangePassword = () => {
 
   const handleSupportToggle = (e) => {
     e.preventDefault();
-    setIsSupportOpen(!isSupportOpen);
+    setIsSupportOpen(!isSupportOpen); // Fixed typo: Changed isWishlistOpen to isSupportOpen
   };
 
   const handleCartClick = () => {

@@ -108,14 +108,10 @@ h1 {
 
 .customers-table .action-img {
     width: 16px;
-    height: 16x;
-    margin-right: 8px; /* Reduced from 25px for three icons */
+    height: 16px;
+    margin-right: 8px;
     cursor: pointer;
     transition: opacity 0.3s;
-}
-
-.customers-table .action-img:last-child {
-    margin-right: 0;
 }
 
 .customers-table .action-img:hover {
@@ -142,6 +138,105 @@ h1 {
     border-color: #E5383B;
     background: #FFEBEE;
     color: #C62828;
+}
+
+/* 📌 Edit Modal */
+.edit-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+
+    .modal-content {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        width: 400px;
+        max-width: 90%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 0.3s ease-in-out;
+
+        h2 {
+            font-size: 20px;
+            color: #161A1D;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            label {
+                font-size: 14px;
+                font-weight: bold;
+                color: #333;
+                margin-bottom: 5px;
+                display: block;
+            }
+
+            input, select {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 14px;
+                outline: none;
+                transition: border-color 0.3s ease;
+
+                &:focus {
+                    border-color: #2196F3;
+                    box-shadow: 0 0 3px rgba(33, 150, 243, 0.3);
+                }
+            }
+
+            button {
+                padding: 10px;
+                border: none;
+                border-radius: 4px;
+                font-size: 14px;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+
+            button[type="submit"] {
+                background: #2196F3;
+                color: white;
+            }
+
+            button[type="submit"]:hover {
+                background: #1976D2;
+            }
+
+            button[type="button"] {
+                background: #E5383B;
+                color: white;
+            }
+
+            button[type="button"]:hover {
+                background: #C62828;
+            }
+        }
+    }
+}
+
+/* 📌 Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* 📌 Responsive Design */
@@ -180,15 +275,16 @@ h1 {
     .customers-table .action-img {
         width: 16px;
         height: 16px;
-        margin-right: 10px; /* Reduced for mobile */
-    }
-
-    .customers-table .action-img:last-child {
-        margin-right: 0;
+        margin-right: 10px;
     }
 
     .customers-table .status-frame {
         padding: 2px 6px;
         font-size: 10px;
+    }
+
+    .edit-modal .modal-content {
+        width: 90%;
+        padding: 15px;
     }
 }

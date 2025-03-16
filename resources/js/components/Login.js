@@ -7,7 +7,11 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); 
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState('');
+  const [forgotMessage, setForgotMessage] = useState('');
+  const [forgotLoading, setForgotLoading] = useState(false);  // Add loading for forgot password
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,14 +20,12 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://localhost:8000/api/login', { email, password });
-      const { token, user } = response.data; 
+      const { token, user } = response.data;
 
-      // Store token & user info
       localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user)); 
+      localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('role', user.role);
-      
-      // Fetch profile data after successful login
+
       const profileResponse = await axios.get('http://localhost:8000/api/profile', {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -31,11 +33,10 @@ const Login = () => {
       const profile = profileResponse.data.profile;
       localStorage.setItem('profile', JSON.stringify(profile));
 
-      // Redirect based on role
       if (user.role === 'admin') {
-        navigate('/dashboard');  
+        navigate('/dashboard');
       } else {
-        navigate('/homepage');   
+        navigate('/homepage');
       }
 
     } catch (error) {
@@ -45,6 +46,29 @@ const Login = () => {
     }
   };
 
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    setForgotMessage('Sending reset link...');
+    setForgotLoading(true);  // Set loading to true
+  
+    if (!forgotEmail) {
+      setForgotMessage('Please provide a valid email.');
+      setForgotLoading(false);  // Set loading to false if email is not provided
+      return;
+    }
+  
+    try {
+      const response = await axios.post('http://localhost:8000/api/forgot-password', { email: forgotEmail });
+      setForgotMessage(response.data.message); // Success or error message
+    } catch (error) {
+      console.error(error);
+      setForgotMessage(error.response?.data?.message || 'Unable to send reset link.');
+    } finally {
+      setForgotLoading(false);  // Set loading to false after request is done
+    }
+  };
+  
+  
   return (
     <>
       <header className="login-header">
@@ -74,53 +98,87 @@ const Login = () => {
       </div>
 
       <div className="login-container">
-        <h2>WELCOME BACK!</h2>
-        <p>Enter your credentials for login</p>
+        {!showForgotPassword ? (
+          <>
+            <h2>WELCOME BACK!</h2>
+            <p>Enter your credentials for login</p>
 
-        {message && <p className="error-message">{message}</p>}
+            {message && <p className="error-message">{message}</p>}
 
-        <div className="login-form">
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <input 
-                type="email" 
-                className="email-input"
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
-                required 
-                placeholder="Email"
-              />
+            <div className="login-form">
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <input 
+                    type="email" 
+                    className="email-input"
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} 
+                    required 
+                    placeholder="Email"
+                  />
+                </div>
+                <div className="form-group">
+                  <input 
+                    type="password" 
+                    className="password-input"
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    required 
+                    placeholder="Password"
+                  />
+                </div>
+
+                <div className="checkbox-container">
+                  <label>
+                    <input type="checkbox" /> Remember me
+                  </label>
+                  <p className="forgot-password" onClick={() => setShowForgotPassword(true)}>Forgot password?</p>
+                </div>
+
+                <button type="submit" className="sign-in-button" disabled={loading}>
+                  {loading ? 'Logging in...' : 'Sign In'}
+                </button>
+
+                <div className="separator"></div>
+
+                <p className="create-account-text">Don't have an account?</p>
+                <button className="create-account-button" onClick={() => navigate('/signup')}>
+                  Create Account
+                </button>
+              </form>
             </div>
-            <div className="form-group">
-              <input 
-                type="password" 
-                className="password-input"
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)} 
-                required 
-                placeholder="Password"
-              />
+          </>
+        ) : (
+          <>
+            <h2>RESET PASSWORD</h2>
+            <p>Enter your email to receive a reset link</p>
+
+            {forgotMessage && <p className="error-message">{forgotMessage}</p>}
+
+            <div className="login-form">
+              <form onSubmit={handleForgotPassword}>
+                <div className="form-group">
+                  <input 
+                    type="email" 
+                    className="email-input"
+                    value={forgotEmail} 
+                    onChange={(e) => setForgotEmail(e.target.value)} 
+                    required 
+                    placeholder="Enter your email"
+                  />
+                </div>
+
+                <button type="submit" className="sign-in-button" disabled={forgotLoading}>
+                  {forgotLoading ? 'Sending...' : 'Send Reset Link'}
+                </button>
+
+                <p className="back-to-login" onClick={() => setShowForgotPassword(false)}>
+                  Back to Login
+                </p>
+              </form>
             </div>
-
-            <div className="checkbox-container">
-              <label>
-                <input type="checkbox" /> Remember me
-              </label>
-              <a href="#" className="forgot-password">Forgot password?</a>
-            </div>
-
-            <button type="submit" className="sign-in-button" disabled={loading}>
-              {loading ? 'Logging in...' : 'Sign In'}
-            </button>
-
-            <div className="separator"></div>
-
-            <p className="create-account-text">Don't have an account?</p>
-            <button className="create-account-button" onClick={() => navigate('/signup')}>
-              Create Account
-            </button>
-          </form>
-        </div>
+          </>
+        )}
       </div>
     </>
   );

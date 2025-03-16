@@ -19,20 +19,28 @@ export default function Users() {
           "Accept": "application/json",
         },
       });
-
+  
       if (!response.ok) {
         throw new Error(`Failed to fetch users: ${response.status}`);
       }
-
+  
       const data = await response.json();
       console.log("Raw API Response:", data);
-
+  
       const userData = Array.isArray(data)
         ? data
         : data.data || data.users || [];
-
-      console.log("Processed Users:", userData);
-      setUsers(userData);
+      
+      const processedUsers = userData.map(user => ({
+        id: user.id,
+        email: user.email,
+        role: user.role,
+        created_at: user.created_at,
+        status: user.status || "Active"
+      }));
+  
+      console.log("Processed Users:", processedUsers);
+      setUsers(processedUsers);
     } catch (error) {
       console.error("Error fetching users:", error);
       setError(error.message);
@@ -202,7 +210,6 @@ export default function Users() {
                   filteredUsers.map((user) => (
                     <tr key={user.id}>
                       <td>
-                        <img src="/imgs/view.svg" alt="View" className="action-img" />
                         <img src="/imgs/editing.svg" alt="Edit" className="action-img" style={{ cursor: "pointer" }} />
                         {user.status !== "Archived" ? (
                           <img
@@ -214,7 +221,7 @@ export default function Users() {
                           />
                         ) : (
                           <img
-                            src="/imgs/restore.svg"
+                            src="/imgs/revert.svg"
                             alt="Restore"
                             className="action-img"
                             onClick={() => restoreUser(user.id)}

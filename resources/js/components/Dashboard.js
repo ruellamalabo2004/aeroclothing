@@ -29,6 +29,7 @@ ChartJS.register(
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [totalProducts, setTotalProducts] = useState(0);
+  const [totalCustomers, setTotalCustomers] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
   const lineChartRef = useRef(null);
@@ -88,20 +89,31 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    // Fetch products from the backend and count them
     const fetchTotalProducts = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:8000/api/products/");
-        // Assuming response.data is an array of products
         setTotalProducts(response.data.length);
       } catch (error) {
         console.error("Error fetching products:", error);
-        setTotalProducts(0); // Set to 0 if there's an error
+        setTotalProducts(0);
       }
     };
 
-    fetchTotalProducts();
+    const fetchTotalCustomers = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/customers");
+        // Assuming the API returns an array of customers or a count object
+        const count = Array.isArray(response.data) ? response.data.length : response.data.count || 0;
+        setTotalCustomers(count);
+      } catch (error) {
+        console.error("Error fetching customers:", error);
+        setTotalCustomers(0);
+      }
+    };
 
+    // Execute both fetch calls
+    fetchTotalProducts();
+    fetchTotalCustomers();  
     const handleResize = () => {
       if (lineChartRef.current) lineChartRef.current.resize();
       if (barChartRef.current) barChartRef.current.resize();
@@ -117,6 +129,7 @@ export default function Dashboard() {
   const handleLogout = () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
     if (confirmLogout) {
+      localStorage.removeItem("token");
       navigate("/login");
       setSidebarOpen(false);
     }
@@ -223,6 +236,14 @@ export default function Dashboard() {
               <img src="/imgs/Settings.svg" alt="Admin Settings" className="nav-icon" />
               Admin Settings
             </NavLink>
+            <NavLink
+              to="/dashboard/accountsettings"
+              className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setSidebarOpen(false)}
+            >
+              <img src="/imgs/Settings.svg" alt="Account Settings" className="nav-icon" />
+              Account Settings
+            </NavLink>
             <div className="nav-link logout" onClick={handleLogout}>
               <img src="/imgs/Logout.svg" alt="Log Out" className="nav-icon" />
               Log Out
@@ -275,7 +296,7 @@ export default function Dashboard() {
                   <div className="card-content">
                     <img src="/imgs/totalc.svg" alt="Total Customers" className="card-image" />
                     <div className="card-text">
-                      <div className="card-number">0</div>
+                      <div className="card-number">{totalCustomers}</div>
                       <div className="card-title">Total Customers</div>
                     </div>
                   </div>

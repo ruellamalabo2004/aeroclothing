@@ -17,6 +17,7 @@ class UserController extends Controller
                 'users.email',
                 'users.role',
                 'users.status',
+                'users.created_at',  // Add created_at to the select statement
                 'profiles.first_name',
                 'profiles.last_name',
                 'profiles.suffix',
@@ -40,6 +41,10 @@ class UserController extends Controller
                 'profiles.first_name',
                 'profiles.last_name',
                 'profiles.suffix',
+                'profiles.profile_pic', // Added for Profile Pic
+                'profiles.phone_number',        // Added for Phone
+                'profiles.gender',       // Added for Gender
+                'profiles.date_of_birth', // Added for Date of Birth
                 DB::raw("CONCAT(COALESCE(profiles.first_name, ''), ' ', COALESCE(profiles.last_name, ''), ' ', COALESCE(profiles.suffix, '')) AS full_name")
             )
             ->get();
@@ -89,26 +94,70 @@ class UserController extends Controller
 
         return response()->json(['message' => 'User created successfully', 'data' => $user], 201);
     }
+   public function getCustomerCount()
+{
+    try {
+        // Fetch all users that are customers
+        $customers = User::where('is_admin', false)->get(); 
+        
+        // Debugging: Log the customers to check the result
+        \Log::info("Fetched customers:", $customers->toArray());
 
-    // Update user (including status and role)
+        return response()->json([
+            'total_customers' => $customers->count()
+        ], 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => 'Failed to fetch customer count'
+        ], 500);
+    }
+}
+
     public function update(Request $request, $id)
     {
+        // Find the user by ID
         $user = User::find($id);
-
+    
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
-
+    
+        // Validate incoming data
         $request->validate([
             'email' => 'email|unique:users,email,' . $id,
             'role' => 'nullable|string',
             'status' => 'in:Active,Archived',
+            'full_name' => 'nullable|string',
+            'phone_number' => 'nullable|string',
+            'gender' => 'nullable|string',
+            'date_of_birth' => 'nullable|date',
         ]);
-
+    
+        // Update the users table
         $user->update($request->only('email', 'role', 'status'));
-
+    
+        // Split the full name to first_name, last_name, and suffix if provided
+        if ($request->has('full_name')) {
+            $nameParts = explode(" ", $request->input('full_name'));
+            $first_name = $nameParts[0];
+            $last_name = isset($nameParts[1]) ? $nameParts[1] : '';
+            $suffix = isset($nameParts[2]) ? $nameParts[2] : '';
+    
+            // Update the profiles table
+            $user->profile()->update([
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'suffix' => $suffix,
+                'phone_number' => $request->input('phone_number', $user->profile->phone_number),
+                'gender' => $request->input('gender', $user->profile->gender),
+                'date_of_birth' => $request->input('date_of_birth', $user->profile->date_of_birth),
+            ]);
+        }
+    
+        // Return a successful response with the updated data
         return response()->json(['message' => 'User updated successfully', 'data' => $user], 200);
     }
+    
 
     // Archive a user
     public function archive(Request $request, $id)

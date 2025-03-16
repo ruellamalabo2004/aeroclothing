@@ -27,12 +27,13 @@ export default function Products() {
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState(false);
   const [productToArchive, setProductToArchive] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const uploadAreaRef = useRef(null);
-  const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage"; // Ensure this matches your server setup
+  const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
   const ITEMS_PER_PAGE = 10;
 
-  // Fetch products with enhanced debugging
   useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);
@@ -40,12 +41,7 @@ export default function Products() {
         const res = await fetch("http://127.0.0.1:8000/api/products");
         if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
         const data = await res.json();
-        console.log("Fetched Products:", data);
-        // Log each image URL for verification
         const productList = Array.isArray(data) ? data : data.data || [];
-        productList.forEach((product) => {
-          console.log("Product Image URL:", `${BASE_IMAGE_URL}/${product.image_1}`);
-        });
         setProducts(productList);
       } catch (error) {
         console.error("Error fetching products:", error.message);
@@ -56,7 +52,6 @@ export default function Products() {
     fetchProducts();
   }, []);
 
-  // Fetch categories
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/api/categories")
@@ -71,7 +66,6 @@ export default function Products() {
       });
   }, []);
 
-  // Fetch brands
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/api/brands")
@@ -86,12 +80,12 @@ export default function Products() {
       });
   }, []);
 
-  // Handle Escape key
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape" && !isLoading) {
         setIsModalOpen(false);
         setIsArchiveModalOpen(false);
+        setIsViewModalOpen(false);
       }
     };
     window.addEventListener("keydown", handleEscape);
@@ -173,7 +167,7 @@ export default function Products() {
 
   const isValidFile = (file) => {
     const validTypes = ["image/png", "image/jpeg", "image/jpg", "image/gif"];
-    const maxSize = 2 * 1024 * 1024; // 2MB
+    const maxSize = 2 * 1024 * 1024;
     return validTypes.includes(file.type) && file.size <= maxSize;
   };
 
@@ -215,7 +209,7 @@ export default function Products() {
       price: product.price || "",
       description: product.description || "",
       status: product.status || "available",
-      image_1: null, // Keep as null unless a new image is uploaded
+      image_1: null,
       brand: product.brand_id || brands[0]?.id || "",
       colors: Array.isArray(product.colors)
         ? product.colors
@@ -229,6 +223,11 @@ export default function Products() {
     setEditProductId(product.id);
     setIsEditing(true);
     setIsModalOpen(true);
+  };
+
+  const openViewModal = (product) => {
+    setSelectedProduct(product);
+    setIsViewModalOpen(true);
   };
 
   const saveProduct = async () => {
@@ -275,12 +274,6 @@ export default function Products() {
 
     if (formData.image_1 instanceof File) {
       formDataObj.append("image_1", formData.image_1);
-    } else if (isEditing) {
-      const existingProduct = products.find((p) => p.id === editProductId);
-      if (existingProduct?.image_1) {
-        // Optionally preserve existing image path if backend requires it
-        // formDataObj.append("image_1", existingProduct.image_1);
-      }
     }
 
     if (isEditing) {
@@ -288,7 +281,6 @@ export default function Products() {
     }
 
     try {
-      console.log("Sending FormData:", [...formDataObj.entries()]);
       const url = isEditing
         ? `http://127.0.0.1:8000/api/products/${editProductId}`
         : "http://127.0.0.1:8000/api/products";
@@ -424,7 +416,13 @@ export default function Products() {
               paginatedProducts.map((product) => (
                 <tr key={product.id}>
                   <td>
-                    <img src="/imgs/view.svg" alt="View" className="action-img" />
+                    <img
+                      src="/imgs/viewing.svg"
+                      alt="View"
+                      className="action-img"
+                      onClick={() => openViewModal(product)}
+                      style={{ cursor: "pointer" }}
+                    />
                     <img
                       src="/imgs/editing.svg"
                       alt="Edit"
@@ -451,10 +449,7 @@ export default function Products() {
                           objectFit: "cover",
                         }}
                         onError={(e) => {
-                          console.error(
-                            `Failed to load image: ${BASE_IMAGE_URL}/${product.image_1}`
-                          );
-                          e.target.src = "/placeholder.png"; // Ensure this exists in public folder
+                          e.target.src = "/placeholder.png";
                         }}
                       />
                     ) : (
@@ -711,12 +706,6 @@ export default function Products() {
                         disabled={isLoading}
                       />
                     </div>
-                    {isEditing && formData.image_1 === null && imagePreview && (
-                      <p>
-                        Current image:{" "}
-                        {products.find((p) => p.id === editProductId)?.image_1}
-                      </p>
-                    )}
                   </div>
                 </div>
                 <div className="modal-actions">
@@ -778,6 +767,71 @@ export default function Products() {
                   disabled={isLoading}
                 >
                   {isLoading ? "Archiving..." : "Yes"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isViewModalOpen && selectedProduct && (
+        <div 
+          className="modal-overlay" 
+          onClick={() => !isLoading && setIsViewModalOpen(false)}
+        >
+          <div 
+            className="view-modal-container" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="view-modal-content">
+              <h2>Product Details</h2>
+              <div className="view-product-details">
+                <div className="view-product-image">
+                  {selectedProduct.image_1 ? (
+                    <img
+                      src={`${BASE_IMAGE_URL}/${selectedProduct.image_1}`}
+                      alt={selectedProduct.product_name}
+                      style={{
+                        maxWidth: "200px",
+                        maxHeight: "200px",
+                        objectFit: "cover",
+                      }}
+                      onError={(e) => {
+                        e.target.src = "/placeholder.png";
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src="/placeholder.png"
+                      alt="No Image"
+                      style={{
+                        maxWidth: "200px",
+                        maxHeight: "200px",
+                        objectFit: "cover",
+                      }}
+                    />
+                  )}
+                </div>
+                <div className="view-product-info">
+                  <p><strong>Name:</strong> {selectedProduct.product_name}</p>
+                  <p><strong>Category:</strong> {categories.find((cat) => cat.id === selectedProduct.category_id)?.name || "N/A"}</p>
+                  <p><strong>Type:</strong> {selectedProduct.product_type}</p>
+                  <p><strong>Sizes:</strong> {Array.isArray(selectedProduct.sizes) ? selectedProduct.sizes.join(", ") : selectedProduct.sizes || "N/A"}</p>
+                  <p><strong>Brand:</strong> {brands.find((brand) => brand.id === selectedProduct.brand_id)?.name || "N/A"}</p>
+                  <p><strong>Colors:</strong> {Array.isArray(selectedProduct.colors) ? selectedProduct.colors.join(", ") : selectedProduct.colors || "N/A"}</p>
+                  <p><strong>Price:</strong> ₱{selectedProduct.price}</p>
+                  <p><strong>Status:</strong> {selectedProduct.status === "available" ? "Available" : "Archived"}</p>
+                  <p><strong>Description:</strong> {selectedProduct.description || "No description available"}</p>
+                </div>
+              </div>
+              <div className="modal-actions">
+                <button
+                  type="button"
+                  className="close-btn"
+                  onClick={() => setIsViewModalOpen(false)}
+                  disabled={isLoading}
+                >
+                  Close
                 </button>
               </div>
             </div>

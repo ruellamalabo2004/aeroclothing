@@ -11,11 +11,18 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
-
-
+use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
 
 Route::apiResource('brands', BrandController::class);
 Route::get('/customers', [UserController::class, 'getCustomers']);
+Route::get('/customers/count', [UserController::class, 'getCustomerCount']);
+// In routes/api.php
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
+// routes/api.php
+Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
+Route::post('/password/reset', [ResetPasswordController::class, 'reset']);
 
 //Category
 Route::apiResource('categories', CategoryController::class);
@@ -73,4 +80,8 @@ Route::middleware('auth:api')->group(function () {
 
     // Update user profile
     Route::put('/update-profile', [AuthController::class, 'updateProfile']);
+
+    Route::middleware('auth:api')->post('/change-password', [ChangePasswordController::class, 'changePassword']);
+    Route::middleware('auth:api')->post('/logout', [AuthController::class, 'logout']);
+ 
 });

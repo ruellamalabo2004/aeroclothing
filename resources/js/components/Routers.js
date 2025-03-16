@@ -14,12 +14,15 @@ import Reviews from "./Reviews";
 import Reports from "./Reports";
 import HomePage from "./HomePage"; 
 import AdminSettings from "./AdminSettings"; 
+import AccountSettings from "./AccountSettings"; 
 import Profile from "./Profile";
 import Address from "./Address";
 import Changepassword from "./Changepassword";
 import Mywishlist from "./Mywishlist";
 import Myorders from "./Myorders";
 import Mycart from "./Mycart";
+import ForgotPassword from "./ForgotPassword"; // Import ForgotPassword component
+import ResetPassword from "./Resetpassword"; // Import ResetPassword component
 
 // 🔒 Protected Route Function
 const ProtectedRoute = ({ element, allowedRoles }) => {
@@ -47,6 +50,8 @@ const App = () => {
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Added ForgotPassword route */}
+        <Route path="/reset-password" element={<ResetPassword />} /> {/* Added ResetPassword route */}
 
         {/* Customer Routes */}
         <Route
@@ -57,7 +62,7 @@ const App = () => {
           path="/profile"
           element={<ProtectedRoute element={<Profile />} allowedRoles={["customer"]} />}
         />
- <Route
+        <Route
           path="/profile/address" 
           element={<ProtectedRoute element={<Address />} allowedRoles={["customer"]} />}
         />
@@ -65,11 +70,11 @@ const App = () => {
           path="/profile/change-password" 
           element={<ProtectedRoute element={<Changepassword />} allowedRoles={["customer"]} />}
         />
-         <Route
+        <Route
           path="/profile/wishlist" 
           element={<ProtectedRoute element={<Mywishlist />} allowedRoles={["customer"]} />}
         />
-         <Route
+        <Route
           path="/profile/orders" 
           element={<ProtectedRoute element={<Myorders />} allowedRoles={["customer"]} />}
         />
@@ -89,6 +94,7 @@ const App = () => {
           <Route path="reviews" element={<Reviews />} />
           <Route path="reports" element={<Reports />} />
           <Route path="adminsettings" element={<AdminSettings />} />
+          <Route path="accountsettings" element={<AccountSettings />} />
         </Route>
       </Routes>
     </Router>

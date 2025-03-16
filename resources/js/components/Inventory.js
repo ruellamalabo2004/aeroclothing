@@ -357,7 +357,7 @@ export default function Inventory() {
                           src={item.image || "/imgs/default-product.jpg"} 
                           alt={item.product_name} 
                           className="product-image"
-                          style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                          style={{ width: "40px", height: "40px", objectFit: "cover" }}
                         />
                       </td>
                       <td>{item.product_name || "N/A"}</td>
