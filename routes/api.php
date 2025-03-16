@@ -13,9 +13,6 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 
 
-Route::middleware('auth:sanctum')->get('/customer/profile', [ProfileController::class, 'getProfile']);
-Route::middleware('auth:sanctum')->post('/customer/profile', [ProfileController::class, 'updateProfile']);
-
 
 Route::apiResource('brands', BrandController::class);
 Route::get('/customers', [UserController::class, 'getCustomers']);
@@ -70,4 +67,10 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/user', function (Request $request) {
         return response()->json($request->user());
     });
+    // Fetch user profile
+    Route::get('/profile', [AuthController::class, 'profile']);
+
+
+    // Update user profile
+    Route::put('/update-profile', [AuthController::class, 'updateProfile']);
 });

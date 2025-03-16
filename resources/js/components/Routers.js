@@ -13,85 +13,13 @@ import Transactions from "./Transactions";
 import Reviews from "./Reviews";
 import Reports from "./Reports";
 import HomePage from "./HomePage"; 
-import AdminSettings from "./AdminSettings"; // For customers
+import AdminSettings from "./AdminSettings"; 
 import Profile from "./Profile";
-
-
-// Create a Static Landing Page Component
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import Slider from 'react-slick'; // Import react-slick
-import 'slick-carousel/slick/slick.css'; // Import slick-carousel CSS
-import 'slick-carousel/slick/slick-theme.css'; // Import slick-carousel theme CSS
-
-const LandingPage = () => {
-  const navigate = useNavigate(); // Initialize navigate hook
-
-  const handleLoginClick = () => {
-    navigate('/login'); // Navigate to /login on click
-  };
-
-  // Slider settings for react-slick
-  const sliderSettings = {
-    dots: true, // Show navigation dots
-    infinite: true, // Infinite loop
-    speed: 500, // Transition speed
-    slidesToShow: 1, // Show one slide at a time
-    slidesToScroll: 1, // Scroll one slide at a time
-    autoplay: true, // Auto-play slides
-    autoplaySpeed: 3000, // Auto-play speed (3 seconds)
-    arrows: true, // Show navigation arrows
-  };
-
-  return (
-    <div className="landing-page">
-      <header className="login-header">
-        <div className="logo-container">
-          <img src="/imgs/logo.svg" alt="Logo" className="logo" />
-        </div>
-        <nav className="nav-links">
-          <a href="#home">HOME</a>
-          <a href="#shop">SHOP</a>
-          <a href="#about">ABOUT US</a>
-          <a href="#support">SUPPORT</a>
-        </nav>
-        <div className="header-icons">
-          <img src="/imgs/Search.svg" alt="Search" className="header-icon" />
-          <img src="/imgs/Wish.svg" alt="Wishlist" className="header-icon" />
-          <img src="/imgs/Cart.svg" alt="Cart" className="header-icon" />
-          <button className="login-button" onClick={handleLoginClick}>
-            Login
-          </button>
-        </div>
-      </header>
-      <div className="slider-container">
-        <Slider {...sliderSettings}>
-          <div>
-            <img
-              src="/imgs/slider1.svg" // Your first clothing image
-              alt="Clothing 1"
-              className="slider-image"
-            />
-          </div>
-          <div>
-            <img
-              src="/imgs/slider2.svg" // Add more clothing images as needed
-              alt="Clothing 2"
-              className="slider-image"
-            />
-          </div>
-          <div>
-            <img
-              src="/imgs/slider3.svg" // Add more clothing images as needed
-              alt="Clothing 3"
-              className="slider-image"
-            />
-          </div>
-        </Slider>
-      </div>
-      
-    </div>
-  );
-};
+import Address from "./Address";
+import Changepassword from "./Changepassword";
+import Mywishlist from "./Mywishlist";
+import Myorders from "./Myorders";
+import Mycart from "./Mycart";
 
 // 🔒 Protected Route Function
 const ProtectedRoute = ({ element, allowedRoles }) => {
@@ -99,11 +27,11 @@ const ProtectedRoute = ({ element, allowedRoles }) => {
   const role = localStorage.getItem("role"); // Get user role
 
   if (!token) {
-    return <Navigate to="/login" replace />; // Redirect if not logged in
+    return <Navigate to="/login" replace />; // Redirect to login if not authenticated
   }
 
   if (!allowedRoles.includes(role)) {
-    return <Navigate to="/" replace />; // Redirect if role is not allowed
+    return <Navigate to="/dashboard" replace />; // Redirect unauthorized users
   }
 
   return element;
@@ -113,15 +41,15 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        {/* Default route redirects to login */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
+
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        
-        {/* Static Landing Page Route */}
-        <Route path="/" element={<LandingPage />} /> {/* Landing page is shown on '/' */}
 
-       {/* Customer Routes */}
-       <Route
+        {/* Customer Routes */}
+        <Route
           path="/homepage"
           element={<ProtectedRoute element={<HomePage />} allowedRoles={["customer"]} />}
         />
@@ -129,8 +57,26 @@ const App = () => {
           path="/profile"
           element={<ProtectedRoute element={<Profile />} allowedRoles={["customer"]} />}
         />
-        
-
+ <Route
+          path="/profile/address" 
+          element={<ProtectedRoute element={<Address />} allowedRoles={["customer"]} />}
+        />
+        <Route
+          path="/profile/change-password" 
+          element={<ProtectedRoute element={<Changepassword />} allowedRoles={["customer"]} />}
+        />
+         <Route
+          path="/profile/wishlist" 
+          element={<ProtectedRoute element={<Mywishlist />} allowedRoles={["customer"]} />}
+        />
+         <Route
+          path="/profile/orders" 
+          element={<ProtectedRoute element={<Myorders />} allowedRoles={["customer"]} />}
+        />
+        <Route
+          path="/profile/cart" 
+          element={<ProtectedRoute element={<Mycart />} allowedRoles={["customer"]} />}
+        />
 
         {/* Admin Route & Nested Routes */}
         <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} allowedRoles={["admin"]} />}>

@@ -33,7 +33,7 @@ class ProfileController extends Controller
             'gender' => $profile->gender ?? '',
             'date_of_birth' => $profile->date_of_birth ? $profile->date_of_birth->toDateString() : null,
             'age' => $profile->age ?? null, // Assuming age is calculated
-            'profile_picture' => $profile->profile_pic 
+            'profile_image' => $profile->profile_pic 
                 ? asset('storage/' . $profile->profile_pic) 
                 : asset('default-avatar.png'),
         ], 200);

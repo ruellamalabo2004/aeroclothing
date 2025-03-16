@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Footer = () => {
   const footerLinks = [
@@ -46,28 +47,36 @@ const Footer = () => {
 const Profile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({
-    firstName: '',
-    middleName: '',
-    lastName: '',
+    first_name: '',
+    middle_name: '',
+    last_name: '',
     suffix: '',
     email: '',
-    phone: '',
+    phone_number: '',
     gender: '',
-    dateOfBirth: '',
-    profileImage: '/imgs/profile.svg',
+    date_of_birth: '',
+    profile_pic: '/imgs/profile.svg',
+  });
+  const [displayedName, setDisplayedName] = useState({
+    first_name: '',
+    last_name: '',
   });
   const [newProfileImage, setNewProfileImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isSupportOpen, setIsSupportOpen] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [wishlistedItems, setWishlistedItems] = useState([]);
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [activeMenuItem, setActiveMenuItem] = useState('profile');
+
+  const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
 
   const notifications = [
     { id: 1, message: "Your order #1234 has been shipped!", time: "2 hours ago" },
@@ -83,8 +92,15 @@ const Profile = () => {
     { label: "TERMS AND SERVICE", path: "/customer/support/terms-and-service" },
   ];
 
+  const profileDropdownItems = [
+    { label: "My Profile", path: "/profile" },
+    { label: "My Orders", path: "/profile/orders" },
+    { label: "Logout", path: "#", onClick: handleLogout },
+  ];
+
   useEffect(() => {
-    console.log('Profile component mounted. Current token:', localStorage.getItem('token'));
+    console.log('Profile component mounted. Checking token...');
+
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -92,43 +108,38 @@ const Profile = () => {
           throw new Error("No authentication token found. Please log in.");
         }
 
-        const response = await fetch("http://127.0.0.1:8000/api/customer/profile", {
-          method: "GET",
+        const response = await axios.get("http://127.0.0.1:8000/api/profile", {
           headers: {
-            "Content-Type": "application/json",
+            "Accept": "application/json",
             "Authorization": `Bearer ${token}`,
           },
         });
 
-        if (response.status === 401) {
-          console.log("Unauthorized! Redirecting to login.");
-          localStorage.removeItem("token");
-          navigate('/login');
-          return;
-        }
+        const profileData = response.data.profile;
+        const userData = response.data.user;
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const profileData = await response.json();
-        console.log('Profile data fetched:', profileData);
         setProfile({
-          firstName: profileData.first_name || '',
-          middleName: profileData.middle_name || '',
-          lastName: profileData.last_name || '',
+          first_name: profileData.first_name || '',
+          middle_name: profileData.middle_name || '',
+          last_name: profileData.last_name || '',
           suffix: profileData.suffix || '',
-          email: profileData.email || '',
-          phone: profileData.phone || '',
+          email: userData?.email || '',
+          phone_number: profileData.phone_number || '',
           gender: profileData.gender || '',
-          dateOfBirth: profileData.date_of_birth || '',
-          profileImage: profileData.profile_image
-            ? `http://127.0.0.1:8000/storage/${profileData.profile_image}`
+          date_of_birth: profileData.date_of_birth || '',
+          profile_pic: profileData.profile_pic
+            ? `${BASE_IMAGE_URL}/${profileData.profile_pic}`
             : '/imgs/profile.svg',
         });
+
+        setDisplayedName({
+          first_name: profileData.first_name || '',
+          last_name: profileData.last_name || '',
+        });
+
         setImagePreview(
-          profileData.profile_image
-            ? `http://127.0.0.1:8000/storage/${profileData.profile_image}`
+          profileData.profile_pic
+            ? `${BASE_IMAGE_URL}/${profileData.profile_pic}`
             : '/imgs/profile.svg'
         );
       } catch (err) {
@@ -156,16 +167,19 @@ const Profile = () => {
       if (!e.target.closest('.cart-sidebar') && !e.target.closest('.header-icon')) {
         setIsCartVisible(false);
       }
+      if (!e.target.closest('.profile-container') && !e.target.closest('.profile-button')) {
+        setIsProfileDropdownOpen(false);
+      }
     };
 
-    if (isNotificationOpen || isWishlistOpen || isSupportOpen || isCartVisible) {
+    if (isNotificationOpen || isWishlistOpen || isSupportOpen || isCartVisible || isProfileDropdownOpen) {
       document.addEventListener('click', handleOutsideClick);
     }
     return () => document.removeEventListener('click', handleOutsideClick);
-  }, [isNotificationOpen, isWishlistOpen, isSupportOpen, isCartVisible]);
+  }, [isNotificationOpen, isWishlistOpen, isSupportOpen, isCartVisible, isProfileDropdownOpen]);
 
   const handleAuthError = (err) => {
-    if (err.message.includes("401")) {
+    if (err.message.includes("401") || err.response?.status === 401) {
       setError("Session expired. Please log in again.");
       localStorage.removeItem('token');
       navigate('/login');
@@ -217,18 +231,21 @@ const Profile = () => {
   };
 
   const handleSave = async () => {
+    setIsSaving(true);
     const formData = new FormData();
-    formData.append('first_name', profile.firstName);
-    formData.append('middle_name', profile.middleName);
-    formData.append('last_name', profile.lastName);
+    formData.append('first_name', profile.first_name);
+    formData.append('middle_name', profile.middle_name);
+    formData.append('last_name', profile.last_name);
     formData.append('suffix', profile.suffix);
     formData.append('email', profile.email);
-    formData.append('phone', profile.phone);
+    formData.append('phone_number', profile.phone_number);
     formData.append('gender', profile.gender);
-    formData.append('date_of_birth', profile.dateOfBirth);
+    formData.append('date_of_birth', profile.date_of_birth);
+    
     if (newProfileImage) {
       formData.append('profile_image', newProfileImage);
     }
+    formData.append('_method', 'PUT');
 
     try {
       const token = localStorage.getItem('token');
@@ -240,51 +257,64 @@ const Profile = () => {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,
+          "Accept": "application/json",
         },
         body: formData,
       });
 
-      if (response.status === 401) {
-        console.log("Unauthorized! Redirecting to login.");
-        localStorage.removeItem("token");
-        navigate('/login');
-        return;
-      }
-
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+        if (response.status === 401) {
+          localStorage.removeItem("token");
+          navigate('/login');
+          throw new Error("Session expired. Please log in again.");
+        }
+        throw new Error(errorData.message || "Failed to update profile");
       }
 
       const updatedData = await response.json();
+      console.log("Updated Profile Data:", updatedData);
+
       setProfile((prev) => ({
         ...prev,
-        firstName: updatedData.first_name || prev.firstName,
-        middleName: updatedData.middle_name || prev.middleName,
-        lastName: updatedData.last_name || prev.lastName,
-        suffix: updatedData.suffix || prev.suffix,
-        email: updatedData.email || prev.email,
-        phone: updatedData.phone || prev.phone,
-        gender: updatedData.gender || prev.gender,
-        dateOfBirth: updatedData.date_of_birth || prev.dateOfBirth,
-        profileImage: updatedData.profile_image
-          ? `http://127.0.0.1:8000/storage/${updatedData.profile_image}`
-          : prev.profileImage,
+        first_name: updatedData.profile?.first_name || updatedData.first_name || prev.first_name,
+        middle_name: updatedData.profile?.middle_name || updatedData.middle_name || prev.middle_name,
+        last_name: updatedData.profile?.last_name || updatedData.last_name || prev.last_name,
+        suffix: updatedData.profile?.suffix || updatedData.suffix || prev.suffix,
+        email: updatedData.user?.email || updatedData.email || prev.email,
+        phone_number: updatedData.profile?.phone_number || updatedData.phone_number || prev.phone_number,
+        gender: updatedData.profile?.gender || updatedData.gender || prev.gender,
+        date_of_birth: updatedData.profile?.date_of_birth || updatedData.date_of_birth || prev.date_of_birth,
+        profile_pic: updatedData.profile?.profile_pic
+          ? `${BASE_IMAGE_URL}/${updatedData.profile.profile_pic}`
+          : prev.profile_pic,
       }));
+
+      setDisplayedName({
+        first_name: updatedData.profile?.first_name || updatedData.first_name || profile.first_name,
+        last_name: updatedData.profile?.last_name || updatedData.last_name || profile.last_name,
+      });
+
       setNewProfileImage(null);
       setImagePreview(
-        updatedData.profile_image
-          ? `http://127.0.0.1:8000/storage/${updatedData.profile_image}`
-          : '/imgs/profile.svg'
+        updatedData.profile?.profile_pic
+          ? `${BASE_IMAGE_URL}/${updatedData.profile.profile_pic}`
+          : profile.profile_pic
       );
+
       alert('Profile updated successfully!');
     } catch (err) {
       console.error('Save Profile Error:', err);
-      handleAuthError(err);
+      alert(err.message || 'Failed to update profile. Please try again.');
+      if (err.message.includes("token") || err.message.includes("expired")) {
+        handleAuthError(err);
+      }
+    } finally {
+      setIsSaving(false);
     }
   };
 
-  const handleProfileClick = () => navigate('/profile');
+  const handleProfileClick = () => setIsProfileDropdownOpen((prev) => !prev);
   const handleSearchClick = () => setIsSearchOpen((prev) => !prev);
   const handleSearchChange = (e) => setSearchQuery(e.target.value);
   const handleSearchSubmit = (e) => {
@@ -404,9 +434,32 @@ const Profile = () => {
             className="header-icon"
             onClick={handleCartClick}
           />
-          <button className="profile-button" onClick={handleProfileClick}>
-            <img src="/imgs/Profile.svg" alt="Profile" />
-          </button>
+          <div className="profile-container">
+            <button
+              className={`profile-button ${isProfileDropdownOpen ? 'active' : ''}`}
+              onClick={handleProfileClick}
+            >
+              <img
+                src={profile.profile_pic}
+                alt="Profile"
+                className="profile-pic"
+              />
+            </button>
+            <div className={`profile-dropdown ${isProfileDropdownOpen ? '' : 'hidden'}`}>
+              {profileDropdownItems.map((item, index) => (
+                <React.Fragment key={index}>
+                  <Link
+                    to={item.path}
+                    className="profile-item"
+                    onClick={item.onClick || undefined}
+                  >
+                    {item.label}
+                  </Link>
+                  {index === 1 && <hr className="profile-separator" />}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
         </div>
       </header>
 
@@ -414,7 +467,7 @@ const Profile = () => {
         <div className="cart-content">
           <div className="cart-header">
             <h2>CART</h2>
-            <span className="close-cart" onClick={handleCloseCart}></span>
+            <span className="close-cart" onClick={handleCloseCart}>×</span>
           </div>
           <div className="cart-body">
             <img src="/imgs/empty-cart.svg" alt="Empty Cart" className="empty-cart-icon" />
@@ -432,54 +485,54 @@ const Profile = () => {
           <div className="sidebar">
             <div className="user-info">
               <img
-                src={imagePreview || profile.profileImage}
+                src={imagePreview || profile.profile_pic}
                 alt="Profile"
                 className="profile-pic"
               />
-              <h2>{profile.firstName} {profile.lastName}</h2>
+              <h2>{displayedName.first_name} {displayedName.last_name}</h2>
             </div>
             <ul className="nav-menu">
               <li
                 className={activeMenuItem === 'profile' ? 'active' : ''}
                 onClick={() => handleMenuClick('profile', '/profile')}
               >
-                <img src="/imgs/user.svg" alt="My Profile" /> My Profile
+                <img src="/imgs/myprofile.svg" alt="My Profile" /> My Profile
               </li>
               <li
                 className={activeMenuItem === 'address' ? 'active' : ''}
                 onClick={() => handleMenuClick('address', '/profile/address')}
               >
-                <img src="/imgs/location.svg" alt="My Address" /> My Address
+                <img src="/imgs/myaddress.svg" alt="My Address" /> My Address
               </li>
               <li
                 className={activeMenuItem === 'password' ? 'active' : ''}
                 onClick={() => handleMenuClick('password', '/profile/change-password')}
               >
-                <img src="/imgs/lock.svg" alt="Change Password" /> Change Password
+                <img src="/imgs/mypassword.svg" alt="Change Password" /> Change Password
               </li>
               <li
                 className={activeMenuItem === 'wishlist' ? 'active' : ''}
                 onClick={() => handleMenuClick('wishlist', '/profile/wishlist')}
               >
-                <img src="/imgs/heart.svg" alt="My Wishlist" /> My Wishlist
+                <img src="/imgs/mywishlist.svg" alt="My Wishlist" /> My Wishlist
               </li>
               <li
                 className={activeMenuItem === 'orders' ? 'active' : ''}
                 onClick={() => handleMenuClick('orders', '/profile/orders')}
               >
-                <img src="/imgs/order.svg" alt="My Orders" /> My Orders
+                <img src="/imgs/myorder.svg" alt="My Orders" /> My Orders
               </li>
               <li
                 className={activeMenuItem === 'cart' ? 'active' : ''}
                 onClick={() => handleMenuClick('cart', '/profile/cart')}
               >
-                <img src="/imgs/cart.svg" alt="My Cart" /> My Cart
+                <img src="/imgs/mycarts.svg" alt="My Cart" /> My Cart
               </li>
               <li
                 className={activeMenuItem === 'logout' ? 'active' : ''}
                 onClick={handleLogout}
               >
-                <img src="/imgs/logout.svg" alt="Logout" /> Logout
+                <img src="/imgs/mylogout.svg" alt="Logout" /> Logout
               </li>
             </ul>
           </div>
@@ -488,7 +541,7 @@ const Profile = () => {
               <div className="add-profile-image">
                 <h3>ADD PROFILE IMAGE</h3>
                 <img
-                  src={imagePreview || profile.profileImage}
+                  src={imagePreview || profile.profile_pic}
                   alt="Profile Preview"
                   className="preview-image"
                 />
@@ -514,8 +567,8 @@ const Profile = () => {
                     <label>First Name</label>
                     <input
                       type="text"
-                      name="firstName"
-                      value={profile.firstName}
+                      name="first_name"
+                      value={profile.first_name}
                       onChange={handleInputChange}
                       required
                     />
@@ -524,8 +577,8 @@ const Profile = () => {
                     <label>Middle Name</label>
                     <input
                       type="text"
-                      name="middleName"
-                      value={profile.middleName}
+                      name="middle_name"
+                      value={profile.middle_name}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -534,8 +587,8 @@ const Profile = () => {
                   <label>Last Name</label>
                   <input
                     type="text"
-                    name="lastName"
-                    value={profile.lastName}
+                    name="last_name"
+                    value={profile.last_name}
                     onChange={handleInputChange}
                     required
                   />
@@ -560,11 +613,11 @@ const Profile = () => {
                   />
                 </div>
                 <div className="form-group full-width">
-                  <label>Phone</label>
+                  <label>Phone Number</label>
                   <input
                     type="tel"
-                    name="phone"
-                    value={profile.phone}
+                    name="phone_number"
+                    value={profile.phone_number}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -585,14 +638,18 @@ const Profile = () => {
                   <label>Date of Birth</label>
                   <input
                     type="date"
-                    name="dateOfBirth"
-                    value={profile.dateOfBirth}
+                    name="date_of_birth"
+                    value={profile.date_of_birth}
                     onChange={handleInputChange}
                   />
                 </div>
                 <div className="form-actions">
-                  <button className="save-button" onClick={handleSave}>
-                    Save
+                  <button 
+                    className="save-button" 
+                    onClick={handleSave}
+                    disabled={isSaving}
+                  >
+                    {isSaving ? 'Saving...' : 'Save'}
                   </button>
                 </div>
               </div>

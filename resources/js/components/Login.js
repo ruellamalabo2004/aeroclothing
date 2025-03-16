@@ -7,41 +7,43 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // React Router for navigation
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
-  
+
     try {
-      const response = await axios.post('http://localhost:8000/api/login', {
-        email,
-        password
-      });
-  
-      const { token, user } = response.data;  // Extract token and user data
-  
-      // Save token & role in localStorage
+      const response = await axios.post('http://localhost:8000/api/login', { email, password });
+      const { token, user } = response.data; 
+
+      // Store token & user info
       localStorage.setItem('token', token);
-      localStorage.setItem('role', user.role);  // Store the role from user object
-  
-      console.log("Stored Role:", localStorage.getItem('role')); // Debugging
-  
+      localStorage.setItem('user', JSON.stringify(user)); 
+      localStorage.setItem('role', user.role);
+      
+      // Fetch profile data after successful login
+      const profileResponse = await axios.get('http://localhost:8000/api/profile', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const profile = profileResponse.data.profile;
+      localStorage.setItem('profile', JSON.stringify(profile));
+
       // Redirect based on role
       if (user.role === 'admin') {
-        navigate('/dashboard');  // Redirect to admin dashboard
+        navigate('/dashboard');  
       } else {
-        navigate('/homepage');   // Redirect to user homepage
+        navigate('/homepage');   
       }
-  
+
     } catch (error) {
       setMessage(error.response?.data?.message || 'Login failed');
     } finally {
       setLoading(false);
     }
   };
-  
 
   return (
     <>

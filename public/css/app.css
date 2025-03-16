@@ -4,6 +4,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;700&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;700&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;700&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;700&display=swap);
 /* 📌 General Styles (unchanged) */
 * {
     margin: 0;
@@ -4090,8 +4091,6 @@ h1 {
       }
     }
   }
-/* Homepage.scss */
-
 * {
   font-family: 'Albert Sans', sans-serif;
   margin: 0;
@@ -4108,7 +4107,7 @@ h1 {
   justify-content: center;
 }
 
-/* Header styles */
+/* Header styles (unchanged) */
 .login-header {
   width: 100%;
   height: 75px;
@@ -4327,7 +4326,7 @@ h1 {
   flex: 1;
 }
 
-/* Profile Button Styles */
+/* Profile Container and Dropdown Styles */
 .profile-container {
   position: relative;
   display: flex;
@@ -4364,11 +4363,11 @@ h1 {
   position: absolute;
   top: 100%;
   right: 0;
-  width: 140px; /* Reduced width */
+  width: 140px;
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 10px; /* Reduced padding to balance left and right space */
+  padding: 10px;
   z-index: 1001;
   margin-top: 10px;
 }
@@ -4399,7 +4398,7 @@ h1 {
 
 .profile-separator {
   border: none;
-  border-top: 1px solid #999; /* Darker separator color */
+  border-top: 1px solid #999;
   margin: 5px 0;
 }
 
@@ -4708,6 +4707,7 @@ h1 {
     cursor: pointer;
     transition: all 0.3s ease;
     padding: 0;
+    position: relative; /* For positioning the tooltip */
   }
   
   .add-to-cart-btn {
@@ -4718,6 +4718,28 @@ h1 {
       .action-icon {
         filter: brightness(0) invert(1);
       }
+      &::after {
+        opacity: 1;
+        transform: translateX(-10px);
+      }
+    }
+    
+    &::after {
+      content: "ADD TO CART";
+      position: absolute;
+      right: 100%; /* Position to the left of the button */
+      top: 50%;
+      transform: translateX(0) translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none; /* Prevents interaction with the tooltip */
+      margin-right: 10px; /* Space between tooltip and button */
     }
   }
   
@@ -4726,12 +4748,34 @@ h1 {
     
     &:hover {
       background-color: #c12d2f;
+      &::after {
+        opacity: 1;
+        transform: translateX(-10px);
+      }
+    }
+    
+    &::after {
+      content: "BUY NOW";
+      position: absolute;
+      right: 100%; /* Position to the left of the button */
+      top: 50%;
+      transform: translateX(0) translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+      margin-right: 10px;
     }
   }
   
   .action-icon {
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
     transition: filter 0.3s ease;
   }
 }
@@ -4868,6 +4912,7 @@ h1 {
   background-color: #c12d2f;
 }
 
+/* Footer Styles (unchanged) */
 .footer {
   background-color: #1a1a1a;
   color: #ccc;
@@ -4939,6 +4984,90 @@ h1 {
   font-size: 12px;
 }
 
+/* Cart Sidebar Styles */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100%;
+  z-index: 1002;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+
+  &.active {
+    transform: translateX(0);
+  }
+
+  .cart-content {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    padding: 20px;
+    border-left: 1px solid #ddd;
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+
+      h2 {
+        font-size: 20px;
+        color: #000;
+        margin: 0;
+        font-weight: 500;
+      }
+
+      .close-cart {
+        font-size: 24px;
+        cursor: pointer;
+        color: #000;
+      }
+    }
+
+    .cart-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: calc(100% - 60px);
+      text-align: center;
+
+      .empty-cart-icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      .start-shopping-btn {
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        transition: background 0.3s ease;
+
+        &:hover {
+          background: #333;
+        }
+      }
+    }
+  }
+}
+
 /* Media Queries */
 @media (max-width: 1200px) {
   .login-header {
@@ -4971,6 +5100,20 @@ h1 {
     width: 100%;
     height: 400px;
   }
+  .product-actions {
+    gap: 6px;
+    
+    .add-to-cart-btn,
+    .buy-now-btn {
+      width: 36px;
+      height: 36px;
+      
+      .action-icon {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
   .category-items {
     flex-direction: column;
     align-items: center;
@@ -4991,22 +5134,8 @@ h1 {
   .footer-content {
     padding: 0 20px;
   }
-  .product-actions {
-    gap: 6px;
-    
-    .add-to-cart-btn,
-    .buy-now-btn {
-      width: 36px;
-      height: 36px;
-      
-      .action-icon {
-        width: 18px;
-        height: 18px;
-      }
-    }
-  }
-  .profile-dropdown {
-    width: 120px; /* Adjusted width */
+  .cart-sidebar {
+    width: 350px;
   }
 }
 
@@ -5046,6 +5175,20 @@ h1 {
     width: 100%;
     height: 400px;
   }
+  .product-actions {
+    gap: 5px;
+    
+    .add-to-cart-btn,
+    .buy-now-btn {
+      width: 34px;
+      height: 34px;
+      
+      .action-icon {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
   .search-input {
     width: 120px;
   }
@@ -5083,22 +5226,11 @@ h1 {
   .footer-socials {
     align-items: center;
   }
-  .product-actions {
-    gap: 5px;
-    
-    .add-to-cart-btn,
-    .buy-now-btn {
-      width: 34px;
-      height: 34px;
-      
-      .action-icon {
-        width: 16px;
-        height: 16px;
-      }
-    }
+  .cart-sidebar {
+    width: 300px;
   }
   .profile-dropdown {
-    width: 120px; /* Adjusted width */
+    width: 120px;
     right: -50px;
   }
 }
@@ -5132,6 +5264,20 @@ h1 {
     width: 100%;
     height: 400px;
   }
+  .product-actions {
+    gap: 4px;
+    
+    .add-to-cart-btn,
+    .buy-now-btn {
+      width: 32px;
+      height: 32px;
+      
+      .action-icon {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
   .notification-dropdown,
   .wishlist-dropdown {
     width: 250px;
@@ -5157,22 +5303,11 @@ h1 {
   .social-icons {
     gap: 1rem;
   }
-  .product-actions {
-    gap: 4px;
-    
-    .add-to-cart-btn,
-    .buy-now-btn {
-      width: 32px;
-      height: 32px;
-      
-      .action-icon {
-        width: 16px;
-        height: 16px;
-      }
-    }
+  .cart-sidebar {
+    width: 250px;
   }
   .profile-dropdown {
-    width: 120px; /* Adjusted width */
+    width: 120px;
     right: -60px;
   }
 }
@@ -5210,6 +5345,20 @@ h1 {
     width: 100%;
     height: 400px;
   }
+  .product-actions {
+    gap: 4px;
+    
+    .add-to-cart-btn,
+    .buy-now-btn {
+      width: 30px;
+      height: 30px;
+      
+      .action-icon {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
   .item-header {
     flex-direction: row;
     align-items: center;
@@ -5243,32 +5392,28 @@ h1 {
   .featured-item {
     height: 250px;
   }
-
-  .product-actions {
-    gap: 4px;
-    
-    .add-to-cart-btn,
-    .buy-now-btn {
-      width: 30px;
-      height: 30px;
-      
-      .action-icon {
-        width: 14px;
-        height: 14px;
-      }
-    }
+  .footer-content {
+    padding: 0 10px;
+  }
+  .footer-links {
+    gap: 0.8rem;
+  }
+  .footer-socials {
+    gap: 0.8rem;
+  }
+  .social-icons {
+    gap: 0.8rem;
+  }
+  .cart-sidebar {
+    width: 100%;
   }
   .profile-dropdown {
-    width: 120px; /* Adjusted width */
+    width: 120px;
     right: -70px;
   }
   .profile-item {
     font-size: 12px;
     padding: 8px 0;
-  }
-  .profile-item-icon {
-    width: 14px;
-    height: 14px;
   }
 }
 /* Profile.scss */
@@ -6022,6 +6167,239 @@ h1 {
   .profile-item-icon {
     width: 14px;
     height: 14px;
+  }
+}
+
+* {
+  font-family: 'Albert Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ChangePassword {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f5f5f5;
+  justify-content: center;
+}
+
+
+/* Sidebar Styles */
+.sidebar {
+  width: 250px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+}
+
+/* Profile Content Specific Styles */
+.profile-content {
+  flex: 1; /* Allow profile-content to take remaining width (100% when sidebar is fixed) */
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.change-password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Adjusted gap to match the image spacing */
+  width: 100%; /* Ensure form takes full width of profile-content */
+  margin-left: 0; /* Keep form aligned to the left for title/subtitle */
+
+  .form-title {
+    font-size: 24px;
+    font-weight: 700; /* Ensure bold font */
+    color: #333;
+    text-align: left;
+  }
+
+  .form-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .form-group.full-width {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px; /* Gap between label and input */
+    margin: 0 auto; /* Center the input group horizontally */
+    width: 100%; /* Ensure it takes full width of the form */
+    max-width: 340px; /* Match the specified input width */
+  }
+}
+
+.form-group.full-width {
+  label {
+    font-size: 14px;
+    color: #333;
+    font-weight: normal;
+    min-width: 120px; /* Fixed width for label to align inputs */
+    text-align: left;
+  }
+
+  .password-input-container {
+    position: relative;
+    flex: 1; /* Allow input to take remaining space */
+
+    input {
+      width: 340px; /* Specified input width */
+      height: 32px; /* Specified input height */
+      padding: 0 10px; /* Adjust padding to fit height */
+      border: 1px solid #000; /* Match the image's border style */
+      border-radius: 0; /* Remove rounding to match image */
+      font-size: 14px;
+      background: transparent; /* No background to match image */
+
+      &:focus {
+        outline: none;
+        border-color: #000; /* Keep border color on focus */
+      }
+    }
+
+    .eye-icon {
+      position: absolute;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      top: 50%;
+      transform: translateY(-50%); /* Vertically center the eye icon */
+    }
+  }
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: row; /* Align buttons horizontally */
+  gap: 10px; /* Gap between buttons */
+  margin-top: 0; /* Align top edge with input boxes */
+  margin-left: 555px; /* Move buttons to the right (adjusted to 555px as requested) */
+  /* Removed margin-right: auto to allow full control over positioning */
+}
+
+.cancel-button {
+  background: #fff; /* White background to match image */
+  color: #000; /* Black text */
+  border: 1px solid #000; /* Black border */
+  width: 126px; /* Specified button width */
+  height: 39px; /* Specified button height */
+  padding: 0;
+  border-radius: 0; /* Remove rounding to match image */
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal; /* Match image text weight */
+
+  &:hover {
+    background: #f0f0f0; /* Slight gray on hover */
+  }
+}
+
+.submit-button {
+  background: #000; /* Black background to match image */
+  color: #fff; /* White text */
+  border: none; /* No border to match image */
+  width: 126px; /* Specified button width */
+  height: 39px; /* Specified button height */
+  padding: 0;
+  border-radius: 0; /* Remove rounding to match image */
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal; /* Match image text weight */
+
+  &:hover {
+    background: #333; /* Slightly lighter black on hover */
+  }
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+  .profile-container {
+    .profile-body {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      margin-bottom: 20px;
+      margin-right: 0;
+    }
+
+    .profile-content {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-container {
+    padding: 5px;
+  }
+
+  .profile-content {
+    padding: 10px;
+  }
+
+  .change-password-form {
+    width: 100%;
+  }
+
+  .form-group.full-width {
+    flex-direction: column; /* Stack label and input on small screens */
+    gap: 5px;
+    margin: 0; /* Reset centering on small screens */
+    max-width: 100%; /* Ensure full width on small screens */
+
+    label {
+      min-width: auto; /* Reset label width on small screens */
+    }
+
+    .password-input-container {
+      flex: none; /* Reset flex on small screens */
+      input {
+        width: 100%; /* Full width on small screens */
+        height: 32px; /* Maintain height */
+      }
+    }
+  }
+
+  .form-actions {
+    width: 100%; /* Full width on small screens */
+    flex-direction: row; /* Keep buttons horizontal */
+    justify-content: flex-start; /* Align buttons to the left on small screens */
+    margin-left: 0; /* Reset margin for alignment */
+    margin-top: 0; /* Align top edge with input boxes on small screens */
+
+    .cancel-button,
+    .submit-button {
+      width: 126px; /* Maintain specified width */
+      height: 39px; /* Maintain specified height */
+    }
   }
 }
 @charset "UTF-8";

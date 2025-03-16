@@ -163,7 +163,7 @@ export default function Dashboard() {
               className={({ isActive }) => (isActive ? "active" : "")}
               onClick={() => setSidebarOpen(false)}
             >
-              <img src="/imgs/Orders.svg" alt="Orders" className="nav-icon" />
+              <img src="/imgs/Orderings.svg" alt="Orders" className="nav-icon" />
               Orders
             </NavLink>
             <NavLink
