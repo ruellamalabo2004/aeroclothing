@@ -6,8 +6,7 @@ import axios from 'axios';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
-// ShopByCategory Component
+// ShopByCategory Component (unchanged)
 const ShopByCategory = () => {
   const navigate = useNavigate();
 
@@ -40,7 +39,7 @@ const ShopByCategory = () => {
   );
 };
 
-// FeaturedItems Component
+// FeaturedItems Component (unchanged)
 const FeaturedItems = () => {
   const navigate = useNavigate();
 
@@ -82,7 +81,7 @@ const FeaturedItems = () => {
   );
 };
 
-// Footer Component
+// Footer Component (unchanged)
 const Footer = () => {
   const footerLinks = [
     { label: "ORDERS & PAYMENTS", path: "/customer/support/order-payment" },
@@ -129,6 +128,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [ratings, setRatings] = useState({});
   const [wishlistedItems, setWishlistedItems] = useState([]);
+  const [latestWishlistItem, setLatestWishlistItem] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [filteredItems, setFilteredItems] = useState([]);
@@ -139,12 +139,12 @@ const HomePage = () => {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]); // Added for cart functionality
+  const [cartItems, setCartItems] = useState([]);
 
   const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
+  const API_URL = "http://127.0.0.1:8000/api";
 
   const items = [];
-
   const notifications = [
     { id: 1, message: "Your order #1234 has been shipped!", time: "2 hours ago" },
     { id: 2, message: "New collection available now!", time: "5 hours ago" },
@@ -173,13 +173,15 @@ const HomePage = () => {
       return;
     }
 
+    // Fetch user profile to get user_id
     axios
-      .get("http://127.0.0.1:8000/api/profile", {
+      .get(`${API_URL}/profile`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         const profileData = response.data.profile;
-        setUserProfile({
+        const user = {
+          id: response.data.user.id,
           first_name: profileData.first_name || '',
           middle_name: profileData.middle_name || '',
           last_name: profileData.last_name || '',
@@ -191,7 +193,12 @@ const HomePage = () => {
           profile_pic: profileData.profile_pic
             ? `${BASE_IMAGE_URL}/${profileData.profile_pic}`
             : '/imgs/Profile.svg',
-        });
+        };
+        setUserProfile(user);
+
+        // Fetch wishlist and cart for this user
+        fetchWishlist(token, user.id);
+        fetchCart(token, user.id);
       })
       .catch((error) => {
         console.error("Error fetching profile:", error);
@@ -202,8 +209,9 @@ const HomePage = () => {
         }
       });
 
+    // Fetch products
     axios
-      .get("http://127.0.0.1:8000/api/products", {
+      .get(`${API_URL}/products`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -228,16 +236,191 @@ const HomePage = () => {
           navigate('/login');
         }
       });
-
-    // Load cart items from localStorage
-    const storedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
-    setCartItems(storedCart);
   }, [navigate, BASE_IMAGE_URL]);
 
-  // Save cart items to localStorage whenever they change
+  // Fetch wishlist for the logged-in user
+  const fetchWishlist = async (token, userId) => {
+    try {
+      const response = await axios.get(`${API_URL}/wishlist`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log("Wishlist response:", response.data);
+      const wishlistData = response.data.data || response.data || [];
+      // Map wishlist items to match expected structure
+      const detailedWishlist = wishlistData.map(item => ({
+        id: item.product_id,
+        productName: item.product?.product_name  || "Unknown Product",
+        price: item.product?.price || 0,
+        imagePreview: item.product?.image_1 ? `${BASE_IMAGE_URL}/${item.product.image_1}` : '/default-image.jpg',
+      }));
+      setWishlistedItems(detailedWishlist);
+      console.log("Updated wishlistedItems:", detailedWishlist);
+    } catch (error) {
+      console.error("Error fetching wishlist:", error.response?.data || error.message);
+    }
+  };
+
+  // Fetch cart for the logged-in user
+  const fetchCart = async (token, userId) => {
+    try {
+      const response = await axios.get(`${API_URL}/cart`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log("Cart response:", response.data);
+      const cartData = response.data.data || response.data || [];
+      // Map cart items to match expected structure
+      const detailedCart = cartData.map(item => ({
+        id: item.product_id,
+        productName: item.product?.product_name  || "Unknown Product",
+        price: item.product?.price || 0,
+        imagePreview: item.product?.image_1 ? `${BASE_IMAGE_URL}/${item.product.image_1}` : '/default-image.jpg',
+        quantity: item.quantity || 1,
+      }));
+      setCartItems(detailedCart);
+      console.log("Updated cartItems:", detailedCart);
+    } catch (error) {
+      console.error("Error fetching cart:", error.response?.data || error.message);
+    }
+  };
+
+  // Add to wishlist with user_id
+  const addToWishlist = async (product) => {
+    const token = localStorage.getItem('token');
+    const userId = userProfile?.id;
+    try {
+      const response = await axios.post(`${API_URL}/wishlist`, {
+        user_id: userId,
+        product_id: product.id,
+      }, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log("Add to wishlist response:", response.data);
+      setLatestWishlistItem({
+        id: product.id,
+        productName: product.productName,
+        price: product.price,
+        imagePreview: product.imagePreview,
+      }); // Set notification with full product details
+      fetchWishlist(token, userId); // Refresh wishlist
+    } catch (error) {
+      console.error("Error adding to wishlist:", error.response?.data || error.message);
+      if (error.response?.status === 409) {
+        fetchWishlist(token, userId); // Refresh even on conflict
+      }
+    }
+  };
+
+  // Remove from wishlist
+  const removeFromWishlist = async (productId) => {
+  const token = localStorage.getItem('token');
+  const userId = userProfile?.id;
+  try {
+    const response = await axios.delete(`${API_URL}/wishlist/${productId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    console.log("Remove from wishlist response:", response.data);
+    fetchWishlist(token, userId);
+  } catch (error) {
+    console.error("Error removing from wishlist:", error.response?.data || error.message);
+  }
+};
+
+  // Add to cart with user_id
+  const addToCart = async (product) => {
+    const token = localStorage.getItem('token');
+    const userId = userProfile?.id;
+    try {
+      const response = await axios.post(`${API_URL}/cart/add`, {
+        user_id: userId,
+        product_id: product.id,
+        quantity: 1,
+      }, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log("Add to cart response:", response.data);
+      fetchCart(token, userId); // Refresh cart
+    } catch (error) {
+      console.error("Error adding to cart:", error.response?.data || error.message);
+    }
+  };
+
+  // Remove from cart
+  const removeFromCartBackend = async (productId) => {
+    const token = localStorage.getItem('token');
+    const userId = userProfile?.id;
+    try {
+      const response = await axios.delete(`${API_URL}/cart/remove/${productId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log("Remove from cart response:", response.data);
+      fetchCart(token, userId); // Refresh cart
+    } catch (error) {
+      console.error("Error removing from cart:", error.response?.data || error.message);
+    }
+  };
+
+  // Cart functions
+  const handleAddToCart = (product) => async () => {
+    const existingItem = cartItems.find((item) => item.id === product.id);
+    if (!existingItem) {
+      await addToCart(product);
+    } else {
+      setCartItems((prev) =>
+        prev.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
+    }
+  };
+
+  const increaseCartQuantity = (itemId) => {
+    setCartItems((prev) => {
+      const updatedCart = prev.map((item) =>
+        item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+      );
+      console.log("Increased quantity, new cartItems:", updatedCart);
+      return updatedCart;
+    });
+  };
+
+  const decreaseCartQuantity = (itemId) => {
+    setCartItems((prev) => {
+      const updatedCart = prev.map((item) =>
+        item.id === itemId && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      );
+      console.log("Decreased quantity, new cartItems:", updatedCart);
+      return updatedCart;
+    });
+  };
+
+  const removeFromCart = (itemId) => async () => {
+    await removeFromCartBackend(itemId);
+  };
+
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+  // Wishlist functions
+  const handleWishlistToggle = (product) => async () => {
+    const isWishlisted = wishlistedItems.some((item) => item.id === product.id);
+    if (isWishlisted) {
+      await removeFromWishlist(product.id);
+    } else {
+      await addToWishlist(product);
+    }
+  };
+
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
+    if (latestWishlistItem) {
+      const timer = setTimeout(() => {
+        setLatestWishlistItem(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [latestWishlistItem]);
+
+  const wishlistCount = wishlistedItems.length;
 
   const handleRatingChange = (item) => (newRating) => {
     setRatings((prev) => ({
@@ -246,29 +429,11 @@ const HomePage = () => {
     }));
   };
 
-  const handleWishlistClick = (product) => () => {
-    setWishlistedItems((prev) => {
-      const isWishlisted = prev.some((w) => w.id === product.id);
-      return isWishlisted ? prev.filter((w) => w.id !== product.id) : [...prev, product];
-    });
-  };
-
-  const handleAddToCart = (product) => () => {
-    setCartItems((prev) => {
-      const exists = prev.some((item) => item.id === product.id);
-      if (!exists) {
-        return [...prev, { ...product, quantity: 1 }];
-      }
-      return prev;
-    });
-    console.log(`${product.productName} added to cart`);
-  };
-
   const handleBuyNow = (product) => () => {
     navigate('/checkout', { state: { product } });
   };
 
-  const handleWishlistToggle = () => {
+  const handleWishlistClick = () => {
     setIsWishlistOpen(!isWishlistOpen);
   };
 
@@ -329,8 +494,15 @@ const HomePage = () => {
   };
 
   const handleLogout = () => {
+    const token = localStorage.getItem('token');
+    axios.delete(`${API_URL}/cart/clear`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }).catch((error) => console.error("Error clearing cart:", error));
+
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    setWishlistedItems([]);
+    setCartItems([]);
     navigate('/login');
   };
 
@@ -454,29 +626,63 @@ const HomePage = () => {
               src="/imgs/Wish.svg" 
               alt="Wishlist" 
               className="header-icon" 
-              onClick={handleWishlistToggle}
+              onClick={handleWishlistClick}
             />
+            {wishlistCount > 0 && (
+              <span className="wishlist-count">{wishlistCount}</span>
+            )}
             <div className={`wishlist-dropdown ${!isWishlistOpen ? 'hidden' : ''}`}>
-              {wishlistedItems.length > 0 ? (
-                wishlistedItems.map(item => (
-                  <div key={item.id} className="wishlist-item">
-                    <div className="wishlist-item-details">
-                      <p>{item.name}</p>
-                      <span>{item.price}</span>
-                    </div>
-                  </div>
-                ))
-              ) : (
+              {wishlistedItems.length === 0 ? (
                 <p className="no-wishlist-items">No items in wishlist</p>
+              ) : (
+                <>
+                  {latestWishlistItem && (
+                    <div className="wishlist-notification">
+                      <img 
+                        src={latestWishlistItem.imagePreview || '/default-image.jpg'} 
+                        alt={latestWishlistItem.productName} 
+                        className="wishlist-item-image"
+                        style={{ width: '30px', height: '30px', marginRight: '10px' }}
+                      />
+                      <p>Added to Wishlist: {latestWishlistItem.productName}</p>
+                    </div>
+                  )}
+                  <div className="wishlist-items">
+                    {wishlistedItems.map((item) => (
+                      <div key={item.id} className="wishlist-item">
+                        <img 
+                          src={item.imagePreview || '/default-image.jpg'} 
+                          alt={item.productName} 
+                          className="wishlist-item-image"
+                        />
+                        <div className="wishlist-item-details">
+                          <h3>{item.productName}</h3>
+                          <p>₱{item.price}</p>
+                        </div>
+                        <button 
+                          className="remove-item"
+                          onClick={handleWishlistToggle(item)}
+                        >
+                          ×
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </>
               )}
             </div>
           </div>
-          <img 
-            src="/imgs/Cart.svg" 
-            alt="Cart" 
-            className="header-icon" 
-            onClick={handleCartClick}
-          />
+          <div className="cart-icon-container">
+            <img 
+              src="/imgs/Cart.svg" 
+              alt="Cart" 
+              className="header-icon" 
+              onClick={handleCartClick}
+            />
+            {cartCount > 0 && (
+              <span className="cart-count">{cartCount}</span>
+            )}
+          </div>
           <div className="profile-container">
             <button
               className={`profile-button ${isProfileDropdownOpen ? 'active' : ''}`}
@@ -513,17 +719,63 @@ const HomePage = () => {
       <div className={`cart-sidebar ${isCartVisible ? 'active' : ''}`}>
         <div className="cart-content">
           <div className="cart-header">
-            <h2>CART</h2>
+            <h2>CART ({cartCount})</h2>
             <span className="close-cart" onClick={handleCloseCart}>
               ×
             </span>
           </div>
           <div className="cart-body">
-            <img src="/imgs/emptycart.svg" alt="Empty Cart" className="empty-cart-icon" />
-            <p>Your cart is currently empty.</p>
-            <button className="start-shopping-btn" onClick={handleStartShopping}>
-              START SHOPPING
-            </button>
+            {cartItems.length === 0 ? (
+              <>
+                <img src="/imgs/emptycart.svg" alt="Empty Cart" className="empty-cart-icon" />
+                <p>Your cart is currently empty.</p>
+                <button className="start-shopping-btn" onClick={handleStartShopping}>
+                  START SHOPPING
+                </button>
+              </>
+            ) : (
+              <>
+                <div className="cart-items">
+                  {cartItems.map((item) => (
+                    <div key={item.id} className="cart-item">
+                      <img 
+                        src={item.imagePreview || '/default-image.jpg'} 
+                        alt={item.productName || 'Product'} 
+                        className="cart-item-image"
+                      />
+                      <div className="cart-item-details">
+                        <h3>{item.productName || 'Unnamed Product'}</h3>
+                        <p>₱{item.price || 0}</p>
+                        <div className="quantity-control">
+                          <button 
+                            onClick={() => decreaseCartQuantity(item.id)}
+                            disabled={item.quantity === 1}
+                          >
+                            -
+                          </button>
+                          <span>{item.quantity}</span>
+                          <button onClick={() => increaseCartQuantity(item.id)}>
+                            +
+                          </button>
+                        </div>
+                      </div>
+                      <button 
+                        className="remove-item"
+                        onClick={removeFromCart(item.id)}
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <button 
+                  className="checkout-btn"
+                  onClick={() => navigate('/checkout', { state: { cartItems } })}
+                >
+                  PROCEED TO CHECKOUT
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -561,7 +813,7 @@ const HomePage = () => {
                   className={`heart ${wishlistedItems.some(w => w.id === item.id) ? 'wishlisted' : ''}`}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleWishlistClick(item)();
+                    handleWishlistToggle(item)();
                   }}
                 />
               </div>
@@ -605,7 +857,7 @@ const HomePage = () => {
                     src={wishlistedItems.some((w) => w.id === product.id) ? "/imgs/heart-red.svg" : "/imgs/heart.svg"}
                     alt="Wishlist" 
                     className="wishlist-button"
-                    onClick={handleWishlistClick(product)}
+                    onClick={handleWishlistToggle(product)}
                   />
                 </div>
                 <p className="product-price">₱{product.price || "N/A"}</p>
@@ -623,5 +875,5 @@ const HomePage = () => {
     </div>
   );
 };
-
+  
 export default HomePage;

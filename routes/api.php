@@ -14,7 +14,32 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishlistController;
 
+Route::middleware('auth:api')->get('/cart', [OrderController::class, 'cart']);
+Route::middleware('auth:api')->get('/cart', [CartController::class, 'index']);
+
+
+Route::middleware('auth:api')->group(function () {
+    Route::post('/orders', [OrderController::class, 'store']); // Place order
+    Route::get('/orders', [OrderController::class, 'index']); // List all orders
+    Route::get('/orders/{id}', [OrderController::class, 'show']); // View single order
+    Route::delete('/orders/{id}', [OrderController::class, 'destroy']); // Cancel order
+});
+
+Route::middleware('auth:api')->group(function () {
+    Route::get('/wishlist', [WishlistController::class, 'index']);
+    Route::post('/wishlist', [WishlistController::class, 'store']);
+    Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy']);
+});
+
+Route::middleware('auth:api')->group(function () {
+    Route::get('/cart', [CartController::class, 'getCart']);
+    Route::post('/cart/add', [CartController::class, 'addToCart']);
+    Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart']);
+    Route::delete('/cart/clear', [CartController::class, 'clearCart']);
+});
 Route::apiResource('brands', BrandController::class);
 Route::get('/customers', [UserController::class, 'getCustomers']);
 Route::get('/customers/count', [UserController::class, 'getCustomerCount']);
