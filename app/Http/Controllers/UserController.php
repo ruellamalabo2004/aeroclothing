@@ -11,23 +11,8 @@ class UserController extends Controller
     // Fetch all users with profile information
     public function index()
     {
-        $users = User::leftJoin('profiles', 'users.id', '=', 'profiles.user_id')
-            ->select(
-                'users.id',
-                'users.email',
-                'users.role',
-                'users.status',
-                'users.created_at',  // Add created_at to the select statement
-                'profiles.first_name',
-                'profiles.last_name',
-                'profiles.suffix',
-                DB::raw("CONCAT(COALESCE(profiles.first_name, ''), ' ', COALESCE(profiles.last_name, ''), ' ', COALESCE(profiles.suffix, '')) AS full_name")
-            )
-            ->get();
-
-        return response()->json(['data' => $users], 200);
+        return response()->json(User::all(), 200);
     }
-
     // Fetch customers (users with role 'customer')
     public function getCustomers()
     {
@@ -76,24 +61,54 @@ class UserController extends Controller
         return response()->json(['data' => $user], 200);
     }
 
-    // Store a new user
     public function store(Request $request)
     {
         $request->validate([
+            'first_name' => 'required|string|max:255',
+            'middle_name' => 'nullable|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'suffix' => 'nullable|string|max:10',
             'email' => 'required|email|unique:users,email',
+            'phone_number' => 'nullable|string|max:20',
+            'gender' => 'nullable|in:Male,Female,Other',
+            'date_of_birth' => 'nullable|date',
             'password' => 'required|string|min:6',
             'role' => 'nullable|string',
         ]);
-
-        $user = User::create([
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => $request->role ?? 'customer',
-            'status' => 'Active',
-        ]);
-
-        return response()->json(['message' => 'User created successfully', 'data' => $user], 201);
+    
+        DB::beginTransaction();
+        try {
+            // ✅ 1. Create user in `users` table
+            $user = User::create([
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'role' => $request->role ?? 'customer',
+                'status' => 'Active',
+            ]);
+    
+            // ✅ 2. Create profile in `profiles` table linked to user
+            $user->profile()->create([
+                'first_name' => $request->first_name,
+                'middle_name' => $request->middle_name,
+                'last_name' => $request->last_name,
+                'suffix' => $request->suffix,
+                'phone_number' => $request->phone_number,
+                'gender' => $request->gender,
+                'date_of_birth' => $request->date_of_birth,
+            ]);
+    
+            DB::commit();
+    
+            return response()->json([
+                'message' => 'User created successfully',
+                'data' => $user->load('profile') // ✅ Include profile in response
+            ], 201);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Error creating user', 'error' => $e->getMessage()], 500);
+        }
     }
+    
    public function getCustomerCount()
 {
     try {
@@ -112,6 +127,12 @@ class UserController extends Controller
         ], 500);
     }
 }
+public function getTotalUsers()
+{
+    $count = User::count();
+    return response()->json(['total_users' => $count]);
+}
+
 
     public function update(Request $request, $id)
     {

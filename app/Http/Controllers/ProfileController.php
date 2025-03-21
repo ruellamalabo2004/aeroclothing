@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -17,28 +18,30 @@ class ProfileController extends Controller
         if (!$user) {
             return response()->json(['message' => 'Unauthenticated'], 401);
         }
-
+    
+        // Ensure profile exists and is correctly retrieved
         $profile = $user->profile;
+    
         if (!$profile) {
             return response()->json(['message' => 'Profile not found'], 404);
         }
-
+    
         return response()->json([
-            'first_name' => $profile->first_name,
-            'middle_name' => $profile->middle_name ?? '',
-            'last_name' => $profile->last_name,
+            'first_name' => $profile->first_name ?? 'N/A',
+            'middle_name' => $profile->middle_name ?? 'N/A',
+            'last_name' => $profile->last_name ?? 'N/A',
             'suffix' => $profile->suffix ?? '',
-            'email' => $user->email, // From users table
-            'phone' => $profile->phone ?? '',
-            'gender' => $profile->gender ?? '',
-            'date_of_birth' => $profile->date_of_birth ? $profile->date_of_birth->toDateString() : null,
-            'age' => $profile->age ?? null, // Assuming age is calculated
+            'email' => $user->email, // Email from users table
+            'phone' => $profile->phone_number ?? 'N/A', // Fixed column name
+            'gender' => $profile->gender ?? 'N/A',
+            'date_of_birth' => $profile->date_of_birth ? $profile->date_of_birth->toDateString() : 'N/A',
+            'role' => $user->role ?? 'N/A', // Role from users table
             'profile_image' => $profile->profile_pic 
                 ? asset('storage/' . $profile->profile_pic) 
                 : asset('default-avatar.png'),
         ], 200);
     }
-
+    
     /**
      * Update the authenticated user's profile.
      */
@@ -49,12 +52,8 @@ class ProfileController extends Controller
             return response()->json(['message' => 'Unauthenticated'], 401);
         }
 
-        $profile = $user->profile;
-        if (!$profile) {
-            return response()->json(['message' => 'Profile not found'], 404);
-        }
+        $profile = $user->profile ?? $user->profile()->create();
 
-        // Validate input data
         $request->validate([
             'first_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
@@ -64,52 +63,57 @@ class ProfileController extends Controller
             'phone' => 'nullable|string|max:20',
             'gender' => 'nullable|string|in:male,female,other',
             'date_of_birth' => 'nullable|date',
-            'profile_pic' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Image validation
+            'profile_pic' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Handle profile picture upload
-        if ($request->hasFile('profile_pic')) {
-            // Delete old profile picture if exists
-            if ($profile->profile_pic) {
-                Storage::disk('public')->delete($profile->profile_pic);
+        DB::beginTransaction();
+        try {
+            if ($request->hasFile('profile_pic')) {
+                // Delete old picture only if a new one is uploaded
+                if ($profile->profile_pic) {
+                    Storage::disk('public')->delete($profile->profile_pic);
+                }
+                
+                $path = $request->file('profile_pic')->store('profile_pics', 'public');
+                $profile->profile_pic = $path;
             }
 
-            $file = $request->file('profile_pic');
-            $path = $file->store('profile_pics', 'public');
-            $profile->profile_pic = $path;
+            $profile->update([
+                'first_name' => $request->first_name,
+                'middle_name' => $request->middle_name,
+                'last_name' => $request->last_name,
+                'suffix' => $request->suffix,
+                'phone' => $request->phone,
+                'gender' => $request->gender,
+                'date_of_birth' => $request->date_of_birth,
+            ]);
+
+            if ($user->email !== $request->email) {
+                $user->update(['email' => $request->email]);
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Profile updated successfully',
+                'profile' => [
+                    'first_name' => $profile->first_name,
+                    'middle_name' => $profile->middle_name ?? '',
+                    'last_name' => $profile->last_name,
+                    'suffix' => $profile->suffix ?? '',
+                    'email' => $user->email,
+                    'phone' => $profile->phone ?? '',
+                    'gender' => $profile->gender ?? '',
+                    'date_of_birth' => $profile->date_of_birth ? $profile->date_of_birth->toDateString() : null,
+                    'profile_picture' => $profile->profile_pic 
+                        ? asset('storage/' . $profile->profile_pic) 
+                        : asset('default-avatar.png'),
+                ]
+            ], 200);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Profile update failed', 'error' => $e->getMessage()], 500);
         }
-
-        // Update profile data
-        $profile->update([
-            'first_name' => $request->first_name,
-            'middle_name' => $request->middle_name,
-            'last_name' => $request->last_name,
-            'suffix' => $request->suffix,
-            'phone' => $request->phone,
-            'gender' => $request->gender,
-            'date_of_birth' => $request->date_of_birth,
-        ]);
-
-        // Update user's email separately
-        if ($user->email !== $request->email) {
-            $user->update(['email' => $request->email]);
-        }
-
-        return response()->json([
-            'message' => 'Profile updated successfully',
-            'profile' => [
-                'first_name' => $profile->first_name,
-                'middle_name' => $profile->middle_name ?? '',
-                'last_name' => $profile->last_name,
-                'suffix' => $profile->suffix ?? '',
-                'email' => $user->email,
-                'phone' => $profile->phone ?? '',
-                'gender' => $profile->gender ?? '',
-                'date_of_birth' => $profile->date_of_birth ? $profile->date_of_birth->toDateString() : null,
-                'profile_picture' => $profile->profile_pic 
-                    ? asset('storage/' . $profile->profile_pic) 
-                    : asset('default-avatar.png'),
-            ]
-        ], 200);
     }
 }

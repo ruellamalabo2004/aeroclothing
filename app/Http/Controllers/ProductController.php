@@ -21,12 +21,6 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
-    public function getProductCount()
-    {
-        $count = Product::count();
-        return response()->json(['total_products' => $count]);
-    }
-
     public function store(Request $request)
     {
         $request->validate([

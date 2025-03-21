@@ -16,17 +16,21 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\OrderItemController;
+
+
+
+Route::middleware('auth:api')->prefix('order-items')->group(function () {
+    Route::get('/', [OrderItemController::class, 'index']);  // Get all order items
+    Route::get('/{id}', [OrderItemController::class, 'show']);  // Get single order item
+    Route::post('/', [OrderItemController::class, 'store']);  // Create order item
+    Route::put('/{id}', [OrderItemController::class, 'update']);  // Update order item
+    Route::delete('/{id}', [OrderItemController::class, 'destroy']);  // Delete order item
+});
 
 Route::middleware('auth:api')->get('/cart', [OrderController::class, 'cart']);
 Route::middleware('auth:api')->get('/cart', [CartController::class, 'index']);
 
-
-Route::middleware('auth:api')->group(function () {
-    Route::post('/orders', [OrderController::class, 'store']); // Place order
-    Route::get('/orders', [OrderController::class, 'index']); // List all orders
-    Route::get('/orders/{id}', [OrderController::class, 'show']); // View single order
-    Route::delete('/orders/{id}', [OrderController::class, 'destroy']); // Cancel order
-});
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index']);
@@ -41,8 +45,7 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/cart/clear', [CartController::class, 'clearCart']);
 });
 Route::apiResource('brands', BrandController::class);
-Route::get('/customers', [UserController::class, 'getCustomers']);
-Route::get('/customers/count', [UserController::class, 'getCustomerCount']);
+
 // In routes/api.php
 Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
 // routes/api.php
@@ -58,6 +61,9 @@ Route::post('/users', [UserController::class, 'store']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::patch('/users/{id}/archive', [UserController::class, 'archive']);
 Route::patch('/users/{id}/restore', [UserController::class, 'restore']);
+Route::get('/users/count', [UserController::class, 'getTotalUsers']);
+
+
 //login
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/dropdowns', [DropdownController::class, 'getDropdowns']);
@@ -70,10 +76,12 @@ Route::put('/orders/{id}', [OrderController::class, 'update']);
 Route::delete('/orders/{id}/archive', [OrderController::class, 'archive']);
 Route::post('/orders/{id}/restore', [OrderController::class, 'restore']);
 
+
+
 // Product routes
 Route::apiResource('products', ProductController::class);
 Route::put('/products/{id}', [ProductController::class, 'update']);
-Route::get('/products/count', [ProductController::class, 'getProductCount']);
+
 
 
 /*

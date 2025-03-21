@@ -29,7 +29,8 @@ ChartJS.register(
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [totalProducts, setTotalProducts] = useState(0);
-  const [totalCustomers, setTotalCustomers] = useState(0);
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [totalOrders, setTotalOrders] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
   const lineChartRef = useRef(null);
@@ -89,31 +90,53 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
     const fetchTotalProducts = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:8000/api/products/");
-        setTotalProducts(response.data.length);
+        console.log("Products response:", response.data); // Debug
+        setTotalProducts(response.data.length || 0);
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error("Error fetching products:", error.response?.data || error.message);
         setTotalProducts(0);
       }
     };
 
-    const fetchTotalCustomers = async () => {
+    const fetchTotalUsers = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/customers");
-        // Assuming the API returns an array of customers or a count object
-        const count = Array.isArray(response.data) ? response.data.length : response.data.count || 0;
-        setTotalCustomers(count);
+        const response = await axios.get("http://127.0.0.1:8000/api/users", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add authentication
+          },
+        });
+        console.log("Users response:", response.data); // Debug
+        setTotalUsers(response.data.length || response.data.count || 0); // Handle array or object with count
       } catch (error) {
-        console.error("Error fetching customers:", error);
-        setTotalCustomers(0);
+        console.error("Error fetching users:", error.response?.data || error.message);
+        setTotalUsers(0);
       }
     };
 
-    // Execute both fetch calls
+    const fetchTotalOrders = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/orders", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("Orders response:", response.data); // Debug
+        setTotalOrders(response.data.length || 0);
+      } catch (error) {
+        console.error("Error fetching total orders:", error.response?.data || error.message);
+        setTotalOrders(0);
+      }
+    };
+
     fetchTotalProducts();
-    fetchTotalCustomers();  
+    fetchTotalUsers();
+    fetchTotalOrders();
+
     const handleResize = () => {
       if (lineChartRef.current) lineChartRef.current.resize();
       if (barChartRef.current) barChartRef.current.resize();
@@ -241,7 +264,7 @@ export default function Dashboard() {
               className={({ isActive }) => (isActive ? "active" : "")}
               onClick={() => setSidebarOpen(false)}
             >
-              <img src="/imgs/Settings.svg" alt="Account Settings" className="nav-icon" />
+              <img src="/imgs/accountSettings.svg" alt="Account Settings" className="nav-icon" />
               Account Settings
             </NavLink>
             <div className="nav-link logout" onClick={handleLogout}>
@@ -269,7 +292,7 @@ export default function Dashboard() {
                   <div className="card-content">
                     <img src="/imgs/totalo.svg" alt="Total Orders" className="card-image" />
                     <div className="card-text">
-                      <div className="card-number">0</div>
+                      <div className="card-number">{totalOrders}</div>
                       <div className="card-title">Total Orders</div>
                     </div>
                   </div>
@@ -294,10 +317,10 @@ export default function Dashboard() {
                 </div>
                 <div className="card-body">
                   <div className="card-content">
-                    <img src="/imgs/totalc.svg" alt="Total Customers" className="card-image" />
+                    <img src="/imgs/totalc.svg" alt="Total Users" className="card-image" />
                     <div className="card-text">
-                      <div className="card-number">{totalCustomers}</div>
-                      <div className="card-title">Total Customers</div>
+                      <div className="card-number">{totalUsers}</div>
+                      <div className="card-title">Total Users</div>
                     </div>
                   </div>
                 </div>

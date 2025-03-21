@@ -227,21 +227,21 @@ export default function Orders() {
                 <tr key={order.id}>
                   <td>
                     <img
-                      src="/imgs/view.svg"
+                      src="/imgs/viewing.svg"
                       alt="View"
                       className="action-img"
                       onClick={() => setViewOrder(order)}
                       style={{ cursor: "pointer" }}
                     />
                     <img
-                      src="/imgs/edit.svg"
+                      src="/imgs/editing.svg"
                       alt="Edit"
                       className="action-img"
                       onClick={() => setSelectedOrder(order)}
                       style={{ cursor: "pointer" }}
                     />
                     <img
-                      src="/imgs/archive.svg"
+                      src="/imgs/archiving.svg"
                       alt="Archive"
                       className="action-img"
                       onClick={() => handleArchiveClick(order)}

@@ -1,142 +1,379 @@
-/* 📌 Dashboard Header */
-.dashboard-header {
-    background: #ffffff; /* White background as per reference */
-    padding: 10px 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.login-header {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  background: white;
+  color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.logo {
+  max-height: 50px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 23px;
+  justify-content: center;
+  flex: 2;
+  font-weight: 500;
+
+  a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
     display: flex;
     align-items: center;
-    position: fixed; /* Fixed header */
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000; /* Above other content */
-    height: 60px; /* Fixed height */
   }
-  
-  /* 📌 Header Content */
-  .header-content {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end; /* Align user info to the right */
-    width: 100%;
-    /* Removed margin-left since sidebar offset is not needed */
+}
+
+.support-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.support-link {
+  color: black !important;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &.active {
+    color: #e5383b !important;
+    .dropdown-icon {
+      transform: rotate(180deg);
+    }
   }
-  
-  /* 📌 User Info Container */
-  .user-info {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Space between notification, profile pic, and details */
+
+  &::after {
+    content: none;
   }
-  
-  /* 📌 Notification Icon Wrapper */
-  .icon-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
+}
+
+.dropdown-icon {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.3s ease;
+}
+
+.support-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  z-index: 1001;
+  margin-top: 10px;
+
+  &.hidden {
+    display: none;
   }
-  
-  /* 📌 Notification Icon */
-  .notification-icon {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
+}
+
+.support-item {
+  display: block;
+  padding: 10px 0;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+
+  &:hover {
+    color: #e5383b;
   }
-  
-  /* 📌 Notification Badge */
-  .badge {
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  height: 100%;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.header-icon {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.cart-icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #e5383b;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.wishlist-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .wishlist-count {
     position: absolute;
-    top: -5px;
-    right: -5px;
-    background: #d32f2f; /* Matches your theme color */
-    color: #ffffff;
+    top: -8px;
+    right: -8px;
+    background-color: #e5383b;
+    color: white;
     border-radius: 50%;
-    font-size: 10px;
-    font-weight: bold;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  /* 📌 Profile Picture */
-  .profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%; /* Circular profile picture */
-    object-fit: cover;
-    border: 2px solid #d32f2f; /* Matches your theme color */
-  }
-  
-  /* 📌 User Details */
-  .user-details {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* 📌 User Name Wrapper (for name and dropdown) */
-  .user-name-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 5px; /* Space between name and dropdown arrow */
-  }
-  
-  /* 📌 User Name */
-  .user-name {
-    font-size: 14px; /* Matches reference */
-    font-weight: bold;
-    color: #161A1D; /* Matches your h1 color */
-    margin: 0;
-  }
-  
-  /* 📌 User Role */
-  .user-role {
     font-size: 12px;
-    color: #757575; /* Matches your inventory-card-title color */
-    margin: 2px 0 0 0;
+    font-weight: 500;
+    animation: fadeInOut 3s ease-in-out forwards; /* Sync with notification */
   }
-  
-  /* 📌 Dropdown Arrow */
-  .dropdown-arrow {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
+
+  .wishlist-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 300px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    z-index: 1001;
+    margin-top: 10px;
+
+    &.hidden {
+      display: none;
+    }
+
+    .wishlist-notification {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background-color: #ffede6;
+      border-radius: 5px;
+      animation: fadeInOut 5s ease-in-out forwards;
+      text-align: left;
+
+      .wishlist-item-image {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        border-radius: 5px;
+      }
+
+      p {
+        margin: 0;
+        font-size: 14px;
+        color: #333;
+        font-weight: 500;
+      }
+    }
+
+    .no-wishlist-items {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      padding: 20px 0;
+    }
   }
-  
-  /* 📌 Responsive Design */
-  @media (max-width: 768px) {
-    .dashboard-header {
-      padding: 10px 15px;
-      height: 50px;
-    }
-  
-    .notification-icon {
-      width: 20px;
-      height: 20px;
-    }
-  
-    .badge {
-      width: 14px;
-      height: 14px;
-      font-size: 8px;
-    }
-  
-    .profile-pic {
-      width: 35px;
-      height: 35px;
-    }
-  
-    .user-name {
-      font-size: 12px;
-    }
-  
-    .user-role {
-      font-size: 10px;
-    }
-  
-    .dropdown-arrow {
-      width: 14px;
-      height: 14px;
-    }
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-form {
+  margin-right: 10px;
+}
+
+.search-input {
+  width: 150px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+  transition: width 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
+
+  &:focus {
+    width: 200px;
+    border-color: #999;
   }
+}
+
+.search-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.notification-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 300px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  z-index: 1001;
+  margin-top: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.notification-item {
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+  }
+
+  span {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+  }
+}
+
+.no-notifications {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  padding: 20px 0;
+}
+
+.profile-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.profile-button {
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+
+  .profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #eee;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 140px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1001;
+  margin-top: 10px;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.profile-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  gap: 10px;
+
+  &:hover {
+    color: #e5383b;
+  }
+}
+
+.profile-item-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.profile-separator {
+  border: none;
+  border-top: 1px solid #999;
+  margin: 5px 0;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer'; // Reintroduce the Footer import
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ const Login = () => {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [forgotEmail, setForgotEmail] = useState('');
   const [forgotMessage, setForgotMessage] = useState('');
-  const [forgotLoading, setForgotLoading] = useState(false);  // Add loading for forgot password
+  const [forgotLoading, setForgotLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -49,25 +50,24 @@ const Login = () => {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     setForgotMessage('Sending reset link...');
-    setForgotLoading(true);  // Set loading to true
+    setForgotLoading(true);
   
     if (!forgotEmail) {
       setForgotMessage('Please provide a valid email.');
-      setForgotLoading(false);  // Set loading to false if email is not provided
+      setForgotLoading(false);
       return;
     }
   
     try {
       const response = await axios.post('http://localhost:8000/api/forgot-password', { email: forgotEmail });
-      setForgotMessage(response.data.message); // Success or error message
+      setForgotMessage(response.data.message);
     } catch (error) {
       console.error(error);
       setForgotMessage(error.response?.data?.message || 'Unable to send reset link.');
     } finally {
-      setForgotLoading(false);  // Set loading to false after request is done
+      setForgotLoading(false);
     }
   };
-  
   
   return (
     <>
@@ -88,14 +88,6 @@ const Login = () => {
           <button className="login-button">Login</button>
         </div>
       </header>
-
-      <div className="right-image-container">
-        <img src="/imgs/design2.svg" alt="Right Image" className="right-image" />
-      </div>
-
-      <div className="left-image-container">
-        <img src="/imgs/design1.svg" alt="Left Image" className="left-image" />
-      </div>
 
       <div className="login-container">
         {!showForgotPassword ? (
@@ -180,6 +172,8 @@ const Login = () => {
           </>
         )}
       </div>
+
+      <Footer /> {/* Reintroduce the Footer component */}
     </>
   );
 };

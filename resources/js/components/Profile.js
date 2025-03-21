@@ -1,48 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-
-const Footer = () => {
-  const footerLinks = [
-    { label: "ORDERS & PAYMENTS", path: "/customer/support/order-payment" },
-    { label: "SHIPPING", path: "/customer/support/shipping" },
-    { label: "RETURNS", path: "/customer/support/returns" },
-    { label: "CONTACT US", path: "/customer/support/contact-us" },
-    { label: "TERMS AND SERVICES", path: "/customer/support/terms-and-service" },
-    { label: "FAQS", path: "/customer/support/faqs" },
-  ];
-
-  const socialIcons = [
-    { src: '/imgs/instagram.svg', alt: 'Instagram' },
-    { src: '/imgs/facebook.svg', alt: 'Facebook' },
-    { src: '/imgs/twitter.svg', alt: 'Twitter' },
-  ];
-
-  return (
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="footer-links">
-          {footerLinks.map((link, index) => (
-            <Link key={index} to={link.path} className="footer-link">
-              {link.label}
-            </Link>
-          ))}
-        </div>
-        <div className="footer-socials">
-          <span>SOCIALS</span>
-          <div className="social-icons">
-            {socialIcons.map((icon, index) => (
-              <img key={index} src={icon.src} alt={icon.alt} className="social-icon" />
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="footer-copyright">
-        <p>@2025 AERO. All Rights Reserved.</p>
-      </div>
-    </footer>
-  );
-};
+import Header from './Header';
+import Footer from './Footer';
+import CartSidebar from './CartSidebar'; // Import the CartSidebar component
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -73,10 +34,13 @@ const Profile = () => {
   const [isSupportOpen, setIsSupportOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [wishlistedItems, setWishlistedItems] = useState([]);
+  const [latestWishlistItem, setLatestWishlistItem] = useState(null);
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [activeMenuItem, setActiveMenuItem] = useState('profile');
+  const [cartItems, setCartItems] = useState([]);
 
   const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
+  const API_URL = "http://127.0.0.1:8000/api";
 
   const notifications = [
     { id: 1, message: "Your order #1234 has been shipped!", time: "2 hours ago" },
@@ -90,6 +54,7 @@ const Profile = () => {
     { label: "RETURNS", path: "/customer/support/returns" },
     { label: "CONTACT US", path: "/customer/support/contact-us" },
     { label: "TERMS AND SERVICE", path: "/customer/support/terms-and-service" },
+    { label: "FAQS", path: "/customer/support/faqs" },
   ];
 
   const profileDropdownItems = [
@@ -99,8 +64,6 @@ const Profile = () => {
   ];
 
   useEffect(() => {
-    console.log('Profile component mounted. Checking token...');
-
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -108,17 +71,15 @@ const Profile = () => {
           throw new Error("No authentication token found. Please log in.");
         }
 
-        const response = await axios.get("http://127.0.0.1:8000/api/profile", {
-          headers: {
-            "Accept": "application/json",
-            "Authorization": `Bearer ${token}`,
-          },
+        const response = await axios.get(`${API_URL}/profile`, {
+          headers: { Authorization: `Bearer ${token}` },
         });
 
         const profileData = response.data.profile;
         const userData = response.data.user;
 
-        setProfile({
+        const userProfile = {
+          id: userData.id,
           first_name: profileData.first_name || '',
           middle_name: profileData.middle_name || '',
           last_name: profileData.last_name || '',
@@ -130,18 +91,17 @@ const Profile = () => {
           profile_pic: profileData.profile_pic
             ? `${BASE_IMAGE_URL}/${profileData.profile_pic}`
             : '/imgs/profile.svg',
-        });
+        };
 
+        setProfile(userProfile);
         setDisplayedName({
           first_name: profileData.first_name || '',
           last_name: profileData.last_name || '',
         });
+        setImagePreview(userProfile.profile_pic);
 
-        setImagePreview(
-          profileData.profile_pic
-            ? `${BASE_IMAGE_URL}/${profileData.profile_pic}`
-            : '/imgs/profile.svg'
-        );
+        fetchWishlist(token, userProfile.id);
+        fetchCart(token, userProfile.id);
       } catch (err) {
         console.error('Fetch Profile Error:', err);
         handleAuthError(err);
@@ -153,23 +113,144 @@ const Profile = () => {
     fetchProfile();
   }, [navigate]);
 
+  const fetchWishlist = async (token, userId) => {
+    try {
+      const response = await axios.get(`${API_URL}/wishlist`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const wishlistData = response.data.data || response.data || [];
+      const detailedWishlist = wishlistData.map(item => ({
+        id: item.product_id,
+        productName: item.product?.product_name || "Unknown Product",
+        price: item.product?.price || 0,
+        imagePreview: item.product?.image_1 ? `${BASE_IMAGE_URL}/${item.product.image_1}` : '/default-image.jpg',
+      }));
+      setWishlistedItems(detailedWishlist);
+    } catch (error) {
+      console.error("Error fetching wishlist:", error.response?.data || error.message);
+    }
+  };
+
+  const fetchCart = async (token, userId) => {
+    try {
+      const response = await axios.get(`${API_URL}/cart`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const cartData = response.data.data || response.data || [];
+      const detailedCart = cartData.map(item => ({
+        id: item.product_id,
+        productName: item.product?.product_name || "Unknown Product",
+        price: item.product?.price || 0,
+        imagePreview: item.product?.image_1 ? `${BASE_IMAGE_URL}/${item.product.image_1}` : '/default-image.jpg',
+        quantity: item.quantity || 1,
+      }));
+      setCartItems(detailedCart);
+    } catch (error) {
+      console.error("Error fetching cart:", error.response?.data || error.message);
+    }
+  };
+
+  // Add to Wishlist
+  const addToWishlist = async (product) => {
+    const token = localStorage.getItem('token');
+    const userId = profile?.id;
+    try {
+      const response = await axios.post(`${API_URL}/wishlist`, {
+        user_id: userId,
+        product_id: product.id,
+      }, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setLatestWishlistItem({
+        id: product.id,
+        productName: product.name || product.productName,
+        price: product.price,
+        imagePreview: product.imagePreview,
+      });
+      fetchWishlist(token, userId);
+    } catch (error) {
+      console.error("Error adding to wishlist:", error.response?.data || error.message);
+      if (error.response?.status === 409) fetchWishlist(token, userId);
+    }
+  };
+
+  // Remove from Wishlist
+  const removeFromWishlist = async (productId) => {
+    const token = localStorage.getItem('token');
+    const userId = profile?.id;
+    try {
+      await axios.delete(`${API_URL}/wishlist/${productId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      fetchWishlist(token, userId);
+    } catch (error) {
+      console.error("Error removing from wishlist:", error.response?.data || error.message);
+    }
+  };
+
+  // Remove from cart
+  const removeFromCartBackend = async (productId) => {
+    const token = localStorage.getItem('token');
+    const userId = profile?.id;
+    try {
+      const response = await axios.delete(`${API_URL}/cart/remove/${productId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log("Remove from cart response:", response.data);
+      fetchCart(token, userId);
+    } catch (error) {
+      console.error("Error removing from cart:", error.response?.data || error.message);
+    }
+  };
+
+  // Cart quantity controls
+  const increaseCartQuantity = (itemId) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const decreaseCartQuantity = (itemId) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === itemId && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  };
+
+  const removeFromCart = (itemId) => async () => {
+    await removeFromCartBackend(itemId);
+  };
+
+  // Wishlist toggle handler
+  const handleWishlistToggle = (product) => async () => {
+    const isWishlisted = wishlistedItems.some((item) => item.id === product.id);
+    if (isWishlisted) {
+      await removeFromWishlist(product.id);
+    } else {
+      await addToWishlist(product);
+    }
+  };
+
+  // Clear latestWishlistItem after 3 seconds
+  useEffect(() => {
+    if (latestWishlistItem) {
+      const timer = setTimeout(() => setLatestWishlistItem(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [latestWishlistItem]);
+
   useEffect(() => {
     const handleOutsideClick = (e) => {
-      if (!e.target.closest('.notification-container') && !e.target.closest('.header-icon')) {
-        setIsNotificationOpen(false);
-      }
-      if (!e.target.closest('.wishlist-container') && !e.target.closest('.header-icon')) {
-        setIsWishlistOpen(false);
-      }
-      if (!e.target.closest('.support-container') && !e.target.closest('.support-link')) {
-        setIsSupportOpen(false);
-      }
-      if (!e.target.closest('.cart-sidebar') && !e.target.closest('.header-icon')) {
-        setIsCartVisible(false);
-      }
-      if (!e.target.closest('.profile-container') && !e.target.closest('.profile-button')) {
-        setIsProfileDropdownOpen(false);
-      }
+      if (!e.target.closest('.notification-container') && !e.target.closest('.header-icon')) setIsNotificationOpen(false);
+      if (!e.target.closest('.wishlist-container') && !e.target.closest('.header-icon')) setIsWishlistOpen(false);
+      if (!e.target.closest('.support-container') && !e.target.closest('.support-link')) setIsSupportOpen(false);
+      if (!e.target.closest('.cart-sidebar') && !e.target.closest('.header-icon')) setIsCartVisible(false);
+      if (!e.target.closest('.profile-container') && !e.target.closest('.profile-button')) setIsProfileDropdownOpen(false);
     };
 
     if (isNotificationOpen || isWishlistOpen || isSupportOpen || isCartVisible || isProfileDropdownOpen) {
@@ -241,19 +322,14 @@ const Profile = () => {
     formData.append('phone_number', profile.phone_number);
     formData.append('gender', profile.gender);
     formData.append('date_of_birth', profile.date_of_birth);
-    
-    if (newProfileImage) {
-      formData.append('profile_image', newProfileImage);
-    }
+    if (newProfileImage) formData.append('profile_image', newProfileImage);
     formData.append('_method', 'PUT');
 
     try {
       const token = localStorage.getItem('token');
-      if (!token) {
-        throw new Error("No authentication token found. Please log in.");
-      }
+      if (!token) throw new Error("No authentication token found. Please log in.");
 
-      const response = await fetch("http://127.0.0.1:8000/api/update-profile", {
+      const response = await fetch(`${API_URL}/update-profile`, {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -273,212 +349,90 @@ const Profile = () => {
       }
 
       const updatedData = await response.json();
-      console.log("Updated Profile Data:", updatedData);
-
       setProfile((prev) => ({
         ...prev,
-        first_name: updatedData.profile?.first_name || updatedData.first_name || prev.first_name,
-        middle_name: updatedData.profile?.middle_name || updatedData.middle_name || prev.middle_name,
-        last_name: updatedData.profile?.last_name || updatedData.last_name || prev.last_name,
-        suffix: updatedData.profile?.suffix || updatedData.suffix || prev.suffix,
-        email: updatedData.user?.email || updatedData.email || prev.email,
-        phone_number: updatedData.profile?.phone_number || updatedData.phone_number || prev.phone_number,
-        gender: updatedData.profile?.gender || updatedData.gender || prev.gender,
-        date_of_birth: updatedData.profile?.date_of_birth || updatedData.date_of_birth || prev.date_of_birth,
+        first_name: updatedData.profile?.first_name || prev.first_name,
+        middle_name: updatedData.profile?.middle_name || prev.middle_name,
+        last_name: updatedData.profile?.last_name || prev.last_name,
+        suffix: updatedData.profile?.suffix || prev.suffix,
+        email: updatedData.user?.email || prev.email,
+        phone_number: updatedData.profile?.phone_number || prev.phone_number,
+        gender: updatedData.profile?.gender || prev.gender,
+        date_of_birth: updatedData.profile?.date_of_birth || prev.date_of_birth,
         profile_pic: updatedData.profile?.profile_pic
           ? `${BASE_IMAGE_URL}/${updatedData.profile.profile_pic}`
           : prev.profile_pic,
       }));
 
       setDisplayedName({
-        first_name: updatedData.profile?.first_name || updatedData.first_name || profile.first_name,
-        last_name: updatedData.profile?.last_name || updatedData.last_name || profile.last_name,
+        first_name: updatedData.profile?.first_name || profile.first_name,
+        last_name: updatedData.profile?.last_name || profile.last_name,
       });
 
       setNewProfileImage(null);
-      setImagePreview(
-        updatedData.profile?.profile_pic
-          ? `${BASE_IMAGE_URL}/${updatedData.profile.profile_pic}`
-          : profile.profile_pic
-      );
+      setImagePreview(updatedData.profile?.profile_pic
+        ? `${BASE_IMAGE_URL}/${updatedData.profile.profile_pic}`
+        : profile.profile_pic);
 
       alert('Profile updated successfully!');
     } catch (err) {
       console.error('Save Profile Error:', err);
       alert(err.message || 'Failed to update profile. Please try again.');
-      if (err.message.includes("token") || err.message.includes("expired")) {
-        handleAuthError(err);
-      }
+      if (err.message.includes("token") || err.message.includes("expired")) handleAuthError(err);
     } finally {
       setIsSaving(false);
     }
   };
 
-  const handleProfileClick = () => setIsProfileDropdownOpen((prev) => !prev);
-  const handleSearchClick = () => setIsSearchOpen((prev) => !prev);
-  const handleSearchChange = (e) => setSearchQuery(e.target.value);
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) navigate(`/search?query=${searchQuery}`);
   };
-  const handleNotificationClick = () => setIsNotificationOpen((prev) => !prev);
-  const handleWishlistToggle = () => setIsWishlistOpen((prev) => !prev);
-  const handleSupportToggle = (e) => {
-    e.preventDefault();
-    setIsSupportOpen((prev) => !prev);
-  };
-  const handleCartClick = () => setIsCartVisible((prev) => !prev);
-  const handleStartShopping = () => {
-    navigate('/shop');
-    setIsCartVisible(false);
-  };
-  const handleCloseCart = () => setIsCartVisible(false);
+
+  const wishlistCount = wishlistedItems.length;
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   if (loading) return <div className="loading">Loading profile...</div>;
   if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="Profile">
-      <header className="login-header">
-        <div className="logo-container">
-          <img src="/imgs/logo.svg" alt="Aero Logo" className="logo" />
-        </div>
-        <nav className="nav-links">
-          <Link to="/homepage">HOME</Link>
-          <Link to="/shop">SHOP</Link>
-          <Link to="/about">ABOUT US</Link>
-          <div className="support-container">
-            <Link
-              to="/support"
-              className={`support-link ${isSupportOpen ? 'active' : ''}`}
-              onClick={handleSupportToggle}
-            >
-              SUPPORT
-              <img src="/imgs/DROPDOWN.SVG" alt="Dropdown" className="dropdown-icon" />
-            </Link>
-            <div className={`support-dropdown ${isSupportOpen ? '' : 'hidden'}`}>
-              {supportItems.map((item, index) => (
-                <Link key={index} to={item.path} className="support-item">
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </nav>
-        <div className="header-icons">
-          <div className="search-container">
-            {isSearchOpen && (
-              <form onSubmit={handleSearchSubmit} className="search-form">
-                <input
-                  type="text"
-                  placeholder="Search items..."
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                  className="search-input"
-                  autoFocus
-                />
-              </form>
-            )}
-            <img
-              src="/imgs/Search.svg"
-              alt="Search"
-              className="header-icon search-icon"
-              onClick={handleSearchClick}
-            />
-          </div>
-          <div className="notification-container">
-            <img
-              src="/imgs/notif.svg"
-              alt="Notification"
-              className="header-icon"
-              onClick={handleNotificationClick}
-            />
-            <div className={`notification-dropdown ${isNotificationOpen ? '' : 'hidden'}`}>
-              {notifications.length > 0 ? (
-                notifications.map((notification) => (
-                  <div key={notification.id} className="notification-item">
-                    <p>{notification.message}</p>
-                    <span>{notification.time}</span>
-                  </div>
-                ))
-              ) : (
-                <p className="no-notifications">No new notifications</p>
-              )}
-            </div>
-          </div>
-          <div className="wishlist-container">
-            <img
-              src="/imgs/Wish.svg"
-              alt="Wishlist"
-              className="header-icon"
-              onClick={handleWishlistToggle}
-            />
-            <div className={`wishlist-dropdown ${isWishlistOpen ? '' : 'hidden'}`}>
-              {wishlistedItems.length > 0 ? (
-                wishlistedItems.map((item) => (
-                  <div key={item.id} className="wishlist-item">
-                    <div className="wishlist-item-details">
-                      <p>{item.name}</p>
-                      <span>{item.price}</span>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="no-wishlist-items">No items in wishlist</p>
-              )}
-            </div>
-          </div>
-          <img
-            src="/imgs/Cart.svg"
-            alt="Cart"
-            className="header-icon"
-            onClick={handleCartClick}
-          />
-          <div className="profile-container">
-            <button
-              className={`profile-button ${isProfileDropdownOpen ? 'active' : ''}`}
-              onClick={handleProfileClick}
-            >
-              <img
-                src={profile.profile_pic}
-                alt="Profile"
-                className="profile-pic"
-              />
-            </button>
-            <div className={`profile-dropdown ${isProfileDropdownOpen ? '' : 'hidden'}`}>
-              {profileDropdownItems.map((item, index) => (
-                <React.Fragment key={index}>
-                  <Link
-                    to={item.path}
-                    className="profile-item"
-                    onClick={item.onClick || undefined}
-                  >
-                    {item.label}
-                  </Link>
-                  {index === 1 && <hr className="profile-separator" />}
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <div className={`cart-sidebar ${isCartVisible ? 'active' : ''}`}>
-        <div className="cart-content">
-          <div className="cart-header">
-            <h2>CART</h2>
-            <span className="close-cart" onClick={handleCloseCart}>×</span>
-          </div>
-          <div className="cart-body">
-            <img src="/imgs/empty-cart.svg" alt="Empty Cart" className="empty-cart-icon" />
-            <p>Your cart is currently empty.</p>
-            <button className="start-shopping-btn" onClick={handleStartShopping}>
-              START SHOPPING
-            </button>
-          </div>
-        </div>
-      </div>
-
+      <Header
+        isSearchOpen={isSearchOpen}
+        setIsSearchOpen={setIsSearchOpen}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        handleSearchSubmit={handleSearchSubmit}
+        isNotificationOpen={isNotificationOpen}
+        setIsNotificationOpen={setIsNotificationOpen}
+        notifications={notifications}
+        isWishlistOpen={isWishlistOpen}
+        setIsWishlistOpen={setIsWishlistOpen}
+        wishlistedItems={wishlistedItems}
+        wishlistCount={wishlistCount}
+        latestWishlistItem={latestWishlistItem}
+        handleWishlistToggle={handleWishlistToggle}
+        isSupportOpen={isSupportOpen}
+        setIsSupportOpen={setIsSupportOpen}
+        supportItems={supportItems}
+        isCartVisible={isCartVisible}
+        setIsCartVisible={setIsCartVisible}
+        cartCount={cartCount}
+        userProfile={profile}
+        isProfileDropdownOpen={isProfileDropdownOpen}
+        setIsProfileDropdownOpen={setIsProfileDropdownOpen}
+        profileDropdownItems={profileDropdownItems}
+      />
+      <CartSidebar
+        isCartVisible={isCartVisible}
+        setIsCartVisible={setIsCartVisible}
+        cartItems={cartItems}
+        cartCount={cartCount}
+        increaseCartQuantity={increaseCartQuantity}
+        decreaseCartQuantity={decreaseCartQuantity}
+        removeFromCart={removeFromCart}
+        navigate={navigate}
+      />
       <div className="profile-container">
         <h1 className="profile-title">Profile Information</h1>
         <div className="profile-body">
@@ -644,8 +598,8 @@ const Profile = () => {
                   />
                 </div>
                 <div className="form-actions">
-                  <button 
-                    className="save-button" 
+                  <button
+                    className="save-button"
                     onClick={handleSave}
                     disabled={isSaving}
                   >

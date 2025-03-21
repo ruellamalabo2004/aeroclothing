@@ -8,7 +8,20 @@ export default function Customers() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [addModalOpen, setAddModalOpen] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [newCustomer, setNewCustomer] = useState({
+    first_name: "",
+    middle_name: "",
+    last_name: "",
+    suffix: "",
+    email: "",
+    phone_number: "",
+    gender: "",
+    date_of_birth: "",
+    role: "customer",
+    status: "Active",
+  });
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -31,9 +44,13 @@ export default function Customers() {
     setEditModalOpen(true);
   };
 
+  const handleAddCustomer = () => {
+    setAddModalOpen(true);
+  };
+
   const handleArchive = async (customer) => {
     try {
-      const newStatus = "Archived"; // Only archive, no toggle
+      const newStatus = "Archived";
       await axios.patch(
         `http://127.0.0.1:8000/api/users/${customer.id}/archive`,
         { status: newStatus }
@@ -52,7 +69,7 @@ export default function Customers() {
   const handleRevert = async (customer) => {
     try {
       setLoading(true);
-      const response = await axios.patch(
+      await axios.patch(
         `http://127.0.0.1:8000/api/users/${customer.id}/restore`
       );
       setCustomers((prev) =>
@@ -114,6 +131,50 @@ export default function Customers() {
     }
   };
 
+  const handleAddSubmit = async (event) => {
+    event.preventDefault();
+  
+    const customerData = {
+      first_name: newCustomer.first_name,
+      middle_name: newCustomer.middle_name || null,
+      last_name: newCustomer.last_name,
+      suffix: newCustomer.suffix || null,
+      email: newCustomer.email,
+      phone_number: newCustomer.phone_number,
+      gender: newCustomer.gender,
+      date_of_birth: newCustomer.date_of_birth || null,
+      role: newCustomer.role || "customer",
+      status: newCustomer.status || "Active",
+      password: "darwin",
+    };
+  
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/users",
+        customerData
+      );
+  
+      const createdCustomer = response.data.data || response.data;
+      setCustomers((prev) => [...prev, createdCustomer]);
+      setAddModalOpen(false);
+      setNewCustomer({
+        first_name: "",
+        middle_name: "",
+        last_name: "",
+        suffix: "",
+        email: "",
+        phone_number: "",
+        gender: "",
+        date_of_birth: "",
+        role: "customer",
+        status: "Active",
+      });
+    } catch (error) {
+      console.error("Error adding customer:", error.response?.data || error.message);
+      alert(`Failed to add customer: ${JSON.stringify(error.response?.data?.errors || error.response?.data?.message || error.message)}`);
+    }
+  };
+  
   return (
     <main>
       <h1>Customers</h1>
@@ -148,6 +209,9 @@ export default function Customers() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        <button className="add-customer-btn" onClick={handleAddCustomer}>
+          Add Customer
+        </button>
       </div>
 
       <div className="customers-table-container">
@@ -296,6 +360,105 @@ export default function Customers() {
               </div>
               <button type="submit">Save Changes</button>
               <button type="button" onClick={() => setEditModalOpen(false)}>Cancel</button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {addModalOpen && (
+        <div className="edit-modal">
+          <div className="modal-content">
+            <h2>Add New Customer</h2>
+            <form onSubmit={handleAddSubmit}>
+              <div>
+                <label>First Name:</label>
+                <input
+                  type="text"
+                  value={newCustomer.first_name}
+                  onChange={(e) =>
+                    setNewCustomer({ ...newCustomer, first_name: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div>
+                <label>Middle Name:</label>
+                <input
+                  type="text"
+                  value={newCustomer.middle_name}
+                  onChange={(e) =>
+                    setNewCustomer({ ...newCustomer, middle_name: e.target.value })
+                  }
+                />
+              </div>
+              <div>
+                <label>Last Name:</label>
+                <input
+                  type="text"
+                  value={newCustomer.last_name}
+                  onChange={(e) =>
+                    setNewCustomer({ ...newCustomer, last_name: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div>
+                <label>Suffix:</label>
+                <input
+                  type="text"
+                  value={newCustomer.suffix}
+                  onChange={(e) =>
+                    setNewCustomer({ ...newCustomer, suffix: e.target.value })
+                  }
+                />
+              </div>
+              <div>
+                <label>Email:</label>
+                <input
+                  type="email"
+                  value={newCustomer.email}
+                  onChange={(e) =>
+                    setNewCustomer({ ...newCustomer, email: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div>
+                <label>Phone Number:</label>
+                <input
+                  type="text"
+                  value={newCustomer.phone_number}
+                  onChange={(e) =>
+                    setNewCustomer({ ...newCustomer, phone_number: e.target.value })
+                  }
+                />
+              </div>
+              <div>
+                <label>Gender:</label>
+                <select
+                  value={newCustomer.gender}
+                  onChange={(e) =>
+                    setNewCustomer({ ...newCustomer, gender: e.target.value })
+                  }
+                >
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label>Date of Birth:</label>
+                <input
+                  type="date"
+                  value={newCustomer.date_of_birth}
+                  onChange={(e) =>
+                    setNewCustomer({ ...newCustomer, date_of_birth: e.target.value })
+                  }
+                />
+              </div>
+              <button type="submit">Add Customer</button>
+              <button type="button" onClick={() => setAddModalOpen(false)}>Cancel</button>
             </form>
           </div>
         </div>
