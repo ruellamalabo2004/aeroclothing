@@ -30,6 +30,8 @@ export default function Users() {
     date_of_birth: "",
     password: "",
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 10;
 
   // Fetch users from API
   const fetchUsers = async () => {
@@ -47,7 +49,7 @@ export default function Users() {
       }
 
       const data = await response.json();
-      console.log("API Response:", data); // Log raw response for debugging
+      console.log("API Response:", data);
       const userData = Array.isArray(data) ? data : data.data || [];
 
       const processedUsers = userData.map((user) => ({
@@ -195,7 +197,7 @@ export default function Users() {
       }
 
       const updatedUser = await response.json();
-      console.log("Updated User Response:", updatedUser); // Log response for debugging
+      console.log("Updated User Response:", updatedUser);
 
       setUsers(users.map((user) =>
         user.id === userToEdit
@@ -317,7 +319,7 @@ export default function Users() {
   };
 
   const getRoleDisplay = (user) => {
-    return user.role || "N/A";
+    return user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1).toLowerCase() : "N/A";
   };
 
   const filteredUsers = users.filter((user) => {
@@ -332,6 +334,19 @@ export default function Users() {
       user.last_name?.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesTab && matchesSearch;
   });
+
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const paginatedUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+  const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
 
   const formatDate = (timestamp) =>
     timestamp ? new Date(timestamp).toLocaleString() : "N/A";
@@ -371,298 +386,322 @@ export default function Users() {
         ) : error ? (
           <p className="error-message">Error: {error}</p>
         ) : (
-          <>
-            <table className="users-table">
-              <thead>
-                <tr>
-                  <th>Actions</th>
-                  <th>User ID</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Gender</th>
-                  <th>Date of Birth</th>
-                  <th>Role</th>
-                  <th>Created At</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredUsers.length > 0 ? (
-                  filteredUsers.map((user) => (
-                    <tr key={user.id}>
-                      <td>
+          <table className="users-table">
+            <thead>
+              <tr>
+                <th>Actions</th>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Gender</th>
+                <th>Date of Birth</th>
+                <th>Role</th>
+                <th>Created At</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {paginatedUsers.length > 0 ? (
+                paginatedUsers.map((user) => (
+                  <tr key={user.id}>
+                    <td>
+                      <img
+                        src="/imgs/editing.svg"
+                        alt="Edit"
+                        className="action-img"
+                        onClick={() => editUser(user)}
+                        style={{ cursor: "pointer" }}
+                      />
+                      {user.status !== "Archived" ? (
                         <img
-                          src="/imgs/editing.svg"
-                          alt="Edit"
+                          src="/imgs/archiving.svg"
+                          alt="Archive"
                           className="action-img"
-                          onClick={() => editUser(user)}
+                          onClick={() => archiveUser(user.id)}
                           style={{ cursor: "pointer" }}
                         />
-                        {user.status !== "Archived" ? (
-                          <img
-                            src="/imgs/archiving.svg"
-                            alt="Archive"
-                            className="action-img"
-                            onClick={() => archiveUser(user.id)}
-                            style={{ cursor: "pointer" }}
-                          />
-                        ) : (
-                          <img
-                            src="/imgs/revert.svg"
-                            alt="Restore"
-                            className="action-img"
-                            onClick={() => restoreUser(user.id)}
-                            style={{ cursor: "pointer" }}
-                          />
-                        )}
-                      </td>
-                      <td>{user.id || "N/A"}</td>
-                      <td>{user.first_name || "N/A"}</td>
-                      <td>{user.last_name || "N/A"}</td>
-                      <td>{user.email || "N/A"}</td>
-                      <td>{user.phone_number || "N/A"}</td>
-                      <td>{user.gender || "N/A"}</td>
-                      <td>{formatDate(user.date_of_birth)}</td>
-                      <td>{getRoleDisplay(user)}</td>
-                      <td>{formatDate(user.created_at)}</td>
-                      <td>
-                        <span className={`status-frame status-${user.status?.toLowerCase()}`}>
-                          {user.status || "N/A"}
-                        </span>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="11">No users found.</td>
+                      ) : (
+                        <img
+                          src="/imgs/revert.svg"
+                          alt="Restore"
+                          className="action-img"
+                          onClick={() => restoreUser(user.id)}
+                          style={{ cursor: "pointer" }}
+                        />
+                      )}
+                    </td>
+                    <td>{user.id || "N/A"}</td>
+                    <td>{user.first_name || "N/A"}</td>
+                    <td>{user.last_name || "N/A"}</td>
+                    <td>{user.email || "N/A"}</td>
+                    <td>{user.phone_number || "N/A"}</td>
+                    <td>{user.gender || "N/A"}</td>
+                    <td>{formatDate(user.date_of_birth)}</td>
+                    <td>
+                      <span className={`role-frame role-${user.role?.toLowerCase()}`}>
+                        {getRoleDisplay(user)}
+                      </span>
+                    </td>
+                    <td>{formatDate(user.created_at)}</td>
+                    <td>
+                      <span className={`status-frame status-${user.status?.toLowerCase()}`}>
+                        {user.status || "N/A"}
+                      </span>
+                    </td>
                   </tr>
-                )}
-              </tbody>
-            </table>
-
-            {showArchiveDialog && (
-              <div className="modal-overlay">
-                <div className="modal-content">
-                  <h3>Confirm Archive</h3>
-                  <p>Are you sure you want to archive this user?</p>
-                  <div className="modal-buttons">
-                    <button onClick={confirmArchive} className="confirm-btn" disabled={loading}>
-                      {loading ? "Archiving..." : "Yes, Archive"}
-                    </button>
-                    <button onClick={cancelArchive} className="cancel-btn" disabled={loading}>
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {showEditDialog && (
-              <div className="modal-overlay">
-                <div className="modal-content">
-                  <h3>Edit User</h3>
-                  <div className="edit-form">
-                    <div className="form-group">
-                      <label>First Name:</label>
-                      <input
-                        type="text"
-                        name="first_name"
-                        value={editFormData.first_name}
-                        onChange={handleEditInputChange}
-                        disabled={loading}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Last Name:</label>
-                      <input
-                        type="text"
-                        name="last_name"
-                        value={editFormData.last_name}
-                        onChange={handleEditInputChange}
-                        disabled={loading}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Email:</label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={editFormData.email}
-                        onChange={handleEditInputChange}
-                        disabled={loading}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Phone Number:</label>
-                      <input
-                        type="text"
-                        name="phone_number"
-                        value={editFormData.phone_number}
-                        onChange={handleEditInputChange}
-                        disabled={loading}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Gender:</label>
-                      <select
-                        name="gender"
-                        value={editFormData.gender}
-                        onChange={handleEditInputChange}
-                        disabled={loading}
-                      >
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                    <div className="form-group">
-                      <label>Date of Birth:</label>
-                      <input
-                        type="date"
-                        name="date_of_birth"
-                        value={editFormData.date_of_birth}
-                        onChange={handleEditInputChange}
-                        disabled={loading}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Role:</label>
-                      <select
-                        name="role"
-                        value={editFormData.role}
-                        onChange={handleEditInputChange}
-                        disabled={loading}
-                      >
-                        <option value="customer">customer</option>
-                        <option value="admin">admin</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="modal-buttons">
-                    <button onClick={saveEdit} className="confirm-btn" disabled={loading}>
-                      {loading ? "Saving..." : "Save Changes"}
-                    </button>
-                    <button onClick={cancelEdit} className="cancel-btn" disabled={loading}>
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {showAddDialog && (
-              <div className="modal-overlay">
-                <div className="modal-content">
-                  <h3>Add New User</h3>
-                  <div className="edit-form">
-                    <div className="form-group">
-                      <label>First Name:</label>
-                      <input
-                        type="text"
-                        name="first_name"
-                        value={newUser.first_name}
-                        onChange={handleAddInputChange}
-                        disabled={loading}
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Last Name:</label>
-                      <input
-                        type="text"
-                        name="last_name"
-                        value={newUser.last_name}
-                        onChange={handleAddInputChange}
-                        disabled={loading}
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Email:</label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={newUser.email}
-                        onChange={handleAddInputChange}
-                        disabled={loading}
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Phone Number:</label>
-                      <input
-                        type="text"
-                        name="phone_number"
-                        value={newUser.phone_number}
-                        onChange={handleAddInputChange}
-                        disabled={loading}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Gender:</label>
-                      <select
-                        name="gender"
-                        value={newUser.gender}
-                        onChange={handleAddInputChange}
-                        disabled={loading}
-                      >
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                    <div className="form-group">
-                      <label>Date of Birth:</label>
-                      <input
-                        type="date"
-                        name="date_of_birth"
-                        value={newUser.date_of_birth}
-                        onChange={handleAddInputChange}
-                        disabled={loading}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Role:</label>
-                      <select
-                        name="role"
-                        value={newUser.role}
-                        onChange={handleAddInputChange}
-                        disabled={loading}
-                      >
-                        <option value="customer">customer</option>
-                        <option value="admin">admin</option>
-                      </select>
-                    </div>
-                    <div className="form-group">
-                      <label>Password:</label>
-                      <input
-                        type="password"
-                        name="password"
-                        value={newUser.password}
-                        onChange={handleAddInputChange}
-                        disabled={loading}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="modal-buttons">
-                    <button onClick={saveAdd} className="confirm-btn" disabled={loading}>
-                      {loading ? "Adding..." : "Add User"}
-                    </button>
-                    <button onClick={cancelAdd} className="cancel-btn" disabled={loading}>
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-          </>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="11">No users found.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         )}
       </div>
+
+      {users.length > 0 && !loading && !error && (
+        <div className="pagination">
+          <button
+            onClick={goToPreviousPage}
+            disabled={currentPage === 1}
+            className="pagination-btn"
+          >
+            Previous
+          </button>
+          <span className="pagination-info">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={goToNextPage}
+            disabled={currentPage === totalPages}
+            className="pagination-btn"
+          >
+            Next
+          </button>
+        </div>
+      )}
+
+      {showArchiveDialog && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Confirm Archive</h3>
+            <p>Are you sure you want to archive this user?</p>
+            <div className="modal-buttons">
+              <button onClick={confirmArchive} className="confirm-btn" disabled={loading}>
+                {loading ? "Archiving..." : "Yes, Archive"}
+              </button>
+              <button onClick={cancelArchive} className="cancel-btn" disabled={loading}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showEditDialog && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Edit User</h3>
+            <div className="edit-form">
+              <div className="form-group">
+                <label>First Name:</label>
+                <input
+                  type="text"
+                  name="first_name"
+                  value={editFormData.first_name}
+                  onChange={handleEditInputChange}
+                  disabled={loading}
+                />
+              </div>
+              <div className="form-group">
+                <label>Last Name:</label>
+                <input
+                  type="text"
+                  name="last_name"
+                  value={editFormData.last_name}
+                  onChange={handleEditInputChange}
+                  disabled={loading}
+                />
+              </div>
+              <div className="form-group">
+                <label>Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={editFormData.email}
+                  onChange={handleEditInputChange}
+                  disabled={loading}
+                />
+              </div>
+              <div className="form-group">
+                <label>Phone Number:</label>
+                <input
+                  type="text"
+                  name="phone_number"
+                  value={editFormData.phone_number}
+                  onChange={handleEditInputChange}
+                  disabled={loading}
+                />
+              </div>
+              <div className="form-group">
+                <label>Gender:</label>
+                <select
+                  name="gender"
+                  value={editFormData.gender}
+                  onChange={handleEditInputChange}
+                  disabled={loading}
+                >
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Date of Birth:</label>
+                <input
+                  type="date"
+                  name="date_of_birth"
+                  value={editFormData.date_of_birth}
+                  onChange={handleEditInputChange}
+                  disabled={loading}
+                />
+              </div>
+              <div className="form-group">
+                <label>Role:</label>
+                <select
+                  name="role"
+                  value={editFormData.role}
+                  onChange={handleEditInputChange}
+                  disabled={loading}
+                >
+                  <option value="customer">customer</option>
+                  <option value="admin">admin</option>
+                </select>
+              </div>
+            </div>
+            <div className="modal-buttons">
+              <button onClick={saveEdit} className="confirm-btn" disabled={loading}>
+                {loading ? "Saving..." : "Save Changes"}
+              </button>
+              <button onClick={cancelEdit} className="cancel-btn" disabled={loading}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showAddDialog && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Add New User</h3>
+            <div className="edit-form">
+              <div className="form-group">
+                <label>First Name:</label>
+                <input
+                  type="text"
+                  name="first_name"
+                  value={newUser.first_name}
+                  onChange={handleAddInputChange}
+                  disabled={loading}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Last Name:</label>
+                <input
+                  type="text"
+                  name="last_name"
+                  value={newUser.last_name}
+                  onChange={handleAddInputChange}
+                  disabled={loading}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={newUser.email}
+                  onChange={handleAddInputChange}
+                  disabled={loading}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Phone Number:</label>
+                <input
+                  type="text"
+                  name="phone_number"
+                  value={newUser.phone_number}
+                  onChange={handleAddInputChange}
+                  disabled={loading}
+                />
+              </div>
+              <div className="form-group">
+                <label>Gender:</label>
+                <select
+                  name="gender"
+                  value={newUser.gender}
+                  onChange={handleAddInputChange}
+                  disabled={loading}
+                >
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Date of Birth:</label>
+                <input
+                  type="date"
+                  name="date_of_birth"
+                  value={newUser.date_of_birth}
+                  onChange={handleAddInputChange}
+                  disabled={loading}
+                />
+              </div>
+              <div className="form-group">
+                <label>Role:</label>
+                <select
+                  name="role"
+                  value={newUser.role}
+                  onChange={handleAddInputChange}
+                  disabled={loading}
+                >
+                  <option value="customer">customer</option>
+                  <option value="admin">admin</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Password:</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={newUser.password}
+                  onChange={handleAddInputChange}
+                  disabled={loading}
+                  required
+                />
+              </div>
+            </div>
+            <div className="modal-buttons">
+              <button onClick={saveAdd} className="confirm-btn" disabled={loading}>
+                {loading ? "Adding..." : "Add User"}
+              </button>
+              <button onClick={cancelAdd} className="cancel-btn" disabled={loading}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

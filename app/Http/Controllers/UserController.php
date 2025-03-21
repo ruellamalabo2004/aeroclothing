@@ -10,9 +10,25 @@ class UserController extends Controller
 {
     // Fetch all users with profile information
     public function index()
-    {
-        return response()->json(User::all(), 200);
-    }
+{
+    $users = User::leftJoin('profiles', 'users.id', '=', 'profiles.user_id')
+        ->select(
+            'users.id',
+            'users.email',
+            'users.role',
+            'users.status',
+            'users.created_at', // Add this line
+            'profiles.first_name',
+            'profiles.last_name',
+            'profiles.suffix',
+            'profiles.phone_number',
+            'profiles.gender',
+            'profiles.date_of_birth'
+        )
+        ->get();
+
+    return response()->json($users, 200);
+}
     // Fetch customers (users with role 'customer')
     public function getCustomers()
     {
@@ -134,50 +150,37 @@ public function getTotalUsers()
 }
 
 
-    public function update(Request $request, $id)
-    {
-        // Find the user by ID
-        $user = User::find($id);
-    
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
-        }
-    
-        // Validate incoming data
-        $request->validate([
-            'email' => 'email|unique:users,email,' . $id,
-            'role' => 'nullable|string',
-            'status' => 'in:Active,Archived',
-            'full_name' => 'nullable|string',
-            'phone_number' => 'nullable|string',
-            'gender' => 'nullable|string',
-            'date_of_birth' => 'nullable|date',
-        ]);
-    
-        // Update the users table
-        $user->update($request->only('email', 'role', 'status'));
-    
-        // Split the full name to first_name, last_name, and suffix if provided
-        if ($request->has('full_name')) {
-            $nameParts = explode(" ", $request->input('full_name'));
-            $first_name = $nameParts[0];
-            $last_name = isset($nameParts[1]) ? $nameParts[1] : '';
-            $suffix = isset($nameParts[2]) ? $nameParts[2] : '';
-    
-            // Update the profiles table
-            $user->profile()->update([
-                'first_name' => $first_name,
-                'last_name' => $last_name,
-                'suffix' => $suffix,
-                'phone_number' => $request->input('phone_number', $user->profile->phone_number),
-                'gender' => $request->input('gender', $user->profile->gender),
-                'date_of_birth' => $request->input('date_of_birth', $user->profile->date_of_birth),
-            ]);
-        }
-    
-        // Return a successful response with the updated data
-        return response()->json(['message' => 'User updated successfully', 'data' => $user], 200);
+public function update(Request $request, $id)
+{
+    $user = User::find($id);
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
     }
+
+    $request->validate([
+        'email' => 'email|unique:users,email,' . $id,
+        'role' => 'nullable|string',
+        'status' => 'in:Active,Archived',
+        'first_name' => 'nullable|string',
+        'middle_name' => 'nullable|string',
+        'last_name' => 'nullable|string',
+        'suffix' => 'nullable|string',
+        'phone_number' => 'nullable|string',
+        'gender' => 'nullable|string',
+        'date_of_birth' => 'nullable|date',
+    ]);
+
+    $user->update($request->only('email', 'role', 'status'));
+    $user->profile()->updateOrCreate(
+        ['user_id' => $user->id],
+        $request->only('first_name', 'middle_name', 'last_name', 'suffix', 'phone_number', 'gender', 'date_of_birth')
+    );
+
+    return response()->json([
+        'message' => 'User updated successfully',
+        'data' => $user->load('profile')
+    ], 200);
+}
     
 
     // Archive a user

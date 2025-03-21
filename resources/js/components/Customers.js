@@ -22,6 +22,8 @@ export default function Customers() {
     role: "customer",
     status: "Active",
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const customersPerPage = 10;
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -40,7 +42,13 @@ export default function Customers() {
   }, []);
 
   const handleEdit = (customer) => {
-    setSelectedCustomer({ ...customer });
+    setSelectedCustomer({
+      ...customer,
+      first_name: customer.full_name?.split(" ")[0] || "",
+      middle_name: customer.middle_name || "",
+      last_name: customer.full_name?.split(" ").slice(1, -1).join(" ") || "",
+      suffix: customer.suffix || "",
+    });
     setEditModalOpen(true);
   };
 
@@ -51,14 +59,11 @@ export default function Customers() {
   const handleArchive = async (customer) => {
     try {
       const newStatus = "Archived";
-      await axios.patch(
-        `http://127.0.0.1:8000/api/users/${customer.id}/archive`,
-        { status: newStatus }
-      );
+      await axios.patch(`http://127.0.0.1:8000/api/users/${customer.id}/archive`, {
+        status: newStatus,
+      });
       setCustomers((prev) =>
-        prev.map((c) =>
-          c.id === customer.id ? { ...c, status: newStatus } : c
-        )
+        prev.map((c) => (c.id === customer.id ? { ...c, status: newStatus } : c))
       );
     } catch (err) {
       console.error("Error archiving customer:", err);
@@ -69,13 +74,9 @@ export default function Customers() {
   const handleRevert = async (customer) => {
     try {
       setLoading(true);
-      await axios.patch(
-        `http://127.0.0.1:8000/api/users/${customer.id}/restore`
-      );
+      await axios.patch(`http://127.0.0.1:8000/api/users/${customer.id}/restore`);
       setCustomers((prev) =>
-        prev.map((c) =>
-          c.id === customer.id ? { ...c, status: "Active" } : c
-        )
+        prev.map((c) => (c.id === customer.id ? { ...c, status: "Active" } : c))
       );
       setError(null);
     } catch (err) {
@@ -94,9 +95,19 @@ export default function Customers() {
     const matchesSearch =
       customer.full_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       customer.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.phone?.toLowerCase().includes(searchTerm.toLowerCase());
+      customer.phone_number?.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesTab && matchesSearch;
   });
+
+  // Pagination logic
+  const indexOfLastCustomer = currentPage * customersPerPage;
+  const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
+  const paginatedCustomers = filteredCustomers.slice(indexOfFirstCustomer, indexOfLastCustomer);
+  const totalPages = Math.ceil(filteredCustomers.length / customersPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   const formatDate = (date) => (date ? new Date(date).toLocaleDateString() : "N/A");
 
@@ -104,7 +115,10 @@ export default function Customers() {
     event.preventDefault();
 
     const updatedCustomerData = {
-      full_name: selectedCustomer.full_name,
+      first_name: selectedCustomer.first_name,
+      middle_name: selectedCustomer.middle_name || null,
+      last_name: selectedCustomer.last_name,
+      suffix: selectedCustomer.suffix || null,
       email: selectedCustomer.email,
       phone_number: selectedCustomer.phone_number,
       gender: selectedCustomer.gender,
@@ -121,7 +135,13 @@ export default function Customers() {
       const updatedCustomer = response.data.data || response.data;
       setCustomers((prevCustomers) =>
         prevCustomers.map((customer) =>
-          customer.id === updatedCustomer.id ? { ...customer, ...updatedCustomer } : customer
+          customer.id === updatedCustomer.id
+            ? {
+                ...customer,
+                ...updatedCustomer,
+                full_name: `${updatedCustomer.first_name || ""} ${updatedCustomer.middle_name || ""} ${updatedCustomer.last_name || ""} ${updatedCustomer.suffix || ""}`.trim(),
+              }
+            : customer
         )
       );
       setEditModalOpen(false);
@@ -133,7 +153,7 @@ export default function Customers() {
 
   const handleAddSubmit = async (event) => {
     event.preventDefault();
-  
+
     const customerData = {
       first_name: newCustomer.first_name,
       middle_name: newCustomer.middle_name || null,
@@ -147,13 +167,9 @@ export default function Customers() {
       status: newCustomer.status || "Active",
       password: "darwin",
     };
-  
+
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/users",
-        customerData
-      );
-  
+      const response = await axios.post("http://127.0.0.1:8000/api/users", customerData);
       const createdCustomer = response.data.data || response.data;
       setCustomers((prev) => [...prev, createdCustomer]);
       setAddModalOpen(false);
@@ -171,10 +187,14 @@ export default function Customers() {
       });
     } catch (error) {
       console.error("Error adding customer:", error.response?.data || error.message);
-      alert(`Failed to add customer: ${JSON.stringify(error.response?.data?.errors || error.response?.data?.message || error.message)}`);
+      alert(
+        `Failed to add customer: ${JSON.stringify(
+          error.response?.data?.errors || error.response?.data?.message || error.message
+        )}`
+      );
     }
   };
-  
+
   return (
     <main>
       <h1>Customers</h1>
@@ -187,6 +207,7 @@ export default function Customers() {
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("All");
+              setCurrentPage(1);
             }}
           >
             All
@@ -197,6 +218,7 @@ export default function Customers() {
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("Archived");
+              setCurrentPage(1);
             }}
           >
             Archived
@@ -207,7 +229,10 @@ export default function Customers() {
           placeholder="Search customers by name, email, or phone..."
           className="customers-search"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setCurrentPage(1);
+          }}
         />
         <button className="add-customer-btn" onClick={handleAddCustomer}>
           Add Customer
@@ -236,7 +261,7 @@ export default function Customers() {
               </tr>
             </thead>
             <tbody>
-              {filteredCustomers.map((customer) => (
+              {paginatedCustomers.map((customer) => (
                 <tr key={customer.id}>
                   <td>
                     <img
@@ -299,18 +324,72 @@ export default function Customers() {
         )}
       </div>
 
+      {customers.length > 0 && !loading && !error && (
+        <div className="pagination">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="pagination-btn"
+          >
+            Previous
+          </button>
+          <span className="pagination-info">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="pagination-btn"
+          >
+            Next
+          </button>
+        </div>
+      )}
+
       {editModalOpen && (
         <div className="edit-modal">
           <div className="modal-content">
             <h2>Edit Customer</h2>
             <form onSubmit={handleEditSubmit}>
               <div>
-                <label>Full Name:</label>
+                <label>First Name:</label>
                 <input
                   type="text"
-                  value={selectedCustomer?.full_name || ""}
+                  value={selectedCustomer?.first_name || ""}
                   onChange={(e) =>
-                    setSelectedCustomer({ ...selectedCustomer, full_name: e.target.value })
+                    setSelectedCustomer({ ...selectedCustomer, first_name: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div>
+                <label>Middle Name:</label>
+                <input
+                  type="text"
+                  value={selectedCustomer?.middle_name || ""}
+                  onChange={(e) =>
+                    setSelectedCustomer({ ...selectedCustomer, middle_name: e.target.value })
+                  }
+                />
+              </div>
+              <div>
+                <label>Last Name:</label>
+                <input
+                  type="text"
+                  value={selectedCustomer?.last_name || ""}
+                  onChange={(e) =>
+                    setSelectedCustomer({ ...selectedCustomer, last_name: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div>
+                <label>Suffix:</label>
+                <input
+                  type="text"
+                  value={selectedCustomer?.suffix || ""}
+                  onChange={(e) =>
+                    setSelectedCustomer({ ...selectedCustomer, suffix: e.target.value })
                   }
                 />
               </div>
@@ -325,7 +404,7 @@ export default function Customers() {
                 />
               </div>
               <div>
-                <label>Phone:</label>
+                <label>Phone Number:</label>
                 <input
                   type="text"
                   value={selectedCustomer?.phone_number || ""}
@@ -359,7 +438,9 @@ export default function Customers() {
                 />
               </div>
               <button type="submit">Save Changes</button>
-              <button type="button" onClick={() => setEditModalOpen(false)}>Cancel</button>
+              <button type="button" onClick={() => setEditModalOpen(false)}>
+                Cancel
+              </button>
             </form>
           </div>
         </div>
@@ -458,7 +539,9 @@ export default function Customers() {
                 />
               </div>
               <button type="submit">Add Customer</button>
-              <button type="button" onClick={() => setAddModalOpen(false)}>Cancel</button>
+              <button type="button" onClick={() => setAddModalOpen(false)}>
+                Cancel
+              </button>
             </form>
           </div>
         </div>

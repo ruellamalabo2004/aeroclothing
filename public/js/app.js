@@ -115235,6 +115235,11 @@ function Customers() {
     _useState18 = _slicedToArray(_useState17, 2),
     newCustomer = _useState18[0],
     setNewCustomer = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState20 = _slicedToArray(_useState19, 2),
+    currentPage = _useState20[0],
+    setCurrentPage = _useState20[1];
+  var customersPerPage = 10;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var fetchCustomers = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -115272,7 +115277,13 @@ function Customers() {
     fetchCustomers();
   }, []);
   var handleEdit = function handleEdit(customer) {
-    setSelectedCustomer(_objectSpread({}, customer));
+    var _customer$full_name, _customer$full_name2;
+    setSelectedCustomer(_objectSpread(_objectSpread({}, customer), {}, {
+      first_name: ((_customer$full_name = customer.full_name) === null || _customer$full_name === void 0 ? void 0 : _customer$full_name.split(" ")[0]) || "",
+      middle_name: customer.middle_name || "",
+      last_name: ((_customer$full_name2 = customer.full_name) === null || _customer$full_name2 === void 0 ? void 0 : _customer$full_name2.split(" ").slice(1, -1).join(" ")) || "",
+      suffix: customer.suffix || ""
+    }));
     setEditModalOpen(true);
   };
   var handleAddCustomer = function handleAddCustomer() {
@@ -115356,11 +115367,20 @@ function Customers() {
     };
   }();
   var filteredCustomers = customers.filter(function (customer) {
-    var _customer$full_name, _customer$email, _customer$phone;
+    var _customer$full_name3, _customer$email, _customer$phone_numbe;
     var matchesTab = activeTab === "All" || customer.status === (activeTab === "Archived" ? "Archived" : "Active");
-    var matchesSearch = ((_customer$full_name = customer.full_name) === null || _customer$full_name === void 0 ? void 0 : _customer$full_name.toLowerCase().includes(searchTerm.toLowerCase())) || ((_customer$email = customer.email) === null || _customer$email === void 0 ? void 0 : _customer$email.toLowerCase().includes(searchTerm.toLowerCase())) || ((_customer$phone = customer.phone) === null || _customer$phone === void 0 ? void 0 : _customer$phone.toLowerCase().includes(searchTerm.toLowerCase()));
+    var matchesSearch = ((_customer$full_name3 = customer.full_name) === null || _customer$full_name3 === void 0 ? void 0 : _customer$full_name3.toLowerCase().includes(searchTerm.toLowerCase())) || ((_customer$email = customer.email) === null || _customer$email === void 0 ? void 0 : _customer$email.toLowerCase().includes(searchTerm.toLowerCase())) || ((_customer$phone_numbe = customer.phone_number) === null || _customer$phone_numbe === void 0 ? void 0 : _customer$phone_numbe.toLowerCase().includes(searchTerm.toLowerCase()));
     return matchesTab && matchesSearch;
   });
+
+  // Pagination logic
+  var indexOfLastCustomer = currentPage * customersPerPage;
+  var indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
+  var paginatedCustomers = filteredCustomers.slice(indexOfFirstCustomer, indexOfLastCustomer);
+  var totalPages = Math.ceil(filteredCustomers.length / customersPerPage);
+  var handlePageChange = function handlePageChange(pageNumber) {
+    setCurrentPage(pageNumber);
+  };
   var formatDate = function formatDate(date) {
     return date ? new Date(date).toLocaleDateString() : "N/A";
   };
@@ -115372,7 +115392,10 @@ function Customers() {
           case 0:
             event.preventDefault();
             updatedCustomerData = {
-              full_name: selectedCustomer.full_name,
+              first_name: selectedCustomer.first_name,
+              middle_name: selectedCustomer.middle_name || null,
+              last_name: selectedCustomer.last_name,
+              suffix: selectedCustomer.suffix || null,
               email: selectedCustomer.email,
               phone_number: selectedCustomer.phone_number,
               gender: selectedCustomer.gender,
@@ -115388,7 +115411,9 @@ function Customers() {
             updatedCustomer = response.data.data || response.data;
             setCustomers(function (prevCustomers) {
               return prevCustomers.map(function (customer) {
-                return customer.id === updatedCustomer.id ? _objectSpread(_objectSpread({}, customer), updatedCustomer) : customer;
+                return customer.id === updatedCustomer.id ? _objectSpread(_objectSpread(_objectSpread({}, customer), updatedCustomer), {}, {
+                  full_name: "".concat(updatedCustomer.first_name || "", " ").concat(updatedCustomer.middle_name || "", " ").concat(updatedCustomer.last_name || "", " ").concat(updatedCustomer.suffix || "").trim()
+                }) : customer;
               });
             });
             setEditModalOpen(false);
@@ -115484,6 +115509,7 @@ function Customers() {
           onClick: function onClick(e) {
             e.preventDefault();
             setActiveTab("All");
+            setCurrentPage(1);
           },
           children: "All"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
@@ -115492,6 +115518,7 @@ function Customers() {
           onClick: function onClick(e) {
             e.preventDefault();
             setActiveTab("Archived");
+            setCurrentPage(1);
           },
           children: "Archived"
         })]
@@ -115501,7 +115528,8 @@ function Customers() {
         className: "customers-search",
         value: searchTerm,
         onChange: function onChange(e) {
-          return setSearchTerm(e.target.value);
+          setSearchTerm(e.target.value);
+          setCurrentPage(1);
         }
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
         className: "add-customer-btn",
@@ -115539,8 +115567,8 @@ function Customers() {
             })]
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-          children: filteredCustomers.map(function (customer) {
-            var _customer$full_name2, _customer$status;
+          children: paginatedCustomers.map(function (customer) {
+            var _customer$full_name4, _customer$status;
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
@@ -115584,7 +115612,7 @@ function Customers() {
                   }
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: ((_customer$full_name2 = customer.full_name) === null || _customer$full_name2 === void 0 ? void 0 : _customer$full_name2.trim()) || "N/A"
+                children: ((_customer$full_name4 = customer.full_name) === null || _customer$full_name4 === void 0 ? void 0 : _customer$full_name4.trim()) || "N/A"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                 children: customer.email || "N/A"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
@@ -115603,6 +115631,26 @@ function Customers() {
           })
         })]
       })
+    }), customers.length > 0 && !loading && !error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "pagination",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        onClick: function onClick() {
+          return handlePageChange(currentPage - 1);
+        },
+        disabled: currentPage === 1,
+        className: "pagination-btn",
+        children: "Previous"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+        className: "pagination-info",
+        children: ["Page ", currentPage, " of ", totalPages]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        onClick: function onClick() {
+          return handlePageChange(currentPage + 1);
+        },
+        disabled: currentPage === totalPages,
+        className: "pagination-btn",
+        children: "Next"
+      })]
     }), editModalOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "edit-modal",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -115613,13 +115661,51 @@ function Customers() {
           onSubmit: handleEditSubmit,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Full Name:"
+              children: "First Name:"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
               type: "text",
-              value: (selectedCustomer === null || selectedCustomer === void 0 ? void 0 : selectedCustomer.full_name) || "",
+              value: (selectedCustomer === null || selectedCustomer === void 0 ? void 0 : selectedCustomer.first_name) || "",
               onChange: function onChange(e) {
                 return setSelectedCustomer(_objectSpread(_objectSpread({}, selectedCustomer), {}, {
-                  full_name: e.target.value
+                  first_name: e.target.value
+                }));
+              },
+              required: true
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Middle Name:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              value: (selectedCustomer === null || selectedCustomer === void 0 ? void 0 : selectedCustomer.middle_name) || "",
+              onChange: function onChange(e) {
+                return setSelectedCustomer(_objectSpread(_objectSpread({}, selectedCustomer), {}, {
+                  middle_name: e.target.value
+                }));
+              }
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Last Name:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              value: (selectedCustomer === null || selectedCustomer === void 0 ? void 0 : selectedCustomer.last_name) || "",
+              onChange: function onChange(e) {
+                return setSelectedCustomer(_objectSpread(_objectSpread({}, selectedCustomer), {}, {
+                  last_name: e.target.value
+                }));
+              },
+              required: true
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Suffix:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              value: (selectedCustomer === null || selectedCustomer === void 0 ? void 0 : selectedCustomer.suffix) || "",
+              onChange: function onChange(e) {
+                return setSelectedCustomer(_objectSpread(_objectSpread({}, selectedCustomer), {}, {
+                  suffix: e.target.value
                 }));
               }
             })]
@@ -115637,7 +115723,7 @@ function Customers() {
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Phone:"
+              children: "Phone Number:"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
               type: "text",
               value: (selectedCustomer === null || selectedCustomer === void 0 ? void 0 : selectedCustomer.phone_number) || "",
@@ -122507,6 +122593,11 @@ function Users() {
     _useState24 = _slicedToArray(_useState23, 2),
     newUser = _useState24[0],
     setNewUser = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState26 = _slicedToArray(_useState25, 2),
+    currentPage = _useState26[0],
+    setCurrentPage = _useState26[1];
+  var usersPerPage = 10;
 
   // Fetch users from API
   var fetchUsers = /*#__PURE__*/function () {
@@ -122536,7 +122627,7 @@ function Users() {
             return response.json();
           case 9:
             data = _context.sent;
-            console.log("API Response:", data); // Log raw response for debugging
+            console.log("API Response:", data);
             userData = Array.isArray(data) ? data : data.data || [];
             processedUsers = userData.map(function (user) {
               return {
@@ -122779,8 +122870,7 @@ function Users() {
             return response.json();
           case 15:
             updatedUser = _context4.sent;
-            console.log("Updated User Response:", updatedUser); // Log response for debugging
-
+            console.log("Updated User Response:", updatedUser);
             setUsers(users.map(function (user) {
               return user.id === userToEdit ? _objectSpread(_objectSpread({}, user), {}, {
                 email: updatedUser.data.email || user.email,
@@ -122937,7 +123027,7 @@ function Users() {
     });
   };
   var getRoleDisplay = function getRoleDisplay(user) {
-    return user.role || "N/A";
+    return user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1).toLowerCase() : "N/A";
   };
   var filteredUsers = users.filter(function (user) {
     var _user$email, _user$first_name, _user$last_name;
@@ -122947,6 +123037,16 @@ function Users() {
     var matchesSearch = ((_user$email = user.email) === null || _user$email === void 0 ? void 0 : _user$email.toLowerCase().includes(searchTerm.toLowerCase())) || ((_user$first_name = user.first_name) === null || _user$first_name === void 0 ? void 0 : _user$first_name.toLowerCase().includes(searchTerm.toLowerCase())) || ((_user$last_name = user.last_name) === null || _user$last_name === void 0 ? void 0 : _user$last_name.toLowerCase().includes(searchTerm.toLowerCase()));
     return matchesTab && matchesSearch;
   });
+  var indexOfLastUser = currentPage * usersPerPage;
+  var indexOfFirstUser = indexOfLastUser - usersPerPage;
+  var paginatedUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+  var totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+  var goToNextPage = function goToNextPage() {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+  var goToPreviousPage = function goToPreviousPage() {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
   var formatDate = function formatDate(timestamp) {
     return timestamp ? new Date(timestamp).toLocaleString() : "N/A";
   };
@@ -123000,379 +123100,396 @@ function Users() {
       }) : error ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
         className: "error-message",
         children: ["Error: ", error]
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
-          className: "users-table",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-                children: "Actions"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-                children: "User ID"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-                children: "First Name"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-                children: "Last Name"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-                children: "Email"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-                children: "Phone"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-                children: "Gender"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-                children: "Date of Birth"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-                children: "Role"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-                children: "Created At"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-                children: "Status"
-              })]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-            children: filteredUsers.length > 0 ? filteredUsers.map(function (user) {
-              var _user$status;
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                    src: "/imgs/editing.svg",
-                    alt: "Edit",
-                    className: "action-img",
-                    onClick: function onClick() {
-                      return editUser(user);
-                    },
-                    style: {
-                      cursor: "pointer"
-                    }
-                  }), user.status !== "Archived" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                    src: "/imgs/archiving.svg",
-                    alt: "Archive",
-                    className: "action-img",
-                    onClick: function onClick() {
-                      return archiveUser(user.id);
-                    },
-                    style: {
-                      cursor: "pointer"
-                    }
-                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                    src: "/imgs/revert.svg",
-                    alt: "Restore",
-                    className: "action-img",
-                    onClick: function onClick() {
-                      return restoreUser(user.id);
-                    },
-                    style: {
-                      cursor: "pointer"
-                    }
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                  children: user.id || "N/A"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                  children: user.first_name || "N/A"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                  children: user.last_name || "N/A"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                  children: user.email || "N/A"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                  children: user.phone_number || "N/A"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                  children: user.gender || "N/A"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                  children: formatDate(user.date_of_birth)
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
+        className: "users-table",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Actions"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "User ID"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "First Name"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Last Name"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Email"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Phone"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Gender"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Date of Birth"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Role"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Created At"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+              children: "Status"
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
+          children: paginatedUsers.length > 0 ? paginatedUsers.map(function (user) {
+            var _user$role, _user$status;
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                  src: "/imgs/editing.svg",
+                  alt: "Edit",
+                  className: "action-img",
+                  onClick: function onClick() {
+                    return editUser(user);
+                  },
+                  style: {
+                    cursor: "pointer"
+                  }
+                }), user.status !== "Archived" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                  src: "/imgs/archiving.svg",
+                  alt: "Archive",
+                  className: "action-img",
+                  onClick: function onClick() {
+                    return archiveUser(user.id);
+                  },
+                  style: {
+                    cursor: "pointer"
+                  }
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                  src: "/imgs/revert.svg",
+                  alt: "Restore",
+                  className: "action-img",
+                  onClick: function onClick() {
+                    return restoreUser(user.id);
+                  },
+                  style: {
+                    cursor: "pointer"
+                  }
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: user.id || "N/A"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: user.first_name || "N/A"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: user.last_name || "N/A"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: user.email || "N/A"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: user.phone_number || "N/A"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: user.gender || "N/A"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: formatDate(user.date_of_birth)
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                  className: "role-frame role-".concat((_user$role = user.role) === null || _user$role === void 0 ? void 0 : _user$role.toLowerCase()),
                   children: getRoleDisplay(user)
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                  children: formatDate(user.created_at)
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                    className: "status-frame status-".concat((_user$status = user.status) === null || _user$status === void 0 ? void 0 : _user$status.toLowerCase()),
-                    children: user.status || "N/A"
-                  })
-                })]
-              }, user.id);
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                colSpan: "11",
-                children: "No users found."
-              })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: formatDate(user.created_at)
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                  className: "status-frame status-".concat((_user$status = user.status) === null || _user$status === void 0 ? void 0 : _user$status.toLowerCase()),
+                  children: user.status || "N/A"
+                })
+              })]
+            }, user.id);
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+              colSpan: "11",
+              children: "No users found."
             })
+          })
+        })]
+      })
+    }), users.length > 0 && !loading && !error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "pagination",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        onClick: goToPreviousPage,
+        disabled: currentPage === 1,
+        className: "pagination-btn",
+        children: "Previous"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+        className: "pagination-info",
+        children: ["Page ", currentPage, " of ", totalPages]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        onClick: goToNextPage,
+        disabled: currentPage === totalPages,
+        className: "pagination-btn",
+        children: "Next"
+      })]
+    }), showArchiveDialog && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "modal-overlay",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "modal-content",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+          children: "Confirm Archive"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+          children: "Are you sure you want to archive this user?"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "modal-buttons",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            onClick: confirmArchive,
+            className: "confirm-btn",
+            disabled: loading,
+            children: loading ? "Archiving..." : "Yes, Archive"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            onClick: cancelArchive,
+            className: "cancel-btn",
+            disabled: loading,
+            children: "Cancel"
           })]
-        }), showArchiveDialog && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "modal-overlay",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "modal-content",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
-              children: "Confirm Archive"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-              children: "Are you sure you want to archive this user?"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-              className: "modal-buttons",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-                onClick: confirmArchive,
-                className: "confirm-btn",
-                disabled: loading,
-                children: loading ? "Archiving..." : "Yes, Archive"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-                onClick: cancelArchive,
-                className: "cancel-btn",
-                disabled: loading,
-                children: "Cancel"
+        })]
+      })
+    }), showEditDialog && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "modal-overlay",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "modal-content",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+          children: "Edit User"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "edit-form",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "First Name:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              name: "first_name",
+              value: editFormData.first_name,
+              onChange: handleEditInputChange,
+              disabled: loading
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Last Name:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              name: "last_name",
+              value: editFormData.last_name,
+              onChange: handleEditInputChange,
+              disabled: loading
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Email:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "email",
+              name: "email",
+              value: editFormData.email,
+              onChange: handleEditInputChange,
+              disabled: loading
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Phone Number:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              name: "phone_number",
+              value: editFormData.phone_number,
+              onChange: handleEditInputChange,
+              disabled: loading
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Gender:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+              name: "gender",
+              value: editFormData.gender,
+              onChange: handleEditInputChange,
+              disabled: loading,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "",
+                children: "Select Gender"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "Male",
+                children: "Male"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "Female",
+                children: "Female"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "Other",
+                children: "Other"
               })]
             })]
-          })
-        }), showEditDialog && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "modal-overlay",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "modal-content",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
-              children: "Edit User"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-              className: "edit-form",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "First Name:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  type: "text",
-                  name: "first_name",
-                  value: editFormData.first_name,
-                  onChange: handleEditInputChange,
-                  disabled: loading
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "Last Name:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  type: "text",
-                  name: "last_name",
-                  value: editFormData.last_name,
-                  onChange: handleEditInputChange,
-                  disabled: loading
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "Email:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  type: "email",
-                  name: "email",
-                  value: editFormData.email,
-                  onChange: handleEditInputChange,
-                  disabled: loading
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "Phone Number:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  type: "text",
-                  name: "phone_number",
-                  value: editFormData.phone_number,
-                  onChange: handleEditInputChange,
-                  disabled: loading
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "Gender:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-                  name: "gender",
-                  value: editFormData.gender,
-                  onChange: handleEditInputChange,
-                  disabled: loading,
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                    value: "",
-                    children: "Select Gender"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                    value: "Male",
-                    children: "Male"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                    value: "Female",
-                    children: "Female"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                    value: "Other",
-                    children: "Other"
-                  })]
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "Date of Birth:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  type: "date",
-                  name: "date_of_birth",
-                  value: editFormData.date_of_birth,
-                  onChange: handleEditInputChange,
-                  disabled: loading
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "Role:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-                  name: "role",
-                  value: editFormData.role,
-                  onChange: handleEditInputChange,
-                  disabled: loading,
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                    value: "customer",
-                    children: "customer"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                    value: "admin",
-                    children: "admin"
-                  })]
-                })]
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-              className: "modal-buttons",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-                onClick: saveEdit,
-                className: "confirm-btn",
-                disabled: loading,
-                children: loading ? "Saving..." : "Save Changes"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-                onClick: cancelEdit,
-                className: "cancel-btn",
-                disabled: loading,
-                children: "Cancel"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Date of Birth:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "date",
+              name: "date_of_birth",
+              value: editFormData.date_of_birth,
+              onChange: handleEditInputChange,
+              disabled: loading
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Role:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+              name: "role",
+              value: editFormData.role,
+              onChange: handleEditInputChange,
+              disabled: loading,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "customer",
+                children: "customer"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "admin",
+                children: "admin"
               })]
             })]
-          })
-        }), showAddDialog && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "modal-overlay",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "modal-content",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
-              children: "Add New User"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-              className: "edit-form",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "First Name:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  type: "text",
-                  name: "first_name",
-                  value: newUser.first_name,
-                  onChange: handleAddInputChange,
-                  disabled: loading,
-                  required: true
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "Last Name:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  type: "text",
-                  name: "last_name",
-                  value: newUser.last_name,
-                  onChange: handleAddInputChange,
-                  disabled: loading,
-                  required: true
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "Email:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  type: "email",
-                  name: "email",
-                  value: newUser.email,
-                  onChange: handleAddInputChange,
-                  disabled: loading,
-                  required: true
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "Phone Number:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  type: "text",
-                  name: "phone_number",
-                  value: newUser.phone_number,
-                  onChange: handleAddInputChange,
-                  disabled: loading
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "Gender:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-                  name: "gender",
-                  value: newUser.gender,
-                  onChange: handleAddInputChange,
-                  disabled: loading,
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                    value: "",
-                    children: "Select Gender"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                    value: "Male",
-                    children: "Male"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                    value: "Female",
-                    children: "Female"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                    value: "Other",
-                    children: "Other"
-                  })]
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "Date of Birth:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  type: "date",
-                  name: "date_of_birth",
-                  value: newUser.date_of_birth,
-                  onChange: handleAddInputChange,
-                  disabled: loading
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "Role:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-                  name: "role",
-                  value: newUser.role,
-                  onChange: handleAddInputChange,
-                  disabled: loading,
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                    value: "customer",
-                    children: "customer"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                    value: "admin",
-                    children: "admin"
-                  })]
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "form-group",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                  children: "Password:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  type: "password",
-                  name: "password",
-                  value: newUser.password,
-                  onChange: handleAddInputChange,
-                  disabled: loading,
-                  required: true
-                })]
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-              className: "modal-buttons",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-                onClick: saveAdd,
-                className: "confirm-btn",
-                disabled: loading,
-                children: loading ? "Adding..." : "Add User"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-                onClick: cancelAdd,
-                className: "cancel-btn",
-                disabled: loading,
-                children: "Cancel"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "modal-buttons",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            onClick: saveEdit,
+            className: "confirm-btn",
+            disabled: loading,
+            children: loading ? "Saving..." : "Save Changes"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            onClick: cancelEdit,
+            className: "cancel-btn",
+            disabled: loading,
+            children: "Cancel"
+          })]
+        })]
+      })
+    }), showAddDialog && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "modal-overlay",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "modal-content",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+          children: "Add New User"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "edit-form",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "First Name:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              name: "first_name",
+              value: newUser.first_name,
+              onChange: handleAddInputChange,
+              disabled: loading,
+              required: true
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Last Name:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              name: "last_name",
+              value: newUser.last_name,
+              onChange: handleAddInputChange,
+              disabled: loading,
+              required: true
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Email:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "email",
+              name: "email",
+              value: newUser.email,
+              onChange: handleAddInputChange,
+              disabled: loading,
+              required: true
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Phone Number:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              name: "phone_number",
+              value: newUser.phone_number,
+              onChange: handleAddInputChange,
+              disabled: loading
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Gender:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+              name: "gender",
+              value: newUser.gender,
+              onChange: handleAddInputChange,
+              disabled: loading,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "",
+                children: "Select Gender"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "Male",
+                children: "Male"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "Female",
+                children: "Female"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "Other",
+                children: "Other"
               })]
             })]
-          })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Date of Birth:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "date",
+              name: "date_of_birth",
+              value: newUser.date_of_birth,
+              onChange: handleAddInputChange,
+              disabled: loading
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Role:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+              name: "role",
+              value: newUser.role,
+              onChange: handleAddInputChange,
+              disabled: loading,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "customer",
+                children: "customer"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "admin",
+                children: "admin"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              children: "Password:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "password",
+              name: "password",
+              value: newUser.password,
+              onChange: handleAddInputChange,
+              disabled: loading,
+              required: true
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "modal-buttons",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            onClick: saveAdd,
+            className: "confirm-btn",
+            disabled: loading,
+            children: loading ? "Adding..." : "Add User"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            onClick: cancelAdd,
+            className: "cancel-btn",
+            disabled: loading,
+            children: "Cancel"
+          })]
         })]
       })
     })]
