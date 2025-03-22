@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models;  // Correct namespace declaration
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,20 +32,23 @@ class Product extends Model
     {
         return $value ? asset('storage/' . $value) : null;
     }
+
     public function inventory()
     {
         return $this->hasOne(Inventory::class);
     }
-    
+
     // Relationships
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
     public function brand()
     {
         return $this->belongsTo(Brand::class, 'brand_id');
     }
+
     // Scope for available products
     public function scopeAvailable($query)
     {

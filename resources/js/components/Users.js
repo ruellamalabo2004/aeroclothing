@@ -33,7 +33,7 @@ export default function Users() {
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 10;
 
-  // Fetch users from API
+  // Fetch users from API (unchanged)
   const fetchUsers = async () => {
     try {
       setLoading(true);
@@ -78,7 +78,7 @@ export default function Users() {
     fetchUsers();
   }, []);
 
-  // Archive User
+  // Archive User (unchanged)
   const archiveUser = (userId) => {
     setUserToArchive(userId);
     setShowArchiveDialog(true);
@@ -119,7 +119,7 @@ export default function Users() {
     setUserToArchive(null);
   };
 
-  // Restore Archived User
+  // Restore Archived User (unchanged)
   const restoreUser = async (userId) => {
     try {
       setLoading(true);
@@ -146,7 +146,7 @@ export default function Users() {
     }
   };
 
-  // Edit User functionality
+  // Edit User functionality (unchanged)
   const editUser = (user) => {
     setUserToEdit(user.id);
     setEditFormData({
@@ -229,7 +229,7 @@ export default function Users() {
     setUserToEdit(null);
   };
 
-  // Add User functionality
+  // Add User functionality (unchanged)
   const handleAddUser = () => {
     setShowAddDialog(true);
   };
@@ -348,8 +348,9 @@ export default function Users() {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
+  // Modified to show only date without time
   const formatDate = (timestamp) =>
-    timestamp ? new Date(timestamp).toLocaleString() : "N/A";
+    timestamp ? new Date(timestamp).toLocaleDateString() : "N/A";
 
   return (
     <main className="users-main">
@@ -502,203 +503,227 @@ export default function Users() {
       )}
 
       {showEditDialog && (
-        <div className="modal-overlay">
+        <div className="edit-modal">
           <div className="modal-content">
-            <h3>Edit User</h3>
-            <div className="edit-form">
-              <div className="form-group">
-                <label>First Name:</label>
-                <input
-                  type="text"
-                  name="first_name"
-                  value={editFormData.first_name}
-                  onChange={handleEditInputChange}
-                  disabled={loading}
-                />
+            <h2>Edit User</h2>
+            <form onSubmit={(e) => { e.preventDefault(); saveEdit(); }}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>First Name:</label>
+                  <input
+                    type="text"
+                    name="first_name"
+                    value={editFormData.first_name}
+                    onChange={handleEditInputChange}
+                    disabled={loading}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Last Name:</label>
+                  <input
+                    type="text"
+                    name="last_name"
+                    value={editFormData.last_name}
+                    onChange={handleEditInputChange}
+                    disabled={loading}
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label>Last Name:</label>
-                <input
-                  type="text"
-                  name="last_name"
-                  value={editFormData.last_name}
-                  onChange={handleEditInputChange}
-                  disabled={loading}
-                />
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={editFormData.email}
+                    onChange={handleEditInputChange}
+                    disabled={loading}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Phone Number:</label>
+                  <input
+                    type="text"
+                    name="phone_number"
+                    value={editFormData.phone_number}
+                    onChange={handleEditInputChange}
+                    disabled={loading}
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label>Email:</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={editFormData.email}
-                  onChange={handleEditInputChange}
-                  disabled={loading}
-                />
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Gender:</label>
+                  <select
+                    name="gender"
+                    value={editFormData.gender}
+                    onChange={handleEditInputChange}
+                    disabled={loading}
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Date of Birth:</label>
+                  <input
+                    type="date"
+                    name="date_of_birth"
+                    value={editFormData.date_of_birth}
+                    onChange={handleEditInputChange}
+                    disabled={loading}
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label>Phone Number:</label>
-                <input
-                  type="text"
-                  name="phone_number"
-                  value={editFormData.phone_number}
-                  onChange={handleEditInputChange}
-                  disabled={loading}
-                />
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Role:</label>
+                  <select
+                    name="role"
+                    value={editFormData.role}
+                    onChange={handleEditInputChange}
+                    disabled={loading}
+                  >
+                    <option value="customer">customer</option>
+                    <option value="admin">admin</option>
+                  </select>
+                </div>
               </div>
-              <div className="form-group">
-                <label>Gender:</label>
-                <select
-                  name="gender"
-                  value={editFormData.gender}
-                  onChange={handleEditInputChange}
-                  disabled={loading}
-                >
-                  <option value="">Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
+
+              <div className="form-buttons">
+                <button type="button" onClick={cancelEdit} disabled={loading}>
+                  Cancel
+                </button>
+                <button type="submit" disabled={loading}>
+                  {loading ? "Saving..." : "Save Changes"}
+                </button>
               </div>
-              <div className="form-group">
-                <label>Date of Birth:</label>
-                <input
-                  type="date"
-                  name="date_of_birth"
-                  value={editFormData.date_of_birth}
-                  onChange={handleEditInputChange}
-                  disabled={loading}
-                />
-              </div>
-              <div className="form-group">
-                <label>Role:</label>
-                <select
-                  name="role"
-                  value={editFormData.role}
-                  onChange={handleEditInputChange}
-                  disabled={loading}
-                >
-                  <option value="customer">customer</option>
-                  <option value="admin">admin</option>
-                </select>
-              </div>
-            </div>
-            <div className="modal-buttons">
-              <button onClick={saveEdit} className="confirm-btn" disabled={loading}>
-                {loading ? "Saving..." : "Save Changes"}
-              </button>
-              <button onClick={cancelEdit} className="cancel-btn" disabled={loading}>
-                Cancel
-              </button>
-            </div>
+            </form>
           </div>
         </div>
       )}
 
       {showAddDialog && (
-        <div className="modal-overlay">
+        <div className="edit-modal">
           <div className="modal-content">
-            <h3>Add New User</h3>
-            <div className="edit-form">
-              <div className="form-group">
-                <label>First Name:</label>
-                <input
-                  type="text"
-                  name="first_name"
-                  value={newUser.first_name}
-                  onChange={handleAddInputChange}
-                  disabled={loading}
-                  required
-                />
+            <h2>Add New User</h2>
+            <form onSubmit={(e) => { e.preventDefault(); saveAdd(); }}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>First Name:</label>
+                  <input
+                    type="text"
+                    name="first_name"
+                    value={newUser.first_name}
+                    onChange={handleAddInputChange}
+                    disabled={loading}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Last Name:</label>
+                  <input
+                    type="text"
+                    name="last_name"
+                    value={newUser.last_name}
+                    onChange={handleAddInputChange}
+                    disabled={loading}
+                    required
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label>Last Name:</label>
-                <input
-                  type="text"
-                  name="last_name"
-                  value={newUser.last_name}
-                  onChange={handleAddInputChange}
-                  disabled={loading}
-                  required
-                />
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={newUser.email}
+                    onChange={handleAddInputChange}
+                    disabled={loading}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Phone Number:</label>
+                  <input
+                    type="text"
+                    name="phone_number"
+                    value={newUser.phone_number}
+                    onChange={handleAddInputChange}
+                    disabled={loading}
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label>Email:</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={newUser.email}
-                  onChange={handleAddInputChange}
-                  disabled={loading}
-                  required
-                />
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Gender:</label>
+                  <select
+                    name="gender"
+                    value={newUser.gender}
+                    onChange={handleAddInputChange}
+                    disabled={loading}
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Date of Birth:</label>
+                  <input
+                    type="date"
+                    name="date_of_birth"
+                    value={newUser.date_of_birth}
+                    onChange={handleAddInputChange}
+                    disabled={loading}
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label>Phone Number:</label>
-                <input
-                  type="text"
-                  name="phone_number"
-                  value={newUser.phone_number}
-                  onChange={handleAddInputChange}
-                  disabled={loading}
-                />
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Role:</label>
+                  <select
+                    name="role"
+                    value={newUser.role}
+                    onChange={handleAddInputChange}
+                    disabled={loading}
+                  >
+                    <option value="customer">customer</option>
+                    <option value="admin">admin</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Password:</label>
+                  <input
+                    type="password"
+                    name="password"
+                    value={newUser.password}
+                    onChange={handleAddInputChange}
+                    disabled={loading}
+                    required
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label>Gender:</label>
-                <select
-                  name="gender"
-                  value={newUser.gender}
-                  onChange={handleAddInputChange}
-                  disabled={loading}
-                >
-                  <option value="">Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
+
+              <div className="form-buttons">
+                <button type="button" onClick={cancelAdd} disabled={loading}>
+                  Cancel
+                </button>
+                <button type="submit" disabled={loading}>
+                  {loading ? "Adding..." : "Add User"}
+                </button>
               </div>
-              <div className="form-group">
-                <label>Date of Birth:</label>
-                <input
-                  type="date"
-                  name="date_of_birth"
-                  value={newUser.date_of_birth}
-                  onChange={handleAddInputChange}
-                  disabled={loading}
-                />
-              </div>
-              <div className="form-group">
-                <label>Role:</label>
-                <select
-                  name="role"
-                  value={newUser.role}
-                  onChange={handleAddInputChange}
-                  disabled={loading}
-                >
-                  <option value="customer">customer</option>
-                  <option value="admin">admin</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label>Password:</label>
-                <input
-                  type="password"
-                  name="password"
-                  value={newUser.password}
-                  onChange={handleAddInputChange}
-                  disabled={loading}
-                  required
-                />
-              </div>
-            </div>
-            <div className="modal-buttons">
-              <button onClick={saveAdd} className="confirm-btn" disabled={loading}>
-                {loading ? "Adding..." : "Add User"}
-              </button>
-              <button onClick={cancelAdd} className="cancel-btn" disabled={loading}>
-                Cancel
-              </button>
-            </div>
+            </form>
           </div>
         </div>
       )}

@@ -99,7 +99,6 @@ export default function Customers() {
     return matchesTab && matchesSearch;
   });
 
-  // Pagination logic
   const indexOfLastCustomer = currentPage * customersPerPage;
   const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
   const paginatedCustomers = filteredCustomers.slice(indexOfFirstCustomer, indexOfLastCustomer);
@@ -351,96 +350,110 @@ export default function Customers() {
           <div className="modal-content">
             <h2>Edit Customer</h2>
             <form onSubmit={handleEditSubmit}>
-              <div>
-                <label>First Name:</label>
-                <input
-                  type="text"
-                  value={selectedCustomer?.first_name || ""}
-                  onChange={(e) =>
-                    setSelectedCustomer({ ...selectedCustomer, first_name: e.target.value })
-                  }
-                  required
-                />
+              <div className="form-row">
+                <div className="form-group">
+                  <label>First Name:</label>
+                  <input
+                    type="text"
+                    value={selectedCustomer?.first_name || ""}
+                    onChange={(e) =>
+                      setSelectedCustomer({ ...selectedCustomer, first_name: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Middle Name:</label>
+                  <input
+                    type="text"
+                    value={selectedCustomer?.middle_name || ""}
+                    onChange={(e) =>
+                      setSelectedCustomer({ ...selectedCustomer, middle_name: e.target.value })
+                    }
+                  />
+                </div>
               </div>
-              <div>
-                <label>Middle Name:</label>
-                <input
-                  type="text"
-                  value={selectedCustomer?.middle_name || ""}
-                  onChange={(e) =>
-                    setSelectedCustomer({ ...selectedCustomer, middle_name: e.target.value })
-                  }
-                />
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Last Name:</label>
+                  <input
+                    type="text"
+                    value={selectedCustomer?.last_name || ""}
+                    onChange={(e) =>
+                      setSelectedCustomer({ ...selectedCustomer, last_name: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Suffix:</label>
+                  <input
+                    type="text"
+                    value={selectedCustomer?.suffix || ""}
+                    onChange={(e) =>
+                      setSelectedCustomer({ ...selectedCustomer, suffix: e.target.value })
+                    }
+                  />
+                </div>
               </div>
-              <div>
-                <label>Last Name:</label>
-                <input
-                  type="text"
-                  value={selectedCustomer?.last_name || ""}
-                  onChange={(e) =>
-                    setSelectedCustomer({ ...selectedCustomer, last_name: e.target.value })
-                  }
-                  required
-                />
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    value={selectedCustomer?.email || ""}
+                    onChange={(e) =>
+                      setSelectedCustomer({ ...selectedCustomer, email: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Phone Number:</label>
+                  <input
+                    type="text"
+                    value={selectedCustomer?.phone_number || ""}
+                    onChange={(e) =>
+                      setSelectedCustomer({ ...selectedCustomer, phone_number: e.target.value })
+                    }
+                  />
+                </div>
               </div>
-              <div>
-                <label>Suffix:</label>
-                <input
-                  type="text"
-                  value={selectedCustomer?.suffix || ""}
-                  onChange={(e) =>
-                    setSelectedCustomer({ ...selectedCustomer, suffix: e.target.value })
-                  }
-                />
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Gender:</label>
+                  <select
+                    value={selectedCustomer?.gender || ""}
+                    onChange={(e) =>
+                      setSelectedCustomer({ ...selectedCustomer, gender: e.target.value })
+                    }
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Date of Birth:</label>
+                  <input
+                    type="date"
+                    value={selectedCustomer?.date_of_birth?.split("T")[0] || ""}
+                    onChange={(e) =>
+                      setSelectedCustomer({ ...selectedCustomer, date_of_birth: e.target.value })
+                    }
+                  />
+                </div>
               </div>
-              <div>
-                <label>Email:</label>
-                <input
-                  type="email"
-                  value={selectedCustomer?.email || ""}
-                  onChange={(e) =>
-                    setSelectedCustomer({ ...selectedCustomer, email: e.target.value })
-                  }
-                />
+
+              <div className="form-buttons">
+                <button type="button" onClick={() => setEditModalOpen(false)}>
+                  Cancel
+                </button>
+                <button type="submit">Save Changes</button>
               </div>
-              <div>
-                <label>Phone Number:</label>
-                <input
-                  type="text"
-                  value={selectedCustomer?.phone_number || ""}
-                  onChange={(e) =>
-                    setSelectedCustomer({ ...selectedCustomer, phone_number: e.target.value })
-                  }
-                />
-              </div>
-              <div>
-                <label>Gender:</label>
-                <select
-                  value={selectedCustomer?.gender || ""}
-                  onChange={(e) =>
-                    setSelectedCustomer({ ...selectedCustomer, gender: e.target.value })
-                  }
-                >
-                  <option value="">Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label>Date of Birth:</label>
-                <input
-                  type="date"
-                  value={selectedCustomer?.date_of_birth?.split("T")[0] || ""}
-                  onChange={(e) =>
-                    setSelectedCustomer({ ...selectedCustomer, date_of_birth: e.target.value })
-                  }
-                />
-              </div>
-              <button type="submit">Save Changes</button>
-              <button type="button" onClick={() => setEditModalOpen(false)}>
-                Cancel
-              </button>
             </form>
           </div>
         </div>
@@ -451,97 +464,111 @@ export default function Customers() {
           <div className="modal-content">
             <h2>Add New Customer</h2>
             <form onSubmit={handleAddSubmit}>
-              <div>
-                <label>First Name:</label>
-                <input
-                  type="text"
-                  value={newCustomer.first_name}
-                  onChange={(e) =>
-                    setNewCustomer({ ...newCustomer, first_name: e.target.value })
-                  }
-                  required
-                />
+              <div className="form-row">
+                <div className="form-group">
+                  <label>First Name:</label>
+                  <input
+                    type="text"
+                    value={newCustomer.first_name}
+                    onChange={(e) =>
+                      setNewCustomer({ ...newCustomer, first_name: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Middle Name:</label>
+                  <input
+                    type="text"
+                    value={newCustomer.middle_name}
+                    onChange={(e) =>
+                      setNewCustomer({ ...newCustomer, middle_name: e.target.value })
+                    }
+                  />
+                </div>
               </div>
-              <div>
-                <label>Middle Name:</label>
-                <input
-                  type="text"
-                  value={newCustomer.middle_name}
-                  onChange={(e) =>
-                    setNewCustomer({ ...newCustomer, middle_name: e.target.value })
-                  }
-                />
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Last Name:</label>
+                  <input
+                    type="text"
+                    value={newCustomer.last_name}
+                    onChange={(e) =>
+                      setNewCustomer({ ...newCustomer, last_name: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Suffix:</label>
+                  <input
+                    type="text"
+                    value={newCustomer.suffix}
+                    onChange={(e) =>
+                      setNewCustomer({ ...newCustomer, suffix: e.target.value })
+                    }
+                  />
+                </div>
               </div>
-              <div>
-                <label>Last Name:</label>
-                <input
-                  type="text"
-                  value={newCustomer.last_name}
-                  onChange={(e) =>
-                    setNewCustomer({ ...newCustomer, last_name: e.target.value })
-                  }
-                  required
-                />
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    value={newCustomer.email}
+                    onChange={(e) =>
+                      setNewCustomer({ ...newCustomer, email: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Phone Number:</label>
+                  <input
+                    type="text"
+                    value={newCustomer.phone_number}
+                    onChange={(e) =>
+                      setNewCustomer({ ...newCustomer, phone_number: e.target.value })
+                    }
+                  />
+                </div>
               </div>
-              <div>
-                <label>Suffix:</label>
-                <input
-                  type="text"
-                  value={newCustomer.suffix}
-                  onChange={(e) =>
-                    setNewCustomer({ ...newCustomer, suffix: e.target.value })
-                  }
-                />
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Gender:</label>
+                  <select
+                    value={newCustomer.gender}
+                    onChange={(e) =>
+                      setNewCustomer({ ...newCustomer, gender: e.target.value })
+                    }
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Date of Birth:</label>
+                  <input
+                    type="date"
+                    value={newCustomer.date_of_birth}
+                    onChange={(e) =>
+                      setNewCustomer({ ...newCustomer, date_of_birth: e.target.value })
+                    }
+                  />
+                </div>
               </div>
-              <div>
-                <label>Email:</label>
-                <input
-                  type="email"
-                  value={newCustomer.email}
-                  onChange={(e) =>
-                    setNewCustomer({ ...newCustomer, email: e.target.value })
-                  }
-                  required
-                />
+
+              <div className="form-buttons">
+                <button type="button" onClick={() => setAddModalOpen(false)}>
+                  Cancel
+                </button>
+                <button type="submit">Add Customer</button>
               </div>
-              <div>
-                <label>Phone Number:</label>
-                <input
-                  type="text"
-                  value={newCustomer.phone_number}
-                  onChange={(e) =>
-                    setNewCustomer({ ...newCustomer, phone_number: e.target.value })
-                  }
-                />
-              </div>
-              <div>
-                <label>Gender:</label>
-                <select
-                  value={newCustomer.gender}
-                  onChange={(e) =>
-                    setNewCustomer({ ...newCustomer, gender: e.target.value })
-                  }
-                >
-                  <option value="">Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label>Date of Birth:</label>
-                <input
-                  type="date"
-                  value={newCustomer.date_of_birth}
-                  onChange={(e) =>
-                    setNewCustomer({ ...newCustomer, date_of_birth: e.target.value })
-                  }
-                />
-              </div>
-              <button type="submit">Add Customer</button>
-              <button type="button" onClick={() => setAddModalOpen(false)}>
-                Cancel
-              </button>
             </form>
           </div>
         </div>
