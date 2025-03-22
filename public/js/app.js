@@ -117133,12 +117133,20 @@ var ShopByCategory = function ShopByCategory() {
     navigate("/customer/".concat(category.toLowerCase()));
   };
   var categories = [{
-    name: "mens"
-  }, {
-    name: "womens"
-  }, {
-    name: "kids"
-  }];
+    name: "mens",
+    svg: "/imgs/mensc.svg"
+  },
+  // Replace with actual SVG path
+  {
+    name: "womens",
+    svg: "/imgs/womensc.svg"
+  },
+  // Replace with actual SVG path
+  {
+    name: "kids",
+    svg: "/imgs/kidsc.svg"
+  } // Replace with actual SVG path
+  ];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("section", {
     className: "shop-by-category-section",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
@@ -117146,7 +117154,7 @@ var ShopByCategory = function ShopByCategory() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
       className: "category-items",
       children: categories.map(function (category) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "category-item",
           onClick: function onClick() {
             return handleCategoryClick(category.name);
@@ -117154,10 +117162,14 @@ var ShopByCategory = function ShopByCategory() {
           style: {
             cursor: 'pointer'
           },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+            src: category.svg,
+            alt: category.name,
+            className: "category-svg"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
             className: "category-name",
             children: category.name.toUpperCase()
-          })
+          })]
         }, category.name);
       })
     })]
@@ -117171,16 +117183,18 @@ var FeaturedItems = function FeaturedItems() {
   var featuredItems = [{
     name: "womens",
     title: "WOMEN'S GWEN SLICE DENIM SHIRT",
-    discount: "UP TO 5%"
+    discount: "UP TO 5%",
+    svg: "/imgs/womensf.svg" // Replace with actual SVG path
   }, {
     name: "mens",
     title: "MEN'S SLIM-FIT KNIT CARDIGAN",
-    discount: "UP TO 10%"
+    discount: "UP TO 10%",
+    svg: "/imgs/mensf.svg" // Replace with actual SVG path
   }];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("section", {
     className: "featured-items-section",
     children: featuredItems.map(function (item) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "featured-item",
         onClick: function onClick() {
           return handleShopNowClick(item.name);
@@ -117188,7 +117202,11 @@ var FeaturedItems = function FeaturedItems() {
         style: {
           cursor: 'pointer'
         },
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+          src: item.svg,
+          alt: item.title,
+          className: "featured-svg"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "featured-content",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
             className: "featured-category",
@@ -117203,7 +117221,7 @@ var FeaturedItems = function FeaturedItems() {
             className: "shop-now-button",
             children: "SHOP NOW"
           })]
-        })
+        })]
       }, item.name);
     })
   });
@@ -117442,19 +117460,18 @@ var HomePage = function HomePage() {
                 quantity: item.quantity || 1
               };
             });
-            console.log('Fetched Cart Items:', detailedCart); // Debug
             setCartItems(detailedCart);
-            _context2.next = 13;
+            _context2.next = 12;
             break;
-          case 10:
-            _context2.prev = 10;
+          case 9:
+            _context2.prev = 9;
             _context2.t0 = _context2["catch"](0);
             console.error("Error fetching cart:", ((_error$response4 = _context2.t0.response) === null || _error$response4 === void 0 ? void 0 : _error$response4.data) || _context2.t0.message);
-          case 13:
+          case 12:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 10]]);
+      }, _callee2, null, [[0, 9]]);
     }));
     return function fetchCart(_x3, _x4) {
       return _ref2.apply(this, arguments);
@@ -117558,21 +117575,20 @@ var HomePage = function HomePage() {
             });
           case 5:
             response = _context5.sent;
-            console.log('Add to cart response:', response.data); // Debug
-            _context5.next = 9;
+            _context5.next = 8;
             return fetchCart(token, userId);
-          case 9:
-            _context5.next = 14;
+          case 8:
+            _context5.next = 13;
             break;
-          case 11:
-            _context5.prev = 11;
+          case 10:
+            _context5.prev = 10;
             _context5.t0 = _context5["catch"](2);
             console.error("Error adding to cart:", ((_error$response8 = _context5.t0.response) === null || _error$response8 === void 0 ? void 0 : _error$response8.data) || _context5.t0.message);
-          case 14:
+          case 13:
           case "end":
             return _context5.stop();
         }
-      }, _callee5, null, [[2, 11]]);
+      }, _callee5, null, [[2, 10]]);
     }));
     return function addToCart(_x7) {
       return _ref5.apply(this, arguments);

@@ -17,9 +17,9 @@ const ShopByCategory = () => {
   };
 
   const categories = [
-    { name: "mens" },
-    { name: "womens" },
-    { name: "kids" },
+    { name: "mens", svg: "/imgs/mensc.svg" }, // Replace with actual SVG path
+    { name: "womens", svg: "/imgs/womensc.svg" }, // Replace with actual SVG path
+    { name: "kids", svg: "/imgs/kidsc.svg" }, // Replace with actual SVG path
   ];
 
   return (
@@ -27,12 +27,13 @@ const ShopByCategory = () => {
       <h2>SHOP BY CATEGORY</h2>
       <div className="category-items">
         {categories.map((category) => (
-          <div 
-            key={category.name} 
-            className="category-item" 
+          <div
+            key={category.name}
+            className="category-item"
             onClick={() => handleCategoryClick(category.name)}
             style={{ cursor: 'pointer' }}
           >
+            <img src={category.svg} alt={category.name} className="category-svg" />
             <p className="category-name">{category.name.toUpperCase()}</p>
           </div>
         ))}
@@ -53,23 +54,26 @@ const FeaturedItems = () => {
       name: "womens",
       title: "WOMEN'S GWEN SLICE DENIM SHIRT",
       discount: "UP TO 5%",
+      svg: "/imgs/womensf.svg", // Replace with actual SVG path
     },
     {
       name: "mens",
       title: "MEN'S SLIM-FIT KNIT CARDIGAN",
       discount: "UP TO 10%",
+      svg: "/imgs/mensf.svg", // Replace with actual SVG path
     },
   ];
 
   return (
     <section className="featured-items-section">
       {featuredItems.map((item) => (
-        <div 
-          key={item.name} 
-          className="featured-item" 
-          onClick={() => handleShopNowClick(item.name)} 
+        <div
+          key={item.name}
+          className="featured-item"
+          onClick={() => handleShopNowClick(item.name)}
           style={{ cursor: 'pointer' }}
         >
+          <img src={item.svg} alt={item.title} className="featured-svg" />
           <div className="featured-content">
             <p className="featured-category">{item.name.toUpperCase()} CLOTHING</p>
             <p className="featured-title">{item.title}</p>
@@ -223,7 +227,6 @@ const HomePage = () => {
         imagePreview: item.product?.image_1 ? `${BASE_IMAGE_URL}/${item.product.image_1}` : '/default-image.jpg',
         quantity: item.quantity || 1,
       }));
-      console.log('Fetched Cart Items:', detailedCart); // Debug
       setCartItems(detailedCart);
     } catch (error) {
       console.error("Error fetching cart:", error.response?.data || error.message);
@@ -277,8 +280,7 @@ const HomePage = () => {
       }, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log('Add to cart response:', response.data); // Debug
-      await fetchCart(token, userId); // Ensure fetchCart runs after adding
+      await fetchCart(token, userId);
     } catch (error) {
       console.error("Error adding to cart:", error.response?.data || error.message);
     }
