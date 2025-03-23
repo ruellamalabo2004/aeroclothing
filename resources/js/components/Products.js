@@ -534,158 +534,20 @@ export default function Products() {
           >
             <div className="edit-modal-content">
               <h2>{isEditing ? "Edit Product" : "Add New Product"}</h2>
-              <div className="custom-form-layout">
-                <div className="form-row">
-                  <div className="form-group">
-                    <label>Product Name</label>
-                    <input
-                      type="text"
-                      name="product_name"
-                      value={formData.product_name}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Colors</label>
-                    <select
-                      multiple
-                      name="colors"
-                      value={formData.colors}
-                      onChange={handleColorsChange}
-                      disabled={isLoading}
-                      required
-                    >
-                      <option value="Red">Red</option>
-                      <option value="Blue">Blue</option>
-                      <option value="Green">Green</option>
-                      <option value="Black">Black</option>
-                      <option value="White">White</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label>Category</label>
-                    <select
-                      name="category"
-                      value={formData.category}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      required
-                    >
-                      <option value="">Select Category</option>
-                      {categories.map((cat) => (
-                        <option key={cat.id} value={cat.id}>
-                          {cat.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label>Price</label>
-                    <input
-                      type="number"
-                      name="price"
-                      value={formData.price}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      min="0"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label>Product Type</label>
-                    <select
-                      name="product_type"
-                      value={formData.product_type}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      required
-                    >
-                      <option value="">Select Type</option>
-                      <option value="Tops">Tops</option>
-                      <option value="Bottoms">Bottoms</option>
-                      <option value="Jacket">Jacket</option>
-                      <option value="Swimwear">Swimwear</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label>Description</label>
-                    <textarea
-                      name="description"
-                      value={formData.description}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                    />
-                  </div>
-                </div>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label>Sizes</label>
-                    <select
-                      multiple
-                      name="sizes"
-                      value={formData.sizes}
-                      onChange={handleSizeChange}
-                      disabled={isLoading}
-                      required
-                    >
-                      <option value="XS">XS</option>
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label>Status</label>
-                    <select
-                      name="status"
-                      value={formData.status}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      required
-                    >
-                      <option value="available">Published</option>
-                      <option value="archived">Archived</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label>Brand</label>
-                    <select
-                      name="brand"
-                      value={formData.brand}
-                      onChange={handleBrandChange}
-                      disabled={isLoading}
-                      required
-                    >
-                      <option value="">Select Brand</option>
-                      {brands.map((brand) => (
-                        <option key={brand.id} value={brand.id}>
-                          {brand.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+              <form onSubmit={(e) => { e.preventDefault(); saveProduct(); }}>
+                <div className="form-image-upload">
                   <div
-                    className="form-group image-upload"
+                    className="image-upload"
                     ref={uploadAreaRef}
                     onDragOver={handleDragOver}
                     onDrop={handleDrop}
                   >
-                    <label>Product Image</label>
                     <div className="upload-area" onClick={triggerFileInput}>
                       {imagePreview ? (
                         <img
                           src={imagePreview}
                           alt="Preview"
-                          style={{ maxWidth: "100%", maxHeight: "120px" }}
+                          style={{ maxWidth: "150px", maxHeight: "150px", objectFit: "cover" }}
                         />
                       ) : (
                         <>
@@ -708,19 +570,150 @@ export default function Products() {
                     </div>
                   </div>
                 </div>
-                <div className="modal-actions">
-                  <button
-                    type="button"
-                    className="save-btn"
-                    onClick={saveProduct}
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Product Name:</label>
+                    <input
+                      type="text"
+                      name="product_name"
+                      value={formData.product_name}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Category:</label>
+                    <select
+                      name="category"
+                      value={formData.category}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                      required
+                    >
+                      <option value="">Select Category</option>
+                      {categories.map((cat) => (
+                        <option key={cat.id} value={cat.id}>
+                          {cat.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Product Type:</label>
+                    <select
+                      name="product_type"
+                      value={formData.product_type}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                      required
+                    >
+                      <option value="">Select Type</option>
+                      <option value="Tops">Tops</option>
+                      <option value="Bottoms">Bottoms</option>
+                      <option value="Jacket">Jacket</option>
+                      <option value="Swimwear">Swimwear</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Brand:</label>
+                    <select
+                      name="brand"
+                      value={formData.brand}
+                      onChange={handleBrandChange}
+                      disabled={isLoading}
+                      required
+                    >
+                      <option value="">Select Brand</option>
+                      {brands.map((brand) => (
+                        <option key={brand.id} value={brand.id}>
+                          {brand.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Sizes:</label>
+                    <select
+                      multiple
+                      name="sizes"
+                      value={formData.sizes}
+                      onChange={handleSizeChange}
+                      disabled={isLoading}
+                      required
+                    >
+                      <option value="XS">XS</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Colors:</label>
+                    <select
+                      multiple
+                      name="colors"
+                      value={formData.colors}
+                      onChange={handleColorsChange}
+                      disabled={isLoading}
+                      required
+                    >
+                      <option value="Red">Red</option>
+                      <option value="Blue">Blue</option>
+                      <option value="Green">Green</option>
+                      <option value="Black">Black</option>
+                      <option value="White">White</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Status:</label>
+                    <select
+                      name="status"
+                      value={formData.status}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                      required
+                    >
+                      <option value="available">Published</option>
+                      <option value="archived">Archived</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Price:</label>
+                    <input
+                      type="number"
+                      name="price"
+                      value={formData.price}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                      min="0"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group full-width">
+                  <label>Description:</label>
+                  <textarea
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
                     disabled={isLoading}
-                  >
-                    {isLoading
-                      ? "Saving..."
-                      : isEditing
-                      ? "Save Changes"
-                      : "Save Product"}
-                  </button>
+                  />
+                </div>
+
+                <div className="modal-actions">
                   <button
                     type="button"
                     className="cancel-btn"
@@ -729,8 +722,19 @@ export default function Products() {
                   >
                     Cancel
                   </button>
+                  <button
+                    type="submit"
+                    className="save-btn"
+                    disabled={isLoading}
+                  >
+                    {isLoading
+                      ? "Saving..."
+                      : isEditing
+                      ? "Save Changes"
+                      : "Save Product"}
+                  </button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

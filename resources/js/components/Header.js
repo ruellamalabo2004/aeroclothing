@@ -182,19 +182,28 @@ const Header = ({
             )}
           </button>
           <div className={`profile-dropdown ${!isProfileDropdownOpen ? 'hidden' : ''}`}>
-            {profileDropdownItems.map((item, index) => (
-              <React.Fragment key={index}>
-                <Link
-                  to={item.path}
-                  className="profile-item"
-                  onClick={item.onClick || undefined}
-                >
-                  {item.label}
-                </Link>
-                {index === 1 && <hr className="profile-separator" />}
-              </React.Fragment>
-            ))}
-          </div>
+  {profileDropdownItems.map((item, index) => (
+    <React.Fragment key={index}>
+      {item.label === "Logout" ? (
+        <div
+          className="profile-item"
+          onClick={item.onClick} // This calls the updated handleLogout
+        >
+          {item.label}
+        </div>
+      ) : (
+        <Link
+          to={item.path}
+          className="profile-item"
+          onClick={() => setIsProfileDropdownOpen(false)}
+        >
+          {item.label}
+        </Link>
+      )}
+      {index === 1 && <hr className="profile-separator" />}
+    </React.Fragment>
+  ))}
+</div>
         </div>
       </div>
     </header>

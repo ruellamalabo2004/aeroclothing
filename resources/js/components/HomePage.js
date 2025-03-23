@@ -377,17 +377,20 @@ const HomePage = () => {
   const handleCloseCart = () => setIsCartVisible(false);
 
   const handleLogout = () => {
-    const token = localStorage.getItem('token');
-    axios.delete(`${API_URL}/cart/clear`, {
-      headers: { Authorization: `Bearer ${token}` },
-    }).catch((error) => console.error("Error clearing cart:", error));
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    setWishlistedItems([]);
-    setCartItems([]);
-    navigate('/login');
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      const token = localStorage.getItem('token');
+      axios.delete(`${API_URL}/cart/clear`, {
+        headers: { Authorization: `Bearer ${token}` },
+      }).catch((error) => console.error("Error clearing cart:", error));
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      setWishlistedItems([]);
+      setCartItems([]);
+      navigate('/login');
+      setIsProfileDropdownOpen(false); // Close the dropdown
+    }
   };
-
   const handleOutsideClick = (e) => {
     if (!e.target.closest('.notification-container') && !e.target.closest('.header-icon')) setIsNotificationOpen(false);
     if (!e.target.closest('.wishlist-container') && !e.target.closest('.header-icon')) setIsWishlistOpen(false);

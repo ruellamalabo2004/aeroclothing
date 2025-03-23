@@ -84,7 +84,7 @@ h1 {
         transition: background 0.3s ease;
 
         &:hover {
-            background: #E5383B;
+            background: #C62828;
         }
     }
 }
@@ -171,7 +171,7 @@ h1 {
         background: #fff;
         padding: 20px;
         border-radius: 8px;
-        width: 400px;
+        width: 700px; /* Increased width to match the screenshot */
         max-width: 90%;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         animation: fadeIn 0.3s ease-in-out;
@@ -179,63 +179,81 @@ h1 {
         h2 {
             font-size: 20px;
             color: #161A1D;
-            margin-bottom: 15px;
-            text-align: center;
+            margin-bottom: 20px; /* Increased margin for spacing */
+            text-align: left;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 20px; /* Increased gap between rows */
 
-            label {
-                font-size: 14px;
-                font-weight: bold;
-                color: #333;
-                margin-bottom: 5px;
-                display: block;
+            .form-row {
+                display: flex;
+                gap: 15px; /* Increased gap between fields */
+                flex-wrap: wrap;
             }
 
-            input,
-            select {
-                width: 100%;
-                padding: 8px;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                font-size: 14px;
-                outline: none;
-                transition: border-color 0.3s ease;
+            .form-group {
+                flex: 1;
+                min-width: 150px; /* Ensures fields don't get too narrow */
+                display: flex;
+                flex-direction: column;
 
-                &:focus {
-                    border-color: #2196F3;
-                    box-shadow: 0 0 3px rgba(33, 150, 243, 0.3);
+                label {
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: #333;
+                    margin-bottom: 5px;
+                }
+
+                input,
+                select {
+                    width: 100%;
+                    padding: 10px 12px;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    outline: none;
+                    transition: border-color 0.3s ease;
+
+                    &:focus {
+                        border-color: #2196F3;
+                        box-shadow: 0 0 3px rgba(33, 150, 243, 0.3);
+                    }
                 }
             }
 
-            button {
-                padding: 10px;
-                border: none;
-                border-radius: 4px;
-                font-size: 14px;
-                cursor: pointer;
-                transition: background 0.3s ease;
-            }
+            .form-buttons {
+                display: flex;
+                justify-content: flex-end;
+                gap: 10px;
 
-            button[type="submit"] {
-                background: #2196F3;
-                color: white;
-
-                &:hover {
-                    background: #1976D2;
+                button {
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    cursor: pointer;
+                    transition: background 0.3s ease;
                 }
-            }
 
-            button[type="button"] {
-                background: #E5383B;
-                color: white;
+                button[type="submit"] {
+                    background: #E5383B;
+                    color: white;
 
-                &:hover {
-                    background: #C62828;
+                    &:hover {
+                        background: #C62828;
+                    }
+                }
+
+                button[type="button"] {
+                    background: #E0E0E0;
+                    color: #333;
+
+                    &:hover {
+                        background: #B0B0B0;
+                    }
                 }
             }
         }
@@ -306,5 +324,48 @@ h1 {
     .edit-modal .modal-content {
         width: 90%;
         padding: 15px;
+
+        .form-row {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .form-group {
+            width: 100%;
+        }
     }
-}   
+}
+
+/* 📌 Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+
+    .pagination-btn {
+        padding: 6px 12px;
+        background: #E5383B;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        &:hover {
+            background: #E5383B;
+        }
+
+        &:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    }
+
+    .pagination-info {
+        font-size: 14px;
+        color: #333;
+    }
+}

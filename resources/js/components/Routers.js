@@ -22,6 +22,7 @@ import Mywishlist from "./Mywishlist";
 import Myorders from "./Myorders";
 import Mycart from "./Mycart";
 import Checkout from "./Checkout";
+import Shop from "./Shop";
 import ForgotPassword from "./ForgotPassword"; // Import ForgotPassword component
 import ResetPassword from "./Resetpassword"; // Import ResetPassword component
 
@@ -58,6 +59,10 @@ const App = () => {
         <Route
           path="/homepage"
           element={<ProtectedRoute element={<HomePage />} allowedRoles={["customer"]} />}
+        />
+         <Route
+          path="/shop"
+          element={<ProtectedRoute element={<Shop />} allowedRoles={["customer"]} />}
         />
         <Route
           path="/profile"
