@@ -97,10 +97,40 @@
       }
 
       .cart-items {
-        max-height: 400px;
+        max-height: calc(100vh - 220px); /* Adjusted for smaller buttons */
         overflow-y: auto;
         width: 100%;
         margin-bottom: 20px;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+
+        &.hide-scrollbar {
+          /* Hide scrollbar when content doesn't overflow */
+          &::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+          }
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        &.show-scrollbar {
+          /* Show scrollbar when content overflows */
+          &::-webkit-scrollbar {
+            width: 8px;
+          }
+          &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+          }
+          &::-webkit-scrollbar-thumb:hover {
+            background: #555;
+          }
+          scrollbar-width: auto; /* Firefox */
+          -ms-overflow-style: auto; /* IE and Edge */
+        }
       }
 
       .cart-item {
@@ -186,23 +216,61 @@
         }
       }
 
-      .checkout-btn {
+      .cart-actions {
+        display: flex;
+        gap: 10px;
         width: 100%;
-        padding: 12px;
-        background-color: #e5383b;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-size: 14px;
-        font-weight: 500;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+        margin-top: 20px;
 
-        &:hover {
-          background-color: #c12d2f;
+        .view-cart-btn,
+        .checkout-btn {
+          flex: 1;
+          padding: 8px; /* Reduced padding to make buttons smaller */
+          border-radius: 5px;
+          font-size: 12px; /* Reduced font size */
+          font-weight: 500;
+          text-transform: uppercase;
+          cursor: pointer;
+          transition: background-color 0.3s ease, border 0.3s ease;
+        }
+
+        .view-cart-btn {
+          background: #fff;
+          border: 1px solid #000;
+          color: #000;
+
+          &:hover {
+            background: #f0f0f0;
+          }
+        }
+
+        .checkout-btn {
+          background-color: #e5383b;
+          color: white;
+          border: none;
+
+          &:hover {
+            background-color: #c12d2f;
+          }
         }
       }
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cart-sidebar {
+    width: 100%;
+    right: -100%;
+  }
+
+  .cart-actions {
+    flex-direction: column;
+
+    .view-cart-btn,
+    .checkout-btn {
+      width: 100%;
     }
   }
 }

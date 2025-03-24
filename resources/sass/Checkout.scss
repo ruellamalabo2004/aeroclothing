@@ -7,7 +7,7 @@
 }
 
 .checkout-container {
-  margin-top: 75px; /* Space for fixed header */
+  margin-top: 75px;
   padding: 40px 20px;
   flex: 1;
   max-width: 1200px;
@@ -32,137 +32,133 @@
 
 .checkout-details {
   flex: 1;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width: 0;
 
-  h2 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 20px;
-  }
+  .shipping-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
 
-  .shipping-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
-    .form-row {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-
-      .form-group {
-        flex: 1;
-        min-width: 200px;
-      }
+    h2 {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 20px;
     }
 
-    .form-group {
+    .shipping-form {
       display: flex;
       flex-direction: column;
+      gap: 20px;
+      text-align: left; /* Ensure no centering is inherited */
 
-      label {
-        font-size: 14px;
-        color: #333;
-        margin-bottom: 5px;
-        font-weight: 500;
+      .account-section,
+      .shipping-info-section {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        text-align: left; /* Ensure no centering is inherited */
       }
 
-      input,
-      select,
-      textarea {
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 14px;
-        color: #333;
-        outline: none;
+      .form-row {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
 
-        &:focus {
-          border-color: #e5383b;
+        .form-group {
+          flex: 1;
+          min-width: 200px;
         }
       }
 
-      select {
-        appearance: none;
-        background: #fff url('/imgs/dropdown-arrow.svg') no-repeat right 10px center;
-        background-size: 10px;
-        padding-right: 30px;
-      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
 
-      &.full-width {
-        width: 100%;
-      }
-
-      textarea {
-        min-height: 80px;
-        resize: none;
-        overflow: hidden;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        &::-webkit-scrollbar {
-          display: none;
+        label {
+          font-size: 14px;
+          color: #333;
+          margin-bottom: 5px;
+          font-weight: 500;
+          text-align: left; /* Ensure all labels are aligned to the left */
         }
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-      }
-    }
 
-    .form-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-      justify-content: flex-end;
+        input,
+        textarea {
+          padding: 10px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          font-size: 14px;
+          color: #333;
+          outline: none;
+          width: 100%;
+          box-sizing: border-box;
 
-      .cancel-btn,
-      .submit-btn {
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: background 0.3s ease, border 0.3s ease;
-      }
+          &:focus {
+            border-color: #e5383b;
+          }
 
-      .cancel-btn {
-        background: #fff;
-        border: 1px solid #000;
-        color: #000;
-
-        &:hover {
-          background: #f0f0f0;
+          &[readonly] {
+            background: #f5f5f5;
+            cursor: not-allowed;
+          }
         }
-      }
 
-      .submit-btn {
-        background: #000;
-        border: none;
-        color: #fff;
+        &.full-width {
+          width: 100%;
+        }
 
-        &:hover {
-          background: #333;
+        textarea {
+          min-height: 100px;
+          resize: none;
+          overflow: hidden;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+          &::-webkit-scrollbar {
+            display: none;
+          }
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+
+        &.long-textarea {
+          textarea {
+            min-height: 120px;
+          }
         }
       }
     }
   }
 
-  .payment-methods {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
+  .payment-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
-    label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
+    h2 {
+      font-size: 20px;
       color: #333;
+      margin-bottom: 20px;
+    }
 
-      input {
-        margin: 0;
+    .payment-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: #333;
+        text-align: left; /* Ensure alignment for payment method labels */
+
+        input {
+          margin: 0;
+        }
       }
     }
   }
@@ -205,7 +201,6 @@
         font-weight: 500;
       }
 
-      .summary-item-size,
       .summary-item-quantity {
         font-size: 12px;
         color: #666;
@@ -278,7 +273,6 @@
   }
 }
 
-/* Success Modal Styles */
 .success-modal-overlay {
   position: fixed;
   top: 0;
@@ -304,7 +298,7 @@
 
 .success-icon {
   font-size: 48px;
-  color: #28a745; /* Green color for checkmark */
+  color: #28a745;
   margin-bottom: 20px;
 }
 
@@ -357,19 +351,6 @@
   }
 }
 
-.back-to-shop {
-  display: block;
-  text-align: center;
-  margin-top: 20px;
-  color: #333;
-  text-decoration: none;
-  font-size: 14px;
-
-  &:hover {
-    color: #e5383b;
-  }
-}
-
 .error-message {
   position: fixed;
   top: 10px;
@@ -383,7 +364,6 @@
   z-index: 1002;
 }
 
-/* Responsive Design */
 @media (max-width: 992px) {
   .checkout-body {
     flex-direction: column;
@@ -440,12 +420,14 @@
     margin-bottom: 20px;
   }
 
-  .checkout-details,
+  .shipping-container,
+  .payment-container,
   .checkout-summary {
     padding: 15px;
   }
 
-  .checkout-details h2,
+  .shipping-container h2,
+  .payment-container h2,
   .checkout-summary h2 {
     font-size: 18px;
   }
@@ -456,7 +438,8 @@
     font-size: 20px;
   }
 
-  .checkout-details h2,
+  .shipping-container h2,
+  .payment-container h2,
   .checkout-summary h2 {
     font-size: 16px;
   }
@@ -471,7 +454,6 @@
       font-size: 12px;
     }
 
-    .summary-item-size,
     .summary-item-quantity {
       font-size: 10px;
     }
@@ -497,15 +479,4 @@
       min-width: 100%;
     }
   }
-
-  .form-actions {
-    flex-direction: column;
-    gap: 10px;
-
-    .cancel-btn,
-    .submit-btn {
-      width: 100%;
-    }
-  }
 }
-

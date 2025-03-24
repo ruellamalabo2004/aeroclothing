@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 
 const CartSidebar = ({
   isCartVisible,
@@ -18,6 +17,11 @@ const CartSidebar = ({
     setIsCartVisible(false);
   };
 
+  const handleViewCart = () => {
+    navigate('/profile/cart');
+    setIsCartVisible(false);
+  };
+
   const handleCheckout = () => {
     console.log('Cart Items before checkout:', cartItems); // Debug
     if (cartItems.length > 0) {
@@ -26,6 +30,28 @@ const CartSidebar = ({
       alert('Your cart is empty. Add items before checking out.');
     }
   };
+
+  const [showScrollbar, setShowScrollbar] = useState(false);
+  const cartItemsRef = useRef(null);
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (cartItemsRef.current) {
+        const { scrollHeight, clientHeight } = cartItemsRef.current;
+        // Show scrollbar if content overflows the container
+        setShowScrollbar(scrollHeight > clientHeight);
+      }
+    };
+
+    // Check overflow initially and on cart items change
+    checkOverflow();
+
+    // Add event listener for resize to recheck overflow
+    window.addEventListener('resize', checkOverflow);
+
+    // Cleanup event listener on unmount
+    return () => window.removeEventListener('resize', checkOverflow);
+  }, [cartItems]);
 
   return (
     <div className={`cart-sidebar ${isCartVisible ? 'active' : ''}`}>
@@ -47,7 +73,10 @@ const CartSidebar = ({
             </>
           ) : (
             <>
-              <div className="cart-items">
+              <div
+                className={`cart-items ${showScrollbar ? 'show-scrollbar' : 'hide-scrollbar'}`}
+                ref={cartItemsRef}
+              >
                 {cartItems.map((item) => (
                   <div key={item.id} className="cart-item">
                     <img
@@ -78,12 +107,20 @@ const CartSidebar = ({
                   </div>
                 ))}
               </div>
-              <button
-                className="checkout-btn"
-                onClick={handleCheckout}
-              >
-                PROCEED TO CHECKOUT
-              </button>
+              <div className="cart-actions">
+                <button
+                  className="view-cart-btn"
+                  onClick={handleViewCart}
+                >
+                  VIEW CART
+                </button>
+                <button
+                  className="checkout-btn"
+                  onClick={handleCheckout}
+                >
+                  CHECKOUT
+                </button>
+              </div>
             </>
           )}
         </div>

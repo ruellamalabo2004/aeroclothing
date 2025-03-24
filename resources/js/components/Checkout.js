@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import CartSidebar from './CartSidebar';
@@ -21,17 +21,18 @@ const Checkout = () => {
   const [orderNote, setOrderNote] = useState('');
   const [isOrderNoteOpen, setIsOrderNoteOpen] = useState(false);
   const [shippingInfo, setShippingInfo] = useState({
+    email: '',
     firstName: '',
     lastName: '',
-    phone: '',
-    country: '',
-    province: '',
+    country: 'Philippines',
     city: '',
+    region: '',
     postalCode: '',
     streetAddress: '',
   });
   const [paymentMethod, setPaymentMethod] = useState('');
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [orderId, setOrderId] = useState(null);
   const [error, setError] = useState(null);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
@@ -94,12 +95,12 @@ const Checkout = () => {
 
         setUserProfile(userProfile);
         setShippingInfo({
+          email: userData?.email || '',
           firstName: profileData.first_name || '',
           lastName: profileData.last_name || '',
-          phone: profileData.phone_number || '',
           country: 'Philippines',
-          province: '',
           city: '',
+          province: '',
           postalCode: '',
           streetAddress: '',
         });
@@ -225,6 +226,17 @@ const Checkout = () => {
     }
   };
 
+  const clearCartBackend = async (token) => {
+    try {
+      await axios.delete(`${API_URL}/cart/clear`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setCartItems([]); // Clear local state
+    } catch (error) {
+      console.error("Error clearing cart:", error.response?.data || error.message);
+    }
+  };
+
   const removeFromCart = (itemId) => async () => {
     await removeFromCartBackend(itemId);
   };
@@ -253,9 +265,9 @@ const Checkout = () => {
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
 
-    if (!shippingInfo.firstName || !shippingInfo.lastName || !shippingInfo.phone || 
-        !shippingInfo.country || !shippingInfo.city || !shippingInfo.postalCode || 
-        !shippingInfo.streetAddress) {
+    if (!shippingInfo.email || !shippingInfo.firstName || !shippingInfo.lastName || 
+        !shippingInfo.country || !shippingInfo.city || !shippingInfo.region || 
+        !shippingInfo.postalCode || !shippingInfo.streetAddress) {
       setError('Please fill in all shipping details.');
       return;
     }
@@ -283,16 +295,16 @@ const Checkout = () => {
 
     try {
       const orderData = {
-        shipping_id: 1, // Placeholder, replace with actual shipping ID logic
-        product_id: cartItems[0].id, // Assuming single item for simplicity
-        customer: `${shippingInfo.firstName} ${shippingInfo.lastName}`, // Combine first and last name
-        payment_method: paymentMethod || 'cod', // Default to COD if not selected
-        total_amount: calculateSubtotal() + 50, // Subtotal + Shipping
-        date: new Date().toISOString().split('T')[0], // Current date
-        status: 'Pending', // Initial status, backend can update
-        created_at: new Date().toISOString(), // Current timestamp
-        updated_at: new Date().toISOString(), // Current timestamp
-        archive_at: null, // Null for now
+        shipping_id: 1,
+        product_id: cartItems[0].id,
+        customer: `${shippingInfo.firstName} ${shippingInfo.lastName}`,
+        payment_method: paymentMethod || 'cod',
+        total_amount: calculateSubtotal() + 50,
+        date: new Date().toISOString().split('T')[0],
+        status: 'Pending',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+        archive_at: null,
       };
 
       const response = await axios.post(`${API_URL}/orders`, orderData, {
@@ -303,16 +315,16 @@ const Checkout = () => {
       });
 
       console.log('Order placed:', response.data);
-      setIsSuccessModalOpen(true); // Show modal on success
-      setError(null); // Clear any previous errors
+      setOrderId(response.data.id);
+      setIsSuccessModalOpen(true);
+      setError(null);
+
+      // Clear the cart after successful order
+      await clearCartBackend(token);
     } catch (err) {
       console.error('Error placing order:', err.response?.data || err.message);
       setError('Failed to place order: ' + (err.response?.data?.message || err.message));
     }
-  };
-
-  const handleCancel = () => {
-    navigate('/profile/cart');
   };
 
   const handleViewCart = () => {
@@ -375,142 +387,147 @@ const Checkout = () => {
         <h1 className="checkout-title">Checkout</h1>
         <div className="checkout-body">
           <div className="checkout-details">
-            <h2>Shipping Information</h2>
-            <form className="shipping-form" onSubmit={handlePlaceOrder}>
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="firstName">First Name</label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    value={shippingInfo.firstName}
-                    onChange={handleShippingChange}
-                    required
-                  />
+            <div className="shipping-container">
+              <h2>Shipping Information</h2>
+              <form className="shipping-form" onSubmit={handlePlaceOrder}>
+                <div className="account-section">
+                  <div className="form-group full-width">
+                    <label htmlFor="email">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={shippingInfo.email}
+                      onChange={handleShippingChange}
+                      required
+                      readOnly
+                    />
+                  </div>
                 </div>
-                <div className="form-group">
-                  <label htmlFor="lastName">Last Name</label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    value={shippingInfo.lastName}
-                    onChange={handleShippingChange}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="form-group full-width">
-                <label htmlFor="phone">Phone Number</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={shippingInfo.phone}
-                  onChange={handleShippingChange}
-                  required
-                />
-              </div>
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="country">Country</label>
-                  <input
-                    type="text"
-                    id="country"
-                    name="country"
-                    value={shippingInfo.country}
-                    onChange={handleShippingChange}
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="province">Province</label>
-                  <input
-                    type="text"
-                    id="province"
-                    name="province"
-                    value={shippingInfo.province}
-                    onChange={handleShippingChange}
-                  />
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="city">City</label>
-                  <input
-                    type="text"
-                    id="city"
-                    name="city"
-                    value={shippingInfo.city}
-                    onChange={handleShippingChange}
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="postalCode">Postal Code</label>
-                  <input
-                    type="text"
-                    id="postalCode"
-                    name="postalCode"
-                    value={shippingInfo.postalCode}
-                    onChange={handleShippingChange}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="form-group full-width">
-                <label htmlFor="streetAddress">Street Address</label>
-                <textarea
-                  id="streetAddress"
-                  name="streetAddress"
-                  value={shippingInfo.streetAddress}
-                  onChange={handleShippingChange}
-                  required
-                />
-              </div>
-              <div className="form-actions">
-                <button type="button" className="cancel-btn" onClick={handleCancel}>
-                  Cancel
-                </button>
-                <button type="submit" className="submit-btn">
-                  Submit
-                </button>
-              </div>
-            </form>
 
-            <h2>Payment Method</h2>
-            <div className="payment-methods">
-              <label>
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  value="creditCard"
-                  checked={paymentMethod === 'creditCard'}
-                  onChange={handlePaymentChange}
-                />
-                Credit Card
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  value="paypal"
-                  checked={paymentMethod === 'paypal'}
-                  onChange={handlePaymentChange}
-                />
-                PayPal
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  value="cod"
-                  checked={paymentMethod === 'cod'}
-                  onChange={handlePaymentChange}
-                />
-                Cash on Delivery
-              </label>
+                <div className="shipping-info-section">
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="firstName">First Name</label>
+                      <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        value={shippingInfo.firstName}
+                        onChange={handleShippingChange}
+                        required
+                        readOnly
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="lastName">Last Name</label>
+                      <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        value={shippingInfo.lastName}
+                        onChange={handleShippingChange}
+                        required
+                        readOnly
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group full-width">
+                    <label htmlFor="country">Country</label>
+                    <input
+                      type="text"
+                      id="country"
+                      name="country"
+                      value={shippingInfo.country}
+                      onChange={handleShippingChange}
+                      required
+                      readOnly
+                    />
+                  </div>
+                  <div className="form-group full-width">
+                    <label htmlFor="city">City</label>
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      value={shippingInfo.city}
+                      onChange={handleShippingChange}
+                      required
+                    />
+                  </div>
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="region">Region</label>
+                      <input
+                        type="text"
+                        id="region"
+                        name="region"
+                        value={shippingInfo.region}
+                        onChange={handleShippingChange}
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="postalCode">Postal Code</label>
+                      <input
+                        type="text"
+                        id="postalCode"
+                        name="postalCode"
+                        value={shippingInfo.postalCode}
+                        onChange={handleShippingChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group full-width">
+                    <label htmlFor="streetAddress">Street Address</label>
+                    <textarea
+                      id="streetAddress"
+                      name="streetAddress"
+                      value={shippingInfo.streetAddress}
+                      onChange={handleShippingChange}
+                      required
+                      className="long-textarea"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div className="payment-container">
+              <h2>Payment Method</h2>
+              <div className="payment-methods">
+                <label>
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="creditCard"
+                    checked={paymentMethod === 'creditCard'}
+                    onChange={handlePaymentChange}
+                  />
+                  Credit Card / Debit Card
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="paypal"
+                    checked={paymentMethod === 'paypal'}
+                    onChange={handlePaymentChange}
+                  />
+                  Paypal
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="cod"
+                    checked={paymentMethod === 'cod'}
+                    onChange={handlePaymentChange}
+                  />
+                  Cash on Delivery
+                </label>
+              </div>
             </div>
           </div>
 
@@ -549,7 +566,7 @@ const Checkout = () => {
               <button
                 className="place-order-btn"
                 onClick={handlePlaceOrder}
-                disabled={cartItems.length === 0 || !paymentMethod || !shippingInfo.firstName}
+                disabled={cartItems.length === 0 || !paymentMethod || !shippingInfo.email}
               >
                 Place Order
               </button>
@@ -565,7 +582,7 @@ const Checkout = () => {
             <h2 className="success-title">Order Placed Successfully!</h2>
             <p className="success-message">
               We've received your order and it will ship in 5-7 business days. <br />
-              Your order number is #1
+              Your order number is #{orderId || 'N/A'}
             </p>
             <div className="modal-actions">
               <button className="continue-shopping-btn" onClick={handleContinueShopping}>
