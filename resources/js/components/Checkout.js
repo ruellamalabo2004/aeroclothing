@@ -21,18 +21,17 @@ const Checkout = () => {
   const [orderNote, setOrderNote] = useState('');
   const [isOrderNoteOpen, setIsOrderNoteOpen] = useState(false);
   const [shippingInfo, setShippingInfo] = useState({
-    email: '',
     firstName: '',
     lastName: '',
+    phone: '',
     country: 'Philippines',
+    province: '',
     city: '',
-    region: '',
     postalCode: '',
     streetAddress: '',
   });
   const [paymentMethod, setPaymentMethod] = useState('');
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
-  const [orderId, setOrderId] = useState(null);
   const [error, setError] = useState(null);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
@@ -40,6 +39,202 @@ const Checkout = () => {
 
   const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
   const API_URL = "http://127.0.0.1:8000/api";
+
+  const countries = [
+    { code: 'AF', name: 'Afghanistan' },
+    { code: 'AL', name: 'Albania' },
+    { code: 'DZ', name: 'Algeria' },
+    { code: 'AD', name: 'Andorra' },
+    { code: 'AO', name: 'Angola' },
+    { code: 'AG', name: 'Antigua and Barbuda' },
+    { code: 'AR', name: 'Argentina' },
+    { code: 'AM', name: 'Armenia' },
+    { code: 'AU', name: 'Australia' },
+    { code: 'AT', name: 'Austria' },
+    { code: 'AZ', name: 'Azerbaijan' },
+    { code: 'BS', name: 'Bahamas' },
+    { code: 'BH', name: 'Bahrain' },
+    { code: 'BD', name: 'Bangladesh' },
+    { code: 'BB', name: 'Barbados' },
+    { code: 'BY', name: 'Belarus' },
+    { code: 'BE', name: 'Belgium' },
+    { code: 'BZ', name: 'Belize' },
+    { code: 'BJ', name: 'Benin' },
+    { code: 'BT', name: 'Bhutan' },
+    { code: 'BO', name: 'Bolivia' },
+    { code: 'BA', name: 'Bosnia and Herzegovina' },
+    { code: 'BW', name: 'Botswana' },
+    { code: 'BR', name: 'Brazil' },
+    { code: 'BN', name: 'Brunei' },
+    { code: 'BG', name: 'Bulgaria' },
+    { code: 'BF', name: 'Burkina Faso' },
+    { code: 'BI', name: 'Burundi' },
+    { code: 'CV', name: 'Cabo Verde' },
+    { code: 'KH', name: 'Cambodia' },
+    { code: 'CM', name: 'Cameroon' },
+    { code: 'CA', name: 'Canada' },
+    { code: 'CF', name: 'Central African Republic' },
+    { code: 'TD', name: 'Chad' },
+    { code: 'CL', name: 'Chile' },
+    { code: 'CN', name: 'China' },
+    { code: 'CO', name: 'Colombia' },
+    { code: 'KM', name: 'Comoros' },
+    { code: 'CG', name: 'Congo' },
+    { code: 'CD', name: 'Congo, Democratic Republic of the' },
+    { code: 'CR', name: 'Costa Rica' },
+    { code: 'CI', name: 'Côte d\'Ivoire' },
+    { code: 'HR', name: 'Croatia' },
+    { code: 'CU', name: 'Cuba' },
+    { code: 'CY', name: 'Cyprus' },
+    { code: 'CZ', name: 'Czech Republic' },
+    { code: 'DK', name: 'Denmark' },
+    { code: 'DJ', name: 'Djibouti' },
+    { code: 'DM', name: 'Dominica' },
+    { code: 'DO', name: 'Dominican Republic' },
+    { code: 'EC', name: 'Ecuador' },
+    { code: 'EG', name: 'Egypt' },
+    { code: 'SV', name: 'El Salvador' },
+    { code: 'GQ', name: 'Equatorial Guinea' },
+    { code: 'ER', name: 'Eritrea' },
+    { code: 'EE', name: 'Estonia' },
+    { code: 'SZ', name: 'Eswatini' },
+    { code: 'ET', name: 'Ethiopia' },
+    { code: 'FJ', name: 'Fiji' },
+    { code: 'FI', name: 'Finland' },
+    { code: 'FR', name: 'France' },
+    { code: 'GA', name: 'Gabon' },
+    { code: 'GM', name: 'Gambia' },
+    { code: 'GE', name: 'Georgia' },
+    { code: 'DE', name: 'Germany' },
+    { code: 'GH', name: 'Ghana' },
+    { code: 'GR', name: 'Greece' },
+    { code: 'GD', name: 'Grenada' },
+    { code: 'GT', name: 'Guatemala' },
+    { code: 'GN', name: 'Guinea' },
+    { code: 'GW', name: 'Guinea-Bissau' },
+    { code: 'GY', name: 'Guyana' },
+    { code: 'HT', name: 'Haiti' },
+    { code: 'HN', name: 'Honduras' },
+    { code: 'HU', name: 'Hungary' },
+    { code: 'IS', name: 'Iceland' },
+    { code: 'IN', name: 'India' },
+    { code: 'ID', name: 'Indonesia' },
+    { code: 'IR', name: 'Iran' },
+    { code: 'IQ', name: 'Iraq' },
+    { code: 'IE', name: 'Ireland' },
+    { code: 'IL', name: 'Israel' },
+    { code: 'IT', name: 'Italy' },
+    { code: 'JM', name: 'Jamaica' },
+    { code: 'JP', name: 'Japan' },
+    { code: 'JO', name: 'Jordan' },
+    { code: 'KZ', name: 'Kazakhstan' },
+    { code: 'KE', name: 'Kenya' },
+    { code: 'KI', name: 'Kiribati' },
+    { code: 'KP', name: 'Korea, North' },
+    { code: 'KR', name: 'Korea, South' },
+    { code: 'KW', name: 'Kuwait' },
+    { code: 'KG', name: 'Kyrgyzstan' },
+    { code: 'LA', name: 'Laos' },
+    { code: 'LV', name: 'Latvia' },
+    { code: 'LB', name: 'Lebanon' },
+    { code: 'LS', name: 'Lesotho' },
+    { code: 'LR', name: 'Liberia' },
+    { code: 'LY', name: 'Libya' },
+    { code: 'LI', name: 'Liechtenstein' },
+    { code: 'LT', name: 'Lithuania' },
+    { code: 'LU', name: 'Luxembourg' },
+    { code: 'MG', name: 'Madagascar' },
+    { code: 'MW', name: 'Malawi' },
+    { code: 'MY', name: 'Malaysia' },
+    { code: 'MV', name: 'Maldives' },
+    { code: 'ML', name: 'Mali' },
+    { code: 'MT', name: 'Malta' },
+    { code: 'MH', name: 'Marshall Islands' },
+    { code: 'MR', name: 'Mauritania' },
+    { code: 'MU', name: 'Mauritius' },
+    { code: 'MX', name: 'Mexico' },
+    { code: 'FM', name: 'Micronesia' },
+    { code: 'MD', name: 'Moldova' },
+    { code: 'MC', name: 'Monaco' },
+    { code: 'MN', name: 'Mongolia' },
+    { code: 'ME', name: 'Montenegro' },
+    { code: 'MA', name: 'Morocco' },
+    { code: 'MZ', name: 'Mozambique' },
+    { code: 'MM', name: 'Myanmar' },
+    { code: 'NA', name: 'Namibia' },
+    { code: 'NR', name: 'Nauru' },
+    { code: 'NP', name: 'Nepal' },
+    { code: 'NL', name: 'Netherlands' },
+    { code: 'NZ', name: 'New Zealand' },
+    { code: 'NI', name: 'Nicaragua' },
+    { code: 'NE', name: 'Niger' },
+    { code: 'NG', name: 'Nigeria' },
+    { code: 'NO', name: 'Norway' },
+    { code: 'OM', name: 'Oman' },
+    { code: 'PK', name: 'Pakistan' },
+    { code: 'PW', name: 'Palau' },
+    { code: 'PA', name: 'Panama' },
+    { code: 'PG', name: 'Papua New Guinea' },
+    { code: 'PY', name: 'Paraguay' },
+    { code: 'PE', name: 'Peru' },
+    { code: 'PH', name: 'Philippines' },
+    { code: 'PL', name: 'Poland' },
+    { code: 'PT', name: 'Portugal' },
+    { code: 'QA', name: 'Qatar' },
+    { code: 'RO', name: 'Romania' },
+    { code: 'RU', name: 'Russia' },
+    { code: 'RW', name: 'Rwanda' },
+    { code: 'KN', name: 'Saint Kitts and Nevis' },
+    { code: 'LC', name: 'Saint Lucia' },
+    { code: 'VC', name: 'Saint Vincent and the Grenadines' },
+    { code: 'WS', name: 'Samoa' },
+    { code: 'SM', name: 'San Marino' },
+    { code: 'ST', name: 'Sao Tome and Principe' },
+    { code: 'SA', name: 'Saudi Arabia' },
+    { code: 'SN', name: 'Senegal' },
+    { code: 'RS', name: 'Serbia' },
+    { code: 'SC', name: 'Seychelles' },
+    { code: 'SL', name: 'Sierra Leone' },
+    { code: 'SG', name: 'Singapore' },
+    { code: 'SK', name: 'Slovakia' },
+    { code: 'SI', name: 'Slovenia' },
+    { code: 'SB', name: 'Solomon Islands' },
+    { code: 'SO', name: 'Somalia' },
+    { code: 'ZA', name: 'South Africa' },
+    { code: 'SS', name: 'South Sudan' },
+    { code: 'ES', name: 'Spain' },
+    { code: 'LK', name: 'Sri Lanka' },
+    { code: 'SD', name: 'Sudan' },
+    { code: 'SR', name: 'Suriname' },
+    { code: 'SE', name: 'Sweden' },
+    { code: 'CH', name: 'Switzerland' },
+    { code: 'SY', name: 'Syria' },
+    { code: 'TJ', name: 'Tajikistan' },
+    { code: 'TZ', name: 'Tanzania' },
+    { code: 'TH', name: 'Thailand' },
+    { code: 'TL', name: 'Timor-Leste' },
+    { code: 'TG', name: 'Togo' },
+    { code: 'TO', name: 'Tonga' },
+    { code: 'TT', name: 'Trinidad and Tobago' },
+    { code: 'TN', name: 'Tunisia' },
+    { code: 'TR', name: 'Turkey' },
+    { code: 'TM', name: 'Turkmenistan' },
+    { code: 'TV', name: 'Tuvalu' },
+    { code: 'UG', name: 'Uganda' },
+    { code: 'UA', name: 'Ukraine' },
+    { code: 'AE', name: 'United Arab Emirates' },
+    { code: 'GB', name: 'United Kingdom' },
+    { code: 'US', name: 'United States' },
+    { code: 'UY', name: 'Uruguay' },
+    { code: 'UZ', name: 'Uzbekistan' },
+    { code: 'VU', name: 'Vanuatu' },
+    { code: 'VA', name: 'Vatican City' },
+    { code: 'VE', name: 'Venezuela' },
+    { code: 'VN', name: 'Vietnam' },
+    { code: 'YE', name: 'Yemen' },
+    { code: 'ZM', name: 'Zambia' },
+    { code: 'ZW', name: 'Zimbabwe' },
+  ];
 
   const notifications = [
     { id: 1, message: "Your order #1234 has been shipped!", time: "2 hours ago" },
@@ -95,12 +290,12 @@ const Checkout = () => {
 
         setUserProfile(userProfile);
         setShippingInfo({
-          email: userData?.email || '',
           firstName: profileData.first_name || '',
           lastName: profileData.last_name || '',
+          phone: profileData.phone_number || '',
           country: 'Philippines',
-          city: '',
           province: '',
+          city: '',
           postalCode: '',
           streetAddress: '',
         });
@@ -198,7 +393,7 @@ const Checkout = () => {
       return;
     }
     try {
-      const response = await axios.delete(`${API_URL}/cart/remove/${productId}`, {
+      await axios.delete(`${API_URL}/cart/remove/${productId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchCart(token, userId);
@@ -223,17 +418,6 @@ const Checkout = () => {
       setCartItems(detailedCart);
     } catch (error) {
       console.error("Error fetching cart:", error.response?.data || error.message);
-    }
-  };
-
-  const clearCartBackend = async (token) => {
-    try {
-      await axios.delete(`${API_URL}/cart/clear`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setCartItems([]); // Clear local state
-    } catch (error) {
-      console.error("Error clearing cart:", error.response?.data || error.message);
     }
   };
 
@@ -262,18 +446,26 @@ const Checkout = () => {
     setPaymentMethod(e.target.value);
   };
 
+  const handleCreditDebitClick = () => {
+    navigate('/payment/credit-debit');
+  };
+
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
+    setError(null);
 
-    if (!shippingInfo.email || !shippingInfo.firstName || !shippingInfo.lastName || 
-        !shippingInfo.country || !shippingInfo.city || !shippingInfo.region || 
-        !shippingInfo.postalCode || !shippingInfo.streetAddress) {
-      setError('Please fill in all shipping details.');
+    if (!userProfile?.id) {
+      setError('User profile not loaded. Please try again.');
       return;
     }
 
     if (!paymentMethod) {
       setError('Please select a payment method.');
+      return;
+    }
+
+    if (cartItems.length === 0) {
+      setError('No items in cart to checkout.');
       return;
     }
 
@@ -283,29 +475,21 @@ const Checkout = () => {
       return;
     }
 
-    if (!userProfile?.id || !userProfile?.profile_id) {
-      setError('User profile not loaded. Please try again.');
-      return;
-    }
-
-    if (cartItems.length === 0) {
-      setError('No items in cart to checkout.');
-      return;
-    }
-
     try {
       const orderData = {
-        shipping_id: 1,
-        product_id: cartItems[0].id,
-        customer: `${shippingInfo.firstName} ${shippingInfo.lastName}`,
-        payment_method: paymentMethod || 'cod',
+        profile_id: userProfile.id,
+        payment_method: paymentMethod,
         total_amount: calculateSubtotal() + 50,
-        date: new Date().toISOString().split('T')[0],
-        status: 'Pending',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-        archive_at: null,
+        date: new Date().toISOString().split("T")[0],
+        status: 'pending',
+        order_details: cartItems.map((item) => ({
+          product_id: item.id,
+          quantity: item.quantity,
+        })),
+        shipping_info: shippingInfo,
       };
+
+      console.log("Sending order data:", orderData);
 
       const response = await axios.post(`${API_URL}/orders`, orderData, {
         headers: {
@@ -314,17 +498,16 @@ const Checkout = () => {
         },
       });
 
-      console.log('Order placed:', response.data);
-      setOrderId(response.data.id);
+      console.log('Order placed successfully:', response.data);
       setIsSuccessModalOpen(true);
-      setError(null);
-
-      // Clear the cart after successful order
-      await clearCartBackend(token);
     } catch (err) {
-      console.error('Error placing order:', err.response?.data || err.message);
-      setError('Failed to place order: ' + (err.response?.data?.message || err.message));
+      console.error('Error response:', err.response?.data);
+      setError('Failed to place order: ' + JSON.stringify(err.response?.data?.errors || err.response?.data?.message || err.message));
     }
+  };
+
+  const handleCancel = () => {
+    navigate('/profile/cart');
   };
 
   const handleViewCart = () => {
@@ -338,7 +521,7 @@ const Checkout = () => {
 
   const handleTrackOrder = () => {
     setIsSuccessModalOpen(false);
-    navigate('/profile/orders');
+    navigate('/OrderTracking');
   };
 
   const cartCount = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
@@ -387,147 +570,171 @@ const Checkout = () => {
         <h1 className="checkout-title">Checkout</h1>
         <div className="checkout-body">
           <div className="checkout-details">
-            <div className="shipping-container">
-              <h2>Shipping Information</h2>
-              <form className="shipping-form" onSubmit={handlePlaceOrder}>
-                <div className="account-section">
-                  <div className="form-group full-width">
-                    <label htmlFor="email">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={shippingInfo.email}
-                      onChange={handleShippingChange}
-                      required
-                      readOnly
-                    />
-                  </div>
+            <h2>Shipping Information</h2>
+            <form className="shipping-form" onSubmit={handlePlaceOrder}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="firstName">First Name</label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value={shippingInfo.firstName}
+                    onChange={handleShippingChange}
+                    required
+                  />
                 </div>
-
-                <div className="shipping-info-section">
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="firstName">First Name</label>
-                      <input
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        value={shippingInfo.firstName}
-                        onChange={handleShippingChange}
-                        required
-                        readOnly
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="lastName">Last Name</label>
-                      <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        value={shippingInfo.lastName}
-                        onChange={handleShippingChange}
-                        required
-                        readOnly
-                      />
-                    </div>
-                  </div>
-                  <div className="form-group full-width">
-                    <label htmlFor="country">Country</label>
-                    <input
-                      type="text"
-                      id="country"
-                      name="country"
-                      value={shippingInfo.country}
-                      onChange={handleShippingChange}
-                      required
-                      readOnly
-                    />
-                  </div>
-                  <div className="form-group full-width">
-                    <label htmlFor="city">City</label>
-                    <input
-                      type="text"
-                      id="city"
-                      name="city"
-                      value={shippingInfo.city}
-                      onChange={handleShippingChange}
-                      required
-                    />
-                  </div>
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="region">Region</label>
-                      <input
-                        type="text"
-                        id="region"
-                        name="region"
-                        value={shippingInfo.region}
-                        onChange={handleShippingChange}
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="postalCode">Postal Code</label>
-                      <input
-                        type="text"
-                        id="postalCode"
-                        name="postalCode"
-                        value={shippingInfo.postalCode}
-                        onChange={handleShippingChange}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="form-group full-width">
-                    <label htmlFor="streetAddress">Street Address</label>
-                    <textarea
-                      id="streetAddress"
-                      name="streetAddress"
-                      value={shippingInfo.streetAddress}
-                      onChange={handleShippingChange}
-                      required
-                      className="long-textarea"
-                    />
-                  </div>
+                <div className="form-group">
+                  <label htmlFor="lastName">Last Name</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    value={shippingInfo.lastName}
+                    onChange={handleShippingChange}
+                    required
+                  />
                 </div>
-              </form>
-            </div>
-
-            <div className="payment-container">
-              <h2>Payment Method</h2>
-              <div className="payment-methods">
-                <label>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="creditCard"
-                    checked={paymentMethod === 'creditCard'}
-                    onChange={handlePaymentChange}
-                  />
-                  Credit Card / Debit Card
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="paypal"
-                    checked={paymentMethod === 'paypal'}
-                    onChange={handlePaymentChange}
-                  />
-                  Paypal
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="cod"
-                    checked={paymentMethod === 'cod'}
-                    onChange={handlePaymentChange}
-                  />
-                  Cash on Delivery
-                </label>
               </div>
+              <div className="form-group full-width">
+                <label htmlFor="phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={shippingInfo.phone}
+                  onChange={handleShippingChange}
+                  required
+                />
+              </div>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="country">Country</label>
+                  <select
+                    id="country"
+                    name="country"
+                    value={shippingInfo.country}
+                    onChange={handleShippingChange}
+                    required
+                  >
+                    <option value="">Select Country</option>
+                    {countries.map((country) => (
+                      <option key={country.code} value={country.name}>
+                        {country.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="province">Province</label>
+                  <input
+                    type="text"
+                    id="province"
+                    name="province"
+                    value={shippingInfo.province}
+                    onChange={handleShippingChange}
+                  />
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="city">City</label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={shippingInfo.city}
+                    onChange={handleShippingChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="postalCode">Postal Code</label>
+                  <input
+                    type="text"
+                    id="postalCode"
+                    name="postalCode"
+                    value={shippingInfo.postalCode}
+                    onChange={handleShippingChange}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="form-group full-width">
+                <label htmlFor="streetAddress">Street Address</label>
+                <textarea
+                  id="streetAddress"
+                  name="streetAddress"
+                  value={shippingInfo.streetAddress}
+                  onChange={handleShippingChange}
+                  required
+                />
+              </div>
+              <div className="form-actions">
+                <button type="button" className="cancel-btn" onClick={handleCancel}>
+                  Cancel
+                </button>
+                <button type="submit" className="submit-btn">
+                  Submit
+                </button>
+              </div>
+            </form>
+
+            <h2>Select Payment Method</h2>
+            <div className="payment-methods">
+              <label className="payment-option">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="cod"
+                  checked={paymentMethod === 'cod'}
+                  onChange={handlePaymentChange}
+                />
+                <div className="payment-content">
+                  <img src="/imgs/cod.svg" alt="Cash on Delivery" className="payment-icon" />
+                  <span>Cash on Delivery (COD)</span>
+                </div>
+              </label>
+              <label className="payment-option">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="gcash"
+                  checked={paymentMethod === 'gcash'}
+                  onChange={handlePaymentChange}
+                />
+                <div className="payment-content">
+                  <img src="/imgs/gcash.svg" alt="GCash" className="payment-icon" />
+                  <span>GCash</span>
+                </div>
+              </label>
+              <label className="payment-option">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="maya"
+                  checked={paymentMethod === 'maya'}
+                  onChange={handlePaymentChange}
+                />
+                <div className="payment-content">
+                  <img src="/imgs/maya.svg" alt="Maya" className="payment-icon" />
+                  <span>Maya</span>
+                </div>
+              </label>
+              <label className="payment-option">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="creditDebit"
+                  checked={paymentMethod === 'creditDebit'}
+                  onChange={handlePaymentChange}
+                />
+                <div className="payment-content">
+                  <img src="/imgs/vmcard.svg" alt="Credit/Debit Card" className="payment-icon" />
+                  <span>Credit / Debit Card</span>
+                  <span className="greater-than" onClick={handleCreditDebitClick}></span>
+                </div>
+              </label>
             </div>
           </div>
 
@@ -566,7 +773,7 @@ const Checkout = () => {
               <button
                 className="place-order-btn"
                 onClick={handlePlaceOrder}
-                disabled={cartItems.length === 0 || !paymentMethod || !shippingInfo.email}
+                disabled={cartItems.length === 0 || !paymentMethod || !shippingInfo.firstName}
               >
                 Place Order
               </button>
@@ -582,7 +789,7 @@ const Checkout = () => {
             <h2 className="success-title">Order Placed Successfully!</h2>
             <p className="success-message">
               We've received your order and it will ship in 5-7 business days. <br />
-              Your order number is #{orderId || 'N/A'}
+              Your order number is #1
             </p>
             <div className="modal-actions">
               <button className="continue-shopping-btn" onClick={handleContinueShopping}>

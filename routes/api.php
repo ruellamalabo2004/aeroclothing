@@ -12,21 +12,20 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\OrderItemController;
 
 
-
-Route::middleware('auth:api')->prefix('order-items')->group(function () {
-    Route::get('/', [OrderItemController::class, 'index']);  // Get all order items
-    Route::get('/{id}', [OrderItemController::class, 'show']);  // Get single order item
-    Route::post('/', [OrderItemController::class, 'store']);  // Create order item
-    Route::put('/{id}', [OrderItemController::class, 'update']);  // Update order item
-    Route::delete('/{id}', [OrderItemController::class, 'destroy']);  // Delete order item
+Route::middleware('auth:api')->group(function () {
+    Route::get('/orders', [OrderController::class, 'index']);
+    Route::post('/orders', [OrderController::class, 'store']);
+    Route::get('/orders/{id}', [OrderController::class, 'show']);
+    Route::put('/orders/{id}', [OrderController::class, 'update']);
+    Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
+    Route::patch('/orders/{id}/restore', [OrderController::class, 'restore']);
 });
+
+
 
 Route::middleware('auth:api')->get('/cart', [OrderController::class, 'cart']);
 Route::middleware('auth:api')->get('/cart', [CartController::class, 'index']);
@@ -46,11 +45,8 @@ Route::middleware('auth:api')->group(function () {
 });
 Route::apiResource('brands', BrandController::class);
 
-// In routes/api.php
-Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
-// routes/api.php
-Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
-Route::post('/password/reset', [ResetPasswordController::class, 'reset']);
+Route::get('/customers', [UserController::class, 'getCustomers']);
+
 
 //Category
 Route::apiResource('categories', CategoryController::class);

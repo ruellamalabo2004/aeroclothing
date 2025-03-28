@@ -125,7 +125,7 @@ const HomePage = () => {
   const profileDropdownItems = [
     { label: "My Profile", path: "/profile" },
     { label: "My Orders", path: "/profile/orders" },
-    { label: "Logout", path: "#", onClick: handleLogout },
+    { label: "Logout", path: "/login", onClick: handleLogout },
   ];
 
   useEffect(() => {

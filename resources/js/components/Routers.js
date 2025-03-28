@@ -23,20 +23,21 @@ import Myorders from "./Myorders";
 import Mycart from "./Mycart";
 import Checkout from "./Checkout";
 import Shop from "./Shop";
-import ForgotPassword from "./ForgotPassword"; // Import ForgotPassword component
-import ResetPassword from "./Resetpassword"; // Import ResetPassword component
+import ForgotPassword from "./ForgotPassword";
+import ResetPassword from "./Resetpassword";
+import OrderTracking from "./OrderTracking";
 
-// 🔒 Protected Route Function
+// Protected Route Function
 const ProtectedRoute = ({ element, allowedRoles }) => {
-  const token = localStorage.getItem("token"); // Get token from localStorage
-  const role = localStorage.getItem("role"); // Get user role
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
 
   if (!token) {
-    return <Navigate to="/login" replace />; // Redirect to login if not authenticated
+    return <Navigate to="/login" replace />;
   }
 
   if (!allowedRoles.includes(role)) {
-    return <Navigate to="/dashboard" replace />; // Redirect unauthorized users
+    return <Navigate to="/dashboard" replace />;
   }
 
   return element;
@@ -46,24 +47,22 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* Default route redirects to login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
-
-        {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Added ForgotPassword route */}
-        <Route path="/reset-password" element={<ResetPassword />} /> {/* Added ResetPassword route */}
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* Customer Routes */}
         <Route
           path="/homepage"
           element={<ProtectedRoute element={<HomePage />} allowedRoles={["customer"]} />}
         />
-         <Route
+        <Route
           path="/shop"
           element={<ProtectedRoute element={<Shop />} allowedRoles={["customer"]} />}
         />
+      
         <Route
           path="/profile"
           element={<ProtectedRoute element={<Profile />} allowedRoles={["customer"]} />}
@@ -92,6 +91,10 @@ const App = () => {
           path="/profile/cart" 
           element={<ProtectedRoute element={<Mycart />} allowedRoles={["customer"]} />}
         />
+        <Route
+          path="/OrderTracking" 
+          element={<ProtectedRoute element={<OrderTracking />} allowedRoles={["customer"]} />}
+        />
 
         {/* Admin Route & Nested Routes */}
         <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} allowedRoles={["admin"]} />}>
@@ -111,7 +114,6 @@ const App = () => {
   );
 };
 
-// Mount React App
 if (document.getElementById("root")) {
   ReactDOM.render(<App />, document.getElementById("root"));
 }

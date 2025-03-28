@@ -9,7 +9,7 @@ const Shop = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [categories, setCategories] = useState([]); // New state for categories
+  const [categories, setCategories] = useState([]);
   const [wishlistedItems, setWishlistedItems] = useState([]);
   const [latestWishlistItem, setLatestWishlistItem] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -24,6 +24,8 @@ const Shop = () => {
   const [sortOption, setSortOption] = useState('default');
   const [filterCategory, setFilterCategory] = useState('all');
   const [priceRange, setPriceRange] = useState([0, 10000]);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [selectedProductTypes, setSelectedProductTypes] = useState([]);
 
   const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
   const API_URL = "http://127.0.0.1:8000/api";
@@ -56,7 +58,6 @@ const Shop = () => {
       return;
     }
 
-    // Fetch user profile
     axios
       .get(`${API_URL}/profile`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -90,7 +91,6 @@ const Shop = () => {
         }
       });
 
-    // Fetch categories
     axios
       .get(`${API_URL}/categories`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -98,20 +98,16 @@ const Shop = () => {
       .then((response) => {
         const categoryData = Array.isArray(response.data) ? response.data : response.data.data || [];
         setCategories(categoryData);
-        console.log("API Response for Categories:", categoryData);
 
-        // Fetch products
         axios
           .get(`${API_URL}/products`, {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((response) => {
-            console.log("API Response for Products:", response.data);
             const products = Array.isArray(response.data) ? response.data : response.data.data || [];
             const updatedProducts = products
               .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
               .map((product) => {
-                // Map category_id to category name
                 const category = categoryData.find(cat => cat.id === product.category_id);
                 return {
                   ...product,
@@ -119,7 +115,9 @@ const Shop = () => {
                     ? `${BASE_IMAGE_URL}/${product.image_1}`
                     : "/default-image.jpg",
                   productName: product.name || product.title || product.product_name || "Unnamed Product",
-                  category: category ? category.name : 'Uncategorized', // Use category name
+                  category: category ? category.name : 'Uncategorized',
+                  productType: product.product_type || 'Uncategorized',
+                  description: product.description || "No description available.", // Ensure description is included
                 };
               });
             setProducts(updatedProducts);
@@ -302,7 +300,6 @@ const Shop = () => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    // Implement search functionality if needed
   };
 
   const handleLogout = () => {
@@ -327,47 +324,58 @@ const Shop = () => {
     if (!e.target.closest('.support-container') && !e.target.closest('.support-link')) setIsSupportOpen(false);
     if (!e.target.closest('.cart-sidebar') && !e.target.closest('.header-icon')) setIsCartVisible(false);
     if (!e.target.closest('.profile-container') && !e.target.closest('.profile-button')) setIsProfileDropdownOpen(false);
+    if (!e.target.closest('.filter-sidebar') && !e.target.closest('.filter-toggle')) setIsFilterOpen(false);
   };
 
   useEffect(() => {
-    if (isNotificationOpen || isWishlistOpen || isSupportOpen || isCartVisible || isProfileDropdownOpen) {
+    if (isNotificationOpen || isWishlistOpen || isSupportOpen || isCartVisible || isProfileDropdownOpen || isFilterOpen) {
       document.addEventListener('click', handleOutsideClick);
     }
     return () => document.removeEventListener('click', handleOutsideClick);
-  }, [isNotificationOpen, isWishlistOpen, isSupportOpen, isCartVisible, isProfileDropdownOpen]);
+  }, [isNotificationOpen, isWishlistOpen, isSupportOpen, isCartVisible, isProfileDropdownOpen, isFilterOpen]);
 
   const handleItemClick = (item) => {
-    navigate(`/customer/item/${item.id}`, { state: { item } });
+    console.log("Navigating to item details with item:", item);
+    navigate(`/Shop/item/${item.id}`, { state: { item } });
   };
 
-  // Sorting and Filtering Logic
+  const handleProductTypeChange = (type) => {
+    setSelectedProductTypes((prev) =>
+      prev.includes(type)
+        ? prev.filter((t) => t !== type)
+        : [...prev, type]
+    );
+  };
+
   useEffect(() => {
     let updatedProducts = [...products];
 
-    // Apply category filter
     if (filterCategory !== 'all') {
       updatedProducts = updatedProducts.filter(product => 
         product.category && product.category.toLowerCase() === filterCategory.toLowerCase()
       );
     }
 
-    // Apply price range filter
+    if (selectedProductTypes.length > 0) {
+      updatedProducts = updatedProducts.filter(product =>
+        product.productType && selectedProductTypes.includes(product.productType.toLowerCase())
+      );
+    }
+
     updatedProducts = updatedProducts.filter(product => 
       product.price >= priceRange[0] && product.price <= priceRange[1]
     );
 
-    // Apply sorting
     if (sortOption === 'price-low-high') {
       updatedProducts.sort((a, b) => a.price - b.price);
     } else if (sortOption === 'price-high-low') {
       updatedProducts.sort((a, b) => b.price - a.price);
     } else {
-      // Default sorting (by date, newest first)
       updatedProducts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     }
 
     setFilteredProducts(updatedProducts);
-  }, [products, sortOption, filterCategory, priceRange]);
+  }, [products, sortOption, filterCategory, priceRange, selectedProductTypes]);
 
   const handleSortChange = (e) => {
     setSortOption(e.target.value);
@@ -375,10 +383,6 @@ const Shop = () => {
 
   const handleCategoryFilterChange = (e) => {
     setFilterCategory(e.target.value);
-  };
-
-  const handlePriceRangeChange = (e) => {
-    setPriceRange([parseInt(e.target.value.split(',')[0]), parseInt(e.target.value.split(',')[1])]);
   };
 
   return (
@@ -422,6 +426,10 @@ const Shop = () => {
       <div className="shop-container">
         <h1 className="shop-title">Shop</h1>
         <div className="shop-controls">
+          <button className="filter-toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
+            Filter
+            <img src="/imgs/filter.svg" alt="Filter Icon" className="filter-icon" />
+          </button>
           <div className="sort-filter">
             <label htmlFor="sort">Sort by: </label>
             <select id="sort" value={sortOption} onChange={handleSortChange}>
@@ -430,81 +438,157 @@ const Shop = () => {
               <option value="price-high-low">Price: High to Low</option>
             </select>
           </div>
-          <div className="sort-filter">
-            <label htmlFor="category">Filter by Category: </label>
-            <select id="category" value={filterCategory} onChange={handleCategoryFilterChange}>
-              <option value="all">All</option>
-              {categories.map(category => (
-                <option key={category.id} value={category.name.toLowerCase()}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="sort-filter">
-            <label>Price Range: ₱{priceRange[0]} - ₱{priceRange[1]}</label>
-            <input
-              type="range"
-              min="0"
-              max="10000"
-              step="100"
-              value={priceRange[0]}
-              onChange={(e) => setPriceRange([parseInt(e.target.value), priceRange[1]])}
-              style={{ width: '100%' }}
-            />
-            <input
-              type="range"
-              min="0"
-              max="10000"
-              step="100"
-              value={priceRange[1]}
-              onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-              style={{ width: '100%' }}
-            />
-          </div>
         </div>
-        <section className="top-selling-section">
-          <div className="new-product-image-containers">
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
-                <div key={product.id} className="product-container" onClick={() => handleItemClick(product)}>
-                  <div className="product-card">
-                    <img
-                      src={product.imagePreview || '/default-image.jpg'}
-                      alt={product.productName || 'Product'}
-                    />
-                    <div className="product-actions">
-                      <button
-                        className="add-to-cart-btn"
-                        onClick={handleAddToCart(product)}
-                      >
-                        <img src="/imgs/addcart.svg" alt="Add to Cart" className="action-icon" />
-                      </button>
-                      <button
-                        className="buy-now-btn"
-                        onClick={handleBuyNow(product)}
-                      >
-                        <img src="/imgs/buynow.svg" alt="Buy Now" className="action-icon" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="product-name-container">
-                    <h3 className="product-name">{product.productName || "Unnamed Product"}</h3>
-                    <img
-                      src={wishlistedItems.some((w) => w.id === product.id) ? "/imgs/heart-red.svg" : "/imgs/heart.svg"}
-                      alt="Wishlist"
-                      className="wishlist-button"
-                      onClick={handleWishlistToggle(product)}
-                    />
-                  </div>
-                  <p className="product-price">₱{product.price || "N/A"}</p>
-                </div>
-              ))
-            ) : (
-              <p>No products available for this category or price range.</p>
-            )}
+        <div className="shop-content">
+          <div className={`filter-sidebar ${isFilterOpen ? 'open' : ''}`}>
+            <h3>Filter</h3>
+            <div className="filter-section">
+              <h4>Price Range</h4>
+              <p>The highest price is ₱10,000.00</p>
+              <input
+                type="range"
+                min="0"
+                max="10000"
+                step="100"
+                value={priceRange[0]}
+                onChange={(e) => setPriceRange([parseInt(e.target.value), priceRange[1]])}
+                className="range-min"
+              />
+              <input
+                type="range"
+                min="0"
+                max="10000"
+                step="100"
+                value={priceRange[1]}
+                onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
+                className="range-max"
+              />
+              <div className="price-inputs">
+                <input
+                  type="number"
+                  value={priceRange[0]}
+                  onChange={(e) => setPriceRange([parseInt(e.target.value) || 0, priceRange[1]])}
+                  min="0"
+                  max="10000"
+                />
+                <span>-</span>
+                <input
+                  type="number"
+                  value={priceRange[1]}
+                  onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value) || 10000])}
+                  min="0"
+                  max="10000"
+                />
+              </div>
+            </div>
+            <div className="filter-section">
+              <h4>Categories</h4>
+              {categories.map(category => (
+                <label key={category.id} className="filter-checkbox">
+                  <input
+                    type="checkbox"
+                    value={category.name.toLowerCase()}
+                    checked={filterCategory === category.name.toLowerCase()}
+                    onChange={handleCategoryFilterChange}
+                  />
+                  {category.name}
+                </label>
+              ))}
+            </div>
+            <div className="filter-section">
+              <h4>Product Type</h4>
+              {['Tops', 'Bottoms', 'Jacket', 'Swimwear'].map(type => (
+                <label key={type} className="filter-checkbox">
+                  <input
+                    type="checkbox"
+                    value={type.toLowerCase()}
+                    checked={selectedProductTypes.includes(type.toLowerCase())}
+                    onChange={() => handleProductTypeChange(type.toLowerCase())}
+                  />
+                  {type}
+                </label>
+              ))}
+            </div>
+            <div className="filter-section">
+              <h4>Type</h4>
+              {['T-Shirts', 'Shirts', 'Polos', 'Long-sleeve'].map(type => (
+                <label key={type} className="filter-checkbox">
+                  <input type="checkbox" />
+                  {type}
+                </label>
+              ))}
+            </div>
+            <div className="filter-section">
+              <h4>Sizes</h4>
+              {['Extra-Small', 'Small', 'Medium', 'Large', 'Extra-Large'].map(size => (
+                <label key={size} className="filter-checkbox">
+                  <input type="checkbox" />
+                  {size}
+                </label>
+              ))}
+            </div>
+            <div className="filter-section">
+              <h4>Color</h4>
+              {['Black', 'White', 'Red', 'Orange', 'Pink'].map(color => (
+                <label key={color} className="filter-checkbox">
+                  <input type="checkbox" />
+                  {color}
+                </label>
+              ))}
+            </div>
+            <div className="filter-section">
+              <h4>Brand</h4>
+              {['Nike', 'Adidas', 'New Balance', 'Guess', 'Uniqlo'].map(brand => (
+                <label key={brand} className="filter-checkbox">
+                  <input type="checkbox" />
+                  {brand}
+                </label>
+              ))}
+            </div>
           </div>
-        </section>
+          <section className="top-selling-section">
+            <div className="new-product-image-containers">
+              {filteredProducts.length > 0 ? (
+                filteredProducts.map((product) => (
+                  <div key={product.id} className="product-container" onClick={() => handleItemClick(product)}>
+                    <div className="product-card">
+                      <img
+                        src={product.imagePreview || '/default-image.jpg'}
+                        alt={product.productName || 'Product'}
+                      />
+                      <div className="product-actions">
+                        <button
+                          className="add-to-cart-btn"
+                          onClick={handleAddToCart(product)}
+                        >
+                          <img src="/imgs/addcart.svg" alt="Add to Cart" className="action-icon" />
+                        </button>
+                        <button
+                          className="buy-now-btn"
+                          onClick={handleBuyNow(product)}
+                        >
+                          <img src="/imgs/buynow.svg" alt="Buy Now" className="action-icon" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="product-name-container">
+                      <h3 className="product-name">{product.productName || "Unnamed Product"}</h3>
+                      <img
+                        src={wishlistedItems.some((w) => w.id === product.id) ? "/imgs/heart-red.svg" : "/imgs/heart.svg"}
+                        alt="Wishlist"
+                        className="wishlist-button"
+                        onClick={handleWishlistToggle(product)}
+                      />
+                    </div>
+                    <p className="product-price">₱{product.price || "N/A"}</p>
+                  </div>
+                ))
+              ) : (
+                <p>No products available for this category or price range.</p>
+              )}
+            </div>
+          </section>
+        </div>
       </div>
       <Footer />
     </div>
