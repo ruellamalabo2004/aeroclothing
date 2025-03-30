@@ -8,13 +8,25 @@ export default function Orders() {
   const [viewOrder, setViewOrder] = useState(null);
   const [isArchiving, setIsArchiving] = useState(null);
   const [orders, setOrders] = useState([]);
+  const [error, setError] = useState(null);
+
+  const API_URL = "http://localhost:8000/api";
 
   // Fetch orders from API
   useEffect(() => {
+    const token = localStorage.getItem('token');
     axios
-      .get("http://localhost:8000/api/orders")
-      .then((response) => setOrders(response.data))
-      .catch((error) => console.error("Error fetching orders:", error));
+      .get(`${API_URL}/orders`, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      })
+      .then((response) => {
+        setOrders(response.data);
+        setError(null);
+      })
+      .catch((error) => {
+        console.error("Error fetching orders:", error.response?.data || error.message);
+        setError("Failed to fetch orders. Please try again.");
+      });
   }, []);
 
   // Filtered orders based on search & tab
@@ -25,7 +37,7 @@ export default function Orders() {
   });
 
   // Order status counts for cards
-  const orderCards = ["Pending", "Processing", "Shipped", "Delivered", "Canceled", "Returned"].map(
+  const orderCards = ["PENDING", "PROCESSING", "SHIPPING", "DELIVERED", "CANCELED", "RETURNED"].map(
     (status) => ({
       status,
       count: orders.filter((o) => o.status === status).length,
@@ -39,29 +51,74 @@ export default function Orders() {
 
   // Handle order update request
   const handleSave = () => {
+    const updateData = {
+      status: selectedOrder.status,
+      payment_method: selectedOrder.payment_method,
+      total_amount: selectedOrder.total_amount,
+    };
+    const token = localStorage.getItem('token');
     axios
-      .put(`http://localhost:8000/api/orders/${selectedOrder.id}`, selectedOrder)
-      .then(() => {
-        setOrders(orders.map((order) => (order.id === selectedOrder.id ? selectedOrder : order)));
-        setSelectedOrder(null);
+      .put(`${API_URL}/orders/${selectedOrder.id}`, updateData, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
       })
-      .catch((error) => console.error("Error updating order:", error));
+      .then((response) => {
+        // Refresh the orders list to get the latest tracking history
+        axios
+          .get(`${API_URL}/orders`, {
+            headers: token ? { Authorization: `Bearer ${token}` } : {},
+          })
+          .then((res) => {
+            setOrders(res.data);
+            setSelectedOrder(null);
+            setError(null);
+          })
+          .catch((err) => {
+            console.error("Error refreshing orders:", err.response?.data || err.message);
+            setError("Failed to refresh orders after update.");
+          });
+      })
+      .catch((error) => {
+        console.error("Error updating order:", error.response?.data || error.message);
+        setError("Failed to update order. Please try again.");
+      });
+  };
+
+  // Fetch order details for viewing
+  const handleViewOrder = (order) => {
+    const token = localStorage.getItem('token');
+    axios
+      .get(`${API_URL}/orders/${order.id}`, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      })
+      .then((response) => {
+        setViewOrder(response.data);
+        setError(null);
+      })
+      .catch((error) => {
+        console.error("Error fetching order details:", error.response?.data || error.message);
+        setError("Failed to fetch order details. Please try again.");
+      });
   };
 
   // Archive Order with Confirmation
   const handleArchiveClick = (order) => {
-    setIsArchiving(order); // Show confirmation popup
+    setIsArchiving(order);
   };
 
   const confirmArchive = () => {
+    const token = localStorage.getItem('token');
     axios
-      .post(`http://localhost:8000/api/orders/${isArchiving.id}/archive`)
+      .put(`${API_URL}/orders/${isArchiving.id}/archive`, {}, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      })
       .then(() => {
         setOrders(orders.filter((order) => order.id !== isArchiving.id));
         setIsArchiving(null);
+        setError(null);
       })
       .catch((error) => {
-        console.error("Error archiving order:", error.response ? error.response.data : error.message);
+        console.error("Error archiving order:", error.response?.data || error.message);
+        setError("Failed to archive order. Please try again.");
         setIsArchiving(null);
       });
   };
@@ -70,10 +127,12 @@ export default function Orders() {
     <main>
       <h1>Orders</h1>
 
+      {error && <div className="error-message">{error}</div>}
+
       <div className="orders-cards-container">
         {orderCards.map((order) => (
           <div className="orders-card" key={order.status}>
-            <img src={`/imgs/${order.status}.svg`} alt={order.status} className="orders-card-image" />
+            <img src={`/imgs/${order.status.toLowerCase()}.svg`} alt={order.status} className="orders-card-image" />
             <div className="orders-card-text">{order.status}</div>
             <div className="orders-card-number">{order.count}</div>
           </div>
@@ -84,7 +143,7 @@ export default function Orders() {
       <div className="orders-links">
         <span className="orders-label">Orders:</span>
         <div className="links-container">
-          {["All", "Pending", "Processing", "Shipped", "Delivered", "Canceled", "Returned"].map(
+          {["All", "PENDING", "PROCESSING", "SHIPPING", "DELIVERED", "CANCELED", "RETURNED"].map(
             (status) => (
               <a
                 href="#"
@@ -114,11 +173,23 @@ export default function Orders() {
         <div className="view-order">
           <h2>Order Details</h2>
           <p><strong>Order ID:</strong> {viewOrder.id}</p>
-          <p><strong>Customer Name:</strong> {viewOrder.customer.trim()}</p>
-          <p><strong>Payment Method:</strong> {viewOrder.payment_method.trim()}</p>
-          <p><strong>Total Amount:</strong> {viewOrder.total_amount}</p>
-          <p><strong>Date:</strong> {viewOrder.date}</p>
+          <p><strong>Customer Name:</strong> {viewOrder.customer}</p>
+          <p><strong>Payment Method:</strong> {viewOrder.payment_method}</p>
+          <p><strong>Total Amount:</strong> ₱{viewOrder.total_amount}</p>
+          <p><strong>Date:</strong> {new Date(viewOrder.created_at).toLocaleDateString()}</p>
           <p><strong>Status:</strong> {viewOrder.status}</p>
+          <h3>Products:</h3>
+          <ul>
+            {viewOrder.products && viewOrder.products.length > 0 ? (
+              viewOrder.products.map((product) => (
+                <li key={product.id}>
+                  {product.product_name} - Quantity: {product.quantity} - ₱{product.price}
+                </li>
+              ))
+            ) : (
+              <li>No products found.</li>
+            )}
+          </ul>
           <button onClick={() => setViewOrder(null)}>Close</button>
         </div>
       )}
@@ -130,21 +201,11 @@ export default function Orders() {
             <div className="edit-order-content">
               <h2>Edit Order #{selectedOrder.id}</h2>
               <div className="edit-form-group">
-                <label>Customer Name</label>
-                <input
-                  type="text"
-                  name="customer"
-                  value={selectedOrder.customer}
-                  onChange={handleFormChange}
-                  placeholder="Enter customer name"
-                />
-              </div>
-              <div className="edit-form-group">
                 <label>Payment Method</label>
                 <input
                   type="text"
                   name="payment_method"
-                  value={selectedOrder.payment_method}
+                  value={selectedOrder.payment_method || ""}
                   onChange={handleFormChange}
                   placeholder="Enter payment method"
                 />
@@ -152,22 +213,22 @@ export default function Orders() {
               <div className="edit-form-group">
                 <label>Total Amount</label>
                 <input
-                  type="text"
+                  type="number"
                   name="total_amount"
-                  value={selectedOrder.total_amount}
+                  value={selectedOrder.total_amount || ""}
                   onChange={handleFormChange}
                   placeholder="Enter total amount"
                 />
               </div>
               <div className="edit-form-group">
                 <label>Status</label>
-                <select name="status" value={selectedOrder.status} onChange={handleFormChange}>
-                  <option value="Pending">Pending</option>
-                  <option value="Processing">Processing</option>
-                  <option value="Shipped">Shipped</option>
-                  <option value="Delivered">Delivered</option>
-                  <option value="Canceled">Canceled</option>
-                  <option value="Returned">Returned</option>
+                <select name="status" value={selectedOrder.status || ""} onChange={handleFormChange}>
+                  <option value="PENDING">Pending</option>
+                  <option value="PROCESSING">Processing</option>
+                  <option value="SHIPPING">Shipping</option>
+                  <option value="DELIVERED">Delivered</option>
+                  <option value="CANCELED">Canceled</option>
+                  <option value="RETURNED">Returned</option>
                 </select>
               </div>
               <div className="edit-form-actions">
@@ -230,7 +291,7 @@ export default function Orders() {
                       src="/imgs/viewing.svg"
                       alt="View"
                       className="action-img"
-                      onClick={() => setViewOrder(order)}
+                      onClick={() => handleViewOrder(order)}
                       style={{ cursor: "pointer" }}
                     />
                     <img
@@ -249,13 +310,17 @@ export default function Orders() {
                     />
                   </td>
                   <td>{order.id}</td>
-                  <td>{order.customer.trim()}</td>
-                  <td>{order.payment_method.trim()}</td>
-                  <td>{order.total_amount}</td>
-                  <td>{order.date}</td>
                   <td>
-                    <span className={`status-frame status-${order.status.toLowerCase()}`}>
-                      {order.status}
+                    {order.profile && order.profile.first_name && order.profile.last_name
+                      ? `${order.profile.first_name} ${order.profile.last_name}`
+                      : "Unknown Customer"}
+                  </td>
+                  <td>{order.payment_method || "N/A"}</td>
+                  <td>₱{order.total_amount || 0}</td>
+                  <td>{order.order_date ? new Date(order.order_date).toLocaleDateString() : "N/A"}</td>
+                  <td>
+                    <span className={`status-frame status-${order.status?.toLowerCase() || "unknown"}`}>
+                      {order.status || "Unknown"}
                     </span>
                   </td>
                 </tr>

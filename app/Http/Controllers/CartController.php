@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
+
+    
     // Get all cart items for the logged-in user
     public function getCart()
     {

@@ -27,6 +27,12 @@ class Product extends Model
         'colors' => 'array',
     ];
 
+    public function orders() {
+        return $this->belongsToMany(Order::class, 'order_details', 'product_id', 'order_id')
+                    ->withPivot('quantity')
+                    ->withTimestamps();
+    }
+    
     // Accessor to get the full image URL
     public function getImage1Attribute($value)
     {

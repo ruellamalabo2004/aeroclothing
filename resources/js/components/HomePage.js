@@ -9,19 +9,17 @@ import Header from './Header';
 import Footer from './Footer';
 import CartSidebar from './CartSidebar';
 
+// ShopByCategory and FeaturedItems remain unchanged
 const ShopByCategory = () => {
   const navigate = useNavigate();
-
   const handleCategoryClick = (category) => {
     navigate(`/customer/${category.toLowerCase()}`);
   };
-
   const categories = [
-    { name: "mens", svg: "/imgs/mensc.svg" }, // Replace with actual SVG path
-    { name: "womens", svg: "/imgs/womensc.svg" }, // Replace with actual SVG path
-    { name: "kids", svg: "/imgs/kidsc.svg" }, // Replace with actual SVG path
+    { name: "mens", svg: "/imgs/mensc.svg" },
+    { name: "womens", svg: "/imgs/womensc.svg" },
+    { name: "kids", svg: "/imgs/kidsc.svg" },
   ];
-
   return (
     <section className="shop-by-category-section">
       <h2>SHOP BY CATEGORY</h2>
@@ -44,26 +42,13 @@ const ShopByCategory = () => {
 
 const FeaturedItems = () => {
   const navigate = useNavigate();
-
   const handleShopNowClick = (category) => {
     navigate(`/customer/${category.toLowerCase()}`);
   };
-
   const featuredItems = [
-    {
-      name: "womens",
-      title: "WOMEN'S GWEN SLICE DENIM SHIRT",
-      discount: "UP TO 5%",
-      svg: "/imgs/womensf.svg", // Replace with actual SVG path
-    },
-    {
-      name: "mens",
-      title: "MEN'S SLIM-FIT KNIT CARDIGAN",
-      discount: "UP TO 10%",
-      svg: "/imgs/mensf.svg", // Replace with actual SVG path
-    },
+    { name: "womens", title: "WOMEN'S GWEN SLICE DENIM SHIRT", discount: "UP TO 5%", svg: "/imgs/womensf.svg" },
+    { name: "mens", title: "MEN'S SLIM-FIT KNIT CARDIGAN", discount: "UP TO 10%", svg: "/imgs/mensf.svg" },
   ];
-
   return (
     <section className="featured-items-section">
       {featuredItems.map((item) => (
@@ -107,19 +92,12 @@ const HomePage = () => {
   const API_URL = "http://127.0.0.1:8000/api";
 
   const items = [];
-  const notifications = [
-    { id: 1, message: "Your order #1234 has been shipped!", time: "2 hours ago" },
-    { id: 2, message: "New collection available now!", time: "5 hours ago" },
-    { id: 3, message: "20% off sale ends tomorrow!", time: "1 day ago" },
-  ];
-
   const supportItems = [
     { label: "ORDER & PAYMENT", path: "/customer/support/order-payment" },
     { label: "SHIPPING", path: "/customer/support/shipping" },
     { label: "RETURNS", path: "/customer/support/returns" },
     { label: "CONTACT US", path: "/customer/support/contact-us" },
     { label: "TERMS AND SERVICE", path: "/customer/support/terms-and-service" },
-    { label: "FAQS", path: "/customer/support/faqs" },
   ];
 
   const profileDropdownItems = [
@@ -135,19 +113,19 @@ const HomePage = () => {
       return;
     }
 
-    axios
-      .get(`${API_URL}/profile`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        const profileData = response.data.profile;
+    const fetchData = async () => {
+      try {
+        const profileResponse = await axios.get(`${API_URL}/profile`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const profileData = profileResponse.data.profile;
         const user = {
-          id: response.data.user.id,
+          id: profileResponse.data.user.id,
           first_name: profileData.first_name || '',
           middle_name: profileData.middle_name || '',
           last_name: profileData.last_name || '',
           suffix: profileData.suffix || '',
-          email: response.data.user?.email || '',
+          email: profileResponse.data.user?.email || '',
           phone_number: profileData.phone_number || '',
           gender: profileData.gender || '',
           date_of_birth: profileData.date_of_birth || '',
@@ -156,44 +134,23 @@ const HomePage = () => {
             : '/imgs/Profile.svg',
         };
         setUserProfile(user);
-        fetchWishlist(token, user.id);
-        fetchCart(token, user.id);
-      })
-      .catch((error) => {
-        console.error("Error fetching profile:", error);
-        if (error.response?.status === 401) {
-          localStorage.removeItem('token');
-          localStorage.removeItem('role');
-          navigate('/login');
-        }
-      });
 
-    axios
-      .get(`${API_URL}/products`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        const products = Array.isArray(response.data) ? response.data : response.data.data || [];
-        const updatedProducts = products
-          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-          .slice(0, 4)
-          .map((product) => ({
-            ...product,
-            imagePreview: product.image_1
-              ? `${BASE_IMAGE_URL}/${product.image_1}`
-              : "/default-image.jpg",
-            productName: product.name || product.title || product.product_name || "Unnamed Product",
-          }));
-        setProducts(updatedProducts);
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
+        await Promise.all([
+          fetchWishlist(token, user.id),
+          fetchCart(token, user.id),
+          fetchProducts(token),
+        ]);
+      } catch (error) {
+        console.error("Error fetching initial data:", error.response?.data || error.message);
         if (error.response?.status === 401) {
           localStorage.removeItem('token');
           localStorage.removeItem('role');
           navigate('/login');
         }
-      });
+      }
+    };
+
+    fetchData();
   }, [navigate, BASE_IMAGE_URL]);
 
   const fetchWishlist = async (token, userId) => {
@@ -202,15 +159,21 @@ const HomePage = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       const wishlistData = response.data.data || response.data || [];
-      const detailedWishlist = wishlistData.map(item => ({
-        id: item.product_id,
-        productName: item.product?.product_name || "Unknown Product",
-        price: item.product?.price || 0,
-        imagePreview: item.product?.image_1 ? `${BASE_IMAGE_URL}/${item.product.image_1}` : '/default-image.jpg',
-      }));
-      setWishlistedItems(detailedWishlist);
+      const detailedWishlist = wishlistData
+        .map(item => ({
+          id: item.product_id,
+          productName: item.product?.product_name || "Unknown Product",
+          price: item.product?.price || 0,
+          imagePreview: item.product?.image_1 ? `${BASE_IMAGE_URL}/${item.product.image_1}` : '/default-image.jpg',
+          created_at: item.created_at || new Date().toISOString(),
+        }))
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      console.log("Updated wishlistedItems from backend:", detailedWishlist);
+      if (detailedWishlist.length > 0) {
+        setWishlistedItems(detailedWishlist);
+      }
     } catch (error) {
-      console.error("Error fetching wishlist:", error.response?.data || error.message);
+      console.error("Error fetching wishlist, keeping current state:", error.response?.data || error.message);
     }
   };
 
@@ -233,26 +196,48 @@ const HomePage = () => {
     }
   };
 
+  const fetchProducts = async (token) => {
+    try {
+      const response = await axios.get(`${API_URL}/products`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const products = Array.isArray(response.data) ? response.data : response.data.data || [];
+      const updatedProducts = products
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        .slice(0, 4)
+        .map((product) => ({
+          ...product,
+          imagePreview: product.image_1 ? `${BASE_IMAGE_URL}/${product.image_1}` : "/default-image.jpg",
+          productName: product.name || product.title || product.product_name || "Unnamed Product",
+        }));
+      setProducts(updatedProducts);
+    } catch (error) {
+      console.error("Error fetching products:", error.response?.data || error.message);
+    }
+  };
+
   const addToWishlist = async (product) => {
     const token = localStorage.getItem('token');
     const userId = userProfile?.id;
     try {
-      const response = await axios.post(`${API_URL}/wishlist`, {
-        user_id: userId,
-        product_id: product.id,
-      }, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setLatestWishlistItem({
+      await axios.post(
+        `${API_URL}/wishlist`,
+        { user_id: userId, product_id: product.id },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      const newWishlistItem = {
         id: product.id,
         productName: product.productName,
         price: product.price,
         imagePreview: product.imagePreview,
-      });
-      fetchWishlist(token, userId);
+        created_at: new Date().toISOString(),
+      };
+      setLatestWishlistItem(newWishlistItem);
+      setWishlistedItems(prev => [newWishlistItem, ...prev.filter(item => item.id !== product.id)]);
+      await fetchWishlist(token, userId);
     } catch (error) {
       console.error("Error adding to wishlist:", error.response?.data || error.message);
-      if (error.response?.status === 409) fetchWishlist(token, userId);
+      if (error.response?.status === 409) await fetchWishlist(token, userId);
     }
   };
 
@@ -263,7 +248,8 @@ const HomePage = () => {
       await axios.delete(`${API_URL}/wishlist/${productId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      fetchWishlist(token, userId);
+      setWishlistedItems(prev => prev.filter(item => item.id !== productId));
+      await fetchWishlist(token, userId);
     } catch (error) {
       console.error("Error removing from wishlist:", error.response?.data || error.message);
     }
@@ -273,13 +259,11 @@ const HomePage = () => {
     const token = localStorage.getItem('token');
     const userId = userProfile?.id;
     try {
-      const response = await axios.post(`${API_URL}/cart/add`, {
+      await axios.post(`${API_URL}/cart/add`, {
         user_id: userId,
         product_id: product.id,
         quantity: 1,
-      }, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      }, { headers: { Authorization: `Bearer ${token}` } });
       await fetchCart(token, userId);
     } catch (error) {
       console.error("Error adding to cart:", error.response?.data || error.message);
@@ -337,8 +321,11 @@ const HomePage = () => {
 
   const handleWishlistToggle = (product) => async () => {
     const isWishlisted = wishlistedItems.some((item) => item.id === product.id);
-    if (isWishlisted) await removeFromWishlist(product.id);
-    else await addToWishlist(product);
+    if (isWishlisted) {
+      await removeFromWishlist(product.id);
+    } else {
+      await addToWishlist(product);
+    }
   };
 
   useEffect(() => {
@@ -354,8 +341,25 @@ const HomePage = () => {
     setRatings((prev) => ({ ...prev, [item]: newRating }));
   };
 
-  const handleBuyNow = (product) => () => {
-    navigate('/checkout', { state: { product } });
+  const handleBuyNow = (product) => async () => {
+    const token = localStorage.getItem('token');
+    try {
+      const orderResponse = await axios.post(`${API_URL}/orders`, {
+        profile_id: userProfile?.id,
+        payment_method: 'Cash',
+        total_amount: product.price,
+        order_details: [{ product_id: product.id, quantity: 1 }],
+      }, { headers: { Authorization: `Bearer ${token}` } });
+
+      if (orderResponse.status === 201 || orderResponse.status === 200) {
+        const orderId = orderResponse.data.order_id || orderResponse.data.order?.id || 'TEMP';
+        setIsNotificationOpen(true);
+        navigate('/checkout', { state: { product } });
+      }
+    } catch (error) {
+      console.error("Error placing order:", error.response?.data || error.message);
+      navigate('/checkout', { state: { product } });
+    }
   };
 
   const handleSearchSubmit = (e) => {
@@ -388,9 +392,10 @@ const HomePage = () => {
       setWishlistedItems([]);
       setCartItems([]);
       navigate('/login');
-      setIsProfileDropdownOpen(false); // Close the dropdown
+      setIsProfileDropdownOpen(false);
     }
   };
+
   const handleOutsideClick = (e) => {
     if (!e.target.closest('.notification-container') && !e.target.closest('.header-icon')) setIsNotificationOpen(false);
     if (!e.target.closest('.wishlist-container') && !e.target.closest('.header-icon')) setIsWishlistOpen(false);
@@ -432,7 +437,6 @@ const HomePage = () => {
         handleSearchSubmit={handleSearchSubmit}
         isNotificationOpen={isNotificationOpen}
         setIsNotificationOpen={setIsNotificationOpen}
-        notifications={notifications}
         isWishlistOpen={isWishlistOpen}
         setIsWishlistOpen={setIsWishlistOpen}
         wishlistedItems={wishlistedItems}
@@ -462,18 +466,9 @@ const HomePage = () => {
       />
       <div className="slider-container">
         <Slider {...sliderSettings}>
-          <div>
-            <img src="/imgs/slider1.svg" alt="Clothing 1" className="slider-image" />
-            <button className="slider-shop-now-button">SHOP NOW</button>
-          </div>
-          <div>
-            <img src="/imgs/slider2.svg" alt="Clothing 2" className="slider-image" />
-            <button className="slider-shop-now-button">SHOP NOW</button>
-          </div>
-          <div>
-            <img src="/imgs/slider3.svg" alt="Clothing 3" className="slider-image" />
-            <button className="slider-shop-now-button">SHOP NOW</button>
-          </div>
+          <div><img src="/imgs/slider1.svg" alt="Clothing 1" className="slider-image" /><button className="slider-shop-now-button">SHOP NOW</button></div>
+          <div><img src="/imgs/slider2.svg" alt="Clothing 2" className="slider-image" /><button className="slider-shop-now-button">SHOP NOW</button></div>
+          <div><img src="/imgs/slider3.svg" alt="Clothing 3" className="slider-image" /><button className="slider-shop-now-button">SHOP NOW</button></div>
         </Slider>
       </div>
 
@@ -491,10 +486,7 @@ const HomePage = () => {
                 <p className="item-name">{item.name}</p>
                 <RiHeart3Fill
                   className={`heart ${wishlistedItems.some(w => w.id === item.id) ? 'wishlisted' : ''}`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleWishlistToggle(item)();
-                  }}
+                  onClick={(e) => { e.stopPropagation(); handleWishlistToggle(item)(); }}
                 />
               </div>
               <div className="price-container">
@@ -503,30 +495,19 @@ const HomePage = () => {
               </div>
             </div>
           ))}
-          {isSearchOpen && filteredItems.length === 0 && (
-            <p className="no-results">No items found</p>
-          )}
+          {isSearchOpen && filteredItems.length === 0 && <p className="no-results">No items found</p>}
         </div>
         <div className="new-product-image-containers">
           {products.length > 0 ? (
             products.map((product) => (
               <div key={product.id} className="product-container">
                 <div className="product-card">
-                  <img
-                    src={product.imagePreview || '/default-image.jpg'}
-                    alt={product.productName || 'Product'}
-                  />
+                  <img src={product.imagePreview || '/default-image.jpg'} alt={product.productName || 'Product'} />
                   <div className="product-actions">
-                    <button
-                      className="add-to-cart-btn"
-                      onClick={handleAddToCart(product)}
-                    >
+                    <button className="add-to-cart-btn" onClick={handleAddToCart(product)}>
                       <img src="/imgs/addcart.svg" alt="Add to Cart" className="action-icon" />
                     </button>
-                    <button
-                      className="buy-now-btn"
-                      onClick={handleBuyNow(product)}
-                    >
+                    <button className="buy-now-btn" onClick={handleBuyNow(product)}>
                       <img src="/imgs/buynow.svg" alt="Buy Now" className="action-icon" />
                     </button>
                   </div>

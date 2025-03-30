@@ -2,15 +2,34 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Order extends Model {  // Fixed: Class name should be singular
+class Order extends Model
+{
     use HasFactory;
 
     protected $fillable = [
-        'shipping_id', 'product_id', 'customer',
-        'payment_method', 'total_amount', 'date',
-        'status', 'archive_at'
+        'profile_id',
+        'payment_method',
+        'total_amount',
+        'order_date',
+        'status',
+        'archived_at',
     ];
+
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
+
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
+
+    public function trackings()
+    {
+        return $this->hasMany(OrderTracking::class);
+    }
 }

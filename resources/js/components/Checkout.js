@@ -121,9 +121,9 @@ const Checkout = () => {
 
   useEffect(() => {
     if (cartItems.length === 0) {
-      navigate('/profile/cart', { state: { message: 'No items in cart to checkout.' } });
+      setError('Your cart is empty. Please add items to proceed with checkout.');
     }
-  }, [cartItems, navigate]);
+  }, [cartItems]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -264,66 +264,73 @@ const Checkout = () => {
 
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
-
+  
+    // Validation checks
     if (!shippingInfo.email || !shippingInfo.firstName || !shippingInfo.lastName || 
         !shippingInfo.country || !shippingInfo.city || !shippingInfo.region || 
         !shippingInfo.postalCode || !shippingInfo.streetAddress) {
       setError('Please fill in all shipping details.');
       return;
     }
-
+  
     if (!paymentMethod) {
       setError('Please select a payment method.');
       return;
     }
-
+  
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login');
       return;
     }
-
-    if (!userProfile?.id || !userProfile?.profile_id) {
+  
+    if (!userProfile?.profile_id) {
       setError('User profile not loaded. Please try again.');
       return;
     }
-
+  
     if (cartItems.length === 0) {
       setError('No items in cart to checkout.');
       return;
     }
-
+  
+    // Prepare order data
+    const orderData = {
+      profile_id: userProfile.profile_id,
+      payment_method: paymentMethod,
+      total_amount: calculateSubtotal() + 50, // Subtotal + shipping
+      order_details: cartItems.map(item => ({
+        product_id: item.id,
+        quantity: item.quantity,
+      })),
+    };
+  
     try {
-      const orderData = {
-        shipping_id: 1,
-        product_id: cartItems[0].id,
-        customer: `${shippingInfo.firstName} ${shippingInfo.lastName}`,
-        payment_method: paymentMethod || 'cod',
-        total_amount: calculateSubtotal() + 50,
-        date: new Date().toISOString().split('T')[0],
-        status: 'Pending',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-        archive_at: null,
-      };
-
       const response = await axios.post(`${API_URL}/orders`, orderData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       });
-
+  
       console.log('Order placed:', response.data);
-      setOrderId(response.data.id);
+      setOrderId(response.data.order.id); // Extract order ID from response
       setIsSuccessModalOpen(true);
       setError(null);
-
+  
       // Clear the cart after successful order
       await clearCartBackend(token);
     } catch (err) {
       console.error('Error placing order:', err.response?.data || err.message);
-      setError('Failed to place order: ' + (err.response?.data?.message || err.message));
+      const errors = err.response?.data?.errors;
+      if (err.response?.status === 422 && errors) {
+        const errorMessages = Object.entries(errors)
+          .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
+          .join('; ');
+        setError(`Failed to place order: ${errorMessages}`);
+      } else {
+        setError('Failed to place order: ' + (err.response?.data?.message || err.message));
+      }
     }
   };
 
@@ -338,7 +345,13 @@ const Checkout = () => {
 
   const handleTrackOrder = () => {
     setIsSuccessModalOpen(false);
-    navigate('/profile/orders');
+    // Modified to navigate to specific order details page
+    if (orderId) {
+      navigate(`/my-orders/${orderId}`);
+    } else {
+      // Fallback in case orderId isn't set (shouldn't happen after successful order)
+      navigate('/profile/orders');
+    }
   };
 
   const cartCount = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
@@ -576,25 +589,25 @@ const Checkout = () => {
       </div>
       <Footer />
       {isSuccessModalOpen && (
-        <div className="success-modal-overlay">
-          <div className="success-modal">
-            <div className="success-icon">✓</div>
-            <h2 className="success-title">Order Placed Successfully!</h2>
-            <p className="success-message">
-              We've received your order and it will ship in 5-7 business days. <br />
-              Your order number is #{orderId || 'N/A'}
-            </p>
-            <div className="modal-actions">
-              <button className="continue-shopping-btn" onClick={handleContinueShopping}>
-                Continue Shopping
-              </button>
-              <button className="track-order-btn" onClick={handleTrackOrder}>
-                Track Order
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+  <div className="success-modal-overlay">
+    <div className="success-modal">
+      <div className="success-icon">✓</div>
+      <h2 className="success-title">Order Placed Successfully!</h2>
+      <p className="success-message">
+        We've received your order and it will ship in 5-7 business days. <br />
+        Your order number is #{orderId || 'N/A'}
+      </p>
+      <div className="modal-actions">
+        <button className="continue-shopping-btn" onClick={handleContinueShopping}>
+          Continue Shopping
+        </button>
+        <button className="track-order-btn" onClick={handleTrackOrder}>
+          Track Order
+        </button>
+      </div>
+    </div>
+  </div>
+)}
       {error && <div className="error-message">{error}</div>}
     </div>
   );

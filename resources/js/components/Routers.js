@@ -23,6 +23,7 @@ import Myorders from "./Myorders";
 import Mycart from "./Mycart";
 import Checkout from "./Checkout";
 import Shop from "./Shop";
+import OrderDetails from "./OrderDetails";
 import ForgotPassword from "./ForgotPassword"; // Import ForgotPassword component
 import ResetPassword from "./Resetpassword"; // Import ResetPassword component
 
@@ -84,6 +85,10 @@ const App = () => {
           path="/profile/orders" 
           element={<ProtectedRoute element={<Myorders />} allowedRoles={["customer"]} />}
         />
+        <Route
+    path="/my-orders/:orderId"
+    element={<ProtectedRoute element={<OrderDetails />} allowedRoles={["customer"]} />}
+  />
         <Route
           path="/checkout"
           element={<ProtectedRoute element={<Checkout />} allowedRoles={["customer"]} />} 

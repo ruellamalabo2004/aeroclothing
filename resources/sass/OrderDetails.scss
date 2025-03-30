@@ -1,0 +1,106 @@
+.order-details-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.order-title {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.tracking-container {
+  margin-bottom: 20px;
+}
+
+.tracking-steps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 10px;
+}
+
+.step {
+  text-align: center;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.step-circle {
+  width: 30px;
+  height: 30px;
+  background-color: #ccc;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 5px;
+  font-size: 1.2rem;
+}
+
+.step.active .step-circle {
+  background-color: #4caf50;
+}
+
+.step.current .step-circle {
+  background-color: #2196f3;
+}
+
+.step-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.step-line {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background-color: #ccc;
+  z-index: -1;
+}
+
+.step.active + .step .step-line {
+  background-color: #4caf50;
+}
+
+.order-summary,
+.product-details {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 5px;
+}
+
+.order-summary h3,
+.product-details h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+.product-info p {
+  margin: 5px 0;
+}
