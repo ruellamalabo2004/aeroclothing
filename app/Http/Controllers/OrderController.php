@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\DB;
 class OrderController extends Controller 
 {
     public function index() {
-        $orders = Order::with('orderDetails.product', 'profile')->get();
+        $orders = Order::with('orderDetails.product', 'profile', 'courier')->get();
         return response()->json($orders);
     }
+    
     private function getPastTenseStatus($status) {
         $statusMap = [
             'PENDING' => 'Placed',
@@ -31,23 +32,25 @@ class OrderController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'profile_id' => 'required|exists:profiles,id',
+            'courier_id' => 'required|exists:couriers,id', // Ensure courier_id is valid
             'payment_method' => 'required|string',
             'total_amount' => 'required|numeric',
             'order_details' => 'required|array',
             'order_details.*.product_id' => 'required|exists:products,id',
             'order_details.*.quantity' => 'required|integer|min:1'
         ]);
-
+    
         DB::beginTransaction();
         try {
             $order = Order::create([
                 'profile_id' => $request->profile_id,
+                'courier_id' => $request->courier_id, // Store the courier
                 'payment_method' => $request->payment_method,
                 'total_amount' => $request->total_amount,
                 'order_date' => now(),
                 'status' => 'PENDING'
             ]);
-
+    
             foreach ($request->order_details as $detail) {
                 OrderDetail::create([
                     'order_id' => $order->id,
@@ -55,25 +58,24 @@ class OrderController extends Controller
                     'quantity' => $detail['quantity']
                 ]);
             }
-
+    
             OrderTracking::create([
                 'order_id' => $order->id,
                 'status' => 'PENDING',
                 'created_at' => now(),
             ]);
-
+    
             // Get user_id from profiles table
             $userId = \App\Models\Profile::where('id', $request->profile_id)->value('user_id');
-
+    
             $firstProductId = $request->order_details[0]['product_id'];
             $product = \App\Models\Product::find($firstProductId);
             $imagePath = $product->image_1 ?? null;
-
-            // ✅ Fix: Convert to full image URL if necessary
+    
             $imageUrl = $imagePath && !str_contains($imagePath, 'http')
                 ? asset('storage/' . $imagePath)
                 : $imagePath;
-
+    
             Notification::create([
                 'user_id' => $userId,
                 'order_id' => $order->id,
@@ -82,7 +84,7 @@ class OrderController extends Controller
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-
+    
             DB::commit();
             return response()->json([
                 'message' => 'Order placed successfully',
@@ -94,15 +96,16 @@ class OrderController extends Controller
             return response()->json(['message' => 'Failed to place order', 'error' => $e->getMessage()], 500);
         }
     }
+    
 
     public function show($id)
     {
-        $order = Order::with('orderDetails.product', 'trackings', 'profile')->find($id);
-
+        $order = Order::with('orderDetails.product', 'trackings', 'profile', 'courier')->find($id);
+    
         if (!$order) {
             return response()->json(['message' => 'Order not found'], 404);
         }
-
+    
         return response()->json([
             'id' => $order->id,
             'status' => $order->status,
@@ -110,6 +113,12 @@ class OrderController extends Controller
             'customer' => $order->profile->first_name . ' ' . $order->profile->last_name,
             'payment_method' => $order->payment_method,
             'created_at' => $order->created_at,
+            'courier' => [
+                'id' => $order->courier->id,
+                'name' => $order->courier->name,
+                'shipping_fee' => $order->courier->shipping_fee,
+                'estimated_delivery_time' => $order->courier->estimated_delivery_time,
+            ],
             'products' => $order->orderDetails->map(function ($detail) {
                 $imagePath = $detail->product->image_1;
                 return [
@@ -132,50 +141,52 @@ class OrderController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id) {
-        $order = Order::with('orderDetails.product')->findOrFail($id);
-        $validated = $request->validate([
-            'status' => 'sometimes|string|in:PENDING,PROCESSING,SHIPPING,DELIVERED,CANCELED,RETURNED',
-            'payment_method' => 'sometimes|string',
-            'total_amount' => 'sometimes|numeric'
-        ]);
 
-        DB::beginTransaction();
-        try {
-            if ($request->has('status') && $request->status !== $order->status) {
-                OrderTracking::create([
-                    'order_id' => $order->id,
-                    'status' => $request->status,
-                    'created_at' => now(),
-                ]);
+  public function update(Request $request, $id) {
+    $order = Order::with('orderDetails.product')->findOrFail($id);
+    
+    $validated = $request->validate([
+        'status' => 'sometimes|string|in:PENDING,PROCESSING,SHIPPING,DELIVERED,CANCELED,RETURNED',
+        'payment_method' => 'sometimes|string',
+        'total_amount' => 'sometimes|numeric',
+        'courier_id' => 'sometimes|exists:couriers,id', // Allow updating courier_id
+    ]);
 
-                // ✅ Fix: Ensure image URL is correct
-                $firstProductImage = $order->orderDetails->first()->product->image_1 ?? null;
-                $imageUrl = $firstProductImage && !str_contains($firstProductImage, 'http')
-                    ? asset('storage/' . $firstProductImage)
-                    : $firstProductImage;
+    DB::beginTransaction();
+    try {
+        if ($request->has('status') && $request->status !== $order->status) {
+            OrderTracking::create([
+                'order_id' => $order->id,
+                'status' => $request->status,
+                'created_at' => now(),
+            ]);
 
-                    $pastTenseStatus = $this->getPastTenseStatus($request->status);
+            $firstProductImage = $order->orderDetails->first()->product->image_1 ?? null;
+            $imageUrl = $firstProductImage && !str_contains($firstProductImage, 'http')
+                ? asset('storage/' . $firstProductImage)
+                : $firstProductImage;
 
-                    Notification::create([
-                        'user_id' => $order->profile->user_id,
-                        'order_id' => $order->id,
-                        'status' => $pastTenseStatus, // ✅ Now using past tense
-                        'product_image' => $imageUrl,
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ]);
-                    
-            }
+            $pastTenseStatus = $this->getPastTenseStatus($request->status);
 
-            $order->update($validated);
-            DB::commit();
-            return response()->json($order);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json(['message' => 'Failed to update order', 'error' => $e->getMessage()], 500);
+            Notification::create([
+                'user_id' => $order->profile->user_id,
+                'order_id' => $order->id,
+                'status' => $pastTenseStatus,
+                'product_image' => $imageUrl,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
         }
+
+        $order->update($validated);
+        DB::commit();
+        return response()->json($order);
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return response()->json(['message' => 'Failed to update order', 'error' => $e->getMessage()], 500);
     }
+}
+
 
     public function updateOrderStatus($orderId, $newStatus)
     {

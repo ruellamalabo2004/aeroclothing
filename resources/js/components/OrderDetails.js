@@ -21,19 +21,25 @@ const OrderDetails = () => {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isSummaryOpen, setIsSummaryOpen] = useState(false);
 
   const API_URL = "http://127.0.0.1:8000/api";
   const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
   const trackingSteps = ["PENDING", "PROCESSING", "SHIPPING", "DELIVERED"];
 
-  // Sample notifications (from Shop.js)
+  const statusIconMap = {
+    "PENDING": "pends",
+    "PROCESSING": "proces",
+    "SHIPPING": "ships",
+    "DELIVERED": "delivers"
+  };
+
   const notifications = [
     { id: 1, message: "Your order #1234 has been shipped!", time: "2 hours ago" },
     { id: 2, message: "New collection available now!", time: "5 hours ago" },
     { id: 3, message: "20% off sale ends tomorrow!", time: "1 day ago" },
   ];
 
-  // Support items (from Shop.js)
   const supportItems = [
     { label: "ORDER & PAYMENT", path: "/customer/support/order-payment" },
     { label: "SHIPPING", path: "/customer/support/shipping" },
@@ -43,7 +49,6 @@ const OrderDetails = () => {
     { label: "FAQS", path: "/customer/support/faqs" },
   ];
 
-  // Profile dropdown items (from Shop.js)
   const profileDropdownItems = [
     { label: "My Profile", path: "/profile" },
     { label: "My Orders", path: "/profile/orders" },
@@ -57,7 +62,6 @@ const OrderDetails = () => {
       return;
     }
 
-    // Fetch user profile, cart, and order details
     const fetchProfileAndData = async () => {
       try {
         const profileResponse = await axios.get(`${API_URL}/profile`, {
@@ -80,10 +84,8 @@ const OrderDetails = () => {
         };
         setUserProfile(user);
 
-        // Fetch cart
         await fetchCart(token, user.id);
 
-        // Fetch order details
         if (!orderId) {
           setError("No order ID specified");
         } else {
@@ -108,7 +110,6 @@ const OrderDetails = () => {
     fetchProfileAndData();
   }, [orderId, navigate]);
 
-  // Fetch cart (from Shop.js)
   const fetchCart = async (token, userId) => {
     try {
       const response = await axios.get(`${API_URL}/cart`, {
@@ -128,7 +129,6 @@ const OrderDetails = () => {
     }
   };
 
-  // Cart handlers (from Shop.js)
   const increaseCartQuantity = (itemId) => {
     setCartItems((prev) =>
       prev.map((item) =>
@@ -164,7 +164,6 @@ const OrderDetails = () => {
     await removeFromCartBackend(itemId);
   };
 
-  // Logout handler (from Shop.js)
   const handleLogout = () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
     if (confirmLogout) {
@@ -180,7 +179,6 @@ const OrderDetails = () => {
     }
   };
 
-  // Outside click handler (from Shop.js)
   const handleOutsideClick = (e) => {
     if (!e.target.closest('.notification-container') && !e.target.closest('.header-icon')) setIsNotificationOpen(false);
     if (!e.target.closest('.wishlist-container') && !e.target.closest('.header-icon')) setIsWishlistOpen(false);
@@ -199,7 +197,6 @@ const OrderDetails = () => {
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
   const wishlistCount = wishlistedItems.length;
 
-  // Tracking logic (from original OrderDetails.js)
   const trackingHistory = order?.tracking_history || [];
   const reachedSteps = trackingHistory.map((tracking) => (tracking.status || "").toUpperCase());
   const currentStepIndex = trackingSteps
@@ -207,14 +204,46 @@ const OrderDetails = () => {
     .filter((index) => index !== -1)
     .reduce((max, curr) => Math.max(max, curr), -1);
 
+  // Restore tracking timestamps
   const trackingTimestamps = {};
   trackingHistory.forEach((tracking) => {
     const status = (tracking.status || "").toUpperCase();
     trackingTimestamps[status] = tracking.timestamp;
   });
 
+  const calculateEstimatedDelivery = () => {
+    return order?.courier?.estimated_delivery_time || "N/A";
+  };
+
+  const handleCancelOrder = async () => {
+    if (!order || !orderId) return;
+    
+    const confirmCancel = window.confirm("Are you sure you want to cancel this order?");
+    if (!confirmCancel) return;
+    
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post(`${API_URL}/orders/${orderId}/cancel`, {}, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      
+      const orderResponse = await axios.get(`${API_URL}/orders/${orderId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setOrder(orderResponse.data);
+      
+      alert("Order has been canceled successfully");
+    } catch (error) {
+      console.error("Error canceling order:", error.response?.data || error.message);
+      alert("Failed to cancel order. Please try again later.");
+    }
+  };
+
   if (loading) return <p>Loading order details...</p>;
   if (error) return <p>Error: {error}</p>;
+
+  const currentStatus = reachedSteps.length > 0 ? reachedSteps[reachedSteps.length - 1] : "PENDING";
+  const canCancel = currentStatus === "PENDING";
 
   return (
     <div className="OrderDetails">
@@ -253,88 +282,127 @@ const OrderDetails = () => {
         removeFromCart={removeFromCart}
         navigate={navigate}
       />
-      <div className="order-details-container">
-        <h2 className="order-title">Order #{order?.id || "N/A"}</h2>
-
-        {/* Tracking Status */}
-        <div className="tracking-container">
-          <h3>Order Status</h3>
-          <div className="tracking-steps">
-            {trackingSteps.map((step, index) => (
-              <div
-                key={step}
-                className={`step ${
-                  index <= currentStepIndex ? "active" : ""
-                } ${index === currentStepIndex ? "current" : ""}`}
-              >
-                <div className="step-circle">{index <= currentStepIndex ? "✓" : index + 1}</div>
-                <div className="step-info">
-                  <p className="step-label">{step}</p>
-                  {trackingTimestamps[step] ? (
-                    <p className="step-timestamp">
-                      {new Date(trackingTimestamps[step]).toLocaleString()}
-                    </p>
-                  ) : (
-                    <p className="step-timestamp">Not yet reached</p>
-                  )}
-                </div>
-                {index < trackingSteps.length - 1 && <div className="step-line"></div>}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Order Summary */}
-        <div className="order-summary">
-          <h3>Order Summary</h3>
-          <p>
-            <strong>Total Amount:</strong> ₱
-            {order?.total_amount !== undefined && order.total_amount !== null
-              ? Number(order.total_amount).toFixed(2)
-              : "N/A"}
-          </p>
-          <p>
-            <strong>Placed On:</strong>{" "}
-            {order?.created_at ? new Date(order.created_at).toLocaleString() : "N/A"}
-          </p>
-        </div>
-
-        {/* Product Details */}
-        {order?.products?.length > 0 ? (
-          <div className="product-details">
-            <h3>Items Ordered</h3>
-            {order.products.map((product) => {
-              // Fix image URL logic
-              const imageUrl = product.image_1
-                ? product.image_1.startsWith('http')
-                  ? product.image_1 // Use as-is if it's a full URL
-                  : `${BASE_IMAGE_URL}/${product.image_1}` // Prepend BASE_IMAGE_URL if it's a relative path
-                : "/default-image.jpg";
-
-              return (
-                <div key={product.id || "unknown"} className="product-item">
-                  <img
-                    src={imageUrl}
-                    alt={product.product_name || "Product"}
-                    className="product-image"
-                  />
-                  <div className="product-info">
-                    <p><strong>{product.product_name || "Unnamed Product"}</strong></p>
-                    <p>Quantity: {product.quantity || "N/A"}</p>
-                    <p>
-                      Price: ₱
-                      {typeof product.price === "number" && typeof product.quantity === "number"
-                        ? (product.price * product.quantity).toFixed(2)
-                        : product.price || "N/A"}
-                    </p>
+      
+      <div className="order-details-page">
+        <div className="order-details-container">
+          {/* Container 1: Order Status */}
+          <div className="order-status-container">
+            <h3>Order Status</h3>
+            <div className="progress-bar-container">
+              <div className="progress-steps">
+                {trackingSteps.map((step, index) => (
+                  <div key={step} className="progress-step">
+                    <div className={`step-icon ${index <= currentStepIndex ? "active" : ""}`}>
+                      <img 
+                        src={`/imgs/${statusIconMap[step]}.svg`} 
+                        alt={step} 
+                        className="status-icon" 
+                      />
+                    </div>
+                    <div className={`step-label ${index <= currentStepIndex ? "active" : ""}`}>
+                      {step}
+                    </div>
+                    {/* Add timestamp below each step */}
+                    <div className={`step-timestamp ${index <= currentStepIndex ? "active" : ""}`}>
+                      {trackingTimestamps[step] ? new Date(trackingTimestamps[step]).toLocaleString() : ""}
+                    </div>
+                    {index < trackingSteps.length - 1 && (
+                      <div className={`progress-line ${index < currentStepIndex ? "active" : ""}`}></div>
+                    )}
                   </div>
-                </div>
-              );
-            })}
+                ))}
+              </div>
+            </div>
+            {canCancel && (
+              <div className="cancel-order-container">
+                <button className="cancel-order-btn" onClick={handleCancelOrder}>
+                  Cancel Order
+                </button>
+              </div>
+            )}
           </div>
-        ) : (
-          <p>No product details available.</p>
-        )}
+
+          {/* Container 2: Order Info and Summary Toggle */}
+          <div className="order-info-container">
+            <div className="order-header">
+              <div className="order-number">
+                <h2>ORDER #{order?.id || "N/A"}</h2>
+              </div>
+              <div className="order-date">
+                <p>Placed On: {order?.created_at ? new Date(order.created_at).toLocaleString() : "N/A"}</p>
+              </div>
+            </div>
+            <div className="order-shipping-info">
+              <div className="courier-info">
+                <p><strong>Courier:</strong> {order?.courier?.name || "N/A"}</p>
+              </div>
+              <div className="delivery-estimate">
+                <p><strong>Estimated Delivery:</strong> {calculateEstimatedDelivery()}</p>
+              </div>
+            </div>
+            <button 
+              className="toggle-summary-btn"
+              onClick={() => setIsSummaryOpen(!isSummaryOpen)}
+            >
+              {isSummaryOpen ? "Hide Order Details" : "Show Order Details"}
+            </button>
+
+            {/* Container 3: Order Summary (Dropdown) */}
+            {isSummaryOpen && (
+              <div className="order-summary-container">
+                <h3>Order Summary</h3>
+                {order?.products?.length > 0 ? (
+                  <div className="order-products">
+                    {order.products.map((product) => {
+                      const imageUrl = product.image_1
+                        ? product.image_1.startsWith('http')
+                          ? product.image_1
+                          : `${BASE_IMAGE_URL}/${product.image_1}`
+                        : "/default-image.jpg";
+
+                      return (
+                        <div key={product.id || "unknown"} className="product-item">
+                          <div className="product-image-container">
+                            <img
+                              src={imageUrl}
+                              alt={product.product_name || "Product"}
+                              className="product-image"
+                            />
+                          </div>
+                          <div className="product-details">
+                            <h4 className="product-name">{product.product_name || "Unnamed Product"}</h4>
+                            <div className="product-meta">
+                              <p className="product-quantity">Qty: {product.quantity || "N/A"}</p>
+                              <p className="product-price">
+                                ₱{(product.price * product.quantity).toFixed(2)}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                    {/* Shipping Cost */}
+                    <div className="order-shipping-cost">
+                      <p className="shipping-label">Shipping Cost:</p>
+                      <p className="shipping-value">
+                        ₱{order?.courier?.shipping_fee !== undefined ? Number(order.courier.shipping_fee).toFixed(2) : "N/A"}
+                      </p>
+                    </div>
+                    {/* Total Amount */}
+                    <div className="order-total">
+                      <p className="total-label">Total Amount:</p>
+                      <p className="total-value">
+                        ₱{Number(order?.total_amount).toFixed(2)}
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <p>No product details available.</p>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
       <Footer />
     </div>

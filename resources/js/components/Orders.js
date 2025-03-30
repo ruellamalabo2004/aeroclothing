@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
 export default function Orders() {
   const [activeTab, setActiveTab] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,6 +10,8 @@ export default function Orders() {
   const [isArchiving, setIsArchiving] = useState(null);
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 10;
 
   const API_URL = "http://localhost:8000/api";
 
@@ -36,11 +39,23 @@ export default function Orders() {
     return matchesTab && matchesSearch;
   });
 
+  // Pagination logic
+  const indexOfLastOrder = currentPage * ordersPerPage;
+  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+  const currentOrders = filteredOrders.slice(indexOfFirstOrder, indexOfLastOrder);
+  const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
+
+  // Handle page navigation
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   // Order status counts for cards
   const orderCards = ["PENDING", "PROCESSING", "SHIPPING", "DELIVERED", "CANCELED", "RETURNED"].map(
     (status) => ({
       status,
       count: orders.filter((o) => o.status === status).length,
+      image: status === "SHIPPING" ? "/imgs/shipped.svg" : `/imgs/${status.toLowerCase()}.svg`,
     })
   );
 
@@ -62,7 +77,6 @@ export default function Orders() {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       })
       .then((response) => {
-        // Refresh the orders list to get the latest tracking history
         axios
           .get(`${API_URL}/orders`, {
             headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -132,7 +146,7 @@ export default function Orders() {
       <div className="orders-cards-container">
         {orderCards.map((order) => (
           <div className="orders-card" key={order.status}>
-            <img src={`/imgs/${order.status.toLowerCase()}.svg`} alt={order.status} className="orders-card-image" />
+            <img src={order.image} alt={order.status} className="orders-card-image" />
             <div className="orders-card-text">{order.status}</div>
             <div className="orders-card-number">{order.count}</div>
           </div>
@@ -152,6 +166,7 @@ export default function Orders() {
                 onClick={(e) => {
                   e.preventDefault();
                   setActiveTab(status);
+                  setCurrentPage(1);
                 }}
               >
                 {status}
@@ -164,7 +179,10 @@ export default function Orders() {
           className="orders-search"
           placeholder="Search by Order ID..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+            setCurrentPage(1);
+          }}
         />
       </div>
 
@@ -194,140 +212,166 @@ export default function Orders() {
         </div>
       )}
 
-      {/* Edit Order Form */}
+      {/* Edit Order Modal */}
       {selectedOrder && (
-        <div className="modal-overlay" onClick={() => setSelectedOrder(null)}>
-          <div className="edit-order-container" onClick={(e) => e.stopPropagation()}>
-            <div className="edit-order-content">
-              <h2>Edit Order #{selectedOrder.id}</h2>
-              <div className="edit-form-group">
-                <label>Payment Method</label>
-                <input
-                  type="text"
-                  name="payment_method"
-                  value={selectedOrder.payment_method || ""}
-                  onChange={handleFormChange}
-                  placeholder="Enter payment method"
-                />
+        <div className="edit-modal" onClick={() => setSelectedOrder(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>Edit Order #{selectedOrder.id}</h2>
+            <form onSubmit={(e) => { e.preventDefault(); handleSave(); }}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Payment Method</label>
+                  <input
+                    type="text"
+                    name="payment_method"
+                    value={selectedOrder.payment_method || ""}
+                    onChange={handleFormChange}
+                    placeholder="Enter payment method"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Total Amount</label>
+                  <input
+                    type="number"
+                    name="total_amount"
+                    value={selectedOrder.total_amount || ""}
+                    onChange={handleFormChange}
+                    placeholder="Enter total amount"
+                  />
+                </div>
               </div>
-              <div className="edit-form-group">
-                <label>Total Amount</label>
-                <input
-                  type="number"
-                  name="total_amount"
-                  value={selectedOrder.total_amount || ""}
-                  onChange={handleFormChange}
-                  placeholder="Enter total amount"
-                />
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Status</label>
+                  <select name="status" value={selectedOrder.status || ""} onChange={handleFormChange}>
+                    <option value="PENDING">Pending</option>
+                    <option value="PROCESSING">Processing</option>
+                    <option value="SHIPPING">Shipping</option>
+                    <option value="DELIVERED">Delivered</option>
+                    <option value="CANCELED">Canceled</option>
+                    <option value="RETURNED">Returned</option>
+                  </select>
+                </div>
+                {/* Add an empty div to maintain two-column layout if needed */}
+                <div className="form-group"></div>
               </div>
-              <div className="edit-form-group">
-                <label>Status</label>
-                <select name="status" value={selectedOrder.status || ""} onChange={handleFormChange}>
-                  <option value="PENDING">Pending</option>
-                  <option value="PROCESSING">Processing</option>
-                  <option value="SHIPPING">Shipping</option>
-                  <option value="DELIVERED">Delivered</option>
-                  <option value="CANCELED">Canceled</option>
-                  <option value="RETURNED">Returned</option>
-                </select>
-              </div>
-              <div className="edit-form-actions">
-                <button className="save-btn" onClick={handleSave}>
+              <div className="form-buttons">
+                <button type="submit" className="modal-save-btn">
                   Save Changes
                 </button>
-                <button className="cancel-btn" onClick={() => setSelectedOrder(null)}>
+                <button type="button" className="modal-cancel-btn" onClick={() => setSelectedOrder(null)}>
                   Cancel
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       )}
 
-      {/* Archive Confirmation Popup */}
+      {/* Archive Confirmation Modal */}
       {isArchiving && (
-        <div className="modal-overlay" onClick={() => setIsArchiving(null)}>
-          <div className="archive-confirmation-container" onClick={(e) => e.stopPropagation()}>
-            <div className="archive-confirmation-content">
-              <h2>Archive this order?</h2>
+        <div className="edit-modal" onClick={() => setIsArchiving(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>Archive this order?</h2>
+            <form onSubmit={(e) => { e.preventDefault(); confirmArchive(); }}>
               <p>Are you sure you want to archive Order ID "{isArchiving.id}"?</p>
-              <div className="modal-actions">
-                <button type="button" className="save-btn" onClick={confirmArchive}>
+              <div className="form-buttons">
+                <button type="submit" className="modal-save-btn">
                   Yes
                 </button>
-                <button
-                  type="button"
-                  className="cancel-btn"
-                  onClick={() => setIsArchiving(null)}
-                >
+                <button type="button" className="modal-cancel-btn" onClick={() => setIsArchiving(null)}>
                   Cancel
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       )}
 
-      {/* Orders Table */}
+      {/* Orders Table and Pagination */}
       {!selectedOrder && !viewOrder && !isArchiving && (
-        <div className="orders-table-container">
-          <table className="orders-table">
-            <thead>
-              <tr>
-                <th>Actions</th>
-                <th>Order ID</th>
-                <th>Customer Name</th>
-                <th>Payment Method</th>
-                <th>Total Amount</th>
-                <th>Date</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredOrders.map((order) => (
-                <tr key={order.id}>
-                  <td>
-                    <img
-                      src="/imgs/viewing.svg"
-                      alt="View"
-                      className="action-img"
-                      onClick={() => handleViewOrder(order)}
-                      style={{ cursor: "pointer" }}
-                    />
-                    <img
-                      src="/imgs/editing.svg"
-                      alt="Edit"
-                      className="action-img"
-                      onClick={() => setSelectedOrder(order)}
-                      style={{ cursor: "pointer" }}
-                    />
-                    <img
-                      src="/imgs/archiving.svg"
-                      alt="Archive"
-                      className="action-img"
-                      onClick={() => handleArchiveClick(order)}
-                      style={{ cursor: "pointer" }}
-                    />
-                  </td>
-                  <td>{order.id}</td>
-                  <td>
-                    {order.profile && order.profile.first_name && order.profile.last_name
-                      ? `${order.profile.first_name} ${order.profile.last_name}`
-                      : "Unknown Customer"}
-                  </td>
-                  <td>{order.payment_method || "N/A"}</td>
-                  <td>₱{order.total_amount || 0}</td>
-                  <td>{order.order_date ? new Date(order.order_date).toLocaleDateString() : "N/A"}</td>
-                  <td>
-                    <span className={`status-frame status-${order.status?.toLowerCase() || "unknown"}`}>
-                      {order.status || "Unknown"}
-                    </span>
-                  </td>
+        <>
+          <div className="orders-table-container">
+            <table className="orders-table">
+              <thead>
+                <tr>
+                  <th>Actions</th>
+                  <th>Order ID</th>
+                  <th>Customer Name</th>
+                  <th>Payment Method</th>
+                  <th>Total Amount</th>
+                  <th>Date</th>
+                  <th>Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {currentOrders.map((order) => (
+                  <tr key={order.id}>
+                    <td>
+                      <img
+                        src="/imgs/viewing.svg"
+                        alt="View"
+                        className="action-img"
+                        onClick={() => handleViewOrder(order)}
+                        style={{ cursor: "pointer" }}
+                      />
+                      <img
+                        src="/imgs/editing.svg"
+                        alt="Edit"
+                        className="action-img"
+                        onClick={() => setSelectedOrder(order)}
+                        style={{ cursor: "pointer" }}
+                      />
+                      <img
+                        src="/imgs/archiving.svg"
+                        alt="Archive"
+                        className="action-img"
+                        onClick={() => handleArchiveClick(order)}
+                        style={{ cursor: "pointer" }}
+                      />
+                    </td>
+                    <td>{order.id}</td>
+                    <td>
+                      {order.profile && order.profile.first_name && order.profile.last_name
+                        ? `${order.profile.first_name} ${order.profile.last_name}`
+                        : "Unknown Customer"}
+                    </td>
+                    <td>{order.payment_method || "N/A"}</td>
+                    <td>₱{order.total_amount || 0}</td>
+                    <td>{order.order_date ? new Date(order.order_date).toLocaleDateString() : "N/A"}</td>
+                    <td>
+                      <span className={`status-frame status-${order.status?.toLowerCase() || "unknown"}`}>
+                        {order.status || "Unknown"}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {orders.length > 0 && (
+            <div className="pagination">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="pagination-btn"
+              >
+                Previous
+              </button>
+              <span className="pagination-info">
+                Page {currentPage} of {totalPages}
+              </span>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="pagination-btn"
+              >
+                Next
+              </button>
+            </div>
+          )}
+        </>
       )}
     </main>
   );

@@ -1,80 +1,146 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import Header from "./Header";
-import Footer from "./Footer";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Header from './Header';
+import Footer from './Footer';
+import CartSidebar from './CartSidebar';
 
-const OrderDetails = () => {
-  const { orderId } = useParams();
+const MyOrders = () => {
   const navigate = useNavigate();
-  const [order, setOrder] = useState(null);
+  const [profile, setProfile] = useState({
+    first_name: '',
+    last_name: '',
+    profile_pic: '/imgs/profile.svg',
+  });
+  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
+  const [activeMenuItem, setActiveMenuItem] = useState('orders');
 
   const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
   const API_URL = "http://127.0.0.1:8000/api";
 
   useEffect(() => {
-    const fetchOrderDetails = async () => {
+    const fetchData = async () => {
       try {
-        const token = localStorage.getItem("token");
-        if (!token) throw new Error("Please log in to view your order details.");
+        const token = localStorage.getItem('token');
+        if (!token) throw new Error("No authentication token found. Please log in.");
 
-        const response = await axios.get(`${API_URL}/orders/${orderId}`, {
+        // Fetch Profile
+        const profileResponse = await axios.get(`${API_URL}/profile`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const profileData = profileResponse.data.profile;
+        setProfile({
+          first_name: profileData.first_name || '',
+          last_name: profileData.last_name || '',
+          profile_pic: profileData.profile_pic
+            ? `${BASE_IMAGE_URL}/${profileData.profile_pic}`
+            : '/imgs/profile.svg',
+        });
+
+        // Fetch Orders
+        const ordersResponse = await axios.get(`${API_URL}/orders`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        setOrder(response.data);
+        // Ensure ordersData is an array to prevent crashes
+        const ordersData = Array.isArray(ordersResponse.data) ? ordersResponse.data : [];
+        setOrders(ordersData);
+        console.log("Fetched Orders:", ordersData);
+
+        // Fetch Cart
+        const cartResponse = await axios.get(`${API_URL}/cart`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const cartData = Array.isArray(cartResponse.data) ? cartResponse.data : [];
+        setCartItems(cartData);
       } catch (err) {
-        console.error("Error fetching order details:", err);
-        setError(err.message || "Failed to load order details.");
+        console.error('Fetch Error:', err);
+        setError(err.message || "An error occurred.");
+        if (err.response?.status === 401) {
+          localStorage.removeItem('token');
+          navigate('/login');
+        }
       } finally {
         setLoading(false);
       }
     };
 
-    fetchOrderDetails();
-  }, [orderId]);
+    fetchData();
+  }, [navigate]);
 
-  if (loading) return <div className="loading">Loading order details...</div>;
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
+
+  if (loading) return <div className="loading">Loading orders...</div>;
   if (error) return <div className="error">{error}</div>;
-  if (!order) return <div className="error">Order not found.</div>;
 
   return (
-    <div className="OrderDetails">
-      <Header />
-      <div className="order-container">
-        <h1>Order #{order.id}</h1>
-        <p><strong>Status:</strong> {order.status}</p>
-        <p><strong>Total Amount:</strong> ₱{order.total_amount.toFixed(2)}</p>
-        <p><strong>Payment Method:</strong> {order.payment_method}</p>
-        <p><strong>Order Date:</strong> {new Date(order.date).toLocaleDateString()}</p>
+    <div className="MyOrders">
+      <Header userProfile={profile} />
+      <CartSidebar cartItems={cartItems} />
 
-        <h2>Ordered Products</h2>
-        <div className="order-products">
-          {order.products.map((product) => (
-            <div key={product.id} className="order-product">
-              <img 
-                src={product.image_1 ? `${BASE_IMAGE_URL}/${product.image_1}` : "/default-image.jpg"} 
-                alt={product.product_name} 
-                className="product-image"
-              />
-              <div className="product-details">
-                <h3>{product.product_name}</h3>
-                <p>Price: ₱{product.price.toFixed(2)}</p>
-                <p>Quantity: {product.pivot?.quantity || 1}</p>
-              </div>
+      <div className="profile-container">
+        <h1 className="profile-title">Order History</h1>
+        <div className="profile-body">
+          <div className="sidebar">
+            <div className="user-info">
+              <img src={profile.profile_pic} alt="Profile" className="profile-pic" />
+              <h2>{profile.first_name} {profile.last_name}</h2>
             </div>
-          ))}
-        </div>
+            <ul className="nav-menu">
+              <li className={activeMenuItem === 'orders' ? 'active' : ''} onClick={() => navigate('/profile/orders')}>
+                <img src="/imgs/myorder.svg" alt="My Orders" /> My Orders
+              </li>
+              <li className="logout" onClick={handleLogout}>
+                <img src="/imgs/mylogout.svg" alt="Logout" /> Logout
+              </li>
+            </ul>
+          </div>
 
-        <button onClick={() => navigate("/profile/orders")} className="back-button">
-          Back to My Orders
-        </button>
+          <div className="profile-content">
+            {orders.length > 0 ? (
+              <div className="orders-history">
+                <table className="orders-table">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Status</th>
+                      <th>Total Amount</th>
+                      <th>Order Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {orders.map(order => (
+                      <tr key={order.id}>
+                        <td>{order.id}</td>
+                        <td>{order.status}</td>
+                        <td>₱{order.total_amount ? order.total_amount.toFixed(2) : '0.00'}</td>
+                        <td>{order.order_date ? new Date(order.order_date).toLocaleString() : 'N/A'}</td>
+                        <td>
+                          <button onClick={() => navigate(`/my-orders/${order.id}`)} className="view-details-button">
+                            View Details
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p>No orders found in your history.</p>
+            )}
+          </div>
+        </div>
       </div>
       <Footer />
     </div>
   );
 };
 
-export default OrderDetails;
+export default MyOrders;

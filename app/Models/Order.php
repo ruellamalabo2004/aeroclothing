@@ -16,6 +16,7 @@ class Order extends Model
         'order_date',
         'status',
         'archived_at',
+        'courier_id', // ✅ Add this to allow mass assignment
     ];
 
     public function orderDetails()
@@ -31,5 +32,10 @@ class Order extends Model
     public function trackings()
     {
         return $this->hasMany(OrderTracking::class);
+    }
+
+    public function courier()
+    {
+        return $this->belongsTo(Courier::class); // ✅ Define relationship
     }
 }

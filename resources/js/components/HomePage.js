@@ -328,6 +328,17 @@ const HomePage = () => {
     }
   };
 
+  // Updated handleBuyNow to add to cart and navigate to checkout
+  const handleBuyNow = (product) => async () => {
+    const existingItem = cartItems.find((item) => item.id === product.id);
+    if (!existingItem) {
+      // Add the product to the cart if it's not already there
+      await addToCart(product);
+    }
+    // Navigate to the checkout page with the product details
+    navigate('/checkout', { state: { product } });
+  };
+
   useEffect(() => {
     if (latestWishlistItem) {
       const timer = setTimeout(() => setLatestWishlistItem(null), 3000);
@@ -339,27 +350,6 @@ const HomePage = () => {
 
   const handleRatingChange = (item) => (newRating) => {
     setRatings((prev) => ({ ...prev, [item]: newRating }));
-  };
-
-  const handleBuyNow = (product) => async () => {
-    const token = localStorage.getItem('token');
-    try {
-      const orderResponse = await axios.post(`${API_URL}/orders`, {
-        profile_id: userProfile?.id,
-        payment_method: 'Cash',
-        total_amount: product.price,
-        order_details: [{ product_id: product.id, quantity: 1 }],
-      }, { headers: { Authorization: `Bearer ${token}` } });
-
-      if (orderResponse.status === 201 || orderResponse.status === 200) {
-        const orderId = orderResponse.data.order_id || orderResponse.data.order?.id || 'TEMP';
-        setIsNotificationOpen(true);
-        navigate('/checkout', { state: { product } });
-      }
-    } catch (error) {
-      console.error("Error placing order:", error.response?.data || error.message);
-      navigate('/checkout', { state: { product } });
-    }
   };
 
   const handleSearchSubmit = (e) => {

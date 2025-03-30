@@ -9,7 +9,15 @@ const Checkout = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const initialCartItems = location.state?.cartItems || [];
+  // Initialize cartItems from either cartItems (from cart) or a single product (from Buy Now)
+  const initialCartItems = location.state?.cartItems || 
+    (location.state?.product ? [{
+      id: location.state.product.id,
+      productName: location.state.product.productName,
+      price: location.state.product.price,
+      imagePreview: location.state.product.imagePreview,
+      quantity: location.state.quantity || 1,
+    }] : []);
   const [cartItems, setCartItems] = useState(initialCartItems);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -31,6 +39,8 @@ const Checkout = () => {
     streetAddress: '',
   });
   const [paymentMethod, setPaymentMethod] = useState('');
+  const [selectedCourier, setSelectedCourier] = useState('');
+  const [couriers, setCouriers] = useState([]);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [orderId, setOrderId] = useState(null);
   const [error, setError] = useState(null);
@@ -62,7 +72,7 @@ const Checkout = () => {
   ];
 
   useEffect(() => {
-    const fetchProfile = async () => {
+    const fetchProfileAndCart = async () => {
       try {
         const token = localStorage.getItem('token');
         if (!token) {
@@ -70,12 +80,13 @@ const Checkout = () => {
           return;
         }
 
-        const response = await axios.get(`${API_URL}/profile`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const [profileResponse, couriersResponse] = await Promise.all([
+          axios.get(`${API_URL}/profile`, { headers: { Authorization: `Bearer ${token}` } }),
+          axios.get(`${API_URL}/couriers`, { headers: { Authorization: `Bearer ${token}` } }),
+        ]);
 
-        const profileData = response.data.profile;
-        const userData = response.data.user;
+        const profileData = profileResponse.data.profile;
+        const userData = profileResponse.data.user;
 
         const userProfile = {
           id: userData.id,
@@ -100,30 +111,40 @@ const Checkout = () => {
           lastName: profileData.last_name || '',
           country: 'Philippines',
           city: '',
-          province: '',
+          region: '',
           postalCode: '',
           streetAddress: '',
         });
+
+        setCouriers(couriersResponse.data);
+
+        // If no cartItems were passed via state, fetch from backend
+        if (initialCartItems.length === 0) {
+          await fetchCart(token, userProfile.id);
+        }
       } catch (error) {
-        console.error('Error fetching profile in Checkout:', error);
+        console.error('Error fetching data in Checkout:', error);
         if (error.response?.status === 401) {
           localStorage.removeItem('token');
           localStorage.removeItem('role');
           navigate('/login');
         }
+        setError('Failed to load checkout data.');
       } finally {
         setLoading(false);
       }
     };
 
-    fetchProfile();
+    fetchProfileAndCart();
   }, [navigate]);
 
   useEffect(() => {
-    if (cartItems.length === 0) {
+    if (cartItems.length === 0 && !location.state?.product) {
       setError('Your cart is empty. Please add items to proceed with checkout.');
+    } else {
+      setError(null); // Clear error if there are items
     }
-  }, [cartItems]);
+  }, [cartItems, location.state]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -198,10 +219,10 @@ const Checkout = () => {
       return;
     }
     try {
-      const response = await axios.delete(`${API_URL}/cart/remove/${productId}`, {
+      await axios.delete(`${API_URL}/cart/remove/${productId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      fetchCart(token, userId);
+      setCartItems((prev) => prev.filter((item) => item.id !== productId));
     } catch (error) {
       console.error("Error removing from cart:", error.response?.data || error.message);
     }
@@ -231,7 +252,7 @@ const Checkout = () => {
       await axios.delete(`${API_URL}/cart/clear`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setCartItems([]); // Clear local state
+      setCartItems([]);
     } catch (error) {
       console.error("Error clearing cart:", error.response?.data || error.message);
     }
@@ -253,6 +274,15 @@ const Checkout = () => {
     return cartItems.reduce((total, item) => total + (item.price || 0) * (item.quantity || 1), 0);
   };
 
+  const calculateShippingCost = () => {
+    const courier = couriers.find(c => c.id === parseInt(selectedCourier));
+    return courier ? parseFloat(courier.shipping_fee) : 0;
+  };
+
+  const calculateTotal = () => {
+    return calculateSubtotal() + calculateShippingCost();
+  };
+
   const handleShippingChange = (e) => {
     const { name, value } = e.target;
     setShippingInfo((prev) => ({ ...prev, [name]: value }));
@@ -262,49 +292,57 @@ const Checkout = () => {
     setPaymentMethod(e.target.value);
   };
 
+  const handleCourierChange = (e) => {
+    setSelectedCourier(e.target.value);
+  };
+
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
-  
-    // Validation checks
+
     if (!shippingInfo.email || !shippingInfo.firstName || !shippingInfo.lastName || 
         !shippingInfo.country || !shippingInfo.city || !shippingInfo.region || 
         !shippingInfo.postalCode || !shippingInfo.streetAddress) {
       setError('Please fill in all shipping details.');
       return;
     }
-  
+
     if (!paymentMethod) {
       setError('Please select a payment method.');
       return;
     }
-  
+
+    if (!selectedCourier) {
+      setError('Please select a courier for shipping.');
+      return;
+    }
+
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login');
       return;
     }
-  
+
     if (!userProfile?.profile_id) {
       setError('User profile not loaded. Please try again.');
       return;
     }
-  
+
     if (cartItems.length === 0) {
       setError('No items in cart to checkout.');
       return;
     }
-  
-    // Prepare order data
+
     const orderData = {
       profile_id: userProfile.profile_id,
       payment_method: paymentMethod,
-      total_amount: calculateSubtotal() + 50, // Subtotal + shipping
+      courier_id: parseInt(selectedCourier),
+      total_amount: calculateTotal(),
       order_details: cartItems.map(item => ({
         product_id: item.id,
         quantity: item.quantity,
       })),
     };
-  
+
     try {
       const response = await axios.post(`${API_URL}/orders`, orderData, {
         headers: {
@@ -312,13 +350,12 @@ const Checkout = () => {
           'Content-Type': 'application/json',
         },
       });
-  
+
       console.log('Order placed:', response.data);
-      setOrderId(response.data.order.id); // Extract order ID from response
+      setOrderId(response.data.order.id);
       setIsSuccessModalOpen(true);
       setError(null);
-  
-      // Clear the cart after successful order
+
       await clearCartBackend(token);
     } catch (err) {
       console.error('Error placing order:', err.response?.data || err.message);
@@ -345,11 +382,9 @@ const Checkout = () => {
 
   const handleTrackOrder = () => {
     setIsSuccessModalOpen(false);
-    // Modified to navigate to specific order details page
     if (orderId) {
       navigate(`/my-orders/${orderId}`);
     } else {
-      // Fallback in case orderId isn't set (shouldn't happen after successful order)
       navigate('/profile/orders');
     }
   };
@@ -357,7 +392,7 @@ const Checkout = () => {
   const cartCount = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
   const wishlistCount = wishlistedItems.length;
 
-  if (loading) return <div className="loading">Loading profile...</div>;
+  if (loading) return <div className="loading">Loading checkout...</div>;
 
   return (
     <div className="Checkout">
@@ -504,6 +539,42 @@ const Checkout = () => {
                     />
                   </div>
                 </div>
+
+                <div className="courier-container">
+                  <h3>Select Courier</h3>
+                  {couriers.length > 0 ? (
+                    <table className="courier-table">
+                      <thead>
+                        <tr>
+                          <th>Select</th>
+                          <th>Courier</th>
+                          <th>Estimated Delivery</th>
+                          <th>Cost</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {couriers.map((courier) => (
+                          <tr key={courier.id}>
+                            <td>
+                              <input
+                                type="radio"
+                                name="courier"
+                                value={courier.id}
+                                checked={selectedCourier === String(courier.id)}
+                                onChange={handleCourierChange}
+                              />
+                            </td>
+                            <td>{courier.name}</td>
+                            <td>{courier.estimated_delivery_time || 'N/A'}</td>
+                            <td>₱{parseFloat(courier.shipping_fee).toFixed(2)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  ) : (
+                    <p>No couriers available at this time.</p>
+                  )}
+                </div>
               </form>
             </div>
 
@@ -566,11 +637,11 @@ const Checkout = () => {
             </div>
             <div className="summary-total">
               <span>Shipping</span>
-              <span>₱50.00</span>
+              <span>₱{calculateShippingCost().toFixed(2)}</span>
             </div>
             <div className="summary-total grand-total">
               <span>Total</span>
-              <span>₱{(calculateSubtotal() + 50).toFixed(2)}</span>
+              <span>₱{calculateTotal().toFixed(2)}</span>
             </div>
             <div className="summary-actions">
               <button className="view-cart-btn" onClick={handleViewCart}>
@@ -579,7 +650,7 @@ const Checkout = () => {
               <button
                 className="place-order-btn"
                 onClick={handlePlaceOrder}
-                disabled={cartItems.length === 0 || !paymentMethod || !shippingInfo.email}
+                disabled={cartItems.length === 0 || !paymentMethod || !shippingInfo.email || !selectedCourier}
               >
                 Place Order
               </button>
@@ -589,25 +660,25 @@ const Checkout = () => {
       </div>
       <Footer />
       {isSuccessModalOpen && (
-  <div className="success-modal-overlay">
-    <div className="success-modal">
-      <div className="success-icon">✓</div>
-      <h2 className="success-title">Order Placed Successfully!</h2>
-      <p className="success-message">
-        We've received your order and it will ship in 5-7 business days. <br />
-        Your order number is #{orderId || 'N/A'}
-      </p>
-      <div className="modal-actions">
-        <button className="continue-shopping-btn" onClick={handleContinueShopping}>
-          Continue Shopping
-        </button>
-        <button className="track-order-btn" onClick={handleTrackOrder}>
-          Track Order
-        </button>
-      </div>
-    </div>
-  </div>
-)}
+        <div className="success-modal-overlay">
+          <div className="success-modal">
+            <div className="success-icon">✓</div>
+            <h2 className="success-title">Order Placed Successfully!</h2>
+            <p className="success-message">
+              We've received your order and it will ship in 5-7 business days. <br />
+              Your order number is #{orderId || 'N/A'}
+            </p>
+            <div className="modal-actions">
+              <button className="continue-shopping-btn" onClick={handleContinueShopping}>
+                Continue Shopping
+              </button>
+              <button className="track-order-btn" onClick={handleTrackOrder}>
+                Track Order
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {error && <div className="error-message">{error}</div>}
     </div>
   );

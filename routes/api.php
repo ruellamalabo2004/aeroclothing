@@ -18,7 +18,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\NotificationController;
-
+use App\Http\Controllers\CourierController;
 // Public routes
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
@@ -31,7 +31,7 @@ Route::put('/products/{id}', [ProductController::class, 'update']);
 Route::get('/customers', [UserController::class, 'getCustomers']);
 // Public access
 Route::apiResource('users', UserController::class);
-
+Route::get('/couriers', [CourierController::class, 'index']);
 // Protected routes (Require Authentication)
 Route::middleware('auth:api')->group(function () {
     // Orders
@@ -48,7 +48,10 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('order-details', OrderDetailController::class);
     Route::patch('/order-details/{id}/archive', [OrderDetailController::class, 'archive']);
     Route::patch('/order-details/{id}/restore', [OrderDetailController::class, 'restore']);
-
+//Courrier
+Route::post('/couriers', [CourierController::class, 'store']);    // Create
+    Route::put('/couriers/{id}', [CourierController::class, 'update']); // Update
+    Route::delete('/couriers/{id}', [CourierController::class, 'destroy']);
 
     // Cart
     Route::get('/cart', [CartController::class, 'getCart']);
