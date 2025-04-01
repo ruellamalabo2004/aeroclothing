@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
-import CartSidebar from './CartSidebar';
+import Header from '../HeaderNav/Header';
+import Footer from '../FooterNav/Footer';
+import CartSidebar from '../HeaderArea/CartSidebar';
 import axios from 'axios';
 
 const Checkout = () => {

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import Header from './Header';
-import Footer from './Footer';
-import CartSidebar from './CartSidebar'; // Import the CartSidebar component
+import Header from '../HeaderNav/Header';
+import Footer from '../FooterNav/Footer';
+import CartSidebar from '../HeaderArea/CartSidebar'; // Import the CartSidebar component
 
 const Profile = () => {
   const navigate = useNavigate();

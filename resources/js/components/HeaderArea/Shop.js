@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Header from './Header';
-import Footer from './Footer';
+import Header from '../HeaderNav/Header';
+import Footer from '../FooterNav/Footer';
 import CartSidebar from './CartSidebar';
 
 const Shop = () => {

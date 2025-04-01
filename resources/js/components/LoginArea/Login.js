@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Footer from './Footer'; // Reintroduce the Footer import
+import Footer from '../FooterNav/Footer'; // Reintroduce the Footer import
 
 const Login = () => {
   const [email, setEmail] = useState('');

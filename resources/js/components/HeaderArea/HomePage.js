@@ -5,8 +5,8 @@ import { RiHeart3Fill } from 'react-icons/ri';
 import axios from 'axios';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Header from './Header';
-import Footer from './Footer';
+import Header from '../HeaderNav/Header';
+import Footer from '../FooterNav/Footer';
 import CartSidebar from './CartSidebar';
 
 // ShopByCategory and FeaturedItems remain unchanged

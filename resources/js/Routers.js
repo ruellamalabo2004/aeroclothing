@@ -1,31 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import Login from "./Login";
-import Signup from "./Signup";
-import Dashboard from "./Dashboard";
-import Products from "./Products";
-import Orders from "./Orders";
-import Inventory from "./Inventory";
-import Customers from "./Customers";
-import Users from "./Users";
-import Transactions from "./Transactions";
-import Reviews from "./Reviews";
-import Reports from "./Reports";
-import HomePage from "./HomePage"; 
-import AdminSettings from "./AdminSettings"; 
-import AccountSettings from "./AccountSettings"; 
-import Profile from "./Profile";
-import Address from "./Address";
-import Changepassword from "./Changepassword";
-import Mywishlist from "./Mywishlist";
-import Myorders from "./Myorders";
-import Mycart from "./Mycart";
-import Checkout from "./Checkout";
-import Shop from "./Shop";
-import OrderDetails from "./OrderDetails";
-import ForgotPassword from "./ForgotPassword"; // Import ForgotPassword component
-import ResetPassword from "./Resetpassword"; // Import ResetPassword component
+import Login from "./components/LoginArea/Login";
+import Signup from "./components/LoginArea/Signup";
+import Dashboard from "./components/AdminArea/Dashboard";
+import Products from "./components/AdminArea/Products";
+import Orders from "./components/AdminArea/Orders";
+import Inventory from "./components/AdminArea/Inventory";
+import Customers from "./components/AdminArea/Customers";
+import Users from "./components/AdminArea/Users";
+import Transactions from "./components/AdminArea/Transactions";
+import Reviews from "./components/AdminArea/Reviews";
+import Reports from "./components/AdminArea/Reports";
+import HomePage from "./components/HeaderArea/HomePage"; 
+import AdminSettings from "./components/AdminArea/AdminSettings"; 
+import AccountSettings from "./components/AdminArea/AccountSettings"; 
+import Profile from "./components/ProfileArea/Profile";
+import Address from "./components/ProfileArea/Address";
+import Changepassword from "./components/ProfileArea/Changepassword";
+import Mywishlist from "./components/ProfileArea/Mywishlist";
+import Myorders from "./components/ProfileArea/Myorders";
+import Mycart from "./components/ProfileArea/Mycart";
+import Checkout from "./components/OrderNav/Checkout";
+import Shop from "./components/HeaderArea/Shop";
+import OrderDetails from "./components/OrderNav/OrderDetails";
+import ForgotPassword from "./components/PasswordArea/ForgotPassword"; // Import ForgotPassword component
+import ResetPassword from "./components/PasswordArea/ResetPassword"; // Import ResetPassword component
 
 // 🔒 Protected Route Function
 const ProtectedRoute = ({ element, allowedRoles }) => {
