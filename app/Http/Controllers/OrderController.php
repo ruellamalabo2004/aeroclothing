@@ -11,9 +11,52 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller 
 {
-    public function index() {
-        $orders = Order::with('orderDetails.product', 'profile', 'courier')->get();
-        return response()->json($orders);
+    public function index(Request $request) {
+        $user = $request->user(); // Get authenticated user
+    
+        if (!$user) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+    
+        if ($user->role === 'admin') {
+            // Admin can see all orders
+            $orders = Order::with('orderDetails.product', 'profile', 'courier')->get();
+        } else {
+            // Customers can only see their own orders
+            $orders = Order::whereHas('profile', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })->with('orderDetails.product', 'profile', 'courier')->get();
+        }
+    
+        return response()->json($orders->map(function ($order) {
+            return [
+                'id' => $order->id,
+                'status' => $order->status,
+                'total_amount' => $order->total_amount,
+                'customer' => $order->profile->first_name . ' ' . $order->profile->last_name,
+                'payment_method' => $order->payment_method,
+                'created_at' => $order->created_at->toDateTimeString(),
+                'shipping_cost' => $order->courier ? floatval($order->courier->shipping_fee) : 0,
+                'courier' => [
+                    'id' => $order->courier->id ?? null,
+                    'name' => $order->courier->name ?? 'No Courier Assigned',
+                    'shipping_fee' => $order->courier ? floatval($order->courier->shipping_fee) : 0,
+                    'estimated_delivery_time' => $order->courier->estimated_delivery_time ?? 'N/A',
+                ],
+                'products' => $order->orderDetails->map(function ($detail) {
+                    $imagePath = $detail->product->image_1 ?? null;
+                    return [
+                        'id' => $detail->product->id,
+                        'product_name' => $detail->product->product_name,
+                        'price' => $detail->product->price,
+                        'quantity' => $detail->quantity,
+                        'image_1' => $imagePath && !str_contains($imagePath, 'http')
+                            ? asset('storage/' . $imagePath)
+                            : $imagePath,
+                    ];
+                }),
+            ];
+        }));
     }
     
     private function getPastTenseStatus($status) {
@@ -26,13 +69,13 @@ class OrderController extends Controller
             'RETURNED' => 'Returned'
         ];
     
-        return $statusMap[$status] ?? $status; // Default to same status if not found
+        return $statusMap[$status] ?? $status;
     }
     
     public function store(Request $request) {
         $validatedData = $request->validate([
             'profile_id' => 'required|exists:profiles,id',
-            'courier_id' => 'required|exists:couriers,id', // Ensure courier_id is valid
+            'courier_id' => 'required|exists:couriers,id',
             'payment_method' => 'required|string',
             'total_amount' => 'required|numeric',
             'order_details' => 'required|array',
@@ -44,7 +87,7 @@ class OrderController extends Controller
         try {
             $order = Order::create([
                 'profile_id' => $request->profile_id,
-                'courier_id' => $request->courier_id, // Store the courier
+                'courier_id' => $request->courier_id,
                 'payment_method' => $request->payment_method,
                 'total_amount' => $request->total_amount,
                 'order_date' => now(),
@@ -65,7 +108,6 @@ class OrderController extends Controller
                 'created_at' => now(),
             ]);
     
-            // Get user_id from profiles table
             $userId = \App\Models\Profile::where('id', $request->profile_id)->value('user_id');
     
             $firstProductId = $request->order_details[0]['product_id'];
@@ -80,7 +122,7 @@ class OrderController extends Controller
                 'user_id' => $userId,
                 'order_id' => $order->id,
                 'status' => 'Placed',
-                'product_image' => $imageUrl, 
+                'product_image' => $imageUrl,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -97,7 +139,6 @@ class OrderController extends Controller
         }
     }
     
-
     public function show($id)
     {
         $order = Order::with('orderDetails.product', 'trackings', 'profile', 'courier')->find($id);
@@ -116,7 +157,7 @@ class OrderController extends Controller
             'courier' => [
                 'id' => $order->courier->id,
                 'name' => $order->courier->name,
-                'shipping_fee' => $order->courier->shipping_fee,
+                'shipping_fee' => $order->courier->shipping_fee ?? '₱N/A',
                 'estimated_delivery_time' => $order->courier->estimated_delivery_time,
             ],
             'products' => $order->orderDetails->map(function ($detail) {
@@ -141,53 +182,95 @@ class OrderController extends Controller
         ]);
     }
 
-
-  public function update(Request $request, $id) {
-    $order = Order::with('orderDetails.product')->findOrFail($id);
+    public function update(Request $request, $id) {
+        $order = Order::with('orderDetails.product')->findOrFail($id);
+        
+        $validated = $request->validate([
+            'status' => 'sometimes|string|in:PENDING,PROCESSING,SHIPPING,DELIVERED,CANCELED,RETURNED',
+            'payment_method' => 'sometimes|string',
+            'total_amount' => 'sometimes|numeric',
+            'courier_id' => 'sometimes|exists:couriers,id',
+            'reason' => 'nullable|string', // Add reason
+            'comment' => 'nullable|string', // Add comment
+        ]);
     
-    $validated = $request->validate([
-        'status' => 'sometimes|string|in:PENDING,PROCESSING,SHIPPING,DELIVERED,CANCELED,RETURNED',
-        'payment_method' => 'sometimes|string',
-        'total_amount' => 'sometimes|numeric',
-        'courier_id' => 'sometimes|exists:couriers,id', // Allow updating courier_id
-    ]);
-
-    DB::beginTransaction();
-    try {
-        if ($request->has('status') && $request->status !== $order->status) {
+        DB::beginTransaction();
+        try {
+            if ($request->has('status') && $request->status !== $order->status) {
+                $remarks = $request->reason ? "Reason: {$request->reason}" : "";
+                $remarks .= $request->comment ? ($remarks ? " | " : "") . "Comment: {$request->comment}" : "";
+                
+                OrderTracking::create([
+                    'order_id' => $order->id,
+                    'status' => $request->status,
+                    'created_at' => now(),
+                    'remarks' => $remarks ?: null,
+                ]);
+    
+                $firstProductImage = $order->orderDetails->first()->product->image_1 ?? null;
+                $imageUrl = $firstProductImage && !str_contains($firstProductImage, 'http')
+                    ? asset('storage/' . $firstProductImage)
+                    : $firstProductImage;
+    
+                $pastTenseStatus = $this->getPastTenseStatus($request->status);
+    
+                Notification::create([
+                    'user_id' => $order->profile->user_id,
+                    'order_id' => $order->id,
+                    'status' => $pastTenseStatus,
+                    'product_image' => $imageUrl,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+    
+            $order->update($validated);
+            DB::commit();
+            return response()->json($order);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Failed to update order', 'error' => $e->getMessage()], 500);
+        }
+    }
+    public function cancel(Request $request, $id) {
+        $order = Order::findOrFail($id);
+        if ($order->status !== 'PENDING') {
+            return response()->json(['message' => 'Only pending orders can be canceled'], 403);
+        }
+    
+        $validated = $request->validate([
+            'reason' => 'required|string',
+            'comment' => 'nullable|string',
+        ]);
+    
+        DB::beginTransaction();
+        try {
+            $order->update(['status' => 'CANCELED']);
             OrderTracking::create([
                 'order_id' => $order->id,
-                'status' => $request->status,
+                'status' => 'CANCELED',
                 'created_at' => now(),
+                'remarks' => "Reason: {$validated['reason']}" . ($validated['comment'] ? " | Comment: {$validated['comment']}" : ""),
             ]);
-
-            $firstProductImage = $order->orderDetails->first()->product->image_1 ?? null;
-            $imageUrl = $firstProductImage && !str_contains($firstProductImage, 'http')
-                ? asset('storage/' . $firstProductImage)
-                : $firstProductImage;
-
-            $pastTenseStatus = $this->getPastTenseStatus($request->status);
-
+    
             Notification::create([
                 'user_id' => $order->profile->user_id,
                 'order_id' => $order->id,
-                'status' => $pastTenseStatus,
-                'product_image' => $imageUrl,
+                'status' => 'Canceled',
+                'product_image' => $order->orderDetails->first()->product->image_1
+                    ? asset('storage/' . $order->orderDetails->first()->product->image_1)
+                    : null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+    
+            DB::commit();
+            return response()->json(['message' => 'Order canceled successfully']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Failed to cancel order', 'error' => $e->getMessage()], 500);
         }
-
-        $order->update($validated);
-        DB::commit();
-        return response()->json($order);
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return response()->json(['message' => 'Failed to update order', 'error' => $e->getMessage()], 500);
     }
-}
-
-
     public function updateOrderStatus($orderId, $newStatus)
     {
         $order = Order::with('orderDetails.product')->findOrFail($orderId);
@@ -196,7 +279,6 @@ class OrderController extends Controller
         $userId = $order->profile->user_id;
         $firstProductImage = $order->orderDetails->first()->product->image_1 ?? null;
 
-        // ✅ Fix: Convert to full image URL if necessary
         $imageUrl = $firstProductImage && !str_contains($firstProductImage, 'http')
             ? asset('storage/' . $firstProductImage)
             : $firstProductImage;
@@ -208,16 +290,14 @@ class OrderController extends Controller
         if ($notification) {
             $notification->update(['product_image' => $imageUrl]);
         } else {
-          // Convert status to past tense
-$pastTenseStatus = $this->getPastTenseStatus($newStatus);
+            $pastTenseStatus = $this->getPastTenseStatus($newStatus);
 
-Notification::create([
-    'user_id' => $userId,
-    'order_id' => $orderId,
-    'status' => $pastTenseStatus, // ✅ Now using past tense
-    'product_image' => $imageUrl,
-]);
-
+            Notification::create([
+                'user_id' => $userId,
+                'order_id' => $orderId,
+                'status' => $pastTenseStatus,
+                'product_image' => $imageUrl,
+            ]);
         }
 
         return response()->json(['message' => 'Order updated and notification processed'], 200);

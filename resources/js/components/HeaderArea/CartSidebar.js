@@ -23,7 +23,7 @@ const CartSidebar = ({
   };
 
   const handleCheckout = () => {
-    console.log('Cart Items before checkout:', cartItems); // Debug
+    console.log('Cart Items before checkout:', cartItems);
     if (cartItems.length > 0) {
       navigate('/checkout', { state: { cartItems } });
     } else {
@@ -38,18 +38,12 @@ const CartSidebar = ({
     const checkOverflow = () => {
       if (cartItemsRef.current) {
         const { scrollHeight, clientHeight } = cartItemsRef.current;
-        // Show scrollbar if content overflows the container
         setShowScrollbar(scrollHeight > clientHeight);
       }
     };
 
-    // Check overflow initially and on cart items change
     checkOverflow();
-
-    // Add event listener for resize to recheck overflow
     window.addEventListener('resize', checkOverflow);
-
-    // Cleanup event listener on unmount
     return () => window.removeEventListener('resize', checkOverflow);
   }, [cartItems]);
 
@@ -78,7 +72,7 @@ const CartSidebar = ({
                 ref={cartItemsRef}
               >
                 {cartItems.map((item) => (
-                  <div key={item.id} className="cart-item">
+                  <div key={`${item.id}-${item.size}-${item.color}`} className="cart-item">
                     <img
                       src={item.imagePreview || '/default-image.jpg'}
                       alt={item.productName || 'Product'}
@@ -86,7 +80,9 @@ const CartSidebar = ({
                     />
                     <div className="cart-item-details">
                       <h3>{item.productName || 'Unnamed Product'}</h3>
-                      <p>₱{item.price || 0}</p>
+                      <p className="price">₱{item.price || 0}</p>
+                      <p className="size">Size: {item.size || 'Not specified'}</p>
+                      <p className="color">Color: {item.color || 'Not specified'}</p>
                       <div className="quantity-control">
                         <button
                           onClick={() => decreaseCartQuantity(item.id)}
@@ -100,7 +96,7 @@ const CartSidebar = ({
                     </div>
                     <button
                       className="remove-item"
-                      onClick={removeFromCart(item.id)}
+                      onClick={removeFromCart(item.id, item.size, item.color)}
                     >
                       ×
                     </button>
@@ -108,16 +104,10 @@ const CartSidebar = ({
                 ))}
               </div>
               <div className="cart-actions">
-                <button
-                  className="view-cart-btn"
-                  onClick={handleViewCart}
-                >
+                <button className="view-cart-btn" onClick={handleViewCart}>
                   VIEW CART
                 </button>
-                <button
-                  className="checkout-btn"
-                  onClick={handleCheckout}
-                >
+                <button className="checkout-btn" onClick={handleCheckout}>
                   CHECKOUT
                 </button>
               </div>

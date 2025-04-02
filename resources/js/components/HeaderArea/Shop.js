@@ -45,7 +45,7 @@ const Shop = () => {
 
   const profileDropdownItems = [
     { label: "My Profile", path: "/profile" },
-    { label: "My Orders", path: "/profile/orders" },
+    { label: "My Orders", path: "/order-history" },
     { label: "Logout", path: "#", onClick: handleLogout },
   ];
 
@@ -162,6 +162,7 @@ const Shop = () => {
       const response = await axios.get(`${API_URL}/cart`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log("Raw Cart API Response in HomePage:", response.data);
       const cartData = response.data.data || response.data || [];
       const detailedCart = cartData.map(item => ({
         id: item.product_id,
@@ -169,7 +170,10 @@ const Shop = () => {
         price: item.product?.price || 0,
         imagePreview: item.product?.image_1 ? `${BASE_IMAGE_URL}/${item.product.image_1}` : '/default-image.jpg',
         quantity: item.quantity || 1,
+        size: item.size || "Not specified",
+        color: item.color || "Not specified",
       }));
+      console.log("Mapped cartItems in HomePage:", detailedCart);
       setCartItems(detailedCart);
     } catch (error) {
       console.error("Error fetching cart:", error.response?.data || error.message);

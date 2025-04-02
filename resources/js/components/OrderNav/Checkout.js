@@ -9,15 +9,22 @@ const Checkout = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Initialize cartItems from either cartItems (from cart) or a single product (from Buy Now)
+  const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
+  const API_URL = "http://127.0.0.1:8000/api";
+
   const initialCartItems = location.state?.cartItems || 
     (location.state?.product ? [{
       id: location.state.product.id,
-      productName: location.state.product.productName,
+      productName: location.state.product.product_name,
       price: location.state.product.price,
-      imagePreview: location.state.product.imagePreview,
+      imagePreview: location.state.product.image_1 
+        ? `${BASE_IMAGE_URL}/${location.state.product.image_1}` 
+        : '/default-image.jpg',
       quantity: location.state.quantity || 1,
+      size: location.state.selectedSize,
+      color: location.state.selectedColor,
     }] : []);
+
   const [cartItems, setCartItems] = useState(initialCartItems);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -47,9 +54,6 @@ const Checkout = () => {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
-  const API_URL = "http://127.0.0.1:8000/api";
 
   const notifications = [
     { id: 1, message: "Your order #1234 has been shipped!", time: "2 hours ago" },
@@ -118,7 +122,6 @@ const Checkout = () => {
 
         setCouriers(couriersResponse.data);
 
-        // If no cartItems were passed via state, fetch from backend
         if (initialCartItems.length === 0) {
           await fetchCart(token, userProfile.id);
         }
@@ -142,7 +145,7 @@ const Checkout = () => {
     if (cartItems.length === 0 && !location.state?.product) {
       setError('Your cart is empty. Please add items to proceed with checkout.');
     } else {
-      setError(null); // Clear error if there are items
+      setError(null);
     }
   }, [cartItems, location.state]);
 
@@ -262,14 +265,6 @@ const Checkout = () => {
     await removeFromCartBackend(itemId);
   };
 
-  const toggleOrderNote = () => {
-    setIsOrderNoteOpen(!isOrderNoteOpen);
-  };
-
-  const handleOrderNoteChange = (e) => {
-    setOrderNote(e.target.value);
-  };
-
   const calculateSubtotal = () => {
     return cartItems.reduce((total, item) => total + (item.price || 0) * (item.quantity || 1), 0);
   };
@@ -340,6 +335,8 @@ const Checkout = () => {
       order_details: cartItems.map(item => ({
         product_id: item.id,
         quantity: item.quantity,
+        size: item.size,
+        color: item.color,
       })),
     };
 
@@ -620,10 +617,17 @@ const Checkout = () => {
             {cartItems.length > 0 ? (
               cartItems.map((item) => (
                 <div key={item.id} className="summary-item">
-                  <img src={item.imagePreview || '/default-image.jpg'} alt={item.productName} className="summary-item-image" />
+                  <img 
+                    src={item.imagePreview || '/default-image.jpg'} 
+                    alt={item.productName} 
+                    className="summary-item-image" 
+                    onError={(e) => (e.target.src = '/default-image.jpg')} 
+                  />
                   <div className="summary-item-details">
                     <p className="summary-item-name">{item.productName}</p>
-                    <p className="summary-item-quantity">Quantity: {item.quantity}</p>
+                    {item.size && <p className="summary-item-size">Size: {item.size}</p>}
+                    {item.color && <p className="summary-item-color">Color: {item.color}</p>}
+                    <p className="summary-item-quantity">Qty: {item.quantity}</p>
                     <p className="summary-item-price">₱{(item.price * item.quantity).toFixed(2)}</p>
                   </div>
                 </div>

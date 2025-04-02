@@ -9,7 +9,6 @@ import Header from '../HeaderNav/Header';
 import Footer from '../FooterNav/Footer';
 import CartSidebar from './CartSidebar';
 
-// ShopByCategory and FeaturedItems remain unchanged
 const ShopByCategory = () => {
   const navigate = useNavigate();
   const handleCategoryClick = (category) => {
@@ -102,9 +101,32 @@ const HomePage = () => {
 
   const profileDropdownItems = [
     { label: "My Profile", path: "/profile" },
-    { label: "My Orders", path: "/profile/orders" },
+    { label: "My Orders", path: "/order-history" },
     { label: "Logout", path: "#", onClick: handleLogout },
   ];
+
+  const fetchCart = async (token, userId) => {
+    try {
+      const response = await axios.get(`${API_URL}/cart`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log("Raw Cart API Response in HomePage:", response.data);
+      const cartData = response.data.data || response.data || [];
+      const detailedCart = cartData.map(item => ({
+        id: item.product_id,
+        productName: item.product?.product_name || "Unknown Product",
+        price: item.product?.price || 0,
+        imagePreview: item.product?.image_1 ? `${BASE_IMAGE_URL}/${item.product.image_1}` : '/default-image.jpg',
+        quantity: item.quantity || 1,
+        size: item.size || "Not specified",
+        color: item.color || "Not specified",
+      }));
+      console.log("Mapped cartItems in HomePage:", detailedCart);
+      setCartItems(detailedCart);
+    } catch (error) {
+      console.error("Error fetching cart:", error.response?.data || error.message);
+    }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -177,25 +199,6 @@ const HomePage = () => {
     }
   };
 
-  const fetchCart = async (token, userId) => {
-    try {
-      const response = await axios.get(`${API_URL}/cart`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const cartData = response.data.data || response.data || [];
-      const detailedCart = cartData.map(item => ({
-        id: item.product_id,
-        productName: item.product?.product_name || "Unknown Product",
-        price: item.product?.price || 0,
-        imagePreview: item.product?.image_1 ? `${BASE_IMAGE_URL}/${item.product.image_1}` : '/default-image.jpg',
-        quantity: item.quantity || 1,
-      }));
-      setCartItems(detailedCart);
-    } catch (error) {
-      console.error("Error fetching cart:", error.response?.data || error.message);
-    }
-  };
-
   const fetchProducts = async (token) => {
     try {
       const response = await axios.get(`${API_URL}/products`, {
@@ -208,8 +211,9 @@ const HomePage = () => {
         .map((product) => ({
           ...product,
           imagePreview: product.image_1 ? `${BASE_IMAGE_URL}/${product.image_1}` : "/default-image.jpg",
-          productName: product.name || product.title || product.product_name || "Unnamed Product",
+          productName: product.product_name || product.name || product.title || "Unnamed Product",
         }));
+      console.log("Fetched products:", updatedProducts);
       setProducts(updatedProducts);
     } catch (error) {
       console.error("Error fetching products:", error.response?.data || error.message);
@@ -255,14 +259,12 @@ const HomePage = () => {
     }
   };
 
-  const addToCart = async (product) => {
-    const token = localStorage.getItem('token');
-    const userId = userProfile?.id;
+  const addToCart = async (product, token, userId) => {
     try {
       await axios.post(`${API_URL}/cart/add`, {
         user_id: userId,
         product_id: product.id,
-        quantity: 1,
+        qty: 1, // Default quantity since no size/color selection on homepage
       }, { headers: { Authorization: `Bearer ${token}` } });
       await fetchCart(token, userId);
     } catch (error) {
@@ -270,51 +272,48 @@ const HomePage = () => {
     }
   };
 
-  const removeFromCartBackend = async (productId) => {
+  const removeFromCartBackend = async (productId, size, color) => {
     const token = localStorage.getItem('token');
     const userId = userProfile?.id;
     try {
       await axios.delete(`${API_URL}/cart/remove/${productId}`, {
         headers: { Authorization: `Bearer ${token}` },
+        data: { size, color },
       });
-      fetchCart(token, userId);
+      await fetchCart(token, userId);
     } catch (error) {
       console.error("Error removing from cart:", error.response?.data || error.message);
     }
   };
 
   const handleAddToCart = (product) => async () => {
-    const existingItem = cartItems.find((item) => item.id === product.id);
-    if (!existingItem) await addToCart(product);
-    else {
-      setCartItems((prev) =>
-        prev.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        )
-      );
-    }
+    const token = localStorage.getItem('token');
+    const userId = userProfile?.id;
+    navigate(`/shop/${product.id}`); // Redirect to product page for size/color selection
   };
 
-  const increaseCartQuantity = (itemId) => {
+  const increaseCartQuantity = (itemId, size, color) => {
     setCartItems((prev) =>
       prev.map((item) =>
-        item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+        item.id === itemId && item.size === size && item.color === color
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
       )
     );
   };
 
-  const decreaseCartQuantity = (itemId) => {
+  const decreaseCartQuantity = (itemId, size, color) => {
     setCartItems((prev) =>
       prev.map((item) =>
-        item.id === itemId && item.quantity > 1
+        item.id === itemId && item.size === size && item.color === color && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
     );
   };
 
-  const removeFromCart = (itemId) => async () => {
-    await removeFromCartBackend(itemId);
+  const removeFromCart = (itemId, size, color) => async () => {
+    await removeFromCartBackend(itemId, size, color);
   };
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -328,15 +327,18 @@ const HomePage = () => {
     }
   };
 
-  // Updated handleBuyNow to add to cart and navigate to checkout
   const handleBuyNow = (product) => async () => {
+    const token = localStorage.getItem('token');
+    const userId = userProfile?.id;
     const existingItem = cartItems.find((item) => item.id === product.id);
     if (!existingItem) {
-      // Add the product to the cart if it's not already there
-      await addToCart(product);
+      await addToCart(product, token, userId);
     }
-    // Navigate to the checkout page with the product details
     navigate('/checkout', { state: { product } });
+  };
+
+  const handleImageClick = (productId) => () => {
+    navigate(`/shop/${productId}`);
   };
 
   useEffect(() => {
@@ -492,7 +494,12 @@ const HomePage = () => {
             products.map((product) => (
               <div key={product.id} className="product-container">
                 <div className="product-card">
-                  <img src={product.imagePreview || '/default-image.jpg'} alt={product.productName || 'Product'} />
+                  <img
+                    src={product.imagePreview || '/default-image.jpg'}
+                    alt={product.productName || 'Product'}
+                    onClick={handleImageClick(product.id)}
+                    style={{ cursor: 'pointer' }}
+                  />
                   <div className="product-actions">
                     <button className="add-to-cart-btn" onClick={handleAddToCart(product)}>
                       <img src="/imgs/addcart.svg" alt="Add to Cart" className="action-icon" />

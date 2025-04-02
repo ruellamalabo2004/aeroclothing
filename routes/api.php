@@ -19,6 +19,9 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\CourierController;
+use App\Http\Controllers\ReviewController;
+
+
 // Public routes
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
@@ -28,10 +31,14 @@ Route::apiResource('brands', BrandController::class);
 Route::apiResource('products', ProductController::class);
 Route::put('/products/{id}', [ProductController::class, 'update']);
 
+Route::get('/reviews/{productId}', [ReviewController::class, 'getReviews']);
+
 Route::get('/customers', [UserController::class, 'getCustomers']);
 // Public access
 Route::apiResource('users', UserController::class);
 Route::get('/couriers', [CourierController::class, 'index']);
+Route::get('/admin/orders', [OrderController::class, 'adminIndex'])->middleware('auth:api');
+
 // Protected routes (Require Authentication)
 Route::middleware('auth:api')->group(function () {
     // Orders
@@ -40,7 +47,13 @@ Route::middleware('auth:api')->group(function () {
     Route::patch('/orders/{id}/restore', [OrderController::class, 'restore']);
     Route::post('/orders/{id}/tracking', [OrderController::class, 'trackOrder']);
     Route::get('/orders/{id}/tracking', [OrderController::class, 'getTrackingStatus']);
-
+    Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel']);
+    Route::post('/orders/{orderId}/order-details/{orderDetailId}/review', [OrderController::class, 'submitReview']);
+    Route::post('/reviews', [ReviewController::class, 'store']); // Use 'store' instead of 'addReview'
+    Route::get('/reviews/user', [ReviewController::class, 'userReviews']);
+    Route::get('/reviews/{productId}', [ReviewController::class, 'getReviews']);
+    Route::put('/reviews/{id}', [ReviewController::class, 'updateReview']);
+    Route::delete('/reviews/{id}', [ReviewController::class, 'deleteReview']);
 
     Route::get('/notifications', [NotificationController::class, 'index']);
     Route::put('/orders/{orderId}/status/{newStatus}', [OrderController::class, 'updateOrderStatus']);
@@ -53,6 +66,10 @@ Route::post('/couriers', [CourierController::class, 'store']);    // Create
     Route::put('/couriers/{id}', [CourierController::class, 'update']); // Update
     Route::delete('/couriers/{id}', [CourierController::class, 'destroy']);
 
+
+    // Review
+    Route::get('/reviews', [ReviewController::class, 'index']);
+    Route::post('/reviews/{id}/reply', [ReviewController::class, 'reply']);
     // Cart
     Route::get('/cart', [CartController::class, 'getCart']);
     Route::post('/cart/add', [CartController::class, 'addToCart']);
@@ -69,6 +86,13 @@ Route::post('/couriers', [CourierController::class, 'store']);    // Create
     Route::patch('/users/{id}/restore', [UserController::class, 'restore']);
     Route::get('/users/count', [UserController::class, 'getTotalUsers']);
     
+
+    // Reviews
+
+    Route::post('/reviews', [ReviewController::class, 'addReview']);
+    Route::put('/reviews/{id}', [ReviewController::class, 'updateReview']);
+    Route::delete('/reviews/{id}', [ReviewController::class, 'deleteReview']);
+
     // Profile
     Route::get('/profile', [AuthController::class, 'profile']);
     Route::put('/update-profile', [AuthController::class, 'updateProfile']);

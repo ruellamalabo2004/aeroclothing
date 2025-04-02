@@ -60,7 +60,12 @@ class Product extends Model
     {
         return $query->where('status', 'available');
     }
-
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    
+    
     // Scope for archived products
     public function scopeArchived($query)
     {

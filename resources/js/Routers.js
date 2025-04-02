@@ -24,6 +24,9 @@ import Mycart from "./components/ProfileArea/Mycart";
 import Checkout from "./components/OrderNav/Checkout";
 import Shop from "./components/HeaderArea/Shop";
 import OrderDetails from "./components/OrderNav/OrderDetails";
+import OrderHistory from "./components/ProfileArea/OrderHistory"; // Import OrderHistory component
+import ProductReview from "./components/ProductViews/ProductReview"; // Import ProductReview component
+import ProductView from "./components/ProductViews/ProductView"; // Import ProductView component
 import ForgotPassword from "./components/PasswordArea/ForgotPassword"; // Import ForgotPassword component
 import ResetPassword from "./components/PasswordArea/ResetPassword"; // Import ResetPassword component
 
@@ -64,6 +67,18 @@ const App = () => {
          <Route
           path="/shop"
           element={<ProtectedRoute element={<Shop />} allowedRoles={["customer"]} />}
+        />
+          <Route
+  path="/shop/:productId"
+  element={<ProtectedRoute element={<ProductView />} allowedRoles={["customer"]} />}
+/>
+<Route
+  path="/orders/:orderId/review"
+  element={<ProtectedRoute element={<ProductReview />} allowedRoles={["customer"]} />}
+/>
+<Route
+          path="/order-history" 
+          element={<ProtectedRoute element={<OrderHistory />} allowedRoles={["customer"]} />}
         />
         <Route
           path="/profile"

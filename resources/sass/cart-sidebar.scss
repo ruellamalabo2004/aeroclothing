@@ -52,9 +52,9 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: space-between; /* Default for when cart has items */
+      justify-content: space-between;
 
-      &.empty { /* Apply this class when cart is empty */
+      &.empty {
         justify-content: center;
         align-items: center;
       }
@@ -69,13 +69,13 @@
         .empty-cart-icon {
           width: 80px;
           height: 80px;
-          margin-bottom: 10px; /* Reduced margin for better spacing */
+          margin-bottom: 10px;
         }
 
         p {
           font-size: 16px;
           color: #666;
-          margin: 0 0 20px 0; /* Adjusted margin */
+          margin: 0 0 20px 0;
         }
       }
 
@@ -97,24 +97,22 @@
       }
 
       .cart-items {
-        max-height: calc(100vh - 220px); /* Adjusted for smaller buttons */
+        max-height: calc(100vh - 220px);
         overflow-y: auto;
         width: 100%;
         margin-bottom: 20px;
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        -webkit-overflow-scrolling: touch;
 
         &.hide-scrollbar {
-          /* Hide scrollbar when content doesn't overflow */
           &::-webkit-scrollbar {
             width: 0;
             background: transparent;
           }
-          scrollbar-width: none; /* Firefox */
-          -ms-overflow-style: none; /* IE and Edge */
+          scrollbar-width: none;
+          -ms-overflow-style: none;
         }
 
         &.show-scrollbar {
-          /* Show scrollbar when content overflows */
           &::-webkit-scrollbar {
             width: 8px;
           }
@@ -128,8 +126,8 @@
           &::-webkit-scrollbar-thumb:hover {
             background: #555;
           }
-          scrollbar-width: auto; /* Firefox */
-          -ms-overflow-style: auto; /* IE and Edge */
+          scrollbar-width: auto;
+          -ms-overflow-style: auto;
         }
       }
 
@@ -161,9 +159,25 @@
           }
 
           p {
-            margin: 0 0 10px 0;
+            margin: 0 0 5px 0;
             color: #666;
             font-size: 14px;
+          }
+
+          .price {
+            color: #000;
+            font-weight: 500;
+          }
+
+          .size {
+            font-size: 13px;
+            color: #888;
+          }
+
+          .color {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 10px;
           }
 
           .quantity-control {
@@ -225,9 +239,9 @@
         .view-cart-btn,
         .checkout-btn {
           flex: 1;
-          padding: 8px; /* Reduced padding to make buttons smaller */
+          padding: 8px;
           border-radius: 5px;
-          font-size: 12px; /* Reduced font size */
+          font-size: 12px;
           font-weight: 500;
           text-transform: uppercase;
           cursor: pointer;
@@ -258,7 +272,6 @@
   }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .cart-sidebar {
     width: 100%;

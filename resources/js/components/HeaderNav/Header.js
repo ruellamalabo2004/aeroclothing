@@ -71,7 +71,7 @@ const Header = ({
         id: notification.id,
         message: `Your order #${notification.order_id} has been ${notification.status.toLowerCase()}!`,
         time: formatTimeAgo(new Date(notification.created_at)),
-        productImage: notification.product_image || '/default-image.jpg', // Use full URL from backend
+        productImage: notification.product_image || '/default-image.jpg',
       }));
       setNotifications(formattedNotifications);
     } catch (error) {
@@ -109,7 +109,7 @@ const Header = ({
       }, 60000);
       return () => clearInterval(interval); // Cleanup on unmount
     }
-  }, [userProfile]); // Depend on userProfile to trigger when it’s set
+  }, [userProfile]);
 
   useEffect(() => {
     if (latestWishlistItem) {
@@ -123,7 +123,7 @@ const Header = ({
 
   useEffect(() => {
     console.log("Current Notifications in Header:", notifications);
-    console.log("Current wishlistCount:", wishlistCount); // Debug log for wishlist count
+    console.log("Current wishlist Isaac:", wishlistCount); // Debug log for wishlist count
   }, [notifications, wishlistCount]);
 
   // Function to render the styled message (unchanged)
@@ -247,7 +247,6 @@ const Header = ({
                   src={latestWishlistItem.imagePreview || '/default-image.jpg'}
                   alt={latestWishlistItem.productName}
                   className="wishlist-item-image"
-                  style={{ width: '30px', height: '30px', marginRight: '10px' }}
                 />
                 <p>You added {latestWishlistItem.productName} to your wishlist! 💖</p>
               </div>
@@ -264,7 +263,6 @@ const Header = ({
                       src={item.imagePreview || '/default-image.jpg'}
                       alt={item.productName}
                       className="wishlist-item-image"
-                      style={{ width: '30px', height: '30px', marginRight: '10px' }}
                     />
                     <div className="wishlist-item-details">
                       <p>{item.productName}</p>

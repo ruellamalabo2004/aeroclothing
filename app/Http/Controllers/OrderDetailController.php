@@ -58,7 +58,30 @@ class OrderController extends Controller
         $order = Order::with(['details', 'tracking'])->findOrFail($id);
         return response()->json($order);
     }
-
+    public function submitReview(Request $request, $orderId, $orderDetailId)
+    {
+        // Validate the review input
+        $validated = $request->validate([
+            'review' => 'required|string|max:1000',  // Validate review input (adjust validation as needed)
+        ]);
+    
+        // Find the order detail record
+        $orderDetail = OrderDetail::where('order_id', $orderId)
+                                   ->where('id', $orderDetailId)
+                                   ->firstOrFail();
+    
+        // Ensure the order status is 'DELIVERED'
+        if ($orderDetail->order->status !== 'DELIVERED') {
+            return response()->json(['message' => 'You can only review items in delivered orders.'], 400);
+        }
+    
+        // Update the review field in the order_detail
+        $orderDetail->review = $validated['review'];
+        $orderDetail->save();
+    
+        return response()->json(['message' => 'Review submitted successfully!']);
+    }
+    
     // Update an order. If status changes, record the new status in order tracking.
     public function update(Request $request, $id)
     {

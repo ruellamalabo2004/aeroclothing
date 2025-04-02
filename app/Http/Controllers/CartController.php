@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-
-    
     // Get all cart items for the logged-in user
     public function getCart()
     {
@@ -24,7 +22,9 @@ class CartController extends Controller
     {
         $request->validate([
             'product_id' => 'required|exists:products,id',
-            'quantity' => 'required|integer|min:1'
+            'quantity' => 'required|integer|min:1',
+            'color' => 'nullable|string', // Validation for color
+            'size' => 'nullable|string',  // Validation for size
         ]);
 
         $user = Auth::user();
@@ -32,15 +32,21 @@ class CartController extends Controller
         // Check if product is already in cart
         $cartItem = Cart::where('user_id', $user->id)
                         ->where('product_id', $request->product_id)
+                        ->where('color', $request->color)  // Check for existing color
+                        ->where('size', $request->size)    // Check for existing size
                         ->first();
 
         if ($cartItem) {
+            // If the item exists in the cart, increment the quantity
             $cartItem->increment('quantity', $request->quantity);
         } else {
+            // If the item doesn't exist, add it to the cart
             Cart::create([
                 'user_id' => $user->id,
                 'product_id' => $request->product_id,
-                'quantity' => $request->quantity
+                'quantity' => $request->quantity,
+                'color' => $request->color,  // Store the selected color
+                'size' => $request->size,    // Store the selected size
             ]);
         }
 
@@ -49,20 +55,19 @@ class CartController extends Controller
 
     // Remove a single item from the cart
     public function removeFromCart($productId)
-{
-    $user = Auth::user();
+    {
+        $user = Auth::user();
 
-    // Find the cart item based on user_id and product_id
-    $cartItem = Cart::where('user_id', $user->id)->where('product_id', $productId)->first();
+        // Find the cart item based on user_id and product_id
+        $cartItem = Cart::where('user_id', $user->id)->where('product_id', $productId)->first();
 
-    if (!$cartItem) {
-        return response()->json(['message' => 'Cart item not found'], 404);
+        if (!$cartItem) {
+            return response()->json(['message' => 'Cart item not found'], 404);
+        }
+
+        $cartItem->delete();
+        return response()->json(['message' => 'Item removed from cart']);
     }
-
-    $cartItem->delete();
-    return response()->json(['message' => 'Item removed from cart']);
-}
-
 
     // Clear the entire cart for the logged-in user
     public function clearCart()

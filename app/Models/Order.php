@@ -34,6 +34,10 @@ class Order extends Model
         return $this->hasMany(OrderTracking::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
     public function courier()
     {
         return $this->belongsTo(Courier::class); // ✅ Define relationship

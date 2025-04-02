@@ -22,16 +22,21 @@ const OrderDetails = () => {
   const [userProfile, setUserProfile] = useState(null);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isSummaryOpen, setIsSummaryOpen] = useState(false);
+  const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
+  const [cancelReason, setCancelReason] = useState('');
+  const [cancelComment, setCancelComment] = useState('');
+  const [isCancelDetailsOpen, setIsCancelDetailsOpen] = useState(false); // New state for cancellation details modal
 
   const API_URL = "http://127.0.0.1:8000/api";
   const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
-  const trackingSteps = ["PENDING", "PROCESSING", "SHIPPING", "DELIVERED"];
+  const trackingSteps = ["PENDING", "PROCESSING", "SHIPPING", "DELIVERED"]; // CANCELED handled separately
 
   const statusIconMap = {
     "PENDING": "pends",
     "PROCESSING": "proces",
     "SHIPPING": "ships",
-    "DELIVERED": "delivers"
+    "DELIVERED": "delivers",
+    "CANCELED": "canceled" // Add icon for canceled status
   };
 
   const notifications = [
@@ -51,8 +56,14 @@ const OrderDetails = () => {
 
   const profileDropdownItems = [
     { label: "My Profile", path: "/profile" },
-    { label: "My Orders", path: "/profile/orders" },
+    { label: "My Orders", path: "/order-history" },
     { label: "Logout", path: "#", onClick: handleLogout },
+  ];
+
+  const cancelReasons = [
+    "Changed my mind",
+    "Found a better price elsewhere",
+    "Shipping takes too long",
   ];
 
   useEffect(() => {
@@ -185,26 +196,29 @@ const OrderDetails = () => {
     if (!e.target.closest('.support-container') && !e.target.closest('.support-link')) setIsSupportOpen(false);
     if (!e.target.closest('.cart-sidebar') && !e.target.closest('.header-icon')) setIsCartVisible(false);
     if (!e.target.closest('.profile-container') && !e.target.closest('.profile-button')) setIsProfileDropdownOpen(false);
+    if (!e.target.closest('.cancel-modal') && !e.target.closest('.cancel-order-btn')) setIsCancelModalOpen(false);
+    if (!e.target.closest('.cancel-details-modal') && !e.target.closest('.cancel-details-btn')) setIsCancelDetailsOpen(false);
   };
 
   useEffect(() => {
-    if (isNotificationOpen || isWishlistOpen || isSupportOpen || isCartVisible || isProfileDropdownOpen) {
+    if (isNotificationOpen || isWishlistOpen || isSupportOpen || isCartVisible || isProfileDropdownOpen || isCancelModalOpen || isCancelDetailsOpen) {
       document.addEventListener('click', handleOutsideClick);
     }
     return () => document.removeEventListener('click', handleOutsideClick);
-  }, [isNotificationOpen, isWishlistOpen, isSupportOpen, isCartVisible, isProfileDropdownOpen]);
+  }, [isNotificationOpen, isWishlistOpen, isSupportOpen, isCartVisible, isProfileDropdownOpen, isCancelModalOpen, isCancelDetailsOpen]);
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
   const wishlistCount = wishlistedItems.length;
 
   const trackingHistory = order?.tracking_history || [];
   const reachedSteps = trackingHistory.map((tracking) => (tracking.status || "").toUpperCase());
-  const currentStepIndex = trackingSteps
-    .map((step, index) => (reachedSteps.includes(step) ? index : -1))
-    .filter((index) => index !== -1)
-    .reduce((max, curr) => Math.max(max, curr), -1);
+  const currentStepIndex = order?.status === "CANCELED" 
+    ? -1 // No progress for canceled orders
+    : trackingSteps
+        .map((step, index) => (reachedSteps.includes(step) ? index : -1))
+        .filter((index) => index !== -1)
+        .reduce((max, curr) => Math.max(max, curr), -1);
 
-  // Restore tracking timestamps
   const trackingTimestamps = {};
   trackingHistory.forEach((tracking) => {
     const status = (tracking.status || "").toUpperCase();
@@ -215,35 +229,73 @@ const OrderDetails = () => {
     return order?.courier?.estimated_delivery_time || "N/A";
   };
 
-  const handleCancelOrder = async () => {
+  const handleCancelOrder = () => {
     if (!order || !orderId) return;
-    
-    const confirmCancel = window.confirm("Are you sure you want to cancel this order?");
-    if (!confirmCancel) return;
-    
+    setIsCancelModalOpen(true);
+  };
+
+  const handleCancelSubmit = async (e) => {
+    e.preventDefault();
+    if (!cancelReason) {
+      alert("Please select a reason for cancellation.");
+      return;
+    }
+
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`${API_URL}/orders/${orderId}/cancel`, {}, {
+      await axios.put(`${API_URL}/orders/${orderId}`, {
+        status: 'CANCELED',
+        reason: cancelReason,
+        comment: cancelComment,
+      }, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      
+
       const orderResponse = await axios.get(`${API_URL}/orders/${orderId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setOrder(orderResponse.data);
-      
+      setIsCancelModalOpen(false);
+      setCancelReason('');
+      setCancelComment('');
       alert("Order has been canceled successfully");
     } catch (error) {
-      console.error("Error canceling order:", error.response?.data || error.message);
+      console.error("Error canceling order:", error.response?.status, error.response?.data || error.message);
       alert("Failed to cancel order. Please try again later.");
+    }
+  };
+
+  const handleBuyAgain = async () => {
+    if (!order?.products || order.products.length === 0) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      const productsToAdd = order.products.map(product => ({
+        product_id: product.id,
+        quantity: product.quantity,
+      }));
+
+      await Promise.all(productsToAdd.map(product =>
+        axios.post(`${API_URL}/cart/add`, product, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+      ));
+
+      await fetchCart(token, userProfile.id);
+      alert("Items have been added to your cart!");
+      setIsCartVisible(true); // Open cart sidebar
+    } catch (error) {
+      console.error("Error adding items to cart:", error.response?.data || error.message);
+      alert("Failed to add items to cart. Please try again.");
     }
   };
 
   if (loading) return <p>Loading order details...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  const currentStatus = reachedSteps.length > 0 ? reachedSteps[reachedSteps.length - 1] : "PENDING";
+  const currentStatus = order?.status?.toUpperCase() || "PENDING";
   const canCancel = currentStatus === "PENDING";
+  const isCanceled = currentStatus === "CANCELED";
 
   return (
     <div className="OrderDetails">
@@ -288,38 +340,54 @@ const OrderDetails = () => {
           {/* Container 1: Order Status */}
           <div className="order-status-container">
             <h3>Order Status</h3>
-            <div className="progress-bar-container">
-              <div className="progress-steps">
-                {trackingSteps.map((step, index) => (
-                  <div key={step} className="progress-step">
-                    <div className={`step-icon ${index <= currentStepIndex ? "active" : ""}`}>
-                      <img 
-                        src={`/imgs/${statusIconMap[step]}.svg`} 
-                        alt={step} 
-                        className="status-icon" 
-                      />
-                    </div>
-                    <div className={`step-label ${index <= currentStepIndex ? "active" : ""}`}>
-                      {step}
-                    </div>
-                    {/* Add timestamp below each step */}
-                    <div className={`step-timestamp ${index <= currentStepIndex ? "active" : ""}`}>
-                      {trackingTimestamps[step] ? new Date(trackingTimestamps[step]).toLocaleString() : ""}
-                    </div>
-                    {index < trackingSteps.length - 1 && (
-                      <div className={`progress-line ${index < currentStepIndex ? "active" : ""}`}></div>
-                    )}
-                  </div>
-                ))}
+            {isCanceled ? (
+              <div className="canceled-status">
+                <img src="/imgs/canceled.svg" alt="Canceled" className="status-icon canceled-icon" />
+                <p>Order Canceled</p>
               </div>
-            </div>
-            {canCancel && (
-              <div className="cancel-order-container">
+            ) : (
+              <div className="progress-bar-container">
+                <div className="progress-steps">
+                  {trackingSteps.map((step, index) => (
+                    <div key={step} className="progress-step">
+                      <div className={`step-icon ${index <= currentStepIndex ? "active" : ""}`}>
+                        <img 
+                          src={`/imgs/${statusIconMap[step]}.svg`} 
+                          alt={step} 
+                          className="status-icon" 
+                        />
+                      </div>
+                      <div className={`step-label ${index <= currentStepIndex ? "active" : ""}`}>
+                        {step}
+                      </div>
+                      <div className={`step-timestamp ${index <= currentStepIndex ? "active" : ""}`}>
+                        {trackingTimestamps[step] ? new Date(trackingTimestamps[step]).toLocaleString() : ""}
+                      </div>
+                      {index < trackingSteps.length - 1 && (
+                        <div className={`progress-line ${index < currentStepIndex ? "active" : ""}`}></div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className="order-actions-container">
+              {canCancel && (
                 <button className="cancel-order-btn" onClick={handleCancelOrder}>
                   Cancel Order
                 </button>
-              </div>
-            )}
+              )}
+              {isCanceled && (
+                <>
+                  <button className="cancel-details-btn" onClick={() => setIsCancelDetailsOpen(true)}>
+                    Cancellation Details
+                  </button>
+                  <button className="buy-again-btn" onClick={handleBuyAgain}>
+                    Buy Again
+                  </button>
+                </>
+              )}
+            </div>
           </div>
 
           {/* Container 2: Order Info and Summary Toggle */}
@@ -340,12 +408,14 @@ const OrderDetails = () => {
                 <p><strong>Estimated Delivery:</strong> {calculateEstimatedDelivery()}</p>
               </div>
             </div>
-            <button 
-              className="toggle-summary-btn"
-              onClick={() => setIsSummaryOpen(!isSummaryOpen)}
-            >
-              {isSummaryOpen ? "Hide Order Details" : "Show Order Details"}
-            </button>
+            <div className="order-actions">
+              <button 
+                className="toggle-summary-btn"
+                onClick={() => setIsSummaryOpen(!isSummaryOpen)}
+              >
+                {isSummaryOpen ? "Hide Order Details" : "Show Order Details"}
+              </button>
+            </div>
 
             {/* Container 3: Order Summary (Dropdown) */}
             {isSummaryOpen && (
@@ -381,14 +451,12 @@ const OrderDetails = () => {
                         </div>
                       );
                     })}
-                    {/* Shipping Cost */}
                     <div className="order-shipping-cost">
                       <p className="shipping-label">Shipping Cost:</p>
                       <p className="shipping-value">
                         ₱{order?.courier?.shipping_fee !== undefined ? Number(order.courier.shipping_fee).toFixed(2) : "N/A"}
                       </p>
                     </div>
-                    {/* Total Amount */}
                     <div className="order-total">
                       <p className="total-label">Total Amount:</p>
                       <p className="total-value">
@@ -403,6 +471,76 @@ const OrderDetails = () => {
             )}
           </div>
         </div>
+
+        {/* Cancel Order Modal */}
+        {isCancelModalOpen && (
+          <div className="cancel-modal" onClick={() => setIsCancelModalOpen(false)}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <h2>Cancel Order #{order?.id}</h2>
+              <form onSubmit={handleCancelSubmit}>
+                <div className="form-group">
+                  <label>Reason for Cancellation</label>
+                  <select
+                    value={cancelReason}
+                    onChange={(e) => setCancelReason(e.target.value)}
+                    required
+                  >
+                    <option value="">Select a reason</option>
+                    {cancelReasons.map((reason, index) => (
+                      <option key={index} value={reason}>
+                        {reason}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Additional Comments (Optional)</label>
+                  <textarea
+                    value={cancelComment}
+                    onChange={(e) => setCancelComment(e.target.value)}
+                    placeholder="Please provide any additional details..."
+                    rows="4"
+                  />
+                </div>
+                <div className="form-buttons">
+                  <button type="submit" className="modal-save-btn">
+                    Submit Cancellation
+                  </button>
+                  <button
+                    type="button"
+                    className="modal-cancel-btn"
+                    onClick={() => setIsCancelModalOpen(false)}
+                  >
+                    Close
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* Cancellation Details Modal */}
+        {isCancelDetailsOpen && isCanceled && (
+          <div className="cancel-details-modal" onClick={() => setIsCancelDetailsOpen(false)}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <h2>Cancellation Details for Order #{order?.id}</h2>
+              <div className="cancel-details-content">
+                <p><strong>Reason:</strong> {trackingHistory.find(t => t.status === "CANCELED")?.remarks?.split(" | ")[0]?.replace("Reason: ", "") || "Not specified"}</p>
+                <p><strong>Comment:</strong> {trackingHistory.find(t => t.status === "CANCELED")?.remarks?.split(" | ")[1]?.replace("Comment: ", "") || "None"}</p>
+                <p><strong>Canceled On:</strong> {trackingTimestamps["CANCELED"] ? new Date(trackingTimestamps["CANCELED"]).toLocaleString() : "N/A"}</p>
+              </div>
+              <div className="form-buttons">
+                <button
+                  type="button"
+                  className="modal-cancel-btn"
+                  onClick={() => setIsCancelDetailsOpen(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <Footer />
     </div>

@@ -20,6 +20,10 @@ class OrderDetail extends Model
         return $this->belongsTo(Order::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'product_id'); // Link reviews to the product
+    }
     public function product()
     {
         return $this->belongsTo(Product::class);

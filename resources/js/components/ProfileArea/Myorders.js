@@ -5,6 +5,29 @@ import Header from '../HeaderNav/Header';
 import Footer from '../FooterNav/Footer';
 import CartSidebar from '../HeaderArea/CartSidebar';
 
+class ErrorBoundary extends React.Component {
+  state = { hasError: false, error: null };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('Error caught by boundary:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: '20px', color: 'red' }}>
+          Error: {this.state.error?.message || 'Something went wrong'}
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 const MyOrders = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({
@@ -16,7 +39,7 @@ const MyOrders = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [cartItems, setCartItems] = useState([]);
-  const [activeMenuItem, setActiveMenuItem] = useState('orders');
+  const [review, setReview] = useState('');
 
   const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
   const API_URL = "http://127.0.0.1:8000/api";
@@ -25,13 +48,14 @@ const MyOrders = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        if (!token) throw new Error("No authentication token found. Please log in.");
+        if (!token) {
+          throw new Error("No authentication token found. Please log in.");
+        }
 
-        // Fetch Profile
         const profileResponse = await axios.get(`${API_URL}/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        const profileData = profileResponse.data.profile;
+        const profileData = profileResponse.data.profile || {};
         setProfile({
           first_name: profileData.first_name || '',
           last_name: profileData.last_name || '',
@@ -40,25 +64,17 @@ const MyOrders = () => {
             : '/imgs/profile.svg',
         });
 
-        // Fetch Orders
         const ordersResponse = await axios.get(`${API_URL}/orders`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        setOrders(Array.isArray(ordersResponse.data) ? ordersResponse.data : []);
 
-        // Ensure ordersData is an array to prevent crashes
-        const ordersData = Array.isArray(ordersResponse.data) ? ordersResponse.data : [];
-        setOrders(ordersData);
-        console.log("Fetched Orders:", ordersData);
-
-        // Fetch Cart
         const cartResponse = await axios.get(`${API_URL}/cart`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        const cartData = Array.isArray(cartResponse.data) ? cartResponse.data : [];
-        setCartItems(cartData);
+        setCartItems(Array.isArray(cartResponse.data) ? cartResponse.data : []);
       } catch (err) {
-        console.error('Fetch Error:', err);
-        setError(err.message || "An error occurred.");
+        setError(err.message || "An error occurred while fetching data.");
         if (err.response?.status === 401) {
           localStorage.removeItem('token');
           navigate('/login');
@@ -71,75 +87,79 @@ const MyOrders = () => {
     fetchData();
   }, [navigate]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
+  const handleReviewSubmit = async (orderId, orderDetailId) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) throw new Error('No authentication token found. Please log in.');
+
+      const response = await axios.post(
+        `${API_URL}/orders/${orderId}/order-details/${orderDetailId}/review`,
+        { review },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      
+      alert('Review submitted successfully!');
+      setReview('');
+    } catch (err) {
+      alert(`Error submitting review: ${err.message}`);
+    }
   };
 
-  if (loading) return <div className="loading">Loading orders...</div>;
-  if (error) return <div className="error">{error}</div>;
+  if (loading) {
+    return <div style={{ padding: '20px' }}>Loading orders...</div>;
+  }
+
+  if (error) {
+    return <div style={{ padding: '20px', color: 'red' }}>{error}</div>;
+  }
 
   return (
-    <div className="MyOrders">
-      <Header userProfile={profile} />
-      <CartSidebar cartItems={cartItems} />
-
-      <div className="profile-container">
-        <h1 className="profile-title">Order History</h1>
-        <div className="profile-body">
-          <div className="sidebar">
-            <div className="user-info">
-              <img src={profile.profile_pic} alt="Profile" className="profile-pic" />
-              <h2>{profile.first_name} {profile.last_name}</h2>
-            </div>
-            <ul className="nav-menu">
-              <li className={activeMenuItem === 'orders' ? 'active' : ''} onClick={() => navigate('/profile/orders')}>
-                <img src="/imgs/myorder.svg" alt="My Orders" /> My Orders
-              </li>
-              <li className="logout" onClick={handleLogout}>
-                <img src="/imgs/mylogout.svg" alt="Logout" /> Logout
-              </li>
-            </ul>
-          </div>
-
-          <div className="profile-content">
-            {orders.length > 0 ? (
-              <div className="orders-history">
-                <table className="orders-table">
-                  <thead>
-                    <tr>
-                      <th>Order ID</th>
-                      <th>Status</th>
-                      <th>Total Amount</th>
-                      <th>Order Date</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+    <ErrorBoundary>
+      <div className="MyOrders">
+        <Header userProfile={profile} />
+        <CartSidebar cartItems={cartItems} />
+        <div className="profile-container">
+          <h1 className="profile-title">Order History</h1>
+          <div className="profile-body">
+            <div className="profile-content">
+              {orders.length > 0 ? (
+                <div className="orders-history">
+                  <p>Orders found: {orders.length}</p>
+                  <ul>
                     {orders.map(order => (
-                      <tr key={order.id}>
-                        <td>{order.id}</td>
-                        <td>{order.status}</td>
-                        <td>₱{order.total_amount ? order.total_amount.toFixed(2) : '0.00'}</td>
-                        <td>{order.order_date ? new Date(order.order_date).toLocaleString() : 'N/A'}</td>
-                        <td>
-                          <button onClick={() => navigate(`/my-orders/${order.id}`)} className="view-details-button">
-                            View Details
-                          </button>
-                        </td>
-                      </tr>
+                      <li key={order.id}>
+                        <p>Order #{order.id} - {order.status} - ₱{order.total_amount?.toFixed(2) || '0.00'}</p>
+                        {order.details && order.details.map((detail) => (
+                          <div key={detail.id}>
+                            <p>Product: {detail.product?.name || 'Unknown'}</p>
+                            <p>Quantity: {detail.quantity || 0}</p>
+                            {order.status === 'DELIVERED' && (
+                              <div>
+                                <textarea
+                                  value={review}
+                                  onChange={(e) => setReview(e.target.value)}
+                                  placeholder="Write your review here..."
+                                />
+                                <button onClick={() => handleReviewSubmit(order.id, detail.id)}>
+                                  Submit Review
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </li>
                     ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <p>No orders found in your history.</p>
-            )}
+                  </ul>
+                </div>
+              ) : (
+                <p>No orders found in your history.</p>
+              )}
+            </div>
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </ErrorBoundary>
   );
 };
 

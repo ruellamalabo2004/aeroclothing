@@ -1,77 +1,84 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [selectedReview, setSelectedReview] = useState(null);
   const [replyText, setReplyText] = useState("");
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const API_URL = "http://127.0.0.1:8000/api";
 
   useEffect(() => {
-    const dummyReviews = [
-      {
-        id: 1,
-        customer: "John Doe",
-        product_bought: "Smartphone X",
-        review: "Great product, fast shipping!",
-        rate: 4,
-        date: "2023-10-01",
-        reply: null,
-      },
-      {
-        id: 2,
-        customer: "Jane Smith",
-        product_bought: "Laptop Pro",
-        review: "Good, but could improve packaging.",
-        rate: 3,
-        date: "2023-10-02",
-        reply: "Thanks for the feedback! We’ll work on it.",
-      },
-    ];
-    setReviews(dummyReviews);
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
 
-    // Uncomment to fetch from API
-    /*
-    fetch("http://127.0.0.1:8000/api/reviews")
-      .then((res) => res.json())
-      .then((data) => setReviews(data))
-      .catch((error) => console.error("Error fetching reviews:", error));
-    */
-  }, []);
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/reviews`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        // Map the API response to match the frontend structure
+        const formattedReviews = response.data.map(review => ({
+          id: review.id,
+          customer: review.user?.name || "Unknown Customer", // Adjust based on user relation
+          product_bought: review.product?.product_name || "Unknown Product",
+          review: review.review || "No review provided",
+          rate: review.rating || 0,
+          date: review.created_at ? new Date(review.created_at).toISOString().split('T')[0] : "N/A",
+          reply: review.reply || null,
+        }));
+        setReviews(formattedReviews);
+        setError(null);
+      } catch (error) {
+        console.error("Error fetching reviews:", error.response?.data || error.message);
+        if (error.response?.status === 401) {
+          localStorage.removeItem('token');
+          navigate('/login');
+        } else {
+          setError("Failed to fetch reviews. Please try again later.");
+        }
+      }
+    };
 
-  const handleReplySubmit = (e) => {
+    fetchReviews();
+  }, [navigate]);
+
+  const handleReplySubmit = async (e) => {
     e.preventDefault();
     if (!replyText.trim() || !selectedReview) return;
 
-    // Update local state (replace with API call)
-    setReviews((prev) =>
-      prev.map((review) =>
-        review.id === selectedReview.id ? { ...review, reply: replyText } : review
-      )
-    );
-    setSelectedReview({ ...selectedReview, reply: replyText });
-    setReplyText("");
+    const token = localStorage.getItem('token');
+    try {
+      const response = await axios.post(
+        `${API_URL}/reviews/${selectedReview.id}/reply`,
+        { reply: replyText },
+        { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
+      );
 
-    // Uncomment to send reply to API
-    /*
-    fetch(`http://127.0.0.1:8000/api/reviews/${selectedReview.id}/reply`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ reply: replyText }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setReviews((prev) =>
-          prev.map((review) =>
-            review.id === selectedReview.id ? { ...review, reply: data.reply } : review
-          )
-        );
-      })
-      .catch((error) => console.error("Error submitting reply:", error));
-    */
+      const updatedReview = { ...selectedReview, reply: response.data.reply || replyText };
+      setReviews((prev) =>
+        prev.map((review) =>
+          review.id === selectedReview.id ? updatedReview : review
+        )
+      );
+      setSelectedReview(updatedReview);
+      setReplyText("");
+      setError(null);
+    } catch (error) {
+      console.error("Error submitting reply:", error.response?.data || error.message);
+      setError("Failed to submit reply. Please try again later.");
+    }
   };
 
   return (
     <main>
       <h1>Reviews</h1>
+      {error && <div className="error-message">{error}</div>}
       <div className="reviews-table-container">
         <table className="reviews-table">
           <thead>
@@ -85,23 +92,29 @@ export default function Reviews() {
             </tr>
           </thead>
           <tbody>
-            {reviews.map((review) => (
-              <tr key={review.id}>
-                <td>
-                  <img
-                    src="/imgs/view.svg"
-                    alt="View"
-                    className="action-img"
-                    onClick={() => setSelectedReview(review)}
-                  />
-                </td>
-                <td>{review.customer}</td>
-                <td>{review.product_bought}</td>
-                <td>{review.review}</td>
-                <td>{review.rate}/5</td>
-                <td>{review.date}</td>
+            {reviews.length > 0 ? (
+              reviews.map((review) => (
+                <tr key={review.id}>
+                  <td>
+                    <img
+                      src="/imgs/view.svg"
+                      alt="View"
+                      className="action-img"
+                      onClick={() => setSelectedReview(review)}
+                    />
+                  </td>
+                  <td>{review.customer}</td>
+                  <td>{review.product_bought}</td>
+                  <td>{review.review}</td>
+                  <td>{review.rate}/5</td>
+                  <td>{review.date}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6">No reviews available.</td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

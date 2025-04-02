@@ -305,48 +305,44 @@ export default function Orders() {
                 </tr>
               </thead>
               <tbody>
-                {currentOrders.map((order) => (
-                  <tr key={order.id}>
-                    <td>
-                      <img
-                        src="/imgs/viewing.svg"
-                        alt="View"
-                        className="action-img"
-                        onClick={() => handleViewOrder(order)}
-                        style={{ cursor: "pointer" }}
-                      />
-                      <img
-                        src="/imgs/editing.svg"
-                        alt="Edit"
-                        className="action-img"
-                        onClick={() => setSelectedOrder(order)}
-                        style={{ cursor: "pointer" }}
-                      />
-                      <img
-                        src="/imgs/archiving.svg"
-                        alt="Archive"
-                        className="action-img"
-                        onClick={() => handleArchiveClick(order)}
-                        style={{ cursor: "pointer" }}
-                      />
-                    </td>
-                    <td>{order.id}</td>
-                    <td>
-                      {order.profile && order.profile.first_name && order.profile.last_name
-                        ? `${order.profile.first_name} ${order.profile.last_name}`
-                        : "Unknown Customer"}
-                    </td>
-                    <td>{order.payment_method || "N/A"}</td>
-                    <td>₱{order.total_amount || 0}</td>
-                    <td>{order.order_date ? new Date(order.order_date).toLocaleDateString() : "N/A"}</td>
-                    <td>
-                      <span className={`status-frame status-${order.status?.toLowerCase() || "unknown"}`}>
-                        {order.status || "Unknown"}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+  {currentOrders.map((order) => (
+    <tr key={order.id}>
+      <td>
+        <img
+          src="/imgs/viewing.svg"
+          alt="View"
+          className="action-img"
+          onClick={() => handleViewOrder(order)}
+          style={{ cursor: "pointer" }}
+        />
+        <img
+          src="/imgs/editing.svg"
+          alt="Edit"
+          className="action-img"
+          onClick={() => setSelectedOrder(order)}
+          style={{ cursor: "pointer" }}
+        />
+        <img
+          src="/imgs/archiving.svg"
+          alt="Archive"
+          className="action-img"
+          onClick={() => handleArchiveClick(order)}
+          style={{ cursor: "pointer" }}
+        />
+      </td>
+      <td>{order.id}</td>
+      <td>{order.customer || "Unknown Customer"}</td>
+      <td>{order.payment_method || "N/A"}</td>
+      <td>₱{order.total_amount || 0}</td>
+      <td>{order.created_at ? new Date(order.created_at).toLocaleDateString() : "N/A"}</td>
+      <td>
+        <span className={`status-frame status-${order.status?.toLowerCase() || "unknown"}`}>
+          {order.status || "Unknown"}
+        </span>
+      </td>
+    </tr>
+  ))}
+</tbody>
             </table>
           </div>
 

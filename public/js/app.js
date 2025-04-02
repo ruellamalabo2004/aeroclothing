@@ -112532,8 +112532,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _components_LoginArea_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/LoginArea/Login */ "./resources/js/components/LoginArea/Login.js");
 /* harmony import */ var _components_LoginArea_Signup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/LoginArea/Signup */ "./resources/js/components/LoginArea/Signup.js");
 /* harmony import */ var _components_AdminArea_Dashboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/AdminArea/Dashboard */ "./resources/js/components/AdminArea/Dashboard.js");
@@ -112559,9 +112559,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_OrderNav_Checkout__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/OrderNav/Checkout */ "./resources/js/components/OrderNav/Checkout.js");
 /* harmony import */ var _components_HeaderArea_Shop__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/HeaderArea/Shop */ "./resources/js/components/HeaderArea/Shop.js");
 /* harmony import */ var _components_OrderNav_OrderDetails__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/OrderNav/OrderDetails */ "./resources/js/components/OrderNav/OrderDetails.js");
-/* harmony import */ var _components_PasswordArea_ForgotPassword__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/PasswordArea/ForgotPassword */ "./resources/js/components/PasswordArea/ForgotPassword.js");
-/* harmony import */ var _components_PasswordArea_ResetPassword__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/PasswordArea/ResetPassword */ "./resources/js/components/PasswordArea/ResetPassword.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_ProfileArea_OrderHistory__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/ProfileArea/OrderHistory */ "./resources/js/components/ProfileArea/OrderHistory.js");
+/* harmony import */ var _components_ProductViews_ProductReview__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/ProductViews/ProductReview */ "./resources/js/components/ProductViews/ProductReview.js");
+/* harmony import */ var _components_ProductViews_ProductView__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/ProductViews/ProductView */ "./resources/js/components/ProductViews/ProductView.js");
+/* harmony import */ var _components_PasswordArea_ForgotPassword__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/PasswordArea/ForgotPassword */ "./resources/js/components/PasswordArea/ForgotPassword.js");
+/* harmony import */ var _components_PasswordArea_ResetPassword__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/PasswordArea/ResetPassword */ "./resources/js/components/PasswordArea/ResetPassword.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -112588,6 +112591,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // Import OrderHistory component
+ // Import ProductReview component
+ // Import ProductView component
  // Import ForgotPassword component
  // Import ResetPassword component
 
@@ -112600,13 +112606,13 @@ var ProtectedRoute = function ProtectedRoute(_ref) {
   var role = localStorage.getItem("role"); // Get user role
 
   if (!token) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Navigate, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Navigate, {
       to: "/login",
       replace: true
     }); // Redirect to login if not authenticated
   }
   if (!allowedRoles.includes(role)) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Navigate, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Navigate, {
       to: "/dashboard",
       replace: true
     }); // Redirect unauthorized users
@@ -112614,122 +112620,140 @@ var ProtectedRoute = function ProtectedRoute(_ref) {
   return element;
 };
 var App = function App() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Routes, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Routes, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Navigate, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Navigate, {
           to: "/login",
           replace: true
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/login",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_LoginArea_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_LoginArea_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/signup",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_LoginArea_Signup__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_LoginArea_Signup__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/forgot-password",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_PasswordArea_ForgotPassword__WEBPACK_IMPORTED_MODULE_25__["default"], {})
-      }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_PasswordArea_ForgotPassword__WEBPACK_IMPORTED_MODULE_28__["default"], {})
+      }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/reset-password",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_PasswordArea_ResetPassword__WEBPACK_IMPORTED_MODULE_26__["default"], {})
-      }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_PasswordArea_ResetPassword__WEBPACK_IMPORTED_MODULE_29__["default"], {})
+      }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/homepage",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_HeaderArea_HomePage__WEBPACK_IMPORTED_MODULE_13__["default"], {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_HeaderArea_HomePage__WEBPACK_IMPORTED_MODULE_13__["default"], {}),
           allowedRoles: ["customer"]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/shop",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_HeaderArea_Shop__WEBPACK_IMPORTED_MODULE_23__["default"], {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_HeaderArea_Shop__WEBPACK_IMPORTED_MODULE_23__["default"], {}),
           allowedRoles: ["customer"]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        path: "/shop/:productId",
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_ProductViews_ProductView__WEBPACK_IMPORTED_MODULE_27__["default"], {}),
+          allowedRoles: ["customer"]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        path: "/orders/:orderId/review",
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_ProductViews_ProductReview__WEBPACK_IMPORTED_MODULE_26__["default"], {}),
+          allowedRoles: ["customer"]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
+        path: "/order-history",
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_ProfileArea_OrderHistory__WEBPACK_IMPORTED_MODULE_25__["default"], {}),
+          allowedRoles: ["customer"]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/profile",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_ProfileArea_Profile__WEBPACK_IMPORTED_MODULE_16__["default"], {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_ProfileArea_Profile__WEBPACK_IMPORTED_MODULE_16__["default"], {}),
           allowedRoles: ["customer"]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/profile/address",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)((_components_ProfileArea_Address__WEBPACK_IMPORTED_MODULE_17___default()), {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)((_components_ProfileArea_Address__WEBPACK_IMPORTED_MODULE_17___default()), {}),
           allowedRoles: ["customer"]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/profile/change-password",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_ProfileArea_Changepassword__WEBPACK_IMPORTED_MODULE_18__["default"], {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_ProfileArea_Changepassword__WEBPACK_IMPORTED_MODULE_18__["default"], {}),
           allowedRoles: ["customer"]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/profile/wishlist",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_ProfileArea_Mywishlist__WEBPACK_IMPORTED_MODULE_19__["default"], {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_ProfileArea_Mywishlist__WEBPACK_IMPORTED_MODULE_19__["default"], {}),
           allowedRoles: ["customer"]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/profile/orders",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_ProfileArea_Myorders__WEBPACK_IMPORTED_MODULE_20__["default"], {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_ProfileArea_Myorders__WEBPACK_IMPORTED_MODULE_20__["default"], {}),
           allowedRoles: ["customer"]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/my-orders/:orderId",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_OrderNav_OrderDetails__WEBPACK_IMPORTED_MODULE_24__["default"], {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_OrderNav_OrderDetails__WEBPACK_IMPORTED_MODULE_24__["default"], {}),
           allowedRoles: ["customer"]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/checkout",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_OrderNav_Checkout__WEBPACK_IMPORTED_MODULE_22__["default"], {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_OrderNav_Checkout__WEBPACK_IMPORTED_MODULE_22__["default"], {}),
           allowedRoles: ["customer"]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/profile/cart",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)((_components_ProfileArea_Mycart__WEBPACK_IMPORTED_MODULE_21___default()), {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)((_components_ProfileArea_Mycart__WEBPACK_IMPORTED_MODULE_21___default()), {}),
           allowedRoles: ["customer"]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
         path: "/dashboard",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(ProtectedRoute, {
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_AdminArea_Dashboard__WEBPACK_IMPORTED_MODULE_4__["default"], {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ProtectedRoute, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_AdminArea_Dashboard__WEBPACK_IMPORTED_MODULE_4__["default"], {}),
           allowedRoles: ["admin"]
         }),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
           path: "products",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_AdminArea_Products__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_AdminArea_Products__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
           path: "orders",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_AdminArea_Orders__WEBPACK_IMPORTED_MODULE_6__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_AdminArea_Orders__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
           path: "inventory",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_AdminArea_Inventory__WEBPACK_IMPORTED_MODULE_7__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_AdminArea_Inventory__WEBPACK_IMPORTED_MODULE_7__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
           path: "customers",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_AdminArea_Customers__WEBPACK_IMPORTED_MODULE_8__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_AdminArea_Customers__WEBPACK_IMPORTED_MODULE_8__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
           path: "users",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_AdminArea_Users__WEBPACK_IMPORTED_MODULE_9__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_AdminArea_Users__WEBPACK_IMPORTED_MODULE_9__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
           path: "transactions",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_AdminArea_Transactions__WEBPACK_IMPORTED_MODULE_10__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_AdminArea_Transactions__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
           path: "reviews",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_AdminArea_Reviews__WEBPACK_IMPORTED_MODULE_11__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_AdminArea_Reviews__WEBPACK_IMPORTED_MODULE_11__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
           path: "reports",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_AdminArea_Reports__WEBPACK_IMPORTED_MODULE_12__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_AdminArea_Reports__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
           path: "adminsettings",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_AdminArea_AdminSettings__WEBPACK_IMPORTED_MODULE_14__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_28__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_AdminArea_AdminSettings__WEBPACK_IMPORTED_MODULE_14__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
           path: "accountsettings",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(_components_AdminArea_AccountSettings__WEBPACK_IMPORTED_MODULE_15__["default"], {})
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_components_AdminArea_AccountSettings__WEBPACK_IMPORTED_MODULE_15__["default"], {})
         })]
       })]
     })
@@ -112738,7 +112762,7 @@ var App = function App() {
 
 // Mount React App
 if (document.getElementById("root")) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_27__.jsx)(App, {}), document.getElementById("root"));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(App, {}), document.getElementById("root"));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
@@ -116121,13 +116145,13 @@ function Orders() {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                   children: order.id
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                  children: order.profile && order.profile.first_name && order.profile.last_name ? "".concat(order.profile.first_name, " ").concat(order.profile.last_name) : "Unknown Customer"
+                  children: order.customer || "Unknown Customer"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                   children: order.payment_method || "N/A"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
                   children: ["\u20B1", order.total_amount || 0]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                  children: order.order_date ? new Date(order.order_date).toLocaleDateString() : "N/A"
+                  children: order.created_at ? new Date(order.created_at).toLocaleDateString() : "N/A"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                     className: "status-frame status-".concat(((_order$status = order.status) === null || _order$status === void 0 ? void 0 : _order$status.toLowerCase()) || "unknown"),
@@ -117437,6 +117461,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Reviews)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -117444,12 +117470,17 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
 
 
 function Reviews() {
@@ -117465,72 +117496,133 @@ function Reviews() {
     _useState6 = _slicedToArray(_useState5, 2),
     replyText = _useState6[0],
     setReplyText = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState8 = _slicedToArray(_useState7, 2),
+    error = _useState8[0],
+    setError = _useState8[1];
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useNavigate)();
+  var API_URL = "http://127.0.0.1:8000/api";
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var dummyReviews = [{
-      id: 1,
-      customer: "John Doe",
-      product_bought: "Smartphone X",
-      review: "Great product, fast shipping!",
-      rate: 4,
-      date: "2023-10-01",
-      reply: null
-    }, {
-      id: 2,
-      customer: "Jane Smith",
-      product_bought: "Laptop Pro",
-      review: "Good, but could improve packaging.",
-      rate: 3,
-      date: "2023-10-02",
-      reply: "Thanks for the feedback! We’ll work on it."
-    }];
-    setReviews(dummyReviews);
-
-    // Uncomment to fetch from API
-    /*
-    fetch("http://127.0.0.1:8000/api/reviews")
-      .then((res) => res.json())
-      .then((data) => setReviews(data))
-      .catch((error) => console.error("Error fetching reviews:", error));
-    */
-  }, []);
-  var handleReplySubmit = function handleReplySubmit(e) {
-    e.preventDefault();
-    if (!replyText.trim() || !selectedReview) return;
-
-    // Update local state (replace with API call)
-    setReviews(function (prev) {
-      return prev.map(function (review) {
-        return review.id === selectedReview.id ? _objectSpread(_objectSpread({}, review), {}, {
-          reply: replyText
-        }) : review;
-      });
-    });
-    setSelectedReview(_objectSpread(_objectSpread({}, selectedReview), {}, {
-      reply: replyText
+    var token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+    var fetchReviews = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var response, formattedReviews, _error$response, _error$response2;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(API_URL, "/reviews"), {
+                headers: {
+                  Authorization: "Bearer ".concat(token)
+                }
+              });
+            case 3:
+              response = _context.sent;
+              // Map the API response to match the frontend structure
+              formattedReviews = response.data.map(function (review) {
+                var _review$user, _review$product;
+                return {
+                  id: review.id,
+                  customer: ((_review$user = review.user) === null || _review$user === void 0 ? void 0 : _review$user.name) || "Unknown Customer",
+                  // Adjust based on user relation
+                  product_bought: ((_review$product = review.product) === null || _review$product === void 0 ? void 0 : _review$product.product_name) || "Unknown Product",
+                  review: review.review || "No review provided",
+                  rate: review.rating || 0,
+                  date: review.created_at ? new Date(review.created_at).toISOString().split('T')[0] : "N/A",
+                  reply: review.reply || null
+                };
+              });
+              setReviews(formattedReviews);
+              setError(null);
+              _context.next = 13;
+              break;
+            case 9:
+              _context.prev = 9;
+              _context.t0 = _context["catch"](0);
+              console.error("Error fetching reviews:", ((_error$response = _context.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context.t0.message);
+              if (((_error$response2 = _context.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.status) === 401) {
+                localStorage.removeItem('token');
+                navigate('/login');
+              } else {
+                setError("Failed to fetch reviews. Please try again later.");
+              }
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee, null, [[0, 9]]);
+      }));
+      return function fetchReviews() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+    fetchReviews();
+  }, [navigate]);
+  var handleReplySubmit = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+      var token, response, updatedReview, _error$response3;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            e.preventDefault();
+            if (!(!replyText.trim() || !selectedReview)) {
+              _context2.next = 3;
+              break;
+            }
+            return _context2.abrupt("return");
+          case 3:
+            token = localStorage.getItem('token');
+            _context2.prev = 4;
+            _context2.next = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].post("".concat(API_URL, "/reviews/").concat(selectedReview.id, "/reply"), {
+              reply: replyText
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(token),
+                "Content-Type": "application/json"
+              }
+            });
+          case 7:
+            response = _context2.sent;
+            updatedReview = _objectSpread(_objectSpread({}, selectedReview), {}, {
+              reply: response.data.reply || replyText
+            });
+            setReviews(function (prev) {
+              return prev.map(function (review) {
+                return review.id === selectedReview.id ? updatedReview : review;
+              });
+            });
+            setSelectedReview(updatedReview);
+            setReplyText("");
+            setError(null);
+            _context2.next = 19;
+            break;
+          case 15:
+            _context2.prev = 15;
+            _context2.t0 = _context2["catch"](4);
+            console.error("Error submitting reply:", ((_error$response3 = _context2.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.data) || _context2.t0.message);
+            setError("Failed to submit reply. Please try again later.");
+          case 19:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[4, 15]]);
     }));
-    setReplyText("");
-
-    // Uncomment to send reply to API
-    /*
-    fetch(`http://127.0.0.1:8000/api/reviews/${selectedReview.id}/reply`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ reply: replyText }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setReviews((prev) =>
-          prev.map((review) =>
-            review.id === selectedReview.id ? { ...review, reply: data.reply } : review
-          )
-        );
-      })
-      .catch((error) => console.error("Error submitting reply:", error));
-    */
-  };
+    return function handleReplySubmit(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
       children: "Reviews"
+    }), error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "error-message",
+      children: error
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "reviews-table-container",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
@@ -117552,7 +117644,7 @@ function Reviews() {
             })]
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-          children: reviews.map(function (review) {
+          children: reviews.length > 0 ? reviews.map(function (review) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
@@ -117575,6 +117667,11 @@ function Reviews() {
                 children: review.date
               })]
             }, review.id);
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+              colSpan: "6",
+              children: "No reviews available."
+            })
           })
         })]
       })
@@ -118983,7 +119080,7 @@ var CartSidebar = function CartSidebar(_ref) {
     setIsCartVisible(false);
   };
   var handleCheckout = function handleCheckout() {
-    console.log('Cart Items before checkout:', cartItems); // Debug
+    console.log('Cart Items before checkout:', cartItems);
     if (cartItems.length > 0) {
       navigate('/checkout', {
         state: {
@@ -119005,18 +119102,11 @@ var CartSidebar = function CartSidebar(_ref) {
         var _cartItemsRef$current = cartItemsRef.current,
           scrollHeight = _cartItemsRef$current.scrollHeight,
           clientHeight = _cartItemsRef$current.clientHeight;
-        // Show scrollbar if content overflows the container
         setShowScrollbar(scrollHeight > clientHeight);
       }
     };
-
-    // Check overflow initially and on cart items change
     checkOverflow();
-
-    // Add event listener for resize to recheck overflow
     window.addEventListener('resize', checkOverflow);
-
-    // Cleanup event listener on unmount
     return function () {
       return window.removeEventListener('resize', checkOverflow);
     };
@@ -119067,7 +119157,14 @@ var CartSidebar = function CartSidebar(_ref) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
                     children: item.productName || 'Unnamed Product'
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+                    className: "price",
                     children: ["\u20B1", item.price || 0]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+                    className: "size",
+                    children: ["Size: ", item.size || 'Not specified']
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+                    className: "color",
+                    children: ["Color: ", item.color || 'Not specified']
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                     className: "quantity-control",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
@@ -119087,10 +119184,10 @@ var CartSidebar = function CartSidebar(_ref) {
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                   className: "remove-item",
-                  onClick: removeFromCart(item.id),
+                  onClick: removeFromCart(item.id, item.size, item.color),
                   children: "\xD7"
                 })]
-              }, item.id);
+              }, "".concat(item.id, "-").concat(item.size, "-").concat(item.color));
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
             className: "cart-actions",
@@ -119164,8 +119261,6 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
-
-// ShopByCategory and FeaturedItems remain unchanged
 
 var ShopByCategory = function ShopByCategory() {
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useNavigate)();
@@ -119343,12 +119438,59 @@ var HomePage = function HomePage() {
     path: "/profile"
   }, {
     label: "My Orders",
-    path: "/profile/orders"
+    path: "/order-history"
   }, {
     label: "Logout",
     path: "#",
     onClick: handleLogout
   }];
+  var fetchCart = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(token, userId) {
+      var response, cartData, detailedCart, _error$response;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_9__["default"].get("".concat(API_URL, "/cart"), {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 3:
+            response = _context.sent;
+            console.log("Raw Cart API Response in HomePage:", response.data);
+            cartData = response.data.data || response.data || [];
+            detailedCart = cartData.map(function (item) {
+              var _item$product, _item$product2, _item$product3;
+              return {
+                id: item.product_id,
+                productName: ((_item$product = item.product) === null || _item$product === void 0 ? void 0 : _item$product.product_name) || "Unknown Product",
+                price: ((_item$product2 = item.product) === null || _item$product2 === void 0 ? void 0 : _item$product2.price) || 0,
+                imagePreview: (_item$product3 = item.product) !== null && _item$product3 !== void 0 && _item$product3.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(item.product.image_1) : '/default-image.jpg',
+                quantity: item.quantity || 1,
+                size: item.size || "Not specified",
+                color: item.color || "Not specified"
+              };
+            });
+            console.log("Mapped cartItems in HomePage:", detailedCart);
+            setCartItems(detailedCart);
+            _context.next = 14;
+            break;
+          case 11:
+            _context.prev = 11;
+            _context.t0 = _context["catch"](0);
+            console.error("Error fetching cart:", ((_error$response = _context.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context.t0.message);
+          case 14:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0, 11]]);
+    }));
+    return function fetchCart(_x, _x2) {
+      return _ref.apply(this, arguments);
+    };
+  }();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var token = localStorage.getItem('token');
     if (!token) {
@@ -119356,20 +119498,20 @@ var HomePage = function HomePage() {
       return;
     }
     var fetchData = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var _profileResponse$data, profileResponse, profileData, user, _error$response, _error$response2;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
+      var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var _profileResponse$data, profileResponse, profileData, user, _error$response2, _error$response3;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              _context.prev = 0;
-              _context.next = 3;
+              _context2.prev = 0;
+              _context2.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_9__["default"].get("".concat(API_URL, "/profile"), {
                 headers: {
                   Authorization: "Bearer ".concat(token)
                 }
               });
             case 3:
-              profileResponse = _context.sent;
+              profileResponse = _context2.sent;
               profileData = profileResponse.data.profile;
               user = {
                 id: profileResponse.data.user.id,
@@ -119384,55 +119526,55 @@ var HomePage = function HomePage() {
                 profile_pic: profileData.profile_pic ? "".concat(BASE_IMAGE_URL, "/").concat(profileData.profile_pic) : '/imgs/Profile.svg'
               };
               setUserProfile(user);
-              _context.next = 9;
+              _context2.next = 9;
               return Promise.all([fetchWishlist(token, user.id), fetchCart(token, user.id), fetchProducts(token)]);
             case 9:
-              _context.next = 15;
+              _context2.next = 15;
               break;
             case 11:
-              _context.prev = 11;
-              _context.t0 = _context["catch"](0);
-              console.error("Error fetching initial data:", ((_error$response = _context.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context.t0.message);
-              if (((_error$response2 = _context.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.status) === 401) {
+              _context2.prev = 11;
+              _context2.t0 = _context2["catch"](0);
+              console.error("Error fetching initial data:", ((_error$response2 = _context2.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.data) || _context2.t0.message);
+              if (((_error$response3 = _context2.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.status) === 401) {
                 localStorage.removeItem('token');
                 localStorage.removeItem('role');
                 navigate('/login');
               }
             case 15:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
-        }, _callee, null, [[0, 11]]);
+        }, _callee2, null, [[0, 11]]);
       }));
       return function fetchData() {
-        return _ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     }();
     fetchData();
   }, [navigate, BASE_IMAGE_URL]);
   var fetchWishlist = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(token, userId) {
-      var response, wishlistData, detailedWishlist, _error$response3;
-      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-        while (1) switch (_context2.prev = _context2.next) {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(token, userId) {
+      var response, wishlistData, detailedWishlist, _error$response4;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
           case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
+            _context3.prev = 0;
+            _context3.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_9__["default"].get("".concat(API_URL, "/wishlist"), {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
             });
           case 3:
-            response = _context2.sent;
+            response = _context3.sent;
             wishlistData = response.data.data || response.data || [];
             detailedWishlist = wishlistData.map(function (item) {
-              var _item$product, _item$product2, _item$product3;
+              var _item$product4, _item$product5, _item$product6;
               return {
                 id: item.product_id,
-                productName: ((_item$product = item.product) === null || _item$product === void 0 ? void 0 : _item$product.product_name) || "Unknown Product",
-                price: ((_item$product2 = item.product) === null || _item$product2 === void 0 ? void 0 : _item$product2.price) || 0,
-                imagePreview: (_item$product3 = item.product) !== null && _item$product3 !== void 0 && _item$product3.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(item.product.image_1) : '/default-image.jpg',
+                productName: ((_item$product4 = item.product) === null || _item$product4 === void 0 ? void 0 : _item$product4.product_name) || "Unknown Product",
+                price: ((_item$product5 = item.product) === null || _item$product5 === void 0 ? void 0 : _item$product5.price) || 0,
+                imagePreview: (_item$product6 = item.product) !== null && _item$product6 !== void 0 && _item$product6.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(item.product.image_1) : '/default-image.jpg',
                 created_at: item.created_at || new Date().toISOString()
               };
             }).sort(function (a, b) {
@@ -119442,62 +119584,19 @@ var HomePage = function HomePage() {
             if (detailedWishlist.length > 0) {
               setWishlistedItems(detailedWishlist);
             }
-            _context2.next = 13;
+            _context3.next = 13;
             break;
           case 10:
-            _context2.prev = 10;
-            _context2.t0 = _context2["catch"](0);
-            console.error("Error fetching wishlist, keeping current state:", ((_error$response3 = _context2.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.data) || _context2.t0.message);
-          case 13:
-          case "end":
-            return _context2.stop();
-        }
-      }, _callee2, null, [[0, 10]]);
-    }));
-    return function fetchWishlist(_x, _x2) {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-  var fetchCart = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(token, userId) {
-      var response, cartData, detailedCart, _error$response4;
-      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-        while (1) switch (_context3.prev = _context3.next) {
-          case 0:
-            _context3.prev = 0;
-            _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_9__["default"].get("".concat(API_URL, "/cart"), {
-              headers: {
-                Authorization: "Bearer ".concat(token)
-              }
-            });
-          case 3:
-            response = _context3.sent;
-            cartData = response.data.data || response.data || [];
-            detailedCart = cartData.map(function (item) {
-              var _item$product4, _item$product5, _item$product6;
-              return {
-                id: item.product_id,
-                productName: ((_item$product4 = item.product) === null || _item$product4 === void 0 ? void 0 : _item$product4.product_name) || "Unknown Product",
-                price: ((_item$product5 = item.product) === null || _item$product5 === void 0 ? void 0 : _item$product5.price) || 0,
-                imagePreview: (_item$product6 = item.product) !== null && _item$product6 !== void 0 && _item$product6.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(item.product.image_1) : '/default-image.jpg',
-                quantity: item.quantity || 1
-              };
-            });
-            setCartItems(detailedCart);
-            _context3.next = 12;
-            break;
-          case 9:
-            _context3.prev = 9;
+            _context3.prev = 10;
             _context3.t0 = _context3["catch"](0);
-            console.error("Error fetching cart:", ((_error$response4 = _context3.t0.response) === null || _error$response4 === void 0 ? void 0 : _error$response4.data) || _context3.t0.message);
-          case 12:
+            console.error("Error fetching wishlist, keeping current state:", ((_error$response4 = _context3.t0.response) === null || _error$response4 === void 0 ? void 0 : _error$response4.data) || _context3.t0.message);
+          case 13:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 9]]);
+      }, _callee3, null, [[0, 10]]);
     }));
-    return function fetchCart(_x3, _x4) {
+    return function fetchWishlist(_x3, _x4) {
       return _ref3.apply(this, arguments);
     };
   }();
@@ -119522,21 +119621,22 @@ var HomePage = function HomePage() {
             }).slice(0, 4).map(function (product) {
               return _objectSpread(_objectSpread({}, product), {}, {
                 imagePreview: product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_1) : "/default-image.jpg",
-                productName: product.name || product.title || product.product_name || "Unnamed Product"
+                productName: product.product_name || product.name || product.title || "Unnamed Product"
               });
             });
+            console.log("Fetched products:", updatedProducts);
             setProducts(updatedProducts);
-            _context4.next = 12;
+            _context4.next = 13;
             break;
-          case 9:
-            _context4.prev = 9;
+          case 10:
+            _context4.prev = 10;
             _context4.t0 = _context4["catch"](0);
             console.error("Error fetching products:", ((_error$response5 = _context4.t0.response) === null || _error$response5 === void 0 ? void 0 : _error$response5.data) || _context4.t0.message);
-          case 12:
+          case 13:
           case "end":
             return _context4.stop();
         }
-      }, _callee4, null, [[0, 9]]);
+      }, _callee4, null, [[0, 10]]);
     }));
     return function fetchProducts(_x5) {
       return _ref4.apply(this, arguments);
@@ -119640,46 +119740,44 @@ var HomePage = function HomePage() {
     };
   }();
   var addToCart = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7(product) {
-      var token, userId, _error$response9;
+    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7(product, token, userId) {
+      var _error$response9;
       return _regeneratorRuntime().wrap(function _callee7$(_context7) {
         while (1) switch (_context7.prev = _context7.next) {
           case 0:
-            token = localStorage.getItem('token');
-            userId = userProfile === null || userProfile === void 0 ? void 0 : userProfile.id;
-            _context7.prev = 2;
-            _context7.next = 5;
+            _context7.prev = 0;
+            _context7.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_9__["default"].post("".concat(API_URL, "/cart/add"), {
               user_id: userId,
               product_id: product.id,
-              quantity: 1
+              qty: 1 // Default quantity since no size/color selection on homepage
             }, {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
             });
-          case 5:
-            _context7.next = 7;
+          case 3:
+            _context7.next = 5;
             return fetchCart(token, userId);
-          case 7:
-            _context7.next = 12;
+          case 5:
+            _context7.next = 10;
             break;
-          case 9:
-            _context7.prev = 9;
-            _context7.t0 = _context7["catch"](2);
+          case 7:
+            _context7.prev = 7;
+            _context7.t0 = _context7["catch"](0);
             console.error("Error adding to cart:", ((_error$response9 = _context7.t0.response) === null || _error$response9 === void 0 ? void 0 : _error$response9.data) || _context7.t0.message);
-          case 12:
+          case 10:
           case "end":
             return _context7.stop();
         }
-      }, _callee7, null, [[2, 9]]);
+      }, _callee7, null, [[0, 7]]);
     }));
-    return function addToCart(_x8) {
+    return function addToCart(_x8, _x9, _x10) {
       return _ref7.apply(this, arguments);
     };
   }();
   var removeFromCartBackend = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8(productId) {
+    var _ref8 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8(productId, size, color) {
       var token, userId, _error$response10;
       return _regeneratorRuntime().wrap(function _callee8$(_context8) {
         while (1) switch (_context8.prev = _context8.next) {
@@ -119691,84 +119789,73 @@ var HomePage = function HomePage() {
             return axios__WEBPACK_IMPORTED_MODULE_9__["default"]["delete"]("".concat(API_URL, "/cart/remove/").concat(productId), {
               headers: {
                 Authorization: "Bearer ".concat(token)
+              },
+              data: {
+                size: size,
+                color: color
               }
             });
           case 5:
-            fetchCart(token, userId);
-            _context8.next = 11;
+            _context8.next = 7;
+            return fetchCart(token, userId);
+          case 7:
+            _context8.next = 12;
             break;
-          case 8:
-            _context8.prev = 8;
+          case 9:
+            _context8.prev = 9;
             _context8.t0 = _context8["catch"](2);
             console.error("Error removing from cart:", ((_error$response10 = _context8.t0.response) === null || _error$response10 === void 0 ? void 0 : _error$response10.data) || _context8.t0.message);
-          case 11:
+          case 12:
           case "end":
             return _context8.stop();
         }
-      }, _callee8, null, [[2, 8]]);
+      }, _callee8, null, [[2, 9]]);
     }));
-    return function removeFromCartBackend(_x9) {
+    return function removeFromCartBackend(_x11, _x12, _x13) {
       return _ref8.apply(this, arguments);
     };
   }();
   var handleAddToCart = function handleAddToCart(product) {
     return /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
-      var existingItem;
+      var token, userId;
       return _regeneratorRuntime().wrap(function _callee9$(_context9) {
         while (1) switch (_context9.prev = _context9.next) {
           case 0:
-            existingItem = cartItems.find(function (item) {
-              return item.id === product.id;
-            });
-            if (existingItem) {
-              _context9.next = 6;
-              break;
-            }
-            _context9.next = 4;
-            return addToCart(product);
-          case 4:
-            _context9.next = 7;
-            break;
-          case 6:
-            setCartItems(function (prev) {
-              return prev.map(function (item) {
-                return item.id === product.id ? _objectSpread(_objectSpread({}, item), {}, {
-                  quantity: item.quantity + 1
-                }) : item;
-              });
-            });
-          case 7:
+            token = localStorage.getItem('token');
+            userId = userProfile === null || userProfile === void 0 ? void 0 : userProfile.id;
+            navigate("/shop/".concat(product.id)); // Redirect to product page for size/color selection
+          case 3:
           case "end":
             return _context9.stop();
         }
       }, _callee9);
     }));
   };
-  var increaseCartQuantity = function increaseCartQuantity(itemId) {
+  var increaseCartQuantity = function increaseCartQuantity(itemId, size, color) {
     setCartItems(function (prev) {
       return prev.map(function (item) {
-        return item.id === itemId ? _objectSpread(_objectSpread({}, item), {}, {
+        return item.id === itemId && item.size === size && item.color === color ? _objectSpread(_objectSpread({}, item), {}, {
           quantity: item.quantity + 1
         }) : item;
       });
     });
   };
-  var decreaseCartQuantity = function decreaseCartQuantity(itemId) {
+  var decreaseCartQuantity = function decreaseCartQuantity(itemId, size, color) {
     setCartItems(function (prev) {
       return prev.map(function (item) {
-        return item.id === itemId && item.quantity > 1 ? _objectSpread(_objectSpread({}, item), {}, {
+        return item.id === itemId && item.size === size && item.color === color && item.quantity > 1 ? _objectSpread(_objectSpread({}, item), {}, {
           quantity: item.quantity - 1
         }) : item;
       });
     });
   };
-  var removeFromCart = function removeFromCart(itemId) {
+  var removeFromCart = function removeFromCart(itemId, size, color) {
     return /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
       return _regeneratorRuntime().wrap(function _callee10$(_context10) {
         while (1) switch (_context10.prev = _context10.next) {
           case 0:
             _context10.next = 2;
-            return removeFromCartBackend(itemId);
+            return removeFromCartBackend(itemId, size, color);
           case 2:
           case "end":
             return _context10.stop();
@@ -119807,36 +119894,40 @@ var HomePage = function HomePage() {
       }, _callee11);
     }));
   };
-
-  // Updated handleBuyNow to add to cart and navigate to checkout
   var handleBuyNow = function handleBuyNow(product) {
     return /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
-      var existingItem;
+      var token, userId, existingItem;
       return _regeneratorRuntime().wrap(function _callee12$(_context12) {
         while (1) switch (_context12.prev = _context12.next) {
           case 0:
+            token = localStorage.getItem('token');
+            userId = userProfile === null || userProfile === void 0 ? void 0 : userProfile.id;
             existingItem = cartItems.find(function (item) {
               return item.id === product.id;
             });
             if (existingItem) {
-              _context12.next = 4;
+              _context12.next = 6;
               break;
             }
-            _context12.next = 4;
-            return addToCart(product);
-          case 4:
-            // Navigate to the checkout page with the product details
+            _context12.next = 6;
+            return addToCart(product, token, userId);
+          case 6:
             navigate('/checkout', {
               state: {
                 product: product
               }
             });
-          case 5:
+          case 7:
           case "end":
             return _context12.stop();
         }
       }, _callee12);
     }));
+  };
+  var handleImageClick = function handleImageClick(productId) {
+    return function () {
+      navigate("/shop/".concat(productId));
+    };
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (latestWishlistItem) {
@@ -120044,7 +120135,11 @@ var HomePage = function HomePage() {
               className: "product-card",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
                 src: product.imagePreview || '/default-image.jpg',
-                alt: product.productName || 'Product'
+                alt: product.productName || 'Product',
+                onClick: handleImageClick(product.id),
+                style: {
+                  cursor: 'pointer'
+                }
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                 className: "product-actions",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
@@ -120247,7 +120342,7 @@ var Shop = function Shop() {
     path: "/profile"
   }, {
     label: "My Orders",
-    path: "/profile/orders"
+    path: "/order-history"
   }, {
     label: "Logout",
     path: "#",
@@ -120396,6 +120491,7 @@ var Shop = function Shop() {
             });
           case 3:
             response = _context2.sent;
+            console.log("Raw Cart API Response in HomePage:", response.data);
             cartData = response.data.data || response.data || [];
             detailedCart = cartData.map(function (item) {
               var _item$product4, _item$product5, _item$product6;
@@ -120404,21 +120500,24 @@ var Shop = function Shop() {
                 productName: ((_item$product4 = item.product) === null || _item$product4 === void 0 ? void 0 : _item$product4.product_name) || "Unknown Product",
                 price: ((_item$product5 = item.product) === null || _item$product5 === void 0 ? void 0 : _item$product5.price) || 0,
                 imagePreview: (_item$product6 = item.product) !== null && _item$product6 !== void 0 && _item$product6.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(item.product.image_1) : '/default-image.jpg',
-                quantity: item.quantity || 1
+                quantity: item.quantity || 1,
+                size: item.size || "Not specified",
+                color: item.color || "Not specified"
               };
             });
+            console.log("Mapped cartItems in HomePage:", detailedCart);
             setCartItems(detailedCart);
-            _context2.next = 12;
+            _context2.next = 14;
             break;
-          case 9:
-            _context2.prev = 9;
+          case 11:
+            _context2.prev = 11;
             _context2.t0 = _context2["catch"](0);
             console.error("Error fetching cart:", ((_error$response4 = _context2.t0.response) === null || _error$response4 === void 0 ? void 0 : _error$response4.data) || _context2.t0.message);
-          case 12:
+          case 14:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 9]]);
+      }, _callee2, null, [[0, 11]]);
     }));
     return function fetchCart(_x3, _x4) {
       return _ref2.apply(this, arguments);
@@ -121089,7 +121188,7 @@ var Header = function Header(_ref) {
                 id: notification.id,
                 message: "Your order #".concat(notification.order_id, " has been ").concat(notification.status.toLowerCase(), "!"),
                 time: formatTimeAgo(new Date(notification.created_at)),
-                productImage: notification.product_image || '/default-image.jpg' // Use full URL from backend
+                productImage: notification.product_image || '/default-image.jpg'
               };
             });
             setNotifications(formattedNotifications);
@@ -121152,8 +121251,7 @@ var Header = function Header(_ref) {
         return clearInterval(interval);
       }; // Cleanup on unmount
     }
-  }, [userProfile]); // Depend on userProfile to trigger when it’s set
-
+  }, [userProfile]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (latestWishlistItem) {
       setShowNotification(true);
@@ -121167,7 +121265,7 @@ var Header = function Header(_ref) {
   }, [latestWishlistItem]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     console.log("Current Notifications in Header:", notifications);
-    console.log("Current wishlistCount:", wishlistCount); // Debug log for wishlist count
+    console.log("Current wishlist Isaac:", wishlistCount); // Debug log for wishlist count
   }, [notifications, wishlistCount]);
 
   // Function to render the styled message (unchanged)
@@ -121313,12 +121411,7 @@ var Header = function Header(_ref) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
               src: latestWishlistItem.imagePreview || '/default-image.jpg',
               alt: latestWishlistItem.productName,
-              className: "wishlist-item-image",
-              style: {
-                width: '30px',
-                height: '30px',
-                marginRight: '10px'
-              }
+              className: "wishlist-item-image"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
               children: ["You added ", latestWishlistItem.productName, " to your wishlist! \uD83D\uDC96"]
             })]
@@ -121332,12 +121425,7 @@ var Header = function Header(_ref) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
                   src: item.imagePreview || '/default-image.jpg',
                   alt: item.productName,
-                  className: "wishlist-item-image",
-                  style: {
-                    width: '30px',
-                    height: '30px',
-                    marginRight: '10px'
-                  }
+                  className: "wishlist-item-image"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                   className: "wishlist-item-details",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
@@ -122132,14 +122220,16 @@ var Checkout = function Checkout() {
   var _location$state, _location$state2;
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useLocation)();
-
-  // Initialize cartItems from either cartItems (from cart) or a single product (from Buy Now)
+  var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
+  var API_URL = "http://127.0.0.1:8000/api";
   var initialCartItems = ((_location$state = location.state) === null || _location$state === void 0 ? void 0 : _location$state.cartItems) || ((_location$state2 = location.state) !== null && _location$state2 !== void 0 && _location$state2.product ? [{
     id: location.state.product.id,
-    productName: location.state.product.productName,
+    productName: location.state.product.product_name,
     price: location.state.product.price,
-    imagePreview: location.state.product.imagePreview,
-    quantity: location.state.quantity || 1
+    imagePreview: location.state.product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(location.state.product.image_1) : '/default-image.jpg',
+    quantity: location.state.quantity || 1,
+    size: location.state.selectedSize,
+    color: location.state.selectedColor
   }] : []);
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialCartItems),
     _useState2 = _slicedToArray(_useState, 2),
@@ -122230,8 +122320,6 @@ var Checkout = function Checkout() {
     _useState40 = _slicedToArray(_useState39, 2),
     loading = _useState40[0],
     setLoading = _useState40[1];
-  var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
-  var API_URL = "http://127.0.0.1:8000/api";
   var notifications = [{
     id: 1,
     message: "Your order #1234 has been shipped!",
@@ -122330,8 +122418,6 @@ var Checkout = function Checkout() {
                 streetAddress: ''
               });
               setCouriers(couriersResponse.data);
-
-              // If no cartItems were passed via state, fetch from backend
               if (!(initialCartItems.length === 0)) {
                 _context.next = 20;
                 break;
@@ -122372,7 +122458,7 @@ var Checkout = function Checkout() {
     if (cartItems.length === 0 && !((_location$state3 = location.state) !== null && _location$state3 !== void 0 && _location$state3.product)) {
       setError('Your cart is empty. Please add items to proceed with checkout.');
     } else {
-      setError(null); // Clear error if there are items
+      setError(null);
     }
   }, [cartItems, location.state]);
   var handleSearchSubmit = function handleSearchSubmit(e) {
@@ -122573,12 +122659,6 @@ var Checkout = function Checkout() {
       }, _callee5);
     }));
   };
-  var toggleOrderNote = function toggleOrderNote() {
-    setIsOrderNoteOpen(!isOrderNoteOpen);
-  };
-  var handleOrderNoteChange = function handleOrderNoteChange(e) {
-    setOrderNote(e.target.value);
-  };
   var calculateSubtotal = function calculateSubtotal() {
     return cartItems.reduce(function (total, item) {
       return total + (item.price || 0) * (item.quantity || 1);
@@ -122665,7 +122745,9 @@ var Checkout = function Checkout() {
               order_details: cartItems.map(function (item) {
                 return {
                   product_id: item.id,
-                  quantity: item.quantity
+                  quantity: item.quantity,
+                  size: item.size,
+                  color: item.color
                 };
               })
             };
@@ -122995,15 +123077,24 @@ var Checkout = function Checkout() {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
                 src: item.imagePreview || '/default-image.jpg',
                 alt: item.productName,
-                className: "summary-item-image"
+                className: "summary-item-image",
+                onError: function onError(e) {
+                  return e.target.src = '/default-image.jpg';
+                }
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "summary-item-details",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
                   className: "summary-item-name",
                   children: item.productName
+                }), item.size && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                  className: "summary-item-size",
+                  children: ["Size: ", item.size]
+                }), item.color && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                  className: "summary-item-color",
+                  children: ["Color: ", item.color]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
                   className: "summary-item-quantity",
-                  children: ["Quantity: ", item.quantity]
+                  children: ["Qty: ", item.quantity]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
                   className: "summary-item-price",
                   children: ["\u20B1", (item.price * item.quantity).toFixed(2)]
@@ -123125,7 +123216,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 var OrderDetails = function OrderDetails() {
-  var _order$courier2, _order$products, _order$courier3;
+  var _order$status, _order$courier2, _order$products, _order$courier3, _trackingHistory$find, _trackingHistory$find2;
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)(),
     orderId = _useParams.orderId;
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
@@ -123185,14 +123276,33 @@ var OrderDetails = function OrderDetails() {
     _useState28 = _slicedToArray(_useState27, 2),
     isSummaryOpen = _useState28[0],
     setIsSummaryOpen = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState30 = _slicedToArray(_useState29, 2),
+    isCancelModalOpen = _useState30[0],
+    setIsCancelModalOpen = _useState30[1];
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState32 = _slicedToArray(_useState31, 2),
+    cancelReason = _useState32[0],
+    setCancelReason = _useState32[1];
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState34 = _slicedToArray(_useState33, 2),
+    cancelComment = _useState34[0],
+    setCancelComment = _useState34[1];
+  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState36 = _slicedToArray(_useState35, 2),
+    isCancelDetailsOpen = _useState36[0],
+    setIsCancelDetailsOpen = _useState36[1]; // New state for cancellation details modal
+
   var API_URL = "http://127.0.0.1:8000/api";
   var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
-  var trackingSteps = ["PENDING", "PROCESSING", "SHIPPING", "DELIVERED"];
+  var trackingSteps = ["PENDING", "PROCESSING", "SHIPPING", "DELIVERED"]; // CANCELED handled separately
+
   var statusIconMap = {
     "PENDING": "pends",
     "PROCESSING": "proces",
     "SHIPPING": "ships",
-    "DELIVERED": "delivers"
+    "DELIVERED": "delivers",
+    "CANCELED": "canceled" // Add icon for canceled status
   };
   var notifications = [{
     id: 1,
@@ -123231,12 +123341,13 @@ var OrderDetails = function OrderDetails() {
     path: "/profile"
   }, {
     label: "My Orders",
-    path: "/profile/orders"
+    path: "/order-history"
   }, {
     label: "Logout",
     path: "#",
     onClick: handleLogout
   }];
+  var cancelReasons = ["Changed my mind", "Found a better price elsewhere", "Shipping takes too long"];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var token = localStorage.getItem('token');
     if (!token) {
@@ -123453,15 +123564,17 @@ var OrderDetails = function OrderDetails() {
     if (!e.target.closest('.support-container') && !e.target.closest('.support-link')) setIsSupportOpen(false);
     if (!e.target.closest('.cart-sidebar') && !e.target.closest('.header-icon')) setIsCartVisible(false);
     if (!e.target.closest('.profile-container') && !e.target.closest('.profile-button')) setIsProfileDropdownOpen(false);
+    if (!e.target.closest('.cancel-modal') && !e.target.closest('.cancel-order-btn')) setIsCancelModalOpen(false);
+    if (!e.target.closest('.cancel-details-modal') && !e.target.closest('.cancel-details-btn')) setIsCancelDetailsOpen(false);
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (isNotificationOpen || isWishlistOpen || isSupportOpen || isCartVisible || isProfileDropdownOpen) {
+    if (isNotificationOpen || isWishlistOpen || isSupportOpen || isCartVisible || isProfileDropdownOpen || isCancelModalOpen || isCancelDetailsOpen) {
       document.addEventListener('click', handleOutsideClick);
     }
     return function () {
       return document.removeEventListener('click', handleOutsideClick);
     };
-  }, [isNotificationOpen, isWishlistOpen, isSupportOpen, isCartVisible, isProfileDropdownOpen]);
+  }, [isNotificationOpen, isWishlistOpen, isSupportOpen, isCartVisible, isProfileDropdownOpen, isCancelModalOpen, isCancelDetailsOpen]);
   var cartCount = cartItems.reduce(function (total, item) {
     return total + item.quantity;
   }, 0);
@@ -123470,15 +123583,14 @@ var OrderDetails = function OrderDetails() {
   var reachedSteps = trackingHistory.map(function (tracking) {
     return (tracking.status || "").toUpperCase();
   });
-  var currentStepIndex = trackingSteps.map(function (step, index) {
+  var currentStepIndex = (order === null || order === void 0 ? void 0 : order.status) === "CANCELED" ? -1 // No progress for canceled orders
+  : trackingSteps.map(function (step, index) {
     return reachedSteps.includes(step) ? index : -1;
   }).filter(function (index) {
     return index !== -1;
   }).reduce(function (max, curr) {
     return Math.max(max, curr);
   }, -1);
-
-  // Restore tracking timestamps
   var trackingTimestamps = {};
   trackingHistory.forEach(function (tracking) {
     var status = (tracking.status || "").toUpperCase();
@@ -123488,59 +123600,116 @@ var OrderDetails = function OrderDetails() {
     var _order$courier;
     return (order === null || order === void 0 || (_order$courier = order.courier) === null || _order$courier === void 0 ? void 0 : _order$courier.estimated_delivery_time) || "N/A";
   };
-  var handleCancelOrder = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-      var confirmCancel, token, orderResponse, _error$response3;
+  var handleCancelOrder = function handleCancelOrder() {
+    if (!order || !orderId) return;
+    setIsCancelModalOpen(true);
+  };
+  var handleCancelSubmit = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(e) {
+      var token, orderResponse, _error$response3, _error$response4;
       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
         while (1) switch (_context5.prev = _context5.next) {
           case 0:
-            if (!(!order || !orderId)) {
-              _context5.next = 2;
+            e.preventDefault();
+            if (cancelReason) {
+              _context5.next = 4;
               break;
             }
+            alert("Please select a reason for cancellation.");
             return _context5.abrupt("return");
-          case 2:
-            confirmCancel = window.confirm("Are you sure you want to cancel this order?");
-            if (confirmCancel) {
-              _context5.next = 5;
-              break;
-            }
-            return _context5.abrupt("return");
-          case 5:
-            _context5.prev = 5;
+          case 4:
+            _context5.prev = 4;
             token = localStorage.getItem('token');
-            _context5.next = 9;
-            return axios__WEBPACK_IMPORTED_MODULE_6__["default"].post("".concat(API_URL, "/orders/").concat(orderId, "/cancel"), {}, {
+            _context5.next = 8;
+            return axios__WEBPACK_IMPORTED_MODULE_6__["default"].put("".concat(API_URL, "/orders/").concat(orderId), {
+              status: 'CANCELED',
+              reason: cancelReason,
+              comment: cancelComment
+            }, {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
             });
-          case 9:
-            _context5.next = 11;
+          case 8:
+            _context5.next = 10;
             return axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/orders/").concat(orderId), {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
             });
-          case 11:
+          case 10:
             orderResponse = _context5.sent;
             setOrder(orderResponse.data);
+            setIsCancelModalOpen(false);
+            setCancelReason('');
+            setCancelComment('');
             alert("Order has been canceled successfully");
-            _context5.next = 20;
+            _context5.next = 22;
             break;
-          case 16:
-            _context5.prev = 16;
-            _context5.t0 = _context5["catch"](5);
-            console.error("Error canceling order:", ((_error$response3 = _context5.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.data) || _context5.t0.message);
+          case 18:
+            _context5.prev = 18;
+            _context5.t0 = _context5["catch"](4);
+            console.error("Error canceling order:", (_error$response3 = _context5.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.status, ((_error$response4 = _context5.t0.response) === null || _error$response4 === void 0 ? void 0 : _error$response4.data) || _context5.t0.message);
             alert("Failed to cancel order. Please try again later.");
-          case 20:
+          case 22:
           case "end":
             return _context5.stop();
         }
-      }, _callee5, null, [[5, 16]]);
+      }, _callee5, null, [[4, 18]]);
     }));
-    return function handleCancelOrder() {
+    return function handleCancelSubmit(_x4) {
       return _ref5.apply(this, arguments);
+    };
+  }();
+  var handleBuyAgain = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+      var token, productsToAdd, _error$response5;
+      return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+        while (1) switch (_context6.prev = _context6.next) {
+          case 0:
+            if (!(!(order !== null && order !== void 0 && order.products) || order.products.length === 0)) {
+              _context6.next = 2;
+              break;
+            }
+            return _context6.abrupt("return");
+          case 2:
+            _context6.prev = 2;
+            token = localStorage.getItem('token');
+            productsToAdd = order.products.map(function (product) {
+              return {
+                product_id: product.id,
+                quantity: product.quantity
+              };
+            });
+            _context6.next = 7;
+            return Promise.all(productsToAdd.map(function (product) {
+              return axios__WEBPACK_IMPORTED_MODULE_6__["default"].post("".concat(API_URL, "/cart/add"), product, {
+                headers: {
+                  Authorization: "Bearer ".concat(token)
+                }
+              });
+            }));
+          case 7:
+            _context6.next = 9;
+            return fetchCart(token, userProfile.id);
+          case 9:
+            alert("Items have been added to your cart!");
+            setIsCartVisible(true); // Open cart sidebar
+            _context6.next = 17;
+            break;
+          case 13:
+            _context6.prev = 13;
+            _context6.t0 = _context6["catch"](2);
+            console.error("Error adding items to cart:", ((_error$response5 = _context6.t0.response) === null || _error$response5 === void 0 ? void 0 : _error$response5.data) || _context6.t0.message);
+            alert("Failed to add items to cart. Please try again.");
+          case 17:
+          case "end":
+            return _context6.stop();
+        }
+      }, _callee6, null, [[2, 13]]);
+    }));
+    return function handleBuyAgain() {
+      return _ref6.apply(this, arguments);
     };
   }();
   if (loading) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
@@ -123549,8 +123718,9 @@ var OrderDetails = function OrderDetails() {
   if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
     children: ["Error: ", error]
   });
-  var currentStatus = reachedSteps.length > 0 ? reachedSteps[reachedSteps.length - 1] : "PENDING";
+  var currentStatus = (order === null || order === void 0 || (_order$status = order.status) === null || _order$status === void 0 ? void 0 : _order$status.toUpperCase()) || "PENDING";
   var canCancel = currentStatus === "PENDING";
+  var isCanceled = currentStatus === "CANCELED";
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "OrderDetails",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_HeaderNav_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -123586,15 +123756,24 @@ var OrderDetails = function OrderDetails() {
       decreaseCartQuantity: decreaseCartQuantity,
       removeFromCart: removeFromCart,
       navigate: navigate
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "order-details-page",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "order-details-container",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "order-status-container",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
             children: "Order Status"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          }), isCanceled ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "canceled-status",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+              src: "/imgs/canceled.svg",
+              alt: "Canceled",
+              className: "status-icon canceled-icon"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+              children: "Order Canceled"
+            })]
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "progress-bar-container",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "progress-steps",
@@ -123620,13 +123799,25 @@ var OrderDetails = function OrderDetails() {
                 }, step);
               })
             })
-          }), canCancel && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "cancel-order-container",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "order-actions-container",
+            children: [canCancel && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
               className: "cancel-order-btn",
               onClick: handleCancelOrder,
               children: "Cancel Order"
-            })
+            }), isCanceled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                className: "cancel-details-btn",
+                onClick: function onClick() {
+                  return setIsCancelDetailsOpen(true);
+                },
+                children: "Cancellation Details"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                className: "buy-again-btn",
+                onClick: handleBuyAgain,
+                children: "Buy Again"
+              })]
+            })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "order-info-container",
@@ -123660,12 +123851,15 @@ var OrderDetails = function OrderDetails() {
                 }), " ", calculateEstimatedDelivery()]
               })
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            className: "toggle-summary-btn",
-            onClick: function onClick() {
-              return setIsSummaryOpen(!isSummaryOpen);
-            },
-            children: isSummaryOpen ? "Hide Order Details" : "Show Order Details"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "order-actions",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              className: "toggle-summary-btn",
+              onClick: function onClick() {
+                return setIsSummaryOpen(!isSummaryOpen);
+              },
+              children: isSummaryOpen ? "Hide Order Details" : "Show Order Details"
+            })
           }), isSummaryOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "order-summary-container",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
@@ -123724,7 +123918,113 @@ var OrderDetails = function OrderDetails() {
             })]
           })]
         })]
-      })
+      }), isCancelModalOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "cancel-modal",
+        onClick: function onClick() {
+          return setIsCancelModalOpen(false);
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "modal-content",
+          onClick: function onClick(e) {
+            return e.stopPropagation();
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h2", {
+            children: ["Cancel Order #", order === null || order === void 0 ? void 0 : order.id]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+            onSubmit: handleCancelSubmit,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "form-group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                children: "Reason for Cancellation"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("select", {
+                value: cancelReason,
+                onChange: function onChange(e) {
+                  return setCancelReason(e.target.value);
+                },
+                required: true,
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+                  value: "",
+                  children: "Select a reason"
+                }), cancelReasons.map(function (reason, index) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+                    value: reason,
+                    children: reason
+                  }, index);
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "form-group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                children: "Additional Comments (Optional)"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("textarea", {
+                value: cancelComment,
+                onChange: function onChange(e) {
+                  return setCancelComment(e.target.value);
+                },
+                placeholder: "Please provide any additional details...",
+                rows: "4"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "form-buttons",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                type: "submit",
+                className: "modal-save-btn",
+                children: "Submit Cancellation"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                type: "button",
+                className: "modal-cancel-btn",
+                onClick: function onClick() {
+                  return setIsCancelModalOpen(false);
+                },
+                children: "Close"
+              })]
+            })]
+          })]
+        })
+      }), isCancelDetailsOpen && isCanceled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "cancel-details-modal",
+        onClick: function onClick() {
+          return setIsCancelDetailsOpen(false);
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "modal-content",
+          onClick: function onClick(e) {
+            return e.stopPropagation();
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h2", {
+            children: ["Cancellation Details for Order #", order === null || order === void 0 ? void 0 : order.id]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "cancel-details-content",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+                children: "Reason:"
+              }), " ", ((_trackingHistory$find = trackingHistory.find(function (t) {
+                return t.status === "CANCELED";
+              })) === null || _trackingHistory$find === void 0 || (_trackingHistory$find = _trackingHistory$find.remarks) === null || _trackingHistory$find === void 0 || (_trackingHistory$find = _trackingHistory$find.split(" | ")[0]) === null || _trackingHistory$find === void 0 ? void 0 : _trackingHistory$find.replace("Reason: ", "")) || "Not specified"]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+                children: "Comment:"
+              }), " ", ((_trackingHistory$find2 = trackingHistory.find(function (t) {
+                return t.status === "CANCELED";
+              })) === null || _trackingHistory$find2 === void 0 || (_trackingHistory$find2 = _trackingHistory$find2.remarks) === null || _trackingHistory$find2 === void 0 || (_trackingHistory$find2 = _trackingHistory$find2.split(" | ")[1]) === null || _trackingHistory$find2 === void 0 ? void 0 : _trackingHistory$find2.replace("Comment: ", "")) || "None"]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+                children: "Canceled On:"
+              }), " ", trackingTimestamps["CANCELED"] ? new Date(trackingTimestamps["CANCELED"]).toLocaleString() : "N/A"]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "form-buttons",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              type: "button",
+              className: "modal-cancel-btn",
+              onClick: function onClick() {
+                return setIsCancelDetailsOpen(false);
+              },
+              children: "Close"
+            })
+          })]
+        })
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_FooterNav_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
   });
 };
@@ -124145,6 +124445,1289 @@ var ResetPassword = function ResetPassword() {
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ResetPassword);
+
+/***/ }),
+
+/***/ "./resources/js/components/ProductViews/ProductReview.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/ProductViews/ProductReview.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var _HeaderNav_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../HeaderNav/Header */ "./resources/js/components/HeaderNav/Header.js");
+/* harmony import */ var _FooterNav_Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../FooterNav/Footer */ "./resources/js/components/FooterNav/Footer.js");
+/* harmony import */ var _HeaderArea_CartSidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../HeaderArea/CartSidebar */ "./resources/js/components/HeaderArea/CartSidebar.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+
+
+
+var ProductReview = function ProductReview() {
+  var _order$products;
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)(),
+    orderId = _useParams.orderId;
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    order = _useState2[0],
+    setOrder = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState4 = _slicedToArray(_useState3, 2),
+    loading = _useState4[0],
+    setLoading = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    error = _useState6[0],
+    setError = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState8 = _slicedToArray(_useState7, 2),
+    reviews = _useState8[0],
+    setReviews = _useState8[1]; // Store new review inputs
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState10 = _slicedToArray(_useState9, 2),
+    existingReviews = _useState10[0],
+    setExistingReviews = _useState10[1]; // Store fetched reviews per product
+  var API_URL = "http://127.0.0.1:8000/api";
+  var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
+
+  // Reuse some state from OrderDetails for consistency (e.g., cart, header)
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState12 = _slicedToArray(_useState11, 2),
+    cartItems = _useState12[0],
+    setCartItems = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState14 = _slicedToArray(_useState13, 1),
+    wishlistedItems = _useState14[0];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState16 = _slicedToArray(_useState15, 2),
+    searchQuery = _useState16[0],
+    setSearchQuery = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    isSearchOpen = _useState18[0],
+    setIsSearchOpen = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState20 = _slicedToArray(_useState19, 2),
+    isNotificationOpen = _useState20[0],
+    setIsNotificationOpen = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState22 = _slicedToArray(_useState21, 2),
+    isWishlistOpen = _useState22[0],
+    setIsWishlistOpen = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState24 = _slicedToArray(_useState23, 2),
+    isSupportOpen = _useState24[0],
+    setIsSupportOpen = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState26 = _slicedToArray(_useState25, 2),
+    isCartVisible = _useState26[0],
+    setIsCartVisible = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState28 = _slicedToArray(_useState27, 2),
+    userProfile = _useState28[0],
+    setUserProfile = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState30 = _slicedToArray(_useState29, 2),
+    isProfileDropdownOpen = _useState30[0],
+    setIsProfileDropdownOpen = _useState30[1];
+  var notifications = [{
+    id: 1,
+    message: "Your order #1234 has been shipped!",
+    time: "2 hours ago"
+  }, {
+    id: 2,
+    message: "New collection available now!",
+    time: "5 hours ago"
+  }, {
+    id: 3,
+    message: "20% off sale ends tomorrow!",
+    time: "1 day ago"
+  }];
+  var supportItems = [{
+    label: "ORDER & PAYMENT",
+    path: "/customer/support/order-payment"
+  }, {
+    label: "SHIPPING",
+    path: "/customer/support/shipping"
+  }, {
+    label: "RETURNS",
+    path: "/customer/support/returns"
+  }, {
+    label: "CONTACT US",
+    path: "/customer/support/contact-us"
+  }, {
+    label: "TERMS AND SERVICE",
+    path: "/customer/support/terms-and-service"
+  }, {
+    label: "FAQS",
+    path: "/customer/support/faqs"
+  }];
+  var profileDropdownItems = [{
+    label: "My Profile",
+    path: "/profile"
+  }, {
+    label: "My Orders",
+    path: "/profile/orders"
+  }, {
+    label: "Logout",
+    path: "#",
+    onClick: handleLogout
+  }];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+    var fetchOrderAndReviews = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var _profileResponse$data, config, orderResponse, profileResponse, profileData, user, reviewsData, initialReviews;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              config = {
+                headers: {
+                  Authorization: "Bearer ".concat(token)
+                }
+              }; // Fetch order details
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/orders/").concat(orderId), config);
+            case 4:
+              orderResponse = _context2.sent;
+              setOrder(orderResponse.data);
+
+              // Fetch user profile
+              _context2.next = 8;
+              return axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/profile"), config);
+            case 8:
+              profileResponse = _context2.sent;
+              profileData = profileResponse.data.profile;
+              user = {
+                id: profileResponse.data.user.id,
+                first_name: profileData.first_name || '',
+                email: ((_profileResponse$data = profileResponse.data.user) === null || _profileResponse$data === void 0 ? void 0 : _profileResponse$data.email) || '',
+                profile_pic: profileData.profile_pic ? "".concat(BASE_IMAGE_URL, "/").concat(profileData.profile_pic) : '/imgs/Profile.svg'
+              };
+              setUserProfile(user);
+
+              // Fetch existing reviews for each product
+              reviewsData = {};
+              _context2.next = 15;
+              return Promise.all(orderResponse.data.products.map(/*#__PURE__*/function () {
+                var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(product) {
+                  var reviewResponse;
+                  return _regeneratorRuntime().wrap(function _callee$(_context) {
+                    while (1) switch (_context.prev = _context.next) {
+                      case 0:
+                        _context.next = 2;
+                        return axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/reviews/").concat(product.id), config);
+                      case 2:
+                        reviewResponse = _context.sent;
+                        reviewsData[product.id] = reviewResponse.data || [];
+                      case 4:
+                      case "end":
+                        return _context.stop();
+                    }
+                  }, _callee);
+                }));
+                return function (_x) {
+                  return _ref2.apply(this, arguments);
+                };
+              }()));
+            case 15:
+              setExistingReviews(reviewsData);
+
+              // Initialize new review inputs
+              initialReviews = {};
+              orderResponse.data.products.forEach(function (product) {
+                initialReviews[product.id] = {
+                  rating: 0,
+                  comment: ''
+                };
+              });
+              setReviews(initialReviews);
+              _context2.next = 24;
+              break;
+            case 21:
+              _context2.prev = 21;
+              _context2.t0 = _context2["catch"](0);
+              setError(_context2.t0.message || "Failed to load order or review data.");
+            case 24:
+              _context2.prev = 24;
+              setLoading(false);
+              return _context2.finish(24);
+            case 27:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[0, 21, 24, 27]]);
+      }));
+      return function fetchOrderAndReviews() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+    fetchOrderAndReviews();
+  }, [orderId, navigate]);
+  var handleRatingChange = function handleRatingChange(productId, rating) {
+    setReviews(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, productId, _objectSpread(_objectSpread({}, prev[productId]), {}, {
+        rating: rating
+      })));
+    });
+  };
+  var handleCommentChange = function handleCommentChange(productId, comment) {
+    setReviews(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, productId, _objectSpread(_objectSpread({}, prev[productId]), {}, {
+        comment: comment
+      })));
+    });
+  };
+  var handleSubmitReview = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(productId) {
+      var token, reviewData, response, _error$response, _error$response2;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            token = localStorage.getItem('token');
+            reviewData = reviews[productId];
+            if (!(!reviewData.rating || reviewData.rating < 1)) {
+              _context3.next = 5;
+              break;
+            }
+            alert("Please provide a rating.");
+            return _context3.abrupt("return");
+          case 5:
+            _context3.prev = 5;
+            _context3.next = 8;
+            return axios__WEBPACK_IMPORTED_MODULE_6__["default"].post("".concat(API_URL, "/reviews"), {
+              order_id: orderId,
+              product_id: productId,
+              rating: reviewData.rating,
+              review: reviewData.comment // Changed 'comment' to 'review' to match backend
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 8:
+            response = _context3.sent;
+            alert("Review submitted successfully!");
+
+            // Update existing reviews state with the new review
+            setExistingReviews(function (prev) {
+              return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, productId, [].concat(_toConsumableArray(prev[productId] || []), [response.data.review])));
+            });
+
+            // Reset the review input for this product
+            setReviews(function (prev) {
+              return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, productId, {
+                rating: 0,
+                comment: ''
+              }));
+            });
+
+            // Optionally redirect back to OrderDetails
+            // navigate(`/orders/${orderId}`);
+            _context3.next = 18;
+            break;
+          case 14:
+            _context3.prev = 14;
+            _context3.t0 = _context3["catch"](5);
+            console.error("Error submitting review:", ((_error$response = _context3.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context3.t0.message);
+            alert("Failed to submit review: " + (((_error$response2 = _context3.t0.response) === null || _error$response2 === void 0 || (_error$response2 = _error$response2.data) === null || _error$response2 === void 0 ? void 0 : _error$response2.message) || _context3.t0.message));
+          case 18:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[5, 14]]);
+    }));
+    return function handleSubmitReview(_x2) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  var handleLogout = function handleLogout() {
+    var confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      setCartItems([]);
+      navigate('/login');
+    }
+  };
+
+  // Calculate average rating for a product
+  var getAverageRating = function getAverageRating(productId) {
+    var productReviews = existingReviews[productId] || [];
+    if (productReviews.length === 0) return 0;
+    var totalRating = productReviews.reduce(function (sum, review) {
+      return sum + review.rating;
+    }, 0);
+    return (totalRating / productReviews.length).toFixed(1);
+  };
+  if (loading) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+    children: "Loading..."
+  });
+  if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+    children: ["Error: ", error]
+  });
+  var cartCount = cartItems.reduce(function (total, item) {
+    return total + item.quantity;
+  }, 0);
+  var wishlistCount = wishlistedItems.length;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    className: "ProductReview",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_HeaderNav_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      isSearchOpen: isSearchOpen,
+      setIsSearchOpen: setIsSearchOpen,
+      searchQuery: searchQuery,
+      setSearchQuery: setSearchQuery,
+      handleSearchSubmit: function handleSearchSubmit() {},
+      isNotificationOpen: isNotificationOpen,
+      setIsNotificationOpen: setIsNotificationOpen,
+      notifications: notifications,
+      isWishlistOpen: isWishlistOpen,
+      setIsWishlistOpen: setIsWishlistOpen,
+      wishlistedItems: wishlistedItems,
+      wishlistCount: wishlistCount,
+      handleWishlistToggle: function handleWishlistToggle() {},
+      isSupportOpen: isSupportOpen,
+      setIsSupportOpen: setIsSupportOpen,
+      supportItems: supportItems,
+      isCartVisible: isCartVisible,
+      setIsCartVisible: setIsCartVisible,
+      cartCount: cartCount,
+      userProfile: userProfile,
+      isProfileDropdownOpen: isProfileDropdownOpen,
+      setIsProfileDropdownOpen: setIsProfileDropdownOpen,
+      profileDropdownItems: profileDropdownItems
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_HeaderArea_CartSidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      isCartVisible: isCartVisible,
+      setIsCartVisible: setIsCartVisible,
+      cartItems: cartItems,
+      cartCount: cartCount,
+      increaseCartQuantity: function increaseCartQuantity() {} // Add logic if needed
+      ,
+      decreaseCartQuantity: function decreaseCartQuantity() {} // Add logic if needed
+      ,
+      removeFromCart: function removeFromCart() {} // Add logic if needed
+      ,
+      navigate: navigate
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "review-page",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h2", {
+        children: ["Review Order #", order === null || order === void 0 ? void 0 : order.id]
+      }), (order === null || order === void 0 || (_order$products = order.products) === null || _order$products === void 0 ? void 0 : _order$products.length) > 0 ? order.products.map(function (product) {
+        var _reviews$product$id, _reviews$product$id2;
+        var imageUrl = product.image_1 ? product.image_1.startsWith('http') ? product.image_1 : "".concat(BASE_IMAGE_URL, "/").concat(product.image_1) : "/default-image.jpg";
+        var productReviews = existingReviews[product.id] || [];
+        var averageRating = getAverageRating(product.id);
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "review-item",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "product-info",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+              src: imageUrl,
+              alt: product.product_name,
+              className: "product-image"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+                children: product.product_name
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                children: ["Quantity: ", product.quantity]
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "existing-reviews",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h3", {
+              children: ["Reviews (", productReviews.length, ")"]
+            }), productReviews.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                children: ["Average Rating: ", averageRating, " / 5"]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
+                children: productReviews.map(function (review) {
+                  var _review$user;
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
+                    className: "review",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+                        children: ((_review$user = review.user) === null || _review$user === void 0 ? void 0 : _review$user.first_name) || 'Anonymous'
+                      }), ": ", review.rating, " / 5"]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                      children: review.review || 'No comment'
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+                        children: new Date(review.created_at).toLocaleDateString()
+                      })
+                    })]
+                  }, review.id);
+                })
+              })]
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+              children: "No reviews yet."
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "review-form",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+              children: "Submit Your Review"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: "Rating (1-5):"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("select", {
+              value: ((_reviews$product$id = reviews[product.id]) === null || _reviews$product$id === void 0 ? void 0 : _reviews$product$id.rating) || 0,
+              onChange: function onChange(e) {
+                return handleRatingChange(product.id, Number(e.target.value));
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+                value: 0,
+                children: "Select Rating"
+              }), [1, 2, 3, 4, 5].map(function (rating) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+                  value: rating,
+                  children: rating
+                }, rating);
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: "Comment:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("textarea", {
+              value: ((_reviews$product$id2 = reviews[product.id]) === null || _reviews$product$id2 === void 0 ? void 0 : _reviews$product$id2.comment) || '',
+              onChange: function onChange(e) {
+                return handleCommentChange(product.id, e.target.value);
+              },
+              placeholder: "Write your review here..."
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              onClick: function onClick() {
+                return handleSubmitReview(product.id);
+              },
+              className: "submit-review-btn",
+              children: "Submit Review"
+            })]
+          })]
+        }, product.id);
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+        children: "No products available to review."
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_FooterNav_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductReview);
+
+/***/ }),
+
+/***/ "./resources/js/components/ProductViews/ProductView.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/ProductViews/ProductView.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var _HeaderNav_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../HeaderNav/Header */ "./resources/js/components/HeaderNav/Header.js");
+/* harmony import */ var _FooterNav_Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../FooterNav/Footer */ "./resources/js/components/FooterNav/Footer.js");
+/* harmony import */ var _HeaderArea_CartSidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../HeaderArea/CartSidebar */ "./resources/js/components/HeaderArea/CartSidebar.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+
+
+
+var ProductView = function ProductView() {
+  var _product$price$toLoca, _product$price, _product$colors, _product$sizes;
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)(),
+    productId = _useParams.productId;
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    product = _useState2[0],
+    setProduct = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    error = _useState4[0],
+    setError = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState6 = _slicedToArray(_useState5, 2),
+    quantity = _useState6[0],
+    setQuantity = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState8 = _slicedToArray(_useState7, 2),
+    selectedSize = _useState8[0],
+    setSelectedSize = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState10 = _slicedToArray(_useState9, 2),
+    selectedColor = _useState10[0],
+    setSelectedColor = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState12 = _slicedToArray(_useState11, 2),
+    isWishlisted = _useState12[0],
+    setIsWishlisted = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState14 = _slicedToArray(_useState13, 2),
+    reviews = _useState14[0],
+    setReviews = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState16 = _slicedToArray(_useState15, 2),
+    searchQuery = _useState16[0],
+    setSearchQuery = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    isSearchOpen = _useState18[0],
+    setIsSearchOpen = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState20 = _slicedToArray(_useState19, 2),
+    isNotificationOpen = _useState20[0],
+    setIsNotificationOpen = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState22 = _slicedToArray(_useState21, 2),
+    isWishlistOpen = _useState22[0],
+    setIsWishlistOpen = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState24 = _slicedToArray(_useState23, 2),
+    isSupportOpen = _useState24[0],
+    setIsSupportOpen = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState26 = _slicedToArray(_useState25, 2),
+    isCartVisible = _useState26[0],
+    setIsCartVisible = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState28 = _slicedToArray(_useState27, 2),
+    wishlistedItems = _useState28[0],
+    setWishlistedItems = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState30 = _slicedToArray(_useState29, 2),
+    cartItems = _useState30[0],
+    setCartItems = _useState30[1];
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState32 = _slicedToArray(_useState31, 2),
+    userProfile = _useState32[0],
+    setUserProfile = _useState32[1];
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState34 = _slicedToArray(_useState33, 2),
+    isProfileDropdownOpen = _useState34[0],
+    setIsProfileDropdownOpen = _useState34[1];
+  var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
+  var API_URL = "http://127.0.0.1:8000/api";
+  var supportItems = [{
+    label: "ORDER & PAYMENT",
+    path: "/customer/support/order-payment"
+  }, {
+    label: "SHIPPING",
+    path: "/customer/support/shipping"
+  }, {
+    label: "RETURNS",
+    path: "/customer/support/returns"
+  }, {
+    label: "CONTACT US",
+    path: "/customer/support/contact-us"
+  }, {
+    label: "TERMS AND SERVICE",
+    path: "/customer/support/terms-and-service"
+  }];
+  var profileDropdownItems = [{
+    label: "My Profile",
+    path: "/profile"
+  }, {
+    label: "My Orders",
+    path: "/profile/orders"
+  }, {
+    label: "Logout",
+    path: "#",
+    onClick: handleLogout
+  }];
+  var notifications = [{
+    id: 1,
+    message: "Your order #1234 has been shipped!",
+    time: "2 hours ago"
+  }, {
+    id: 2,
+    message: "New collection available now!",
+    time: "5 hours ago"
+  }, {
+    id: 3,
+    message: "20% off sale ends tomorrow!",
+    time: "1 day ago"
+  }];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+    var fetchData = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var _productResponse$data, _productResponse$data2, _profileResponse$data, config, _yield$Promise$all, _yield$Promise$all2, productResponse, profileResponse, wishlistResponse, cartResponse, reviewsResponse, profileData, user, wishlistData, detailedWishlist, cartData, detailedCart, _err$response;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              config = {
+                headers: {
+                  Authorization: "Bearer ".concat(token)
+                }
+              };
+              _context.next = 4;
+              return Promise.all([axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/products/").concat(productId), config), axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/profile"), config), axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/wishlist"), config), axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/cart"), config), axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/reviews/").concat(productId), config)]);
+            case 4:
+              _yield$Promise$all = _context.sent;
+              _yield$Promise$all2 = _slicedToArray(_yield$Promise$all, 5);
+              productResponse = _yield$Promise$all2[0];
+              profileResponse = _yield$Promise$all2[1];
+              wishlistResponse = _yield$Promise$all2[2];
+              cartResponse = _yield$Promise$all2[3];
+              reviewsResponse = _yield$Promise$all2[4];
+              if (!(!productResponse.data || Object.keys(productResponse.data).length === 0)) {
+                _context.next = 13;
+                break;
+              }
+              throw new Error("No product data returned");
+            case 13:
+              setProduct(productResponse.data);
+              setSelectedSize(((_productResponse$data = productResponse.data.sizes) === null || _productResponse$data === void 0 ? void 0 : _productResponse$data[0]) || "");
+              setSelectedColor(((_productResponse$data2 = productResponse.data.colors) === null || _productResponse$data2 === void 0 ? void 0 : _productResponse$data2[0]) || "");
+              profileData = profileResponse.data.profile || {};
+              user = {
+                id: profileResponse.data.user.id,
+                first_name: profileData.first_name || "",
+                last_name: profileData.last_name || "",
+                email: ((_profileResponse$data = profileResponse.data.user) === null || _profileResponse$data === void 0 ? void 0 : _profileResponse$data.email) || "",
+                profile_pic: profileData.profile_pic ? "".concat(BASE_IMAGE_URL, "/").concat(profileData.profile_pic) : "/imgs/Profile.svg"
+              };
+              setUserProfile(user);
+              wishlistData = wishlistResponse.data.data || wishlistResponse.data || [];
+              detailedWishlist = wishlistData.map(function (item) {
+                var _item$product, _item$product2, _item$product3;
+                return {
+                  id: item.product_id,
+                  productName: ((_item$product = item.product) === null || _item$product === void 0 ? void 0 : _item$product.product_name) || "Unknown Product",
+                  price: ((_item$product2 = item.product) === null || _item$product2 === void 0 ? void 0 : _item$product2.price) || 0,
+                  imagePreview: (_item$product3 = item.product) !== null && _item$product3 !== void 0 && _item$product3.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(item.product.image_1) : "/default-image.jpg",
+                  created_at: item.created_at || new Date().toISOString()
+                };
+              });
+              setWishlistedItems(detailedWishlist);
+              setIsWishlisted(detailedWishlist.some(function (item) {
+                return item.id === parseInt(productId);
+              }));
+              cartData = cartResponse.data.data || cartResponse.data || [];
+              detailedCart = cartData.map(function (item) {
+                var _item$product4, _item$product5, _item$product6;
+                return {
+                  id: item.product_id,
+                  productName: ((_item$product4 = item.product) === null || _item$product4 === void 0 ? void 0 : _item$product4.product_name) || "Unknown Product",
+                  price: ((_item$product5 = item.product) === null || _item$product5 === void 0 ? void 0 : _item$product5.price) || 0,
+                  imagePreview: (_item$product6 = item.product) !== null && _item$product6 !== void 0 && _item$product6.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(item.product.image_1) : "/default-image.jpg",
+                  quantity: item.quantity || 1,
+                  size: item.size || "Not specified",
+                  color: item.color || "Not specified"
+                };
+              });
+              setCartItems(detailedCart);
+              setReviews(reviewsResponse.data || []);
+              _context.next = 34;
+              break;
+            case 29:
+              _context.prev = 29;
+              _context.t0 = _context["catch"](0);
+              console.error("Error fetching data:", _context.t0);
+              setError(_context.t0.message || "Failed to load product or reviews");
+              if (((_err$response = _context.t0.response) === null || _err$response === void 0 ? void 0 : _err$response.status) === 401) {
+                localStorage.removeItem("token");
+                localStorage.removeItem("role");
+                navigate("/login");
+              }
+            case 34:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee, null, [[0, 29]]);
+      }));
+      return function fetchData() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+    fetchData();
+  }, [productId, navigate]);
+  var increaseQuantity = function increaseQuantity() {
+    return setQuantity(function (prev) {
+      return prev + 1;
+    });
+  };
+  var decreaseQuantity = function decreaseQuantity() {
+    return setQuantity(function (prev) {
+      return prev > 1 ? prev - 1 : 1;
+    });
+  };
+  var handleSizeSelect = function handleSizeSelect(size) {
+    return setSelectedSize(size);
+  };
+  var handleColorSelect = function handleColorSelect(color) {
+    return setSelectedColor(color);
+  };
+  var _handleWishlistToggle = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var token, userId;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            token = localStorage.getItem("token");
+            userId = userProfile === null || userProfile === void 0 ? void 0 : userProfile.id;
+            if (!(!token || !userId)) {
+              _context2.next = 4;
+              break;
+            }
+            return _context2.abrupt("return");
+          case 4:
+            _context2.prev = 4;
+            if (!isWishlisted) {
+              _context2.next = 11;
+              break;
+            }
+            _context2.next = 8;
+            return axios__WEBPACK_IMPORTED_MODULE_6__["default"]["delete"]("".concat(API_URL, "/wishlist/").concat(productId), {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 8:
+            setWishlistedItems(function (prev) {
+              return prev.filter(function (item) {
+                return item.id !== parseInt(productId);
+              });
+            });
+            _context2.next = 14;
+            break;
+          case 11:
+            _context2.next = 13;
+            return axios__WEBPACK_IMPORTED_MODULE_6__["default"].post("".concat(API_URL, "/wishlist"), {
+              user_id: userId,
+              product_id: productId
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 13:
+            setWishlistedItems(function (prev) {
+              return [{
+                id: parseInt(productId),
+                productName: product.product_name,
+                price: product.price,
+                imagePreview: product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_1) : "/default-image.jpg",
+                created_at: new Date().toISOString()
+              }].concat(_toConsumableArray(prev));
+            });
+          case 14:
+            setIsWishlisted(function (prev) {
+              return !prev;
+            });
+            _context2.next = 20;
+            break;
+          case 17:
+            _context2.prev = 17;
+            _context2.t0 = _context2["catch"](4);
+            console.error("Error toggling wishlist:", _context2.t0);
+          case 20:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[4, 17]]);
+    }));
+    return function handleWishlistToggle() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var handleAddToCart = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var token, userId, newCartItem;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            token = localStorage.getItem("token");
+            userId = userProfile === null || userProfile === void 0 ? void 0 : userProfile.id;
+            if (!(!token || !userId)) {
+              _context3.next = 4;
+              break;
+            }
+            return _context3.abrupt("return");
+          case 4:
+            _context3.prev = 4;
+            _context3.next = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_6__["default"].post("".concat(API_URL, "/cart/add"), {
+              user_id: userId,
+              product_id: productId,
+              quantity: quantity,
+              size: selectedSize,
+              color: selectedColor
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 7:
+            newCartItem = {
+              id: parseInt(productId),
+              productName: product.product_name,
+              price: product.price,
+              imagePreview: product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_1) : "/default-image.jpg",
+              quantity: quantity,
+              size: selectedSize,
+              color: selectedColor
+            };
+            setCartItems(function (prev) {
+              var existing = prev.find(function (item) {
+                return item.id === newCartItem.id && item.size === newCartItem.size && item.color === newCartItem.color;
+              });
+              if (existing) {
+                return prev.map(function (item) {
+                  return item.id === newCartItem.id && item.size === newCartItem.size && item.color === newCartItem.color ? _objectSpread(_objectSpread({}, item), {}, {
+                    quantity: item.quantity + quantity
+                  }) : item;
+                });
+              }
+              return [].concat(_toConsumableArray(prev), [newCartItem]);
+            });
+            _context3.next = 14;
+            break;
+          case 11:
+            _context3.prev = 11;
+            _context3.t0 = _context3["catch"](4);
+            console.error("Error adding to cart:", _context3.t0);
+          case 14:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[4, 11]]);
+    }));
+    return function handleAddToCart() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  var handleBuyNow = function handleBuyNow() {
+    navigate("/checkout", {
+      state: {
+        product: product,
+        quantity: quantity,
+        selectedSize: selectedSize,
+        selectedColor: selectedColor
+      }
+    });
+  };
+  var increaseCartQuantity = function increaseCartQuantity(itemId) {
+    setCartItems(function (prev) {
+      return prev.map(function (item) {
+        return item.id === itemId ? _objectSpread(_objectSpread({}, item), {}, {
+          quantity: item.quantity + 1
+        }) : item;
+      });
+    });
+  };
+  var decreaseCartQuantity = function decreaseCartQuantity(itemId) {
+    setCartItems(function (prev) {
+      return prev.map(function (item) {
+        return item.id === itemId && item.quantity > 1 ? _objectSpread(_objectSpread({}, item), {}, {
+          quantity: item.quantity - 1
+        }) : item;
+      });
+    });
+  };
+  var removeFromCart = function removeFromCart(itemId) {
+    return /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var token;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            token = localStorage.getItem("token");
+            _context4.prev = 1;
+            _context4.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_6__["default"]["delete"]("".concat(API_URL, "/cart/remove/").concat(itemId), {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 4:
+            setCartItems(function (prev) {
+              return prev.filter(function (item) {
+                return item.id !== itemId;
+              });
+            });
+            _context4.next = 10;
+            break;
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](1);
+            console.error("Error removing from cart:", _context4.t0);
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4, null, [[1, 7]]);
+    }));
+  };
+  var handleSearchSubmit = function handleSearchSubmit(e) {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate("/search?query=".concat(searchQuery));
+    }
+  };
+  var handleLogout = function handleLogout() {
+    var confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      setWishlistedItems([]);
+      setCartItems([]);
+      navigate("/login");
+      setIsProfileDropdownOpen(false);
+    }
+  };
+  var handleOutsideClick = function handleOutsideClick(e) {
+    if (!e.target.closest(".notification-container") && !e.target.closest(".header-icon")) setIsNotificationOpen(false);
+    if (!e.target.closest(".wishlist-container") && !e.target.closest(".header-icon")) setIsWishlistOpen(false);
+    if (!e.target.closest(".support-container") && !e.target.closest(".support-link")) setIsSupportOpen(false);
+    if (!e.target.closest(".cart-sidebar") && !e.target.closest(".header-icon")) setIsCartVisible(false);
+    if (!e.target.closest(".profile-container") && !e.target.closest(".profile-button")) setIsProfileDropdownOpen(false);
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (isNotificationOpen || isWishlistOpen || isSupportOpen || isCartVisible || isProfileDropdownOpen) {
+      document.addEventListener("click", handleOutsideClick);
+    }
+    return function () {
+      return document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [isNotificationOpen, isWishlistOpen, isSupportOpen, isCartVisible, isProfileDropdownOpen]);
+  var getAverageRating = function getAverageRating() {
+    if (!reviews.length) return 0;
+    var totalRating = reviews.reduce(function (sum, review) {
+      return sum + review.rating;
+    }, 0);
+    return totalRating / reviews.length;
+  };
+  var maskCustomerName = function maskCustomerName(firstName, lastName) {
+    if (!firstName && !lastName) return "Anonymous";
+    var maskedFirst = firstName ? "".concat(firstName.slice(0, 2)).concat('*'.repeat(Math.max(0, firstName.length - 2))) : "";
+    var maskedLast = lastName ? "".concat(lastName.slice(0, 2)).concat('*'.repeat(Math.max(0, lastName.length - 2))) : "";
+    return "".concat(maskedFirst, " ").concat(maskedLast).trim();
+  };
+  var renderStars = function renderStars(rating) {
+    var fullStars = Math.floor(rating);
+    var halfStar = rating % 1 >= 0.5 ? 1 : 0;
+    var emptyStars = 5 - fullStars - halfStar;
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "stars-container",
+      children: [_toConsumableArray(Array(fullStars)).map(function (_, i) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+          className: "star full",
+          children: "\u2605"
+        }, "full-".concat(i));
+      }), halfStar ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        className: "star half",
+        children: "\u2605"
+      }) : null, _toConsumableArray(Array(emptyStars)).map(function (_, i) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+          className: "star empty",
+          children: "\u2606"
+        }, "empty-".concat(i));
+      })]
+    });
+  };
+  if (!product && !error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    className: "loading-container",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "loader"
+    })
+  });
+  if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    className: "error-container",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      className: "error-message",
+      children: error
+    })
+  });
+  var imageUrl = product !== null && product !== void 0 && product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_1) : "https://via.placeholder.com/150";
+  var cartCount = cartItems.reduce(function (total, item) {
+    return total + item.quantity;
+  }, 0);
+  var wishlistCount = wishlistedItems.length;
+  var averageRating = getAverageRating();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    className: "product-view-page",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_HeaderNav_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      isSearchOpen: isSearchOpen,
+      setIsSearchOpen: setIsSearchOpen,
+      searchQuery: searchQuery,
+      setSearchQuery: setSearchQuery,
+      handleSearchSubmit: handleSearchSubmit,
+      isNotificationOpen: isNotificationOpen,
+      setIsNotificationOpen: setIsNotificationOpen,
+      notifications: notifications,
+      isWishlistOpen: isWishlistOpen,
+      setIsWishlistOpen: setIsWishlistOpen,
+      wishlistedItems: wishlistedItems,
+      wishlistCount: wishlistCount,
+      handleWishlistToggle: function handleWishlistToggle(product) {
+        return _handleWishlistToggle;
+      },
+      isSupportOpen: isSupportOpen,
+      setIsSupportOpen: setIsSupportOpen,
+      supportItems: supportItems,
+      isCartVisible: isCartVisible,
+      setIsCartVisible: setIsCartVisible,
+      cartCount: cartCount,
+      userProfile: userProfile,
+      isProfileDropdownOpen: isProfileDropdownOpen,
+      setIsProfileDropdownOpen: setIsProfileDropdownOpen,
+      profileDropdownItems: profileDropdownItems
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_HeaderArea_CartSidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      isCartVisible: isCartVisible,
+      setIsCartVisible: setIsCartVisible,
+      cartItems: cartItems,
+      cartCount: cartCount,
+      increaseCartQuantity: increaseCartQuantity,
+      decreaseCartQuantity: decreaseCartQuantity,
+      removeFromCart: removeFromCart,
+      navigate: navigate
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("main", {
+      className: "product-container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+        className: "product-showcase",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "product-gallery",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "main-image",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+              src: imageUrl,
+              alt: product === null || product === void 0 ? void 0 : product.product_name
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "product-info",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+            className: "product-title",
+            children: (product === null || product === void 0 ? void 0 : product.product_name) || "Unnamed Product"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "product-meta",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "product-price",
+              children: ["\u20B1", (_product$price$toLoca = product === null || product === void 0 || (_product$price = product.price) === null || _product$price === void 0 ? void 0 : _product$price.toLocaleString()) !== null && _product$price$toLoca !== void 0 ? _product$price$toLoca : "N/A"]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "product-rating-summary",
+              children: [renderStars(averageRating), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                className: "review-count",
+                children: ["(", reviews.length, ")"]
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "product-options",
+            children: [(product === null || product === void 0 || (_product$colors = product.colors) === null || _product$colors === void 0 ? void 0 : _product$colors.length) > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "option-group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                children: "Color"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                className: "color-options",
+                children: product.colors.map(function (color) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                    className: "color-option ".concat(selectedColor === color ? "selected" : ""),
+                    style: {
+                      backgroundColor: color.toLowerCase()
+                    },
+                    onClick: function onClick() {
+                      return handleColorSelect(color);
+                    },
+                    "aria-label": color,
+                    title: color
+                  }, color);
+                })
+              })]
+            }), (product === null || product === void 0 || (_product$sizes = product.sizes) === null || _product$sizes === void 0 ? void 0 : _product$sizes.length) > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "option-group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                children: "Size"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                className: "size-options",
+                children: product.sizes.map(function (size) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                    className: "size-option ".concat(selectedSize === size ? "selected" : ""),
+                    onClick: function onClick() {
+                      return handleSizeSelect(size);
+                    },
+                    children: size
+                  }, size);
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "option-group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                children: "Quantity"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "quantity-selector",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                  className: "quantity-btn decrease",
+                  onClick: decreaseQuantity,
+                  children: "\u2212"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                  type: "text",
+                  className: "quantity-input",
+                  value: quantity,
+                  readOnly: true
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                  className: "quantity-btn increase",
+                  onClick: increaseQuantity,
+                  children: "+"
+                })]
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "product-actions",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              className: "wishlist-btn",
+              onClick: _handleWishlistToggle,
+              "aria-label": isWishlisted ? "Remove from wishlist" : "Add to wishlist",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                className: "wishlist-icon",
+                children: isWishlisted ? "❤️" : "♡"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              className: "add-to-cart-btn",
+              onClick: handleAddToCart,
+              children: "Add to Cart"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              className: "buy-now-btn",
+              onClick: handleBuyNow,
+              children: "Buy Now"
+            })]
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+        className: "product-details",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+          children: "Product Details"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "product-description",
+          children: (product === null || product === void 0 ? void 0 : product.description) || "No description available."
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+        className: "product-reviews",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "reviews-header",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+            children: "Customer Reviews"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "review-summary",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "average-rating",
+              children: [renderStars(averageRating), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                className: "rating-value",
+                children: averageRating.toFixed(1)
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "review-count",
+              children: ["Based on ", reviews.length, " reviews"]
+            })]
+          })]
+        }), reviews.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "reviews-list",
+          children: reviews.map(function (review) {
+            var _review$user, _review$user2, _review$user3;
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "review-card",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "review-header",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "reviewer-info",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                    src: (_review$user = review.user) !== null && _review$user !== void 0 && _review$user.profile_pic ? "".concat(BASE_IMAGE_URL, "/").concat(review.user.profile_pic) : "/imgs/Profile.svg",
+                    alt: "User",
+                    className: "reviewer-avatar"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                    className: "reviewer-name",
+                    children: maskCustomerName((_review$user2 = review.user) === null || _review$user2 === void 0 ? void 0 : _review$user2.first_name, (_review$user3 = review.user) === null || _review$user3 === void 0 ? void 0 : _review$user3.last_name)
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                  className: "review-date",
+                  children: new Date(review.created_at).toLocaleDateString()
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                className: "review-rating",
+                children: renderStars(review.rating)
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                className: "review-content",
+                children: review.review || 'No comment provided.'
+              }), review.reply && review.reply !== "NULL" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "review-reply",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                  className: "reply-label",
+                  children: "Seller Response:"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                  className: "reply-content",
+                  children: review.reply
+                })]
+              })]
+            }, review.id);
+          })
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "no-reviews",
+          children: "No reviews yet for this product."
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_FooterNav_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductView);
 
 /***/ }),
 
@@ -124928,6 +126511,19 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
+function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
+function _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
+function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
+function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -124935,6 +126531,51 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
+  function ErrorBoundary() {
+    var _this;
+    _classCallCheck(this, ErrorBoundary);
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    _this = _callSuper(this, ErrorBoundary, [].concat(args));
+    _defineProperty(_this, "state", {
+      hasError: false,
+      error: null
+    });
+    return _this;
+  }
+  _inherits(ErrorBoundary, _React$Component);
+  return _createClass(ErrorBoundary, [{
+    key: "componentDidCatch",
+    value: function componentDidCatch(error, errorInfo) {
+      console.error('Error caught by boundary:', error, errorInfo);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.state.hasError) {
+        var _this$state$error;
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          style: {
+            padding: '20px',
+            color: 'red'
+          },
+          children: ["Error: ", ((_this$state$error = this.state.error) === null || _this$state$error === void 0 ? void 0 : _this$state$error.message) || 'Something went wrong']
+        });
+      }
+      return this.props.children;
+    }
+  }], [{
+    key: "getDerivedStateFromError",
+    value: function getDerivedStateFromError(error) {
+      return {
+        hasError: true,
+        error: error
+      };
+    }
+  }]);
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 var MyOrders = function MyOrders() {
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
@@ -124961,16 +126602,16 @@ var MyOrders = function MyOrders() {
     _useState10 = _slicedToArray(_useState9, 2),
     cartItems = _useState10[0],
     setCartItems = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('orders'),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState12 = _slicedToArray(_useState11, 2),
-    activeMenuItem = _useState12[0],
-    setActiveMenuItem = _useState12[1];
+    review = _useState12[0],
+    setReview = _useState12[1];
   var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
   var API_URL = "http://127.0.0.1:8000/api";
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var fetchData = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var token, profileResponse, profileData, ordersResponse, ordersData, cartResponse, cartData, _err$response;
+        var token, profileResponse, profileData, ordersResponse, cartResponse, _err$response;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
@@ -124990,14 +126631,12 @@ var MyOrders = function MyOrders() {
               });
             case 6:
               profileResponse = _context.sent;
-              profileData = profileResponse.data.profile;
+              profileData = profileResponse.data.profile || {};
               setProfile({
                 first_name: profileData.first_name || '',
                 last_name: profileData.last_name || '',
                 profile_pic: profileData.profile_pic ? "".concat(BASE_IMAGE_URL, "/").concat(profileData.profile_pic) : '/imgs/profile.svg'
               });
-
-              // Fetch Orders
               _context.next = 11;
               return axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/orders"), {
                 headers: {
@@ -125006,42 +126645,35 @@ var MyOrders = function MyOrders() {
               });
             case 11:
               ordersResponse = _context.sent;
-              // Ensure ordersData is an array to prevent crashes
-              ordersData = Array.isArray(ordersResponse.data) ? ordersResponse.data : [];
-              setOrders(ordersData);
-              console.log("Fetched Orders:", ordersData);
-
-              // Fetch Cart
-              _context.next = 17;
+              setOrders(Array.isArray(ordersResponse.data) ? ordersResponse.data : []);
+              _context.next = 15;
               return axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/cart"), {
                 headers: {
                   Authorization: "Bearer ".concat(token)
                 }
               });
-            case 17:
+            case 15:
               cartResponse = _context.sent;
-              cartData = Array.isArray(cartResponse.data) ? cartResponse.data : [];
-              setCartItems(cartData);
-              _context.next = 27;
+              setCartItems(Array.isArray(cartResponse.data) ? cartResponse.data : []);
+              _context.next = 23;
               break;
-            case 22:
-              _context.prev = 22;
+            case 19:
+              _context.prev = 19;
               _context.t0 = _context["catch"](0);
-              console.error('Fetch Error:', _context.t0);
-              setError(_context.t0.message || "An error occurred.");
+              setError(_context.t0.message || "An error occurred while fetching data.");
               if (((_err$response = _context.t0.response) === null || _err$response === void 0 ? void 0 : _err$response.status) === 401) {
                 localStorage.removeItem('token');
                 navigate('/login');
               }
-            case 27:
-              _context.prev = 27;
+            case 23:
+              _context.prev = 23;
               setLoading(false);
-              return _context.finish(27);
-            case 30:
+              return _context.finish(23);
+            case 26:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 22, 27, 30]]);
+        }, _callee, null, [[0, 19, 23, 26]]);
       }));
       return function fetchData() {
         return _ref.apply(this, arguments);
@@ -125049,112 +126681,124 @@ var MyOrders = function MyOrders() {
     }();
     fetchData();
   }, [navigate]);
-  var handleLogout = function handleLogout() {
-    localStorage.removeItem('token');
-    navigate('/login');
-  };
-  if (loading) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-    className: "loading",
-    children: "Loading orders..."
-  });
-  if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-    className: "error",
-    children: error
-  });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    className: "MyOrders",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_HeaderNav_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      userProfile: profile
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_HeaderArea_CartSidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      cartItems: cartItems
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      className: "profile-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
-        className: "profile-title",
-        children: "Order History"
+  var handleReviewSubmit = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(orderId, orderDetailId) {
+      var token, response;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            token = localStorage.getItem('token');
+            if (token) {
+              _context2.next = 4;
+              break;
+            }
+            throw new Error('No authentication token found. Please log in.');
+          case 4:
+            _context2.next = 6;
+            return axios__WEBPACK_IMPORTED_MODULE_6__["default"].post("".concat(API_URL, "/orders/").concat(orderId, "/order-details/").concat(orderDetailId, "/review"), {
+              review: review
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 6:
+            response = _context2.sent;
+            alert('Review submitted successfully!');
+            setReview('');
+            _context2.next = 14;
+            break;
+          case 11:
+            _context2.prev = 11;
+            _context2.t0 = _context2["catch"](0);
+            alert("Error submitting review: ".concat(_context2.t0.message));
+          case 14:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[0, 11]]);
+    }));
+    return function handleReviewSubmit(_x, _x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  if (loading) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      style: {
+        padding: '20px'
+      },
+      children: "Loading orders..."
+    });
+  }
+  if (error) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      style: {
+        padding: '20px',
+        color: 'red'
+      },
+      children: error
+    });
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ErrorBoundary, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "MyOrders",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_HeaderNav_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        userProfile: profile
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_HeaderArea_CartSidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        cartItems: cartItems
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "profile-body",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "sidebar",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "user-info",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-              src: profile.profile_pic,
-              alt: "Profile",
-              className: "profile-pic"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h2", {
-              children: [profile.first_name, " ", profile.last_name]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("ul", {
-            className: "nav-menu",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
-              className: activeMenuItem === 'orders' ? 'active' : '',
-              onClick: function onClick() {
-                return navigate('/profile/orders');
-              },
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-                src: "/imgs/myorder.svg",
-                alt: "My Orders"
-              }), " My Orders"]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
-              className: "logout",
-              onClick: handleLogout,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-                src: "/imgs/mylogout.svg",
-                alt: "Logout"
-              }), " Logout"]
-            })]
-          })]
+        className: "profile-container",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+          className: "profile-title",
+          children: "Order History"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "profile-content",
-          children: orders.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "orders-history",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("table", {
-              className: "orders-table",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("thead", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                    children: "Order ID"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                    children: "Status"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                    children: "Total Amount"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                    children: "Order Date"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                    children: "Action"
-                  })]
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("tbody", {
+          className: "profile-body",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "profile-content",
+            children: orders.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "orders-history",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                children: ["Orders found: ", orders.length]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
                 children: orders.map(function (order) {
-                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                      children: order.id
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                      children: order.status
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("td", {
-                      children: ["\u20B1", order.total_amount ? order.total_amount.toFixed(2) : '0.00']
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                      children: order.order_date ? new Date(order.order_date).toLocaleString() : 'N/A'
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-                        onClick: function onClick() {
-                          return navigate("/my-orders/".concat(order.id));
-                        },
-                        className: "view-details-button",
-                        children: "View Details"
-                      })
+                  var _order$total_amount;
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                      children: ["Order #", order.id, " - ", order.status, " - \u20B1", ((_order$total_amount = order.total_amount) === null || _order$total_amount === void 0 ? void 0 : _order$total_amount.toFixed(2)) || '0.00']
+                    }), order.details && order.details.map(function (detail) {
+                      var _detail$product;
+                      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                          children: ["Product: ", ((_detail$product = detail.product) === null || _detail$product === void 0 ? void 0 : _detail$product.name) || 'Unknown']
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                          children: ["Quantity: ", detail.quantity || 0]
+                        }), order.status === 'DELIVERED' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("textarea", {
+                            value: review,
+                            onChange: function onChange(e) {
+                              return setReview(e.target.value);
+                            },
+                            placeholder: "Write your review here..."
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                            onClick: function onClick() {
+                              return handleReviewSubmit(order.id, detail.id);
+                            },
+                            children: "Submit Review"
+                          })]
+                        })]
+                      }, detail.id);
                     })]
                   }, order.id);
                 })
               })]
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+              children: "No orders found in your history."
             })
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-            children: "No orders found in your history."
           })
         })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_FooterNav_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_FooterNav_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+    })
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MyOrders);
@@ -125656,6 +127300,828 @@ var MyWishlist = function MyWishlist() {
 
 /***/ }),
 
+/***/ "./resources/js/components/ProfileArea/OrderHistory.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/ProfileArea/OrderHistory.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var _HeaderNav_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../HeaderNav/Header */ "./resources/js/components/HeaderNav/Header.js");
+/* harmony import */ var _FooterNav_Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../FooterNav/Footer */ "./resources/js/components/FooterNav/Footer.js");
+/* harmony import */ var _HeaderArea_CartSidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../HeaderArea/CartSidebar */ "./resources/js/components/HeaderArea/CartSidebar.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+
+
+
+var OrderHistory = function OrderHistory() {
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    orders = _useState2[0],
+    setOrders = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState4 = _slicedToArray(_useState3, 2),
+    loading = _useState4[0],
+    setLoading = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    error = _useState6[0],
+    setError = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState8 = _slicedToArray(_useState7, 2),
+    cartItems = _useState8[0],
+    setCartItems = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState10 = _slicedToArray(_useState9, 2),
+    wishlistedItems = _useState10[0],
+    setWishlistedItems = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState12 = _slicedToArray(_useState11, 2),
+    searchQuery = _useState12[0],
+    setSearchQuery = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState14 = _slicedToArray(_useState13, 2),
+    isSearchOpen = _useState14[0],
+    setIsSearchOpen = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState16 = _slicedToArray(_useState15, 2),
+    isNotificationOpen = _useState16[0],
+    setIsNotificationOpen = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    isWishlistOpen = _useState18[0],
+    setIsWishlistOpen = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState20 = _slicedToArray(_useState19, 2),
+    isSupportOpen = _useState20[0],
+    setIsSupportOpen = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState22 = _slicedToArray(_useState21, 2),
+    isCartVisible = _useState22[0],
+    setIsCartVisible = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState24 = _slicedToArray(_useState23, 2),
+    userProfile = _useState24[0],
+    setUserProfile = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState26 = _slicedToArray(_useState25, 2),
+    isProfileDropdownOpen = _useState26[0],
+    setIsProfileDropdownOpen = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('ALL'),
+    _useState28 = _slicedToArray(_useState27, 2),
+    activeFilter = _useState28[0],
+    setActiveFilter = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState30 = _slicedToArray(_useState29, 2),
+    expandedOrderId = _useState30[0],
+    setExpandedOrderId = _useState30[1];
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      isOpen: false,
+      orderId: null,
+      productId: null
+    }),
+    _useState32 = _slicedToArray(_useState31, 2),
+    reviewModal = _useState32[0],
+    setReviewModal = _useState32[1];
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState34 = _slicedToArray(_useState33, 2),
+    rating = _useState34[0],
+    setRating = _useState34[1];
+  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState36 = _slicedToArray(_useState35, 2),
+    reviewText = _useState36[0],
+    setReviewText = _useState36[1];
+  var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState38 = _slicedToArray(_useState37, 2),
+    userReviews = _useState38[0],
+    setUserReviews = _useState38[1];
+  var API_URL = "http://127.0.0.1:8000/api";
+  var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
+  var notifications = [{
+    id: 1,
+    message: "Your order #1234 has been shipped!",
+    time: "2 hours ago"
+  }, {
+    id: 2,
+    message: "New collection available now!",
+    time: "5 hours ago"
+  }, {
+    id: 3,
+    message: "20% off sale ends tomorrow!",
+    time: "1 day ago"
+  }];
+  var supportItems = [{
+    label: "ORDER & PAYMENT",
+    path: "/customer/support/order-payment"
+  }, {
+    label: "SHIPPING",
+    path: "/customer/support/shipping"
+  }, {
+    label: "RETURNS",
+    path: "/customer/support/returns"
+  }, {
+    label: "CONTACT US",
+    path: "/customer/support/contact-us"
+  }, {
+    label: "TERMS AND SERVICE",
+    path: "/customer/support/terms-and-service"
+  }, {
+    label: "FAQS",
+    path: "/customer/support/faqs"
+  }];
+  var profileDropdownItems = [{
+    label: "My Profile",
+    path: "/profile"
+  }, {
+    label: "My Orders",
+    path: "/order-history"
+  }, {
+    label: "Logout",
+    path: "#",
+    onClick: handleLogout
+  }];
+  var statusFilters = ['ALL', 'PENDING', 'PROCESSING', 'SHIPPING', 'DELIVERED', 'CANCELLED'];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+    var fetchData = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var config, profileResponse, profileData, user, ordersResponse, reviewsResponse, _err$response, _err$response2;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              config = {
+                headers: {
+                  Authorization: "Bearer ".concat(token)
+                }
+              };
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/profile"), config);
+            case 4:
+              profileResponse = _context.sent;
+              profileData = profileResponse.data.profile || {};
+              user = {
+                id: profileResponse.data.user.id,
+                first_name: profileData.first_name || '',
+                middle_name: profileData.middle_name || '',
+                last_name: profileData.last_name || '',
+                suffix: profileData.suffix || '',
+                email: profileResponse.data.user.email || '',
+                phone_number: profileData.phone_number || '',
+                gender: profileData.gender || '',
+                date_of_birth: profileData.date_of_birth || '',
+                profile_pic: profileData.profile_pic ? "".concat(BASE_IMAGE_URL, "/").concat(profileData.profile_pic) : '/imgs/Profile.svg'
+              };
+              setUserProfile(user);
+              _context.next = 10;
+              return fetchCart(token, user.id);
+            case 10:
+              _context.next = 12;
+              return axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/orders"), config);
+            case 12:
+              ordersResponse = _context.sent;
+              console.log("Orders Fetched:", ordersResponse.data);
+              setOrders(ordersResponse.data || []);
+              _context.next = 17;
+              return axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/reviews/user"), config);
+            case 17:
+              reviewsResponse = _context.sent;
+              console.log("User Reviews Fetched:", reviewsResponse.data);
+              setUserReviews(reviewsResponse.data || []);
+              _context.next = 26;
+              break;
+            case 22:
+              _context.prev = 22;
+              _context.t0 = _context["catch"](0);
+              console.error("Fetch error:", ((_err$response = _context.t0.response) === null || _err$response === void 0 ? void 0 : _err$response.data) || _context.t0.message);
+              if (((_err$response2 = _context.t0.response) === null || _err$response2 === void 0 ? void 0 : _err$response2.status) === 401) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('role');
+                navigate('/login');
+              } else {
+                setError(_context.t0.message || "Failed to load data");
+              }
+            case 26:
+              _context.prev = 26;
+              setLoading(false);
+              return _context.finish(26);
+            case 29:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee, null, [[0, 22, 26, 29]]);
+      }));
+      return function fetchData() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+    fetchData();
+  }, [navigate]);
+  var fetchCart = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(token, userId) {
+      var response, cartData, detailedCart, _error$response;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("".concat(API_URL, "/cart"), {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 3:
+            response = _context2.sent;
+            cartData = response.data.data || response.data || [];
+            detailedCart = cartData.map(function (item) {
+              var _item$product, _item$product2, _item$product3;
+              return {
+                id: item.product_id,
+                productName: ((_item$product = item.product) === null || _item$product === void 0 ? void 0 : _item$product.product_name) || "Unknown Product",
+                price: ((_item$product2 = item.product) === null || _item$product2 === void 0 ? void 0 : _item$product2.price) || 0,
+                imagePreview: (_item$product3 = item.product) !== null && _item$product3 !== void 0 && _item$product3.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(item.product.image_1) : '/default-image.jpg',
+                quantity: item.quantity || 1
+              };
+            });
+            setCartItems(detailedCart);
+            _context2.next = 12;
+            break;
+          case 9:
+            _context2.prev = 9;
+            _context2.t0 = _context2["catch"](0);
+            console.error("Error fetching cart:", ((_error$response = _context2.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context2.t0.message);
+          case 12:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[0, 9]]);
+    }));
+    return function fetchCart(_x, _x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var increaseCartQuantity = function increaseCartQuantity(itemId) {
+    setCartItems(function (prev) {
+      return prev.map(function (item) {
+        return item.id === itemId ? _objectSpread(_objectSpread({}, item), {}, {
+          quantity: item.quantity + 1
+        }) : item;
+      });
+    });
+  };
+  var decreaseCartQuantity = function decreaseCartQuantity(itemId) {
+    setCartItems(function (prev) {
+      return prev.map(function (item) {
+        return item.id === itemId && item.quantity > 1 ? _objectSpread(_objectSpread({}, item), {}, {
+          quantity: item.quantity - 1
+        }) : item;
+      });
+    });
+  };
+  var removeFromCartBackend = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(productId) {
+      var token, userId, _error$response2;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            token = localStorage.getItem('token');
+            userId = userProfile === null || userProfile === void 0 ? void 0 : userProfile.id;
+            _context3.prev = 2;
+            _context3.next = 5;
+            return axios__WEBPACK_IMPORTED_MODULE_6__["default"]["delete"]("".concat(API_URL, "/cart/remove/").concat(productId), {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 5:
+            fetchCart(token, userId);
+            _context3.next = 11;
+            break;
+          case 8:
+            _context3.prev = 8;
+            _context3.t0 = _context3["catch"](2);
+            console.error("Error removing from cart:", ((_error$response2 = _context3.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.data) || _context3.t0.message);
+          case 11:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[2, 8]]);
+    }));
+    return function removeFromCartBackend(_x3) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  var removeFromCart = function removeFromCart(itemId) {
+    return /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
+            return removeFromCartBackend(itemId);
+          case 2:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4);
+    }));
+  };
+  var handleLogout = function handleLogout() {
+    if (window.confirm("Are you sure you want to logout?")) {
+      var token = localStorage.getItem('token');
+      axios__WEBPACK_IMPORTED_MODULE_6__["default"]["delete"]("".concat(API_URL, "/cart/clear"), {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      })["catch"](function (error) {
+        return console.error("Error clearing cart:", error);
+      });
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      setCartItems([]);
+      setOrders([]);
+      setUserProfile(null);
+      navigate('/login');
+      setIsProfileDropdownOpen(false);
+    }
+  };
+  var handleOutsideClick = function handleOutsideClick(e) {
+    if (!e.target.closest('.notification-container') && !e.target.closest('.header-icon')) setIsNotificationOpen(false);
+    if (!e.target.closest('.wishlist-container') && !e.target.closest('.header-icon')) setIsWishlistOpen(false);
+    if (!e.target.closest('.support-container') && !e.target.closest('.support-link')) setIsSupportOpen(false);
+    if (!e.target.closest('.cart-sidebar') && !e.target.closest('.header-icon')) setIsCartVisible(false);
+    if (!e.target.closest('.profile-container') && !e.target.closest('.profile-button')) setIsProfileDropdownOpen(false);
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (isNotificationOpen || isWishlistOpen || isSupportOpen || isCartVisible || isProfileDropdownOpen) {
+      document.addEventListener('click', handleOutsideClick);
+    }
+    return function () {
+      return document.removeEventListener('click', handleOutsideClick);
+    };
+  }, [isNotificationOpen, isWishlistOpen, isSupportOpen, isCartVisible, isProfileDropdownOpen]);
+  var cartCount = cartItems.reduce(function (total, item) {
+    return total + item.quantity;
+  }, 0);
+  var wishlistCount = wishlistedItems.length;
+  var getCurrentStatus = function getCurrentStatus(order) {
+    if (order.is_cancelled) return 'CANCELLED';
+    if (order.status) return order.status.toUpperCase();
+    if (order.tracking_history && order.tracking_history.length > 0) {
+      var sortedHistory = _toConsumableArray(order.tracking_history).sort(function (a, b) {
+        return new Date(b.timestamp) - new Date(a.timestamp);
+      });
+      return sortedHistory[0].status.toUpperCase();
+    }
+    return 'PENDING';
+  };
+  var hasReviewedProduct = function hasReviewedProduct(productId) {
+    var productIdInt = parseInt(productId);
+    var reviewed = userReviews.some(function (review) {
+      return parseInt(review.product_id) === productIdInt;
+    });
+    console.log("Checking if product ".concat(productIdInt, " is reviewed:"), reviewed, 'User Reviews:', userReviews);
+    return reviewed;
+  };
+  var filteredOrders = activeFilter === 'ALL' ? orders : orders.filter(function (order) {
+    return getCurrentStatus(order) === activeFilter;
+  });
+  var navigateToOrderDetails = function navigateToOrderDetails(orderId, e) {
+    if (e && (e.target.classList.contains('toggle-summary-btn') || e.target.classList.contains('rate-product-btn'))) {
+      e.stopPropagation();
+      return;
+    }
+    if (e && e.target.closest('.order-summary-expanded')) {
+      e.stopPropagation();
+      return;
+    }
+    navigate("/my-orders/".concat(orderId));
+  };
+  var openReviewModal = function openReviewModal(orderId, productId) {
+    if (!orderId || !productId) {
+      console.error("Missing orderId or productId:", {
+        orderId: orderId,
+        productId: productId
+      });
+      alert("Cannot open review modal: Missing order or product information.");
+      return;
+    }
+    console.log("Opening review modal for order:", orderId, "product:", productId);
+    setReviewModal({
+      isOpen: true,
+      orderId: orderId,
+      productId: productId
+    });
+    setRating(0);
+    setReviewText('');
+  };
+  var closeReviewModal = function closeReviewModal() {
+    setReviewModal({
+      isOpen: false,
+      orderId: null,
+      productId: null
+    });
+  };
+  var submitReview = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+      var token, payload, response, _err$response3, _err$response4;
+      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+        while (1) switch (_context5.prev = _context5.next) {
+          case 0:
+            token = localStorage.getItem('token');
+            if (!(!reviewModal.orderId || !reviewModal.productId)) {
+              _context5.next = 5;
+              break;
+            }
+            console.error("Missing orderId or productId in review submission:", reviewModal);
+            alert("Cannot submit review: Missing order or product information.");
+            return _context5.abrupt("return");
+          case 5:
+            payload = {
+              order_id: parseInt(reviewModal.orderId),
+              product_id: parseInt(reviewModal.productId),
+              rating: rating,
+              review: reviewText
+            };
+            console.log("Submitting review with payload:", payload);
+            _context5.prev = 7;
+            _context5.next = 10;
+            return axios__WEBPACK_IMPORTED_MODULE_6__["default"].post("".concat(API_URL, "/reviews"), payload, {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 10:
+            response = _context5.sent;
+            console.log("Review submission response:", response.data);
+            setUserReviews(function (prev) {
+              return [].concat(_toConsumableArray(prev), [response.data.review]);
+            });
+            alert('Review submitted successfully!');
+            closeReviewModal();
+            _context5.next = 21;
+            break;
+          case 17:
+            _context5.prev = 17;
+            _context5.t0 = _context5["catch"](7);
+            console.error("Review submission error:", ((_err$response3 = _context5.t0.response) === null || _err$response3 === void 0 ? void 0 : _err$response3.data) || _context5.t0.message);
+            alert('Failed to submit review: ' + (((_err$response4 = _context5.t0.response) === null || _err$response4 === void 0 || (_err$response4 = _err$response4.data) === null || _err$response4 === void 0 ? void 0 : _err$response4.message) || _context5.t0.message));
+          case 21:
+          case "end":
+            return _context5.stop();
+        }
+      }, _callee5, null, [[7, 17]]);
+    }));
+    return function submitReview() {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+  if (loading) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    children: "Loading your orders..."
+  });
+  if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    children: ["Error: ", error]
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    className: "OrderHistory",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_HeaderNav_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      isSearchOpen: isSearchOpen,
+      setIsSearchOpen: setIsSearchOpen,
+      searchQuery: searchQuery,
+      setSearchQuery: setSearchQuery,
+      handleSearchSubmit: function handleSearchSubmit() {},
+      isNotificationOpen: isNotificationOpen,
+      setIsNotificationOpen: setIsNotificationOpen,
+      notifications: notifications,
+      isWishlistOpen: isWishlistOpen,
+      setIsWishlistOpen: setIsWishlistOpen,
+      wishlistedItems: wishlistedItems,
+      wishlistCount: wishlistCount,
+      handleWishlistToggle: function handleWishlistToggle() {},
+      isSupportOpen: isSupportOpen,
+      setIsSupportOpen: setIsSupportOpen,
+      supportItems: supportItems,
+      isCartVisible: isCartVisible,
+      setIsCartVisible: setIsCartVisible,
+      cartCount: cartCount,
+      userProfile: userProfile,
+      isProfileDropdownOpen: isProfileDropdownOpen,
+      setIsProfileDropdownOpen: setIsProfileDropdownOpen,
+      profileDropdownItems: profileDropdownItems
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_HeaderArea_CartSidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      isCartVisible: isCartVisible,
+      setIsCartVisible: setIsCartVisible,
+      cartItems: cartItems,
+      cartCount: cartCount,
+      increaseCartQuantity: increaseCartQuantity,
+      decreaseCartQuantity: decreaseCartQuantity,
+      removeFromCart: removeFromCart,
+      navigate: navigate
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "order-history-page",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "order-history-container",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+          className: "page-title",
+          children: "My Orders"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "order-filters",
+          children: statusFilters.map(function (filter) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              className: "filter-btn ".concat(activeFilter === filter ? 'active' : ''),
+              onClick: function onClick() {
+                return setActiveFilter(filter);
+              },
+              children: filter
+            }, filter);
+          })
+        }), filteredOrders.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "orders-list",
+          children: filteredOrders.map(function (order) {
+            var _previewItem$product, _previewItem$product2, _previewItem$product3, _previewItem$product4, _previewItem$product5, _previewItem$product6, _previewItem$product7, _order$courier, _order$courier2;
+            var currentStatus = getCurrentStatus(order);
+            var orderDate = new Date(order.created_at).toLocaleDateString();
+            var orderItems = order.order_details || order.products || order.items || [];
+            var previewItem = orderItems.length > 0 ? orderItems[0] : null;
+            var imageUrl = previewItem !== null && previewItem !== void 0 && previewItem.image_1 || previewItem !== null && previewItem !== void 0 && (_previewItem$product = previewItem.product) !== null && _previewItem$product !== void 0 && _previewItem$product.image_1 || previewItem !== null && previewItem !== void 0 && previewItem.image ? (previewItem.image_1 || ((_previewItem$product2 = previewItem.product) === null || _previewItem$product2 === void 0 ? void 0 : _previewItem$product2.image_1) || previewItem.image).startsWith('http') ? previewItem.image_1 || ((_previewItem$product3 = previewItem.product) === null || _previewItem$product3 === void 0 ? void 0 : _previewItem$product3.image_1) || previewItem.image : "".concat(BASE_IMAGE_URL, "/").concat(previewItem.image_1 || ((_previewItem$product4 = previewItem.product) === null || _previewItem$product4 === void 0 ? void 0 : _previewItem$product4.image_1) || previewItem.image) : "/default-image.jpg";
+            var additionalItemsCount = orderItems.length - 1;
+            var isExpanded = expandedOrderId === order.id;
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "order-card ".concat(isExpanded ? 'expanded' : ''),
+              onClick: function onClick(e) {
+                return navigateToOrderDetails(order.id, e);
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "order-header",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "order-id",
+                  children: ["Order #", order.id]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                  className: "order-date",
+                  children: orderDate
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                  className: "order-status ".concat(currentStatus.toLowerCase()),
+                  children: currentStatus
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                className: "order-preview",
+                children: previewItem ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                    className: "product-image-container",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                      src: imageUrl,
+                      alt: previewItem.product_name || ((_previewItem$product5 = previewItem.product) === null || _previewItem$product5 === void 0 ? void 0 : _previewItem$product5.product_name) || "Product",
+                      className: "product-thumbnail",
+                      onError: function onError(e) {
+                        return e.target.src = "/default-image.jpg";
+                      }
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                    className: "product-info",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                      className: "product-name",
+                      children: previewItem.product_name || ((_previewItem$product6 = previewItem.product) === null || _previewItem$product6 === void 0 ? void 0 : _previewItem$product6.product_name) || "Unnamed Product"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                      className: "product-details",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                        children: ["Price: \u20B1", Number(previewItem.price || ((_previewItem$product7 = previewItem.product) === null || _previewItem$product7 === void 0 ? void 0 : _previewItem$product7.price) || 0).toFixed(2)]
+                      }), previewItem.quantity && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                        children: [" | Qty: ", previewItem.quantity]
+                      }), previewItem.size && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                        children: [" | Size: ", previewItem.size]
+                      }), previewItem.color && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                        children: [" | Color: ", previewItem.color]
+                      })]
+                    }), additionalItemsCount > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                      className: "additional-products",
+                      children: ["+", additionalItemsCount, " more ", additionalItemsCount === 1 ? 'item' : 'items']
+                    })]
+                  })]
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                  className: "no-product-info",
+                  children: "No product information available for this order."
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "order-actions",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "order-total",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                    className: "total-label",
+                    children: "Total:"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                    className: "total-amount",
+                    children: ["\u20B1", Number(order.total_amount).toFixed(2)]
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                  className: "toggle-summary-btn",
+                  onClick: function onClick(e) {
+                    e.stopPropagation();
+                    setExpandedOrderId(expandedOrderId === order.id ? null : order.id);
+                  },
+                  children: isExpanded ? "Hide Details" : "Show Details"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                  className: "view-details-btn",
+                  children: "View Order"
+                })]
+              }), isExpanded && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "order-summary-expanded",
+                onClick: function onClick(e) {
+                  return e.stopPropagation();
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+                  children: "Order Summary"
+                }), orderItems.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "order-products",
+                  children: [orderItems.map(function (product, index) {
+                    var _product$product, _product$product2, _product$product3, _product$product4, _product$product5, _product$product6, _product$product7;
+                    var productImageUrl = product.image_1 || (_product$product = product.product) !== null && _product$product !== void 0 && _product$product.image_1 || product.image ? (product.image_1 || ((_product$product2 = product.product) === null || _product$product2 === void 0 ? void 0 : _product$product2.image_1) || product.image).startsWith('http') ? product.image_1 || ((_product$product3 = product.product) === null || _product$product3 === void 0 ? void 0 : _product$product3.image_1) || product.image : "".concat(BASE_IMAGE_URL, "/").concat(product.image_1 || ((_product$product4 = product.product) === null || _product$product4 === void 0 ? void 0 : _product$product4.image_1) || product.image) : "/default-image.jpg";
+                    var productId = product.product_id || product.id;
+                    var isReviewed = hasReviewedProduct(productId);
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                      className: "product-item",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                        className: "product-image-container",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                          src: productImageUrl,
+                          alt: product.product_name || ((_product$product5 = product.product) === null || _product$product5 === void 0 ? void 0 : _product$product5.product_name) || "Product",
+                          className: "product-image",
+                          onError: function onError(e) {
+                            return e.target.src = "/default-image.jpg";
+                          }
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                        className: "product-details",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+                          className: "product-name",
+                          children: product.product_name || ((_product$product6 = product.product) === null || _product$product6 === void 0 ? void 0 : _product$product6.product_name) || "Unnamed Product"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                          className: "product-meta",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                            className: "product-quantity",
+                            children: ["Qty: ", product.quantity || 1]
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                            className: "product-price",
+                            children: ["\u20B1", ((product.price || ((_product$product7 = product.product) === null || _product$product7 === void 0 ? void 0 : _product$product7.price) || 0) * (product.quantity || 1)).toFixed(2)]
+                          })]
+                        }), (product.size || product.color) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                          className: "product-attributes",
+                          children: [product.size && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                            className: "product-size",
+                            children: ["Size: ", product.size]
+                          }), product.color && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                            className: "product-color",
+                            children: ["Color: ", product.color]
+                          })]
+                        }), currentStatus === 'DELIVERED' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                          className: "rate-product-btn",
+                          onClick: function onClick(e) {
+                            e.stopPropagation();
+                            openReviewModal(order.id, productId);
+                          },
+                          disabled: isReviewed,
+                          children: isReviewed ? "Reviewed" : "Rate Product"
+                        })]
+                      })]
+                    }, "".concat(order.id, "-product-").concat(index));
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                    className: "order-shipping-cost",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                      className: "shipping-label",
+                      children: "Shipping Cost:"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                      className: "shipping-value",
+                      children: ["\u20B1", order.shipping_cost !== undefined ? Number(order.shipping_cost).toFixed(2) : "N/A"]
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                    className: "order-total-summary",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                      className: "total-label",
+                      children: "Total Amount:"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                      className: "total-value",
+                      children: ["\u20B1", Number(order.total_amount).toFixed(2)]
+                    })]
+                  })]
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                  children: "No product details available."
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "shipping-info",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+                      children: "Shipping Method:"
+                    }), " ", order.shipping_method || ((_order$courier = order.courier) === null || _order$courier === void 0 ? void 0 : _order$courier.name) || "Standard Shipping"]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+                      children: "Estimated Delivery:"
+                    }), " ", order.estimated_delivery || ((_order$courier2 = order.courier) === null || _order$courier2 === void 0 ? void 0 : _order$courier2.estimated_delivery_time) || "N/A"]
+                  })]
+                })]
+              })]
+            }, order.id);
+          })
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "no-orders",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+            children: "No orders found with the selected filter."
+          }), activeFilter !== 'ALL' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+            className: "show-all-btn",
+            onClick: function onClick() {
+              return setActiveFilter('ALL');
+            },
+            children: "Show All Orders"
+          })]
+        })]
+      })
+    }), reviewModal.isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "review-modal",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "review-modal-content",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+          children: "Rate and Review Product"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "rating",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+            children: "Rating (1-5):"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("select", {
+            value: rating,
+            onChange: function onChange(e) {
+              return setRating(parseInt(e.target.value));
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+              value: 0,
+              children: "Select Rating"
+            }), [1, 2, 3, 4, 5].map(function (num) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+                value: num,
+                children: num
+              }, num);
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "review-text",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+            children: "Review:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("textarea", {
+            value: reviewText,
+            onChange: function onChange(e) {
+              return setReviewText(e.target.value);
+            },
+            placeholder: "Write your review here...",
+            rows: "4"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "review-modal-actions",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+            onClick: submitReview,
+            disabled: rating === 0 || !reviewText.trim(),
+            children: "Submit Review"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+            onClick: closeReviewModal,
+            children: "Cancel"
+          })]
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_FooterNav_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderHistory);
+
+/***/ }),
+
 /***/ "./resources/js/components/ProfileArea/Profile.js":
 /*!********************************************************!*\
   !*** ./resources/js/components/ProfileArea/Profile.js ***!
@@ -125822,7 +128288,7 @@ var Profile = function Profile() {
     path: "/profile"
   }, {
     label: "My Orders",
-    path: "/profile/orders"
+    path: "/order-history"
   }, {
     label: "Logout",
     path: "#",
@@ -125953,6 +128419,7 @@ var Profile = function Profile() {
             });
           case 3:
             response = _context3.sent;
+            console.log("Raw Cart API Response in HomePage:", response.data);
             cartData = response.data.data || response.data || [];
             detailedCart = cartData.map(function (item) {
               var _item$product4, _item$product5, _item$product6;
@@ -125961,21 +128428,24 @@ var Profile = function Profile() {
                 productName: ((_item$product4 = item.product) === null || _item$product4 === void 0 ? void 0 : _item$product4.product_name) || "Unknown Product",
                 price: ((_item$product5 = item.product) === null || _item$product5 === void 0 ? void 0 : _item$product5.price) || 0,
                 imagePreview: (_item$product6 = item.product) !== null && _item$product6 !== void 0 && _item$product6.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(item.product.image_1) : '/default-image.jpg',
-                quantity: item.quantity || 1
+                quantity: item.quantity || 1,
+                size: item.size || "Not specified",
+                color: item.color || "Not specified"
               };
             });
+            console.log("Mapped cartItems in HomePage:", detailedCart);
             setCartItems(detailedCart);
-            _context3.next = 12;
+            _context3.next = 14;
             break;
-          case 9:
-            _context3.prev = 9;
+          case 11:
+            _context3.prev = 11;
             _context3.t0 = _context3["catch"](0);
             console.error("Error fetching cart:", ((_error$response2 = _context3.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.data) || _context3.t0.message);
-          case 12:
+          case 14:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 9]]);
+      }, _callee3, null, [[0, 11]]);
     }));
     return function fetchCart(_x3, _x4) {
       return _ref3.apply(this, arguments);
