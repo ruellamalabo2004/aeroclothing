@@ -15,6 +15,9 @@ const ProductView = () => {
   const [selectedColor, setSelectedColor] = useState("");
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [reviews, setReviews] = useState([]);
+  const [selectedRating, setSelectedRating] = useState(null);
+  const [filteredReviews, setFilteredReviews] = useState([]);
+  const [filterType, setFilterType] = useState('all');
   
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -125,6 +128,44 @@ const ProductView = () => {
 
     fetchData();
   }, [productId, navigate]);
+
+  useEffect(() => {
+    // Filter reviews based on both rating and filter type
+    let filtered = [...reviews];
+    
+    if (selectedRating) {
+      filtered = filtered.filter(review => Math.floor(review.rating) === selectedRating);
+    }
+    
+    if (filterType === 'comments') {
+      filtered = filtered.filter(review => review.review && review.review.trim() !== '');
+    } else if (filterType === 'media') {
+      filtered = filtered.filter(review => review.media && review.media.length > 0);
+    }
+    
+    setFilteredReviews(filtered);
+  }, [selectedRating, filterType, reviews]);
+
+  const getRatingCount = (rating) => {
+    return reviews.filter(review => Math.floor(review.rating) === rating).length;
+  };
+
+  const getFilterCount = (type) => {
+    if (type === 'comments') {
+      return reviews.filter(review => review.review && review.review.trim() !== '').length;
+    } else if (type === 'media') {
+      return reviews.filter(review => review.media && review.media.length > 0).length;
+    }
+    return 0;
+  };
+
+  const handleRatingFilter = (rating) => {
+    setSelectedRating(selectedRating === rating ? null : rating);
+  };
+
+  const handleFilterType = (type) => {
+    setFilterType(filterType === type ? 'all' : type);
+  };
 
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
   const decreaseQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
@@ -416,17 +457,20 @@ const ProductView = () => {
                   <button className="quantity-btn increase" onClick={increaseQuantity}>+</button>
                 </div>
               </div>
+
+              <div className="wishlist-container">
+                <button 
+                  className="wishlist-btn" 
+                  onClick={handleWishlistToggle}
+                  aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+                >
+                  <span className="wishlist-icon">{isWishlisted ? "❤️" : "♡"}</span>
+                  <span className="wishlist-label">Add to Wishlist</span>
+                </button>
+              </div>
             </div>
-            
+
             <div className="product-actions">
-              <button 
-                className="wishlist-btn" 
-                onClick={handleWishlistToggle}
-                aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
-              >
-                <span className="wishlist-icon">{isWishlisted ? "❤️" : "♡"}</span>
-              </button>
-              
               <button className="add-to-cart-btn" onClick={handleAddToCart}>
                 Add to Cart
               </button>
@@ -439,15 +483,54 @@ const ProductView = () => {
         </section>
         
         <section className="product-details">
-          <h2>Product Details</h2>
+          <h2>Product Description</h2>
           <div className="product-description">
             {product?.description || "No description available."}
+          </div>
+        </section>
+
+        <section className="rating-filter-container">
+          <h2>Customer Reviews</h2>
+          <div className="rating-summary">
+            <span className="average-rating">{averageRating.toFixed(1)} out of 5</span>
+            <div className="rating-stars">
+              {renderStars(averageRating)}
+            </div>
+          </div>
+
+          <div className="rating-options">
+            <button
+              className={`filter-button ${!selectedRating ? 'active' : ''}`}
+              onClick={() => setSelectedRating(null)}
+            >
+              All
+            </button>
+            {[5, 4, 3, 2, 1].map((rating) => (
+              <button
+                key={rating}
+                className={`filter-button ${selectedRating === rating ? 'active' : ''}`}
+                onClick={() => handleRatingFilter(rating)}
+              >
+                {`${rating} star`} ({getRatingCount(rating)})
+              </button>
+            ))}
+            <button
+              className={`filter-button ${filterType === 'comments' ? 'active' : ''}`}
+              onClick={() => handleFilterType('comments')}
+            >
+              With Comments ({getFilterCount('comments')})
+            </button>
+            <button
+              className={`filter-button ${filterType === 'media' ? 'active' : ''}`}
+              onClick={() => handleFilterType('media')}
+            >
+              With Media ({getFilterCount('media')})
+            </button>
           </div>
         </section>
         
         <section className="product-reviews">
           <div className="reviews-header">
-            <h2>Customer Reviews</h2>
             <div className="review-summary">
               <div className="average-rating">
                 {renderStars(averageRating)} 
@@ -457,9 +540,9 @@ const ProductView = () => {
             </div>
           </div>
           
-          {reviews.length > 0 ? (
+          {filteredReviews.length > 0 ? (
             <div className="reviews-list">
-              {reviews.map((review) => (
+              {filteredReviews.map((review) => (
                 <div key={review.id} className="review-card">
                   <div className="review-header">
                     <div className="reviewer-info">
@@ -478,7 +561,9 @@ const ProductView = () => {
                   </div>
                   
                   <div className="review-rating">
-                    {renderStars(review.rating)}
+                    <div className="stars-container">
+                      {renderStars(review.rating)}
+                    </div>
                   </div>
                   
                   <div className="review-content">

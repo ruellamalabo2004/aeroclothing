@@ -20,7 +20,8 @@ use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\CourierController;
 use App\Http\Controllers\ReviewController;
-
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\AddressController;
 
 // Public routes
 Route::post('/login', [AuthController::class, 'login']);
@@ -31,6 +32,9 @@ Route::apiResource('brands', BrandController::class);
 Route::apiResource('products', ProductController::class);
 Route::put('/products/{id}', [ProductController::class, 'update']);
 
+
+
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
 Route::get('/reviews/{productId}', [ReviewController::class, 'getReviews']);
 
 Route::get('/customers', [UserController::class, 'getCustomers']);
@@ -66,6 +70,9 @@ Route::post('/couriers', [CourierController::class, 'store']);    // Create
     Route::put('/couriers/{id}', [CourierController::class, 'update']); // Update
     Route::delete('/couriers/{id}', [CourierController::class, 'destroy']);
 
+//chat
+Route::post('chat/send', [ChatController::class, 'sendMessage']);
+Route::get('chat/history/{userId}', [ChatController::class, 'getChatHistory']);
 
     // Review
     Route::get('/reviews', [ReviewController::class, 'index']);
@@ -86,7 +93,13 @@ Route::post('/couriers', [CourierController::class, 'store']);    // Create
     Route::patch('/users/{id}/restore', [UserController::class, 'restore']);
     Route::get('/users/count', [UserController::class, 'getTotalUsers']);
     
-
+    //address
+    Route::get('/addresses', [AddressController::class, 'index']);
+    Route::post('/addresses', [AddressController::class, 'store']);
+    Route::get('/addresses/{id}', [AddressController::class, 'show']);
+    Route::put('/addresses/{id}', [AddressController::class, 'update']);
+    Route::delete('/addresses/{id}', [AddressController::class, 'destroy']);
+    Route::patch('/addresses/{id}/set-default', [AddressController::class, 'setDefault']);
     // Reviews
 
     Route::post('/reviews', [ReviewController::class, 'addReview']);

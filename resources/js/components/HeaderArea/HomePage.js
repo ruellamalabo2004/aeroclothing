@@ -9,6 +9,7 @@ import Header from '../HeaderNav/Header';
 import Footer from '../FooterNav/Footer';
 import CartSidebar from './CartSidebar';
 
+
 const ShopByCategory = () => {
   const navigate = useNavigate();
   const handleCategoryClick = (category) => {

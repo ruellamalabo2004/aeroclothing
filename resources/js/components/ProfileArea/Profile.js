@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../HeaderNav/Header';
 import Footer from '../FooterNav/Footer';
-import CartSidebar from '../HeaderArea/CartSidebar'; // Import the CartSidebar component
+import CartSidebar from '../HeaderArea/CartSidebar';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -41,27 +41,6 @@ const Profile = () => {
 
   const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
   const API_URL = "http://127.0.0.1:8000/api";
-
-  const notifications = [
-    { id: 1, message: "Your order #1234 has been shipped!", time: "2 hours ago" },
-    { id: 2, message: "New collection available now!", time: "5 hours ago" },
-    { id: 3, message: "20% off sale ends tomorrow!", time: "1 day ago" },
-  ];
-
-  const supportItems = [
-    { label: "ORDER & PAYMENT", path: "/customer/support/order-payment" },
-    { label: "SHIPPING", path: "/customer/support/shipping" },
-    { label: "RETURNS", path: "/customer/support/returns" },
-    { label: "CONTACT US", path: "/customer/support/contact-us" },
-    { label: "TERMS AND SERVICE", path: "/customer/support/terms-and-service" },
-    { label: "FAQS", path: "/customer/support/faqs" },
-  ];
-
-  const profileDropdownItems = [
-    { label: "My Profile", path: "/profile" },
-    { label: "My Orders", path: "/order-history" },
-    { label: "Logout", path: "#", onClick: handleLogout },
-  ];
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -409,7 +388,6 @@ const Profile = () => {
         handleSearchSubmit={handleSearchSubmit}
         isNotificationOpen={isNotificationOpen}
         setIsNotificationOpen={setIsNotificationOpen}
-        notifications={notifications}
         isWishlistOpen={isWishlistOpen}
         setIsWishlistOpen={setIsWishlistOpen}
         wishlistedItems={wishlistedItems}
@@ -418,14 +396,13 @@ const Profile = () => {
         handleWishlistToggle={handleWishlistToggle}
         isSupportOpen={isSupportOpen}
         setIsSupportOpen={setIsSupportOpen}
-        supportItems={supportItems}
         isCartVisible={isCartVisible}
         setIsCartVisible={setIsCartVisible}
         cartCount={cartCount}
         userProfile={profile}
         isProfileDropdownOpen={isProfileDropdownOpen}
         setIsProfileDropdownOpen={setIsProfileDropdownOpen}
-        profileDropdownItems={profileDropdownItems}
+        handleLogout={handleLogout} // Pass handleLogout to Header
       />
       <CartSidebar
         isCartVisible={isCartVisible}

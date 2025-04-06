@@ -4,6 +4,8 @@ import Header from '../HeaderNav/Header';
 import Footer from '../FooterNav/Footer';
 import CartSidebar from '../HeaderArea/CartSidebar';
 import axios from 'axios';
+import { BiSolidEdit } from 'react-icons/bi';
+import { PiGreaterThan } from "react-icons/pi";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -37,13 +39,14 @@ const Checkout = () => {
   const [isOrderNoteOpen, setIsOrderNoteOpen] = useState(false);
   const [shippingInfo, setShippingInfo] = useState({
     email: '',
+    phoneNumber: '',
     firstName: '',
     lastName: '',
-    country: 'Philippines',
+    country: '',
     city: '',
     region: '',
     postalCode: '',
-    streetAddress: '',
+    FullAddress: '',
   });
   const [paymentMethod, setPaymentMethod] = useState('');
   const [selectedCourier, setSelectedCourier] = useState('');
@@ -54,6 +57,14 @@ const Checkout = () => {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isShippingFormVisible, setIsShippingFormVisible] = useState(false);
+  const [isCardModalOpen, setIsCardModalOpen] = useState(false);
+  const [cardInfo, setCardInfo] = useState({
+    cardNumber: '',
+    expirationDate: '',
+    securityCode: '',
+    cardholderName: ''
+  });
 
   const notifications = [
     { id: 1, message: "Your order #1234 has been shipped!", time: "2 hours ago" },
@@ -76,7 +87,7 @@ const Checkout = () => {
   ];
 
   useEffect(() => {
-    const fetchProfileAndCart = async () => {
+    const fetchProfileAndData = async () => {
       try {
         const token = localStorage.getItem('token');
         if (!token) {
@@ -84,9 +95,10 @@ const Checkout = () => {
           return;
         }
 
-        const [profileResponse, couriersResponse] = await Promise.all([
+        const [profileResponse, couriersResponse, addressesResponse] = await Promise.all([
           axios.get(`${API_URL}/profile`, { headers: { Authorization: `Bearer ${token}` } }),
           axios.get(`${API_URL}/couriers`, { headers: { Authorization: `Bearer ${token}` } }),
+          axios.get(`${API_URL}/addresses`, { headers: { Authorization: `Bearer ${token}` } })
         ]);
 
         const profileData = profileResponse.data.profile;
@@ -109,15 +121,25 @@ const Checkout = () => {
         };
 
         setUserProfile(userProfile);
+
+        // Find default address
+        const addresses = addressesResponse.data.data || addressesResponse.data || [];
+        const defaultAddress = addresses.find(addr => addr.is_default) || {};
+
+        // Split recipient_name into firstName and lastName
+        const [firstName, ...lastNameParts] = defaultAddress.recipient_name?.split(' ') || ['', ''];
+        const lastName = lastNameParts.join(' ');
+
         setShippingInfo({
           email: userData?.email || '',
-          firstName: profileData.first_name || '',
-          lastName: profileData.last_name || '',
-          country: 'Philippines',
-          city: '',
-          region: '',
-          postalCode: '',
-          streetAddress: '',
+          phoneNumber: defaultAddress.phone_number || '',
+          firstName: firstName,
+          lastName: lastName,
+          country: defaultAddress.country || '',
+          city: defaultAddress.city || '',
+          region: defaultAddress.region || '',
+          postalCode: defaultAddress.postal_code || '',
+          FullAddress: defaultAddress.street_address || '',
         });
 
         setCouriers(couriersResponse.data);
@@ -138,7 +160,7 @@ const Checkout = () => {
       }
     };
 
-    fetchProfileAndCart();
+    fetchProfileAndData();
   }, [navigate]);
 
   useEffect(() => {
@@ -291,12 +313,16 @@ const Checkout = () => {
     setSelectedCourier(e.target.value);
   };
 
+  const toggleShippingForm = () => {
+    setIsShippingFormVisible(!isShippingFormVisible);
+  };
+
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
 
     if (!shippingInfo.email || !shippingInfo.firstName || !shippingInfo.lastName || 
         !shippingInfo.country || !shippingInfo.city || !shippingInfo.region || 
-        !shippingInfo.postalCode || !shippingInfo.streetAddress) {
+        !shippingInfo.postalCode || !shippingInfo.FullAddress) {
       setError('Please fill in all shipping details.');
       return;
     }
@@ -332,6 +358,15 @@ const Checkout = () => {
       payment_method: paymentMethod,
       courier_id: parseInt(selectedCourier),
       total_amount: calculateTotal(),
+      shipping_address: {
+        recipient_name: `${shippingInfo.firstName} ${shippingInfo.lastName}`,
+        phone_number: shippingInfo.phoneNumber,
+        country: shippingInfo.country,
+        region: shippingInfo.region,
+        city: shippingInfo.city,
+        postal_code: shippingInfo.postalCode,
+        street_address: shippingInfo.FullAddress,
+      },
       order_details: cartItems.map(item => ({
         product_id: item.id,
         quantity: item.quantity,
@@ -389,6 +424,23 @@ const Checkout = () => {
   const cartCount = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
   const wishlistCount = wishlistedItems.length;
 
+  const handleCardInfoChange = (e) => {
+    const { name, value } = e.target;
+    setCardInfo(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const toggleCardModal = () => {
+    setIsCardModalOpen(!isCardModalOpen);
+  };
+
+  const handleCardInfoSubmit = (e) => {
+    e.preventDefault();
+    setIsCardModalOpen(false);
+  };
+
   if (loading) return <div className="loading">Loading checkout...</div>;
 
   return (
@@ -433,183 +485,348 @@ const Checkout = () => {
         <div className="checkout-body">
           <div className="checkout-details">
             <div className="shipping-container">
-              <h2>Shipping Information</h2>
-              <form className="shipping-form" onSubmit={handlePlaceOrder}>
-                <div className="account-section">
-                  <div className="form-group full-width">
-                    <label htmlFor="email">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={shippingInfo.email}
-                      onChange={handleShippingChange}
-                      required
-                      readOnly
-                    />
-                  </div>
+              <h2>
+                Shipping Address
+                <BiSolidEdit 
+                  style={{ marginLeft: '10px', cursor: 'pointer', color: '#333' }} 
+                  onClick={toggleShippingForm}
+                />
+              </h2>
+              
+              {!isShippingFormVisible ? (
+                <div className="shipping-display">
+                  <p>{shippingInfo.firstName} {shippingInfo.lastName}</p>
+                  <p>{shippingInfo.FullAddress}</p>
+                  <p>{shippingInfo.city}, {shippingInfo.region} {shippingInfo.postalCode}</p>
+                  <p>{shippingInfo.country}</p>
+                  <p>{shippingInfo.phoneNumber}</p>
+                  <p>{shippingInfo.email}</p>
                 </div>
+              ) : (
+                <form className="shipping-form">
+                  <div className="account-section">
+                    <div className="form-group full-width">
+                      <label htmlFor="email">Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={shippingInfo.email}
+                        onChange={handleShippingChange}
+                        required
+                      />
+                    </div>
+                    <div className="form-group full-width">
+                      <label htmlFor="phoneNumber">Phone Number</label>
+                      <input
+                        type="tel"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        value={shippingInfo.phoneNumber}
+                        onChange={handleShippingChange}
+                        required
+                        placeholder="e.g. +63 912 345 6789"
+                      />
+                    </div>
+                  </div>
 
-                <div className="shipping-info-section">
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="firstName">First Name</label>
-                      <input
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        value={shippingInfo.firstName}
-                        onChange={handleShippingChange}
-                        required
-                        readOnly
-                      />
+                  <div className="shipping-info-section">
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label htmlFor="firstName">First Name</label>
+                        <input
+                          type="text"
+                          id="firstName"
+                          name="firstName"
+                          value={shippingInfo.firstName}
+                          onChange={handleShippingChange}
+                          required
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="lastName">Last Name</label>
+                        <input
+                          type="text"
+                          id="lastName"
+                          name="lastName"
+                          value={shippingInfo.lastName}
+                          onChange={handleShippingChange}
+                          required
+                        />
+                      </div>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="lastName">Last Name</label>
+                    <div className="form-group full-width">
+                      <label htmlFor="country">Country</label>
                       <input
                         type="text"
-                        id="lastName"
-                        name="lastName"
-                        value={shippingInfo.lastName}
-                        onChange={handleShippingChange}
-                        required
-                        readOnly
-                      />
-                    </div>
-                  </div>
-                  <div className="form-group full-width">
-                    <label htmlFor="country">Country</label>
-                    <input
-                      type="text"
-                      id="country"
-                      name="country"
-                      value={shippingInfo.country}
-                      onChange={handleShippingChange}
-                      required
-                      readOnly
-                    />
-                  </div>
-                  <div className="form-group full-width">
-                    <label htmlFor="city">City</label>
-                    <input
-                      type="text"
-                      id="city"
-                      name="city"
-                      value={shippingInfo.city}
-                      onChange={handleShippingChange}
-                      required
-                    />
-                  </div>
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="region">Region</label>
-                      <input
-                        type="text"
-                        id="region"
-                        name="region"
-                        value={shippingInfo.region}
+                        id="country"
+                        name="country"
+                        value={shippingInfo.country}
                         onChange={handleShippingChange}
                         required
                       />
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="postalCode">Postal Code</label>
+                    <div className="form-group full-width">
+                      <label htmlFor="city">City</label>
                       <input
                         type="text"
-                        id="postalCode"
-                        name="postalCode"
-                        value={shippingInfo.postalCode}
+                        id="city"
+                        name="city"
+                        value={shippingInfo.city}
                         onChange={handleShippingChange}
                         required
                       />
                     </div>
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label htmlFor="region">Region</label>
+                        <input
+                          type="text"
+                          id="region"
+                          name="region"
+                          value={shippingInfo.region}
+                          onChange={handleShippingChange}
+                          required
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="postalCode">Postal Code</label>
+                        <input
+                          type="text"
+                          id="postalCode"
+                          name="postalCode"
+                          value={shippingInfo.postalCode}
+                          onChange={handleShippingChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="form-group full-width">
+                      <label htmlFor="FullAddress">Street Address</label>
+                      <textarea
+                        id="FullAddress"
+                        name="FullAddress"
+                        value={shippingInfo.FullAddress}
+                        onChange={handleShippingChange}
+                        required
+                        className="long-textarea"
+                      />
+                    </div>
                   </div>
-                  <div className="form-group full-width">
-                    <label htmlFor="streetAddress">Street Address</label>
-                    <textarea
-                      id="streetAddress"
-                      name="streetAddress"
-                      value={shippingInfo.streetAddress}
-                      onChange={handleShippingChange}
-                      required
-                      className="long-textarea"
-                    />
+                  <div className="form-actions">
+                    <button 
+                      type="button" 
+                      className="cancel-btn"
+                      onClick={toggleShippingForm}
+                    >
+                      Cancel
+                    </button>
+                    <button 
+                      type="button" 
+                      className="save-btn"
+                      onClick={() => {
+                        if (
+                          shippingInfo.email &&
+                          shippingInfo.phoneNumber &&
+                          shippingInfo.firstName &&
+                          shippingInfo.lastName &&
+                          shippingInfo.country &&
+                          shippingInfo.city &&
+                          shippingInfo.region &&
+                          shippingInfo.postalCode &&
+                          shippingInfo.FullAddress
+                        ) {
+                          toggleShippingForm();
+                        }
+                      }}
+                    >
+                      Save
+                    </button>
                   </div>
-                </div>
+                </form>
+              )}
+            </div>
 
-                <div className="courier-container">
-                  <h3>Select Courier</h3>
-                  {couriers.length > 0 ? (
-                    <table className="courier-table">
-                      <thead>
-                        <tr>
-                          <th>Select</th>
-                          <th>Courier</th>
-                          <th>Estimated Delivery</th>
-                          <th>Cost</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {couriers.map((courier) => (
-                          <tr key={courier.id}>
-                            <td>
-                              <input
-                                type="radio"
-                                name="courier"
-                                value={courier.id}
-                                checked={selectedCourier === String(courier.id)}
-                                onChange={handleCourierChange}
-                              />
-                            </td>
-                            <td>{courier.name}</td>
-                            <td>{courier.estimated_delivery_time || 'N/A'}</td>
-                            <td>₱{parseFloat(courier.shipping_fee).toFixed(2)}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  ) : (
-                    <p>No couriers available at this time.</p>
-                  )}
-                </div>
-              </form>
+            <div className="courier-container">
+              <h3>Courier</h3>
+              {couriers.length > 0 ? (
+                <table className="courier-table">
+                  <thead>
+                    <tr>
+                      <th>Select</th>
+                      <th>Courier</th>
+                      <th>Estimated Delivery</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {couriers.map((courier) => (
+                      <tr key={courier.id}>
+                        <td>
+                          <input
+                            type="radio"
+                            name="courier"
+                            value={courier.id}
+                            checked={selectedCourier === String(courier.id)}
+                            onChange={handleCourierChange}
+                          />
+                        </td>
+                        <td>{courier.name}</td>
+                        <td>{courier.estimated_delivery_time || 'N/A'}</td>
+                        <td>₱{parseFloat(courier.shipping_fee).toFixed(2)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p>No couriers available at this time.</p>
+              )}
             </div>
 
             <div className="payment-container">
               <h2>Payment Method</h2>
               <div className="payment-methods">
-                <label>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="creditCard"
-                    checked={paymentMethod === 'creditCard'}
-                    onChange={handlePaymentChange}
+                <label 
+                  className="payment-label" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (paymentMethod !== 'creditCard') {
+                      handlePaymentChange({ target: { name: 'paymentMethod', value: 'creditCard' } });
+                    }
+                    toggleCardModal();
+                  }}
+                >
+                  <div className="payment-label-content">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="creditCard"
+                      checked={paymentMethod === 'creditCard'}
+                      onChange={handlePaymentChange}
+                    />
+                    <span>Credit Card / Debit Card</span>
+                  </div>
+                  <PiGreaterThan 
+                    style={{ fontSize: '16px' }} 
                   />
-                  Credit Card / Debit Card
                 </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="paypal"
-                    checked={paymentMethod === 'paypal'}
-                    onChange={handlePaymentChange}
-                  />
-                  Paypal
+                <label className="payment-label">
+                  <div className="payment-label-content">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="paypal"
+                      checked={paymentMethod === 'paypal'}
+                      onChange={handlePaymentChange}
+                    />
+                    <span>Paypal</span>
+                  </div>
                 </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="cod"
-                    checked={paymentMethod === 'cod'}
-                    onChange={handlePaymentChange}
-                  />
-                  Cash on Delivery
+                <label className="payment-label">
+                  <div className="payment-label-content">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="gcash"
+                      checked={paymentMethod === 'gcash'}
+                      onChange={handlePaymentChange}
+                    />
+                    <span>Gcash</span>
+                  </div>
+                </label>
+                <label className="payment-label">
+                  <div className="payment-label-content">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="cod"
+                      checked={paymentMethod === 'cod'}
+                      onChange={handlePaymentChange}
+                    />
+                    <span>Cash on Delivery</span>
+                  </div>
                 </label>
               </div>
             </div>
+
+            {isCardModalOpen && (
+              <div className="card-modal-overlay">
+                <div className="card-modal">
+                  <h2>Card Information</h2>
+                  <form onSubmit={handleCardInfoSubmit}>
+                    <div className="card-form-columns">
+                      <div className="card-form-left">
+                        <div className="form-group">
+                          <label htmlFor="cardNumber">Card Number</label>
+                          <input
+                            type="text"
+                            id="cardNumber"
+                            name="cardNumber"
+                            placeholder="Enter Card Number"
+                            value={cardInfo.cardNumber}
+                            onChange={handleCardInfoChange}
+                            required
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="cardholderName">Cardholder Name</label>
+                          <input
+                            type="text"
+                            id="cardholderName"
+                            name="cardholderName"
+                            placeholder="Full Name"
+                            value={cardInfo.cardholderName}
+                            onChange={handleCardInfoChange}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="card-form-right">
+                        <div className="form-group">
+                          <label htmlFor="expirationDate">Expiration Date</label>
+                          <input
+                            type="text"
+                            id="expirationDate"
+                            name="expirationDate"
+                            placeholder="MM/YY"
+                            value={cardInfo.expirationDate}
+                            onChange={handleCardInfoChange}
+                            required
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="securityCode">Security Code</label>
+                          <input
+                            type="text"
+                            id="securityCode"
+                            name="securityCode"
+                            placeholder="CVV/CVC"
+                            value={cardInfo.securityCode}
+                            onChange={handleCardInfoChange}
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="modal-actions">
+                      <button 
+                        type="button" 
+                        className="cancel-btn"
+                        onClick={toggleCardModal}
+                      >
+                        Cancel
+                      </button>
+                      <button 
+                        type="submit" 
+                        className="save-btn"
+                      >
+                        Save
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="checkout-summary">
@@ -628,8 +845,8 @@ const Checkout = () => {
                     {item.size && <p className="summary-item-size">Size: {item.size}</p>}
                     {item.color && <p className="summary-item-color">Color: {item.color}</p>}
                     <p className="summary-item-quantity">Qty: {item.quantity}</p>
-                    <p className="summary-item-price">₱{(item.price * item.quantity).toFixed(2)}</p>
                   </div>
+                  <p className="summary-item-price">₱{(item.price * item.quantity).toFixed(2)}</p>
                 </div>
               ))
             ) : (

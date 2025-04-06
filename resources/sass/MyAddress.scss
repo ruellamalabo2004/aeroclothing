@@ -1,0 +1,332 @@
+.MyAddress {
+  min-height: 100vh;
+  background: #f5f5f5;
+  font-family: 'Inter', sans-serif;
+}
+
+.address-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.address-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: -20px;
+  padding: 0 10px;
+
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+
+  .add-address-btn {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 14px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+.addresses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  counter-reset: none; /* Explicitly disable any counter */
+}
+
+.address-item {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  position: relative;
+  border: 1px solid #eee;
+  box-shadow: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Explicitly disable any ::before content */
+  &::before {
+    content: none !important; /* Prevent any "0" or counter */
+  }
+
+  &:not(.is-default):hover {
+    border-color: #000;
+    background-color: #fafafa;
+  }
+
+  &.is-default {
+    border-color: #000;
+    cursor: default;
+  }
+
+  .default-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #000; /* Match the screenshot */
+    color: #fff; /* White text */
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  .address-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-right: 80px;
+
+    .recipient-info {
+      flex: 1;
+
+      .recipient-name {
+        font-weight: 600;
+        font-size: 15px;
+        color: #333;
+        margin-bottom: 6px;
+      }
+
+      .phone-number {
+        color: #666;
+        font-size: 13px;
+        margin-bottom: 6px;
+      }
+
+      .address-line {
+        color: #666;
+        font-size: 13px;
+        margin-bottom: 3px;
+        line-height: 1.4;
+      }
+    }
+
+    .address-actions {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 15px;
+
+      button {
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: 13px;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+
+        &.edit-btn {
+          color: #DB3838;
+        }
+
+        &.delete-btn {
+          color: #000;
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  .set-default-btn {
+    margin-top: 10px;
+    background: none;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover {
+      background: #f5f5f5;
+    }
+  }
+}
+
+// Delete Modal
+.delete-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .modal-content {
+    background: white;
+    padding: 25px;
+    width: 500px;
+    height: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 30px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+
+      button {
+        width: 126px;
+        height: 39px;
+        font-size: 14px;
+        cursor: pointer;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+
+        &.cancel-btn {
+          background: white;
+          border: 1px solid #000;
+          color: #000;
+
+          &:hover {
+            background: #f5f5f5;
+          }
+        }
+
+        &.confirm-btn {
+          background: #000;
+          color: white;
+
+          &:hover {
+            opacity: 0.9;
+          }
+        }
+      }
+    }
+  }
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+
+  .loader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #e5383b;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+  }
+}
+
+.error-container {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  .error-message {
+    color: #e5383b;
+    margin-bottom: 20px;
+  }
+
+  .retry-btn {
+    background: #e5383b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background: #c12d2f;
+    }
+  }
+}
+
+.no-addresses {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  p {
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .add-first-address-btn {
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background: #c12d2f;
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .address-container {
+    padding: 15px;
+    margin-top: 80px;
+  }
+
+  .address-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .address-item {
+    padding: 15px;
+
+    .default-badge {
+      top: 15px;
+      right: 15px;
+    }
+  }
+}

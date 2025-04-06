@@ -1,115 +1,304 @@
 .admin-settings {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-  
-    h1 {
-      color: #333;
-      font-size: 28px;
-      margin-bottom: 30px;
-      border-bottom: 2px solid #d32f2f;
-      padding-bottom: 10px;
-    }
-  
-    .message {
-      padding: 10px;
-      margin-bottom: 20px;
-      border-radius: 4px;
-      &.success {
-        background-color: #dff0d8;
-        color: #3c763d;
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+
+  .admin-label {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #d32f2f;
+    padding-bottom: 10px;
+  }
+
+  .message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+  }
+
+  .tab-navigation {
+    display: flex;
+    margin-bottom: 0;
+    border-bottom: none;
+
+    .tab-button {
+      padding: 10px 30px;
+      font-size: 14px;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      border-bottom: none;
+      cursor: pointer;
+      margin-right: 4px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      position: relative;
+      top: 1px;
+
+      &.active {
+        background: white;
+        border-bottom: 1px solid white;
+        z-index: 1;
       }
-      &.error {
-        background-color: #f2dede;
-        color: #a94442;
+
+      &:hover {
+        background: #e8e8e8;
       }
     }
-  
-    .settings-container {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
+  }
+
+  .settings-container {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .submit-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    padding: 8px 16px;
+    background-color: #E5383B;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    white-space: nowrap;
+    height: 38px;
+    z-index: 1;
+
+    &:hover {
+      background-color: darken(#E5383B, 5%);
     }
-  
-    .settings-section {
-      background: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
-      h2 {
-        color: #444;
-        font-size: 20px;
-        margin-bottom: 20px;
-      }
-    }
-  
-    .settings-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-  
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-  
-        label {
-          color: #666;
-          font-weight: 500;
-        }
-  
-        input[type="text"] {
-          padding: 8px;
-          border: 1px solid #ddd;
-          border-radius: 4px;
-          font-size: 14px;
-          width: 100%;
-          max-width: 300px;
-  
-          &:focus {
-            outline: none;
-            border-color: #d32f2f;
-            box-shadow: 0 0 5px rgba(211, 47, 47, 0.3);
-          }
-        }
-  
-        .currency-display {
-          padding: 8px;
-          font-size: 14px;
-          color: #333;
-          background: #f5f5f5;
-          border: 1px solid #ddd;
-          border-radius: 4px;
-          width: 100%;
-          max-width: 300px;
-          display: inline-block;
-        }
-  
-        &.checkbox-group {
-          flex-direction: row;
-          align-items: center;
-          gap: 10px;
-  
-          input[type="checkbox"] {
-            width: auto;
-          }
-        }
-      }
-  
-      .submit-btn {
-        padding: 10px 20px;
-        background-color: #d32f2f;
+  }
+
+  .settings-section {
+    position: relative;
+
+    .header-area {
+      background: #E5383B;
+      
+      .table-header {
         color: white;
-        border: none;
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        font-weight: normal;
+        
+        .header-cell {
+          padding: 12px 20px;
+        }
+      }
+    }
+
+    form {
+      position: relative;
+    }
+
+    .table-content {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      padding: 12px 20px;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+
+      .content-cell {
+        &:first-child {
+          display: flex;
+          align-items: center;
+        }
+
+        .action-img {
+          width: 20px;
+          height: 20px;
+          opacity: 0.7;
+          transition: opacity 0.2s;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+
+      input[type="text"] {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
         border-radius: 4px;
-        cursor: pointer;
-        align-self: flex-start;
-        transition: background-color 0.3s;
-  
-        &:hover {
-          background-color: #b71c1c;
+        width: 100%;
+        font-size: 14px;
+
+        &:focus {
+          outline: none;
+          border-color: #E5383B;
+          box-shadow: 0 0 0 2px rgba(229, 56, 59, 0.1);
         }
       }
     }
   }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .edit-modal-container {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .edit-modal-content {
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .form-content {
+      margin-bottom: 20px;
+
+      .form-group {
+        margin-bottom: 15px;
+
+        label {
+          display: block;
+          margin-bottom: 8px;
+          color: #333;
+          font-weight: 500;
+        }
+
+        input {
+          width: 100%;
+          padding: 8px 12px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-size: 14px;
+
+          &:focus {
+            outline: none;
+            border-color: #E5383B;
+            box-shadow: 0 0 0 2px rgba(229, 56, 59, 0.1);
+          }
+        }
+      }
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+
+      button {
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+
+        &.cancel-btn {
+          background-color: #f0f0f0;
+          border: 1px solid #ddd;
+          color: #333;
+
+          &:hover {
+            background-color: #e8e8e8;
+          }
+        }
+
+        &.publish-btn {
+          background-color: #E5383B;
+          border: none;
+          color: white;
+
+          &:hover {
+            background-color: darken(#E5383B, 5%);
+          }
+        }
+      }
+    }
+  }
+
+  .notification-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 2000;
+  }
+
+  .notification-container {
+    background-color: #2D2D2D;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    min-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .notification-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .ok-button {
+      background-color: #6B9AFF;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+
+      &:hover {
+        background-color: darken(#6B9AFF, 5%);
+      }
+    }
+  }
+
+  .simple-notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #2D2D2D;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    z-index: 2000;
+    font-size: 14px;
+  }
+}

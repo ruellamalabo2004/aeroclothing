@@ -16,7 +16,7 @@ import HomePage from "./components/HeaderArea/HomePage";
 import AdminSettings from "./components/AdminArea/AdminSettings"; 
 import AccountSettings from "./components/AdminArea/AccountSettings"; 
 import Profile from "./components/ProfileArea/Profile";
-import Address from "./components/ProfileArea/Address";
+import MyAddress from "./components/ProfileArea/MyAddress";
 import Changepassword from "./components/ProfileArea/Changepassword";
 import Mywishlist from "./components/ProfileArea/Mywishlist";
 import Myorders from "./components/ProfileArea/Myorders";
@@ -24,11 +24,14 @@ import Mycart from "./components/ProfileArea/Mycart";
 import Checkout from "./components/OrderNav/Checkout";
 import Shop from "./components/HeaderArea/Shop";
 import OrderDetails from "./components/OrderNav/OrderDetails";
-import OrderHistory from "./components/ProfileArea/OrderHistory"; // Import OrderHistory component
-import ProductReview from "./components/ProductViews/ProductReview"; // Import ProductReview component
-import ProductView from "./components/ProductViews/ProductView"; // Import ProductView component
-import ForgotPassword from "./components/PasswordArea/ForgotPassword"; // Import ForgotPassword component
-import ResetPassword from "./components/PasswordArea/ResetPassword"; // Import ResetPassword component
+import OrderHistory from "./components/ProfileArea/OrderHistory"; 
+import ProductReview from "./components/ProductViews/ProductReview"; 
+import ProductView from "./components/ProductViews/ProductView"; 
+import ForgotPassword from "./components/PasswordArea/ForgotPassword"; 
+import ResetPassword from "./components/PasswordArea/ResetPassword"; 
+import OrderCheckout from "./components/OrderNav/OrderCheckout"; 
+import Cart from "./components/ProductViews/Cart"; 
+import Chatbot from "./components/Chatbots/Chatbot"; // ✅ Import Chatbot
 
 // 🔒 Protected Route Function
 const ProtectedRoute = ({ element, allowedRoles }) => {
@@ -56,27 +59,35 @@ const App = () => {
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Added ForgotPassword route */}
-        <Route path="/reset-password" element={<ResetPassword />} /> {/* Added ResetPassword route */}
+        <Route path="/forgot-password" element={<ForgotPassword />} /> 
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* Customer Routes */}
         <Route
           path="/homepage"
           element={<ProtectedRoute element={<HomePage />} allowedRoles={["customer"]} />}
         />
-         <Route
+        <Route
           path="/shop"
           element={<ProtectedRoute element={<Shop />} allowedRoles={["customer"]} />}
         />
-          <Route
-  path="/shop/:productId"
-  element={<ProtectedRoute element={<ProductView />} allowedRoles={["customer"]} />}
-/>
-<Route
-  path="/orders/:orderId/review"
-  element={<ProtectedRoute element={<ProductReview />} allowedRoles={["customer"]} />}
-/>
-<Route
+        <Route
+          path="/shop/:productId"
+          element={<ProtectedRoute element={<ProductView />} allowedRoles={["customer"]} />}
+        />
+        <Route
+          path="/orders/:orderId/review"
+          element={<ProtectedRoute element={<ProductReview />} allowedRoles={["customer"]} />}
+        />
+        <Route
+          path="/cart" 
+          element={<ProtectedRoute element={<Cart />} allowedRoles={["customer"]} />}
+        />
+        <Route
+          path="/checkouts" 
+          element={<ProtectedRoute element={<OrderCheckout />} allowedRoles={["customer"]} />}
+        />
+        <Route
           path="/order-history" 
           element={<ProtectedRoute element={<OrderHistory />} allowedRoles={["customer"]} />}
         />
@@ -86,7 +97,7 @@ const App = () => {
         />
         <Route
           path="/profile/address" 
-          element={<ProtectedRoute element={<Address />} allowedRoles={["customer"]} />}
+          element={<ProtectedRoute element={<MyAddress />} allowedRoles={["customer"]} />}
         />
         <Route
           path="/profile/change-password" 
@@ -101,9 +112,9 @@ const App = () => {
           element={<ProtectedRoute element={<Myorders />} allowedRoles={["customer"]} />}
         />
         <Route
-    path="/my-orders/:orderId"
-    element={<ProtectedRoute element={<OrderDetails />} allowedRoles={["customer"]} />}
-  />
+          path="/my-orders/:orderId"
+          element={<ProtectedRoute element={<OrderDetails />} allowedRoles={["customer"]} />}
+        />
         <Route
           path="/checkout"
           element={<ProtectedRoute element={<Checkout />} allowedRoles={["customer"]} />} 
@@ -127,6 +138,9 @@ const App = () => {
           <Route path="accountsettings" element={<AccountSettings />} />
         </Route>
       </Routes>
+
+      {/* Add Chatbot Component */}
+      <Chatbot /> {/* This will now appear on every page */}
     </Router>
   );
 };

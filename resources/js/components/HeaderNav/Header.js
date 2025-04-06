@@ -18,19 +18,33 @@ const Header = ({
   handleWishlistToggle,
   isSupportOpen,
   setIsSupportOpen,
-  supportItems,
   isCartVisible,
   setIsCartVisible,
   cartCount,
   userProfile,
   isProfileDropdownOpen,
   setIsProfileDropdownOpen,
-  profileDropdownItems,
+  handleLogout,
 }) => {
   const navigate = useNavigate();
   const [showNotification, setShowNotification] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const API_URL = "http://127.0.0.1:8000/api";
+
+  const supportItems = [
+    { label: "ORDER & PAYMENT", path: "/customer/support/order-payment" },
+    { label: "SHIPPING", path: "/customer/support/shipping" },
+    { label: "RETURNS", path: "/customer/support/returns" },
+    { label: "CONTACT US", path: "/customer/support/contact-us" },
+    { label: "TERMS AND SERVICE", path: "/customer/support/terms-and-service" },
+    { label: "FAQS", path: "/customer/support/faqs" },
+  ];
+
+  const profileDropdownItems = [
+    { label: "My Profile", path: "/profile" },
+    { label: "My Orders", path: "/profile/orders" },
+    { label: "Logout", path: "#", onClick: handleLogout },
+  ];
 
   const handleSearchClick = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -66,7 +80,7 @@ const Header = ({
         headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' },
       });
       const notificationsData = response.data.data || response.data || [];
-      console.log("Notifications Data:", notificationsData); // Debug log
+      console.log("Notifications Data:", notificationsData);
       const formattedNotifications = notificationsData.map((notification) => ({
         id: notification.id,
         message: `Your order #${notification.order_id} has been ${notification.status.toLowerCase()}!`,
@@ -103,11 +117,11 @@ const Header = ({
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token && userProfile?.id) {
-      fetchNotifications(token, userProfile.id); // Initial fetch
+      fetchNotifications(token, userProfile.id);
       const interval = setInterval(() => {
-        fetchNotifications(token, userProfile.id); // Poll every 60 seconds
+        fetchNotifications(token, userProfile.id);
       }, 60000);
-      return () => clearInterval(interval); // Cleanup on unmount
+      return () => clearInterval(interval);
     }
   }, [userProfile]);
 
@@ -116,32 +130,16 @@ const Header = ({
       setShowNotification(true);
       const timer = setTimeout(() => {
         setShowNotification(false);
-      }, 3000); // Notification disappears after 3 seconds
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [latestWishlistItem]);
 
   useEffect(() => {
     console.log("Current Notifications in Header:", notifications);
-    console.log("Current wishlist Isaac:", wishlistCount); // Debug log for wishlist count
+    console.log("Current wishlist count:", wishlistCount);
   }, [notifications, wishlistCount]);
 
-  // Function to render the styled message (unchanged)
-  const renderStyledMessage = (message) => {
-    const parts = message.split(/(Order #\d+)/);
-    return parts.map((part, index) => {
-      if (part.match(/Order #\d+/)) {
-        return (
-          <span key={index} style={{ fontWeight: 'bold', color: '#e5383b' }}>
-            {part}
-          </span>
-        );
-      }
-      return <span key={index}>{part}</span>;
-    });
-  };
-
-  // Get the 4 most recent wishlist items (assuming sorted in HomePage.js)
   const recentWishlistItems = wishlistedItems.slice(0, 4);
 
   return (
@@ -213,14 +211,7 @@ const Header = ({
                 >
                   <img src={notification.productImage} alt="Product" />
                   <div className="notification-content">
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: notification.message.replace(
-                          /(Order #\d+)/,
-                          '<span class="order-number">$1</span>'
-                        ),
-                      }}
-                    />
+                    <p>{notification.message}</p>
                     <span className="time">{notification.time}</span>
                   </div>
                 </div>
@@ -272,7 +263,7 @@ const Header = ({
                 <button
                   className="show-more-btn small"
                   onClick={(e) => {
-                    e.stopPropagation(); // Prevent closing dropdown
+                    e.stopPropagation();
                     setIsWishlistOpen(false);
                     navigate('/profile/wishlist');
                   }}

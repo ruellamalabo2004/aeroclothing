@@ -13,23 +13,42 @@ export default function Orders() {
   const [currentPage, setCurrentPage] = useState(1);
   const ordersPerPage = 10;
 
-  const API_URL = "http://localhost:8000/api";
+  const API_URL = "http://127.0.0.1:8000/api";
 
-  // Fetch orders from API
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    axios
-      .get(`${API_URL}/orders`, {
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-      })
-      .then((response) => {
+  const fetchOrders = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setError("Authentication token not found. Please login again.");
+        return;
+      }
+
+      const response = await axios.get(`${API_URL}/orders`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.data) {
         setOrders(response.data);
         setError(null);
-      })
-      .catch((error) => {
-        console.error("Error fetching orders:", error.response?.data || error.message);
+      }
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+      if (error.response?.status === 401) {
+        setError("Session expired. Please login again.");
+      } else {
         setError("Failed to fetch orders. Please try again.");
-      });
+      }
+      setOrders([]);
+    }
+  };
+
+  // Fetch orders when component mounts
+  useEffect(() => {
+    fetchOrders();
   }, []);
 
   // Filtered orders based on search & tab
@@ -186,84 +205,152 @@ export default function Orders() {
         />
       </div>
 
-      {/* View Order Modal */}
-      {viewOrder && (
-        <div className="view-order">
-          <h2>Order Details</h2>
-          <p><strong>Order ID:</strong> {viewOrder.id}</p>
-          <p><strong>Customer Name:</strong> {viewOrder.customer}</p>
-          <p><strong>Payment Method:</strong> {viewOrder.payment_method}</p>
-          <p><strong>Total Amount:</strong> ₱{viewOrder.total_amount}</p>
-          <p><strong>Date:</strong> {new Date(viewOrder.created_at).toLocaleDateString()}</p>
-          <p><strong>Status:</strong> {viewOrder.status}</p>
-          <h3>Products:</h3>
-          <ul>
-            {viewOrder.products && viewOrder.products.length > 0 ? (
-              viewOrder.products.map((product) => (
-                <li key={product.id}>
-                  {product.product_name} - Quantity: {product.quantity} - ₱{product.price}
-                </li>
-              ))
-            ) : (
-              <li>No products found.</li>
-            )}
-          </ul>
-          <button onClick={() => setViewOrder(null)}>Close</button>
+      {/* Edit Order Modal */}
+      {selectedOrder && (
+        <div className="modal-overlay" onClick={() => setSelectedOrder(null)}>
+          <div className="edit-modal-container" onClick={(e) => e.stopPropagation()}>
+            <div className="edit-modal-content">
+              <h2>Edit Order #{selectedOrder.id}</h2>
+              <form onSubmit={(e) => { e.preventDefault(); handleSave(); }} className="product-form">
+                <div className="form-content">
+                  <div className="form-group">
+                    <label>Customer Name</label>
+                    <input
+                      type="text"
+                      name="customer"
+                      placeholder="Enter customer name"
+                      value={selectedOrder.customer || ""}
+                      onChange={handleFormChange}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Payment Method</label>
+                    <select
+                      name="payment_method"
+                      value={selectedOrder.payment_method || ""}
+                      onChange={handleFormChange}
+                    >
+                      <option value="">Select Payment Method</option>
+                      <option value="CASH">Cash</option>
+                      <option value="CREDIT_CARD">Credit Card</option>
+                      <option value="DEBIT_CARD">Debit Card</option>
+                      <option value="BANK_TRANSFER">Bank Transfer</option>
+                    </select>
+                  </div>
+
+                  <div className="form-group">
+                    <label>Total Amount</label>
+                    <input
+                      type="number"
+                      name="total_amount"
+                      placeholder="Enter total amount"
+                      value={selectedOrder.total_amount || ""}
+                      onChange={handleFormChange}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Date</label>
+                    <input
+                      type="date"
+                      name="created_at"
+                      value={selectedOrder.created_at ? new Date(selectedOrder.created_at).toISOString().split('T')[0] : ""}
+                      onChange={handleFormChange}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Status</label>
+                    <select 
+                      name="status" 
+                      value={selectedOrder.status || ""} 
+                      onChange={handleFormChange}
+                    >
+                      <option value="">Select Status</option>
+                      <option value="PENDING">Pending</option>
+                      <option value="PROCESSING">Processing</option>
+                      <option value="SHIPPING">Shipping</option>
+                      <option value="DELIVERED">Delivered</option>
+                      <option value="CANCELED">Canceled</option>
+                      <option value="RETURNED">Returned</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="modal-actions">
+                  <button type="button" className="cancel-btn" onClick={() => setSelectedOrder(null)}>
+                    Cancel
+                  </button>
+                  <button type="submit" className="publish-btn">
+                    Save Changes
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       )}
 
-      {/* Edit Order Modal */}
-      {selectedOrder && (
-        <div className="edit-modal" onClick={() => setSelectedOrder(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>Edit Order #{selectedOrder.id}</h2>
-            <form onSubmit={(e) => { e.preventDefault(); handleSave(); }}>
-              <div className="form-row">
+      {/* View Order Modal */}
+      {viewOrder && (
+        <div className="modal-overlay" onClick={() => setViewOrder(null)}>
+          <div className="edit-modal-container" onClick={(e) => e.stopPropagation()}>
+            <div className="edit-modal-content">
+              <h2>Order Details #{viewOrder.id}</h2>
+              <div className="form-content">
+                <div className="form-group">
+                  <label>Customer Name</label>
+                  <input
+                    type="text"
+                    value={viewOrder.customer || ""}
+                    disabled
+                  />
+                </div>
+
                 <div className="form-group">
                   <label>Payment Method</label>
                   <input
                     type="text"
-                    name="payment_method"
-                    value={selectedOrder.payment_method || ""}
-                    onChange={handleFormChange}
-                    placeholder="Enter payment method"
+                    value={viewOrder.payment_method || ""}
+                    disabled
                   />
                 </div>
+
                 <div className="form-group">
                   <label>Total Amount</label>
                   <input
-                    type="number"
-                    name="total_amount"
-                    value={selectedOrder.total_amount || ""}
-                    onChange={handleFormChange}
-                    placeholder="Enter total amount"
+                    type="text"
+                    value={`₱${viewOrder.total_amount || "0"}`}
+                    disabled
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Date</label>
+                  <input
+                    type="text"
+                    value={viewOrder.created_at ? new Date(viewOrder.created_at).toLocaleDateString() : ""}
+                    disabled
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Status</label>
+                  <input
+                    type="text"
+                    value={viewOrder.status || ""}
+                    disabled
                   />
                 </div>
               </div>
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Status</label>
-                  <select name="status" value={selectedOrder.status || ""} onChange={handleFormChange}>
-                    <option value="PENDING">Pending</option>
-                    <option value="PROCESSING">Processing</option>
-                    <option value="SHIPPING">Shipping</option>
-                    <option value="DELIVERED">Delivered</option>
-                    <option value="CANCELED">Canceled</option>
-                    <option value="RETURNED">Returned</option>
-                  </select>
-                </div>
-                {/* Add an empty div to maintain two-column layout if needed */}
-                <div className="form-group"></div>
-              </div>
-              <div className="form-buttons">
-                <button type="submit" className="modal-save-btn">
-                  Save Changes
-                </button>
-                <button type="button" className="modal-cancel-btn" onClick={() => setSelectedOrder(null)}>
-                  Cancel
+
+              <div className="modal-actions">
+                <button className="cancel-btn" onClick={() => setViewOrder(null)}>
+                  Close
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       )}
