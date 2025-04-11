@@ -7,7 +7,7 @@
 }
 
 /* 📌 Main Content */
-main {
+.order-main {
   padding: 20px;
   margin: 0;
 
@@ -19,7 +19,7 @@ main {
 }
 
 /* 📌 Orders Cards Container */
-.orders-cards-container {
+.order-cards-container {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -29,7 +29,7 @@ main {
 }
 
 /* 📌 Orders Card */
-.orders-card {
+.order-card {
   flex: 1;
   min-width: 160px;
   height: 160px;
@@ -42,13 +42,13 @@ main {
   align-items: center;
   padding: 15px 10px;
 
-  .orders-card-image {
+  .order-card-image {
     width: 50px;
     height: 50px;
     flex-shrink: 0;
   }
 
-  .orders-card-text {
+  .order-card-text {
     font-size: 16px;
     color: #757575;
     text-align: center;
@@ -58,7 +58,7 @@ main {
     align-items: center;
   }
 
-  .orders-card-number {
+  .order-card-number {
     font-size: 24px;
     font-weight: bold;
     color: #d32f2f;
@@ -67,19 +67,19 @@ main {
 }
 
 /* 📌 Orders Links */
-.orders-links {
+.order-links {
   display: flex;
   align-items: center;
   gap: 15px;
   margin-bottom: 20px;
 
-  .orders-label {
+  .order-label {
     font-size: 14px;
     color: #333;
     font-weight: bold;
   }
 
-  .links-container {
+  .order-links-container {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
@@ -105,7 +105,7 @@ main {
     }
   }
 
-  .orders-search {
+  .order-search {
     padding: 6px 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -122,7 +122,7 @@ main {
 }
 
 /* 📌 Orders Table Container */
-.orders-table-container {
+.order-table-container {
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -130,7 +130,7 @@ main {
 }
 
 /* 📌 Orders Table */
-.orders-table {
+.order-table {
   width: 100%;
   border-collapse: collapse;
 
@@ -151,7 +151,7 @@ main {
     color: #666;
   }
 
-  .action-img {
+  .order-action-img {
     width: 16px;
     height: 16px;
     margin-right: 8px;
@@ -169,7 +169,7 @@ main {
 }
 
 /* 📌 Status Frame Styles */
-.status-frame {
+.order-status-frame {
   display: inline-block;
   padding: 4px 8px;
   border: 1px solid #ddd;
@@ -178,37 +178,37 @@ main {
   color: #333;
   font-size: 12px;
 
-  &.status-pending {
+  &.order-status-pending {
     border-color: #FFA500;
     background: #fff3e0;
     color: #EF6C00;
   }
 
-  &.status-processing {
+  &.order-status-processing {
     border-color: #2196F3;
     background: #e3f2fd;
     color: #1976D2;
   }
 
-  &.status-shipping {
+  &.order-status-shipping {
     border-color: #9C27B0;
     background: #f3e5f5;
     color: #7B1FA2;
   }
 
-  &.status-delivered {
+  &.order-status-delivered {
     border-color: #4CAF50;
     background: #e8f5e9;
     color: #2E7D32;
   }
 
-  &.status-canceled {
+  &.order-status-canceled {
     border-color: #E5383B;
     background: #ffebee;
     color: #C62828;
   }
 
-  &.status-returned {
+  &.order-status-returned {
     border-color: #795548;
     background: #efebe9;
     color: #5D4037;
@@ -216,14 +216,14 @@ main {
 }
 
 /* 📌 Pagination */
-.pagination {
+.order-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 15px;
   margin-top: 20px;
 
-  .pagination-btn {
+  .order-pagination-btn {
     padding: 6px 12px;
     background: #E5383B;
     color: white;
@@ -243,34 +243,40 @@ main {
     }
   }
 
-  .pagination-info {
+  .order-pagination-info {
     font-size: 14px;
     color: #333;
   }
 }
 
-/* 📌 Edit Modal (Copied from Customers.scss) */
-.edit-modal {
+/* 📌 Edit Modal */
+.order-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+}
 
-  .modal-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 700px; /* Matches Customers.scss */
-    max-width: 90%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.3s ease-in-out;
+.order-edit-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: orderFadeIn 0.3s ease-in-out;
 
+  .order-modal-content {
     h2 {
       font-size: 20px;
       color: #161A1D;
@@ -278,13 +284,13 @@ main {
       text-align: left;
     }
 
-    /* Edit Modal Form (for Orders) */
-    .edit-form {
+    /* Edit Modal Form */
+    .order-edit-form {
       display: flex;
       flex-direction: column;
       gap: 20px;
 
-      .edit-form-group {
+      .order-form-group {
         display: flex;
         flex-direction: column;
         gap: 5px;
@@ -313,8 +319,8 @@ main {
       }
     }
 
-    /* Archive Modal Content (for Orders) */
-    .archive-form {
+    /* Archive Modal Content */
+    .order-archive-form {
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -326,7 +332,7 @@ main {
       }
     }
 
-    .form-buttons {
+    .order-form-buttons {
       display: flex;
       justify-content: flex-end;
       gap: 10px;
@@ -340,7 +346,7 @@ main {
         transition: background 0.3s ease;
       }
 
-      .modal-save-btn {
+      .order-save-btn {
         background: #E5383B;
         color: white;
 
@@ -349,7 +355,7 @@ main {
         }
       }
 
-      .modal-cancel-btn {
+      .order-cancel-btn {
         background: #E0E0E0;
         color: #333;
 
@@ -362,20 +368,18 @@ main {
 }
 
 /* 📌 Fade-in Animation */
-@keyframes fadeIn {
+@keyframes orderFadeIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 /* 📌 Responsive Design */
 @media (max-width: 768px) {
-  main {
+  .order-main {
     padding: 10px;
 
     h1 {
@@ -383,56 +387,56 @@ main {
     }
   }
 
-  .orders-cards-container {
+  .order-cards-container {
     flex-wrap: nowrap;
     gap: 15px;
     overflow-x: auto;
 
-    .orders-card {
+    .order-card {
       min-width: 150px;
       height: 140px;
       padding: 10px 8px;
 
-      .orders-card-image {
+      .order-card-image {
         width: 40px;
         height: 40px;
       }
 
-      .orders-card-text {
+      .order-card-text {
         font-size: 14px;
       }
 
-      .orders-card-number {
+      .order-card-number {
         font-size: 20px;
       }
     }
   }
 
-  .orders-links {
+  .order-links {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
 
-    .links-container {
+    .order-links-container {
       flex-direction: column;
       gap: 10px;
     }
 
-    .orders-search {
+    .order-search {
       width: 100%;
       margin-left: 0;
       margin-top: 10px;
     }
   }
 
-  .orders-table {
+  .order-table {
     th,
     td {
       padding: 8px 10px;
       font-size: 12px;
     }
 
-    .action-img {
+    .order-action-img {
       width: 16px;
       height: 16px;
       margin-right: 8px;
@@ -443,35 +447,33 @@ main {
     }
   }
 
-  .status-frame {
+  .order-status-frame {
     padding: 3px 6px;
     font-size: 11px;
   }
 
-  .pagination {
+  .order-pagination {
     flex-direction: column;
     gap: 10px;
 
-    .pagination-btn {
+    .order-pagination-btn {
       margin: 0;
       width: 100%;
       max-width: 200px;
     }
   }
 
-  .edit-modal {
-    .modal-content {
-      width: 90%;
-      padding: 15px;
+  .order-edit-modal {
+    width: 90%;
+    padding: 15px;
 
-      .edit-form,
-      .archive-form {
-        gap: 12px;
-      }
+    .order-edit-form,
+    .order-archive-form {
+      gap: 12px;
+    }
 
-      .edit-form-group {
-        width: 100%;
-      }
+    .order-form-group {
+      width: 100%;
     }
   }
 }

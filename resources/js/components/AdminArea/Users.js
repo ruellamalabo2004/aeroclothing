@@ -18,8 +18,11 @@ export default function Users() {
     phone_number: "",
     gender: "",
     date_of_birth: "",
+    status: "Active",
   });
   const [showAddDialog, setShowAddDialog] = useState(false);
+  const [showViewDialog, setShowViewDialog] = useState(false);
+  const [userToView, setUserToView] = useState(null);
   const [newUser, setNewUser] = useState({
     email: "",
     role: "customer",
@@ -157,6 +160,7 @@ export default function Users() {
       phone_number: user.phone_number || "",
       gender: user.gender || "",
       date_of_birth: user.date_of_birth?.split("T")[0] || "",
+      status: user.status || "Active",
     });
     setShowEditDialog(true);
   };
@@ -180,6 +184,7 @@ export default function Users() {
         phone_number: editFormData.phone_number,
         gender: editFormData.gender,
         date_of_birth: editFormData.date_of_birth || null,
+        status: editFormData.status,
       };
 
       const response = await fetch(`http://127.0.0.1:8000/api/users/${userToEdit}`, {
@@ -352,6 +357,17 @@ export default function Users() {
   const formatDate = (timestamp) =>
     timestamp ? new Date(timestamp).toLocaleDateString() : "N/A";
 
+  // View User functionality
+  const handleView = (user) => {
+    setUserToView(user);
+    setShowViewDialog(true);
+  };
+
+  const closeView = () => {
+    setShowViewDialog(false);
+    setUserToView(null);
+  };
+
   return (
     <main className="users-main">
       <h1>Users</h1>
@@ -408,6 +424,13 @@ export default function Users() {
                 paginatedUsers.map((user) => (
                   <tr key={user.id}>
                     <td>
+                      <img
+                        src="/imgs/viewing.svg"
+                        alt="View"
+                        className="action-img"
+                        onClick={() => handleView(user)}
+                        style={{ cursor: "pointer" }}
+                      />
                       <img
                         src="/imgs/editing.svg"
                         alt="Edit"
@@ -486,15 +509,15 @@ export default function Users() {
       )}
 
       {showArchiveDialog && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="users-modal-overlay">
+          <div className="users-modal-content">
             <h3>Confirm Archive</h3>
             <p>Are you sure you want to archive this user?</p>
-            <div className="modal-buttons">
-              <button onClick={confirmArchive} className="confirm-btn" disabled={loading}>
+            <div className="users-modal-buttons">
+              <button onClick={confirmArchive} className="users-confirm-btn" disabled={loading}>
                 {loading ? "Archiving..." : "Yes, Archive"}
               </button>
-              <button onClick={cancelArchive} className="cancel-btn" disabled={loading}>
+              <button onClick={cancelArchive} className="users-cancel-btn" disabled={loading}>
                 Cancel
               </button>
             </div>
@@ -503,12 +526,12 @@ export default function Users() {
       )}
 
       {showEditDialog && (
-        <div className="edit-modal">
-          <div className="modal-content">
+        <div className="users-edit-modal">
+          <div className="users-modal-content">
             <h2>Edit User</h2>
             <form onSubmit={(e) => { e.preventDefault(); saveEdit(); }}>
-              <div className="form-row">
-                <div className="form-group">
+              <div className="users-form-row">
+                <div className="users-form-group">
                   <label>First Name:</label>
                   <input
                     type="text"
@@ -518,7 +541,7 @@ export default function Users() {
                     disabled={loading}
                   />
                 </div>
-                <div className="form-group">
+                <div className="users-form-group">
                   <label>Last Name:</label>
                   <input
                     type="text"
@@ -530,8 +553,8 @@ export default function Users() {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="users-form-row">
+                <div className="users-form-group">
                   <label>Email:</label>
                   <input
                     type="email"
@@ -541,7 +564,7 @@ export default function Users() {
                     disabled={loading}
                   />
                 </div>
-                <div className="form-group">
+                <div className="users-form-group">
                   <label>Phone Number:</label>
                   <input
                     type="text"
@@ -553,8 +576,8 @@ export default function Users() {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="users-form-row">
+                <div className="users-form-group">
                   <label>Gender:</label>
                   <select
                     name="gender"
@@ -568,7 +591,7 @@ export default function Users() {
                     <option value="Other">Other</option>
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="users-form-group">
                   <label>Date of Birth:</label>
                   <input
                     type="date"
@@ -580,8 +603,8 @@ export default function Users() {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="users-form-row">
+                <div className="users-form-group">
                   <label>Role:</label>
                   <select
                     name="role"
@@ -593,9 +616,18 @@ export default function Users() {
                     <option value="admin">admin</option>
                   </select>
                 </div>
+                <div className="users-form-group">
+                  <label>Status:</label>
+                  <input
+                    type="text"
+                    value={editFormData.status || "Active"}
+                    disabled
+                    className="users-readonly"
+                  />
+                </div>
               </div>
 
-              <div className="form-buttons">
+              <div className="users-form-buttons">
                 <button type="button" onClick={cancelEdit} disabled={loading}>
                   Cancel
                 </button>
@@ -609,12 +641,12 @@ export default function Users() {
       )}
 
       {showAddDialog && (
-        <div className="edit-modal">
-          <div className="modal-content">
+        <div className="users-edit-modal">
+          <div className="users-modal-content">
             <h2>Add New User</h2>
             <form onSubmit={(e) => { e.preventDefault(); saveAdd(); }}>
-              <div className="form-row">
-                <div className="form-group">
+              <div className="users-form-row">
+                <div className="users-form-group">
                   <label>First Name:</label>
                   <input
                     type="text"
@@ -625,7 +657,7 @@ export default function Users() {
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="users-form-group">
                   <label>Last Name:</label>
                   <input
                     type="text"
@@ -638,8 +670,8 @@ export default function Users() {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="users-form-row">
+                <div className="users-form-group">
                   <label>Email:</label>
                   <input
                     type="email"
@@ -650,7 +682,7 @@ export default function Users() {
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="users-form-group">
                   <label>Phone Number:</label>
                   <input
                     type="text"
@@ -662,8 +694,8 @@ export default function Users() {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="users-form-row">
+                <div className="users-form-group">
                   <label>Gender:</label>
                   <select
                     name="gender"
@@ -677,7 +709,7 @@ export default function Users() {
                     <option value="Other">Other</option>
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="users-form-group">
                   <label>Date of Birth:</label>
                   <input
                     type="date"
@@ -689,8 +721,8 @@ export default function Users() {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="users-form-row">
+                <div className="users-form-group">
                   <label>Role:</label>
                   <select
                     name="role"
@@ -702,7 +734,7 @@ export default function Users() {
                     <option value="admin">admin</option>
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="users-form-group">
                   <label>Password:</label>
                   <input
                     type="password"
@@ -715,12 +747,111 @@ export default function Users() {
                 </div>
               </div>
 
-              <div className="form-buttons">
+              <div className="users-form-buttons">
                 <button type="button" onClick={cancelAdd} disabled={loading}>
                   Cancel
                 </button>
                 <button type="submit" disabled={loading}>
                   {loading ? "Adding..." : "Add User"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {showViewDialog && (
+        <div className="users-edit-modal">
+          <div className="users-modal-content">
+            <h2>View User</h2>
+            <form>
+              <div className="users-form-row">
+                <div className="users-form-group">
+                  <label>First Name:</label>
+                  <input
+                    type="text"
+                    value={userToView?.first_name || ""}
+                    readOnly
+                    className="users-readonly"
+                  />
+                </div>
+                <div className="users-form-group">
+                  <label>Last Name:</label>
+                  <input
+                    type="text"
+                    value={userToView?.last_name || ""}
+                    readOnly
+                    className="users-readonly"
+                  />
+                </div>
+              </div>
+
+              <div className="users-form-row">
+                <div className="users-form-group">
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    value={userToView?.email || ""}
+                    readOnly
+                    className="users-readonly"
+                  />
+                </div>
+                <div className="users-form-group">
+                  <label>Phone Number:</label>
+                  <input
+                    type="text"
+                    value={userToView?.phone_number || ""}
+                    readOnly
+                    className="users-readonly"
+                  />
+                </div>
+              </div>
+
+              <div className="users-form-row">
+                <div className="users-form-group">
+                  <label>Gender:</label>
+                  <input
+                    type="text"
+                    value={userToView?.gender || ""}
+                    readOnly
+                    className="users-readonly"
+                  />
+                </div>
+                <div className="users-form-group">
+                  <label>Date of Birth:</label>
+                  <input
+                    type="text"
+                    value={userToView?.date_of_birth?.split("T")[0] || ""}
+                    readOnly
+                    className="users-readonly"
+                  />
+                </div>
+              </div>
+
+              <div className="users-form-row">
+                <div className="users-form-group">
+                  <label>Role:</label>
+                  <input
+                    type="text"
+                    value={userToView?.role ? userToView.role.charAt(0).toUpperCase() + userToView.role.slice(1).toLowerCase() : ""}
+                    readOnly
+                    className="users-readonly"
+                  />
+                </div>
+                <div className="users-form-group">
+                  <label>Status:</label>
+                  <input
+                    type="text"
+                    value={userToView?.status || ""}
+                    readOnly
+                    className="users-readonly"
+                  />
+                </div>
+              </div>
+
+              <div className="users-form-buttons">
+                <button type="button" onClick={closeView}>
+                  Close
                 </button>
               </div>
             </form>

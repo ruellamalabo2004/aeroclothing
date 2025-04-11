@@ -9,6 +9,7 @@ export default function Customers() {
   const [error, setError] = useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
+  const [viewModalOpen, setViewModalOpen] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [newCustomer, setNewCustomer] = useState({
     first_name: "",
@@ -54,6 +55,17 @@ export default function Customers() {
 
   const handleAddCustomer = () => {
     setAddModalOpen(true);
+  };
+
+  const handleView = (customer) => {
+    setSelectedCustomer({
+      ...customer,
+      first_name: customer.full_name?.split(" ")[0] || "",
+      middle_name: customer.middle_name || "",
+      last_name: customer.full_name?.split(" ").slice(1, -1).join(" ") || "",
+      suffix: customer.suffix || "",
+    });
+    setViewModalOpen(true);
   };
 
   const handleArchive = async (customer) => {
@@ -263,6 +275,12 @@ export default function Customers() {
               {paginatedCustomers.map((customer) => (
                 <tr key={customer.id}>
                   <td>
+                    <img
+                      src="/imgs/viewing.svg"
+                      alt="View"
+                      className="action-img"
+                      onClick={() => handleView(customer)}
+                    />
                     <img
                       src="/imgs/editing.svg"
                       alt="Edit"
@@ -568,6 +586,105 @@ export default function Customers() {
                   Cancel
                 </button>
                 <button type="submit">Add Customer</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {viewModalOpen && (
+        <div className="edit-modal">
+          <div className="modal-content">
+            <h2>View Customer</h2>
+            <form>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>First Name:</label>
+                  <input
+                    type="text"
+                    value={selectedCustomer?.first_name || ""}
+                    readOnly
+                    className="readonly-input"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Middle Name:</label>
+                  <input
+                    type="text"
+                    value={selectedCustomer?.middle_name || ""}
+                    readOnly
+                    className="readonly-input"
+                  />
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Last Name:</label>
+                  <input
+                    type="text"
+                    value={selectedCustomer?.last_name || ""}
+                    readOnly
+                    className="readonly-input"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Suffix:</label>
+                  <input
+                    type="text"
+                    value={selectedCustomer?.suffix || ""}
+                    readOnly
+                    className="readonly-input"
+                  />
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    value={selectedCustomer?.email || ""}
+                    readOnly
+                    className="readonly-input"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Phone Number:</label>
+                  <input
+                    type="text"
+                    value={selectedCustomer?.phone_number || ""}
+                    readOnly
+                    className="readonly-input"
+                  />
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Gender:</label>
+                  <input
+                    type="text"
+                    value={selectedCustomer?.gender || ""}
+                    readOnly
+                    className="readonly-input"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Date of Birth:</label>
+                  <input
+                    type="text"
+                    value={selectedCustomer?.date_of_birth?.split("T")[0] || ""}
+                    readOnly
+                    className="readonly-input"
+                  />
+                </div>
+              </div>
+
+              <div className="form-buttons">
+                <button type="button" onClick={() => setViewModalOpen(false)}>
+                  Close
+                </button>
               </div>
             </form>
           </div>

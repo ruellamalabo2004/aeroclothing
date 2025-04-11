@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from "react-router-dom";
 import Login from "./components/LoginArea/Login";
 import Signup from "./components/LoginArea/Signup";
 import Dashboard from "./components/AdminArea/Dashboard";
@@ -31,22 +31,50 @@ import ForgotPassword from "./components/PasswordArea/ForgotPassword";
 import ResetPassword from "./components/PasswordArea/ResetPassword"; 
 import OrderCheckout from "./components/OrderNav/OrderCheckout"; 
 import Cart from "./components/ProductViews/Cart"; 
-import Chatbot from "./components/Chatbots/Chatbot"; // ✅ Import Chatbot
+import Chatbot from "./components/Chatbots/Chatbot";
+import Support from "./components/AdminArea/Support";
+import Inbox from "./components/AdminArea/Inbox";
 
 // 🔒 Protected Route Function
 const ProtectedRoute = ({ element, allowedRoles }) => {
-  const token = localStorage.getItem("token"); // Get token from localStorage
-  const role = localStorage.getItem("role"); // Get user role
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
 
   if (!token) {
-    return <Navigate to="/login" replace />; // Redirect to login if not authenticated
+    return <Navigate to="/login" replace />;
   }
 
   if (!allowedRoles.includes(role)) {
-    return <Navigate to="/dashboard" replace />; // Redirect unauthorized users
+    return <Navigate to="/dashboard" replace />;
   }
 
   return element;
+};
+
+// Component to conditionally render Chatbot
+const ChatbotWrapper = () => {
+  const location = useLocation();
+  
+  // List of paths where Chatbot should NOT appear (admin routes)
+  const adminPaths = [
+    "/dashboard",
+    "/dashboard/products",
+    "/dashboard/orders",
+    "/dashboard/inventory",
+    "/dashboard/customers",
+    "/dashboard/users",
+    "/dashboard/transactions",
+    "/dashboard/reviews",
+    "/dashboard/reports",
+    "/dashboard/adminsettings",
+    "/dashboard/support",
+    "/dashboard/inbox",
+    "/dashboard/accountsettings",
+  ];
+
+  // Render Chatbot only if the current path is not an admin path
+  const isAdminPath = adminPaths.some((path) => location.pathname.startsWith(path));
+  return !isAdminPath ? <Chatbot /> : null;
 };
 
 const App = () => {
@@ -59,7 +87,7 @@ const App = () => {
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} /> 
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* Customer Routes */}
@@ -80,15 +108,15 @@ const App = () => {
           element={<ProtectedRoute element={<ProductReview />} allowedRoles={["customer"]} />}
         />
         <Route
-          path="/cart" 
+          path="/cart"
           element={<ProtectedRoute element={<Cart />} allowedRoles={["customer"]} />}
         />
         <Route
-          path="/checkouts" 
+          path="/checkouts"
           element={<ProtectedRoute element={<OrderCheckout />} allowedRoles={["customer"]} />}
         />
         <Route
-          path="/order-history" 
+          path="/order-history"
           element={<ProtectedRoute element={<OrderHistory />} allowedRoles={["customer"]} />}
         />
         <Route
@@ -96,19 +124,19 @@ const App = () => {
           element={<ProtectedRoute element={<Profile />} allowedRoles={["customer"]} />}
         />
         <Route
-          path="/profile/address" 
+          path="/profile/address"
           element={<ProtectedRoute element={<MyAddress />} allowedRoles={["customer"]} />}
         />
         <Route
-          path="/profile/change-password" 
+          path="/profile/change-password"
           element={<ProtectedRoute element={<Changepassword />} allowedRoles={["customer"]} />}
         />
         <Route
-          path="/profile/wishlist" 
+          path="/profile/wishlist"
           element={<ProtectedRoute element={<Mywishlist />} allowedRoles={["customer"]} />}
         />
         <Route
-          path="/profile/orders" 
+          path="/profile/orders"
           element={<ProtectedRoute element={<Myorders />} allowedRoles={["customer"]} />}
         />
         <Route
@@ -117,13 +145,20 @@ const App = () => {
         />
         <Route
           path="/checkout"
-          element={<ProtectedRoute element={<Checkout />} allowedRoles={["customer"]} />} 
+          element={<ProtectedRoute element={<Checkout />} allowedRoles={["customer"]} />}
         />
         <Route
-          path="/profile/cart" 
+          path="/profile/cart"
           element={<ProtectedRoute element={<Mycart />} allowedRoles={["customer"]} />}
         />
-
+<Route
+  path="/homepage"
+  element={<ProtectedRoute element={<HomePage />} allowedRoles={["customer", "admin"]} />}
+/>
+<Route
+  path="/dashboard"
+  element={<ProtectedRoute element={<Dashboard />} allowedRoles={["admin"]} />}
+></Route>
         {/* Admin Route & Nested Routes */}
         <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} allowedRoles={["admin"]} />}>
           <Route path="products" element={<Products />} />
@@ -134,13 +169,15 @@ const App = () => {
           <Route path="transactions" element={<Transactions />} />
           <Route path="reviews" element={<Reviews />} />
           <Route path="reports" element={<Reports />} />
+          <Route path="inbox" element={<Inbox />} />
+          <Route path="Support" element={<Support />} />
           <Route path="adminsettings" element={<AdminSettings />} />
           <Route path="accountsettings" element={<AccountSettings />} />
         </Route>
       </Routes>
 
-      {/* Add Chatbot Component */}
-      <Chatbot /> {/* This will now appear on every page */}
+      {/* Conditionally render Chatbot */}
+      <ChatbotWrapper />
     </Router>
   );
 };

@@ -183,30 +183,30 @@
   }
 }
 
-.star-rating {
+.rating {
   display: flex;
   justify-content: flex-start;
-  gap: 5px;
-  margin-bottom: 0.5rem;
+  gap: 2px;
+  margin: 5px 0;
+  align-items: center;
+}
 
-  button {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-  }
+.rating-star {
+  font-size: 24px;
+  line-height: 1;
+  font-family: "Albert Sans", sans-serif;
+}
 
-  .on {
-    color: #ffd900;
-  }
+.rating-star.full {
+  color: #ffc107;
+}
 
-  .off {
-    color: #ffd90073;
-  }
+.rating-star.half {
+  color: #ffc107;
+}
 
-  .star {
-    font-size: 1rem;
-  }
+.rating-star.empty {
+  color: #e4e5e9;
 }
 
 .no-results {
@@ -250,6 +250,30 @@
 
   &:hover {
     transform: translateY(-5px);
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &::after {
+    content: "View Product"; /* Changed to "View Product" */
+    position: absolute;
+    bottom: 10px; /* Positioned at the bottom */
+    left: 50%;
+    transform: translateX(-50%); /* Centered horizontally, no vertical transform */
+    background: linear-gradient(135deg, #857373 0%, #b98889 100%);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-family: "Albert Sans", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -270,7 +294,7 @@
 }
 
 .product-price {
-  font-size: 16px;
+  font-size: 15px;
   color: #000;
   font-family: "Albert Sans", sans-serif;
   margin: 0;
@@ -282,99 +306,6 @@
   height: 20px;
   cursor: pointer;
   transition: filter 0.3s ease;
-}
-
-.product-actions {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  display: flex;
-  gap: 8px;
-
-  .add-to-cart-btn,
-  .buy-now-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    background-color: rgba(255, 255, 255, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0;
-    position: relative;
-  }
-
-  .add-to-cart-btn {
-    border: 1px solid #e5383b;
-
-    &:hover {
-      background-color: #e5383b;
-      .action-icon {
-        filter: brightness(0) invert(1);
-      }
-      &::after {
-        opacity: 1;
-        transform: translateX(-10px);
-      }
-    }
-
-    &::after {
-      content: "ADD TO CART";
-      position: absolute;
-      right: 100%;
-      top: 50%;
-      transform: translateX(0) translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 5px 10px;
-      border-radius: 4px;
-      font-size: 12px;
-      white-space: nowrap;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      pointer-events: none;
-      margin-right: 10px;
-    }
-  }
-
-  .buy-now-btn {
-    background-color: #e5383b;
-
-    &:hover {
-      background-color: #c12d2f;
-      &::after {
-        opacity: 1;
-        transform: translateX(-10px);
-      }
-    }
-
-    &::after {
-      content: "BUY NOW";
-      position: absolute;
-      right: 100%;
-      top: 50%;
-      transform: translateX(0) translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 5px 10px;
-      border-radius: 4px;
-      font-size: 12px;
-      white-space: nowrap;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      pointer-events: none;
-      margin-right: 10px;
-    }
-  }
-
-  .action-icon {
-    width: 14px;
-    height: 14px;
-    transition: filter 0.3s ease;
-  }
 }
 
 .shop-by-category-section {
@@ -507,4 +438,4 @@
   &:hover {
     background-color: #c12d2f;
   }
-} 
+}

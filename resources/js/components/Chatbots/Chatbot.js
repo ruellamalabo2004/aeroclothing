@@ -1,29 +1,113 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [mode, setMode] = useState(null); // null, 'live', or 'track'
+  const [chatId, setChatId] = useState(null); // To track the chat session
+  const pollingRef = useRef(null); // Store polling interval
+  const messagesEndRef = useRef(null); // For auto-scrolling
   const API_URL = 'http://127.0.0.1:8000/api';
 
   const toggleChatbot = () => {
     setIsOpen(!isOpen);
-    if (!isOpen) {
+    if (isOpen) {
       setMode(null);
       setMessages([]);
+      setChatId(null);
+      if (pollingRef.current) {
+        clearInterval(pollingRef.current);
+        pollingRef.current = null;
+      }
     }
   };
 
   const handleModeSelection = (selectedMode) => {
     setMode(selectedMode);
+    setMessages([]);
     if (selectedMode === 'live') {
-      setMessages([{ text: 'You’re now in Live Chat. How can I assist you?', sender: 'bot' }]);
+      setMessages([{ text: 'You’re now in Live Chat. Waiting for an agent...', sender: 'bot' }]);
+      startLiveChat();
     } else if (selectedMode === 'track') {
       setMessages([{ text: 'Please enter your order ID to track your order.', sender: 'bot' }]);
     }
+  };
+
+  const startLiveChat = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setMessages((prev) => [
+        ...prev,
+        { text: 'Please log in to use this feature.', sender: 'bot' },
+      ]);
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${API_URL}/chat/start`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      const newChatId = response.data?.chat?.id;
+      if (!newChatId) {
+        throw new Error('Invalid chat ID from server');
+      }
+      setChatId(newChatId);
+      setMessages([{ text: 'Connected to an agent. Start chatting!', sender: 'bot' }]);
+    } catch (error) {
+      console.error('Error starting live chat:', error);
+      const errorMessage =
+        error.response?.status === 401
+          ? 'Unauthorized. Please log in again.'
+          : error.response?.status === 404
+          ? 'Chat service is currently unavailable. Please try again later.'
+          : `Error starting live chat: ${error.message}`;
+      setMessages((prev) => [
+        ...prev,
+        { text: errorMessage, sender: 'bot' },
+      ]);
+    }
+  };
+
+  const pollForAgentResponse = (chatId) => {
+    if (pollingRef.current) {
+      clearInterval(pollingRef.current);
+    }
+    pollingRef.current = setInterval(async () => {
+      try {
+        const response = await axios.get(`${API_URL}/chat/${chatId}/messages`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        });
+        const newMessages = response.data?.messages?.map((msg) => ({
+          text: msg.message || 'No content',
+          sender: msg.is_agent ? 'bot' : 'user',
+        })) || [];
+        setMessages((prev) => {
+          if (
+            newMessages.length !== prev.length ||
+            newMessages.some((msg, i) => msg.text !== prev[i]?.text)
+          ) {
+            return newMessages;
+          }
+          return prev;
+        });
+      } catch (error) {
+        console.error('Polling error:', error);
+        if (error.response?.status === 404 || error.response?.status === 401) {
+          setMessages((prev) => [
+            ...prev,
+            { text: 'Chat session ended or invalid. Please start a new chat.', sender: 'bot' },
+          ]);
+          clearInterval(pollingRef.current);
+          pollingRef.current = null;
+          setMode(null);
+          setChatId(null);
+        }
+      }
+    }, 2000);
   };
 
   const handleSendMessage = async (e) => {
@@ -39,23 +123,21 @@ const Chatbot = () => {
       return;
     }
 
-    setMessages((prev) => [...prev, { text: input, sender: 'user' }]);
+    const userMessage = { text: input, sender: 'user' };
+    setMessages((prev) => [...prev, userMessage]);
 
-    if (mode === 'live') {
+    if (mode === 'live' && chatId) {
       try {
-        const response = await axios.post(
-          `${API_URL}/chat/send`,
+        await axios.post(
+          `${API_URL}/chat/${chatId}/send`,
           { message: input },
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        setMessages((prev) => [
-          ...prev,
-          { text: response.data.agent_response.message, sender: 'bot' },
-        ]);
       } catch (error) {
+        console.error('Error sending message:', error);
         setMessages((prev) => [
           ...prev,
-          { text: 'Sorry, something went wrong. Please try again later.', sender: 'bot' },
+          { text: 'Error sending message. Try again later.', sender: 'bot' },
         ]);
       }
     } else if (mode === 'track') {
@@ -72,37 +154,17 @@ const Chatbot = () => {
           : 'N/A';
         const estimatedDelivery = order.courier?.estimated_delivery_time || 'N/A';
 
-        const trackingHistory = order.tracking_history || [];
-        const trackingTimestamps = {};
-        trackingHistory.forEach((tracking) => {
-          const statusKey = tracking.status?.toUpperCase();
-          trackingTimestamps[statusKey] = tracking.timestamp
-            ? new Date(tracking.timestamp).toLocaleString()
-            : 'N/A';
-        });
-
         let trackingMessage = `Order #${orderId}:\n`;
         trackingMessage += `- Status: ${status}\n`;
         trackingMessage += `- Placed On: ${placedOn}\n`;
-        trackingMessage += `- Estimated Delivery: ${estimatedDelivery}\n`;
-        trackingMessage += `\nTracking History:\n`;
-        ['PENDING', 'PROCESSING', 'SHIPPING', 'DELIVERED'].forEach((step) => {
-          if (trackingTimestamps[step]) {
-            trackingMessage += `- ${step}: ${trackingTimestamps[step]}\n`;
-          }
-        });
-        if (status === 'CANCELED' && trackingTimestamps['CANCELED']) {
-          const cancelDetails = trackingHistory.find((t) => t.status.toUpperCase() === 'CANCELED')?.remarks || '';
-          trackingMessage += `- CANCELED: ${trackingTimestamps['CANCELED']}\n`;
-          trackingMessage += `  Reason: ${cancelDetails.split(' | ')[0]?.replace('Reason: ', '') || 'Not specified'}\n`;
-          trackingMessage += `  Comment: ${cancelDetails.split(' | ')[1]?.replace('Comment: ', '') || 'None'}\n`;
-        }
+        trackingMessage += `- Estimated Delivery: ${estimatedDelivery}`;
 
         setMessages((prev) => [
           ...prev,
           { text: trackingMessage, sender: 'bot' },
         ]);
       } catch (error) {
+        console.error('Error fetching order:', error);
         setMessages((prev) => [
           ...prev,
           {
@@ -118,6 +180,26 @@ const Chatbot = () => {
 
     setInput('');
   };
+
+  useEffect(() => {
+    if (mode === 'live' && chatId) {
+      pollForAgentResponse(chatId);
+    } else if (pollingRef.current) {
+      clearInterval(pollingRef.current);
+      pollingRef.current = null;
+    }
+
+    return () => {
+      if (pollingRef.current) {
+        clearInterval(pollingRef.current);
+        pollingRef.current = null;
+      }
+    };
+  }, [mode, chatId]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   return (
     <div className="chatbot-container">
@@ -142,14 +224,17 @@ const Chatbot = () => {
                 </button>
               </div>
             ) : (
-              messages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`chatbot-message ${msg.sender === 'user' ? 'user' : 'bot'}`}
-                >
-                  <pre>{msg.text}</pre>
-                </div>
-              ))
+              <>
+                {messages.map((msg, index) => (
+                  <div
+                    key={index}
+                    className={`chatbot-message ${msg.sender === 'user' ? 'user' : 'bot'}`}
+                  >
+                    <div>{msg.text}</div>
+                  </div>
+                ))}
+                <div ref={messagesEndRef} />
+              </>
             )}
           </div>
           {mode && (

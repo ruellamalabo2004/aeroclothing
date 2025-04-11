@@ -1,5 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+
+const animatedComponents = makeAnimated();
+
+const sizeOptions = [
+  { value: 'XS', label: 'XS' },
+  { value: 'S', label: 'S' },
+  { value: 'M', label: 'M' },
+  { value: 'L', label: 'L' },
+  { value: 'XL', label: 'XL' }
+];
+
+const colorOptions = [
+  { value: 'Red', label: 'Red' },
+  { value: 'Blue', label: 'Blue' },
+  { value: 'Green', label: 'Green' },
+  { value: 'Black', label: 'Black' },
+  { value: 'White', label: 'White' }
+];
 
 export default function Products() {
   const [activeTab, setActiveTab] = useState("All");
@@ -116,24 +136,18 @@ export default function Products() {
     setFormData((prev) => ({ ...prev, [name]: newValue }));
   };
 
-  const handleSizeChange = (e) => {
-    const selectedSizes = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
-    );
-    setFormData((prev) => ({ ...prev, sizes: selectedSizes }));
+  const handleSizeChange = (selectedOptions) => {
+    const selectedSizes = selectedOptions ? selectedOptions.map(option => option.value) : [];
+    setFormData(prev => ({ ...prev, sizes: selectedSizes }));
   };
 
   const handleBrandChange = (e) => {
     setFormData((prev) => ({ ...prev, brand: e.target.value }));
   };
 
-  const handleColorsChange = (e) => {
-    const selectedColors = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
-    );
-    setFormData((prev) => ({ ...prev, colors: selectedColors }));
+  const handleColorsChange = (selectedOptions) => {
+    const selectedColors = selectedOptions ? selectedOptions.map(option => option.value) : [];
+    setFormData(prev => ({ ...prev, colors: selectedColors }));
   };
 
   const handleFileChange = (e) => {
@@ -641,37 +655,29 @@ export default function Products() {
                 <div className="form-row">
                   <div className="form-group">
                     <label>Sizes:</label>
-                    <select
-                      multiple
-                      name="sizes"
-                      value={formData.sizes}
+                    <Select
+                      closeMenuOnSelect={false}
+                      components={animatedComponents}
+                      isMulti
+                      options={sizeOptions}
+                      value={sizeOptions.filter(option => formData.sizes.includes(option.value))}
                       onChange={handleSizeChange}
-                      disabled={isLoading}
-                      required
-                    >
-                      <option value="XS">XS</option>
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                    </select>
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                    />
                   </div>
                   <div className="form-group">
                     <label>Colors:</label>
-                    <select
-                      multiple
-                      name="colors"
-                      value={formData.colors}
+                    <Select
+                      closeMenuOnSelect={false}
+                      components={animatedComponents}
+                      isMulti
+                      options={colorOptions}
+                      value={colorOptions.filter(option => formData.colors.includes(option.value))}
                       onChange={handleColorsChange}
-                      disabled={isLoading}
-                      required
-                    >
-                      <option value="Red">Red</option>
-                      <option value="Blue">Blue</option>
-                      <option value="Green">Green</option>
-                      <option value="Black">Black</option>
-                      <option value="White">White</option>
-                    </select>
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                    />
                   </div>
                 </div>
 
@@ -789,55 +795,117 @@ export default function Products() {
           >
             <div className="view-modal-content">
               <h2>Product Details</h2>
-              <div className="view-product-details">
-                <div className="view-product-image">
-                  {selectedProduct.image_1 ? (
-                    <img
-                      src={`${BASE_IMAGE_URL}/${selectedProduct.image_1}`}
-                      alt={selectedProduct.product_name}
-                      style={{
-                        maxWidth: "200px",
-                        maxHeight: "200px",
-                        objectFit: "cover",
-                      }}
-                      onError={(e) => {
-                        e.target.src = "/placeholder.png";
-                      }}
-                    />
-                  ) : (
-                    <img
-                      src="/placeholder.png"
-                      alt="No Image"
-                      style={{
-                        maxWidth: "200px",
-                        maxHeight: "200px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  )}
+              <form>
+                <div className="form-image-upload">
+                  <div className="image-preview">
+                    {selectedProduct.image_1 ? (
+                      <img
+                        src={`${BASE_IMAGE_URL}/${selectedProduct.image_1}`}
+                        alt={selectedProduct.product_name}
+                        onError={(e) => {
+                          e.target.src = "/placeholder.png";
+                        }}
+                      />
+                    ) : (
+                      <img
+                        src="/placeholder.png"
+                        alt="No Image"
+                      />
+                    )}
+                  </div>
                 </div>
-                <div className="view-product-info">
-                  <p><strong>Name:</strong> {selectedProduct.product_name}</p>
-                  <p><strong>Category:</strong> {categories.find((cat) => cat.id === selectedProduct.category_id)?.name || "N/A"}</p>
-                  <p><strong>Type:</strong> {selectedProduct.product_type}</p>
-                  <p><strong>Sizes:</strong> {Array.isArray(selectedProduct.sizes) ? selectedProduct.sizes.join(", ") : selectedProduct.sizes || "N/A"}</p>
-                  <p><strong>Brand:</strong> {brands.find((brand) => brand.id === selectedProduct.brand_id)?.name || "N/A"}</p>
-                  <p><strong>Colors:</strong> {Array.isArray(selectedProduct.colors) ? selectedProduct.colors.join(", ") : selectedProduct.colors || "N/A"}</p>
-                  <p><strong>Price:</strong> ₱{selectedProduct.price}</p>
-                  <p><strong>Status:</strong> {selectedProduct.status === "available" ? "Available" : "Archived"}</p>
-                  <p><strong>Description:</strong> {selectedProduct.description || "No description available"}</p>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Product Name:</label>
+                    <div className="readonly-input">
+                      {selectedProduct.product_name}
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <label>Category:</label>
+                    <div className="readonly-input">
+                      {categories.find((cat) => cat.id === selectedProduct.category_id)?.name || "N/A"}
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="modal-actions">
-                <button
-                  type="button"
-                  className="close-btn"
-                  onClick={() => setIsViewModalOpen(false)}
-                  disabled={isLoading}
-                >
-                  Close
-                </button>
-              </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Product Type:</label>
+                    <div className="readonly-input">
+                      {selectedProduct.product_type}
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <label>Brand:</label>
+                    <div className="readonly-input">
+                      {brands.find((brand) => brand.id === selectedProduct.brand_id)?.name || "N/A"}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Sizes:</label>
+                    <div className="readonly-select">
+                      {(Array.isArray(selectedProduct.sizes) 
+                        ? selectedProduct.sizes 
+                        : selectedProduct.sizes 
+                          ? JSON.parse(selectedProduct.sizes) 
+                          : []
+                      ).map((size, index) => (
+                        <span key={index} className="tag">{size}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <label>Colors:</label>
+                    <div className="readonly-select">
+                      {(Array.isArray(selectedProduct.colors)
+                        ? selectedProduct.colors
+                        : selectedProduct.colors
+                          ? JSON.parse(selectedProduct.colors)
+                          : []
+                      ).map((color, index) => (
+                        <span key={index} className="tag">{color}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Status:</label>
+                    <div className="readonly-input">
+                      {selectedProduct.status === "available" ? "Available" : "Archived"}
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <label>Price:</label>
+                    <div className="readonly-input">
+                      ₱{selectedProduct.price}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="form-group full-width">
+                  <label>Description:</label>
+                  <div className="readonly-textarea">
+                    {selectedProduct.description || "No description available"}
+                  </div>
+                </div>
+
+                <div className="modal-actions">
+                  <button
+                    type="button"
+                    onClick={() => setIsViewModalOpen(false)}
+                    disabled={isLoading}
+                  >
+                    Close
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

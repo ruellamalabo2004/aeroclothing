@@ -9,7 +9,26 @@ import Header from '../HeaderNav/Header';
 import Footer from '../FooterNav/Footer';
 import CartSidebar from './CartSidebar';
 
+// ⭐ Rating Display Component (Read-Only)
+const RatingDisplay = ({ rating }) => {
+  const fullStars = Math.floor(rating);
+  const halfStar = rating % 1 >= 0.5 ? 1 : 0;
+  const emptyStars = 5 - fullStars - halfStar;
 
+  return (
+    <div className="rating">
+      {[...Array(fullStars)].map((_, i) => (
+        <span key={`full-${i}`} className="rating-star full">★</span>
+      ))}
+      {halfStar ? <span className="rating-star half">★</span> : null}
+      {[...Array(emptyStars)].map((_, i) => (
+        <span key={`empty-${i}`} className="rating-star empty">☆</span>
+      ))}
+    </div>
+  );
+};
+
+// ShopByCategory and FeaturedItems remain unchanged
 const ShopByCategory = () => {
   const navigate = useNavigate();
   const handleCategoryClick = (category) => {
@@ -73,7 +92,6 @@ const FeaturedItems = () => {
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [ratings, setRatings] = useState({});
   const [wishlistedItems, setWishlistedItems] = useState([]);
   const [latestWishlistItem, setLatestWishlistItem] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -87,6 +105,7 @@ const HomePage = () => {
   const [userProfile, setUserProfile] = useState(null);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [ratings, setRatings] = useState({}); // ⭐ Store average ratings
 
   const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
   const API_URL = "http://127.0.0.1:8000/api";
@@ -111,7 +130,6 @@ const HomePage = () => {
       const response = await axios.get(`${API_URL}/cart`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log("Raw Cart API Response in HomePage:", response.data);
       const cartData = response.data.data || response.data || [];
       const detailedCart = cartData.map(item => ({
         id: item.product_id,
@@ -122,7 +140,6 @@ const HomePage = () => {
         size: item.size || "Not specified",
         color: item.color || "Not specified",
       }));
-      console.log("Mapped cartItems in HomePage:", detailedCart);
       setCartItems(detailedCart);
     } catch (error) {
       console.error("Error fetching cart:", error.response?.data || error.message);
@@ -191,12 +208,9 @@ const HomePage = () => {
           created_at: item.created_at || new Date().toISOString(),
         }))
         .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-      console.log("Updated wishlistedItems from backend:", detailedWishlist);
-      if (detailedWishlist.length > 0) {
-        setWishlistedItems(detailedWishlist);
-      }
+      setWishlistedItems(detailedWishlist);
     } catch (error) {
-      console.error("Error fetching wishlist, keeping current state:", error.response?.data || error.message);
+      console.error("Error fetching wishlist:", error.response?.data || error.message);
     }
   };
 
@@ -214,8 +228,29 @@ const HomePage = () => {
           imagePreview: product.image_1 ? `${BASE_IMAGE_URL}/${product.image_1}` : "/default-image.jpg",
           productName: product.product_name || product.name || product.title || "Unnamed Product",
         }));
-      console.log("Fetched products:", updatedProducts);
+
+      // ⭐ Fetch ratings for each product
+      const ratingsData = {};
+      await Promise.all(
+        updatedProducts.map(async (product) => {
+          try {
+            const reviewsResponse = await axios.get(`${API_URL}/reviews/${product.id}`, {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+            const reviews = reviewsResponse.data || [];
+            const averageRating = reviews.length
+              ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
+              : 0;
+            ratingsData[product.id] = averageRating;
+          } catch (error) {
+            console.error(`Error fetching reviews for product ${product.id}:`, error);
+            ratingsData[product.id] = 0; // Default to 0 if fetch fails
+          }
+        })
+      );
+
       setProducts(updatedProducts);
+      setRatings(ratingsData);
     } catch (error) {
       console.error("Error fetching products:", error.response?.data || error.message);
     }
@@ -265,7 +300,7 @@ const HomePage = () => {
       await axios.post(`${API_URL}/cart/add`, {
         user_id: userId,
         product_id: product.id,
-        qty: 1, // Default quantity since no size/color selection on homepage
+        qty: 1,
       }, { headers: { Authorization: `Bearer ${token}` } });
       await fetchCart(token, userId);
     } catch (error) {
@@ -290,7 +325,7 @@ const HomePage = () => {
   const handleAddToCart = (product) => async () => {
     const token = localStorage.getItem('token');
     const userId = userProfile?.id;
-    navigate(`/shop/${product.id}`); // Redirect to product page for size/color selection
+    navigate(`/shop/${product.id}`);
   };
 
   const increaseCartQuantity = (itemId, size, color) => {
@@ -350,10 +385,6 @@ const HomePage = () => {
   }, [latestWishlistItem]);
 
   const wishlistCount = wishlistedItems.length;
-
-  const handleRatingChange = (item) => (newRating) => {
-    setRatings((prev) => ({ ...prev, [item]: newRating }));
-  };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -490,6 +521,7 @@ const HomePage = () => {
           ))}
           {isSearchOpen && filteredItems.length === 0 && <p className="no-results">No items found</p>}
         </div>
+
         <div className="new-product-image-containers">
           {products.length > 0 ? (
             products.map((product) => (
@@ -501,14 +533,6 @@ const HomePage = () => {
                     onClick={handleImageClick(product.id)}
                     style={{ cursor: 'pointer' }}
                   />
-                  <div className="product-actions">
-                    <button className="add-to-cart-btn" onClick={handleAddToCart(product)}>
-                      <img src="/imgs/addcart.svg" alt="Add to Cart" className="action-icon" />
-                    </button>
-                    <button className="buy-now-btn" onClick={handleBuyNow(product)}>
-                      <img src="/imgs/buynow.svg" alt="Buy Now" className="action-icon" />
-                    </button>
-                  </div>
                 </div>
                 <div className="product-name-container">
                   <h3 className="product-name">{product.productName || "Unnamed Product"}</h3>
@@ -519,6 +543,7 @@ const HomePage = () => {
                     onClick={handleWishlistToggle(product)}
                   />
                 </div>
+                <RatingDisplay rating={ratings[product.id] || 0} />
                 <p className="product-price">₱{product.price || "N/A"}</p>
               </div>
             ))

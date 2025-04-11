@@ -23,6 +23,8 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AddressController;
 
+
+
 // Public routes
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
@@ -65,15 +67,22 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('order-details', OrderDetailController::class);
     Route::patch('/order-details/{id}/archive', [OrderDetailController::class, 'archive']);
     Route::patch('/order-details/{id}/restore', [OrderDetailController::class, 'restore']);
+    Route::get('/order-details', [OrderController::class, 'getOrderDetails']);
+
 //Courrier
 Route::post('/couriers', [CourierController::class, 'store']);    // Create
     Route::put('/couriers/{id}', [CourierController::class, 'update']); // Update
     Route::delete('/couriers/{id}', [CourierController::class, 'destroy']);
 
 //chat
-Route::post('chat/send', [ChatController::class, 'sendMessage']);
-Route::get('chat/history/{userId}', [ChatController::class, 'getChatHistory']);
-
+Route::prefix('chat')->group(function () {
+    Route::post('/start', [ChatController::class, 'startChat']);
+    Route::get('/active', [ChatController::class, 'getActiveChats']);
+    Route::get('/{chat}/messages', [ChatController::class, 'getMessages']);
+    Route::post('/{chat}/send', [ChatController::class, 'sendMessage']);
+    Route::post('/{chat}/archive', [ChatController::class, 'archiveChat']);
+    Route::post('/{chat}/revert', [ChatController::class, 'revertChat']);
+});
     // Review
     Route::get('/reviews', [ReviewController::class, 'index']);
     Route::post('/reviews/{id}/reply', [ReviewController::class, 'reply']);

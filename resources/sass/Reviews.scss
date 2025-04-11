@@ -6,6 +6,61 @@
     overflow-x: auto;
 }
 
+/* 📌 Reviews Links */
+.reviews-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+
+    .reviews-label {
+        font-size: 14px;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .links-container {
+        display: flex;
+        gap: 15px;
+
+        a {
+            text-decoration: none;
+            color: #2196F3;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+
+            &:hover {
+                color: #2196F3;
+                background:  0 0 3px rgba(33, 150, 243, 0.3);
+            }
+
+            &.active {
+                color: #2196F3;
+                background: 0 0 3px rgba(33, 150, 243, 0.3);
+                font-weight: bold;
+            }
+        }
+    }
+
+    .reviews-search {
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        width: 250px;
+        outline: none;
+        transition: border-color 0.3s ease;
+        margin-left: auto;
+
+        &:focus {
+            border-color: #d32f2f;
+            box-shadow: 0 0 3px rgba(211, 47, 47, 0.3);
+        }
+    }
+}
+
 /* 📌 Reviews Table */
 .reviews-table {
     width: 100%;
@@ -20,9 +75,9 @@
 }
 
 .reviews-table th {
-    background: #f8f9fa;
+    background: #d32f2f;
     font-weight: bold;
-    color: #333;
+    color: white;
 }
 
 .reviews-table td {
@@ -30,8 +85,8 @@
 }
 
 .reviews-table .action-img {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     margin-right: 8px; /* Matches Users.js */
     cursor: pointer;
     transition: opacity 0.3s;
@@ -43,6 +98,28 @@
 
 .reviews-table .action-img:hover {
     opacity: 0.7;
+}
+
+.reviews-table .status-frame {
+    display: inline-block;
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f8f9fa;
+    color: #333;
+    font-size: 12px;
+
+    &.status-active {
+        border-color: #4CAF50;
+        background: #E8F5E9;
+        color: #2E7D32;
+    }
+
+    &.status-archived {
+        border-color: #d32f2f;
+        background: #FFEBEE;
+        color: #b71c1c;
+    }
 }
 
 /* 📌 Modal Overlay (Unchanged) */
@@ -66,6 +143,7 @@
     padding: 20px;
     width: 90%;
     max-width: 500px;
+    height: 390px;  
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -88,6 +166,89 @@
 .reviews-modal-content strong {
     color: #333;
     margin-right: 5px;
+}
+
+/* 📌 Read-only Content */
+.reviews-readonly-content {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f5f5f5;
+    color: #666;
+    min-height: 80px;
+    max-height: 150px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+/* 📌 Form Groups */
+.reviews-form-group {
+    margin-bottom: 15px;
+}
+
+.reviews-form-group label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.reviews-form-group textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    resize: vertical;
+}
+
+.reviews-form-group textarea:focus {
+    border-color: #d32f2f;
+}
+
+.reviews-form-group select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color: white;
+}
+
+.reviews-form-group select:focus {
+    border-color: #d32f2f;
+}
+
+/* 📌 Form Buttons */
+.reviews-form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.reviews-form-buttons .reviews-close-btn {
+    width: 75px;
+    height: 38px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviews-form-buttons .reviews-submit-reply-btn {
+    width: 123px;
+    height: 38px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* 📌 Reply Form (Unchanged) */
@@ -152,6 +313,18 @@
 
 /* 📌 Responsive Design */
 @media (max-width: 768px) {
+    .reviews-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+        .reviews-search {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 10px;
+        }
+    }
+
     .reviews-table th,
     .reviews-table td {
         padding: 8px 10px;
@@ -179,6 +352,21 @@
 
     .reviews-modal-content p {
         font-size: 12px;
+    }
+
+    .reviews-readonly-content {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .reviews-form-group label {
+        font-size: 12px;
+    }
+
+    .reviews-form-group textarea,
+    .reviews-form-group select {
+        font-size: 12px;
+        padding: 6px 10px;
     }
 
     .reviews-reply-input,

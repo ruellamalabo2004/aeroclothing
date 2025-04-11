@@ -1,7 +1,105 @@
 .MyAddress {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background: #f5f5f5;
+  justify-content: center;
   font-family: 'Inter', sans-serif;
+}
+
+.profile-container:not(.header-icons .profile-container) {
+  display: flex;
+  flex-direction: column;
+  margin-top: 75px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.profile-title {
+  font-size: 24px;
+  color: #333;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 20px;
+  align-self: flex-start;
+}
+
+.profile-body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.sidebar {
+  width: 250px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-right: 20px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 95px;
+  max-height: calc(100vh - 115px);
+  overflow-y: auto;
+
+  .user-info {
+    text-align: center;
+    margin-bottom: 20px;
+
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 18px;
+      color: #333;
+    }
+  }
+
+  .nav-menu {
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      cursor: pointer;
+      color: #666;
+      transition: color 0.3s ease;
+
+      img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+
+      &.active {
+        color: #e5383b;
+        font-weight: 500;
+      }
+
+      &:hover {
+        color: #e5383b;
+      }
+    }
+  }
+}
+
+.profile-content {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .address-container {
@@ -309,7 +407,31 @@
   100% { transform: rotate(360deg); }
 }
 
+@media (max-width: 992px) {
+  .profile-container:not(.header-icons .profile-container) {
+    padding: 15px;
+
+    .profile-body {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      margin-bottom: 20px;
+      margin-right: 0;
+    }
+
+    .profile-content {
+      width: 100%;
+    }
+  }
+}
+
 @media (max-width: 768px) {
+  .profile-container:not(.header-icons .profile-container) {
+    padding: 10px;
+  }
+
   .address-container {
     padding: 15px;
     margin-top: 80px;
@@ -328,5 +450,11 @@
       top: 15px;
       right: 15px;
     }
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-container:not(.header-icons .profile-container) {
+    padding: 5px;
   }
 }

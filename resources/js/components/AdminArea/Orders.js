@@ -157,25 +157,25 @@ export default function Orders() {
   };
 
   return (
-    <main>
+    <main className="order-main">
       <h1>Orders</h1>
 
       {error && <div className="error-message">{error}</div>}
 
-      <div className="orders-cards-container">
+      <div className="order-cards-container">
         {orderCards.map((order) => (
-          <div className="orders-card" key={order.status}>
-            <img src={order.image} alt={order.status} className="orders-card-image" />
-            <div className="orders-card-text">{order.status}</div>
-            <div className="orders-card-number">{order.count}</div>
+          <div className="order-card" key={order.status}>
+            <img src={order.image} alt={order.status} className="order-card-image" />
+            <div className="order-card-text">{order.status}</div>
+            <div className="order-card-number">{order.count}</div>
           </div>
         ))}
       </div>
 
       {/* Order Filters & Search */}
-      <div className="orders-links">
-        <span className="orders-label">Orders:</span>
-        <div className="links-container">
+      <div className="order-links">
+        <span className="order-label">Orders:</span>
+        <div className="order-links-container">
           {["All", "PENDING", "PROCESSING", "SHIPPING", "DELIVERED", "CANCELED", "RETURNED"].map(
             (status) => (
               <a
@@ -195,7 +195,7 @@ export default function Orders() {
         </div>
         <input
           type="text"
-          className="orders-search"
+          className="order-search"
           placeholder="Search by Order ID..."
           value={searchQuery}
           onChange={(e) => {
@@ -207,82 +207,80 @@ export default function Orders() {
 
       {/* Edit Order Modal */}
       {selectedOrder && (
-        <div className="modal-overlay" onClick={() => setSelectedOrder(null)}>
-          <div className="edit-modal-container" onClick={(e) => e.stopPropagation()}>
-            <div className="edit-modal-content">
+        <div className="order-modal-overlay" onClick={() => setSelectedOrder(null)}>
+          <div className="order-edit-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="order-modal-content">
               <h2>Edit Order #{selectedOrder.id}</h2>
-              <form onSubmit={(e) => { e.preventDefault(); handleSave(); }} className="product-form">
-                <div className="form-content">
-                  <div className="form-group">
-                    <label>Customer Name</label>
-                    <input
-                      type="text"
-                      name="customer"
-                      placeholder="Enter customer name"
-                      value={selectedOrder.customer || ""}
-                      onChange={handleFormChange}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label>Payment Method</label>
-                    <select
-                      name="payment_method"
-                      value={selectedOrder.payment_method || ""}
-                      onChange={handleFormChange}
-                    >
-                      <option value="">Select Payment Method</option>
-                      <option value="CASH">Cash</option>
-                      <option value="CREDIT_CARD">Credit Card</option>
-                      <option value="DEBIT_CARD">Debit Card</option>
-                      <option value="BANK_TRANSFER">Bank Transfer</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <label>Total Amount</label>
-                    <input
-                      type="number"
-                      name="total_amount"
-                      placeholder="Enter total amount"
-                      value={selectedOrder.total_amount || ""}
-                      onChange={handleFormChange}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label>Date</label>
-                    <input
-                      type="date"
-                      name="created_at"
-                      value={selectedOrder.created_at ? new Date(selectedOrder.created_at).toISOString().split('T')[0] : ""}
-                      onChange={handleFormChange}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label>Status</label>
-                    <select 
-                      name="status" 
-                      value={selectedOrder.status || ""} 
-                      onChange={handleFormChange}
-                    >
-                      <option value="">Select Status</option>
-                      <option value="PENDING">Pending</option>
-                      <option value="PROCESSING">Processing</option>
-                      <option value="SHIPPING">Shipping</option>
-                      <option value="DELIVERED">Delivered</option>
-                      <option value="CANCELED">Canceled</option>
-                      <option value="RETURNED">Returned</option>
-                    </select>
-                  </div>
+              <form onSubmit={(e) => { e.preventDefault(); handleSave(); }} className="order-edit-form">
+                <div className="order-form-group">
+                  <label>Customer Name</label>
+                  <input
+                    type="text"
+                    name="customer"
+                    placeholder="Enter customer name"
+                    value={selectedOrder.customer || ""}
+                    onChange={handleFormChange}
+                  />
                 </div>
 
-                <div className="modal-actions">
-                  <button type="button" className="cancel-btn" onClick={() => setSelectedOrder(null)}>
+                <div className="order-form-group">
+                  <label>Payment Method</label>
+                  <select
+                    name="payment_method"
+                    value={selectedOrder.payment_method || ""}
+                    onChange={handleFormChange}
+                  >
+                    <option value="">Select Payment Method</option>
+                    <option value="CASH">Cash</option>
+                    <option value="CREDIT_CARD">Credit Card</option>
+                    <option value="DEBIT_CARD">Debit Card</option>
+                    <option value="BANK_TRANSFER">Bank Transfer</option>
+                  </select>
+                </div>
+
+                <div className="order-form-group">
+                  <label>Total Amount</label>
+                  <input
+                    type="number"
+                    name="total_amount"
+                    placeholder="Enter total amount"
+                    value={selectedOrder.total_amount || ""}
+                    onChange={handleFormChange}
+                  />
+                </div>
+
+                <div className="order-form-group">
+                  <label>Date</label>
+                  <input
+                    type="date"
+                    name="created_at"
+                    value={selectedOrder.created_at ? new Date(selectedOrder.created_at).toISOString().split('T')[0] : ""}
+                    onChange={handleFormChange}
+                  />
+                </div>
+
+                <div className="order-form-group">
+                  <label>Status</label>
+                  <select 
+                    name="status" 
+                    value={selectedOrder.status || ""} 
+                    onChange={handleFormChange}
+                  >
+                    <option value="">Select Status</option>
+                    <option value="PENDING">Pending</option>
+                    <option value="PROCESSING">Processing</option>
+                    <option value="SHIPPING">Shipping</option>
+                    <option value="DELIVERED">Delivered</option>
+                    <option value="CANCELED">Canceled</option>
+                    <option value="RETURNED">Returned</option>
+                  </select>
+                </div>
+
+                <div className="order-form-buttons">
+                  <button type="button" className="order-cancel-btn" onClick={() => setSelectedOrder(null)}>
                     Cancel
                   </button>
-                  <button type="submit" className="publish-btn">
+                  <button type="submit" className="order-save-btn">
                     Save Changes
                   </button>
                 </div>
@@ -294,12 +292,12 @@ export default function Orders() {
 
       {/* View Order Modal */}
       {viewOrder && (
-        <div className="modal-overlay" onClick={() => setViewOrder(null)}>
-          <div className="edit-modal-container" onClick={(e) => e.stopPropagation()}>
-            <div className="edit-modal-content">
+        <div className="order-modal-overlay" onClick={() => setViewOrder(null)}>
+          <div className="order-edit-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="order-modal-content">
               <h2>Order Details #{viewOrder.id}</h2>
-              <div className="form-content">
-                <div className="form-group">
+              <div className="order-edit-form">
+                <div className="order-form-group">
                   <label>Customer Name</label>
                   <input
                     type="text"
@@ -308,7 +306,7 @@ export default function Orders() {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="order-form-group">
                   <label>Payment Method</label>
                   <input
                     type="text"
@@ -317,7 +315,7 @@ export default function Orders() {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="order-form-group">
                   <label>Total Amount</label>
                   <input
                     type="text"
@@ -326,7 +324,7 @@ export default function Orders() {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="order-form-group">
                   <label>Date</label>
                   <input
                     type="text"
@@ -335,7 +333,7 @@ export default function Orders() {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="order-form-group">
                   <label>Status</label>
                   <input
                     type="text"
@@ -343,12 +341,12 @@ export default function Orders() {
                     disabled
                   />
                 </div>
-              </div>
 
-              <div className="modal-actions">
-                <button className="cancel-btn" onClick={() => setViewOrder(null)}>
-                  Close
-                </button>
+                <div className="order-form-buttons">
+                  <button className="order-cancel-btn" onClick={() => setViewOrder(null)}>
+                    Close
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -357,20 +355,22 @@ export default function Orders() {
 
       {/* Archive Confirmation Modal */}
       {isArchiving && (
-        <div className="edit-modal" onClick={() => setIsArchiving(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>Archive this order?</h2>
-            <form onSubmit={(e) => { e.preventDefault(); confirmArchive(); }}>
-              <p>Are you sure you want to archive Order ID "{isArchiving.id}"?</p>
-              <div className="form-buttons">
-                <button type="submit" className="modal-save-btn">
-                  Yes
-                </button>
-                <button type="button" className="modal-cancel-btn" onClick={() => setIsArchiving(null)}>
-                  Cancel
-                </button>
-              </div>
-            </form>
+        <div className="order-modal-overlay" onClick={() => setIsArchiving(null)}>
+          <div className="order-edit-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="order-modal-content">
+              <h2>Archive this order?</h2>
+              <form onSubmit={(e) => { e.preventDefault(); confirmArchive(); }} className="order-archive-form">
+                <p>Are you sure you want to archive Order ID "{isArchiving.id}"?</p>
+                <div className="order-form-buttons">
+                  <button type="submit" className="order-save-btn">
+                    Yes
+                  </button>
+                  <button type="button" className="order-cancel-btn" onClick={() => setIsArchiving(null)}>
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       )}
@@ -378,8 +378,8 @@ export default function Orders() {
       {/* Orders Table and Pagination */}
       {!selectedOrder && !viewOrder && !isArchiving && (
         <>
-          <div className="orders-table-container">
-            <table className="orders-table">
+          <div className="order-table-container">
+            <table className="order-table">
               <thead>
                 <tr>
                   <th>Actions</th>
@@ -392,63 +392,63 @@ export default function Orders() {
                 </tr>
               </thead>
               <tbody>
-  {currentOrders.map((order) => (
-    <tr key={order.id}>
-      <td>
-        <img
-          src="/imgs/viewing.svg"
-          alt="View"
-          className="action-img"
-          onClick={() => handleViewOrder(order)}
-          style={{ cursor: "pointer" }}
-        />
-        <img
-          src="/imgs/editing.svg"
-          alt="Edit"
-          className="action-img"
-          onClick={() => setSelectedOrder(order)}
-          style={{ cursor: "pointer" }}
-        />
-        <img
-          src="/imgs/archiving.svg"
-          alt="Archive"
-          className="action-img"
-          onClick={() => handleArchiveClick(order)}
-          style={{ cursor: "pointer" }}
-        />
-      </td>
-      <td>{order.id}</td>
-      <td>{order.customer || "Unknown Customer"}</td>
-      <td>{order.payment_method || "N/A"}</td>
-      <td>₱{order.total_amount || 0}</td>
-      <td>{order.created_at ? new Date(order.created_at).toLocaleDateString() : "N/A"}</td>
-      <td>
-        <span className={`status-frame status-${order.status?.toLowerCase() || "unknown"}`}>
-          {order.status || "Unknown"}
-        </span>
-      </td>
-    </tr>
-  ))}
-</tbody>
+                {currentOrders.map((order) => (
+                  <tr key={order.id}>
+                    <td>
+                      <img
+                        src="/imgs/viewing.svg"
+                        alt="View"
+                        className="order-action-img"
+                        onClick={() => handleViewOrder(order)}
+                        style={{ cursor: "pointer" }}
+                      />
+                      <img
+                        src="/imgs/editing.svg"
+                        alt="Edit"
+                        className="order-action-img"
+                        onClick={() => setSelectedOrder(order)}
+                        style={{ cursor: "pointer" }}
+                      />
+                      <img
+                        src="/imgs/archiving.svg"
+                        alt="Archive"
+                        className="order-action-img"
+                        onClick={() => handleArchiveClick(order)}
+                        style={{ cursor: "pointer" }}
+                      />
+                    </td>
+                    <td>{order.id}</td>
+                    <td>{order.customer || "Unknown Customer"}</td>
+                    <td>{order.payment_method || "N/A"}</td>
+                    <td>₱{order.total_amount || 0}</td>
+                    <td>{order.created_at ? new Date(order.created_at).toLocaleDateString() : "N/A"}</td>
+                    <td>
+                      <span className={`order-status-frame order-status-${order.status?.toLowerCase() || "unknown"}`}>
+                        {order.status || "Unknown"}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
 
           {orders.length > 0 && (
-            <div className="pagination">
+            <div className="order-pagination">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="pagination-btn"
+                className="order-pagination-btn"
               >
                 Previous
               </button>
-              <span className="pagination-info">
+              <span className="order-pagination-info">
                 Page {currentPage} of {totalPages}
               </span>
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="pagination-btn"
+                className="order-pagination-btn"
               >
                 Next
               </button>

@@ -19,7 +19,16 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class, 'user_id');
     }
-    
+    public function messages()
+{
+    return $this->hasMany(Message::class, 'user_id');
+}
+
+public function getIsAdminAttribute()
+    {
+        return $this->role === 'admin'; // Adjust based on your role column
+    }
+
     public function canLogin()
     {
         return $this->status === 'Active';

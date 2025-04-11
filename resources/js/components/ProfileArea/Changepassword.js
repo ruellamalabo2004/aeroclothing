@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-
+import '../../../sass/Changepassword.scss';
 
 const Footer = () => {
   const footerLinks = [
@@ -290,7 +290,7 @@ const ChangePassword = () => {
 
   return (
     <div className="ChangePassword">
-      <header className="login-header">
+      <header className="header">
         <div className="logo-container">
           <img src="/imgs/logo.svg" alt="Aero Logo" className="logo" />
         </div>
@@ -437,10 +437,10 @@ const ChangePassword = () => {
         </div>
       </div>
 
-      <div className="profile-container">
-        <h1 className="profile-title">Profile Information</h1>
-        <div className="profile-body">
-          <div className="sidebar">
+      <div className="change-password-container">
+        <h1 className="change-password-title">Profile Information</h1>
+        <div className="change-password-body">
+          <div className="change-password-sidebar">
             <div className="user-info">
               <img
                 src={profile.profile_pic}
@@ -495,11 +495,11 @@ const ChangePassword = () => {
               </li>
             </ul>
           </div>
-          <div className="profile-content">
+          <div className="change-password-content">
             <div className="change-password-form">
               <h2 className="form-title">Set Password</h2>
               <p className="form-subtitle">
-                For your account’s security, do not share your password with anyone else
+                For your account's security, do not share your password with anyone else
               </p>
               <div className="form-group full-width">
                 <label>Old Password</label>

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Footer from '../FooterNav/Footer';
+import { Link } from 'react-router-dom';
+import LoginHeader from '../HeaderNav/LoginHeader';
 
 const Signup = () => {
   const [firstName, setFirstName] = useState('');
@@ -74,6 +77,8 @@ const Signup = () => {
 
   return (
     <>
+      <LoginHeader />
+
       {/* Success/Error Popup Notification */}
       {showPopup && (
         <div className={`notification-popup ${isSuccess ? 'success' : 'error'}`}>
@@ -87,35 +92,6 @@ const Signup = () => {
           </div>
         </div>
       )}
-
-      {/* Header */}
-      <header className="login-header">
-        <div className="logo-container">
-          <img src="/imgs/logo.svg" alt="Logo" className="logo" />
-        </div>
-        <nav className="nav-links">
-          <a href="#home">HOME</a>
-          <a href="#shop">SHOP</a>
-          <a href="#about">ABOUT US</a>
-          <a href="#support" className="support-link">SUPPORT</a>
-        </nav>
-        <div className="header-icons">
-          <img src="/imgs/Search.svg" alt="Search" className="header-icon" />
-          <img src="/imgs/Wish.svg" alt="Wishlist" className="header-icon" />
-          <img src="/imgs/Cart.svg" alt="Cart" className="header-icon" />
-          <button className="login-button">Login</button>
-        </div>
-      </header>
-
-      {/* Right-Side Image */}
-      <div className="right-image-container">
-        <img src="/imgs/design2.svg" alt="Right Image" className="right-image" />
-      </div>
-
-      {/* Left-Side Image */}
-      <div className="left-image-container">
-        <img src="/imgs/design1.svg" alt="Left Image" className="left-image" />
-      </div>
 
       {/* Signup Container */}
       <div className="login-container">
@@ -217,6 +193,16 @@ const Signup = () => {
           </form>
         </div>
       </div>
+
+      {/* Already have an account section */}
+      <div className="account-prompt">
+        <p className="account-text">Already have an account?</p>
+        <Link to="/login" className="account-button">
+          Login
+        </Link>
+      </div>
+
+      <Footer />
     </>
   );
 };

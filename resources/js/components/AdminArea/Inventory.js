@@ -262,42 +262,48 @@ export default function Inventory() {
       </div>
 
       {selectedItem && (
-        <div className="add-form">
-          <h2>Edit Inventory Item</h2>
-          <div>
-            <label>Product:</label>
-            <input
-              type="text"
-              value={selectedItem.product?.product_name || "N/A"}
-              disabled
-            />
-          </div>
-          <div>
-            <label>Stock Quantity:</label>
-            <input
-              type="number"
-              name="stock_quantity"
-              value={selectedItem.stock_quantity || 0}
-              onChange={handleFormChange}
-              min="0"
-              required
-            />
-          </div>
-          <div>
-            <label>Status:</label>
-            <select
-              name="status"
-              value={selectedItem.status || "Out of Stock"}
-              onChange={handleFormChange}
-            >
-              <option value="Available">Available</option>
-              <option value="Low Stock">Low Stock</option>
-              <option value="Out of Stock">Out of Stock</option>
-            </select>
-          </div>
-          <div>
-            <button onClick={handleSave}>Save</button>
-            <button onClick={() => setSelectedItem(null)}>Cancel</button>
+        <div className="inventory-modal-overlay" onClick={() => setSelectedItem(null)}>
+          <div className="inventory-edit-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="inventory-modal-content">
+              <h2>Edit Inventory Item</h2>
+              <form onSubmit={(e) => { e.preventDefault(); handleSave(); }} className="inventory-edit-form">
+                <div className="inventory-form-group">
+                  <label>Product:</label>
+                  <input
+                    type="text"
+                    value={selectedItem.product?.product_name || "N/A"}
+                    disabled
+                  />
+                </div>
+                <div className="inventory-form-group">
+                  <label>Stock Quantity:</label>
+                  <input
+                    type="number"
+                    name="stock_quantity"
+                    value={selectedItem.stock_quantity || 0}
+                    onChange={handleFormChange}
+                    min="0"
+                    required
+                  />
+                </div>
+                <div className="inventory-form-group">
+                  <label>Status:</label>
+                  <select
+                    name="status"
+                    value={selectedItem.status || "Out of Stock"}
+                    onChange={handleFormChange}
+                  >
+                    <option value="Available">Available</option>
+                    <option value="Low Stock">Low Stock</option>
+                    <option value="Out of Stock">Out of Stock</option>
+                  </select>
+                </div>
+                <div className="inventory-form-buttons">
+                  <button type="button" onClick={() => setSelectedItem(null)}>Cancel</button>
+                  <button type="submit">Save</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       )}
