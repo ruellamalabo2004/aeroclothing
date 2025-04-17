@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600&display=swap');
+
+.success-upload {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: #e6f4ea; // Light green background, matching success tone
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  font-family: 'Albert Sans', sans-serif;
+  animation: slideIn 0.3s ease-in-out;
+
+  &__icon {
+    color: #28a745; // Green color for success icon
+  }
+
+  &__message {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .success-upload {
+    top: 10px;
+    right: 10px;
+    padding: 10px 16px;
+
+    &__message {
+      font-size: 13px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .success-upload {
+    top: 8px;
+    right: 8px;
+    padding: 8px 12px;
+
+    &__icon {
+      size: 18px;
+    }
+
+    &__message {
+      font-size: 12px;
+    }
+  }
+}

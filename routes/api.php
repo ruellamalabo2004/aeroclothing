@@ -1,19 +1,27 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ColorController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+// Public routes
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
+Route::patch('/products/{id}/restore', [ProductController::class, 'restore']);
+Route::patch('/products/{id}/archive', [ProductController::class, 'archive']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Public routes for products, categories, brands, and colors
+Route::apiResource('products', ProductController::class);  // Make entire product routes public
+Route::get('categories', [CategoryController::class, 'index']);
+Route::get('brands', [BrandController::class, 'index']);
+Route::get('colors', [ColorController::class, 'index']);
+
+// Protected routes (authentication required)
+Route::middleware('auth:api')->group(function () {
+    // User-related routes
+    Route::get('user', [UserController::class, 'getUser']);
 });

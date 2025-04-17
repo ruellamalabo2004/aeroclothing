@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>aero</title>
+    <title>FixNhost</title>
     
     <!-- CSS -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -18,7 +18,7 @@
 <body>
     <div id="root">
         <div class="container">
-            <h1>Hello World</h1>
+            <h1>Welcome to FixNhost</h1>
             <i class="fas fa-shopping-cart"></i> <!-- Example Icon -->
         </div>
     </div>

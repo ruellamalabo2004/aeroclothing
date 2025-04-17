@@ -1,0 +1,251 @@
+.admin-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 60px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 20px;
+    z-index: 90;
+    font-family: 'Arial', sans-serif;
+    transition: left 0.3s ease;
+  
+    .sidebar-open & {
+      left: 220px; /* Matches sidebar width */
+    }
+  
+    .sidebar-closed & {
+      left: 0; /* Full width when sidebar is closed */
+    }
+  
+    &__hamburger {
+      position: absolute;
+      left: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      transition: background-color 0.3s ease;
+    }
+  
+    &__hamburger svg {
+      color: #666;
+    }
+  
+    &__hamburger:hover {
+      background-color: #f5f5f5;
+      border-radius: 6px;
+    }
+  
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+  
+    &__notification {
+      position: relative;
+      cursor: pointer;
+    }
+  
+    &__icon {
+      color: #666;
+      transition: color 0.3s ease;
+  
+      &:hover {
+        color: #007bff;
+      }
+    }
+  
+    &__notification-dot {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 10px;
+      height: 10px;
+      background-color: #ff0000;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+    }
+  
+    &__profile {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+  
+    &__profile-picture {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #e0e0e0;
+    }
+  
+    &__profile-placeholder {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 500;
+      color: #666;
+      text-transform: uppercase;
+    }
+  
+    &__user-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+    }
+  
+    &__dropdown-arrow {
+      color: #666;
+      transition: transform 0.3s ease;
+  
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+  
+    &__dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      padding: 0.5rem 0;
+      min-width: 140px;
+      z-index: 101;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    &__dropdown-item {
+      padding: 0.5rem 1rem;
+      color: #333;
+      font-size: 14px;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+  
+      &:hover {
+        background-color: #f5f5f5;
+        color: #007bff;
+      }
+  
+      &:focus {
+        outline: 2px solid #007bff;
+        outline-offset: -2px;
+      }
+    }
+  
+    &__dropdown-separator {
+      height: 1px;
+      background-color: #e0e0e0;
+      margin: 0.25rem 0;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .admin-header {
+      height: 50px;
+      padding: 0 15px;
+  
+      .sidebar-open & {
+        left: 200px;
+      }
+  
+      .sidebar-closed & {
+        left: 0;
+      }
+  
+      &__actions {
+        gap: 15px;
+      }
+  
+      &__profile-picture,
+      &__profile-placeholder {
+        width: 28px;
+        height: 28px;
+      }
+  
+      &__icon,
+      &__dropdown-arrow {
+        width: 18px;
+        height: 18px;
+      }
+  
+      &__user-name {
+        font-size: 13px;
+      }
+  
+      &__dropdown-menu {
+        min-width: 120px;
+        top: calc(100% + 8px);
+      }
+  
+      &__dropdown-item {
+        font-size: 13px;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .admin-header {
+      height: 46px;
+      padding: 0 10px;
+  
+      .sidebar-open & {
+        left: 180px;
+      }
+  
+      .sidebar-closed & {
+        left: 0;
+      }
+  
+      &__actions {
+        gap: 10px;
+      }
+  
+      &__profile-picture,
+      &__profile-placeholder {
+        width: 26px;
+        height: 26px;
+      }
+  
+      &__icon,
+      &__dropdown-arrow {
+        width: 16px;
+        height: 16px;
+      }
+  
+      &__user-name {
+        font-size: 12px;
+      }
+  
+      &__dropdown-menu {
+        min-width: 110px;
+        top: calc(100% + 6px);
+      }
+  
+      &__dropdown-item {
+        font-size: 12px;
+        padding: 0.3rem 0.7rem;
+      }
+    }
+  }

@@ -1,0 +1,291 @@
+.signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f5f7fa;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  
+    &__title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  
+    &__subtitle {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+  
+    &__form {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    &__row {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+    }
+  
+    &__field {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0; /* Prevent flex items from overflowing */
+    }
+  
+    &__label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+    }
+  
+    &__input {
+      width: 100%;
+      padding: 12px; /* Consistent padding for both input and select */
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      font-size: 16px;
+      color: #333;
+      background-color: #fff;
+      box-sizing: border-box; /* Ensure padding is included in width */
+  
+      /* Remove default browser styling for select */
+      &:where(select) {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        padding-right: 40px; /* Space for the ChevronDown icon */
+      }
+  
+      /* Specific styles for other input types */
+      &[type="date"],
+      &[type="text"],
+      &[type="email"],
+      &[type="password"] {
+        padding: 12px; /* Ensure consistency */
+      }
+  
+      &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+        -webkit-text-fill-color: #333 !important;
+      }
+  
+      &::placeholder {
+        color: #aaa;
+      }
+  
+      &:focus {
+        outline: none;
+        border-color: #3AA6B9;
+        box-shadow: 0 0 5px rgba(58, 166, 185, 0.2);
+      }
+    }
+  
+    &__select-wrapper {
+      position: relative;
+      width: 100%;
+    }
+  
+    &__select-arrow {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+      pointer-events: none; /* Prevent clicking on the icon */
+    }
+  
+    &__password-wrapper {
+      position: relative;
+      width: 100%;
+    }
+  
+    &__toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #666;
+      padding: 0;
+  
+      &:hover {
+        color: #3AA6B9;
+      }
+    }
+  
+    &__submit-button {
+      background-color: #3AA6B9;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #3292a3;
+      }
+    }
+  
+    &__login {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+  
+      span {
+        margin-right: 5px;
+      }
+    }
+  
+    &__login-link {
+      color: #3AA6B9;
+      text-decoration: none;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .signup {
+      padding: 15px;
+  
+      &__title {
+        font-size: 30px;
+        margin-bottom: 8px;
+      }
+  
+      &__subtitle {
+        font-size: 14px;
+        margin-bottom: 25px;
+      }
+  
+      &__form {
+        max-width: 100%;
+      }
+  
+      &__row {
+        flex-direction: column;
+        gap: 15px;
+      }
+  
+      &__label {
+        font-size: 13px;
+      }
+  
+      &__input {
+        font-size: 14px;
+        padding: 10px;
+  
+        &:where(select) {
+          padding-right: 38px;
+        }
+      }
+  
+      &__select-arrow {
+        right: 8px;
+  
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+  
+      &__toggle-password {
+        right: 8px;
+  
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+  
+      &__submit-button {
+        font-size: 14px;
+        padding: 10px;
+      }
+  
+      &__login {
+        font-size: 13px;
+        margin-top: 15px;
+      }
+    }
+  }
+  
+  /* Small mobile adjustments */
+  @media (max-width: 480px) {
+    .signup {
+      padding: 10px;
+  
+      &__title {
+        font-size: 26px;
+        margin-bottom: 6px;
+      }
+  
+      &__subtitle {
+        font-size: 13px;
+        margin-bottom: 20px;
+      }
+  
+      &__label {
+        font-size: 12px;
+      }
+  
+      &__input {
+        font-size: 13px;
+        padding: 8px;
+  
+        &:where(select) {
+          padding-right: 36px;
+        }
+      }
+  
+      &__select-arrow {
+        right: 6px;
+  
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+  
+      &__toggle-password {
+        right: 6px;
+  
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+  
+      &__submit-button {
+        font-size: 13px;
+        padding: 8px;
+      }
+  
+      &__login {
+        font-size: 12px;
+        margin-top: 10px;
+      }
+    }
+  }
