@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,6 +29,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        // Validate the incoming data
         $validated = $request->validate([
             'category_id' => 'required|exists:categories,id',
             'brand_id' => 'required|exists:brands,id',
@@ -41,6 +44,18 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
         ]);
 
+        // Check if the selected category is archived
+        $category = Category::find($request->category_id);
+        if ($category->status === 'archived') {
+            return response()->json(['message' => 'The selected category is archived and cannot be used.'], 400);
+        }
+
+        // Check if the selected brand is archived
+        $brand = Brand::find($request->brand_id);
+        if ($brand->status === 'archived') {
+            return response()->json(['message' => 'The selected brand is archived and cannot be used.'], 400);
+        }
+
         // Handle file uploads
         if ($request->hasFile('image_1')) {
             $validated['image_1'] = $request->file('image_1')->store('products', 'public');
@@ -50,6 +65,7 @@ class ProductController extends Controller
             $validated['image_2'] = $request->file('image_2')->store('products', 'public');
         }
 
+        // Create the product
         $product = Product::create($validated);
 
         return response()->json($product, 201);
@@ -57,6 +73,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+        // Validate the incoming data
         $validated = $request->validate([
             'category_id' => 'required|exists:categories,id',
             'brand_id' => 'required|exists:brands,id',
@@ -75,6 +92,18 @@ class ProductController extends Controller
 
         if (!$product) {
             return response()->json(['message' => 'Product not found'], 404);
+        }
+
+        // Check if the selected category is archived
+        $category = Category::find($request->category_id);
+        if ($category->status === 'archived') {
+            return response()->json(['message' => 'The selected category is archived and cannot be used.'], 400);
+        }
+
+        // Check if the selected brand is archived
+        $brand = Brand::find($request->brand_id);
+        if ($brand->status === 'archived') {
+            return response()->json(['message' => 'The selected brand is archived and cannot be used.'], 400);
         }
 
         // Handle file uploads

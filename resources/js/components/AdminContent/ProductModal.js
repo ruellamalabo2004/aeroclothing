@@ -41,12 +41,18 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
         axios.get('http://localhost:8000/api/categories'),
         axios.get('http://localhost:8000/api/brands'),
       ]);
-      setCategoryOptions(categoriesRes.data);
-      setBrandOptions(brandsRes.data);
+  
+      // Filter out archived categories and brands
+      const activeCategories = categoriesRes.data.filter(category => !category.archived_at);
+      const activeBrands = brandsRes.data.filter(brand => !brand.archived_at);
+  
+      setCategoryOptions(activeCategories); // Set only active categories
+      setBrandOptions(activeBrands); // Set only active brands
     } catch (err) {
       console.error('Error fetching options:', err);
     }
   };
+  
 
   useEffect(() => {
     if (isOpen) fetchOptions();
@@ -237,22 +243,24 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
                 <div className="product-modal__field">
                   <label>CATEGORY</label>
                   <select name="category_id" value={formData.category_id} onChange={handleInputChange} required>
-                    <option value="">Select Category</option>
-                    {categoryOptions.map((c) => (
-                      <option key={c.id} value={c.id}>{c.name}</option>
-                    ))}
-                  </select>
+  <option value="">Select Category</option>
+  {categoryOptions.map((c) => (
+    <option key={c.id} value={c.id}>{c.name}</option>
+  ))}
+</select>
+
                   {errors.category_id && <p className="product-modal__error">{errors.category_id[0]}</p>}
                 </div>
 
                 <div className="product-modal__field">
                   <label>BRAND</label>
                   <select name="brand_id" value={formData.brand_id} onChange={handleInputChange} required>
-                    <option value="">Select Brand</option>
-                    {brandOptions.map((b) => (
-                      <option key={b.id} value={b.id}>{b.name}</option>
-                    ))}
-                  </select>
+  <option value="">Select Brand</option>
+  {brandOptions.map((b) => (
+    <option key={b.id} value={b.id}>{b.name}</option>
+  ))}
+</select>
+
                   {errors.brand_id && <p className="product-modal__error">{errors.brand_id[0]}</p>}
                 </div>
               </div>

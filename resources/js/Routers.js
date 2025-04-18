@@ -8,6 +8,7 @@ import Signup from "./components/LoginContent/Signup";
 import AdminDashboard from "./components/AdminContent/AdminDashboard";
 import Dashboard from "./components/AdminContent/Dashboard";
 import Products from "./components/AdminContent/Products"; // Import Products
+import Settings from "./components/AdminContent/Settings"; // Import Products
 import Homepage from "./components/CustomerPage/Homepage";
 
 const App = () => {
@@ -40,7 +41,7 @@ const App = () => {
           <Route path="inbox" element={<div>Inbox Page (Placeholder)</div>} />
           <Route path="customer-support" element={<div>Customer Support Page (Placeholder)</div>} />
           <Route path="reports" element={<div>Reports Page (Placeholder)</div>} />
-          <Route path="settings" element={<div>Settings Page (Placeholder)</div>} />
+          <Route path="settings" element={<Settings />} />
         </Route>
 
         {/* Catch-all route */}

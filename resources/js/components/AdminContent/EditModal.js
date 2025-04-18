@@ -46,7 +46,7 @@ const EditModal = ({ isOpen, onClose, productId, token, onProductUpdated }) => {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
-
+  
       const product = productRes.data;
       setFormData({
         product_name: product.product_name || '',
@@ -61,18 +61,23 @@ const EditModal = ({ isOpen, onClose, productId, token, onProductUpdated }) => {
         image_1: null, // File input starts empty
         image_2: null, // File input starts empty
       });
-
+  
       setImagePreviews({
         image_1: product.image_1 ? `http://localhost:8000/storage/${product.image_1}` : null,
         image_2: product.image_2 ? `http://localhost:8000/storage/${product.image_2}` : null,
       });
-
-      setCategoryOptions(categoriesRes.data);
-      setBrandOptions(brandsRes.data);
+  
+      // Filter out archived categories and brands
+      const activeCategories = categoriesRes.data.filter(category => !category.archived_at);
+      const activeBrands = brandsRes.data.filter(brand => !brand.archived_at);
+  
+      setCategoryOptions(activeCategories); // Set only active categories
+      setBrandOptions(activeBrands); // Set only active brands
     } catch (err) {
       console.error('Error fetching data:', err);
     }
   };
+  
 
   useEffect(() => {
     if (isOpen && productId) {

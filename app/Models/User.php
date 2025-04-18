@@ -4,21 +4,34 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens; // ✅ Add this
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable; // ✅ Use the trait here
+    use HasApiTokens, Notifiable, HasFactory;
 
-    protected $fillable = [
-        'email',
-        'password',
-        'role',
-        'status',
-    ];
+    protected $fillable = ['email', 'password', 'role','status'];
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class, 'user_id');
+    }
+    public function messages()
+{
+    return $this->hasMany(Message::class, 'user_id');
+}
+
+public function getIsAdminAttribute()
+    {
+        return $this->role === 'admin'; // Adjust based on your role column
+    }
+
+    public function canLogin()
+    {
+        return $this->status === 'Active';
+    }
+
 }

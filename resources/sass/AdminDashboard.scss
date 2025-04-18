@@ -1,74 +1,131 @@
 .admin-dashboard {
+  display: flex;
+  min-height: 100vh; /* Keep for desktop to ensure full height */
+  overflow: hidden; /* Prevent entire page from scrolling */
+
+  .admin-dashboard__wrapper {
+    flex: 1 1 auto; /* Allow shrinking and growing based on content */
     display: flex;
-    min-height: 100vh;
-    overflow: hidden;
-  
+    flex-direction: column;
+    transition: margin-left 0.3s ease;
+    width: 100%; /* Ensure wrapper takes full width */
+    position: relative; /* Create a positioning context */
+    min-height: 0; /* Prevent flex item from enforcing min-height */
+    overflow: hidden; /* Prevent wrapper from scrolling */
+
+    &.sidebar-open {
+      margin-left: 220px;
+    }
+
+    &.sidebar-closed {
+      margin-left: 0;
+    }
+  }
+
+  .admin-dashboard__content {
+    flex: 1 1 auto; /* Allow shrinking and growing based on content */
+    padding: 20px;
+    margin-top: 60px; /* Account for fixed header */
+    background: #f4f5f7;
+    width: 100%;
+    overflow-y: auto; /* Keep vertical scrolling */
+    min-height: calc(100vh - 60px); /* Ensure content area spans viewport minus header on desktop */
+    max-width: 100%; /* Prevent content from exceeding viewport width */
+    box-sizing: border-box; /* Include padding in width calculation */
+    flex-grow: 0; /* Prevent content from growing beyond its natural height */
+  }
+
+  /* Only apply no-scroll when specifically needed, e.g., when modals are open */
+  .no-scroll {
+    overflow: hidden !important;
+  }
+}
+
+/* Custom scrollbar styles for the entire dashboard */
+.admin-dashboard__content {
+  /* Hide default scrollbar in WebKit browsers */
+  &::-webkit-scrollbar {
+    height: 0;
+    width: 8px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(58, 166, 185, 0.3); /* Match your primary color theme */
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(58, 166, 185, 0.5);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .admin-dashboard {
+    min-height: auto; /* Remove min-height constraint on mobile */
+    overflow: hidden; /* Prevent entire page from scrolling */
+
     .admin-dashboard__wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      transition: margin-left 0.3s ease;
-  
       &.sidebar-open {
-        margin-left: 220px;
+        margin-left: 200px;
       }
-  
+
+      &.sidebar-closed {
+        margin-left: 0;
+      }
+      min-height: 0; /* Ensure wrapper doesn’t enforce height */
+      flex: 1 1 auto; /* Reinforce natural sizing */
+      overflow: hidden; /* Prevent wrapper from scrolling */
+    }
+
+    .admin-dashboard__content {
+      margin-top: 50px;
+      padding: 15px;
+      min-height: auto; /* Let content determine height */
+      height: auto; /* Ensure height adjusts to content */
+      flex: 1 1 auto; /* Reinforce natural sizing */
+      flex-grow: 0; /* Prevent growing */
+      overflow-y: auto; /* Ensure content scrolls */
+    }
+  }
+
+  /* Ensure product tables don't push content outside viewport */
+  .products-table-container {
+    max-width: 100%;
+    overflow-x: auto; /* Enable horizontal scroll for tables */
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-dashboard {
+    .admin-dashboard__wrapper {
+      &.sidebar-open {
+        margin-left: 180px;
+      }
+
       &.sidebar-closed {
         margin-left: 0;
       }
     }
-  
+
     .admin-dashboard__content {
-      flex: 1;
-      padding: 20px;
-      margin-top: 60px; /* Account for fixed header */
-      background: #f4f5f7;
-      width: 100%;
-      overflow-y: auto; /* Enable scrolling for content */
-      min-height: calc(100vh - 60px); /* Ensure content area spans viewport minus header */
-    }
-  
-    .no-scroll {
-      overflow: hidden;
+      margin-top: 46px;
+      padding: 10px;
+      min-height: auto; /* Let content determine height */
+      height: auto; /* Ensure height adjusts to content */
     }
   }
-  
-  @media (max-width: 768px) {
-    .admin-dashboard {
-      .admin-dashboard__wrapper {
-        &.sidebar-open {
-          margin-left: 200px;
-        }
-  
-        &.sidebar-closed {
-          margin-left: 0;
-        }
-      }
-  
-      .admin-dashboard__content {
-        margin-top: 50px;
-        padding: 15px;
-        min-height: calc(100vh - 50px); /* Match mobile header height */
-      }
-    }
+}
+
+/* Additional styles to ensure scrollbars appear properly on mobile */
+@media (max-width: 576px) {
+  /* Make custom scrollbar more visible on small screens */
+  .custom-scrollbar {
+    height: 16px; /* Slightly taller for better touch targets */
   }
   
-  @media (max-width: 480px) {
-    .admin-dashboard {
-      .admin-dashboard__wrapper {
-        &.sidebar-open {
-          margin-left: 180px;
-        }
-  
-        &.sidebar-closed {
-          margin-left: 0;
-        }
-      }
-  
-      .admin-dashboard__content {
-        margin-top: 46px;
-        padding: 10px;
-        min-height: calc(100vh - 46px); /* Match small mobile header height */
-      }
-    }
+  .scroll-thumb {
+    height: 16px;
   }
+}
