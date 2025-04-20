@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600&display=albert+sans');
+
+/* 📌 General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Albert Sans', sans-serif;
+}
+
+/* 📌 Reviews Container */
+.reviews {
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: auto;
+  flex: 1 1 auto;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  &__search-icon {
+    position: absolute;
+    left: 10px;
+    color: #999;
+  }
+
+  &__search {
+    width: 100%;
+    padding: 8px 12px 8px 36px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+    font-size: 14px;
+    color: #666;
+    box-sizing: border-box;
+    outline: none;
+
+    &::placeholder {
+      color: #999;
+    }
+  }
+}
+
+/* 📌 Reviews Table Wrapper */
+.reviews-table-wrapper {
+  position: relative;
+  width: 100%;
+  overflow-x: visible;
+  min-height: 0;
+}
+
+/* 📌 Reviews Table Container */
+.reviews-table-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  scrollbar-width: auto;
+  scrollbar-color: #888 #f1f1f1;
+
+  &::-webkit-scrollbar {
+    height: 12px;
+    display: block !important;
+    -webkit-appearance: none;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px;
+    border: 2px solid #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+/* 📌 Reviews Table */
+.reviews-table {
+  width: 100%;
+  min-width: 800px; /* Same as inbox for consistency */
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+
+  th {
+    background: #3AA6B9;
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  td {
+    color: #000000;
+  }
+
+  th:first-child,
+  td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: #fff;
+    box-shadow: 2px 0 0 #ddd;
+  }
+
+  th:first-child {
+    background: #3AA6B9;
+    z-index: 2;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  .action-img {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .status-frame {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px; /* Oval shape */
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: capitalize;
+    border: none;
+
+    &.status-replied {
+      background-color: #E8F5E9; /* Light green, like inbox status-read */
+      color: #2E7D32; /* Dark green */
+    }
+
+    &.status-archived {
+      background-color: #FFEBEE; /* Light red, like inbox status-archived */
+      color: #C62828; /* Dark red */
+    }
+  }
+}
+
+/* 📌 Pagination */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+
+  .pagination-btn {
+    padding: 6px 12px;
+    background: #3AA6B9;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: #2a8291;
+    }
+
+    &:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+  }
+
+  span {
+    font-size: 14px;
+    color: #333;
+  }
+}
+
+/* 📌 Responsive Design */
+@media (max-width: 768px) {
+  .reviews {
+    padding: 15px;
+
+    &__header {
+      gap: 10px;
+    }
+
+    &__controls {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    &__search-wrapper {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    &__title {
+      font-size: 20px;
+    }
+
+    &__subtitle {
+      font-size: 13px;
+    }
+
+    &__search {
+      padding: 6px 10px 6px 32px;
+      font-size: 13px;
+    }
+  }
+
+  .reviews-table-wrapper {
+    overflow-x: visible;
+  }
+
+  .reviews-table-container {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: auto;
+    scrollbar-color: #888 #f1f1f1;
+
+    &::-webkit-scrollbar {
+      height: 12px;
+      display: block !important;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 6px;
+      border: 2px solid #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  }
+
+  .reviews-table {
+    min-width: 800px;
+
+    th,
+    td {
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+
+    .action-img {
+      width: 14px;
+      height: 14px;
+      margin-right: 6px;
+    }
+
+    .status-frame {
+      padding: 3px 6px;
+      font-size: 12px;
+    }
+  }
+
+  .pagination-controls {
+    padding: 0 10px;
+    margin-bottom: 15px;
+  }
+}
+
+/* 📌 Extra Small Devices (below 576px) */
+@media (max-width: 576px) {
+  .reviews {
+    padding: 10px;
+
+    &__title {
+      font-size: 18px;
+    }
+
+    &__subtitle {
+      font-size: 12px;
+    }
+
+    &__search-wrapper {
+      max-width: 100%;
+    }
+
+    &__search {
+      padding: 5px 8px 5px 28px;
+      font-size: 12px;
+    }
+  }
+
+  .reviews-table {
+    min-width: 800px;
+
+    th,
+    td {
+      padding: 6px 8px;
+      font-size: 11px;
+    }
+
+    .action-img {
+      width: 12px;
+      height: 12px;
+      margin-right: 5px;
+    }
+
+    .status-frame {
+      padding: 2px 5px;
+      font-size: 11px;
+    }
+  }
+
+  .pagination-controls {
+    padding: 0 5px;
+    gap: 10px;
+    margin-bottom: 10px;
+
+    .pagination-btn {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    span {
+      font-size: 12px;
+    }
+  }
+}

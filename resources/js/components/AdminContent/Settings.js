@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Calendar, Eye, EyeOff, Upload, ChevronDown } from 'lucide-react';
 import AdminSettings from './AdminSettings';
 
-
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('account');
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
@@ -99,6 +98,7 @@ const Settings = () => {
   const handleProfileChange = (e) => {
     const { name, value } = e.target;
     setProfile({ ...profile, [name]: value });
+    setErrors((prev) => ({ ...prev, [name]: null }));
   };
 
   const handlePasswordChange = (e) => {
@@ -127,17 +127,15 @@ const Settings = () => {
   };
 
   const handleEditProfile = (e) => {
-    e.preventDefault(); // Prevent any form submission
+    e.preventDefault();
     setIsEditing(true);
     setErrors({});
     setSuccessMessage('');
   };
 
   const handleCancelEdit = (e) => {
-    e.preventDefault(); // Prevent any form submission
+    e.preventDefault();
     setIsEditing(false);
-    // Optionally reset any unsaved changes
-    // You could store original values and restore them here
   };
 
   const handleUpdateProfile = async (e) => {
@@ -189,14 +187,12 @@ const Settings = () => {
         profile_image: null,
       });
 
-      // Update image preview from response
       setImagePreview(
         response.data.profile?.profile_pic
           ? `${BASE_IMAGE_URL}/${response.data.profile.profile_pic}?t=${Date.now()}`
           : '/imgs/profile.svg'
       );
 
-      // Return to read-only mode
       setIsEditing(false);
     } catch (error) {
       console.error('Failed to update profile:', error.response?.data || error.message);
@@ -470,9 +466,9 @@ const Settings = () => {
                       className="settings__dropdown"
                     >
                       <option value="">Select Gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="other">Other</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
                     </select>
                     <ChevronDown
                       size={16}

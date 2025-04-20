@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Archive, Plus, Search, Edit2, RotateCcw } from 'lucide-react';
 import ProductModal from './ProductModal';
 import EditModal from './EditModal';
+import Success from '../LoginContent/Success';
 
 const Products = ({ token }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,13 +14,15 @@ const Products = ({ token }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isSuccessVisible, setIsSuccessVisible] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
   const productsPerPage = 10;
 
   useEffect(() => {
     fetchProducts();
   }, [showArchived]);
 
-  // Fetch products with Authorization token, filtered by archived status if needed
   const fetchProducts = async () => {
     try {
       const res = await axios.get('http://localhost:8000/api/products', {
@@ -32,12 +35,13 @@ const Products = ({ token }) => {
         ? res.data.filter((product) => product.status === 'archived')
         : res.data;
       setProducts(filteredProducts);
+      setErrorMessage('');
     } catch (err) {
-      console.error('Failed to fetch products:', err);
+      console.error('Failed to fetch products:', err.response?.data || err.message);
+      setErrorMessage(`Failed to fetch products: ${err.response?.data?.message || err.message}`);
     }
   };
 
-  // Handle archive or restore action
   const handleAction = async (productId, status, action) => {
     try {
       if (action === 'restore') {
@@ -59,27 +63,28 @@ const Products = ({ token }) => {
         );
         console.log('Archive response:', res.data);
       }
-      fetchProducts(); // Refresh the list
+      setSuccessMessage(`Product ${action}d successfully!`);
+      setIsSuccessVisible(true);
+      fetchProducts();
     } catch (err) {
       console.error(`Failed to ${action} product:`, err.response?.data || err.message);
+      setErrorMessage(`Failed to ${action} product: ${err.response?.data?.message || err.message}`);
     }
   };
 
-  // Handle edit action
   const handleEdit = (productId) => {
     setSelectedProductId(productId);
     setIsEditModalOpen(true);
   };
 
-  // Filter products based on search term
   const filteredProducts = products.filter(
     (product) =>
       product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (product.category?.name?.toLowerCase().includes(searchTerm.toLowerCase()) || '') ||
-      product.product_type.toLowerCase().includes(searchTerm.toLowerCase())
+      product.product_type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (product.brand?.name?.toLowerCase().includes(searchTerm.toLowerCase()) || '')
   );
 
-  // Pagination logic
   const totalProducts = filteredProducts.length;
   const totalPages = Math.ceil(totalProducts / productsPerPage);
   const startIndex = (currentPage - 1) * productsPerPage;
@@ -137,6 +142,18 @@ const Products = ({ token }) => {
         </div>
       </div>
 
+      {errorMessage && (
+        <div style={{ margin: '10px 0', padding: '10px', background: '#f8d7da', color: '#721c24', borderRadius: '4px' }}>
+          {errorMessage}
+        </div>
+      )}
+
+      <Success
+        message={successMessage}
+        isVisible={isSuccessVisible}
+        onClose={() => setIsSuccessVisible(false)}
+      />
+
       <div className="products-table-wrapper">
         <div className="products-table-container">
           <table className="products-table">
@@ -159,6 +176,7 @@ const Products = ({ token }) => {
                 <th scope="col">Image</th>
                 <th scope="col">Product Name</th>
                 <th scope="col">Category</th>
+                <th scope="col">Brand</th>
                 <th scope="col">Type</th>
                 <th scope="col">Sizes</th>
                 <th scope="col">Price</th>
@@ -207,6 +225,7 @@ const Products = ({ token }) => {
                     </td>
                     <td>{product.product_name}</td>
                     <td>{product.category?.name || 'N/A'}</td>
+                    <td>{product.brand?.name || 'N/A'}</td>
                     <td>{product.product_type}</td>
                     <td>
                       {Array.isArray(product.sizes)
@@ -218,14 +237,14 @@ const Products = ({ token }) => {
                     </td>
                     <td>
                       <span className={`status-frame status-${product.status}`}>
-                        {product.status.toUpperCase()}
+                        {product.status}
                       </span>
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="9">No products available</td>
+                  <td colSpan="10">No products available</td>
                 </tr>
               )}
             </tbody>

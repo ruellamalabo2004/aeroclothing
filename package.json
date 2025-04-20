@@ -24,7 +24,9 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "chart.js": "^4.4.9",
         "lucide-react": "^0.488.0",
+        "react-chartjs-2": "^5.3.0",
         "react-router-dom": "^6.30.0"
     }
 }

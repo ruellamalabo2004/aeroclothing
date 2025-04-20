@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Bell, ChevronDown, Menu } from 'lucide-react';
+import { Bell, ChevronDown, Menu, User, Settings, LogOut } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -50,23 +50,20 @@ const AdminHeader = ({ toggleSidebar }) => {
   
   // Get profile picture URL using the profile_pic field from the profiles table
   const getProfileImageUrl = () => {
-    // Log the profile structure to help with debugging
     console.log('Profile structure:', user?.profile);
     
     if (!user || !user.profile || !user.profile.profile_pic) {
       return '/path/to/default-avatar.jpg'; // Default fallback image
     }
     
-    // Use the profile_pic field from the profiles table
     const profilePicPath = user.profile.profile_pic;
     
-    // Handle different path formats
     if (profilePicPath.startsWith('http')) {
-      return profilePicPath; // Already a full URL
+      return profilePicPath;
     } else if (profilePicPath.startsWith('/')) {
-      return `http://127.0.0.1:8000${profilePicPath}`; // Absolute path
+      return `http://127.0.0.1:8000${profilePicPath}`;
     } else {
-      return `http://127.0.0.1:8000/storage/${profilePicPath}`; // Relative path
+      return `http://127.0.0.1:8000/storage/${profilePicPath}`;
     }
   };
 
@@ -93,7 +90,6 @@ const AdminHeader = ({ toggleSidebar }) => {
             className="admin-header__profile-picture"
             onError={(e) => {
               console.log('Image failed to load, trying default image');
-              // If the URL fails, try a default image
               e.target.src = 'http://127.0.0.1:8000/images/default-avatar.jpg';
             }}
           />
@@ -107,8 +103,14 @@ const AdminHeader = ({ toggleSidebar }) => {
 
           {isDropdownOpen && (
             <div className="admin-header__dropdown-menu">
-              <Link to="/profile" className="admin-header__dropdown-item">Profile</Link>
-              <Link to="/settings" className="admin-header__dropdown-item">Settings</Link>
+              <Link to="/admin-dashboard/settings" className="admin-header__dropdown-item">
+                <User className="admin-header__dropdown-icon" size={16} />
+                Profile
+              </Link>
+              <Link to="/admin-dashboard/settings" className="admin-header__dropdown-item">
+                <Settings className="admin-header__dropdown-icon" size={16} />
+                Settings
+              </Link>
               <div className="admin-header__dropdown-separator"></div>
               <button
                 className="admin-header__dropdown-item"
@@ -118,6 +120,7 @@ const AdminHeader = ({ toggleSidebar }) => {
                   navigate('/login');
                 }}
               >
+                <LogOut className="admin-header__dropdown-icon" size={16} />
                 Logout
               </button>
             </div>

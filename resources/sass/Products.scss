@@ -221,22 +221,27 @@
   .status-frame {
     display: inline-block;
     padding: 4px 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background: #f8f9fa;
-    color: #333;
-    font-size: 12px;
+    border-radius: 12px; /* Oval shape */
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: capitalize; /* Match Admin Settings */
+
+    &.status-active {
+      background-color: #E8F5E9; /* Light green background */
+      color: #2E7D32; /* Dark green text */
+      border: none; /* Remove border */
+    }
 
     &.status-available {
-      border-color: #4CAF50;
-      background: #E8F5E9;
-      color: #2E7D32;
+      background-color: #E8F5E9; /* Same as active */
+      color: #2E7D32; /* Same as active */
+      border: none; /* Remove border */
     }
 
     &.status-archived {
-      border-color: #E5383B;
-      background: #FFEBEE;
-      color: #C62828;
+      background-color: #FFEBEE; /* Light red background */
+      color: #C62828; /* Dark red text */
+      border: none; /* Remove border */
     }
   }
 }
@@ -376,7 +381,7 @@
 
     .status-frame {
       padding: 3px 6px;
-      font-size: 10px;
+      font-size: 12px;
     }
   }
 
@@ -436,7 +441,7 @@
 
     .status-frame {
       padding: 2px 5px;
-      font-size: 9px;
+      font-size: 11px;
     }
   }
 

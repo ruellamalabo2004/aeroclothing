@@ -5,12 +5,21 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 // Import pages
 import Login from "./components/LoginContent/Login";
 import Signup from "./components/LoginContent/Signup";
+import ForgotPassword from "./components/LoginContent/ForgotPassword";
 import AdminDashboard from "./components/AdminContent/AdminDashboard";
 import Dashboard from "./components/AdminContent/Dashboard";
-import Products from "./components/AdminContent/Products"; // Import Products
-import Settings from "./components/AdminContent/Settings"; // Import Products
+import Products from "./components/AdminContent/Products";
+import Orders from "./components/AdminContent/Orders";
+import Inventory from "./components/AdminContent/Inventory"; // Added Inventory
+import Settings from "./components/AdminContent/Settings";
 import Homepage from "./components/CustomerPage/Homepage";
-
+import Customer from "./components/AdminContent/Customer";
+import Users from "./components/AdminContent/Users";
+import Transactions from "./components/AdminContent/Transactions";
+import Inbox from "./components/AdminContent/Inbox";
+import Reviews from "./components/AdminContent/Reviews";
+import CustomerSupport from "./components/AdminContent/CustomerSupport";
+import Reports from "./components/AdminContent/Reports";
 const App = () => {
   return (
     <Router>
@@ -24,6 +33,9 @@ const App = () => {
         {/* Signup Route */}
         <Route path="/register" element={<Signup />} />
 
+        {/* Forgot Password Route */}
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+
         {/* Homepage Route for regular users */}
         <Route path="/homepage" element={<Homepage />} />
 
@@ -31,16 +43,15 @@ const App = () => {
         <Route path="/admin-dashboard" element={<AdminDashboard />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="products" element={<Products />} />
-          {/* Add more nested routes for other admin sections as needed */}
-          <Route path="orders" element={<div>Orders Page (Placeholder)</div>} />
-          <Route path="inventory" element={<div>Inventory Page (Placeholder)</div>} />
-          <Route path="customer" element={<div>Customer Page (Placeholder)</div>} />
-          <Route path="users" element={<div>Users Page (Placeholder)</div>} />
-          <Route path="transaction" element={<div>Transaction Page (Placeholder)</div>} />
-          <Route path="reviews" element={<div>Reviews Page (Placeholder)</div>} />
-          <Route path="inbox" element={<div>Inbox Page (Placeholder)</div>} />
-          <Route path="customer-support" element={<div>Customer Support Page (Placeholder)</div>} />
-          <Route path="reports" element={<div>Reports Page (Placeholder)</div>} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="inventory" element={<Inventory />} /> {/* Updated to use Inventory component */}
+          <Route path="customer" element={<Customer />} />
+          <Route path="users" element={<Users/>} />
+          <Route path="transaction" element={<Transactions />} />
+          <Route path="reviews" element={<Reviews />} />
+          <Route path="inbox" element={<Inbox />} />
+          <Route path="customer-support" element={<CustomerSupport />} />
+          <Route path="reports" element={<Reports />} />
           <Route path="settings" element={<Settings />} />
         </Route>
 
