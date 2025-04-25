@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import axios from 'axios';
-import LoginSuccess from './LoginSuccess'; // Corrected import to LoginSuccess
+import LoginSuccess from './LoginSuccess';
+import Header from '../HeaderContent/Header';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +15,12 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [showSuccess, setShowSuccess] = useState(false);
   const navigate = useNavigate();
-  const [userRole, setUserRole] = useState(null); // Added to store user role for redirection
+  const [userRole, setUserRole] = useState(null);
+
+  useEffect(() => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -44,10 +50,10 @@ const Login = () => {
       });
 
       console.log('Login successful:', response.data);
-      setShowSuccess(true); // Show success pop-up
+      setShowSuccess(true);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
-      setUserRole(response.data.user.role); // Store user role for redirection
+      setUserRole(response.data.user.role);
     } catch (err) {
       console.error('Login failed:', err);
       console.error('Error response:', err.response);
@@ -63,84 +69,87 @@ const Login = () => {
 
   const handleSuccessClose = () => {
     setShowSuccess(false);
-    // Redirect based on user role after pop-up closes
     if (userRole === 'admin') {
       navigate('/admin-dashboard');
     } else {
-      navigate('/homepage');
+      const user = JSON.parse(localStorage.getItem('user'));
+      navigate('/homepage', { state: { user } });
     }
   };
 
   return (
-    <div className="login">
-      <h1 className="login__title">Welcome Back!</h1>
-      <p className="login__subtitle">Enter your credentials for login</p>
-      {errors.general && <p className="login__error">{errors.general}</p>}
-      <form className="login__form" onSubmit={handleSubmit}>
-        <div className="login__field">
-          <label htmlFor="email" className="login__label">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-            className="login__input"
-            required
-          />
-          {errors.email && <p className="login__error">{errors.email[0]}</p>}
-        </div>
-        <div className="login__field">
-          <label htmlFor="password" className="login__label">Password</label>
-          <div className="login__password-wrapper">
+    <div className="login-page">
+      <Header />
+      <div className="login">
+        <h1 className="login__title">Welcome Back!</h1>
+        <p className="login__subtitle">Enter your credentials for login</p>
+        {errors.general && <p className="login__error">{errors.general}</p>}
+        <form className="login__form" onSubmit={handleSubmit}>
+          <div className="login__field">
+            <label htmlFor="email" className="login__label">Email</label>
             <input
-              type={showPassword ? 'text' : 'password'}
-              id="password"
-              name="password"
-              value={formData.password}
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
               onChange={handleChange}
-              placeholder="Enter your password"
+              placeholder="Enter your email"
               className="login__input"
               required
             />
-            <button
-              type="button"
-              className="login__toggle-password"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
+            {errors.email && <p className="login__error">{errors.email[0]}</p>}
           </div>
-          {errors.password && <p className="login__error">{errors.password[0]}</p>}
+          <div className="login__field">
+            <label htmlFor="password" className="login__label">Password</label>
+            <div className="login__password-wrapper">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                className="login__input"
+                required
+              />
+              <button
+                type="button"
+                className="login__toggle-password"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
+            {errors.password && <p className="login__error">{errors.password[0]}</p>}
+          </div>
+          <div className="login__options">
+            <label className="login__remember-me">
+              <input
+                type="checkbox"
+                name="rememberMe"
+                checked={formData.rememberMe}
+                onChange={handleChange}
+              />
+              Remember me
+            </label>
+            <Link to="/forgot-password" className="login__forgot-password">
+              Forgot password?
+            </Link>
+          </div>
+          <button type="submit" className="login__submit-button">
+            Sign In
+          </button>
+        </form>
+        <div className="login__register">
+          <span>Don't have an account?</span>
+          <Link to="/register" className="login__register-link">Create Account</Link>
         </div>
-        <div className="login__options">
-          <label className="login__remember-me">
-            <input
-              type="checkbox"
-              name="rememberMe"
-              checked={formData.rememberMe}
-              onChange={handleChange}
-            />
-            Remember me
-          </label>
-          <Link to="/forgot-password" className="login__forgot-password">
-            Forgot password?
-          </Link>
-        </div>
-        <button type="submit" className="login__submit-button">
-          Sign In
-        </button>
-      </form>
-      <div className="login__register">
-        <span>Don't have an account?</span>
-        <Link to="/register" className="login__register-link">Create Account</Link>
+        <LoginSuccess
+          message="Login Successful!"
+          isVisible={showSuccess}
+          onClose={handleSuccessClose}
+        />
       </div>
-      <LoginSuccess
-        message="Login Successful!"
-        isVisible={showSuccess}
-        onClose={handleSuccessClose}
-      />
     </div>
   );
 };
