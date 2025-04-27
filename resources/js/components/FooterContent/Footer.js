@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer__container">
         <div className="footer__column">
-          <img src="/images/GAGAS.svg" alt="GAGAS Logo" className="footer__logo" />
+          <img src="/images/aero026.svg" alt="GAGAS Logo" className="footer__logo" />
           <p className="footer__description">
             Modern, sustainable clothing for the conscious consumer.
           </p>

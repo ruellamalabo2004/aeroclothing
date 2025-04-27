@@ -103,11 +103,13 @@
         // Review
         Route::get('/reviews', [ReviewController::class, 'index']);
         Route::post('/reviews/{id}/reply', [ReviewController::class, 'reply']);
+        
         // Cart
-        Route::get('/cart', [CartController::class, 'getCart']);
-        Route::post('/cart/add', [CartController::class, 'addToCart']);
-        Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart']);
-        Route::delete('/cart/clear', [CartController::class, 'clearCart']);
+    Route::get('/cart', [CartController::class, 'getCart']);
+    Route::post('/cart/add', [CartController::class, 'addToCart']);
+    Route::post('/cart/update', [CartController::class, 'update']);
+    Route::delete('/cart/remove/{productId}', [CartController::class, 'removeFromCart']);
+    Route::delete('/cart/clear', [CartController::class, 'clearCart']);
 
         // Wishlist
         Route::get('/wishlist', [WishlistController::class, 'index']);

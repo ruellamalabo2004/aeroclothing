@@ -3,7 +3,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
 const SecondContent = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
@@ -19,12 +18,10 @@ const SecondContent = () => {
       try {
         setLoading(true);
         const token = localStorage.getItem('token');
-        if (!token) {
-          throw new Error('No authentication token found.');
-        }
+        const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
         const response = await axios.get(`${API_URL}/products`, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers,
         });
 
         console.log("Products API Response:", response.data);

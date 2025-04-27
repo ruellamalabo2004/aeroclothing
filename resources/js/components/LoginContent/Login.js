@@ -4,6 +4,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import axios from 'axios';
 import LoginSuccess from './LoginSuccess';
 import Header from '../HeaderContent/Header';
+import { useCart } from '../Notifs/CartContext';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -16,10 +17,13 @@ const Login = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const navigate = useNavigate();
   const [userRole, setUserRole] = useState(null);
+  const { handleLogin } = useCart(); // Get the handleLogin function from context
 
   useEffect(() => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    // We should not clear token and user on component mount
+    // This would log out already logged-in users viewing the login page
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('user');
   }, []);
 
   const handleChange = (e) => {
@@ -50,10 +54,16 @@ const Login = () => {
       });
 
       console.log('Login successful:', response.data);
-      setShowSuccess(true);
+      
+      // Store the authentication data
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
       setUserRole(response.data.user.role);
+      
+      // Sync the cart with the server
+      await handleLogin(response.data.token, response.data.user);
+      
+      setShowSuccess(true);
     } catch (err) {
       console.error('Login failed:', err);
       console.error('Error response:', err.response);

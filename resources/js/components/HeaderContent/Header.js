@@ -1,12 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Search, Heart, Bell, ShoppingBag, ChevronDown, Menu, User, Settings, LogOut, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import CartSidebar from '../Notifs/CartSidebar';
+import WishlistNotif from '../Notifs/WishlistNotif'; // Import the new component
+import { useCart } from '../Notifs/CartContext';
+import { useWishlist } from '../Notifs/WishlistContext';
 
 const Header = () => {
   const [isSupportOpen, setIsSupportOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false); // New state for wishlist dropdown
+  const { cart, notification: cartNotification, handleLogout: cartHandleLogout } = useCart();
+  const { wishlist, notification: wishlistNotification, clearNotification, handleLogout: wishlistHandleLogout } = useWishlist();
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user');
@@ -17,15 +25,14 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const API_URL = "http://127.0.0.1:8000/api";
+  const wishlistRef = useRef(null); // Ref for wishlist dropdown
 
-  // Fetch user profile data
   const fetchUserProfile = async (token) => {
     try {
       const response = await axios.get(`${API_URL}/profile`, {
         headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' },
       });
       const userData = response.data;
-      console.log('Profile fetched:', userData);
       setUser(userData);
       localStorage.setItem('user', JSON.stringify(userData));
     } catch (error) {
@@ -41,14 +48,11 @@ const Header = () => {
     }
   };
 
-  // Construct the profile picture URL
   const getProfileImageUrl = () => {
     if (!user || !user.profile || !user.profile.profile_pic) {
       return '/images/profile-pic.jpg';
     }
-
     const profilePicPath = user.profile.profile_pic;
-
     if (profilePicPath.startsWith('http')) {
       return profilePicPath;
     } else if (profilePicPath.startsWith('/')) {
@@ -78,6 +82,23 @@ const Header = () => {
     }
   }, [location]);
 
+  // Close wishlist dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (wishlistRef.current && !wishlistRef.current.contains(event.target)) {
+        setIsWishlistOpen(false);
+      }
+    };
+
+    if (isWishlistOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isWishlistOpen]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -90,23 +111,48 @@ const Header = () => {
     setIsSupportOpen(!isSupportOpen);
   };
 
-  const handleLogout = () => {
+  const toggleCartSidebar = () => {
+    setIsCartSidebarOpen(!isCartSidebarOpen);
+  };
+
+  const toggleWishlistDropdown = () => {
+    setIsWishlistOpen((prev) => !prev);
+  };
+
+  const handleLogout = async () => {
+    await cartHandleLogout();
+    await wishlistHandleLogout();
+
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+
     setIsLoggedIn(false);
     setUser(null);
     setProfilePicUrl('/images/profile-pic.jpg');
     setIsProfileDropdownOpen(false);
     setIsMenuOpen(false);
+    setIsWishlistOpen(false);
+
     navigate('/login');
   };
 
   return (
     <header className="header">
-      {/* Desktop Header */}
+      {(cartNotification || wishlistNotification) && (
+        <div className="header__notification">
+          {cartNotification || wishlistNotification}
+          <button
+            className="header__notification-close"
+            onClick={clearNotification}
+          >
+            <X size={16} />
+          </button>
+        </div>
+      )}
+
       <div className="header__desktop">
         <div className="header__logo">
-          <img src="/images/NEWLOGO.svg" alt="GAGAS Logo" className="header__logo-image" />
+          <img src="/images/aero026.svg" alt="GAGAS Logo" className="header__logo-image" />
         </div>
 
         <nav className="header__nav">
@@ -123,7 +169,7 @@ const Header = () => {
             <li className="header__nav-item">
               <Link to="/contact" className="header__nav-link">CONTACT US</Link>
             </li>
-            <li 
+            <li
               className="header__nav-item header__nav-item--dropdown"
               onMouseEnter={() => setIsSupportOpen(true)}
               onMouseLeave={() => setIsSupportOpen(false)}
@@ -159,15 +205,30 @@ const Header = () => {
           <button className="header__icon-btn">
             <Search size={24} />
           </button>
-          <button className="header__icon-btn">
-            <Heart size={24} />
-          </button>
+          <div className="header__wishlist-container" ref={wishlistRef}>
+            <button
+              className="header__icon-btn"
+              onClick={toggleWishlistDropdown}
+            >
+              <Heart size={24} />
+              {wishlist.length > 0 && (
+                <span className="header__notification-badge">{wishlist.length}</span>
+              )}
+            </button>
+            <WishlistNotif
+              isOpen={isWishlistOpen}
+              onClose={() => setIsWishlistOpen(false)}
+            />
+          </div>
           <button className="header__icon-btn">
             <Bell size={24} />
             <span className="header__notification-badge">0</span>
           </button>
-          <button className="header__icon-btn">
+          <button className="header__icon-btn" onClick={toggleCartSidebar}>
             <ShoppingBag size={24} />
+            {cart.length > 0 && (
+              <span className="header__notification-badge">{cart.length}</span>
+            )}
           </button>
           {isLoggedIn ? (
             <div className="header__profile-container" onClick={toggleProfileDropdown}>
@@ -176,7 +237,6 @@ const Header = () => {
                 alt="Profile"
                 className="header__profile-pic"
                 onError={(e) => {
-                  console.log('Image failed to load, using default image');
                   e.target.src = '/images/profile-pic.jpg';
                 }}
               />
@@ -210,16 +270,15 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Header */}
       <div className="header__mobile">
         <button className="header__menu-btn" onClick={toggleMenu}>
           <Menu size={24} />
         </button>
-        
+
         <div className="header__logo header__logo--mobile">
-          <img src="/images/NEWLOGO.svg" alt="GAGAS Logo" className="header__logo-image" />
+          <img src="/images/aero026.svg" alt="GAGAS Logo" className="header__logo-image" />
         </div>
-        
+
         <div className="header__actions--mobile">
           <button className="header__icon-btn">
             <Search size={20} />
@@ -232,25 +291,22 @@ const Header = () => {
               </span>
             )}
           </button>
-          <button className="header__icon-btn">
+          <button className="header__icon-btn" onClick={toggleCartSidebar}>
             <ShoppingBag size={20} />
-            {parseInt(user?.cart_count, 10) > 0 && (
-              <span className="header__notification-badge">
-                {user?.cart_count}
-              </span>
+            {cart.length > 0 && (
+              <span className="header__notification-badge">{cart.length}</span>
             )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Sidebar Menu */}
       <div className={`header__sidebar ${isMenuOpen ? 'header__sidebar--open' : ''}`}>
         <div className="header__sidebar-header">
           <button className="header__close-btn" onClick={toggleMenu}>
             <X size={24} />
           </button>
         </div>
-        
+
         {isLoggedIn ? (
           <div className="header__sidebar-profile">
             <img
@@ -262,13 +318,13 @@ const Header = () => {
               }}
             />
             <div className="header__sidebar-profile-info">
-  <p className="header__sidebar-profile-name">
-    {user?.profile?.first_name && user?.profile?.last_name 
-      ? `${user.profile.first_name} ${user.profile.last_name}`
-      : user?.name || 'User'}
-  </p>
-  <p className="header__sidebar-profile-email">{user?.email || ''}</p>
-</div>
+              <p className="header__sidebar-profile-name">
+                {user?.profile?.first_name && user?.profile?.last_name
+                  ? `${user.profile.first_name} ${user.profile.last_name}`
+                  : user?.name || 'User'}
+              </p>
+              <p className="header__sidebar-profile-email">{user?.email || ''}</p>
+            </div>
           </div>
         ) : (
           <div className="header__sidebar-login">
@@ -278,7 +334,7 @@ const Header = () => {
             </Link>
           </div>
         )}
-        
+
         <nav className="header__sidebar-nav">
           <ul className="header__sidebar-nav-list">
             <li className="header__sidebar-nav-item">
@@ -304,9 +360,9 @@ const Header = () => {
             <li className="header__sidebar-nav-item header__sidebar-nav-item--dropdown">
               <div className="header__sidebar-nav-dropdown-toggle" onClick={toggleSupportDropdown}>
                 SUPPORT
-                <ChevronDown 
-                  size={16} 
-                  className={`header__sidebar-nav-arrow ${isSupportOpen ? 'open' : ''}`} 
+                <ChevronDown
+                  size={16}
+                  className={`header__sidebar-nav-arrow ${isSupportOpen ? 'open' : ''}`}
                 />
               </div>
               {isSupportOpen && (
@@ -341,7 +397,7 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-        
+
         {isLoggedIn && (
           <div className="header__sidebar-actions">
             <Link to="/profile" className="header__sidebar-action-link" onClick={toggleMenu}>
@@ -363,10 +419,21 @@ const Header = () => {
           </div>
         )}
       </div>
-      
-      {/* Overlay for when sidebar is open */}
-      {isMenuOpen && (
-        <div className="header__sidebar-overlay" onClick={toggleMenu}></div>
+
+      <CartSidebar
+        isOpen={isCartSidebarOpen}
+        onClose={() => setIsCartSidebarOpen(false)}
+      />
+
+      {(isMenuOpen || isCartSidebarOpen || isWishlistOpen) && (
+        <div
+          className="header__sidebar-overlay"
+          onClick={() => {
+            toggleMenu();
+            setIsCartSidebarOpen(false);
+            setIsWishlistOpen(false);
+          }}
+        ></div>
       )}
     </header>
   );

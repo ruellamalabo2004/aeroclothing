@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart, ShoppingCart } from 'lucide-react';
 import axios from 'axios';
+import CartModal from '../Notifs/CartModal';
+import CartSidebar from '../Notifs/CartSidebar';
+import { useCart } from '../Notifs/CartContext';
+import { useWishlist } from '../Notifs/WishlistContext';
 
 const NewArrival = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [wishlistLoading, setWishlistLoading] = useState({});
+  const { cart, addToCart } = useCart();
+  const { wishlist, addToWishlist, removeFromWishlist, apiError } = useWishlist();
 
   const API_URL = "http://127.0.0.1:8000/api";
   const BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
@@ -17,15 +26,9 @@ const NewArrival = () => {
       try {
         setLoading(true);
         const token = localStorage.getItem('token');
-        if (!token) {
-          throw new Error('No authentication token found.');
-        }
+        const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
-        const response = await axios.get(`${API_URL}/products`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        console.log("Products API Response:", response.data);
+        const response = await axios.get(`${API_URL}/products`, { headers });
 
         const productsData = Array.isArray(response.data)
           ? response.data
@@ -47,11 +50,23 @@ const NewArrival = () => {
               : "/images/placeholder.png",
             productName: product.product_name ?? "Unnamed Product",
             price: Number(product.price) || 0,
+            sizes: product.sizes
+              ? typeof product.sizes === 'string'
+                ? product.sizes.split(',').map((s) => s.trim())
+                : Array.isArray(product.sizes)
+                ? product.sizes
+                : []
+              : [],
+            colors: product.colors
+              ? typeof product.colors === 'string'
+                ? product.colors.split(',').map((c) => c.trim())
+                : Array.isArray(product.colors)
+                ? product.colors
+                : []
+              : [],
           }))
           .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-          .slice(0, 8); // Kept at 4 products as requested
-
-        console.log("Parsed Products:", updatedProducts);
+          .slice(0, 8);
 
         setProducts(updatedProducts);
         setLoading(false);
@@ -59,7 +74,6 @@ const NewArrival = () => {
         console.error("Error fetching products:", error.response?.data || error.message);
         setError("Failed to load new arrivals. Please try again later.");
         setLoading(false);
-
         if (error.response?.status === 401) {
           localStorage.removeItem('token');
           navigate('/login');
@@ -70,94 +84,142 @@ const NewArrival = () => {
     fetchProducts();
   }, [navigate]);
 
-  const handleAddToCart = (productId) => (e) => {
+  const handleAddToCart = (product) => (e) => {
     e.stopPropagation();
-    navigate(`/shop/${productId}`);
+    setSelectedProduct(product);
   };
 
-  const handleWishlistToggle = (productId) => (e) => {
+  const handleWishlistToggle = (product) => async (e) => {
     e.stopPropagation();
-    console.log(`Toggling wishlist for product ${productId}`);
+    const productId = parseInt(product.id);
+    if (wishlistLoading[productId]) return;
+
+    setWishlistLoading((prev) => ({ ...prev, [productId]: true }));
+    try {
+      const isInWishlist = wishlist.some((item) => item.id === productId);
+      if (isInWishlist) {
+        await removeFromWishlist(productId);
+      } else {
+        await addToWishlist({
+          id: productId,
+          productName: product.productName,
+          price: product.price,
+          imagePreview: product.imagePreview,
+        });
+      }
+    } catch (error) {
+      console.error('Wishlist toggle error:', error);
+      alert('Failed to update wishlist. Please try again.');
+    } finally {
+      setWishlistLoading((prev) => ({ ...prev, [productId]: false }));
+    }
   };
 
   const handleProductClick = (productId) => () => {
     navigate(`/shop/${productId}`);
   };
 
-  if (loading) {
-    return (
-      <section className="new-arrival">
-        <p>Loading new arrivals...</p>
-      </section>
-    );
-  }
+  const handleCloseModal = () => {
+    setSelectedProduct(null);
+  };
 
-  if (error) {
-    return (
-      <section className="new-arrival">
-        <p>{error}</p>
-      </section>
-    );
-  }
+  const handleAddToCartConfirmed = (cartItem) => {
+    addToCart(cartItem);
+    setIsCartOpen(true);
+  };
+
+  const toggleCartSidebar = () => {
+    setIsCartOpen((prev) => !prev);
+  };
+
+  if (loading) return <section className="new-arrival"><p>Loading new arrivals...</p></section>;
+  if (error) return <section className="new-arrival"><p>{error}</p></section>;
 
   return (
-    <section className="new-arrival">
-      <div className="new-arrival__header">
-        <div className="new-arrival__title-container">
-          <h2 className="new-arrival__title">New Arrival Items</h2>
-          <h3 className="new-arrival__subtitle">Discover great new styles for your little adventurers.</h3>
+    <>
+      <section className="new-arrival">
+        {apiError && (
+          <div className="new-arrival__error">
+            {apiError.message}
+            {apiError.status === 401 && (
+              <button onClick={() => navigate('/login')}>Login to retry</button>
+            )}
+          </div>
+        )}
+        <div className="new-arrival__header">
+          <div className="new-arrival__title-container">
+            <h2 className="new-arrival__title">New Arrival Items</h2>
+            <h3 className="new-arrival__subtitle">Discover great new styles for your little adventurers.</h3>
+          </div>
         </div>
-      </div>
 
-      {products.length === 0 ? (
-        <p>No new arrivals available.</p>
-      ) : (
-        <div className="new-arrival__products">
-          {products.map((product) => (
-            <div key={product.id} className="new-arrival__product" onClick={handleProductClick(product.id)}>
-              <div className="new-arrival__image-container">
-                <img
-                  src={product.imagePreview}
-                  alt={product.productName}
-                  className="new-arrival__image new-arrival__image-main"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "/images/placeholder.png";
-                  }}
-                />
-                <img
-                  src={product.imageHover}
-                  alt={`${product.productName} alternative view`}
-                  className="new-arrival__image new-arrival__image-hover"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = product.imagePreview || "/images/placeholder.png";
-                  }}
-                />
-                <div className="new-arrival__buttons">
-                  <button 
-                    className="new-arrival__wishlist" 
-                    onClick={handleWishlistToggle(product.id)}
-                    aria-label="Add to wishlist"
-                  >
-                    <Heart size={20} /> {/* Slightly larger than original */}
-                  </button>
-                  <button 
-                    className="new-arrival__add-to-cart" 
-                    onClick={handleAddToCart(product.id)}
-                    aria-label="View product"
-                  >
-                    <ShoppingCart size={20} /> {/* Slightly larger than original */}
-                  </button>
+        {products.length === 0 ? (
+          <p>No new arrivals available.</p>
+        ) : (
+          <div className="new-arrival__products">
+            {products.map((product) => (
+              <div key={product.id} className="new-arrival__product" onClick={handleProductClick(product.id)}>
+                <div className="new-arrival__image-container">
+                  <img
+                    src={product.imagePreview}
+                    alt={product.productName}
+                    className="new-arrival__image new-arrival__image-main"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = "/images/placeholder.png";
+                    }}
+                  />
+                  <img
+                    src={product.imageHover}
+                    alt={`${product.productName} alternative view`}
+                    className="new-arrival__image new-arrival__image-hover"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = product.imagePreview || "/images/placeholder.png";
+                    }}
+                  />
+                  <div className="new-arrival__buttons">
+                    <button
+                      className={`new-arrival__wishlist ${wishlist.some((item) => item.id === parseInt(product.id)) ? 'active' : ''}`}
+                      onClick={handleWishlistToggle(product)}
+                      aria-label={wishlist.some((item) => item.id === parseInt(product.id)) ? 'Remove from wishlist' : 'Add to wishlist'}
+                      disabled={wishlistLoading[product.id]}
+                    >
+                      <Heart
+                        size={20}
+                        fill={wishlist.some((item) => item.id === parseInt(product.id)) ? 'currentColor' : 'none'}
+                      />
+                    </button>
+                    <button
+                      className="new-arrival__add-to-cart"
+                      onClick={handleAddToCart(product)}
+                      aria-label="Add to cart"
+                    >
+                      <ShoppingCart size={20} />
+                    </button>
+                  </div>
                 </div>
+                <h3 className="new-arrival__name">{product.productName}</h3>
+                <p className="new-arrival__price">${product.price.toFixed(2)}</p>
               </div>
-              <h3 className="new-arrival__name">{product.productName}</h3>
-              <p className="new-arrival__price">${product.price.toFixed(2)}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {selectedProduct && (
+        <CartModal
+          product={selectedProduct}
+          onClose={handleCloseModal}
+          onAddToCart={handleAddToCartConfirmed}
+        />
       )}
-    </section>
+
+      <CartSidebar
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+      />
+    </>
   );
 };
 

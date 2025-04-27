@@ -39,7 +39,7 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
     <div className={`admin-sidebar ${isOpen ? 'open' : 'closed'}`}>
       <nav className="admin-sidebar__nav">
         <div className="admin-sidebar__logo">
-          <img src="/images/gagas.svg" alt="Aeros Logo" className="admin-sidebar__logo-image" />
+          <img src="/images/aero026.svg" alt="Aeros Logo" className="admin-sidebar__logo-image" />
         </div>
         <ul className="admin-sidebar__list">
           <li className="admin-sidebar__item">

@@ -47348,6 +47348,37 @@ const ChevronRight = (0,_createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__["defau
 
 /***/ }),
 
+/***/ "./node_modules/lucide-react/dist/esm/icons/chevron-up.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/lucide-react/dist/esm/icons/chevron-up.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   __iconNode: () => (/* binding */ __iconNode),
+/* harmony export */   "default": () => (/* binding */ ChevronUp)
+/* harmony export */ });
+/* harmony import */ var _createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../createLucideIcon.js */ "./node_modules/lucide-react/dist/esm/createLucideIcon.js");
+/**
+ * @license lucide-react v0.488.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+
+
+const __iconNode = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
+const ChevronUp = (0,_createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__["default"])("chevron-up", __iconNode);
+
+
+//# sourceMappingURL=chevron-up.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/lucide-react/dist/esm/icons/circle-check-big.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/lucide-react/dist/esm/icons/circle-check-big.js ***!
@@ -48554,6 +48585,43 @@ const Star = (0,_createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__["default"])("s
 
 
 //# sourceMappingURL=star.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/lucide-react/dist/esm/icons/trash-2.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/lucide-react/dist/esm/icons/trash-2.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   __iconNode: () => (/* binding */ __iconNode),
+/* harmony export */   "default": () => (/* binding */ Trash2)
+/* harmony export */ });
+/* harmony import */ var _createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../createLucideIcon.js */ "./node_modules/lucide-react/dist/esm/createLucideIcon.js");
+/**
+ * @license lucide-react v0.488.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+
+
+const __iconNode = [
+  ["path", { d: "M3 6h18", key: "d0wm0j" }],
+  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
+  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
+  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
+  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
+];
+const Trash2 = (0,_createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__["default"])("trash-2", __iconNode);
+
+
+//# sourceMappingURL=trash-2.js.map
 
 
 /***/ }),
@@ -79267,6 +79335,39 @@ if (
 
 /***/ }),
 
+/***/ "./node_modules/react-dom/client.js":
+/*!******************************************!*\
+  !*** ./node_modules/react-dom/client.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var m = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+if (false) {} else {
+  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+  exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.createRoot(c, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+  exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.hydrateRoot(c, h, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/react-dom/index.js":
 /*!*****************************************!*\
   !*** ./node_modules/react-dom/index.js ***!
@@ -87242,27 +87343,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var _components_LoginContent_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/LoginContent/Login */ "./resources/js/components/LoginContent/Login.js");
-/* harmony import */ var _components_LoginContent_Signup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/LoginContent/Signup */ "./resources/js/components/LoginContent/Signup.js");
-/* harmony import */ var _components_LoginContent_ForgotPassword__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/LoginContent/ForgotPassword */ "./resources/js/components/LoginContent/ForgotPassword.js");
-/* harmony import */ var _components_AdminContent_AdminDashboard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/AdminContent/AdminDashboard */ "./resources/js/components/AdminContent/AdminDashboard.js");
-/* harmony import */ var _components_AdminContent_Dashboard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/AdminContent/Dashboard */ "./resources/js/components/AdminContent/Dashboard.js");
-/* harmony import */ var _components_AdminContent_Products__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AdminContent/Products */ "./resources/js/components/AdminContent/Products.js");
-/* harmony import */ var _components_AdminContent_Orders__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/AdminContent/Orders */ "./resources/js/components/AdminContent/Orders.js");
-/* harmony import */ var _components_AdminContent_Inventory__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/AdminContent/Inventory */ "./resources/js/components/AdminContent/Inventory.js");
-/* harmony import */ var _components_AdminContent_Settings__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/AdminContent/Settings */ "./resources/js/components/AdminContent/Settings.js");
-/* harmony import */ var _components_CustomerPage_Homepage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/CustomerPage/Homepage */ "./resources/js/components/CustomerPage/Homepage.js");
-/* harmony import */ var _components_AdminContent_Customer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/AdminContent/Customer */ "./resources/js/components/AdminContent/Customer.js");
-/* harmony import */ var _components_AdminContent_Users__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/AdminContent/Users */ "./resources/js/components/AdminContent/Users.js");
-/* harmony import */ var _components_AdminContent_Transactions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/AdminContent/Transactions */ "./resources/js/components/AdminContent/Transactions.js");
-/* harmony import */ var _components_AdminContent_Inbox__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/AdminContent/Inbox */ "./resources/js/components/AdminContent/Inbox.js");
-/* harmony import */ var _components_AdminContent_Reviews__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/AdminContent/Reviews */ "./resources/js/components/AdminContent/Reviews.js");
-/* harmony import */ var _components_AdminContent_CustomerSupport__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/AdminContent/CustomerSupport */ "./resources/js/components/AdminContent/CustomerSupport.js");
-/* harmony import */ var _components_AdminContent_Reports__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/AdminContent/Reports */ "./resources/js/components/AdminContent/Reports.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _components_Notifs_CartContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Notifs/CartContext */ "./resources/js/components/Notifs/CartContext.js");
+/* harmony import */ var _components_Notifs_WishlistContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Notifs/WishlistContext */ "./resources/js/components/Notifs/WishlistContext.js");
+/* harmony import */ var _components_LoginContent_Login__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/LoginContent/Login */ "./resources/js/components/LoginContent/Login.js");
+/* harmony import */ var _components_LoginContent_Signup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/LoginContent/Signup */ "./resources/js/components/LoginContent/Signup.js");
+/* harmony import */ var _components_LoginContent_ForgotPassword__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/LoginContent/ForgotPassword */ "./resources/js/components/LoginContent/ForgotPassword.js");
+/* harmony import */ var _components_AdminContent_AdminDashboard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AdminContent/AdminDashboard */ "./resources/js/components/AdminContent/AdminDashboard.js");
+/* harmony import */ var _components_AdminContent_Dashboard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/AdminContent/Dashboard */ "./resources/js/components/AdminContent/Dashboard.js");
+/* harmony import */ var _components_AdminContent_Products__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/AdminContent/Products */ "./resources/js/components/AdminContent/Products.js");
+/* harmony import */ var _components_AdminContent_Orders__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/AdminContent/Orders */ "./resources/js/components/AdminContent/Orders.js");
+/* harmony import */ var _components_AdminContent_Inventory__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/AdminContent/Inventory */ "./resources/js/components/AdminContent/Inventory.js");
+/* harmony import */ var _components_AdminContent_Settings__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/AdminContent/Settings */ "./resources/js/components/AdminContent/Settings.js");
+/* harmony import */ var _components_CustomerPage_Homepage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/CustomerPage/Homepage */ "./resources/js/components/CustomerPage/Homepage.js");
+/* harmony import */ var _components_CustomerPage_Shop__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/CustomerPage/Shop */ "./resources/js/components/CustomerPage/Shop.js");
+/* harmony import */ var _components_AdminContent_Customer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/AdminContent/Customer */ "./resources/js/components/AdminContent/Customer.js");
+/* harmony import */ var _components_AdminContent_Users__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/AdminContent/Users */ "./resources/js/components/AdminContent/Users.js");
+/* harmony import */ var _components_AdminContent_Transactions__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/AdminContent/Transactions */ "./resources/js/components/AdminContent/Transactions.js");
+/* harmony import */ var _components_AdminContent_Inbox__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/AdminContent/Inbox */ "./resources/js/components/AdminContent/Inbox.js");
+/* harmony import */ var _components_AdminContent_Reviews__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/AdminContent/Reviews */ "./resources/js/components/AdminContent/Reviews.js");
+/* harmony import */ var _components_AdminContent_CustomerSupport__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/AdminContent/CustomerSupport */ "./resources/js/components/AdminContent/CustomerSupport.js");
+/* harmony import */ var _components_AdminContent_Reports__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/AdminContent/Reports */ "./resources/js/components/AdminContent/Reports.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
@@ -87275,9 +87381,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // Added Inventory
 
 
+
+ // Added Shop import
 
 
 
@@ -87287,80 +87394,89 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Routes, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-        path: "/",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Navigate, {
-          to: "/login",
-          replace: true
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_Notifs_CartContext__WEBPACK_IMPORTED_MODULE_2__.CartProvider, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_Notifs_WishlistContext__WEBPACK_IMPORTED_MODULE_3__.WishlistProvider, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.BrowserRouter, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Routes, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+            path: "/",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Navigate, {
+              to: "/login",
+              replace: true
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+            path: "/login",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_LoginContent_Login__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+            path: "/register",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_LoginContent_Signup__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+            path: "/forgot-password",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_LoginContent_ForgotPassword__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+            path: "/homepage",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_CustomerPage_Homepage__WEBPACK_IMPORTED_MODULE_13__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+            path: "/shop",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_CustomerPage_Shop__WEBPACK_IMPORTED_MODULE_14__["default"], {})
+          }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+            path: "/admin-dashboard",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AdminContent_AdminDashboard__WEBPACK_IMPORTED_MODULE_7__["default"], {}),
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+              path: "dashboard",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AdminContent_Dashboard__WEBPACK_IMPORTED_MODULE_8__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+              path: "products",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AdminContent_Products__WEBPACK_IMPORTED_MODULE_9__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+              path: "orders",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AdminContent_Orders__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+              path: "inventory",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AdminContent_Inventory__WEBPACK_IMPORTED_MODULE_11__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+              path: "customer",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AdminContent_Customer__WEBPACK_IMPORTED_MODULE_15__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+              path: "users",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AdminContent_Users__WEBPACK_IMPORTED_MODULE_16__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+              path: "transaction",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AdminContent_Transactions__WEBPACK_IMPORTED_MODULE_17__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+              path: "reviews",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AdminContent_Reviews__WEBPACK_IMPORTED_MODULE_19__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+              path: "inbox",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AdminContent_Inbox__WEBPACK_IMPORTED_MODULE_18__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+              path: "customer-support",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AdminContent_CustomerSupport__WEBPACK_IMPORTED_MODULE_20__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+              path: "reports",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AdminContent_Reports__WEBPACK_IMPORTED_MODULE_21__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+              path: "settings",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_AdminContent_Settings__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Route, {
+            path: "*",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_24__.Navigate, {
+              to: "/login",
+              replace: true
+            })
+          })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-        path: "/login",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_LoginContent_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-        path: "/register",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_LoginContent_Signup__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-        path: "/forgot-password",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_LoginContent_ForgotPassword__WEBPACK_IMPORTED_MODULE_4__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-        path: "/homepage",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_CustomerPage_Homepage__WEBPACK_IMPORTED_MODULE_11__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-        path: "/admin-dashboard",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_AdminContent_AdminDashboard__WEBPACK_IMPORTED_MODULE_5__["default"], {}),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "dashboard",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_AdminContent_Dashboard__WEBPACK_IMPORTED_MODULE_6__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "products",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_AdminContent_Products__WEBPACK_IMPORTED_MODULE_7__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "orders",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_AdminContent_Orders__WEBPACK_IMPORTED_MODULE_8__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "inventory",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_AdminContent_Inventory__WEBPACK_IMPORTED_MODULE_9__["default"], {})
-        }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "customer",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_AdminContent_Customer__WEBPACK_IMPORTED_MODULE_12__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "users",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_AdminContent_Users__WEBPACK_IMPORTED_MODULE_13__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "transaction",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_AdminContent_Transactions__WEBPACK_IMPORTED_MODULE_14__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "reviews",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_AdminContent_Reviews__WEBPACK_IMPORTED_MODULE_16__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "inbox",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_AdminContent_Inbox__WEBPACK_IMPORTED_MODULE_15__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "customer-support",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_AdminContent_CustomerSupport__WEBPACK_IMPORTED_MODULE_17__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "reports",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_AdminContent_Reports__WEBPACK_IMPORTED_MODULE_18__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-          path: "settings",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_AdminContent_Settings__WEBPACK_IMPORTED_MODULE_10__["default"], {})
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Route, {
-        path: "*",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_21__.Navigate, {
-          to: "/login",
-          replace: true
-        })
-      })]
+      })
     })
   });
 };
 
 // Mount React App
-if (document.getElementById("root")) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(App, {}), document.getElementById("root"));
+var rootElement = document.getElementById('root');
+if (rootElement) {
+  var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(rootElement);
+  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(App, {}));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
@@ -88528,7 +88644,7 @@ var AdminSidebar = function AdminSidebar(_ref) {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "admin-sidebar__logo",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-          src: "/images/gagas.svg",
+          src: "/images/aero026.svg",
           alt: "Aeros Logo",
           className: "admin-sidebar__logo-image"
         })
@@ -97020,6 +97136,685 @@ var Homepage = function Homepage() {
 
 /***/ }),
 
+/***/ "./resources/js/components/CustomerPage/Shop.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/CustomerPage/Shop.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _HeaderContent_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../HeaderContent/Header */ "./resources/js/components/HeaderContent/Header.js");
+/* harmony import */ var _FooterContent_Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../FooterContent/Footer */ "./resources/js/components/FooterContent/Footer.js");
+/* harmony import */ var _CustomerPage_ShopFilter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../CustomerPage/ShopFilter */ "./resources/js/components/CustomerPage/ShopFilter.js");
+/* harmony import */ var _CustomerPage_ShopMain__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../CustomerPage/ShopMain */ "./resources/js/components/CustomerPage/ShopMain.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+
+
+var Shop = function Shop() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState2 = _slicedToArray(_useState, 2),
+    filtersVisible = _useState2[0],
+    setFiltersVisible = _useState2[1];
+
+  // For mobile devices, you may want to add a toggle button
+  var toggleFilters = function toggleFilters() {
+    setFiltersVisible(!filtersVisible);
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    className: "shop",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_HeaderContent_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("main", {
+      className: "shop__content",
+      children: [filtersVisible && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_CustomerPage_ShopFilter__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_CustomerPage_ShopMain__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        toggleFilters: toggleFilters
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_FooterContent_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Shop);
+
+/***/ }),
+
+/***/ "./resources/js/components/CustomerPage/ShopFilter.js":
+/*!************************************************************!*\
+  !*** ./resources/js/components/CustomerPage/ShopFilter.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/chevron-up.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/chevron-down.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+var ShopFilter = function ShopFilter() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      category: true,
+      sizes: true,
+      colors: true,
+      price: true
+    }),
+    _useState2 = _slicedToArray(_useState, 2),
+    openSections = _useState2[0],
+    setOpenSections = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      categories: [],
+      sizes: [],
+      colors: [],
+      priceRanges: []
+    }),
+    _useState4 = _slicedToArray(_useState3, 2),
+    selectedFilters = _useState4[0],
+    setSelectedFilters = _useState4[1];
+  var toggleSection = function toggleSection(section) {
+    setOpenSections(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, section, !prev[section]));
+    });
+  };
+  var handleFilterChange = function handleFilterChange(type, value) {
+    setSelectedFilters(function (prev) {
+      var current = prev[type];
+      if (current.includes(value)) {
+        return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, type, current.filter(function (item) {
+          return item !== value;
+        })));
+      }
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, type, [].concat(_toConsumableArray(current), [value])));
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "shop-filter",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "filter-section",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h3", {
+        className: "filter-title",
+        onClick: function onClick() {
+          return toggleSection('category');
+        },
+        children: ["Category", openSections.category ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          size: 16,
+          className: "dropdown-arrow"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          size: 16,
+          className: "dropdown-arrow"
+        })]
+      }), openSections.category && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "filter-options",
+        children: ['Shirts', 'Pants', 'Dresses', 'Outerwear', 'Accessories'].map(function (category) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
+            className: "filter-option ".concat(selectedFilters.categories.includes(category) ? 'active' : ''),
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "checkbox",
+              checked: selectedFilters.categories.includes(category),
+              onChange: function onChange() {
+                return handleFilterChange('categories', category);
+              }
+            }), category]
+          }, category);
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "filter-section",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h3", {
+        className: "filter-title",
+        onClick: function onClick() {
+          return toggleSection('sizes');
+        },
+        children: ["Sizes", openSections.sizes ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          size: 16,
+          className: "dropdown-arrow"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          size: 16,
+          className: "dropdown-arrow"
+        })]
+      }), openSections.sizes && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "size-options",
+        children: ['XS', 'S', 'M', 'L', 'XL'].map(function (size) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            className: "size-button ".concat(selectedFilters.sizes.includes(size) ? 'active' : ''),
+            onClick: function onClick() {
+              return handleFilterChange('sizes', size);
+            },
+            children: size
+          }, size);
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "filter-section",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h3", {
+        className: "filter-title",
+        onClick: function onClick() {
+          return toggleSection('colors');
+        },
+        children: ["Colors", openSections.colors ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          size: 16,
+          className: "dropdown-arrow"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          size: 16,
+          className: "dropdown-arrow"
+        })]
+      }), openSections.colors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "color-options",
+        children: [{
+          name: 'Black',
+          color: 'black'
+        }, {
+          name: 'White',
+          color: 'white'
+        }, {
+          name: 'Gray',
+          color: 'gray'
+        }, {
+          name: 'Blue',
+          color: 'blue'
+        }, {
+          name: 'Red',
+          color: 'red'
+        }].map(function (_ref) {
+          var name = _ref.name,
+            color = _ref.color;
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+            className: "color-circle ".concat(selectedFilters.colors.includes(name) ? 'active' : ''),
+            style: {
+              backgroundColor: color,
+              border: color === 'white' ? '1px solid #ccc' : 'none'
+            },
+            onClick: function onClick() {
+              return handleFilterChange('colors', name);
+            }
+          }, name);
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "filter-section",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h3", {
+        className: "filter-title",
+        onClick: function onClick() {
+          return toggleSection('price');
+        },
+        children: ["Price Range", openSections.price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          size: 16,
+          className: "dropdown-arrow"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          size: 16,
+          className: "dropdown-arrow"
+        })]
+      }), openSections.price && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "filter-options",
+        children: ['Under $50', '$50 – $100', '$100 – $200', '$200+'].map(function (range) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
+            className: "filter-option ".concat(selectedFilters.priceRanges.includes(range) ? 'active' : ''),
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "checkbox",
+              checked: selectedFilters.priceRanges.includes(range),
+              onChange: function onChange() {
+                return handleFilterChange('priceRanges', range);
+              }
+            }), range]
+          }, range);
+        })
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ShopFilter);
+
+/***/ }),
+
+/***/ "./resources/js/components/CustomerPage/ShopMain.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/CustomerPage/ShopMain.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/search.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/heart.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/shopping-cart.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/star.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _Notifs_CartContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Notifs/CartContext */ "./resources/js/components/Notifs/CartContext.js");
+/* harmony import */ var _Notifs_WishlistContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Notifs/WishlistContext */ "./resources/js/components/Notifs/WishlistContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+ // Adjust import path as needed
+ // Adjust import path as needed
+
+var ShopMain = function ShopMain(_ref) {
+  var toggleFilters = _ref.toggleFilters;
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    products = _useState2[0],
+    setProducts = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState4 = _slicedToArray(_useState3, 2),
+    loading = _useState4[0],
+    setLoading = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    error = _useState6[0],
+    setError = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState8 = _slicedToArray(_useState7, 2),
+    wishlistLoading = _useState8[0],
+    setWishlistLoading = _useState8[1];
+  var _useCart = (0,_Notifs_CartContext__WEBPACK_IMPORTED_MODULE_1__.useCart)(),
+    addToCart = _useCart.addToCart;
+  var _useWishlist = (0,_Notifs_WishlistContext__WEBPACK_IMPORTED_MODULE_2__.useWishlist)(),
+    wishlist = _useWishlist.wishlist,
+    addToWishlist = _useWishlist.addToWishlist,
+    removeFromWishlist = _useWishlist.removeFromWishlist;
+
+  // API endpoints
+  var API_URL = "http://127.0.0.1:8000/api";
+  var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Fetch all products from the backend
+    var fetchProducts = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var response, data, processedProducts, sortedProducts;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              setLoading(true);
+              _context.next = 4;
+              return fetch("".concat(API_URL, "/products"));
+            case 4:
+              response = _context.sent;
+              if (response.ok) {
+                _context.next = 7;
+                break;
+              }
+              throw new Error('Failed to fetch products');
+            case 7:
+              _context.next = 9;
+              return response.json();
+            case 9:
+              data = _context.sent;
+              // Process and format the products data
+              processedProducts = data.map(function (product) {
+                var _product$id, _product$created_at, _product$product_name;
+                return {
+                  id: (_product$id = product.id) !== null && _product$id !== void 0 ? _product$id : "".concat(Date.now(), "-").concat(Math.random()),
+                  created_at: (_product$created_at = product.created_at) !== null && _product$created_at !== void 0 ? _product$created_at : new Date().toISOString(),
+                  imagePreview: product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_1) : "/images/placeholder.png",
+                  imageHover: product.image_2 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_2) : product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_1) : "/images/placeholder.png",
+                  productName: (_product$product_name = product.product_name) !== null && _product$product_name !== void 0 ? _product$product_name : "Unnamed Product",
+                  price: Number(product.price) || 0,
+                  rating: product.rating || 0,
+                  sizes: product.sizes ? typeof product.sizes === 'string' ? product.sizes.split(',').map(function (s) {
+                    return s.trim();
+                  }) : Array.isArray(product.sizes) ? product.sizes : [] : [],
+                  colors: product.colors ? typeof product.colors === 'string' ? product.colors.split(',').map(function (c) {
+                    return c.trim();
+                  }) : Array.isArray(product.colors) ? product.colors : [] : []
+                };
+              }); // Sort products by created_at date, newest first
+              sortedProducts = processedProducts.sort(function (a, b) {
+                return new Date(b.created_at) - new Date(a.created_at);
+              });
+              setProducts(sortedProducts);
+              setLoading(false);
+              _context.next = 21;
+              break;
+            case 16:
+              _context.prev = 16;
+              _context.t0 = _context["catch"](0);
+              console.error("Error fetching products:", _context.t0);
+              setError('Failed to load products.');
+              setLoading(false);
+            case 21:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee, null, [[0, 16]]);
+      }));
+      return function fetchProducts() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+    fetchProducts();
+  }, []);
+  var handleWishlistToggle = function handleWishlistToggle(product) {
+    return function (e) {
+      e.stopPropagation();
+      var productId = parseInt(product.id);
+      if (wishlistLoading[productId]) return;
+      setWishlistLoading(function (prev) {
+        return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, productId, true));
+      });
+      try {
+        var isInWishlist = wishlist.some(function (item) {
+          return item.id === productId;
+        });
+        if (isInWishlist) {
+          removeFromWishlist(productId);
+        } else {
+          addToWishlist({
+            id: productId,
+            productName: product.productName,
+            price: product.price,
+            imagePreview: product.imagePreview
+          });
+        }
+      } catch (error) {
+        console.error('Wishlist toggle error:', error);
+      } finally {
+        setWishlistLoading(function (prev) {
+          return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, productId, false));
+        });
+      }
+    };
+  };
+  var handleAddToCart = function handleAddToCart(product) {
+    return function (e) {
+      e.stopPropagation();
+      // Add the product to cart
+      addToCart({
+        id: product.id,
+        name: product.productName,
+        price: product.price,
+        image: product.imagePreview,
+        quantity: 1
+      });
+    };
+  };
+  var handleProductClick = function handleProductClick(productId) {
+    return function () {
+      navigate("/shop/".concat(productId));
+    };
+  };
+  var handleSortChange = function handleSortChange(e) {
+    var sortMethod = e.target.value;
+    var productsCopy = _toConsumableArray(products);
+    switch (sortMethod) {
+      case 'newest':
+        productsCopy.sort(function (a, b) {
+          return new Date(b.created_at) - new Date(a.created_at);
+        });
+        break;
+      case 'price-low':
+        productsCopy.sort(function (a, b) {
+          return a.price - b.price;
+        });
+        break;
+      case 'price-high':
+        productsCopy.sort(function (a, b) {
+          return b.price - a.price;
+        });
+        break;
+      default:
+        break;
+    }
+    setProducts(productsCopy);
+  };
+  var handleSearch = function handleSearch(e) {
+    var searchTerm = e.target.value.toLowerCase();
+    if (!searchTerm.trim()) {
+      // If search is cleared, fetch all products again
+      fetchProducts();
+      return;
+    }
+
+    // Filter products based on search term
+    var filteredProducts = products.filter(function (product) {
+      return product.productName.toLowerCase().includes(searchTerm);
+    });
+    setProducts(filteredProducts);
+  };
+
+  // Function to re-fetch products
+  var fetchProducts = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var response, data, processedProducts, sortedProducts;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            setLoading(true);
+            _context2.next = 4;
+            return fetch("".concat(API_URL, "/products"));
+          case 4:
+            response = _context2.sent;
+            if (response.ok) {
+              _context2.next = 7;
+              break;
+            }
+            throw new Error('Failed to fetch products');
+          case 7:
+            _context2.next = 9;
+            return response.json();
+          case 9:
+            data = _context2.sent;
+            processedProducts = data.map(function (product) {
+              var _product$id2, _product$created_at2, _product$product_name2;
+              return {
+                id: (_product$id2 = product.id) !== null && _product$id2 !== void 0 ? _product$id2 : "".concat(Date.now(), "-").concat(Math.random()),
+                created_at: (_product$created_at2 = product.created_at) !== null && _product$created_at2 !== void 0 ? _product$created_at2 : new Date().toISOString(),
+                imagePreview: product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_1) : "/images/placeholder.png",
+                imageHover: product.image_2 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_2) : product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_1) : "/images/placeholder.png",
+                productName: (_product$product_name2 = product.product_name) !== null && _product$product_name2 !== void 0 ? _product$product_name2 : "Unnamed Product",
+                price: Number(product.price) || 0,
+                rating: product.rating || 0,
+                sizes: product.sizes ? typeof product.sizes === 'string' ? product.sizes.split(',').map(function (s) {
+                  return s.trim();
+                }) : Array.isArray(product.sizes) ? product.sizes : [] : [],
+                colors: product.colors ? typeof product.colors === 'string' ? product.colors.split(',').map(function (c) {
+                  return c.trim();
+                }) : Array.isArray(product.colors) ? product.colors : [] : []
+              };
+            }); // Sort products by created_at date, newest first
+            sortedProducts = processedProducts.sort(function (a, b) {
+              return new Date(b.created_at) - new Date(a.created_at);
+            });
+            setProducts(sortedProducts);
+            setLoading(false);
+            _context2.next = 21;
+            break;
+          case 16:
+            _context2.prev = 16;
+            _context2.t0 = _context2["catch"](0);
+            console.error("Error fetching products:", _context2.t0);
+            setError('Failed to load products.');
+            setLoading(false);
+          case 21:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[0, 16]]);
+    }));
+    return function fetchProducts() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  if (loading) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("section", {
+    className: "shop-main",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+      children: "Loading products..."
+    })
+  });
+  if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("section", {
+    className: "shop-main",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+      children: error
+    })
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("section", {
+    className: "shop-main",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "shop-main__header",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "shop-main__search-container",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          size: 20,
+          className: "shop-main__search-icon"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+          type: "text",
+          placeholder: "Search products...",
+          className: "shop-main__search-input",
+          onChange: handleSearch
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "shop-main__sort-container",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+          className: "shop-main__sort",
+          onChange: handleSortChange,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+            value: "newest",
+            children: "Newest Arrivals"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+            value: "price-low",
+            children: "Price: Low to High"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+            value: "price-high",
+            children: "Price: High to Low"
+          })]
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "shop-main__products",
+      children: products.length > 0 ? products.map(function (product) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "shop-main__product",
+          onClick: handleProductClick(product.id),
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "shop-main__image-container",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+              src: product.imagePreview,
+              alt: product.productName,
+              className: "shop-main__image shop-main__image-main",
+              onError: function onError(e) {
+                e.target.onerror = null;
+                e.target.src = "/images/placeholder.png";
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+              src: product.imageHover,
+              alt: "".concat(product.productName, " alternative view"),
+              className: "shop-main__image shop-main__image-hover",
+              onError: function onError(e) {
+                e.target.onerror = null;
+                e.target.src = product.imagePreview || "/images/placeholder.png";
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "shop-main__buttons",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                className: "shop-main__wishlist ".concat(wishlist.some(function (item) {
+                  return item.id === parseInt(product.id);
+                }) ? 'active' : ''),
+                onClick: handleWishlistToggle(product),
+                "aria-label": wishlist.some(function (item) {
+                  return item.id === parseInt(product.id);
+                }) ? 'Remove from wishlist' : 'Add to wishlist',
+                disabled: wishlistLoading[product.id],
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  size: 20,
+                  fill: wishlist.some(function (item) {
+                    return item.id === parseInt(product.id);
+                  }) ? 'currentColor' : 'none'
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                className: "shop-main__add-to-cart",
+                onClick: handleAddToCart(product),
+                "aria-label": "Add to cart",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                  size: 20
+                })
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+            className: "shop-main__name",
+            children: product.productName
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "shop-main__rating",
+            children: _toConsumableArray(Array(5)).map(function (_, index) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                size: 16,
+                fill: index < product.rating ? '#FFD700' : 'none',
+                stroke: index < product.rating ? '#FFD700' : '#ccc'
+              }, index);
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+            className: "shop-main__price",
+            children: ["$", product.price.toFixed(2)]
+          })]
+        }, product.id);
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+        children: "No products found. Try adjusting your search criteria."
+      })
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ShopMain);
+
+/***/ }),
+
 /***/ "./resources/js/components/FooterContent/Footer.js":
 /*!*********************************************************!*\
   !*** ./resources/js/components/FooterContent/Footer.js ***!
@@ -97051,7 +97846,7 @@ var Footer = function Footer() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "footer__column",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-          src: "/images/GAGAS.svg",
+          src: "/images/aero026.svg",
           alt: "GAGAS Logo",
           className: "footer__logo"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
@@ -97234,21 +98029,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/chevron-down.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/search.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/heart.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/bell.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/shopping-bag.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/user.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/settings.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/log-out.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/menu.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/x.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/x.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/chevron-down.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/search.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/heart.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/bell.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/shopping-bag.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/user.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/settings.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/log-out.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/menu.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Notifs_CartSidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Notifs/CartSidebar */ "./resources/js/components/Notifs/CartSidebar.js");
+/* harmony import */ var _Notifs_WishlistNotif__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Notifs/WishlistNotif */ "./resources/js/components/Notifs/WishlistNotif.js");
+/* harmony import */ var _Notifs_CartContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Notifs/CartContext */ "./resources/js/components/Notifs/CartContext.js");
+/* harmony import */ var _Notifs_WishlistContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Notifs/WishlistContext */ "./resources/js/components/Notifs/WishlistContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -97261,6 +98060,10 @@ function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" !=
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
+
+
+
+ // Import the new component
 
 
 
@@ -97278,27 +98081,44 @@ var Header = function Header() {
     _useState6 = _slicedToArray(_useState5, 2),
     isProfileDropdownOpen = _useState6[0],
     setIsProfileDropdownOpen = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(function () {
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    isCartSidebarOpen = _useState8[0],
+    setIsCartSidebarOpen = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState10 = _slicedToArray(_useState9, 2),
+    isWishlistOpen = _useState10[0],
+    setIsWishlistOpen = _useState10[1]; // New state for wishlist dropdown
+  var _useCart = (0,_Notifs_CartContext__WEBPACK_IMPORTED_MODULE_4__.useCart)(),
+    cart = _useCart.cart,
+    cartNotification = _useCart.notification,
+    cartHandleLogout = _useCart.handleLogout;
+  var _useWishlist = (0,_Notifs_WishlistContext__WEBPACK_IMPORTED_MODULE_5__.useWishlist)(),
+    wishlist = _useWishlist.wishlist,
+    wishlistNotification = _useWishlist.notification,
+    clearNotification = _useWishlist.clearNotification,
+    wishlistHandleLogout = _useWishlist.handleLogout;
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(function () {
       var token = localStorage.getItem('token');
       var userData = localStorage.getItem('user');
       return !!(token && userData);
     }),
-    _useState8 = _slicedToArray(_useState7, 2),
-    isLoggedIn = _useState8[0],
-    setIsLoggedIn = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState10 = _slicedToArray(_useState9, 2),
-    user = _useState10[0],
-    setUser = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('/images/profile-pic.jpg'),
     _useState12 = _slicedToArray(_useState11, 2),
-    profilePicUrl = _useState12[0],
-    setProfilePicUrl = _useState12[1];
-  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
+    isLoggedIn = _useState12[0],
+    setIsLoggedIn = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState14 = _slicedToArray(_useState13, 2),
+    user = _useState14[0],
+    setUser = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('/images/profile-pic.jpg'),
+    _useState16 = _slicedToArray(_useState15, 2),
+    profilePicUrl = _useState16[0],
+    setProfilePicUrl = _useState16[1];
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useLocation)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
   var API_URL = "http://127.0.0.1:8000/api";
+  var wishlistRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null); // Ref for wishlist dropdown
 
-  // Fetch user profile data
   var fetchUserProfile = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(token) {
       var response, userData, _error$response, _error$response2;
@@ -97316,13 +98136,12 @@ var Header = function Header() {
           case 3:
             response = _context.sent;
             userData = response.data;
-            console.log('Profile fetched:', userData);
             setUser(userData);
             localStorage.setItem('user', JSON.stringify(userData));
-            _context.next = 16;
+            _context.next = 15;
             break;
-          case 10:
-            _context.prev = 10;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](0);
             console.error('Failed to fetch profile:', ((_error$response = _context.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context.t0.message);
             setUser(null);
@@ -97333,18 +98152,16 @@ var Header = function Header() {
               setIsLoggedIn(false);
               navigate('/login');
             }
-          case 16:
+          case 15:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 10]]);
+      }, _callee, null, [[0, 9]]);
     }));
     return function fetchUserProfile(_x) {
       return _ref.apply(this, arguments);
     };
   }();
-
-  // Construct the profile picture URL
   var getProfileImageUrl = function getProfileImageUrl() {
     if (!user || !user.profile || !user.profile.profile_pic) {
       return '/images/profile-pic.jpg';
@@ -97377,6 +98194,21 @@ var Header = function Header() {
       setProfilePicUrl('/images/profile-pic.jpg');
     }
   }, [location]);
+
+  // Close wishlist dropdown when clicking outside
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var handleClickOutside = function handleClickOutside(event) {
+      if (wishlistRef.current && !wishlistRef.current.contains(event.target)) {
+        setIsWishlistOpen(false);
+      }
+    };
+    if (isWishlistOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return function () {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isWishlistOpen]);
   var toggleMenu = function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -97386,60 +98218,97 @@ var Header = function Header() {
   var toggleSupportDropdown = function toggleSupportDropdown() {
     setIsSupportOpen(!isSupportOpen);
   };
-  var handleLogout = function handleLogout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setIsLoggedIn(false);
-    setUser(null);
-    setProfilePicUrl('/images/profile-pic.jpg');
-    setIsProfileDropdownOpen(false);
-    setIsMenuOpen(false);
-    navigate('/login');
+  var toggleCartSidebar = function toggleCartSidebar() {
+    setIsCartSidebarOpen(!isCartSidebarOpen);
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("header", {
+  var toggleWishlistDropdown = function toggleWishlistDropdown() {
+    setIsWishlistOpen(function (prev) {
+      return !prev;
+    });
+  };
+  var handleLogout = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return cartHandleLogout();
+          case 2:
+            _context2.next = 4;
+            return wishlistHandleLogout();
+          case 4:
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            setIsLoggedIn(false);
+            setUser(null);
+            setProfilePicUrl('/images/profile-pic.jpg');
+            setIsProfileDropdownOpen(false);
+            setIsMenuOpen(false);
+            setIsWishlistOpen(false);
+            navigate('/login');
+          case 13:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2);
+    }));
+    return function handleLogout() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("header", {
     className: "header",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    children: [(cartNotification || wishlistNotification) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "header__notification",
+      children: [cartNotification || wishlistNotification, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+        className: "header__notification-close",
+        onClick: clearNotification,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          size: 16
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "header__desktop",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "header__logo",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-          src: "/images/NEWLOGO.svg",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+          src: "/images/aero026.svg",
           alt: "GAGAS Logo",
           className: "header__logo-image"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("nav", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("nav", {
         className: "header__nav",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("ul", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("ul", {
           className: "header__nav-list",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
             className: "header__nav-item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
               to: "/homepage",
               className: "header__nav-link",
               children: "HOME"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
             className: "header__nav-item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
               to: "/shop",
               className: "header__nav-link",
               children: "SHOP"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
             className: "header__nav-item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
               to: "/about",
               className: "header__nav-link",
               children: "ABOUT US"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
             className: "header__nav-item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
               to: "/contact",
               className: "header__nav-link",
               children: "CONTACT US"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("li", {
             className: "header__nav-item header__nav-item--dropdown",
             onMouseEnter: function onMouseEnter() {
               return setIsSupportOpen(true);
@@ -97447,46 +98316,46 @@ var Header = function Header() {
             onMouseLeave: function onMouseLeave() {
               return setIsSupportOpen(false);
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
               to: "/support",
               className: "header__nav-link",
-              children: ["SUPPORT", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              children: ["SUPPORT", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_10__["default"], {
                 size: 16,
                 className: "header__nav-arrow"
               })]
-            }), isSupportOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("ul", {
+            }), isSupportOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("ul", {
               className: "header__dropdown",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
                 className: "header__dropdown-item",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
                   to: "/orders-payment",
                   className: "header__dropdown-link",
                   children: "Orders & Payment"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
                 className: "header__dropdown-item",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
                   to: "/shipping",
                   className: "header__dropdown-link",
                   children: "Shipping"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
                 className: "header__dropdown-item",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
                   to: "/returns",
                   className: "header__dropdown-link",
                   children: "Returns"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
                 className: "header__dropdown-item",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
                   to: "/terms-services",
                   className: "header__dropdown-link",
                   children: "Terms and Services"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
                 className: "header__dropdown-item",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
                   to: "/faqs",
                   className: "header__dropdown-link",
                   children: "FAQs"
@@ -97495,242 +98364,259 @@ var Header = function Header() {
             })]
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "header__actions",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
           className: "header__icon-btn",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_11__["default"], {
             size: 24
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "header__wishlist-container",
+          ref: wishlistRef,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
+            className: "header__icon-btn",
+            onClick: toggleWishlistDropdown,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_12__["default"], {
+              size: 24
+            }), wishlist.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+              className: "header__notification-badge",
+              children: wishlist.length
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Notifs_WishlistNotif__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            isOpen: isWishlistOpen,
+            onClose: function onClose() {
+              return setIsWishlistOpen(false);
+            }
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
           className: "header__icon-btn",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_13__["default"], {
             size: 24
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
-          className: "header__icon-btn",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
-            size: 24
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
             className: "header__notification-badge",
             children: "0"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
           className: "header__icon-btn",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          onClick: toggleCartSidebar,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_14__["default"], {
             size: 24
-          })
-        }), isLoggedIn ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          }), cart.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+            className: "header__notification-badge",
+            children: cart.length
+          })]
+        }), isLoggedIn ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "header__profile-container",
           onClick: toggleProfileDropdown,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
             src: getProfileImageUrl(),
             alt: "Profile",
             className: "header__profile-pic",
             onError: function onError(e) {
-              console.log('Image failed to load, using default image');
               e.target.src = '/images/profile-pic.jpg';
             }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_10__["default"], {
             size: 16,
             className: "header__dropdown-arrow ".concat(isProfileDropdownOpen ? 'open' : '')
-          }), isProfileDropdownOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          }), isProfileDropdownOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             className: "header__profile-dropdown",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
               to: "/profile",
               className: "header__dropdown-item",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_15__["default"], {
                 size: 16,
                 className: "header__dropdown-icon"
               }), "My Profile"]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
               to: "/settings",
               className: "header__dropdown-item",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_11__["default"], {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_16__["default"], {
                 size: 16,
                 className: "header__dropdown-icon"
               }), "Settings"]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
               className: "header__dropdown-separator"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
               className: "header__dropdown-item",
               onClick: handleLogout,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_12__["default"], {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_17__["default"], {
                 size: 16,
                 className: "header__dropdown-icon"
               }), "Logout"]
             })]
           })]
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
           to: "/login",
           className: "header__login-btn header__login-btn--desktop",
           children: "Login"
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "header__mobile",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
         className: "header__menu-btn",
         onClick: toggleMenu,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_18__["default"], {
           size: 24
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "header__logo header__logo--mobile",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-          src: "/images/NEWLOGO.svg",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+          src: "/images/aero026.svg",
           alt: "GAGAS Logo",
           className: "header__logo-image"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "header__actions--mobile",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
           className: "header__icon-btn",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_11__["default"], {
             size: 20
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
           className: "header__icon-btn",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_13__["default"], {
             size: 20
-          }), parseInt(user === null || user === void 0 ? void 0 : user.unread_notifications_count, 10) > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          }), parseInt(user === null || user === void 0 ? void 0 : user.unread_notifications_count, 10) > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
             className: "header__notification-badge",
             children: user === null || user === void 0 ? void 0 : user.unread_notifications_count
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
           className: "header__icon-btn",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          onClick: toggleCartSidebar,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_14__["default"], {
             size: 20
-          }), parseInt(user === null || user === void 0 ? void 0 : user.cart_count, 10) > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          }), cart.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
             className: "header__notification-badge",
-            children: user === null || user === void 0 ? void 0 : user.cart_count
+            children: cart.length
           })]
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "header__sidebar ".concat(isMenuOpen ? 'header__sidebar--open' : ''),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "header__sidebar-header",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
           className: "header__close-btn",
           onClick: toggleMenu,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_14__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
             size: 24
           })
         })
-      }), isLoggedIn ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      }), isLoggedIn ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "header__sidebar-profile",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
           src: getProfileImageUrl(),
           alt: "Profile",
           className: "header__sidebar-profile-pic",
           onError: function onError(e) {
             e.target.src = '/images/profile-pic.jpg';
           }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "header__sidebar-profile-info",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
             className: "header__sidebar-profile-name",
             children: user !== null && user !== void 0 && (_user$profile = user.profile) !== null && _user$profile !== void 0 && _user$profile.first_name && user !== null && user !== void 0 && (_user$profile2 = user.profile) !== null && _user$profile2 !== void 0 && _user$profile2.last_name ? "".concat(user.profile.first_name, " ").concat(user.profile.last_name) : (user === null || user === void 0 ? void 0 : user.name) || 'User'
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
             className: "header__sidebar-profile-email",
             children: (user === null || user === void 0 ? void 0 : user.email) || ''
           })]
         })]
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "header__sidebar-login",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
           to: "/login",
           className: "header__sidebar-login-btn",
           onClick: toggleMenu,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_15__["default"], {
             size: 20
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
             children: "LOGIN / REGISTER"
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("nav", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("nav", {
         className: "header__sidebar-nav",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("ul", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("ul", {
           className: "header__sidebar-nav-list",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
             className: "header__sidebar-nav-item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
               to: "/homepage",
               className: "header__sidebar-nav-link",
               onClick: toggleMenu,
               children: "HOME"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
             className: "header__sidebar-nav-item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
               to: "/shop",
               className: "header__sidebar-nav-link",
               onClick: toggleMenu,
               children: "SHOP"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
             className: "header__sidebar-nav-item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
               to: "/about",
               className: "header__sidebar-nav-link",
               onClick: toggleMenu,
               children: "ABOUT US"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
             className: "header__sidebar-nav-item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
               to: "/contact",
               className: "header__sidebar-nav-link",
               onClick: toggleMenu,
               children: "CONTACT US"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("li", {
             className: "header__sidebar-nav-item header__sidebar-nav-item--dropdown",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
               className: "header__sidebar-nav-dropdown-toggle",
               onClick: toggleSupportDropdown,
-              children: ["SUPPORT", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              children: ["SUPPORT", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_10__["default"], {
                 size: 16,
                 className: "header__sidebar-nav-arrow ".concat(isSupportOpen ? 'open' : '')
               })]
-            }), isSupportOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("ul", {
+            }), isSupportOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("ul", {
               className: "header__sidebar-dropdown",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
                 className: "header__sidebar-dropdown-item",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
                   to: "/orders-payment",
                   className: "header__sidebar-dropdown-link",
                   onClick: toggleMenu,
                   children: "Orders & Payment"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
                 className: "header__sidebar-dropdown-item",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
                   to: "/shipping",
                   className: "header__sidebar-dropdown-link",
                   onClick: toggleMenu,
                   children: "Shipping"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
                 className: "header__sidebar-dropdown-item",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
                   to: "/returns",
                   className: "header__sidebar-dropdown-link",
                   onClick: toggleMenu,
                   children: "Returns"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
                 className: "header__sidebar-dropdown-item",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
                   to: "/terms-services",
                   className: "header__sidebar-dropdown-link",
                   onClick: toggleMenu,
                   children: "Terms and Services"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
                 className: "header__sidebar-dropdown-item",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
                   to: "/faqs",
                   className: "header__sidebar-dropdown-link",
                   onClick: toggleMenu,
@@ -97740,48 +98626,57 @@ var Header = function Header() {
             })]
           })]
         })
-      }), isLoggedIn && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      }), isLoggedIn && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "header__sidebar-actions",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
           to: "/profile",
           className: "header__sidebar-action-link",
           onClick: toggleMenu,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_15__["default"], {
             size: 20
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
             children: "My Profile"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
           to: "/wishlist",
           className: "header__sidebar-action-link",
           onClick: toggleMenu,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_12__["default"], {
             size: 20
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
             children: "My Wishlist"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
           to: "/settings",
           className: "header__sidebar-action-link",
           onClick: toggleMenu,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_16__["default"], {
             size: 20
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
             children: "Settings"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
           className: "header__sidebar-action-link header__sidebar-logout",
           onClick: handleLogout,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_12__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_17__["default"], {
             size: 20
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
             children: "Logout"
           })]
         })]
       })]
-    }), isMenuOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Notifs_CartSidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      isOpen: isCartSidebarOpen,
+      onClose: function onClose() {
+        return setIsCartSidebarOpen(false);
+      }
+    }), (isMenuOpen || isCartSidebarOpen || isWishlistOpen) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: "header__sidebar-overlay",
-      onClick: toggleMenu
+      onClick: function onClick() {
+        toggleMenu();
+        setIsCartSidebarOpen(false);
+        setIsWishlistOpen(false);
+      }
     })]
   });
 };
@@ -98000,15 +98895,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/eye-off.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/eye.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/eye-off.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/eye.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _LoginSuccess__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LoginSuccess */ "./resources/js/components/LoginContent/LoginSuccess.js");
 /* harmony import */ var _HeaderContent_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../HeaderContent/Header */ "./resources/js/components/HeaderContent/Header.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Notifs_CartContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Notifs/CartContext */ "./resources/js/components/Notifs/CartContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -98024,6 +98920,7 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
 
 
 
@@ -98052,14 +98949,19 @@ var Login = function Login() {
     _useState8 = _slicedToArray(_useState7, 2),
     showSuccess = _useState8[0],
     setShowSuccess = _useState8[1];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState10 = _slicedToArray(_useState9, 2),
     userRole = _useState10[0],
     setUserRole = _useState10[1];
+  var _useCart = (0,_Notifs_CartContext__WEBPACK_IMPORTED_MODULE_4__.useCart)(),
+    handleLogin = _useCart.handleLogin; // Get the handleLogin function from context
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    // We should not clear token and user on component mount
+    // This would log out already logged-in users viewing the login page
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('user');
   }, []);
   var handleChange = function handleChange(e) {
     var _e$target = e.target,
@@ -98094,14 +98996,21 @@ var Login = function Login() {
           case 5:
             response = _context.sent;
             console.log('Login successful:', response.data);
-            setShowSuccess(true);
+
+            // Store the authentication data
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
             setUserRole(response.data.user.role);
-            _context.next = 18;
+
+            // Sync the cart with the server
+            _context.next = 12;
+            return handleLogin(response.data.token, response.data.user);
+          case 12:
+            setShowSuccess(true);
+            _context.next = 20;
             break;
-          case 13:
-            _context.prev = 13;
+          case 15:
+            _context.prev = 15;
             _context.t0 = _context["catch"](2);
             console.error('Login failed:', _context.t0);
             console.error('Error response:', _context.t0.response);
@@ -98116,11 +99025,11 @@ var Login = function Login() {
                 general: ((_err$response5 = _context.t0.response) === null || _err$response5 === void 0 || (_err$response5 = _err$response5.data) === null || _err$response5 === void 0 ? void 0 : _err$response5.message) || 'An error occurred during login'
               });
             }
-          case 18:
+          case 20:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[2, 13]]);
+      }, _callee, null, [[2, 15]]);
     }));
     return function handleSubmit(_x) {
       return _ref.apply(this, arguments);
@@ -98139,29 +99048,29 @@ var Login = function Login() {
       });
     }
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "login-page",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_HeaderContent_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_HeaderContent_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "login",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
         className: "login__title",
         children: "Welcome Back!"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
         className: "login__subtitle",
         children: "Enter your credentials for login"
-      }), errors.general && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      }), errors.general && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
         className: "login__error",
         children: errors.general
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
         className: "login__form",
         onSubmit: handleSubmit,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           className: "login__field",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
             htmlFor: "email",
             className: "login__label",
             children: "Email"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
             type: "email",
             id: "email",
             name: "email",
@@ -98170,19 +99079,19 @@ var Login = function Login() {
             placeholder: "Enter your email",
             className: "login__input",
             required: true
-          }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+          }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
             className: "login__error",
             children: errors.email[0]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           className: "login__field",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
             htmlFor: "password",
             className: "login__label",
             children: "Password"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
             className: "login__password-wrapper",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
               type: showPassword ? 'text' : 'password',
               id: "password",
               name: "password",
@@ -98191,52 +99100,52 @@ var Login = function Login() {
               placeholder: "Enter your password",
               className: "login__input",
               required: true
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
               type: "button",
               className: "login__toggle-password",
               onClick: function onClick() {
                 return setShowPassword(!showPassword);
               },
-              children: showPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+              children: showPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
                 size: 20
-              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
                 size: 20
               })
             })]
-          }), errors.password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+          }), errors.password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
             className: "login__error",
             children: errors.password[0]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           className: "login__options",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("label", {
             className: "login__remember-me",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
               type: "checkbox",
               name: "rememberMe",
               checked: formData.rememberMe,
               onChange: handleChange
             }), "Remember me"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
             to: "/forgot-password",
             className: "login__forgot-password",
             children: "Forgot password?"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
           type: "submit",
           className: "login__submit-button",
           children: "Sign In"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         className: "login__register",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
           children: "Don't have an account?"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
           to: "/register",
           className: "login__register-link",
           children: "Create Account"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_LoginSuccess__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_LoginSuccess__WEBPACK_IMPORTED_MODULE_2__["default"], {
         message: "Login Successful!",
         isVisible: showSuccess,
         onClose: handleSuccessClose
@@ -98311,13 +99220,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/heart.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/shopping-cart.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/heart.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/shopping-cart.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Notifs_CartModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Notifs/CartModal */ "./resources/js/components/Notifs/CartModal.js");
+/* harmony import */ var _Notifs_CartSidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Notifs/CartSidebar */ "./resources/js/components/Notifs/CartSidebar.js");
+/* harmony import */ var _Notifs_CartContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Notifs/CartContext */ "./resources/js/components/Notifs/CartContext.js");
+/* harmony import */ var _Notifs_WishlistContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Notifs/WishlistContext */ "./resources/js/components/Notifs/WishlistContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
@@ -98332,8 +99250,12 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+
+
+
+
 var NewArrival = function NewArrival() {
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     products = _useState2[0],
@@ -98346,33 +99268,47 @@ var NewArrival = function NewArrival() {
     _useState6 = _slicedToArray(_useState5, 2),
     error = _useState6[0],
     setError = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState8 = _slicedToArray(_useState7, 2),
+    selectedProduct = _useState8[0],
+    setSelectedProduct = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState10 = _slicedToArray(_useState9, 2),
+    isCartOpen = _useState10[0],
+    setIsCartOpen = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState12 = _slicedToArray(_useState11, 2),
+    wishlistLoading = _useState12[0],
+    setWishlistLoading = _useState12[1];
+  var _useCart = (0,_Notifs_CartContext__WEBPACK_IMPORTED_MODULE_4__.useCart)(),
+    cart = _useCart.cart,
+    addToCart = _useCart.addToCart;
+  var _useWishlist = (0,_Notifs_WishlistContext__WEBPACK_IMPORTED_MODULE_5__.useWishlist)(),
+    wishlist = _useWishlist.wishlist,
+    addToWishlist = _useWishlist.addToWishlist,
+    removeFromWishlist = _useWishlist.removeFromWishlist,
+    apiError = _useWishlist.apiError;
   var API_URL = "http://127.0.0.1:8000/api";
   var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var fetchProducts = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var token, response, productsData, updatedProducts, _error$response, _error$response2;
+        var token, headers, response, productsData, updatedProducts, _error$response, _error$response2;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
               setLoading(true);
               token = localStorage.getItem('token');
-              if (token) {
-                _context.next = 5;
-                break;
-              }
-              throw new Error('No authentication token found.');
-            case 5:
-              _context.next = 7;
+              headers = token ? {
+                Authorization: "Bearer ".concat(token)
+              } : {};
+              _context.next = 6;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(API_URL, "/products"), {
-                headers: {
-                  Authorization: "Bearer ".concat(token)
-                }
+                headers: headers
               });
-            case 7:
+            case 6:
               response = _context.sent;
-              console.log("Products API Response:", response.data);
               productsData = Array.isArray(response.data) ? response.data : Array.isArray(response.data.data) ? response.data.data : [];
               updatedProducts = productsData.map(function (product) {
                 var _product$id, _product$created_at, _product$product_name;
@@ -98382,18 +99318,23 @@ var NewArrival = function NewArrival() {
                   imagePreview: product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_1) : "/images/placeholder.png",
                   imageHover: product.image_2 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_2) : product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(product.image_1) : "/images/placeholder.png",
                   productName: (_product$product_name = product.product_name) !== null && _product$product_name !== void 0 ? _product$product_name : "Unnamed Product",
-                  price: Number(product.price) || 0
+                  price: Number(product.price) || 0,
+                  sizes: product.sizes ? typeof product.sizes === 'string' ? product.sizes.split(',').map(function (s) {
+                    return s.trim();
+                  }) : Array.isArray(product.sizes) ? product.sizes : [] : [],
+                  colors: product.colors ? typeof product.colors === 'string' ? product.colors.split(',').map(function (c) {
+                    return c.trim();
+                  }) : Array.isArray(product.colors) ? product.colors : [] : []
                 };
               }).sort(function (a, b) {
                 return new Date(b.created_at) - new Date(a.created_at);
-              }).slice(0, 8); // Kept at 4 products as requested
-              console.log("Parsed Products:", updatedProducts);
+              }).slice(0, 8);
               setProducts(updatedProducts);
               setLoading(false);
-              _context.next = 22;
+              _context.next = 19;
               break;
-            case 16:
-              _context.prev = 16;
+            case 13:
+              _context.prev = 13;
               _context.t0 = _context["catch"](0);
               console.error("Error fetching products:", ((_error$response = _context.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context.t0.message);
               setError("Failed to load new arrivals. Please try again later.");
@@ -98402,11 +99343,11 @@ var NewArrival = function NewArrival() {
                 localStorage.removeItem('token');
                 navigate('/login');
               }
-            case 22:
+            case 19:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 16]]);
+        }, _callee, null, [[0, 13]]);
       }));
       return function fetchProducts() {
         return _ref.apply(this, arguments);
@@ -98414,106 +99355,199 @@ var NewArrival = function NewArrival() {
     }();
     fetchProducts();
   }, [navigate]);
-  var handleAddToCart = function handleAddToCart(productId) {
+  var handleAddToCart = function handleAddToCart(product) {
     return function (e) {
       e.stopPropagation();
-      navigate("/shop/".concat(productId));
+      setSelectedProduct(product);
     };
   };
-  var handleWishlistToggle = function handleWishlistToggle(productId) {
-    return function (e) {
-      e.stopPropagation();
-      console.log("Toggling wishlist for product ".concat(productId));
-    };
+  var handleWishlistToggle = function handleWishlistToggle(product) {
+    return /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+        var productId, isInWishlist;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              e.stopPropagation();
+              productId = parseInt(product.id);
+              if (!wishlistLoading[productId]) {
+                _context2.next = 4;
+                break;
+              }
+              return _context2.abrupt("return");
+            case 4:
+              setWishlistLoading(function (prev) {
+                return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, productId, true));
+              });
+              _context2.prev = 5;
+              isInWishlist = wishlist.some(function (item) {
+                return item.id === productId;
+              });
+              if (!isInWishlist) {
+                _context2.next = 12;
+                break;
+              }
+              _context2.next = 10;
+              return removeFromWishlist(productId);
+            case 10:
+              _context2.next = 14;
+              break;
+            case 12:
+              _context2.next = 14;
+              return addToWishlist({
+                id: productId,
+                productName: product.productName,
+                price: product.price,
+                imagePreview: product.imagePreview
+              });
+            case 14:
+              _context2.next = 20;
+              break;
+            case 16:
+              _context2.prev = 16;
+              _context2.t0 = _context2["catch"](5);
+              console.error('Wishlist toggle error:', _context2.t0);
+              alert('Failed to update wishlist. Please try again.');
+            case 20:
+              _context2.prev = 20;
+              setWishlistLoading(function (prev) {
+                return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, productId, false));
+              });
+              return _context2.finish(20);
+            case 23:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[5, 16, 20, 23]]);
+      }));
+      return function (_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }();
   };
   var handleProductClick = function handleProductClick(productId) {
     return function () {
       navigate("/shop/".concat(productId));
     };
   };
-  if (loading) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
-      className: "new-arrival",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-        children: "Loading new arrivals..."
-      })
+  var handleCloseModal = function handleCloseModal() {
+    setSelectedProduct(null);
+  };
+  var handleAddToCartConfirmed = function handleAddToCartConfirmed(cartItem) {
+    addToCart(cartItem);
+    setIsCartOpen(true);
+  };
+  var toggleCartSidebar = function toggleCartSidebar() {
+    setIsCartOpen(function (prev) {
+      return !prev;
     });
-  }
-  if (error) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
-      className: "new-arrival",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-        children: error
-      })
-    });
-  }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+  };
+  if (loading) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("section", {
     className: "new-arrival",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "new-arrival__header",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "new-arrival__title-container",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
-          className: "new-arrival__title",
-          children: "New Arrival Items"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-          className: "new-arrival__subtitle",
-          children: "Discover great new styles for your little adventurers."
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+      children: "Loading new arrivals..."
+    })
+  });
+  if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("section", {
+    className: "new-arrival",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+      children: error
+    })
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("section", {
+      className: "new-arrival",
+      children: [apiError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "new-arrival__error",
+        children: [apiError.message, apiError.status === 401 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+          onClick: function onClick() {
+            return navigate('/login');
+          },
+          children: "Login to retry"
         })]
-      })
-    }), products.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-      children: "No new arrivals available."
-    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "new-arrival__products",
-      children: products.map(function (product) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "new-arrival__product",
-          onClick: handleProductClick(product.id),
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "new-arrival__image-container",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-              src: product.imagePreview,
-              alt: product.productName,
-              className: "new-arrival__image new-arrival__image-main",
-              onError: function onError(e) {
-                e.target.onerror = null;
-                e.target.src = "/images/placeholder.png";
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-              src: product.imageHover,
-              alt: "".concat(product.productName, " alternative view"),
-              className: "new-arrival__image new-arrival__image-hover",
-              onError: function onError(e) {
-                e.target.onerror = null;
-                e.target.src = product.imagePreview || "/images/placeholder.png";
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "new-arrival__buttons",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
-                className: "new-arrival__wishlist",
-                onClick: handleWishlistToggle(product.id),
-                "aria-label": "Add to wishlist",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                  size: 20
-                }), " "]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
-                className: "new-arrival__add-to-cart",
-                onClick: handleAddToCart(product.id),
-                "aria-label": "View product",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                  size: 20
-                }), " "]
-              })]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-            className: "new-arrival__name",
-            children: product.productName
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-            className: "new-arrival__price",
-            children: ["$", product.price.toFixed(2)]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        className: "new-arrival__header",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "new-arrival__title-container",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+            className: "new-arrival__title",
+            children: "New Arrival Items"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+            className: "new-arrival__subtitle",
+            children: "Discover great new styles for your little adventurers."
           })]
-        }, product.id);
-      })
+        })
+      }), products.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+        children: "No new arrivals available."
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        className: "new-arrival__products",
+        children: products.map(function (product) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            className: "new-arrival__product",
+            onClick: handleProductClick(product.id),
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              className: "new-arrival__image-container",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+                src: product.imagePreview,
+                alt: product.productName,
+                className: "new-arrival__image new-arrival__image-main",
+                onError: function onError(e) {
+                  e.target.onerror = null;
+                  e.target.src = "/images/placeholder.png";
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+                src: product.imageHover,
+                alt: "".concat(product.productName, " alternative view"),
+                className: "new-arrival__image new-arrival__image-hover",
+                onError: function onError(e) {
+                  e.target.onerror = null;
+                  e.target.src = product.imagePreview || "/images/placeholder.png";
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: "new-arrival__buttons",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+                  className: "new-arrival__wishlist ".concat(wishlist.some(function (item) {
+                    return item.id === parseInt(product.id);
+                  }) ? 'active' : ''),
+                  onClick: handleWishlistToggle(product),
+                  "aria-label": wishlist.some(function (item) {
+                    return item.id === parseInt(product.id);
+                  }) ? 'Remove from wishlist' : 'Add to wishlist',
+                  disabled: wishlistLoading[product.id],
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                    size: 20,
+                    fill: wishlist.some(function (item) {
+                      return item.id === parseInt(product.id);
+                    }) ? 'currentColor' : 'none'
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+                  className: "new-arrival__add-to-cart",
+                  onClick: handleAddToCart(product),
+                  "aria-label": "Add to cart",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                    size: 20
+                  })
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+              className: "new-arrival__name",
+              children: product.productName
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
+              className: "new-arrival__price",
+              children: ["$", product.price.toFixed(2)]
+            })]
+          }, product.id);
+        })
+      })]
+    }), selectedProduct && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Notifs_CartModal__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      product: selectedProduct,
+      onClose: handleCloseModal,
+      onAddToCart: handleAddToCartConfirmed
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Notifs_CartSidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      isOpen: isCartOpen,
+      onClose: function onClose() {
+        return setIsCartOpen(false);
+      }
     })]
   });
 };
@@ -98641,26 +99675,21 @@ var SecondContent = function SecondContent() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var fetchProducts = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var token, response, productsData, updatedProducts, _error$response, _error$response2;
+        var token, headers, response, productsData, updatedProducts, _error$response, _error$response2;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
               setLoading(true);
               token = localStorage.getItem('token');
-              if (token) {
-                _context.next = 5;
-                break;
-              }
-              throw new Error('No authentication token found.');
-            case 5:
-              _context.next = 7;
+              headers = token ? {
+                Authorization: "Bearer ".concat(token)
+              } : {};
+              _context.next = 6;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(API_URL, "/products"), {
-                headers: {
-                  Authorization: "Bearer ".concat(token)
-                }
+                headers: headers
               });
-            case 7:
+            case 6:
               response = _context.sent;
               console.log("Products API Response:", response.data);
               productsData = Array.isArray(response.data) ? response.data : Array.isArray(response.data.data) ? response.data.data : [];
@@ -98679,10 +99708,10 @@ var SecondContent = function SecondContent() {
               console.log("Parsed Products:", updatedProducts);
               setProducts(updatedProducts);
               setLoading(false);
-              _context.next = 22;
+              _context.next = 21;
               break;
-            case 16:
-              _context.prev = 16;
+            case 15:
+              _context.prev = 15;
               _context.t0 = _context["catch"](0);
               console.error("Error fetching products:", ((_error$response = _context.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context.t0.message);
               setError("Failed to load products. Please try again later.");
@@ -98691,11 +99720,11 @@ var SecondContent = function SecondContent() {
                 localStorage.removeItem('token');
                 navigate('/login');
               }
-            case 22:
+            case 21:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 16]]);
+        }, _callee, null, [[0, 15]]);
       }));
       return function fetchProducts() {
         return _ref.apply(this, arguments);
@@ -99386,6 +100415,1734 @@ var Success = function Success(_ref) {
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Success);
+
+/***/ }),
+
+/***/ "./resources/js/components/Notifs/CartContext.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/Notifs/CartContext.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CartProvider: () => (/* binding */ CartProvider),
+/* harmony export */   useCart: () => (/* binding */ useCart)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+var CartContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)();
+var API_URL = "http://127.0.0.1:8000/api";
+var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
+var LOCAL_CART_KEY = "guest_shopping_cart"; // key for local storage
+
+var useCart = function useCart() {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(CartContext);
+};
+var CartProvider = function CartProvider(_ref) {
+  var children = _ref.children;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    cart = _useState2[0],
+    setCart = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    notification = _useState4[0],
+    setNotification = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isLoading = _useState6[0],
+    setIsLoading = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState8 = _slicedToArray(_useState7, 2),
+    apiError = _useState8[0],
+    setApiError = _useState8[1];
+
+  // Get cart items - from server if logged in, otherwise from local storage
+  var fetchCart = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var token, response, cartItems, _error$response, _error$response2, _error$response3, _error$response4;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            token = localStorage.getItem('token');
+            setIsLoading(true);
+            if (!token) {
+              _context.next = 18;
+              break;
+            }
+            _context.prev = 3;
+            _context.next = 6;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(API_URL, "/cart"), {
+              headers: {
+                Authorization: "Bearer ".concat(token),
+                Accept: 'application/json'
+              }
+            });
+          case 6:
+            response = _context.sent;
+            cartItems = response.data.map(function (item) {
+              var _item$product, _item$product2, _item$product3;
+              return {
+                id: item.product_id,
+                productName: ((_item$product = item.product) === null || _item$product === void 0 ? void 0 : _item$product.product_name) || "Unknown Product",
+                price: Number((_item$product2 = item.product) === null || _item$product2 === void 0 ? void 0 : _item$product2.price) || 0,
+                imagePreview: (_item$product3 = item.product) !== null && _item$product3 !== void 0 && _item$product3.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(item.product.image_1) : "/images/placeholder.png",
+                quantity: item.quantity,
+                size: item.size || "Not specified",
+                color: item.color || "Not specified"
+              };
+            });
+            setCart(cartItems);
+            _context.next = 16;
+            break;
+          case 11:
+            _context.prev = 11;
+            _context.t0 = _context["catch"](3);
+            console.error('Error fetching cart:', ((_error$response = _context.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context.t0.message);
+            setApiError({
+              message: 'Failed to fetch cart from server',
+              details: ((_error$response2 = _context.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.data) || _context.t0.message,
+              status: (_error$response3 = _context.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.status
+            });
+            if (((_error$response4 = _context.t0.response) === null || _error$response4 === void 0 ? void 0 : _error$response4.status) === 401) {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              loadLocalCart(); // Fall back to local cart
+            }
+          case 16:
+            _context.next = 19;
+            break;
+          case 18:
+            // User is not logged in - load from local storage
+            loadLocalCart();
+          case 19:
+            setIsLoading(false);
+          case 20:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[3, 11]]);
+    }));
+    return function fetchCart() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  // Load cart from local storage for guest users
+  var loadLocalCart = function loadLocalCart() {
+    try {
+      var localCart = localStorage.getItem(LOCAL_CART_KEY);
+      if (localCart) {
+        setCart(JSON.parse(localCart));
+      } else {
+        setCart([]);
+      }
+    } catch (error) {
+      console.error('Error loading local cart:', error);
+      setCart([]);
+    }
+  };
+
+  // Save cart to local storage for guest users
+  var saveLocalCart = function saveLocalCart(cartItems) {
+    try {
+      localStorage.setItem(LOCAL_CART_KEY, JSON.stringify(cartItems));
+    } catch (error) {
+      console.error('Error saving local cart:', error);
+    }
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchCart();
+  }, []);
+  var addToCart = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(item) {
+      var token, existingItemIndex, updatedCart, newItem, _error$response5, _error$response6, _error$response7, _error$response8;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            token = localStorage.getItem('token');
+            setApiError(null);
+
+            // Check if item already exists in cart
+            existingItemIndex = cart.findIndex(function (cartItem) {
+              return cartItem.id === parseInt(item.id) && cartItem.size === (item.selectedSize || null) && cartItem.color === (item.selectedColor || null);
+            });
+            if (existingItemIndex >= 0) {
+              // Item exists, update quantity
+              updatedCart = _toConsumableArray(cart);
+              updatedCart[existingItemIndex].quantity += parseInt(item.quantity) || 1;
+            } else {
+              // New item, add to cart
+              newItem = {
+                id: parseInt(item.id),
+                productName: item.productName,
+                price: Number(item.price) || 0,
+                imagePreview: item.imagePreview,
+                quantity: parseInt(item.quantity) || 1,
+                size: item.selectedSize || "Not specified",
+                color: item.selectedColor || "Not specified"
+              };
+              updatedCart = [].concat(_toConsumableArray(cart), [newItem]);
+            }
+
+            // Update state
+            setCart(updatedCart);
+            if (!token) {
+              _context2.next = 20;
+              break;
+            }
+            _context2.prev = 6;
+            _context2.next = 9;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(API_URL, "/cart/add"), {
+              product_id: parseInt(item.id),
+              size: item.selectedSize || null,
+              color: item.selectedColor || null,
+              quantity: parseInt(item.quantity) || 1
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(token),
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+              }
+            });
+          case 9:
+            _context2.next = 11;
+            return fetchCart();
+          case 11:
+            _context2.next = 18;
+            break;
+          case 13:
+            _context2.prev = 13;
+            _context2.t0 = _context2["catch"](6);
+            console.error('Error adding to cart:', ((_error$response5 = _context2.t0.response) === null || _error$response5 === void 0 ? void 0 : _error$response5.data) || _context2.t0.message);
+            setApiError({
+              message: 'Failed to add item to cart',
+              details: ((_error$response6 = _context2.t0.response) === null || _error$response6 === void 0 ? void 0 : _error$response6.data) || _context2.t0.message,
+              status: (_error$response7 = _context2.t0.response) === null || _error$response7 === void 0 ? void 0 : _error$response7.status
+            });
+            if (((_error$response8 = _context2.t0.response) === null || _error$response8 === void 0 ? void 0 : _error$response8.status) === 401) {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              // Still keep item in local cart
+              saveLocalCart(updatedCart);
+            }
+          case 18:
+            _context2.next = 21;
+            break;
+          case 20:
+            // User is not logged in - save to local storage
+            saveLocalCart(updatedCart);
+          case 21:
+            showNotification("Added ".concat(item.productName, " to cart"));
+          case 22:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[6, 13]]);
+    }));
+    return function addToCart(_x) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  var updateQuantity = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(itemId, size, color, newQuantity) {
+      var token, updatedCart, _error$response9, _error$response10, _error$response11, _error$response12;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            token = localStorage.getItem('token');
+            setApiError(null);
+
+            // Find the item in the cart
+            updatedCart = cart.map(function (item) {
+              if (item.id === itemId && item.size === size && item.color === color) {
+                return _objectSpread(_objectSpread({}, item), {}, {
+                  quantity: newQuantity
+                });
+              }
+              return item;
+            }).filter(function (item) {
+              return item.quantity > 0;
+            }); // Remove items with quantity 0 or less
+            // Update state
+            setCart(updatedCart);
+            if (!token) {
+              _context3.next = 19;
+              break;
+            }
+            _context3.prev = 5;
+            _context3.next = 8;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(API_URL, "/cart/update"), {
+              product_id: itemId,
+              size: size,
+              color: color,
+              quantity: newQuantity
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(token),
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+              }
+            });
+          case 8:
+            _context3.next = 10;
+            return fetchCart();
+          case 10:
+            _context3.next = 17;
+            break;
+          case 12:
+            _context3.prev = 12;
+            _context3.t0 = _context3["catch"](5);
+            console.error('Error updating quantity:', ((_error$response9 = _context3.t0.response) === null || _error$response9 === void 0 ? void 0 : _error$response9.data) || _context3.t0.message);
+            setApiError({
+              message: 'Failed to update cart',
+              details: ((_error$response10 = _context3.t0.response) === null || _error$response10 === void 0 ? void 0 : _error$response10.data) || _context3.t0.message,
+              status: (_error$response11 = _context3.t0.response) === null || _error$response11 === void 0 ? void 0 : _error$response11.status
+            });
+            if (((_error$response12 = _context3.t0.response) === null || _error$response12 === void 0 ? void 0 : _error$response12.status) === 401) {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              // Still keep updates in local cart
+              saveLocalCart(updatedCart);
+            }
+          case 17:
+            _context3.next = 20;
+            break;
+          case 19:
+            // User is not logged in - save to local storage
+            saveLocalCart(updatedCart);
+          case 20:
+            showNotification('Cart updated');
+          case 21:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[5, 12]]);
+    }));
+    return function updateQuantity(_x2, _x3, _x4, _x5) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+  var removeFromCart = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(itemId, size, color) {
+      var token, updatedCart, _error$response13, _error$response14, _error$response15, _error$response16;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            token = localStorage.getItem('token');
+            setApiError(null);
+
+            // Filter out the item to remove
+            updatedCart = cart.filter(function (item) {
+              return !(item.id === itemId && item.size === size && item.color === color);
+            }); // Update state
+            setCart(updatedCart);
+            if (!token) {
+              _context4.next = 19;
+              break;
+            }
+            _context4.prev = 5;
+            _context4.next = 8;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("".concat(API_URL, "/cart/remove/").concat(itemId), {
+              headers: {
+                Authorization: "Bearer ".concat(token),
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+              },
+              data: {
+                size: size,
+                color: color
+              }
+            });
+          case 8:
+            _context4.next = 10;
+            return fetchCart();
+          case 10:
+            _context4.next = 17;
+            break;
+          case 12:
+            _context4.prev = 12;
+            _context4.t0 = _context4["catch"](5);
+            console.error('Error removing item:', ((_error$response13 = _context4.t0.response) === null || _error$response13 === void 0 ? void 0 : _error$response13.data) || _context4.t0.message);
+            setApiError({
+              message: 'Failed to remove item from cart',
+              details: ((_error$response14 = _context4.t0.response) === null || _error$response14 === void 0 ? void 0 : _error$response14.data) || _context4.t0.message,
+              status: (_error$response15 = _context4.t0.response) === null || _error$response15 === void 0 ? void 0 : _error$response15.status
+            });
+            if (((_error$response16 = _context4.t0.response) === null || _error$response16 === void 0 ? void 0 : _error$response16.status) === 401) {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              // Still keep updates in local cart
+              saveLocalCart(updatedCart);
+            }
+          case 17:
+            _context4.next = 20;
+            break;
+          case 19:
+            // User is not logged in - save to local storage
+            saveLocalCart(updatedCart);
+          case 20:
+            showNotification('Item removed from cart');
+          case 21:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4, null, [[5, 12]]);
+    }));
+    return function removeFromCart(_x6, _x7, _x8) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+  var clearCart = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+      var token, _error$response17, _error$response18, _error$response19, _error$response20;
+      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+        while (1) switch (_context5.prev = _context5.next) {
+          case 0:
+            token = localStorage.getItem('token');
+            setApiError(null);
+
+            // Clear cart state
+            setCart([]);
+            if (!token) {
+              _context5.next = 14;
+              break;
+            }
+            _context5.prev = 4;
+            _context5.next = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("".concat(API_URL, "/cart/clear"), {
+              headers: {
+                Authorization: "Bearer ".concat(token),
+                Accept: 'application/json'
+              }
+            });
+          case 7:
+            _context5.next = 14;
+            break;
+          case 9:
+            _context5.prev = 9;
+            _context5.t0 = _context5["catch"](4);
+            console.error('Error clearing cart:', ((_error$response17 = _context5.t0.response) === null || _error$response17 === void 0 ? void 0 : _error$response17.data) || _context5.t0.message);
+            setApiError({
+              message: 'Failed to clear cart',
+              details: ((_error$response18 = _context5.t0.response) === null || _error$response18 === void 0 ? void 0 : _error$response18.data) || _context5.t0.message,
+              status: (_error$response19 = _context5.t0.response) === null || _error$response19 === void 0 ? void 0 : _error$response19.status
+            });
+            if (((_error$response20 = _context5.t0.response) === null || _error$response20 === void 0 ? void 0 : _error$response20.status) === 401) {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+            }
+          case 14:
+            // Clear local storage cart
+            localStorage.removeItem(LOCAL_CART_KEY);
+            showNotification('Cart cleared');
+          case 16:
+          case "end":
+            return _context5.stop();
+        }
+      }, _callee5, null, [[4, 9]]);
+    }));
+    return function clearCart() {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+
+  // Sync local cart with server on login
+  var syncCartWithServer = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(token) {
+      var localCart, _iterator, _step, item, _error$response21;
+      return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+        while (1) switch (_context6.prev = _context6.next) {
+          case 0:
+            localCart = JSON.parse(localStorage.getItem(LOCAL_CART_KEY) || '[]');
+            if (!(localCart.length > 0)) {
+              _context6.next = 30;
+              break;
+            }
+            setIsLoading(true);
+
+            // Add each local item to server cart
+            _iterator = _createForOfIteratorHelper(localCart);
+            _context6.prev = 4;
+            _iterator.s();
+          case 6:
+            if ((_step = _iterator.n()).done) {
+              _context6.next = 18;
+              break;
+            }
+            item = _step.value;
+            _context6.prev = 8;
+            _context6.next = 11;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(API_URL, "/cart/add"), {
+              product_id: item.id,
+              size: item.size !== "Not specified" ? item.size : null,
+              color: item.color !== "Not specified" ? item.color : null,
+              quantity: item.quantity
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(token),
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+              }
+            });
+          case 11:
+            _context6.next = 16;
+            break;
+          case 13:
+            _context6.prev = 13;
+            _context6.t0 = _context6["catch"](8);
+            console.error('Error syncing item to server cart:', ((_error$response21 = _context6.t0.response) === null || _error$response21 === void 0 ? void 0 : _error$response21.data) || _context6.t0.message);
+          case 16:
+            _context6.next = 6;
+            break;
+          case 18:
+            _context6.next = 23;
+            break;
+          case 20:
+            _context6.prev = 20;
+            _context6.t1 = _context6["catch"](4);
+            _iterator.e(_context6.t1);
+          case 23:
+            _context6.prev = 23;
+            _iterator.f();
+            return _context6.finish(23);
+          case 26:
+            // Clear local cart after syncing
+            localStorage.removeItem(LOCAL_CART_KEY);
+
+            // Fetch the updated cart from server
+            _context6.next = 29;
+            return fetchCart();
+          case 29:
+            setIsLoading(false);
+          case 30:
+          case "end":
+            return _context6.stop();
+        }
+      }, _callee6, null, [[4, 20, 23, 26], [8, 13]]);
+    }));
+    return function syncCartWithServer(_x9) {
+      return _ref7.apply(this, arguments);
+    };
+  }();
+  var handleLogin = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7(token, userData) {
+      var _error$response22, _error$response23, _error$response24;
+      return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+        while (1) switch (_context7.prev = _context7.next) {
+          case 0:
+            setIsLoading(true);
+            setApiError(null);
+            _context7.prev = 2;
+            localStorage.setItem('token', token);
+            localStorage.setItem('user', JSON.stringify(userData));
+
+            // Sync local cart with server
+            _context7.next = 7;
+            return syncCartWithServer(token);
+          case 7:
+            _context7.next = 14;
+            break;
+          case 9:
+            _context7.prev = 9;
+            _context7.t0 = _context7["catch"](2);
+            console.error('Error syncing cart on login:', ((_error$response22 = _context7.t0.response) === null || _error$response22 === void 0 ? void 0 : _error$response22.data) || _context7.t0.message);
+            setApiError({
+              message: 'Failed to sync cart on login',
+              details: ((_error$response23 = _context7.t0.response) === null || _error$response23 === void 0 ? void 0 : _error$response23.data) || _context7.t0.message,
+              status: (_error$response24 = _context7.t0.response) === null || _error$response24 === void 0 ? void 0 : _error$response24.status
+            });
+            showNotification('Failed to sync cart');
+          case 14:
+            _context7.prev = 14;
+            setIsLoading(false);
+            return _context7.finish(14);
+          case 17:
+          case "end":
+            return _context7.stop();
+        }
+      }, _callee7, null, [[2, 9, 14, 17]]);
+    }));
+    return function handleLogin(_x10, _x11) {
+      return _ref8.apply(this, arguments);
+    };
+  }();
+  var handleLogout = function handleLogout() {
+    // Save current cart to local storage before logout
+    saveLocalCart(cart);
+
+    // Clear authentication
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    // Keep the cart in state for guest shopping experience
+    showNotification('Logged out successfully');
+  };
+  var showNotification = function showNotification(message) {
+    setNotification(message);
+    setTimeout(function () {
+      return setNotification('');
+    }, 3000);
+  };
+  var value = {
+    cart: cart,
+    addToCart: addToCart,
+    updateQuantity: updateQuantity,
+    removeFromCart: removeFromCart,
+    clearCart: clearCart,
+    notification: notification,
+    isLoading: isLoading,
+    apiError: apiError,
+    handleLogin: handleLogin,
+    handleLogout: handleLogout,
+    fetchCart: fetchCart
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(CartContext.Provider, {
+    value: value,
+    children: children
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/Notifs/CartModal.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/Notifs/CartModal.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Notifs_CartContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Notifs/CartContext */ "./resources/js/components/Notifs/CartContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+// src/Notifs/CartModal.js
+
+
+
+var CartModal = function CartModal(_ref) {
+  var product = _ref.product,
+    onClose = _ref.onClose,
+    onAddToCart = _ref.onAddToCart;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    selectedSize = _useState2[0],
+    setSelectedSize = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    selectedColor = _useState4[0],
+    setSelectedColor = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState6 = _slicedToArray(_useState5, 2),
+    quantity = _useState6[0],
+    setQuantity = _useState6[1];
+  var _useCart = (0,_Notifs_CartContext__WEBPACK_IMPORTED_MODULE_1__.useCart)(),
+    addToCart = _useCart.addToCart;
+  var colorMap = {
+    Red: '#FF0000',
+    Blue: '#0000FF',
+    Black: '#000000',
+    Green: '#008000',
+    Gray: '#808080',
+    White: '#FFFFFF',
+    Yellow: '#FFFF00'
+  };
+  var sizes = product.sizes || [];
+  var colors = (product.colors || []).map(function (colorName) {
+    return {
+      name: colorName,
+      value: colorMap[colorName] || '#000000'
+    };
+  });
+  var handleSizeChange = function handleSizeChange(e) {
+    setSelectedSize(e.target.value);
+  };
+  var handleColorSelect = function handleColorSelect(color) {
+    setSelectedColor(color);
+  };
+  var handleQuantityChange = function handleQuantityChange(delta) {
+    setQuantity(function (prev) {
+      return Math.max(1, prev + delta);
+    });
+  };
+  var handleAddToCart = function handleAddToCart() {
+    if (!selectedSize || !selectedColor) {
+      alert('Please select a size and color.');
+      return;
+    }
+    var cartItem = _objectSpread(_objectSpread({}, product), {}, {
+      selectedSize: selectedSize,
+      selectedColor: selectedColor,
+      quantity: quantity
+    });
+    addToCart(cartItem);
+    onAddToCart(cartItem); // Keep this for backward compatibility
+    onClose();
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "cart-modal__overlay",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "cart-modal",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        className: "cart-modal__close",
+        onClick: onClose,
+        "aria-label": "Close modal",
+        children: "\xD7"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
+        className: "cart-modal__title",
+        children: "Product Options"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "cart-modal__product-info",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+          src: product.imagePreview,
+          alt: product.productName,
+          className: "cart-modal__product-image",
+          onError: function onError(e) {
+            e.target.onerror = null;
+            e.target.src = "/images/placeholder.png";
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "cart-modal__product-details",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+            className: "cart-modal__product-name",
+            children: product.productName
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+            className: "cart-modal__product-price",
+            children: ["$", product.price.toFixed(2)]
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "cart-modal__option",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          className: "cart-modal__label",
+          children: "Size"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+          className: "cart-modal__select",
+          value: selectedSize,
+          onChange: handleSizeChange,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+            value: "",
+            disabled: true,
+            children: "Select size"
+          }), sizes.length > 0 ? sizes.map(function (size) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+              value: size,
+              children: size
+            }, size);
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+            value: "",
+            disabled: true,
+            children: "No sizes available"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "cart-modal__option",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          className: "cart-modal__label",
+          children: "Color"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "cart-modal__color-grid",
+          children: colors.length > 0 ? colors.map(function (color) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "cart-modal__color-item",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                className: "cart-modal__color ".concat(selectedColor === color.name ? 'cart-modal__color--selected' : '', " ").concat(color.name.toLowerCase() === 'white' ? 'cart-modal__color--white' : ''),
+                style: {
+                  backgroundColor: color.value
+                },
+                onClick: function onClick() {
+                  return handleColorSelect(color.name);
+                },
+                title: color.name
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: "cart-modal__color-label",
+                children: color.name.toUpperCase()
+              })]
+            }, color.name);
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            children: "No colors available"
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "cart-modal__option",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          className: "cart-modal__label",
+          children: "Quantity"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "cart-modal__quantity",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            className: "cart-modal__quantity-btn",
+            onClick: function onClick() {
+              return handleQuantityChange(-1);
+            },
+            disabled: quantity === 1,
+            "aria-label": "Decrease quantity",
+            children: "\u2212"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            className: "cart-modal__quantity-value",
+            children: quantity
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            className: "cart-modal__quantity-btn",
+            onClick: function onClick() {
+              return handleQuantityChange(1);
+            },
+            "aria-label": "Increase quantity",
+            children: "+"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        className: "cart-modal__add-btn",
+        onClick: handleAddToCart,
+        disabled: !selectedSize || !selectedColor,
+        children: selectedSize && selectedColor ? 'Add to Cart' : 'Please Select Options'
+      })]
+    })
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CartModal);
+
+/***/ }),
+
+/***/ "./resources/js/components/Notifs/CartSidebar.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/Notifs/CartSidebar.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/shopping-cart.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/trash-2.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Notifs_CartContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Notifs/CartContext */ "./resources/js/components/Notifs/CartContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+// src/Notifs/CartSidebar.js
+
+
+
+
+
+
+var CartSidebar = function CartSidebar(_ref) {
+  var isOpen = _ref.isOpen,
+    onClose = _ref.onClose;
+  var _useCart = (0,_Notifs_CartContext__WEBPACK_IMPORTED_MODULE_2__.useCart)(),
+    cart = _useCart.cart,
+    updateQuantity = _useCart.updateQuantity,
+    removeFromCart = _useCart.removeFromCart;
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
+  var API_URL = "http://127.0.0.1:8000/api";
+
+  // Update the cart quantity by either incrementing or decrementing
+  var handleQuantityChange = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(itemId, size, color, delta) {
+      var token, _error$response, _error$response2;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            // Always update the local state first
+            updateQuantity(itemId, size, color, delta);
+            token = localStorage.getItem('token'); // If logged in, also update the server
+            if (!token) {
+              _context.next = 12;
+              break;
+            }
+            _context.prev = 3;
+            _context.next = 6;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(API_URL, "/cart/update"), {
+              product_id: itemId,
+              size: size,
+              color: color,
+              quantity: delta
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 6:
+            _context.next = 12;
+            break;
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](3);
+            console.error('Error updating quantity:', ((_error$response = _context.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context.t0.message);
+            if (((_error$response2 = _context.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.status) === 401) {
+              localStorage.removeItem('token');
+              navigate('/login');
+            }
+          case 12:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[3, 8]]);
+    }));
+    return function handleQuantityChange(_x, _x2, _x3, _x4) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  // Remove item from the cart
+  var handleRemoveItem = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(itemId, size, color) {
+      var token, _error$response3, _error$response4;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            token = localStorage.getItem('token'); // Always update the local state first
+            removeFromCart(itemId, size, color);
+
+            // If logged in, also update the server
+            if (!token) {
+              _context2.next = 12;
+              break;
+            }
+            _context2.prev = 3;
+            _context2.next = 6;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("".concat(API_URL, "/cart/remove/").concat(itemId), {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              },
+              data: {
+                size: size,
+                color: color
+              }
+            });
+          case 6:
+            _context2.next = 12;
+            break;
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](3);
+            console.error('Error removing item:', ((_error$response3 = _context2.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.data) || _context2.t0.message);
+            if (((_error$response4 = _context2.t0.response) === null || _error$response4 === void 0 ? void 0 : _error$response4.status) === 401) {
+              localStorage.removeItem('token');
+              navigate('/login');
+            }
+          case 12:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[3, 8]]);
+    }));
+    return function handleRemoveItem(_x5, _x6, _x7) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  var handleProceedToCheckout = function handleProceedToCheckout() {
+    navigate('/checkout');
+    onClose();
+  };
+  var calculateSubtotal = function calculateSubtotal() {
+    return cart.reduce(function (total, item) {
+      return total + item.price * item.quantity;
+    }, 0);
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "cart-sidebar ".concat(isOpen ? 'cart-sidebar--open' : ''),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "cart-sidebar__header",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "cart-sidebar__title-container",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          size: 20,
+          className: "cart-sidebar__icon"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h2", {
+          className: "cart-sidebar__title",
+          children: ["Your Cart (", cart.length, " items)"]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        className: "cart-sidebar__close",
+        onClick: onClose,
+        "aria-label": "Close cart sidebar",
+        children: "\xD7"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "cart-sidebar__items",
+      children: cart.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+        className: "cart-sidebar__empty",
+        children: "Your cart is empty."
+      }) : cart.map(function (item) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "cart-sidebar__item",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+            src: item.imagePreview,
+            alt: item.productName,
+            className: "cart-sidebar__item-image",
+            onError: function onError(e) {
+              e.target.onerror = null;
+              e.target.src = "/images/placeholder.png";
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "cart-sidebar__item-details",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+              className: "cart-sidebar__item-name",
+              children: item.productName
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+              className: "cart-sidebar__item-option",
+              children: ["Size: ", item.size]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+              className: "cart-sidebar__item-option",
+              children: ["Color: ", item.color]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "cart-sidebar__quantity",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                className: "cart-sidebar__quantity-btn",
+                onClick: function onClick() {
+                  return handleQuantityChange(item.id, item.size, item.color, -1);
+                },
+                disabled: item.quantity === 1,
+                "aria-label": "Decrease quantity",
+                children: "\u2212"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "cart-sidebar__quantity-value",
+                children: item.quantity
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                className: "cart-sidebar__quantity-btn",
+                onClick: function onClick() {
+                  return handleQuantityChange(item.id, item.size, item.color, 1);
+                },
+                "aria-label": "Increase quantity",
+                children: "+"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "cart-sidebar__item-actions",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+              className: "cart-sidebar__item-price",
+              children: ["$", (item.price * item.quantity).toFixed(2)]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              className: "cart-sidebar__remove",
+              onClick: function onClick() {
+                return handleRemoveItem(item.id, item.size, item.color);
+              },
+              "aria-label": "Remove item",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                size: 18
+              })
+            })]
+          })]
+        }, "".concat(item.id, "-").concat(item.size, "-").concat(item.color));
+      })
+    }), cart.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "cart-sidebar__footer",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "cart-sidebar__subtotal",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+          className: "cart-sidebar__subtotal-label",
+          children: "Subtotal"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+          className: "cart-sidebar__subtotal-value",
+          children: ["$", calculateSubtotal().toFixed(2)]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        className: "cart-sidebar__checkout-btn",
+        onClick: handleProceedToCheckout,
+        children: "Proceed to Checkout"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+        className: "cart-sidebar__note",
+        children: "Shipping and taxes calculated at checkout"
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CartSidebar);
+
+/***/ }),
+
+/***/ "./resources/js/components/Notifs/WishlistContext.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/Notifs/WishlistContext.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   WishlistProvider: () => (/* binding */ WishlistProvider),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   useWishlist: () => (/* binding */ useWishlist)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+var WishlistContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)();
+var API_URL = "http://127.0.0.1:8000/api";
+var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
+var LOCAL_WISHLIST_KEY = "guest_wishlist";
+var useWishlist = function useWishlist() {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(WishlistContext);
+};
+var WishlistProvider = function WishlistProvider(_ref) {
+  var children = _ref.children;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    wishlist = _useState2[0],
+    setWishlist = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    notification = _useState4[0],
+    setNotification = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState6 = _slicedToArray(_useState5, 2),
+    notificationQueue = _useState6[0],
+    setNotificationQueue = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    isLoading = _useState8[0],
+    setIsLoading = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState10 = _slicedToArray(_useState9, 2),
+    apiError = _useState10[0],
+    setApiError = _useState10[1];
+  var retry = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(fn) {
+      var retries,
+        delay,
+        i,
+        _args = arguments;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            retries = _args.length > 1 && _args[1] !== undefined ? _args[1] : 3;
+            delay = _args.length > 2 && _args[2] !== undefined ? _args[2] : 1000;
+            i = 0;
+          case 3:
+            if (!(i < retries)) {
+              _context.next = 19;
+              break;
+            }
+            _context.prev = 4;
+            _context.next = 7;
+            return fn();
+          case 7:
+            return _context.abrupt("return", _context.sent);
+          case 10:
+            _context.prev = 10;
+            _context.t0 = _context["catch"](4);
+            if (!(i === retries - 1)) {
+              _context.next = 14;
+              break;
+            }
+            throw _context.t0;
+          case 14:
+            _context.next = 16;
+            return new Promise(function (resolve) {
+              return setTimeout(resolve, delay);
+            });
+          case 16:
+            i++;
+            _context.next = 3;
+            break;
+          case 19:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[4, 10]]);
+    }));
+    return function retry(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var fetchWishlist = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var token, response, wishlistData, wishlistItems, _error$response, _error$response2, _error$response3, _error$response4;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            token = localStorage.getItem('token');
+            setIsLoading(true);
+            setApiError(null);
+            if (!token) {
+              _context2.next = 20;
+              break;
+            }
+            _context2.prev = 4;
+            _context2.next = 7;
+            return retry(function () {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(API_URL, "/wishlist"), {
+                headers: {
+                  Authorization: "Bearer ".concat(token),
+                  Accept: 'application/json'
+                }
+              });
+            });
+          case 7:
+            response = _context2.sent;
+            wishlistData = Array.isArray(response.data.data) ? response.data.data : Array.isArray(response.data) ? response.data : [];
+            wishlistItems = wishlistData.filter(function (item) {
+              return item.product_id && item.product;
+            }).map(function (item) {
+              return {
+                id: item.product_id,
+                productName: item.product.product_name || 'Unknown Product',
+                price: Number(item.product.price) || 0,
+                imagePreview: item.product.image_1 ? "".concat(BASE_IMAGE_URL, "/").concat(item.product.image_1) : '/images/placeholder.png'
+              };
+            });
+            setWishlist(wishlistItems);
+            _context2.next = 18;
+            break;
+          case 13:
+            _context2.prev = 13;
+            _context2.t0 = _context2["catch"](4);
+            console.error('Error fetching wishlist:', ((_error$response = _context2.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context2.t0.message);
+            setApiError({
+              message: 'Failed to fetch wishlist from server',
+              details: ((_error$response2 = _context2.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.data) || _context2.t0.message,
+              status: (_error$response3 = _context2.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.status
+            });
+            if (((_error$response4 = _context2.t0.response) === null || _error$response4 === void 0 ? void 0 : _error$response4.status) === 401) {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              loadLocalWishlist();
+            }
+          case 18:
+            _context2.next = 21;
+            break;
+          case 20:
+            loadLocalWishlist();
+          case 21:
+            setIsLoading(false);
+          case 22:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[4, 13]]);
+    }));
+    return function fetchWishlist() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  var loadLocalWishlist = function loadLocalWishlist() {
+    try {
+      var localWishlist = localStorage.getItem(LOCAL_WISHLIST_KEY);
+      if (localWishlist) {
+        setWishlist(JSON.parse(localWishlist));
+      } else {
+        setWishlist([]);
+      }
+    } catch (error) {
+      console.error('Error loading local wishlist:', error);
+      setWishlist([]);
+    }
+  };
+  var saveLocalWishlist = function saveLocalWishlist(wishlistItems) {
+    try {
+      localStorage.setItem(LOCAL_WISHLIST_KEY, JSON.stringify(wishlistItems));
+    } catch (error) {
+      console.error('Error saving local wishlist:', error);
+    }
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchWishlist();
+  }, []);
+  var isProductInWishlist = function isProductInWishlist(productId) {
+    return wishlist.some(function (item) {
+      return parseInt(item.id) === parseInt(productId);
+    });
+  };
+  var addToWishlist = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(item) {
+      var token, productId, newItem, updatedWishlist, _error$response5, _error$response6, _error$response7, _error$response8, _error$response9, _error$response10;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            token = localStorage.getItem('token');
+            setApiError(null);
+            productId = parseInt(item.id);
+            if (!isProductInWishlist(productId)) {
+              _context3.next = 6;
+              break;
+            }
+            showNotification("".concat(item.productName, " is already in your wishlist"));
+            return _context3.abrupt("return");
+          case 6:
+            newItem = {
+              id: productId,
+              productName: item.productName,
+              price: Number(item.price) || 0,
+              imagePreview: item.imagePreview
+            };
+            updatedWishlist = [].concat(_toConsumableArray(wishlist), [newItem]);
+            setWishlist(updatedWishlist);
+            if (!token) {
+              _context3.next = 24;
+              break;
+            }
+            _context3.prev = 10;
+            _context3.next = 13;
+            return retry(function () {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(API_URL, "/wishlist"), {
+                product_id: productId
+              }, {
+                headers: {
+                  Authorization: "Bearer ".concat(token),
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json'
+                }
+              });
+            });
+          case 13:
+            _context3.next = 15;
+            return fetchWishlist();
+          case 15:
+            _context3.next = 22;
+            break;
+          case 17:
+            _context3.prev = 17;
+            _context3.t0 = _context3["catch"](10);
+            console.error('Error adding to wishlist:', ((_error$response5 = _context3.t0.response) === null || _error$response5 === void 0 ? void 0 : _error$response5.data) || _context3.t0.message);
+            setApiError({
+              message: ((_error$response6 = _context3.t0.response) === null || _error$response6 === void 0 ? void 0 : _error$response6.status) === 409 ? 'Product already in wishlist' : 'Failed to add item to wishlist',
+              details: ((_error$response7 = _context3.t0.response) === null || _error$response7 === void 0 ? void 0 : _error$response7.data) || _context3.t0.message,
+              status: (_error$response8 = _context3.t0.response) === null || _error$response8 === void 0 ? void 0 : _error$response8.status
+            });
+            if (((_error$response9 = _context3.t0.response) === null || _error$response9 === void 0 ? void 0 : _error$response9.status) === 401) {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              saveLocalWishlist(updatedWishlist);
+            } else if (((_error$response10 = _context3.t0.response) === null || _error$response10 === void 0 ? void 0 : _error$response10.status) !== 409) {
+              setWishlist(wishlist);
+            }
+          case 22:
+            _context3.next = 25;
+            break;
+          case 24:
+            saveLocalWishlist(updatedWishlist);
+          case 25:
+            if (!apiError || apiError.status !== 409) {
+              showNotification("Added ".concat(item.productName, " to wishlist"));
+            }
+          case 26:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[10, 17]]);
+    }));
+    return function addToWishlist(_x2) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+  var removeFromWishlist = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(itemId) {
+      var token, productId, itemToRemove, updatedWishlist, _error$response11, _error$response12, _error$response13, _error$response14;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            token = localStorage.getItem('token');
+            setApiError(null);
+            productId = parseInt(itemId);
+            itemToRemove = wishlist.find(function (item) {
+              return parseInt(item.id) === productId;
+            });
+            updatedWishlist = wishlist.filter(function (item) {
+              return parseInt(item.id) !== productId;
+            });
+            setWishlist(updatedWishlist);
+            if (!token) {
+              _context4.next = 21;
+              break;
+            }
+            _context4.prev = 7;
+            _context4.next = 10;
+            return retry(function () {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("".concat(API_URL, "/wishlist/").concat(productId), {
+                headers: {
+                  Authorization: "Bearer ".concat(token),
+                  Accept: 'application/json'
+                }
+              });
+            });
+          case 10:
+            _context4.next = 12;
+            return fetchWishlist();
+          case 12:
+            _context4.next = 19;
+            break;
+          case 14:
+            _context4.prev = 14;
+            _context4.t0 = _context4["catch"](7);
+            console.error('Error removing from wishlist:', ((_error$response11 = _context4.t0.response) === null || _error$response11 === void 0 ? void 0 : _error$response11.data) || _context4.t0.message);
+            setApiError({
+              message: 'Failed to remove item from wishlist',
+              details: ((_error$response12 = _context4.t0.response) === null || _error$response12 === void 0 ? void 0 : _error$response12.data) || _context4.t0.message,
+              status: (_error$response13 = _context4.t0.response) === null || _error$response13 === void 0 ? void 0 : _error$response13.status
+            });
+            if (((_error$response14 = _context4.t0.response) === null || _error$response14 === void 0 ? void 0 : _error$response14.status) === 401) {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              saveLocalWishlist(updatedWishlist);
+            }
+          case 19:
+            _context4.next = 22;
+            break;
+          case 21:
+            saveLocalWishlist(updatedWishlist);
+          case 22:
+            showNotification("".concat(itemToRemove ? itemToRemove.productName : 'Item', " removed from wishlist"));
+          case 23:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4, null, [[7, 14]]);
+    }));
+    return function removeFromWishlist(_x3) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+  var syncWishlistWithServer = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(token) {
+      var localWishlist, _iterator, _step, _loop;
+      return _regeneratorRuntime().wrap(function _callee5$(_context6) {
+        while (1) switch (_context6.prev = _context6.next) {
+          case 0:
+            localWishlist = JSON.parse(localStorage.getItem(LOCAL_WISHLIST_KEY) || '[]');
+            if (!(localWishlist.length > 0)) {
+              _context6.next = 23;
+              break;
+            }
+            setIsLoading(true);
+            _iterator = _createForOfIteratorHelper(localWishlist);
+            _context6.prev = 4;
+            _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop() {
+              var item, _error$response15;
+              return _regeneratorRuntime().wrap(function _loop$(_context5) {
+                while (1) switch (_context5.prev = _context5.next) {
+                  case 0:
+                    item = _step.value;
+                    _context5.prev = 1;
+                    _context5.next = 4;
+                    return retry(function () {
+                      return axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(API_URL, "/wishlist"), {
+                        product_id: parseInt(item.id)
+                      }, {
+                        headers: {
+                          Authorization: "Bearer ".concat(token),
+                          Accept: 'application/json',
+                          'Content-Type': 'application/json'
+                        }
+                      });
+                    });
+                  case 4:
+                    _context5.next = 9;
+                    break;
+                  case 6:
+                    _context5.prev = 6;
+                    _context5.t0 = _context5["catch"](1);
+                    console.error('Error syncing item to server wishlist:', ((_error$response15 = _context5.t0.response) === null || _error$response15 === void 0 ? void 0 : _error$response15.data) || _context5.t0.message);
+                  case 9:
+                  case "end":
+                    return _context5.stop();
+                }
+              }, _loop, null, [[1, 6]]);
+            });
+            _iterator.s();
+          case 7:
+            if ((_step = _iterator.n()).done) {
+              _context6.next = 11;
+              break;
+            }
+            return _context6.delegateYield(_loop(), "t0", 9);
+          case 9:
+            _context6.next = 7;
+            break;
+          case 11:
+            _context6.next = 16;
+            break;
+          case 13:
+            _context6.prev = 13;
+            _context6.t1 = _context6["catch"](4);
+            _iterator.e(_context6.t1);
+          case 16:
+            _context6.prev = 16;
+            _iterator.f();
+            return _context6.finish(16);
+          case 19:
+            localStorage.removeItem(LOCAL_WISHLIST_KEY);
+            _context6.next = 22;
+            return fetchWishlist();
+          case 22:
+            setIsLoading(false);
+          case 23:
+          case "end":
+            return _context6.stop();
+        }
+      }, _callee5, null, [[4, 13, 16, 19]]);
+    }));
+    return function syncWishlistWithServer(_x4) {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+  var handleLogin = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(token, userData) {
+      var _error$response16, _error$response17, _error$response18;
+      return _regeneratorRuntime().wrap(function _callee6$(_context7) {
+        while (1) switch (_context7.prev = _context7.next) {
+          case 0:
+            setIsLoading(true);
+            setApiError(null);
+            _context7.prev = 2;
+            _context7.next = 5;
+            return syncWishlistWithServer(token);
+          case 5:
+            _context7.next = 12;
+            break;
+          case 7:
+            _context7.prev = 7;
+            _context7.t0 = _context7["catch"](2);
+            console.error('Error syncing wishlist on login:', ((_error$response16 = _context7.t0.response) === null || _error$response16 === void 0 ? void 0 : _error$response16.data) || _context7.t0.message);
+            setApiError({
+              message: 'Failed to sync wishlist on login',
+              details: ((_error$response17 = _context7.t0.response) === null || _error$response17 === void 0 ? void 0 : _error$response17.data) || _context7.t0.message,
+              status: (_error$response18 = _context7.t0.response) === null || _error$response18 === void 0 ? void 0 : _error$response18.status
+            });
+            showNotification('Failed to sync wishlist');
+          case 12:
+            _context7.prev = 12;
+            setIsLoading(false);
+            return _context7.finish(12);
+          case 15:
+          case "end":
+            return _context7.stop();
+        }
+      }, _callee6, null, [[2, 7, 12, 15]]);
+    }));
+    return function handleLogin(_x5, _x6) {
+      return _ref7.apply(this, arguments);
+    };
+  }();
+  var handleLogout = function handleLogout() {
+    saveLocalWishlist(wishlist);
+    showNotification('Wishlist saved locally');
+  };
+  var showNotification = function showNotification(message) {
+    setNotificationQueue(function (prev) {
+      return [].concat(_toConsumableArray(prev), [message]);
+    });
+  };
+  var clearNotification = function clearNotification() {
+    setNotification('');
+    setNotificationQueue([]);
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (notificationQueue.length > 0 && !notification) {
+      setNotification(notificationQueue[0]);
+      setNotificationQueue(function (prev) {
+        return prev.slice(1);
+      });
+      setTimeout(function () {
+        setNotification('');
+      }, 3000);
+    }
+  }, [notificationQueue, notification]);
+  var value = {
+    wishlist: wishlist,
+    addToWishlist: addToWishlist,
+    removeFromWishlist: removeFromWishlist,
+    isProductInWishlist: isProductInWishlist,
+    notification: notification,
+    isLoading: isLoading,
+    apiError: apiError,
+    handleLogin: handleLogin,
+    handleLogout: handleLogout,
+    fetchWishlist: fetchWishlist,
+    clearNotification: clearNotification
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(WishlistContext.Provider, {
+    value: value,
+    children: children
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WishlistProvider);
+
+/***/ }),
+
+/***/ "./resources/js/components/Notifs/WishlistNotif.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/Notifs/WishlistNotif.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/trash-2.js");
+/* harmony import */ var _WishlistContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WishlistContext */ "./resources/js/components/Notifs/WishlistContext.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+
+
+
+
+
+var WishlistNotif = function WishlistNotif(_ref) {
+  var isOpen = _ref.isOpen,
+    onClose = _ref.onClose;
+  var _useWishlist = (0,_WishlistContext__WEBPACK_IMPORTED_MODULE_1__.useWishlist)(),
+    wishlist = _useWishlist.wishlist,
+    removeFromWishlist = _useWishlist.removeFromWishlist,
+    isLoading = _useWishlist.isLoading;
+  if (!isOpen) return null;
+  var displayedItems = wishlist.slice(0, 4);
+  var remainingItems = wishlist.length - displayedItems.length;
+  var handleRemove = function handleRemove(itemId) {
+    return /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              e.stopPropagation();
+              _context.next = 3;
+              return removeFromWishlist(itemId);
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }));
+      return function (_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "wishlist-notif",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wishlist-notif__header",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h3", {
+        children: ["My Wishlist (", wishlist.length, ")"]
+      })
+    }), isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wishlist-notif__loading",
+      children: "Loading..."
+    }) : wishlist.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wishlist-notif__empty",
+      children: "Your wishlist is empty."
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "wishlist-notif__items",
+        children: displayedItems.map(function (item) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "wishlist-notif__item",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+              src: item.imagePreview,
+              alt: item.productName,
+              className: "wishlist-notif__image",
+              onError: function onError(e) {
+                return e.target.src = '/images/placeholder.png';
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "wishlist-notif__details",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
+                className: "wishlist-notif__name",
+                children: item.productName
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+                className: "wishlist-notif__price",
+                children: ["$", item.price.toFixed(2)]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+              className: "wishlist-notif__remove",
+              onClick: handleRemove(item.id),
+              "aria-label": "Remove ".concat(item.productName, " from wishlist"),
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                size: 16
+              })
+            })]
+          }, item.id);
+        })
+      }), remainingItems > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+        to: "/wishlist",
+        className: "wishlist-notif__see-more",
+        onClick: onClose,
+        children: ["See More (", remainingItems, " more items)"]
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WishlistNotif);
 
 /***/ }),
 

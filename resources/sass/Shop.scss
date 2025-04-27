@@ -1,0 +1,55 @@
+.shop {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  
+  // Add top margin to account for the fixed header
+  margin-top: 60px; // Adjust this value based on your header height
+
+  &__content {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 4rem;
+    flex: 1;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+    
+    // Container query-like behavior
+    @media (min-width: 1600px) {
+      padding: 2rem 2rem;
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 1280px) {
+    &__content {
+      padding: 2rem;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    &__content {
+      padding: 1.5rem;
+      gap: 1.25rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 50px; // Slightly reduced margin for mobile headers
+    
+    &__content {
+      flex-direction: column;
+      padding: 1rem;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__content {
+      padding: 0.75rem;
+    }
+  }
+}
