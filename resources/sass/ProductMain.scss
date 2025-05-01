@@ -1,0 +1,15 @@
+.product-main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  
+    > *:last-child {
+      margin-top: auto;
+    }
+  
+    &__content {
+      padding: 2rem;
+      flex: 1; // Allow content to grow and fill space
+      text-align: center; // Center the placeholder text
+    }
+  }

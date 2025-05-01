@@ -121,21 +121,24 @@
       background-color: #fff;
       transform: scale(1.1);
     }
+
+    &.active {
+      color: #ff3366; // Added to match ShopMain
+    }
   }
 
   &__name {
     font-size: 0.9rem;
     font-weight: 600;
     color: #333;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
     text-transform: uppercase;
-    line-height: 1.3;
+    line-height: 1.2;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 2.8em;
   }
 
   &__price {
@@ -143,6 +146,13 @@
     font-weight: 500;
     color: #333;
     margin: 0;
+    margin-bottom: 0.1rem;
+  }
+
+  &__rating {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 0;
   }
 
   // Responsive adjustments
@@ -214,19 +224,12 @@
     
     &__name {
       font-size: 0.8rem;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.15rem;
     }
     
     &__price {
       font-size: 0.85rem;
-    }
-    
-    &__title {
-      font-size: 1.3rem;
-    }
-    
-    &__subtitle {
-      font-size: 0.8rem;
+      margin-bottom: 0.1rem;
     }
   }
 
@@ -252,11 +255,12 @@
 
     &__name {
       font-size: 0.75rem;
-      height: 2.6em;
+      margin-bottom: 0.1rem;
     }
 
     &__price {
       font-size: 0.8rem;
+      margin-bottom: 0.05rem;
     }
 
     &__buttons {

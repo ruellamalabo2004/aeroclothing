@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Heart, Bell, ShoppingBag, ChevronDown, Menu, User, Settings, LogOut, X } from 'lucide-react';
+import { Search, Heart, Bell, ShoppingBag, ChevronDown, Menu, User, Settings, LogOut, X, CheckCircle, Trash2, ShoppingCart } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import CartSidebar from '../Notifs/CartSidebar';
-import WishlistNotif from '../Notifs/WishlistNotif'; // Import the new component
+import WishlistNotif from '../Notifs/WishlistNotif';
 import { useCart } from '../Notifs/CartContext';
 import { useWishlist } from '../Notifs/WishlistContext';
 
@@ -12,7 +12,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false);
-  const [isWishlistOpen, setIsWishlistOpen] = useState(false); // New state for wishlist dropdown
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const { cart, notification: cartNotification, handleLogout: cartHandleLogout } = useCart();
   const { wishlist, notification: wishlistNotification, clearNotification, handleLogout: wishlistHandleLogout } = useWishlist();
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -25,7 +25,7 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const API_URL = "http://127.0.0.1:8000/api";
-  const wishlistRef = useRef(null); // Ref for wishlist dropdown
+  const wishlistRef = useRef(null);
 
   const fetchUserProfile = async (token) => {
     try {
@@ -82,7 +82,6 @@ const Header = () => {
     }
   }, [location]);
 
-  // Close wishlist dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (wishlistRef.current && !wishlistRef.current.contains(event.target)) {
@@ -136,14 +135,35 @@ const Header = () => {
     navigate('/login');
   };
 
+  const getNotificationIcon = (message) => {
+    if (message.toLowerCase().includes('added')) {
+      return message.toLowerCase().includes('cart') ? <ShoppingCart size={18} /> : <Heart size={18} />;
+    } else if (message.toLowerCase().includes('removed')) {
+      return <Trash2 size={18} />;
+    } else if (message.toLowerCase().includes('updated')) {
+      return <CheckCircle size={18} />;
+    } else if (message.toLowerCase().includes('cleared')) {
+      return <Trash2 size={18} />;
+    } else if (message.toLowerCase().includes('logged out')) {
+      return <LogOut size={18} />;
+    }
+    return <CheckCircle size={18} />;
+  };
+
+  const notificationMessage = cartNotification || wishlistNotification;
+
   return (
     <header className="header">
-      {(cartNotification || wishlistNotification) && (
+      {notificationMessage && (
         <div className="header__notification">
-          {cartNotification || wishlistNotification}
+          <span className="header__notification-icon">
+            {getNotificationIcon(notificationMessage)}
+          </span>
+          <p>{notificationMessage}</p>
           <button
             className="header__notification-close"
             onClick={clearNotification}
+            aria-label="Close notification"
           >
             <X size={16} />
           </button>
@@ -232,18 +252,22 @@ const Header = () => {
           </button>
           {isLoggedIn ? (
             <div className="header__profile-container" onClick={toggleProfileDropdown}>
-              <img
-                src={getProfileImageUrl()}
-                alt="Profile"
-                className="header__profile-pic"
-                onError={(e) => {
-                  e.target.src = '/images/profile-pic.jpg';
-                }}
-              />
-              <ChevronDown
-                size={16}
-                className={`header__dropdown-arrow ${isProfileDropdownOpen ? 'open' : ''}`}
-              />
+              <div className="header__profile-pic-wrapper">
+                <img
+                  src={getProfileImageUrl()}
+                  alt="Profile"
+                  className="header__profile-pic"
+                  onError={(e) => {
+                    e.target.src = '/images/profile-pic.jpg';
+                  }}
+                />
+              </div>
+              <div className="header__dropdown-arrow-wrapper">
+                <ChevronDown
+                  size={16}
+                  className={`header__dropdown-arrow ${isProfileDropdownOpen ? 'open' : ''}`}
+                />
+              </div>
               {isProfileDropdownOpen && (
                 <div className="header__profile-dropdown">
                   <Link to="/profile" className="header__dropdown-item">

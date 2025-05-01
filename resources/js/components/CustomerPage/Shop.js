@@ -4,7 +4,6 @@ import Footer from '../FooterContent/Footer';
 import ShopFilter from '../CustomerPage/ShopFilter';
 import ShopMain from '../CustomerPage/ShopMain';
 
-
 const Shop = () => {
   const [filtersVisible, setFiltersVisible] = useState(true);
   
@@ -16,10 +15,12 @@ const Shop = () => {
   return (
     <div className="shop">
       <Header />
-      <main className="shop__content">
-        {filtersVisible && <ShopFilter />}
-        <ShopMain toggleFilters={toggleFilters} />
-      </main>
+      <div className="shop__container">
+        <main className="shop__content">
+          {filtersVisible && <ShopFilter />}
+          <ShopMain toggleFilters={toggleFilters} />
+        </main>
+      </div>
       <Footer />
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Heart, ShoppingCart } from 'lucide-react';
+import { Heart, ShoppingCart, Star } from 'lucide-react'; // Added Star import
 import axios from 'axios';
 import CartModal from '../Notifs/CartModal';
 import CartSidebar from '../Notifs/CartSidebar';
@@ -50,6 +50,7 @@ const NewArrival = () => {
               : "/images/placeholder.png",
             productName: product.product_name ?? "Unnamed Product",
             price: Number(product.price) || 0,
+            rating: product.rating || 0, // Added rating field
             sizes: product.sizes
               ? typeof product.sizes === 'string'
                 ? product.sizes.split(',').map((s) => s.trim())
@@ -201,6 +202,16 @@ const NewArrival = () => {
                 </div>
                 <h3 className="new-arrival__name">{product.productName}</h3>
                 <p className="new-arrival__price">${product.price.toFixed(2)}</p>
+                <div className="new-arrival__rating">
+                  {[...Array(5)].map((_, index) => (
+                    <Star
+                      key={index}
+                      size={16}
+                      fill={index < product.rating ? '#FFD700' : 'none'}
+                      stroke={index < product.rating ? '#FFD700' : '#ccc'}
+                    />
+                  ))}
+                </div>
               </div>
             ))}
           </div>

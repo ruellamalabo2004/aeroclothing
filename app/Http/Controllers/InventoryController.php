@@ -46,6 +46,7 @@ class InventoryController extends Controller
 
     public function show($id)
     {
+        // Fetch the inventory for the given ID, including associated product details
         $inventory = Inventory::with(['product.category', 'product.brand'])->withTrashed()->find($id);
 
         if (!$inventory) {
@@ -133,6 +134,18 @@ class InventoryController extends Controller
             'message' => "Restocked. New quantity: {$inventory->stock_quantity}",
             'data' => $inventory,
         ]);
+    }
+
+    // Get inventory by product ID
+    public function getInventoryByProductId($id)
+    {
+        $inventory = Inventory::where('product_id', $id)->first();
+
+        if ($inventory) {
+            return response()->json($inventory);
+        } else {
+            return response()->json(['message' => 'Inventory not found for this product'], 404);
+        }
     }
 
     public function reduceStock(Request $request, $id)

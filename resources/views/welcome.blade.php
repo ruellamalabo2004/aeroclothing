@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FixNhost</title>
+    <title>aero</title>
     
     <!-- CSS -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">

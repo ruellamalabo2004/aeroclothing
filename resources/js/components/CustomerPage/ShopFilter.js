@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, SlidersHorizontal } from 'lucide-react';
 
 const ShopFilter = () => {
   const [openSections, setOpenSections] = useState({
@@ -31,6 +31,12 @@ const ShopFilter = () => {
 
   return (
     <div className="shop-filter">
+      {/* Filter Header */}
+      <div className="filter-header">
+        <SlidersHorizontal size={18} />
+        <h2>Filter</h2>
+      </div>
+      
       {/* Category Section */}
       <div className="filter-section">
         <h3 className="filter-title" onClick={() => toggleSection('category')}>
@@ -120,6 +126,7 @@ const ShopFilter = () => {
                   border: color === 'white' ? '1px solid #ccc' : 'none',
                 }}
                 onClick={() => handleFilterChange('colors', name)}
+                title={name}
               ></span>
             ))}
           </div>

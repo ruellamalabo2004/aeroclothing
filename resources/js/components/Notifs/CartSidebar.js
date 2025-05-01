@@ -10,18 +10,19 @@ const CartSidebar = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const API_URL = "http://127.0.0.1:8000/api";
 
-  // Update the cart quantity by either incrementing or decrementing
+  // Update the cart quantity by sending the full quantity value
   const handleQuantityChange = async (itemId, size, color, delta) => {
+    const updatedQuantity = getUpdatedQuantity(itemId, size, color, delta);
+
     // Always update the local state first
     updateQuantity(itemId, size, color, delta);
-    
+
     const token = localStorage.getItem('token');
-    // If logged in, also update the server
     if (token) {
       try {
         await axios.post(
           `${API_URL}/cart/update`,
-          { product_id: itemId, size, color, quantity: delta },
+          { product_id: itemId, size, color, quantity: updatedQuantity },
           { headers: { Authorization: `Bearer ${token}` } }
         );
       } catch (error) {
@@ -33,15 +34,20 @@ const CartSidebar = ({ isOpen, onClose }) => {
       }
     }
   };
-  
-  // Remove item from the cart
+
+  // Get new quantity based on delta
+  const getUpdatedQuantity = (itemId, size, color, delta) => {
+    const item = cart.find(
+      (i) => i.id === itemId && i.size === size && i.color === color
+    );
+    return item ? item.quantity + delta : 1;
+  };
+
+  // Remove item from cart and server
   const handleRemoveItem = async (itemId, size, color) => {
-    const token = localStorage.getItem('token');
-    
-    // Always update the local state first
     removeFromCart(itemId, size, color);
-    
-    // If logged in, also update the server
+    const token = localStorage.getItem('token');
+
     if (token) {
       try {
         await axios.delete(`${API_URL}/cart/remove/${itemId}`, {

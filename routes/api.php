@@ -107,7 +107,7 @@
         // Cart
     Route::get('/cart', [CartController::class, 'getCart']);
     Route::post('/cart/add', [CartController::class, 'addToCart']);
-    Route::post('/cart/update', [CartController::class, 'update']);
+    Route::post('/cart/update', [CartController::class, 'updateCart']); // ✅ Correct
     Route::delete('/cart/remove/{productId}', [CartController::class, 'removeFromCart']);
     Route::delete('/cart/clear', [CartController::class, 'clearCart']);
 
@@ -142,3 +142,4 @@
 
     // Inventory
     Route::apiResource('inventories', InventoryController::class);
+    Route::get('inventories/product/{id}', [InventoryController::class, 'getInventoryByProductId']);
