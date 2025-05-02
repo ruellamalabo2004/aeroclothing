@@ -3,17 +3,16 @@ import { Upload } from 'lucide-react';
 import axios from 'axios';
 import SuccessUpload from './SuccessUpload';
 
-
 const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
   const [formData, setFormData] = useState({
     product_name: '',
     category_id: '',
     brand_id: '',
-    product_type: '',
-    colors: '',
+    product_type_id: '',
+    colors: [],
     price: '',
     status: 'available',
-    sizes: '',
+    sizes: [],
     description: '',
     image_1: null,
     image_2: null,
@@ -26,37 +25,56 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
 
   const [categoryOptions, setCategoryOptions] = useState([]);
   const [brandOptions, setBrandOptions] = useState([]);
+  const [sizeOptions, setSizeOptions] = useState([]);
+  const [colorOptions, setColorOptions] = useState([]);
+  const [productTypeOptions, setProductTypeOptions] = useState([]);
   const [errors, setErrors] = useState({});
   const [colorError, setColorError] = useState(false);
+  const [sizeError, setSizeError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [isSuccessVisible, setIsSuccessVisible] = useState(false);
 
-  // Predefined color options (similar to sizes)
-  const colorOptions = ['Red', 'Blue', 'Green', 'Black', 'White', 'Yellow'];
-
   const fetchOptions = async () => {
     try {
-      const [categoriesRes, brandsRes] = await Promise.all([
-        axios.get('http://localhost:8000/api/categories'),
-        axios.get('http://localhost:8000/api/brands'),
+      const [categoriesRes, brandsRes, sizesRes, colorsRes, productTypesRes] = await Promise.all([
+        axios.get('http://localhost:8000/api/categories', {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        axios.get('http://localhost:8000/api/brands', {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        axios.get('http://localhost:8000/api/sizes', {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        axios.get('http://localhost:8000/api/colors', {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        axios.get('http://localhost:8000/api/product-types', {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
       ]);
-  
-      // Filter out archived categories and brands
+
       const activeCategories = categoriesRes.data.filter(category => !category.archived_at);
       const activeBrands = brandsRes.data.filter(brand => !brand.archived_at);
-  
-      setCategoryOptions(activeCategories); // Set only active categories
-      setBrandOptions(activeBrands); // Set only active brands
+      const activeSizes = sizesRes.data.filter(size => !size.archived_at);
+      const activeColors = colorsRes.data.filter(color => !color.archived_at);
+      const activeProductTypes = productTypesRes.data.filter(type => !type.archived_at);
+
+      setCategoryOptions(activeCategories);
+      setBrandOptions(activeBrands);
+      setSizeOptions(activeSizes);
+      setColorOptions(activeColors);
+      setProductTypeOptions(activeProductTypes);
     } catch (err) {
       console.error('Error fetching options:', err);
+      setErrors({ fetch: ['Failed to load options'] });
     }
   };
-  
 
   useEffect(() => {
     if (isOpen) fetchOptions();
-  }, [isOpen]);
+  }, [isOpen, token]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -65,18 +83,19 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
         product_name: '',
         category_id: '',
         brand_id: '',
-        product_type: '',
-        colors: '',
+        product_type_id: '',
+        colors: [],
         price: '',
         status: 'available',
-        sizes: '',
+        sizes: [],
         description: '',
         image_1: null,
         image_2: null,
       });
       setErrors({});
       setColorError(false);
-      setIsSuccessVisible(false); // Reset success pop-up visibility
+      setSizeError(false);
+      setIsSuccessVisible(false);
     }
   }, [isOpen]);
 
@@ -88,7 +107,7 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
 
   const handleCheckboxChange = (e, field) => {
     const { value, checked } = e.target;
-    const currentValues = formData[field].split(',').filter(Boolean);
+    const currentValues = formData[field];
 
     const updatedValues = checked
       ? [...currentValues, value]
@@ -96,11 +115,14 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
 
     setFormData((prev) => ({
       ...prev,
-      [field]: updatedValues.join(','),
+      [field]: updatedValues,
     }));
 
     if (field === 'colors') {
       setColorError(updatedValues.length === 0);
+    }
+    if (field === 'sizes') {
+      setSizeError(updatedValues.length === 0);
     }
   };
 
@@ -119,6 +141,22 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
     setIsSuccessVisible(true);
   };
 
+  // Check if the form is valid
+  const isFormValid = () => {
+    return (
+      formData.product_name &&
+      formData.category_id &&
+      formData.brand_id &&
+      formData.product_type_id &&
+      formData.colors.length > 0 &&
+      formData.sizes.length > 0 &&
+      formData.price > 0 &&
+      formData.description &&
+      !colorError &&
+      !sizeError
+    );
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -127,16 +165,16 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
     if (!formData.product_name) newErrors.product_name = ['Product name is required'];
     if (!formData.category_id) newErrors.category_id = ['Category is required'];
     if (!formData.brand_id) newErrors.brand_id = ['Brand is required'];
-    if (!formData.product_type) newErrors.product_type = ['Product type is required'];
-    if (!formData.colors) newErrors.colors = ['At least one color is required'];
+    if (!formData.product_type_id) newErrors.product_type_id = ['Product type is required'];
+    if (formData.colors.length === 0) newErrors.colors = ['At least one color is required'];
+    if (formData.sizes.length === 0) newErrors.sizes = ['At least one size is required'];
     if (!formData.price || formData.price <= 0) newErrors.price = ['Price must be a positive number'];
     if (!formData.description) newErrors.description = ['Description is required'];
-    if (!formData.sizes) newErrors.sizes = ['At least one size is required'];
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      setColorError(!formData.colors);
-      console.log('Validation errors:', newErrors);
+      setColorError(formData.colors.length === 0);
+      setSizeError(formData.sizes.length === 0);
       return;
     }
 
@@ -144,19 +182,17 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
     payload.append('product_name', formData.product_name);
     payload.append('category_id', parseInt(formData.category_id));
     payload.append('brand_id', parseInt(formData.brand_id));
-    payload.append('product_type', formData.product_type);
-    payload.append('colors', formData.colors);
-    payload.append('sizes', formData.sizes);
+    payload.append('product_type_id', parseInt(formData.product_type_id));
+    
+    // Fix: Changed to match the backend expected format for sizes and colors
+    formData.sizes.forEach((sizeId) => payload.append('size_ids[]', sizeId));
+    formData.colors.forEach((colorId) => payload.append('color_ids[]', colorId));
+    
     payload.append('price', parseFloat(formData.price));
     payload.append('status', formData.status);
     payload.append('description', formData.description);
     if (formData.image_1) payload.append('image_1', formData.image_1);
     if (formData.image_2) payload.append('image_2', formData.image_2);
-
-    // Log FormData for debugging
-    for (let [key, value] of payload.entries()) {
-      console.log(key, value);
-    }
 
     setLoading(true);
 
@@ -171,14 +207,12 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
       showSuccess('Product Added Successfully!');
       setTimeout(() => {
         onClose();
-        if (onProductAdded) onProductAdded(); // Trigger parent refresh
-      }, 1000); // Delay closing to ensure pop-up is visible
+        if (onProductAdded) onProductAdded();
+      }, 1000);
     } catch (error) {
       console.error('Error submitting form:', error.response?.data || error.message);
-      console.log('Full error:', error.response);
       if (error.response?.status === 422) {
         setErrors(error.response.data.errors || {});
-        console.log('Validation errors from server:', error.response.data.errors);
       }
     } finally {
       setLoading(false);
@@ -243,24 +277,22 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
                 <div className="product-modal__field">
                   <label>CATEGORY</label>
                   <select name="category_id" value={formData.category_id} onChange={handleInputChange} required>
-  <option value="">Select Category</option>
-  {categoryOptions.map((c) => (
-    <option key={c.id} value={c.id}>{c.name}</option>
-  ))}
-</select>
-
+                    <option value="">Select Category</option>
+                    {categoryOptions.map((c) => (
+                      <option key={c.id} value={c.id}>{c.name}</option>
+                    ))}
+                  </select>
                   {errors.category_id && <p className="product-modal__error">{errors.category_id[0]}</p>}
                 </div>
 
                 <div className="product-modal__field">
                   <label>BRAND</label>
                   <select name="brand_id" value={formData.brand_id} onChange={handleInputChange} required>
-  <option value="">Select Brand</option>
-  {brandOptions.map((b) => (
-    <option key={b.id} value={b.id}>{b.name}</option>
-  ))}
-</select>
-
+                    <option value="">Select Brand</option>
+                    {brandOptions.map((b) => (
+                      <option key={b.id} value={b.id}>{b.name}</option>
+                    ))}
+                  </select>
                   {errors.brand_id && <p className="product-modal__error">{errors.brand_id[0]}</p>}
                 </div>
               </div>
@@ -268,13 +300,13 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
               {/* PRODUCT TYPE */}
               <div className="product-modal__field">
                 <label>PRODUCT TYPE</label>
-                <select name="product_type" value={formData.product_type} onChange={handleInputChange} required>
+                <select name="product_type_id" value={formData.product_type_id} onChange={handleInputChange} required>
                   <option value="">Select Type</option>
-                  {['TOPS', 'BOTTOMS', 'JACKET', 'SWIMWEAR'].map((type) => (
-                    <option key={type} value={type}>{type}</option>
+                  {productTypeOptions.map((type) => (
+                    <option key={type.id} value={type.id}>{type.type_name}</option>
                   ))}
                 </select>
-                {errors.product_type && <p className="product-modal__error">{errors.product_type[0]}</p>}
+                {errors.product_type_id && <p className="product-modal__error">{errors.product_type_id[0]}</p>}
               </div>
 
               {/* COLORS */}
@@ -282,19 +314,41 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
                 <label>COLORS</label>
                 <div className="product-modal__checkbox-group">
                   {colorOptions.map((color) => (
-                    <label key={color} className="product-modal__checkbox-label">
+                    <label key={color.id} className="product-modal__checkbox-label">
                       <input
                         type="checkbox"
-                        value={color}
-                        checked={formData.colors.split(',').includes(color)}
+                        value={color.id}
+                        checked={formData.colors.includes(String(color.id))}
                         onChange={(e) => handleCheckboxChange(e, 'colors')}
                       />
-                      {color}
+                      {color.color_name}
                     </label>
                   ))}
                 </div>
                 {colorError && <p className="product-modal__error">Please select at least one color.</p>}
                 {errors.colors && <p className="product-modal__error">{errors.colors[0]}</p>}
+                {errors.color_ids && <p className="product-modal__error">{errors.color_ids[0]}</p>}
+              </div>
+
+              {/* SIZES */}
+              <div className="product-modal__field">
+                <label>SIZES</label>
+                <div className="product-modal__checkbox-group">
+                  {sizeOptions.map((size) => (
+                    <label key={size.id} className="product-modal__checkbox-label">
+                      <input
+                        type="checkbox"
+                        value={size.id}
+                        checked={formData.sizes.includes(String(size.id))}
+                        onChange={(e) => handleCheckboxChange(e, 'sizes')}
+                      />
+                      {size.size_name}
+                    </label>
+                  ))}
+                </div>
+                {sizeError && <p className="product-modal__error">Please select at least one size.</p>}
+                {errors.sizes && <p className="product-modal__error">{errors.sizes[0]}</p>}
+                {errors.size_ids && <p className="product-modal__error">{errors.size_ids[0]}</p>}
               </div>
 
               {/* PRICE */}
@@ -306,6 +360,8 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
                   value={formData.price}
                   onChange={handleInputChange}
                   required
+                  min="0"
+                  step="0.01"
                 />
                 {errors.price && <p className="product-modal__error">{errors.price[0]}</p>}
               </div>
@@ -320,25 +376,6 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
                 {errors.status && <p className="product-modal__error">{errors.status[0]}</p>}
               </div>
 
-              {/* SIZES */}
-              <div className="product-modal__field">
-                <label>SIZES</label>
-                <div className="product-modal__checkbox-group">
-                  {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map((size) => (
-                    <label key={size} className="product-modal__checkbox-label">
-                      <input
-                        type="checkbox"
-                        value={size}
-                        checked={formData.sizes.split(',').includes(size)}
-                        onChange={(e) => handleCheckboxChange(e, 'sizes')}
-                      />
-                      {size}
-                    </label>
-                  ))}
-                </div>
-                {errors.sizes && <p className="product-modal__error">{errors.sizes[0]}</p>}
-              </div>
-
               {/* DESCRIPTION */}
               <div className="product-modal__field">
                 <label>DESCRIPTION</label>
@@ -346,6 +383,7 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
                   name="description"
                   value={formData.description}
                   onChange={handleInputChange}
+                  required
                 />
                 {errors.description && <p className="product-modal__error">{errors.description[0]}</p>}
               </div>
@@ -362,7 +400,7 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
                 <button
                   type="submit"
                   className="product-modal__button product-modal__button--primary"
-                  disabled={loading}
+                  disabled={loading || !isFormValid()}
                 >
                   {loading ? 'Adding Product...' : 'Add Product'}
                 </button>

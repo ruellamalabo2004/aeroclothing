@@ -1,6 +1,5 @@
 <?php
 
-// app/Http/Controllers/ColorController.php
 namespace App\Http\Controllers;
 
 use App\Models\Color;
@@ -10,50 +9,47 @@ class ColorController extends Controller
 {
     public function index()
     {
-        return response()->json(Color::all());
+        $colors = Color::all();
+        return response()->json($colors);
     }
 
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required|string|max:255']);
-        $color = Color::create($request->all());
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:colors',
+            'hex_code' => 'nullable|string|max:7',
+        ]);
+
+        $color = Color::create($validated);
         return response()->json($color, 201);
     }
 
-    public function show($id)
+    public function show(Color $color)
     {
-        $color = Color::find($id);
-
-        if (!$color) {
-            return response()->json(['message' => 'Color not found'], 404);
-        }
-
         return response()->json($color);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Color $color)
     {
-        $request->validate(['name' => 'required|string|max:255']);
-        $color = Color::find($id);
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:colors,name,' . $color->id,
+            'hex_code' => 'nullable|string|max:7',
+        ]);
 
-        if (!$color) {
-            return response()->json(['message' => 'Color not found'], 404);
-        }
-
-        $color->update($request->all());
+        $color->update($validated);
         return response()->json($color);
     }
 
-    public function destroy($id)
+    public function destroy(Color $color)
     {
-        $color = Color::find($id);
-
-        if (!$color) {
-            return response()->json(['message' => 'Color not found'], 404);
-        }
-
         $color->delete();
-        return response()->json(['message' => 'Color deleted successfully']);
+        return response()->json(['message' => 'Color archived successfully']);
+    }
+
+    public function restore($id)
+    {
+        $color = Color::onlyTrashed()->findOrFail($id);
+        $color->restore();
+        return response()->json(['message' => 'Color restored successfully']);
     }
 }
-

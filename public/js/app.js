@@ -48784,6 +48784,49 @@ const Upload = (0,_createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
 
 /***/ }),
 
+/***/ "./node_modules/lucide-react/dist/esm/icons/user-cog.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/lucide-react/dist/esm/icons/user-cog.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   __iconNode: () => (/* binding */ __iconNode),
+/* harmony export */   "default": () => (/* binding */ UserCog)
+/* harmony export */ });
+/* harmony import */ var _createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../createLucideIcon.js */ "./node_modules/lucide-react/dist/esm/createLucideIcon.js");
+/**
+ * @license lucide-react v0.488.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+
+
+const __iconNode = [
+  ["circle", { cx: "18", cy: "15", r: "3", key: "gjjjvw" }],
+  ["circle", { cx: "9", cy: "7", r: "4", key: "nufk8" }],
+  ["path", { d: "M10 15H6a4 4 0 0 0-4 4v2", key: "1nfge6" }],
+  ["path", { d: "m21.7 16.4-.9-.3", key: "12j9ji" }],
+  ["path", { d: "m15.2 13.9-.9-.3", key: "1fdjdi" }],
+  ["path", { d: "m16.6 18.7.3-.9", key: "heedtr" }],
+  ["path", { d: "m19.1 12.2.3-.9", key: "1af3ki" }],
+  ["path", { d: "m19.6 18.7-.4-1", key: "1x9vze" }],
+  ["path", { d: "m16.8 12.3-.4-1", key: "vqeiwj" }],
+  ["path", { d: "m14.3 16.6 1-.4", key: "1qlj63" }],
+  ["path", { d: "m20.7 13.8 1-.4", key: "1v5t8k" }]
+];
+const UserCog = (0,_createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__["default"])("user-cog", __iconNode);
+
+
+//# sourceMappingURL=user-cog.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/lucide-react/dist/esm/icons/user.js":
 /*!**********************************************************!*\
   !*** ./node_modules/lucide-react/dist/esm/icons/user.js ***!
@@ -87385,8 +87428,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _components_Notifs_CartContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Notifs/CartContext */ "./resources/js/components/Notifs/CartContext.js");
 /* harmony import */ var _components_Notifs_WishlistContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Notifs/WishlistContext */ "./resources/js/components/Notifs/WishlistContext.js");
 /* harmony import */ var _components_LoginContent_Login__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/LoginContent/Login */ "./resources/js/components/LoginContent/Login.js");
@@ -87397,19 +87440,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AdminContent_Products__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/AdminContent/Products */ "./resources/js/components/AdminContent/Products.js");
 /* harmony import */ var _components_AdminContent_Orders__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/AdminContent/Orders */ "./resources/js/components/AdminContent/Orders.js");
 /* harmony import */ var _components_AdminContent_Inventory__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/AdminContent/Inventory */ "./resources/js/components/AdminContent/Inventory.js");
-/* harmony import */ var _components_AdminContent_Settings__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/AdminContent/Settings */ "./resources/js/components/AdminContent/Settings.js");
-/* harmony import */ var _components_CustomerPage_Homepage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/CustomerPage/Homepage */ "./resources/js/components/CustomerPage/Homepage.js");
-/* harmony import */ var _components_CustomerPage_Shop__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/CustomerPage/Shop */ "./resources/js/components/CustomerPage/Shop.js");
-/* harmony import */ var _components_AdminContent_Customer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/AdminContent/Customer */ "./resources/js/components/AdminContent/Customer.js");
-/* harmony import */ var _components_AdminContent_Users__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/AdminContent/Users */ "./resources/js/components/AdminContent/Users.js");
-/* harmony import */ var _components_AdminContent_Transactions__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/AdminContent/Transactions */ "./resources/js/components/AdminContent/Transactions.js");
-/* harmony import */ var _components_AdminContent_Inbox__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/AdminContent/Inbox */ "./resources/js/components/AdminContent/Inbox.js");
-/* harmony import */ var _components_AdminContent_Reviews__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/AdminContent/Reviews */ "./resources/js/components/AdminContent/Reviews.js");
-/* harmony import */ var _components_AdminContent_CustomerSupport__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/AdminContent/CustomerSupport */ "./resources/js/components/AdminContent/CustomerSupport.js");
-/* harmony import */ var _components_AdminContent_Reports__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/AdminContent/Reports */ "./resources/js/components/AdminContent/Reports.js");
-/* harmony import */ var _components_CustomerPage_ProductMain__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/CustomerPage/ProductMain */ "./resources/js/components/CustomerPage/ProductMain.js");
-/* harmony import */ var _components_ProtectedRouters_ProtectedRoute__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/ProtectedRouters/ProtectedRoute */ "./resources/js/components/ProtectedRouters/ProtectedRoute.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_AdminContent_AccountSettings__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/AdminContent/AccountSettings */ "./resources/js/components/AdminContent/AccountSettings.js");
+/* harmony import */ var _components_AdminContent_AdminSettings__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/AdminContent/AdminSettings */ "./resources/js/components/AdminContent/AdminSettings.js");
+/* harmony import */ var _components_CustomerPage_Homepage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/CustomerPage/Homepage */ "./resources/js/components/CustomerPage/Homepage.js");
+/* harmony import */ var _components_CustomerPage_Shop__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/CustomerPage/Shop */ "./resources/js/components/CustomerPage/Shop.js");
+/* harmony import */ var _components_AdminContent_Customer__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/AdminContent/Customer */ "./resources/js/components/AdminContent/Customer.js");
+/* harmony import */ var _components_AdminContent_Users__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/AdminContent/Users */ "./resources/js/components/AdminContent/Users.js");
+/* harmony import */ var _components_AdminContent_Transactions__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/AdminContent/Transactions */ "./resources/js/components/AdminContent/Transactions.js");
+/* harmony import */ var _components_AdminContent_Inbox__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/AdminContent/Inbox */ "./resources/js/components/AdminContent/Inbox.js");
+/* harmony import */ var _components_AdminContent_Reviews__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/AdminContent/Reviews */ "./resources/js/components/AdminContent/Reviews.js");
+/* harmony import */ var _components_AdminContent_CustomerSupport__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/AdminContent/CustomerSupport */ "./resources/js/components/AdminContent/CustomerSupport.js");
+/* harmony import */ var _components_AdminContent_Reports__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/AdminContent/Reports */ "./resources/js/components/AdminContent/Reports.js");
+/* harmony import */ var _components_CustomerPage_ProductMain__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/CustomerPage/ProductMain */ "./resources/js/components/CustomerPage/ProductMain.js");
+/* harmony import */ var _components_ProtectedRouters_ProtectedRoute__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/ProtectedRouters/ProtectedRoute */ "./resources/js/components/ProtectedRouters/ProtectedRoute.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -87437,92 +87481,102 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 // Import ProtectedRoute
 
 
 var App = function App() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_Notifs_CartContext__WEBPACK_IMPORTED_MODULE_2__.CartProvider, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_Notifs_WishlistContext__WEBPACK_IMPORTED_MODULE_3__.WishlistProvider, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_25__.BrowserRouter, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Routes, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_Notifs_CartContext__WEBPACK_IMPORTED_MODULE_2__.CartProvider, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_Notifs_WishlistContext__WEBPACK_IMPORTED_MODULE_3__.WishlistProvider, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.BrowserRouter, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Routes, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
             path: "/",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Navigate, {
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Navigate, {
               to: "/login",
               replace: true
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
             path: "/login",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_LoginContent_Login__WEBPACK_IMPORTED_MODULE_4__["default"], {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_LoginContent_Login__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
             path: "/register",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_LoginContent_Signup__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_LoginContent_Signup__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
             path: "/forgot-password",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_LoginContent_ForgotPassword__WEBPACK_IMPORTED_MODULE_6__["default"], {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_LoginContent_ForgotPassword__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
             path: "/homepage",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_CustomerPage_Homepage__WEBPACK_IMPORTED_MODULE_13__["default"], {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_CustomerPage_Homepage__WEBPACK_IMPORTED_MODULE_14__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
             path: "/shop",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_CustomerPage_Shop__WEBPACK_IMPORTED_MODULE_14__["default"], {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_CustomerPage_Shop__WEBPACK_IMPORTED_MODULE_15__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
             path: "/product/:productId",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_CustomerPage_ProductMain__WEBPACK_IMPORTED_MODULE_22__["default"], {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_ProtectedRouters_ProtectedRoute__WEBPACK_IMPORTED_MODULE_23__["default"], {
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_CustomerPage_ProductMain__WEBPACK_IMPORTED_MODULE_23__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_ProtectedRouters_ProtectedRoute__WEBPACK_IMPORTED_MODULE_24__["default"], {
               requiredRole: "admin"
             }),
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
               path: "/admin-dashboard",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_AdminContent_AdminDashboard__WEBPACK_IMPORTED_MODULE_7__["default"], {}),
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_AdminDashboard__WEBPACK_IMPORTED_MODULE_7__["default"], {}),
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
                 index: true,
-                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Navigate, {
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Navigate, {
                   to: "dashboard",
                   replace: true
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
                 path: "dashboard",
-                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_AdminContent_Dashboard__WEBPACK_IMPORTED_MODULE_8__["default"], {})
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_Dashboard__WEBPACK_IMPORTED_MODULE_8__["default"], {})
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
                 path: "products",
-                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_AdminContent_Products__WEBPACK_IMPORTED_MODULE_9__["default"], {})
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_Products__WEBPACK_IMPORTED_MODULE_9__["default"], {})
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
                 path: "orders",
-                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_AdminContent_Orders__WEBPACK_IMPORTED_MODULE_10__["default"], {})
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_Orders__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
                 path: "inventory",
-                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_AdminContent_Inventory__WEBPACK_IMPORTED_MODULE_11__["default"], {})
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_Inventory__WEBPACK_IMPORTED_MODULE_11__["default"], {})
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
                 path: "customer",
-                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_AdminContent_Customer__WEBPACK_IMPORTED_MODULE_15__["default"], {})
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_Customer__WEBPACK_IMPORTED_MODULE_16__["default"], {})
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
                 path: "users",
-                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_AdminContent_Users__WEBPACK_IMPORTED_MODULE_16__["default"], {})
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_Users__WEBPACK_IMPORTED_MODULE_17__["default"], {})
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
                 path: "transaction",
-                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_AdminContent_Transactions__WEBPACK_IMPORTED_MODULE_17__["default"], {})
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_Transactions__WEBPACK_IMPORTED_MODULE_18__["default"], {})
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
                 path: "reviews",
-                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_AdminContent_Reviews__WEBPACK_IMPORTED_MODULE_19__["default"], {})
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_Reviews__WEBPACK_IMPORTED_MODULE_20__["default"], {})
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
                 path: "inbox",
-                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_AdminContent_Inbox__WEBPACK_IMPORTED_MODULE_18__["default"], {})
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_Inbox__WEBPACK_IMPORTED_MODULE_19__["default"], {})
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
                 path: "customer-support",
-                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_AdminContent_CustomerSupport__WEBPACK_IMPORTED_MODULE_20__["default"], {})
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_CustomerSupport__WEBPACK_IMPORTED_MODULE_21__["default"], {})
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
                 path: "reports",
-                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_AdminContent_Reports__WEBPACK_IMPORTED_MODULE_21__["default"], {})
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_Reports__WEBPACK_IMPORTED_MODULE_22__["default"], {})
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
                 path: "settings",
-                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_components_AdminContent_Settings__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Navigate, {
+                  to: "settings/account",
+                  replace: true
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+                path: "settings/account",
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_AccountSettings__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
+                path: "settings/admin",
+                element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_components_AdminContent_AdminSettings__WEBPACK_IMPORTED_MODULE_13__["default"], {})
               })]
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Route, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Route, {
             path: "*",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_26__.Navigate, {
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_27__.Navigate, {
               to: "/login",
               replace: true
             })
@@ -87537,7 +87591,7 @@ var App = function App() {
 var rootElement = document.getElementById('root');
 if (rootElement) {
   var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(rootElement);
-  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(App, {}));
+  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(App, {}));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
@@ -87604,6 +87658,859 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/AdminContent/AccountSettings.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/AdminContent/AccountSettings.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/upload.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/chevron-down.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/calendar.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/eye-off.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/eye.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+var AccountSettings = function AccountSettings() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    showCurrentPassword = _useState2[0],
+    setShowCurrentPassword = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    showNewPassword = _useState4[0],
+    setShowNewPassword = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    showConfirmPassword = _useState6[0],
+    setShowConfirmPassword = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    showCalendar = _useState8[0],
+    setShowCalendar = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState10 = _slicedToArray(_useState9, 2),
+    isEditing = _useState10[0],
+    setIsEditing = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      first_name: '',
+      middle_name: '',
+      last_name: '',
+      suffix: '',
+      email: '',
+      role: '',
+      gender: '',
+      date_of_birth: '',
+      profile_image: null
+    }),
+    _useState12 = _slicedToArray(_useState11, 2),
+    profile = _useState12[0],
+    setProfile = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      current_password: '',
+      new_password: '',
+      confirm_password: ''
+    }),
+    _useState14 = _slicedToArray(_useState13, 2),
+    password = _useState14[0],
+    setPassword = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('/imgs/profile.svg'),
+    _useState16 = _slicedToArray(_useState15, 2),
+    imagePreview = _useState16[0],
+    setImagePreview = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState18 = _slicedToArray(_useState17, 2),
+    errors = _useState18[0],
+    setErrors = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState20 = _slicedToArray(_useState19, 2),
+    successMessage = _useState20[0],
+    setSuccessMessage = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState22 = _slicedToArray(_useState21, 2),
+    isLoading = _useState22[0],
+    setIsLoading = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState24 = _slicedToArray(_useState23, 2),
+    isSavingProfile = _useState24[0],
+    setIsSavingProfile = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState26 = _slicedToArray(_useState25, 2),
+    isSavingPassword = _useState26[0],
+    setIsSavingPassword = _useState26[1];
+  var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
+
+  // Fetch profile information
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var fetchProfile = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var token, response, profileData, userData, fetchedProfile, _error$response;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              setIsLoading(true);
+              _context.prev = 1;
+              token = localStorage.getItem('token');
+              console.log('Fetching profile with token:', token);
+              if (token) {
+                _context.next = 6;
+                break;
+              }
+              throw new Error('No authentication token found. Please log in.');
+            case 6:
+              _context.next = 8;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/profile', {
+                headers: {
+                  Accept: 'application/json',
+                  Authorization: "Bearer ".concat(token)
+                }
+              });
+            case 8:
+              response = _context.sent;
+              console.log('Profile response:', response.data);
+              profileData = response.data.profile || response.data;
+              userData = response.data.user || response.data;
+              fetchedProfile = {
+                first_name: profileData.first_name || '',
+                middle_name: profileData.middle_name || '',
+                last_name: profileData.last_name || '',
+                suffix: profileData.suffix || '',
+                email: userData.email || '',
+                role: userData.role || profileData.role || '',
+                gender: profileData.gender || '',
+                date_of_birth: profileData.date_of_birth || '',
+                profile_image: null
+              };
+              setProfile(fetchedProfile);
+              setImagePreview(profileData.profile_pic ? "".concat(BASE_IMAGE_URL, "/").concat(profileData.profile_pic) : '/imgs/profile.svg');
+              _context.next = 21;
+              break;
+            case 17:
+              _context.prev = 17;
+              _context.t0 = _context["catch"](1);
+              console.error('Failed to fetch profile:', ((_error$response = _context.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context.t0.message);
+              setErrors({
+                general: _context.t0.message || 'Failed to load profile information. Please try again later.'
+              });
+            case 21:
+              _context.prev = 21;
+              setIsLoading(false);
+              return _context.finish(21);
+            case 24:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee, null, [[1, 17, 21, 24]]);
+      }));
+      return function fetchProfile() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+    fetchProfile();
+  }, []);
+  var toggleCurrentPassword = function toggleCurrentPassword() {
+    return setShowCurrentPassword(!showCurrentPassword);
+  };
+  var toggleNewPassword = function toggleNewPassword() {
+    return setShowNewPassword(!showNewPassword);
+  };
+  var toggleConfirmPassword = function toggleConfirmPassword() {
+    return setShowConfirmPassword(!showConfirmPassword);
+  };
+  var toggleCalendar = function toggleCalendar() {
+    return setShowCalendar(!showCalendar);
+  };
+  var handleDateSelect = function handleDateSelect(date) {
+    var formattedDate = "".concat((date.getMonth() + 1).toString().padStart(2, '0'), "/").concat(date.getDate().toString().padStart(2, '0'), "/").concat(date.getFullYear());
+    setProfile(_objectSpread(_objectSpread({}, profile), {}, {
+      date_of_birth: formattedDate
+    }));
+    setShowCalendar(false);
+  };
+  var handleProfileChange = function handleProfileChange(e) {
+    var _e$target = e.target,
+      name = _e$target.name,
+      value = _e$target.value;
+    setProfile(_objectSpread(_objectSpread({}, profile), {}, _defineProperty({}, name, value)));
+    setErrors(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, null));
+    });
+  };
+  var handlePasswordChange = function handlePasswordChange(e) {
+    var _e$target2 = e.target,
+      name = _e$target2.name,
+      value = _e$target2.value;
+    setPassword(_objectSpread(_objectSpread({}, password), {}, _defineProperty({}, name, value)));
+  };
+  var handlePhotoUpload = function handlePhotoUpload(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+
+    // Validate file type and size
+    var validTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'];
+    var maxSize = 2 * 1024 * 1024; // 2MB
+    if (!validTypes.includes(file.type) || file.size > maxSize) {
+      setErrors({
+        general: 'Please select a valid image file (PNG, JPG, JPEG, GIF) under 2MB.'
+      });
+      return;
+    }
+    setProfile(_objectSpread(_objectSpread({}, profile), {}, {
+      profile_image: file
+    }));
+
+    // Set image preview immediately
+    var reader = new FileReader();
+    reader.onload = function () {
+      return setImagePreview(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+  var handleEditProfile = function handleEditProfile(e) {
+    e.preventDefault();
+    setIsEditing(true);
+    setErrors({});
+    setSuccessMessage('');
+  };
+  var handleCancelEdit = function handleCancelEdit(e) {
+    e.preventDefault();
+    setIsEditing(false);
+  };
+  var handleUpdateProfile = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+      var formData, _response$data$profil, _response$data$profil2, _response$data$profil3, _response$data$profil4, _response$data$user, _response$data$user2, _response$data$profil5, _response$data$profil6, _response$data$profil7, _response$data$profil8, token, response, _error$response2, _error$response3;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            e.preventDefault();
+            setIsSavingProfile(true);
+            setErrors({});
+            setSuccessMessage('');
+            formData = new FormData();
+            formData.append('first_name', profile.first_name);
+            formData.append('middle_name', profile.middle_name);
+            formData.append('last_name', profile.last_name);
+            formData.append('suffix', profile.suffix);
+            formData.append('email', profile.email);
+            formData.append('role', profile.role);
+            formData.append('gender', profile.gender);
+            formData.append('date_of_birth', profile.date_of_birth);
+            if (profile.profile_image) {
+              formData.append('profile_image', profile.profile_image);
+            }
+            formData.append('_method', 'PUT');
+            _context2.prev = 15;
+            token = localStorage.getItem('token');
+            if (token) {
+              _context2.next = 19;
+              break;
+            }
+            throw new Error('No authentication token found. Please log in.');
+          case 19:
+            console.log('Updating profile with data:', Object.fromEntries(formData));
+            _context2.next = 22;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('http://127.0.0.1:8000/api/update-profile', formData, {
+              headers: {
+                Authorization: "Bearer ".concat(token),
+                Accept: 'application/json'
+              }
+            });
+          case 22:
+            response = _context2.sent;
+            console.log('Update profile response:', response.data);
+            setSuccessMessage(response.data.message || 'Profile updated successfully');
+            setProfile(_objectSpread(_objectSpread({}, profile), {}, {
+              first_name: ((_response$data$profil = response.data.profile) === null || _response$data$profil === void 0 ? void 0 : _response$data$profil.first_name) || profile.first_name,
+              middle_name: ((_response$data$profil2 = response.data.profile) === null || _response$data$profil2 === void 0 ? void 0 : _response$data$profil2.middle_name) || profile.middle_name,
+              last_name: ((_response$data$profil3 = response.data.profile) === null || _response$data$profil3 === void 0 ? void 0 : _response$data$profil3.last_name) || profile.last_name,
+              suffix: ((_response$data$profil4 = response.data.profile) === null || _response$data$profil4 === void 0 ? void 0 : _response$data$profil4.suffix) || profile.suffix,
+              email: ((_response$data$user = response.data.user) === null || _response$data$user === void 0 ? void 0 : _response$data$user.email) || profile.email,
+              role: ((_response$data$user2 = response.data.user) === null || _response$data$user2 === void 0 ? void 0 : _response$data$user2.role) || ((_response$data$profil5 = response.data.profile) === null || _response$data$profil5 === void 0 ? void 0 : _response$data$profil5.role) || profile.role,
+              gender: ((_response$data$profil6 = response.data.profile) === null || _response$data$profil6 === void 0 ? void 0 : _response$data$profil6.gender) || profile.gender,
+              date_of_birth: ((_response$data$profil7 = response.data.profile) === null || _response$data$profil7 === void 0 ? void 0 : _response$data$profil7.date_of_birth) || profile.date_of_birth,
+              profile_image: null
+            }));
+            setImagePreview((_response$data$profil8 = response.data.profile) !== null && _response$data$profil8 !== void 0 && _response$data$profil8.profile_pic ? "".concat(BASE_IMAGE_URL, "/").concat(response.data.profile.profile_pic, "?t=").concat(Date.now()) : '/imgs/profile.svg');
+            setIsEditing(false);
+            _context2.next = 34;
+            break;
+          case 30:
+            _context2.prev = 30;
+            _context2.t0 = _context2["catch"](15);
+            console.error('Failed to update profile:', ((_error$response2 = _context2.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.data) || _context2.t0.message);
+            if (_context2.t0.response && _context2.t0.response.data.errors) {
+              setErrors(_context2.t0.response.data.errors);
+            } else {
+              setErrors({
+                general: ((_error$response3 = _context2.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.data.message) || 'Failed to update profile'
+              });
+            }
+          case 34:
+            _context2.prev = 34;
+            setIsSavingProfile(false);
+            return _context2.finish(34);
+          case 37:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[15, 30, 34, 37]]);
+    }));
+    return function handleUpdateProfile(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var handleChangePassword = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(e) {
+      var formData, token, response, _error$response4, _error$response5;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            e.preventDefault();
+            setIsSavingPassword(true);
+            setErrors({});
+            setSuccessMessage('');
+            if (!(password.new_password !== password.confirm_password)) {
+              _context3.next = 8;
+              break;
+            }
+            setErrors({
+              confirm_password: ['Passwords do not match']
+            });
+            setIsSavingPassword(false);
+            return _context3.abrupt("return");
+          case 8:
+            formData = new FormData();
+            formData.append('current_password', password.current_password);
+            formData.append('new_password', password.new_password);
+            formData.append('new_password_confirmation', password.confirm_password);
+            _context3.prev = 12;
+            token = localStorage.getItem('token');
+            if (token) {
+              _context3.next = 16;
+              break;
+            }
+            throw new Error('No authentication token found. Please log in.');
+          case 16:
+            console.log('Changing password with data:', Object.fromEntries(formData));
+            _context3.next = 19;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('http://127.0.0.1:8000/api/change-password', formData, {
+              headers: {
+                Authorization: "Bearer ".concat(token),
+                Accept: 'application/json'
+              }
+            });
+          case 19:
+            response = _context3.sent;
+            console.log('Change password response:', response.data);
+            setSuccessMessage(response.data.message || 'Password changed successfully');
+            setPassword({
+              current_password: '',
+              new_password: '',
+              confirm_password: ''
+            });
+            _context3.next = 29;
+            break;
+          case 25:
+            _context3.prev = 25;
+            _context3.t0 = _context3["catch"](12);
+            console.error('Failed to change password:', ((_error$response4 = _context3.t0.response) === null || _error$response4 === void 0 ? void 0 : _error$response4.data) || _context3.t0.message);
+            if (_context3.t0.response && _context3.t0.response.data.errors) {
+              setErrors(_context3.t0.response.data.errors);
+            } else {
+              setErrors({
+                general: ((_error$response5 = _context3.t0.response) === null || _error$response5 === void 0 ? void 0 : _error$response5.data.message) || 'Failed to change password'
+              });
+            }
+          case 29:
+            _context3.prev = 29;
+            setIsSavingPassword(false);
+            return _context3.finish(29);
+          case 32:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[12, 25, 29, 32]]);
+    }));
+    return function handleChangePassword(_x2) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  // Simple calendar component
+  var SimpleCalendar = function SimpleCalendar(_ref4) {
+    var onSelect = _ref4.onSelect;
+    var today = new Date();
+    var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date()),
+      _useState28 = _slicedToArray(_useState27, 2),
+      viewDate = _useState28[0],
+      setViewDate = _useState28[1];
+    var getDaysInMonth = function getDaysInMonth(year, month) {
+      return new Date(year, month + 1, 0).getDate();
+    };
+    var getFirstDayOfMonth = function getFirstDayOfMonth(year, month) {
+      return new Date(year, month, 1).getDay();
+    };
+    var days = getDaysInMonth(viewDate.getFullYear(), viewDate.getMonth());
+    var firstDay = getFirstDayOfMonth(viewDate.getFullYear(), viewDate.getMonth());
+    var prevMonth = function prevMonth() {
+      setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1));
+    };
+    var nextMonth = function nextMonth() {
+      setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1));
+    };
+    var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var renderDays = function renderDays() {
+      var dayElements = [];
+      for (var i = 0; i < firstDay; i++) {
+        dayElements.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "calendar__day empty"
+        }, "empty-".concat(i)));
+      }
+      var _loop = function _loop() {
+        var dayDate = new Date(viewDate.getFullYear(), viewDate.getMonth(), _i);
+        dayElements.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "calendar__day ".concat(dayDate <= today ? 'selectable' : 'disabled'),
+          onClick: function onClick() {
+            return dayDate <= today ? onSelect(dayDate) : null;
+          },
+          children: _i
+        }, "day-".concat(_i)));
+      };
+      for (var _i = 1; _i <= days; _i++) {
+        _loop();
+      }
+      return dayElements;
+    };
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "calendar",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "calendar__header",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          onClick: prevMonth,
+          children: "<"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          children: [monthNames[viewDate.getMonth()], " ", viewDate.getFullYear()]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          onClick: nextMonth,
+          children: ">"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "calendar__weekdays",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: "Su"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: "Mo"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: "Tu"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: "We"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: "Th"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: "Fr"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: "Sa"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "calendar__days",
+        children: renderDays()
+      })]
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "settings",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+      className: "settings__title",
+      children: "Account Settings"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "settings__content",
+      children: [isLoading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "settings__loading",
+        children: "Loading profile..."
+      }), successMessage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "settings__success",
+        children: successMessage
+      }), errors.general && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "settings__error",
+        children: errors.general
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "settings__section settings__section--boxed",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
+          className: "settings__section-title",
+          children: "Profile Information"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "settings__profile-photo",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "settings__photo-placeholder",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+              src: imagePreview,
+              alt: "Profile",
+              className: "settings__photo-preview"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "file",
+              accept: "image/*",
+              onChange: handlePhotoUpload,
+              style: {
+                display: 'none'
+              },
+              id: "profile-photo-upload",
+              disabled: isLoading || isSavingProfile || !isEditing
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+              htmlFor: "profile-photo-upload",
+              className: "settings__photo-label",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                className: "settings__upload-overlay",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  size: 18,
+                  className: "settings__upload-icon"
+                })
+              })
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+          className: "settings__form",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "settings__form-row",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "settings__form-group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                children: "First Name"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: "text",
+                name: "first_name",
+                placeholder: "First name",
+                value: profile.first_name,
+                onChange: handleProfileChange,
+                disabled: isLoading || isSavingProfile || !isEditing
+              }), errors.first_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: "settings__error",
+                children: errors.first_name[0]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "settings__form-group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                children: "Middle Name"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: "text",
+                name: "middle_name",
+                placeholder: "Middle name",
+                value: profile.middle_name,
+                onChange: handleProfileChange,
+                disabled: isLoading || isSavingProfile || !isEditing
+              }), errors.middle_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: "settings__error",
+                children: errors.middle_name[0]
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "settings__form-row",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "settings__form-group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                children: "Last Name"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: "text",
+                name: "last_name",
+                placeholder: "Last name",
+                value: profile.last_name,
+                onChange: handleProfileChange,
+                disabled: isLoading || isSavingProfile || !isEditing
+              }), errors.last_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: "settings__error",
+                children: errors.last_name[0]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "settings__form-group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                children: "Suffix"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: "text",
+                name: "suffix",
+                placeholder: "Suffix (e.g., Jr., Sr.)",
+                value: profile.suffix,
+                onChange: handleProfileChange,
+                disabled: isLoading || isSavingProfile || !isEditing
+              }), errors.suffix && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: "settings__error",
+                children: errors.suffix[0]
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "settings__form-row",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "settings__form-group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                children: "Email"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: "email",
+                name: "email",
+                placeholder: "Email address",
+                value: profile.email,
+                onChange: handleProfileChange,
+                disabled: isLoading || isSavingProfile || !isEditing
+              }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: "settings__error",
+                children: errors.email[0]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "settings__form-group settings__form-group--with-icon",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                children: "Role"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                className: "settings__input-wrapper",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+                  name: "role",
+                  value: profile.role,
+                  onChange: handleProfileChange,
+                  disabled: isLoading || isSavingProfile || !isEditing,
+                  className: "settings__dropdown",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                    value: "",
+                    children: "Select Role"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                    value: "admin",
+                    children: "Admin"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                    value: "user",
+                    children: "User"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                  size: 16,
+                  className: "settings__input-icon"
+                })]
+              }), errors.role && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: "settings__error",
+                children: errors.role[0]
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "settings__form-row",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "settings__form-group settings__form-group--with-icon",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                children: "Gender"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                className: "settings__input-wrapper",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+                  name: "gender",
+                  value: profile.gender,
+                  onChange: handleProfileChange,
+                  disabled: isLoading || isSavingProfile || !isEditing,
+                  className: "settings__dropdown",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                    value: "",
+                    children: "Select Gender"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                    value: "Male",
+                    children: "Male"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                    value: "Female",
+                    children: "Female"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                    value: "Other",
+                    children: "Other"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                  size: 16,
+                  className: "settings__input-icon"
+                })]
+              }), errors.gender && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: "settings__error",
+                children: errors.gender[0]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "settings__form-group settings__form-group--with-icon",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                children: "Date of Birth"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                className: "settings__input-wrapper",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                  type: "text",
+                  name: "date_of_birth",
+                  placeholder: "mm/dd/yyyy",
+                  value: profile.date_of_birth,
+                  onChange: handleProfileChange,
+                  disabled: isLoading || isSavingProfile || !isEditing
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                  size: 16,
+                  className: "settings__input-icon",
+                  onClick: isEditing ? toggleCalendar : null
+                }), showCalendar && isEditing && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                  className: "settings__calendar-popup",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(SimpleCalendar, {
+                    onSelect: handleDateSelect
+                  })
+                })]
+              }), errors.date_of_birth && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: "settings__error",
+                children: errors.date_of_birth[0]
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "settings__form-actions",
+            children: isEditing ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+                type: "button",
+                className: "settings__submit-button",
+                onClick: handleUpdateProfile,
+                disabled: isLoading || isSavingProfile,
+                children: isSavingProfile ? 'Saving...' : 'Save Changes'
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+                type: "button",
+                className: "settings__cancel-button",
+                onClick: handleCancelEdit,
+                disabled: isLoading || isSavingProfile,
+                children: "Cancel"
+              })]
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+              type: "button",
+              className: "settings__submit-button",
+              onClick: handleEditProfile,
+              disabled: isLoading,
+              children: "Edit Profile"
+            })
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "settings__section settings__section--boxed",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
+          className: "settings__section-title",
+          children: "Change Password"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+          onSubmit: handleChangePassword,
+          className: "settings__form",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "settings__form-group settings__form-group--with-icon",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+              children: "Current Password"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "settings__input-wrapper",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: showCurrentPassword ? 'text' : 'password',
+                name: "current_password",
+                placeholder: "Current Password",
+                value: password.current_password,
+                onChange: handlePasswordChange,
+                disabled: isLoading || isSavingPassword
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                className: "settings__password-toggle",
+                children: showCurrentPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  size: 16,
+                  className: "settings__input-icon",
+                  onClick: toggleCurrentPassword
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                  size: 16,
+                  className: "settings__input-icon",
+                  onClick: toggleCurrentPassword
+                })
+              })]
+            }), errors.current_password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              className: "settings__error",
+              children: errors.current_password[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "settings__form-group settings__form-group--with-icon",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+              children: "New Password"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "settings__input-wrapper",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: showNewPassword ? 'text' : 'password',
+                name: "new_password",
+                placeholder: "New Password",
+                value: password.new_password,
+                onChange: handlePasswordChange,
+                disabled: isLoading || isSavingPassword
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                className: "settings__password-toggle",
+                children: showNewPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  size: 16,
+                  className: "settings__input-icon",
+                  onClick: toggleNewPassword
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                  size: 16,
+                  className: "settings__input-icon",
+                  onClick: toggleNewPassword
+                })
+              })]
+            }), errors.new_password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              className: "settings__error",
+              children: errors.new_password[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "settings__form-group settings__form-group--with-icon",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+              children: "Confirm New Password"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "settings__input-wrapper",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: showConfirmPassword ? 'text' : 'password',
+                name: "confirm_password",
+                placeholder: "Confirm New Password",
+                value: password.confirm_password,
+                onChange: handlePasswordChange,
+                disabled: isLoading || isSavingPassword
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                className: "settings__password-toggle",
+                children: showConfirmPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  size: 16,
+                  className: "settings__input-icon",
+                  onClick: toggleConfirmPassword
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                  size: 16,
+                  className: "settings__input-icon",
+                  onClick: toggleConfirmPassword
+                })
+              })]
+            }), errors.confirm_password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              className: "settings__error",
+              children: errors.confirm_password[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "settings__form-actions",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+              type: "submit",
+              className: "settings__submit-button",
+              disabled: isLoading || isSavingPassword,
+              children: isSavingPassword ? 'Saving...' : 'Change Password'
+            })
+          })]
+        })]
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AccountSettings);
 
 /***/ }),
 
@@ -87881,13 +88788,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/pen.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/archive.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/rotate-ccw.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/x.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/pen.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/archive.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/rotate-ccw.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/x.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _AttributesManagement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AttributesManagement */ "./resources/js/components/AdminContent/AttributesManagement.js");
+/* harmony import */ var _ProductTypeManagement__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProductTypeManagement */ "./resources/js/components/AdminContent/ProductTypeManagement.js");
+/* harmony import */ var _LocationManagement__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./LocationManagement */ "./resources/js/components/AdminContent/LocationManagement.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -87907,53 +88817,62 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+
+
+
 var AdminSettings = function AdminSettings() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('product'),
     _useState2 = _slicedToArray(_useState, 2),
-    categories = _useState2[0],
-    setCategories = _useState2[1];
+    activeTab = _useState2[0],
+    setActiveTab = _useState2[1];
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState4 = _slicedToArray(_useState3, 2),
-    brands = _useState4[0],
-    setBrands = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    categories = _useState4[0],
+    setCategories = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState6 = _slicedToArray(_useState5, 2),
+    brands = _useState6[0],
+    setBrands = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       isOpen: false,
       type: '',
-      // 'addCategory', 'editCategory', 'addBrand', 'editBrand'
+      // 'addCategory', 'editCategory', 'addBrand', 'editBrand', etc.
       id: null,
       name: '',
       error: '',
       isLoading: false
     }),
-    _useState6 = _slicedToArray(_useState5, 2),
-    modalState = _useState6[0],
-    setModalState = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState8 = _slicedToArray(_useState7, 2),
-    successMessage = _useState8[0],
-    setSuccessMessage = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('all'),
+    modalState = _useState8[0],
+    setModalState = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState10 = _slicedToArray(_useState9, 2),
-    categoryFilter = _useState10[0],
-    setCategoryFilter = _useState10[1]; // all, active, archived
+    successMessage = _useState10[0],
+    setSuccessMessage = _useState10[1];
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('all'),
     _useState12 = _slicedToArray(_useState11, 2),
-    brandFilter = _useState12[0],
-    setBrandFilter = _useState12[1]; // all, active, archived
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    categoryFilter = _useState12[0],
+    setCategoryFilter = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('all'),
     _useState14 = _slicedToArray(_useState13, 2),
-    categoryPage = _useState14[0],
-    setCategoryPage = _useState14[1];
+    brandFilter = _useState14[0],
+    setBrandFilter = _useState14[1];
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
     _useState16 = _slicedToArray(_useState15, 2),
-    brandPage = _useState16[0],
-    setBrandPage = _useState16[1];
+    categoryPage = _useState16[0],
+    setCategoryPage = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState18 = _slicedToArray(_useState17, 2),
+    brandPage = _useState18[0],
+    setBrandPage = _useState18[1];
   var itemsPerPage = 5;
   var token = localStorage.getItem('token');
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetchCategories();
-    fetchBrands();
-  }, []);
+    if (activeTab === 'product') {
+      fetchCategories();
+      fetchBrands();
+    }
+  }, [activeTab]);
   var fetchCategories = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var res, mappedCategories;
@@ -87969,7 +88888,6 @@ var AdminSettings = function AdminSettings() {
             });
           case 3:
             res = _context.sent;
-            // Map archived_at to status and sort by created_at descending
             mappedCategories = res.data.map(function (category) {
               return _objectSpread(_objectSpread({}, category), {}, {
                 status: category.archived_at ? 'archived' : 'active'
@@ -87978,7 +88896,7 @@ var AdminSettings = function AdminSettings() {
               return new Date(b.created_at) - new Date(a.created_at);
             });
             setCategories(mappedCategories);
-            setCategoryPage(1); // Reset to page 1 on data fetch
+            setCategoryPage(1);
             _context.next = 13;
             break;
           case 9:
@@ -88011,7 +88929,6 @@ var AdminSettings = function AdminSettings() {
             });
           case 3:
             res = _context2.sent;
-            // Map archived_at to status and sort by created_at descending
             mappedBrands = res.data.map(function (brand) {
               return _objectSpread(_objectSpread({}, brand), {}, {
                 status: brand.archived_at ? 'archived' : 'active'
@@ -88020,7 +88937,7 @@ var AdminSettings = function AdminSettings() {
               return new Date(b.created_at) - new Date(a.created_at);
             });
             setBrands(mappedBrands);
-            setBrandPage(1); // Reset to page 1 on data fetch
+            setBrandPage(1);
             _context2.next = 13;
             break;
           case 9:
@@ -88044,7 +88961,7 @@ var AdminSettings = function AdminSettings() {
       if (prev === 'active') return 'archived';
       return 'all';
     });
-    setCategoryPage(1); // Reset to page 1 when changing filter
+    setCategoryPage(1);
   };
   var toggleBrandFilter = function toggleBrandFilter() {
     setBrandFilter(function (prev) {
@@ -88052,7 +88969,7 @@ var AdminSettings = function AdminSettings() {
       if (prev === 'active') return 'archived';
       return 'all';
     });
-    setBrandPage(1); // Reset to page 1 when changing filter
+    setBrandPage(1);
   };
   var filteredCategories = categories.filter(function (category) {
     if (categoryFilter === 'all') return true;
@@ -88062,12 +88979,8 @@ var AdminSettings = function AdminSettings() {
     if (brandFilter === 'all') return true;
     return brand.status === brandFilter;
   });
-
-  // Pagination for Categories
   var totalCategoryPages = Math.ceil(filteredCategories.length / itemsPerPage);
   var paginatedCategories = filteredCategories.slice((categoryPage - 1) * itemsPerPage, categoryPage * itemsPerPage);
-
-  // Pagination for Brands
   var totalBrandPages = Math.ceil(filteredBrands.length / itemsPerPage);
   var paginatedBrands = filteredBrands.slice((brandPage - 1) * itemsPerPage, brandPage * itemsPerPage);
   var goToPreviousCategoryPage = function goToPreviousCategoryPage() {
@@ -88122,7 +89035,7 @@ var AdminSettings = function AdminSettings() {
     });
   };
   var handleModalSubmit = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(refetch) {
       var headers, response, _error$response;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
@@ -88167,7 +89080,7 @@ var AdminSettings = function AdminSettings() {
             response = _context3.sent;
             setSuccessMessage('Category added successfully');
             fetchCategories();
-            _context3.next = 39;
+            _context3.next = 103;
             break;
           case 17:
             if (!(modalState.type === 'editCategory')) {
@@ -88184,7 +89097,7 @@ var AdminSettings = function AdminSettings() {
             response = _context3.sent;
             setSuccessMessage('Category updated successfully');
             fetchCategories();
-            _context3.next = 39;
+            _context3.next = 103;
             break;
           case 25:
             if (!(modalState.type === 'addBrand')) {
@@ -88201,11 +89114,11 @@ var AdminSettings = function AdminSettings() {
             response = _context3.sent;
             setSuccessMessage('Brand added successfully');
             fetchBrands();
-            _context3.next = 39;
+            _context3.next = 103;
             break;
           case 33:
             if (!(modalState.type === 'editBrand')) {
-              _context3.next = 39;
+              _context3.next = 41;
               break;
             }
             _context3.next = 36;
@@ -88218,386 +89131,497 @@ var AdminSettings = function AdminSettings() {
             response = _context3.sent;
             setSuccessMessage('Brand updated successfully');
             fetchBrands();
-          case 39:
-            closeModal();
-            _context3.next = 46;
+            _context3.next = 103;
             break;
-          case 42:
-            _context3.prev = 42;
+          case 41:
+            if (!(modalState.type === 'addColor')) {
+              _context3.next = 49;
+              break;
+            }
+            _context3.next = 44;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/colors', {
+              color_name: modalState.name
+            }, {
+              headers: headers
+            });
+          case 44:
+            response = _context3.sent;
+            setSuccessMessage('Color added successfully');
+            refetch();
+            _context3.next = 103;
+            break;
+          case 49:
+            if (!(modalState.type === 'editColor')) {
+              _context3.next = 57;
+              break;
+            }
+            _context3.next = 52;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/colors/".concat(modalState.id), {
+              color_name: modalState.name
+            }, {
+              headers: headers
+            });
+          case 52:
+            response = _context3.sent;
+            setSuccessMessage('Color updated successfully');
+            refetch();
+            _context3.next = 103;
+            break;
+          case 57:
+            if (!(modalState.type === 'addSize')) {
+              _context3.next = 65;
+              break;
+            }
+            _context3.next = 60;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/sizes', {
+              size_name: modalState.name
+            }, {
+              headers: headers
+            });
+          case 60:
+            response = _context3.sent;
+            setSuccessMessage('Size added successfully');
+            refetch();
+            _context3.next = 103;
+            break;
+          case 65:
+            if (!(modalState.type === 'editSize')) {
+              _context3.next = 73;
+              break;
+            }
+            _context3.next = 68;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/sizes/".concat(modalState.id), {
+              size_name: modalState.name
+            }, {
+              headers: headers
+            });
+          case 68:
+            response = _context3.sent;
+            setSuccessMessage('Size updated successfully');
+            refetch();
+            _context3.next = 103;
+            break;
+          case 73:
+            if (!(modalState.type === 'addProductType')) {
+              _context3.next = 81;
+              break;
+            }
+            _context3.next = 76;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/product-types', {
+              type_name: modalState.name
+            }, {
+              headers: headers
+            });
+          case 76:
+            response = _context3.sent;
+            setSuccessMessage('Product type added successfully');
+            refetch();
+            _context3.next = 103;
+            break;
+          case 81:
+            if (!(modalState.type === 'editProductType')) {
+              _context3.next = 89;
+              break;
+            }
+            _context3.next = 84;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/product-types/".concat(modalState.id), {
+              type_name: modalState.name
+            }, {
+              headers: headers
+            });
+          case 84:
+            response = _context3.sent;
+            setSuccessMessage('Product type updated successfully');
+            refetch();
+            _context3.next = 103;
+            break;
+          case 89:
+            if (!(modalState.type === 'addCountry')) {
+              _context3.next = 97;
+              break;
+            }
+            _context3.next = 92;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/countries', {
+              name: modalState.name
+            }, {
+              headers: headers
+            });
+          case 92:
+            response = _context3.sent;
+            setSuccessMessage('Country added successfully');
+            refetch();
+            _context3.next = 103;
+            break;
+          case 97:
+            if (!(modalState.type === 'editCountry')) {
+              _context3.next = 103;
+              break;
+            }
+            _context3.next = 100;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/countries/".concat(modalState.id), {
+              name: modalState.name
+            }, {
+              headers: headers
+            });
+          case 100:
+            response = _context3.sent;
+            setSuccessMessage('Country updated successfully');
+            refetch();
+          case 103:
+            closeModal();
+            _context3.next = 110;
+            break;
+          case 106:
+            _context3.prev = 106;
             _context3.t0 = _context3["catch"](7);
             console.error("Error ".concat(modalState.type, ":"), _context3.t0);
             setModalState(_objectSpread(_objectSpread({}, modalState), {}, {
               error: ((_error$response = _context3.t0.response) === null || _error$response === void 0 || (_error$response = _error$response.data) === null || _error$response === void 0 ? void 0 : _error$response.message) || 'Failed to save. Please try again.',
               isLoading: false
             }));
-          case 46:
+          case 110:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[7, 42]]);
+      }, _callee3, null, [[7, 106]]);
     }));
-    return function handleModalSubmit() {
+    return function handleModalSubmit(_x) {
       return _ref3.apply(this, arguments);
     };
   }();
-  var handleArchiveCategory = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(id) {
+  var handleArchive = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(type, id) {
       return _regeneratorRuntime().wrap(function _callee4$(_context4) {
         while (1) switch (_context4.prev = _context4.next) {
           case 0:
-            if (!window.confirm('Are you sure you want to archive this category?')) {
+            if (!window.confirm("Are you sure you want to archive this ".concat(type, "?"))) {
               _context4.next = 12;
               break;
             }
             _context4.prev = 1;
             _context4.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().patch("/api/categories/".concat(id, "/archive"), {}, {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().patch("/api/".concat(type, "s/").concat(id, "/archive"), {}, {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
             });
           case 4:
-            setSuccessMessage('Category archived successfully');
-            fetchCategories();
+            setSuccessMessage("".concat(type.charAt(0).toUpperCase() + type.slice(1), " archived successfully"));
+            if (type === 'category') fetchCategories();else if (type === 'brand') fetchBrands();
             _context4.next = 12;
             break;
           case 8:
             _context4.prev = 8;
             _context4.t0 = _context4["catch"](1);
-            console.error('Error archiving category:', _context4.t0);
-            setSuccessMessage('Failed to archive category.');
+            console.error("Error archiving ".concat(type, ":"), _context4.t0);
+            setSuccessMessage("Failed to archive ".concat(type, "."));
           case 12:
           case "end":
             return _context4.stop();
         }
       }, _callee4, null, [[1, 8]]);
     }));
-    return function handleArchiveCategory(_x) {
+    return function handleArchive(_x2, _x3) {
       return _ref4.apply(this, arguments);
     };
   }();
-  var handleRestoreCategory = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(id) {
+  var handleRestore = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(type, id) {
       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
         while (1) switch (_context5.prev = _context5.next) {
           case 0:
-            if (!window.confirm('Are you sure you want to restore this category?')) {
+            if (!window.confirm("Are you sure you want to restore this ".concat(type, "?"))) {
               _context5.next = 12;
               break;
             }
             _context5.prev = 1;
             _context5.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().patch("/api/categories/".concat(id, "/restore"), {}, {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().patch("/api/".concat(type, "s/").concat(id, "/restore"), {}, {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
             });
           case 4:
-            setSuccessMessage('Category restored successfully');
-            fetchCategories();
+            setSuccessMessage("".concat(type.charAt(0).toUpperCase() + type.slice(1), " restored successfully"));
+            if (type === 'category') fetchCategories();else if (type === 'brand') fetchBrands();
             _context5.next = 12;
             break;
           case 8:
             _context5.prev = 8;
             _context5.t0 = _context5["catch"](1);
-            console.error('Error restoring category:', _context5.t0);
-            setSuccessMessage('Failed to restore category.');
+            console.error("Error restoring ".concat(type, ":"), _context5.t0);
+            setSuccessMessage("Failed to restore ".concat(type, "."));
           case 12:
           case "end":
             return _context5.stop();
         }
       }, _callee5, null, [[1, 8]]);
     }));
-    return function handleRestoreCategory(_x2) {
+    return function handleRestore(_x4, _x5) {
       return _ref5.apply(this, arguments);
     };
   }();
-  var handleArchiveBrand = /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(id) {
-      return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-        while (1) switch (_context6.prev = _context6.next) {
-          case 0:
-            if (!window.confirm('Are you sure you want to archive this brand?')) {
-              _context6.next = 12;
-              break;
-            }
-            _context6.prev = 1;
-            _context6.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().patch("/api/brands/".concat(id, "/archive"), {}, {
-              headers: {
-                Authorization: "Bearer ".concat(token)
-              }
-            });
-          case 4:
-            setSuccessMessage('Brand archived successfully');
-            fetchBrands();
-            _context6.next = 12;
-            break;
-          case 8:
-            _context6.prev = 8;
-            _context6.t0 = _context6["catch"](1);
-            console.error('Error archiving brand:', _context6.t0);
-            setSuccessMessage('Failed to archive brand.');
-          case 12:
-          case "end":
-            return _context6.stop();
-        }
-      }, _callee6, null, [[1, 8]]);
-    }));
-    return function handleArchiveBrand(_x3) {
-      return _ref6.apply(this, arguments);
-    };
-  }();
-  var handleRestoreBrand = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7(id) {
-      return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-        while (1) switch (_context7.prev = _context7.next) {
-          case 0:
-            if (!window.confirm('Are you sure you want to restore this brand?')) {
-              _context7.next = 12;
-              break;
-            }
-            _context7.prev = 1;
-            _context7.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().patch("/api/brands/".concat(id, "/restore"), {}, {
-              headers: {
-                Authorization: "Bearer ".concat(token)
-              }
-            });
-          case 4:
-            setSuccessMessage('Brand restored successfully');
-            fetchBrands();
-            _context7.next = 12;
-            break;
-          case 8:
-            _context7.prev = 8;
-            _context7.t0 = _context7["catch"](1);
-            console.error('Error restoring brand:', _context7.t0);
-            setSuccessMessage('Failed to restore brand.');
-          case 12:
-          case "end":
-            return _context7.stop();
-        }
-      }, _callee7, null, [[1, 8]]);
-    }));
-    return function handleRestoreBrand(_x4) {
-      return _ref7.apply(this, arguments);
-    };
-  }();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "admin-settings__content",
-    children: [successMessage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "admin-settings__message ".concat(successMessage.includes('Failed') ? 'admin-settings__error' : 'admin-settings__success'),
-      children: successMessage
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "admin-settings__section admin-settings__section--boxed",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "admin-settings__section-header",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
-          className: "admin-settings__section-title",
-          children: "Categories Management"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "admin-settings__header-actions",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
-            onClick: toggleCategoryFilter,
-            className: "admin-settings__filter-button",
-            children: ["Showing: ", categoryFilter === 'all' ? 'All' : categoryFilter === 'active' ? 'Active' : 'Archived']
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            onClick: function onClick() {
-              return openModal('addCategory');
-            },
-            className: "admin-settings__add-button",
-            children: "+ Add Category"
-          })]
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "admin-settings__table-container",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
-          className: "admin-settings__table",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                style: {
-                  width: '120px'
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    className: "settings",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
+      className: "settings__title",
+      children: "Admin Settings"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "settings__tabs",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+        className: "settings__tab ".concat(activeTab === 'product' ? 'active' : ''),
+        onClick: function onClick() {
+          return setActiveTab('product');
+        },
+        children: "Product Settings"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+        className: "settings__tab ".concat(activeTab === 'attributes' ? 'active' : ''),
+        onClick: function onClick() {
+          return setActiveTab('attributes');
+        },
+        children: "Attributes"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+        className: "settings__tab ".concat(activeTab === 'product-type' ? 'active' : ''),
+        onClick: function onClick() {
+          return setActiveTab('product-type');
+        },
+        children: "Product Type Settings"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+        className: "settings__tab ".concat(activeTab === 'location' ? 'active' : ''),
+        onClick: function onClick() {
+          return setActiveTab('location');
+        },
+        children: "Location Settings"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "settings__content",
+      children: [activeTab === 'product' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+        children: [successMessage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "settings__message ".concat(successMessage.includes('Failed') ? 'settings__error' : 'settings__success'),
+          children: successMessage
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: "settings__section settings__section--boxed",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "settings__section-header",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+              children: "Category Management"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              className: "settings__header-actions",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
+                onClick: toggleCategoryFilter,
+                className: "settings__filter-button",
+                children: ["Showing: ", categoryFilter === 'all' ? 'All' : categoryFilter === 'active' ? 'Active' : 'Archived']
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                onClick: function onClick() {
+                  return openModal('addCategory');
                 },
-                children: "Actions"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                children: "Name"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                style: {
-                  width: '120px'
-                },
-                children: "Status"
+                className: "settings__add-button",
+                children: "+ Add Category"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            className: "settings__table-container",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("table", {
+              className: "settings__table",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("thead", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                    style: {
+                      width: '120px'
+                    },
+                    children: "Actions"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                    children: "Name"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                    style: {
+                      width: '120px'
+                    },
+                    children: "Status"
+                  })]
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tbody", {
+                children: paginatedCategories.length > 0 ? paginatedCategories.map(function (category) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("td", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                        className: "settings__action-icon",
+                        onClick: function onClick() {
+                          return openModal('editCategory', category.id, category.name);
+                        }
+                      }), category.status === 'active' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                        className: "settings__action-icon",
+                        onClick: function onClick() {
+                          return handleArchive('category', category.id);
+                        }
+                      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                        className: "settings__action-icon",
+                        onClick: function onClick() {
+                          return handleRestore('category', category.id);
+                        }
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                      children: category.name
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                        className: "settings__status settings__status--".concat(category.status),
+                        children: category.status === 'active' ? 'Active' : 'Archived'
+                      })
+                    })]
+                  }, category.id);
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tr", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                    colSpan: "3",
+                    children: "No categories available"
+                  })
+                })
               })]
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
-            children: paginatedCategories.length > 0 ? paginatedCategories.map(function (category) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("td", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                    className: "admin-settings__action-icon",
-                    onClick: function onClick() {
-                      return openModal('editCategory', category.id, category.name);
-                    }
-                  }), category.status === 'active' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                    className: "admin-settings__action-icon",
-                    onClick: function onClick() {
-                      return handleArchiveCategory(category.id);
-                    }
-                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                    className: "admin-settings__action-icon",
-                    onClick: function onClick() {
-                      return handleRestoreCategory(category.id);
-                    }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "settings__pagination",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+              className: "settings__pagination-button",
+              onClick: goToPreviousCategoryPage,
+              disabled: categoryPage === 1,
+              children: "Previous"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+              className: "settings__pagination-info",
+              children: ["Page ", categoryPage, " of ", totalCategoryPages, " | Showing ", Math.min((categoryPage - 1) * itemsPerPage + 1, filteredCategories.length), "-", Math.min(categoryPage * itemsPerPage, filteredCategories.length), " of ", filteredCategories.length]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+              className: "settings__pagination-button",
+              onClick: goToNextCategoryPage,
+              disabled: categoryPage === totalCategoryPages,
+              children: "Next"
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: "settings__section settings__section--boxed",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "settings__section-header",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+              children: "Brand Management"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              className: "settings__header-actions",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
+                onClick: toggleBrandFilter,
+                className: "settings__filter-button",
+                children: ["Showing: ", brandFilter === 'all' ? 'All' : brandFilter === 'active' ? 'Active' : 'Archived']
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                onClick: function onClick() {
+                  return openModal('addBrand');
+                },
+                className: "settings__add-button",
+                children: "+ Add Brand"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            className: "settings__table-container",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("table", {
+              className: "settings__table",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("thead", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                    style: {
+                      width: '120px'
+                    },
+                    children: "Actions"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                    children: "Name"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                    style: {
+                      width: '120px'
+                    },
+                    children: "Status"
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-                  children: category.name
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                    className: "admin-settings__status admin-settings__status--".concat(category.status),
-                    children: category.status === 'active' ? 'Active' : 'Archived'
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tbody", {
+                children: paginatedBrands.length > 0 ? paginatedBrands.map(function (brand) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("td", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                        className: "settings__action-icon",
+                        onClick: function onClick() {
+                          return openModal('editBrand', brand.id, brand.name);
+                        }
+                      }), brand.status === 'active' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                        className: "settings__action-icon",
+                        onClick: function onClick() {
+                          return handleArchive('brand', brand.id);
+                        }
+                      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                        className: "settings__action-icon",
+                        onClick: function onClick() {
+                          return handleRestore('brand', brand.id);
+                        }
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                      children: brand.name
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                        className: "settings__status settings__status--".concat(brand.status),
+                        children: brand.status === 'active' ? 'Active' : 'Archived'
+                      })
+                    })]
+                  }, brand.id);
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tr", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                    colSpan: "3",
+                    children: "No brands available"
                   })
-                })]
-              }, category.id);
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-                colSpan: "3",
-                children: "No categories available"
-              })
-            })
-          })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "admin-settings__pagination",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-          className: "admin-settings__pagination-button",
-          onClick: goToPreviousCategoryPage,
-          disabled: categoryPage === 1,
-          children: "Previous"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-          className: "admin-settings__pagination-info",
-          children: ["Page ", categoryPage, " of ", totalCategoryPages, " | Showing ", Math.min((categoryPage - 1) * itemsPerPage + 1, filteredCategories.length), "-", Math.min(categoryPage * itemsPerPage, filteredCategories.length), " of ", filteredCategories.length]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-          className: "admin-settings__pagination-button",
-          onClick: goToNextCategoryPage,
-          disabled: categoryPage === totalCategoryPages,
-          children: "Next"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "admin-settings__section admin-settings__section--boxed",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "admin-settings__section-header",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
-          className: "admin-settings__section-title",
-          children: "Brands Management"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "admin-settings__header-actions",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
-            onClick: toggleBrandFilter,
-            className: "admin-settings__filter-button",
-            children: ["Showing: ", brandFilter === 'all' ? 'All' : brandFilter === 'active' ? 'Active' : 'Archived']
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            onClick: function onClick() {
-              return openModal('addBrand');
-            },
-            className: "admin-settings__add-button",
-            children: "+ Add Brand"
-          })]
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "admin-settings__table-container",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
-          className: "admin-settings__table",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                style: {
-                  width: '120px'
-                },
-                children: "Actions"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                children: "Name"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                style: {
-                  width: '120px'
-                },
-                children: "Status"
+                })
               })]
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
-            children: paginatedBrands.length > 0 ? paginatedBrands.map(function (brand) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("td", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                    className: "admin-settings__action-icon",
-                    onClick: function onClick() {
-                      return openModal('editBrand', brand.id, brand.name);
-                    }
-                  }), brand.status === 'active' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                    className: "admin-settings__action-icon",
-                    onClick: function onClick() {
-                      return handleArchiveBrand(brand.id);
-                    }
-                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                    className: "admin-settings__action-icon",
-                    onClick: function onClick() {
-                      return handleRestoreBrand(brand.id);
-                    }
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-                  children: brand.name
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                    className: "admin-settings__status admin-settings__status--".concat(brand.status),
-                    children: brand.status === 'active' ? 'Active' : 'Archived'
-                  })
-                })]
-              }, brand.id);
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-                colSpan: "3",
-                children: "No brands available"
-              })
-            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "settings__pagination",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+              className: "settings__pagination-button",
+              onClick: goToPreviousBrandPage,
+              disabled: brandPage === 1,
+              children: "Previous"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+              className: "settings__pagination-info",
+              children: ["Page ", brandPage, " of ", totalBrandPages, " | Showing ", Math.min((brandPage - 1) * itemsPerPage + 1, filteredBrands.length), "-", Math.min(brandPage * itemsPerPage, filteredBrands.length), " of ", filteredBrands.length]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+              className: "settings__pagination-button",
+              onClick: goToNextBrandPage,
+              disabled: brandPage === totalBrandPages,
+              children: "Next"
+            })]
           })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "admin-settings__pagination",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-          className: "admin-settings__pagination-button",
-          onClick: goToPreviousBrandPage,
-          disabled: brandPage === 1,
-          children: "Previous"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-          className: "admin-settings__pagination-info",
-          children: ["Page ", brandPage, " of ", totalBrandPages, " | Showing ", Math.min((brandPage - 1) * itemsPerPage + 1, filteredBrands.length), "-", Math.min(brandPage * itemsPerPage, filteredBrands.length), " of ", filteredBrands.length]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-          className: "admin-settings__pagination-button",
-          onClick: goToNextBrandPage,
-          disabled: brandPage === totalBrandPages,
-          children: "Next"
         })]
+      }), activeTab === 'attributes' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_AttributesManagement__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        token: token,
+        openModal: openModal,
+        handleModalSubmit: handleModalSubmit
+      }), activeTab === 'product-type' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ProductTypeManagement__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        token: token,
+        openModal: openModal,
+        handleModalSubmit: handleModalSubmit
+      }), activeTab === 'location' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_LocationManagement__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        token: token,
+        openModal: openModal,
+        handleModalSubmit: handleModalSubmit,
+        handleArchive: handleArchive,
+        handleRestore: handleRestore
       })]
-    }), modalState.isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "admin-settings__modal-overlay",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "admin-settings__modal",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-          className: "admin-settings__modal-close",
+    }), modalState.isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      className: "settings__modal-overlay",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "settings__modal",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          className: "settings__modal-close",
           onClick: closeModal,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_9__["default"], {
             size: 20
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h3", {
-          className: "admin-settings__modal-title",
-          children: [modalState.type === 'addCategory' && 'Add New Category', modalState.type === 'editCategory' && 'Edit Category', modalState.type === 'addBrand' && 'Add New Brand', modalState.type === 'editBrand' && 'Edit Brand']
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "admin-settings__form-group",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h3", {
+          className: "settings__modal-title",
+          children: [modalState.type === 'addCategory' && 'Add New Category', modalState.type === 'editCategory' && 'Edit Category', modalState.type === 'addBrand' && 'Add New Brand', modalState.type === 'editBrand' && 'Edit Brand', modalState.type === 'addColor' && 'Add New Color', modalState.type === 'editColor' && 'Edit Color', modalState.type === 'addSize' && 'Add New Size', modalState.type === 'editSize' && 'Edit Size', modalState.type === 'addProductType' && 'Add New Product Type', modalState.type === 'editProductType' && 'Edit Product Type', modalState.type === 'addCountry' && 'Add New Country', modalState.type === 'editCountry' && 'Edit Country']
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: "settings__form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
             htmlFor: "modal-name",
             children: "Name"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
             id: "modal-name",
             type: "text",
             value: modalState.name,
@@ -88609,21 +89633,23 @@ var AdminSettings = function AdminSettings() {
             },
             placeholder: "Enter name",
             disabled: modalState.isLoading,
-            className: modalState.error ? 'admin-settings__input--error' : ''
-          }), modalState.error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            className: "admin-settings__error",
+            className: modalState.error ? 'settings__input--error' : ''
+          }), modalState.error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+            className: "settings__error",
             children: modalState.error
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "admin-settings__modal-actions",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            className: "admin-settings__modal-button admin-settings__modal-button--cancel",
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: "settings__modal-actions",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+            className: "settings__modal-button settings__modal-button--cancel",
             onClick: closeModal,
             disabled: modalState.isLoading,
             children: "Cancel"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            className: "admin-settings__modal-button admin-settings__modal-button--submit",
-            onClick: handleModalSubmit,
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+            className: "settings__modal-button settings__modal-button--submit",
+            onClick: function onClick() {
+              return handleModalSubmit();
+            },
             disabled: modalState.isLoading,
             children: modalState.isLoading ? 'Saving...' : 'Save'
           })]
@@ -88662,6 +89688,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/headphones.js");
 /* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/chart-no-axes-column-increasing.js");
 /* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/settings.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/chevron-down.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/chevron-right.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/user-cog.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/sliders-horizontal.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -88680,6 +89710,10 @@ var AdminSidebar = function AdminSidebar(_ref) {
     _useState2 = _slicedToArray(_useState, 2),
     isMobile = _useState2[0],
     setIsMobile = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isSettingsOpen = _useState4[0],
+    setIsSettingsOpen = _useState4[1];
 
   // Update isMobile state on window resize
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -88692,7 +89726,12 @@ var AdminSidebar = function AdminSidebar(_ref) {
     };
   }, []);
 
-  // Only toggle sidebar on mobile
+  // Toggle settings dropdown
+  var toggleSettingsDropdown = function toggleSettingsDropdown() {
+    setIsSettingsOpen(!isSettingsOpen);
+  };
+
+  // Handle link click for mobile
   var handleLinkClick = function handleLinkClick() {
     if (isMobile) {
       toggleSidebar();
@@ -88719,7 +89758,7 @@ var AdminSidebar = function AdminSidebar(_ref) {
             onClick: handleLinkClick,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
               className: "admin-sidebar__icon",
-              size: 20
+              size: 16
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "admin-sidebar__label",
               children: "Dashboard"
@@ -88733,7 +89772,7 @@ var AdminSidebar = function AdminSidebar(_ref) {
             onClick: handleLinkClick,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
               className: "admin-sidebar__icon",
-              size: 20
+              size: 16
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "admin-sidebar__label",
               children: "Products"
@@ -88747,7 +89786,7 @@ var AdminSidebar = function AdminSidebar(_ref) {
             onClick: handleLinkClick,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
               className: "admin-sidebar__icon",
-              size: 20
+              size: 16
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "admin-sidebar__label",
               children: "Orders"
@@ -88761,7 +89800,7 @@ var AdminSidebar = function AdminSidebar(_ref) {
             onClick: handleLinkClick,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
               className: "admin-sidebar__icon",
-              size: 20
+              size: 16
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "admin-sidebar__label",
               children: "Inventory"
@@ -88775,7 +89814,7 @@ var AdminSidebar = function AdminSidebar(_ref) {
             onClick: handleLinkClick,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
               className: "admin-sidebar__icon",
-              size: 20
+              size: 16
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "admin-sidebar__label",
               children: "Customer"
@@ -88789,7 +89828,7 @@ var AdminSidebar = function AdminSidebar(_ref) {
             onClick: handleLinkClick,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
               className: "admin-sidebar__icon",
-              size: 20
+              size: 16
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "admin-sidebar__label",
               children: "Users"
@@ -88803,7 +89842,7 @@ var AdminSidebar = function AdminSidebar(_ref) {
             onClick: handleLinkClick,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_9__["default"], {
               className: "admin-sidebar__icon",
-              size: 20
+              size: 16
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "admin-sidebar__label",
               children: "Transaction"
@@ -88817,7 +89856,7 @@ var AdminSidebar = function AdminSidebar(_ref) {
             onClick: handleLinkClick,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_10__["default"], {
               className: "admin-sidebar__icon",
-              size: 20
+              size: 16
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "admin-sidebar__label",
               children: "Reviews"
@@ -88831,7 +89870,7 @@ var AdminSidebar = function AdminSidebar(_ref) {
             onClick: handleLinkClick,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_11__["default"], {
               className: "admin-sidebar__icon",
-              size: 20
+              size: 16
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "admin-sidebar__label",
               children: "Inbox"
@@ -88845,7 +89884,7 @@ var AdminSidebar = function AdminSidebar(_ref) {
             onClick: handleLinkClick,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_12__["default"], {
               className: "admin-sidebar__icon",
-              size: 20
+              size: 16
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "admin-sidebar__label",
               children: "Customer Support"
@@ -88859,7 +89898,7 @@ var AdminSidebar = function AdminSidebar(_ref) {
             onClick: handleLinkClick,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_13__["default"], {
               className: "admin-sidebar__icon",
-              size: 20
+              size: 16
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "admin-sidebar__label",
               children: "Reports"
@@ -88867,26 +89906,379 @@ var AdminSidebar = function AdminSidebar(_ref) {
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
           className: "admin-sidebar__separator"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
           className: "admin-sidebar__item",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-            to: "settings",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
             className: "admin-sidebar__link",
-            onClick: handleLinkClick,
+            onClick: toggleSettingsDropdown,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_14__["default"], {
               className: "admin-sidebar__icon",
-              size: 20
+              size: 16
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "admin-sidebar__label",
               children: "Settings"
+            }), isSettingsOpen ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_15__["default"], {
+              className: "admin-sidebar__dropdown-icon",
+              size: 16
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_16__["default"], {
+              className: "admin-sidebar__dropdown-icon",
+              size: 16
             })]
-          })
+          }), isSettingsOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+            className: "admin-sidebar__dropdown",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+              className: "admin-sidebar__dropdown-item",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+                to: "settings/account",
+                className: "admin-sidebar__link admin-sidebar__link--dropdown",
+                onClick: handleLinkClick,
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_17__["default"], {
+                  className: "admin-sidebar__icon",
+                  size: 14
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                  className: "admin-sidebar__label",
+                  children: "Account Settings"
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+              className: "admin-sidebar__dropdown-item",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+                to: "settings/admin",
+                className: "admin-sidebar__link admin-sidebar__link--dropdown",
+                onClick: handleLinkClick,
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_18__["default"], {
+                  className: "admin-sidebar__icon",
+                  size: 14
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                  className: "admin-sidebar__label",
+                  children: "Admin Settings"
+                })]
+              })
+            })]
+          })]
         })]
       })]
     })
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminSidebar);
+
+/***/ }),
+
+/***/ "./resources/js/components/AdminContent/AttributesManagement.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/AdminContent/AttributesManagement.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/pen.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+var AttributesManagement = function AttributesManagement(_ref) {
+  var token = _ref.token,
+    openModal = _ref.openModal,
+    handleModalSubmit = _ref.handleModalSubmit;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    colors = _useState2[0],
+    setColors = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    sizes = _useState4[0],
+    setSizes = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState6 = _slicedToArray(_useState5, 2),
+    colorPage = _useState6[0],
+    setColorPage = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState8 = _slicedToArray(_useState7, 2),
+    sizePage = _useState8[0],
+    setSizePage = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState10 = _slicedToArray(_useState9, 2),
+    successMessage = _useState10[0],
+    setSuccessMessage = _useState10[1];
+  var itemsPerPage = 5;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchColors();
+    fetchSizes();
+  }, []);
+  var fetchColors = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var res, mappedColors;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/colors', {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 3:
+            res = _context.sent;
+            mappedColors = res.data.sort(function (a, b) {
+              return new Date(b.created_at) - new Date(a.created_at);
+            });
+            setColors(mappedColors);
+            setColorPage(1);
+            _context.next = 13;
+            break;
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](0);
+            console.error('Failed to fetch colors:', _context.t0);
+            setSuccessMessage('Failed to load colors.');
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0, 9]]);
+    }));
+    return function fetchColors() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var fetchSizes = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var res, mappedSizes;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/sizes', {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 3:
+            res = _context2.sent;
+            mappedSizes = res.data.sort(function (a, b) {
+              return new Date(b.created_at) - new Date(a.created_at);
+            });
+            setSizes(mappedSizes);
+            setSizePage(1);
+            _context2.next = 13;
+            break;
+          case 9:
+            _context2.prev = 9;
+            _context2.t0 = _context2["catch"](0);
+            console.error('Failed to fetch sizes:', _context2.t0);
+            setSuccessMessage('Failed to load sizes.');
+          case 13:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[0, 9]]);
+    }));
+    return function fetchSizes() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  var totalColorPages = Math.ceil(colors.length / itemsPerPage);
+  var paginatedColors = colors.slice((colorPage - 1) * itemsPerPage, colorPage * itemsPerPage);
+  var totalSizePages = Math.ceil(sizes.length / itemsPerPage);
+  var paginatedSizes = sizes.slice((sizePage - 1) * itemsPerPage, sizePage * itemsPerPage);
+  var goToPreviousColorPage = function goToPreviousColorPage() {
+    if (colorPage > 1) {
+      setColorPage(function (prev) {
+        return prev - 1;
+      });
+    }
+  };
+  var goToNextColorPage = function goToNextColorPage() {
+    if (colorPage < totalColorPages) {
+      setColorPage(function (prev) {
+        return prev + 1;
+      });
+    }
+  };
+  var goToPreviousSizePage = function goToPreviousSizePage() {
+    if (sizePage > 1) {
+      setSizePage(function (prev) {
+        return prev - 1;
+      });
+    }
+  };
+  var goToNextSizePage = function goToNextSizePage() {
+    if (sizePage < totalSizePages) {
+      setSizePage(function (prev) {
+        return prev + 1;
+      });
+    }
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: [successMessage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "settings__message ".concat(successMessage.includes('Failed') ? 'settings__error' : 'settings__success'),
+      children: successMessage
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "settings__section settings__section--boxed",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "settings__section-header",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+          children: "Color Management"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "settings__header-actions",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            onClick: function onClick() {
+              return openModal('addColor');
+            },
+            className: "settings__add-button",
+            children: "+ Add Color"
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "settings__table-container",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
+          className: "settings__table",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                style: {
+                  width: '120px'
+                },
+                children: "Actions"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: "Name"
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
+            children: paginatedColors.length > 0 ? paginatedColors.map(function (color) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                    className: "settings__action-icon",
+                    onClick: function onClick() {
+                      return openModal('editColor', color.id, color.color_name);
+                    }
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: color.color_name
+                })]
+              }, color.id);
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                colSpan: "2",
+                children: "No colors available"
+              })
+            })
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "settings__pagination",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "settings__pagination-button",
+          onClick: goToPreviousColorPage,
+          disabled: colorPage === 1,
+          children: "Previous"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
+          className: "settings__pagination-info",
+          children: ["Page ", colorPage, " of ", totalColorPages, " | Showing ", Math.min((colorPage - 1) * itemsPerPage + 1, colors.length), "-", Math.min(colorPage * itemsPerPage, colors.length), " of ", colors.length]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "settings__pagination-button",
+          onClick: goToNextColorPage,
+          disabled: colorPage === totalColorPages,
+          children: "Next"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "settings__section settings__section--boxed",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "settings__section-header",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+          children: "Size Management"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "settings__header-actions",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            onClick: function onClick() {
+              return openModal('addSize');
+            },
+            className: "settings__add-button",
+            children: "+ Add Size"
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "settings__table-container",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
+          className: "settings__table",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                style: {
+                  width: '120px'
+                },
+                children: "Actions"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: "Name"
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
+            children: paginatedSizes.length > 0 ? paginatedSizes.map(function (size) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                    className: "settings__action-icon",
+                    onClick: function onClick() {
+                      return openModal('editSize', size.id, size.size_name);
+                    }
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: size.size_name
+                })]
+              }, size.id);
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                colSpan: "2",
+                children: "No sizes available"
+              })
+            })
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "settings__pagination",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "settings__pagination-button",
+          onClick: goToPreviousSizePage,
+          disabled: sizePage === 1,
+          children: "Previous"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
+          className: "settings__pagination-info",
+          children: ["Page ", sizePage, " of ", totalSizePages, " | Showing ", Math.min((sizePage - 1) * itemsPerPage + 1, sizes.length), "-", Math.min(sizePage * itemsPerPage, sizes.length), " of ", sizes.length]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "settings__pagination-button",
+          onClick: goToNextSizePage,
+          disabled: sizePage === totalSizePages,
+          children: "Next"
+        })]
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AttributesManagement);
 
 /***/ }),
 
@@ -90935,10 +92327,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/upload.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/upload.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _SuccessUpload__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SuccessUpload */ "./resources/js/components/AdminContent/SuccessUpload.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -90962,6 +92355,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+
 var EditModal = function EditModal(_ref) {
   var isOpen = _ref.isOpen,
     onClose = _ref.onClose,
@@ -90972,11 +92366,11 @@ var EditModal = function EditModal(_ref) {
       product_name: '',
       category_id: '',
       brand_id: '',
-      product_type: '',
-      colors: '',
+      product_type_id: '',
+      colors: [],
       price: '',
       status: 'available',
-      sizes: '',
+      sizes: [],
       description: '',
       image_1: null,
       image_2: null
@@ -90999,36 +92393,51 @@ var EditModal = function EditModal(_ref) {
     _useState8 = _slicedToArray(_useState7, 2),
     brandOptions = _useState8[0],
     setBrandOptions = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState10 = _slicedToArray(_useState9, 2),
-    errors = _useState10[0],
-    setErrors = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    sizeOptions = _useState10[0],
+    setSizeOptions = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState12 = _slicedToArray(_useState11, 2),
-    colorError = _useState12[0],
-    setColorError = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    colorOptions = _useState12[0],
+    setColorOptions = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState14 = _slicedToArray(_useState13, 2),
-    loading = _useState14[0],
-    setLoading = _useState14[1];
-
-  // Predefined color options (same as ProductModal)
-  var colorOptions = ['Red', 'Blue', 'Green', 'Black', 'White', 'Yellow'];
-
-  // Fetch product data and options when modal opens
-  var fetchData = /*#__PURE__*/function () {
+    productTypeOptions = _useState14[0],
+    setProductTypeOptions = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState16 = _slicedToArray(_useState15, 2),
+    errors = _useState16[0],
+    setErrors = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    colorError = _useState18[0],
+    setColorError = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState20 = _slicedToArray(_useState19, 2),
+    sizeError = _useState20[0],
+    setSizeError = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState22 = _slicedToArray(_useState21, 2),
+    loading = _useState22[0],
+    setLoading = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState24 = _slicedToArray(_useState23, 2),
+    successMessage = _useState24[0],
+    setSuccessMessage = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState26 = _slicedToArray(_useState25, 2),
+    isSuccessVisible = _useState26[0],
+    setIsSuccessVisible = _useState26[1];
+  var fetchOptions = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var _yield$Promise$all, _yield$Promise$all2, productRes, categoriesRes, brandsRes, product, activeCategories, activeBrands;
+      var _yield$Promise$all, _yield$Promise$all2, categoriesRes, brandsRes, sizesRes, colorsRes, productTypesRes, activeCategories, activeBrands, activeSizes, activeColors, activeProductTypes;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return Promise.all([axios__WEBPACK_IMPORTED_MODULE_1___default().get("http://localhost:8000/api/products/".concat(productId), {
-              headers: {
-                Authorization: "Bearer ".concat(token)
-              }
-            }), axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://localhost:8000/api/categories', {
+            return Promise.all([axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://localhost:8000/api/categories', {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
@@ -91036,65 +92445,128 @@ var EditModal = function EditModal(_ref) {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
+            }), axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://localhost:8000/api/sizes', {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            }), axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://localhost:8000/api/colors', {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            }), axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://localhost:8000/api/product-types', {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
             })]);
           case 3:
             _yield$Promise$all = _context.sent;
-            _yield$Promise$all2 = _slicedToArray(_yield$Promise$all, 3);
-            productRes = _yield$Promise$all2[0];
-            categoriesRes = _yield$Promise$all2[1];
-            brandsRes = _yield$Promise$all2[2];
-            product = productRes.data;
-            setFormData({
-              product_name: product.product_name || '',
-              category_id: product.category_id || '',
-              brand_id: product.brand_id || '',
-              product_type: product.product_type || '',
-              colors: Array.isArray(product.colors) ? product.colors.join(',') : product.colors || '',
-              price: product.price || '',
-              status: product.status || 'available',
-              sizes: Array.isArray(product.sizes) ? product.sizes.join(',') : product.sizes || '',
-              description: product.description || '',
-              image_1: null,
-              // File input starts empty
-              image_2: null // File input starts empty
-            });
-            setImagePreviews({
-              image_1: product.image_1 ? "http://localhost:8000/storage/".concat(product.image_1) : null,
-              image_2: product.image_2 ? "http://localhost:8000/storage/".concat(product.image_2) : null
-            });
-
-            // Filter out archived categories and brands
+            _yield$Promise$all2 = _slicedToArray(_yield$Promise$all, 5);
+            categoriesRes = _yield$Promise$all2[0];
+            brandsRes = _yield$Promise$all2[1];
+            sizesRes = _yield$Promise$all2[2];
+            colorsRes = _yield$Promise$all2[3];
+            productTypesRes = _yield$Promise$all2[4];
             activeCategories = categoriesRes.data.filter(function (category) {
               return !category.archived_at;
             });
             activeBrands = brandsRes.data.filter(function (brand) {
               return !brand.archived_at;
             });
-            setCategoryOptions(activeCategories); // Set only active categories
-            setBrandOptions(activeBrands); // Set only active brands
-            _context.next = 20;
+            activeSizes = sizesRes.data.filter(function (size) {
+              return !size.archived_at;
+            });
+            activeColors = colorsRes.data.filter(function (color) {
+              return !color.archived_at;
+            });
+            activeProductTypes = productTypesRes.data.filter(function (type) {
+              return !type.archived_at;
+            });
+            setCategoryOptions(activeCategories);
+            setBrandOptions(activeBrands);
+            setSizeOptions(activeSizes);
+            setColorOptions(activeColors);
+            setProductTypeOptions(activeProductTypes);
+            _context.next = 26;
             break;
-          case 17:
-            _context.prev = 17;
+          case 22:
+            _context.prev = 22;
             _context.t0 = _context["catch"](0);
-            console.error('Error fetching data:', _context.t0);
-          case 20:
+            console.error('Error fetching options:', _context.t0);
+            setErrors({
+              fetch: ['Failed to load options']
+            });
+          case 26:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 17]]);
+      }, _callee, null, [[0, 22]]);
     }));
-    return function fetchData() {
+    return function fetchOptions() {
       return _ref2.apply(this, arguments);
+    };
+  }();
+  var fetchProduct = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var res, product;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("http://localhost:8000/api/products/".concat(productId), {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 3:
+            res = _context2.sent;
+            product = res.data;
+            setFormData({
+              product_name: product.product_name || '',
+              category_id: product.category_id || '',
+              brand_id: product.brand_id || '',
+              product_type_id: product.product_type_id || '',
+              colors: product.colors ? product.colors.map(function (color) {
+                return String(color.id);
+              }) : [],
+              price: product.price || '',
+              status: product.status || 'available',
+              sizes: product.sizes ? product.sizes.map(function (size) {
+                return String(size.id);
+              }) : [],
+              description: product.description || '',
+              image_1: null,
+              image_2: null
+            });
+            setImagePreviews({
+              image_1: product.image_1 ? "http://localhost:8000/storage/".concat(product.image_1) : null,
+              image_2: product.image_2 ? "http://localhost:8000/storage/".concat(product.image_2) : null
+            });
+            _context2.next = 13;
+            break;
+          case 9:
+            _context2.prev = 9;
+            _context2.t0 = _context2["catch"](0);
+            console.error('Error fetching product:', _context2.t0);
+            setErrors({
+              fetch: ['Failed to load product']
+            });
+          case 13:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[0, 9]]);
+    }));
+    return function fetchProduct() {
+      return _ref3.apply(this, arguments);
     };
   }();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (isOpen && productId) {
-      fetchData();
+      fetchOptions();
+      fetchProduct();
     }
-  }, [isOpen, productId]);
-
-  // Reset form when modal closes
+  }, [isOpen, productId, token]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!isOpen) {
       setImagePreviews({
@@ -91105,17 +92577,19 @@ var EditModal = function EditModal(_ref) {
         product_name: '',
         category_id: '',
         brand_id: '',
-        product_type: '',
-        colors: '',
+        product_type_id: '',
+        colors: [],
         price: '',
         status: 'available',
-        sizes: '',
+        sizes: [],
         description: '',
         image_1: null,
         image_2: null
       });
       setErrors({});
       setColorError(false);
+      setSizeError(false);
+      setIsSuccessVisible(false);
     }
   }, [isOpen]);
   var handleInputChange = function handleInputChange(e) {
@@ -91133,15 +92607,18 @@ var EditModal = function EditModal(_ref) {
     var _e$target2 = e.target,
       value = _e$target2.value,
       checked = _e$target2.checked;
-    var currentValues = formData[field].split(',').filter(Boolean);
+    var currentValues = formData[field];
     var updatedValues = checked ? [].concat(_toConsumableArray(currentValues), [value]) : currentValues.filter(function (item) {
       return item !== value;
     });
     setFormData(function (prev) {
-      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, field, updatedValues.join(',')));
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, field, updatedValues));
     });
     if (field === 'colors') {
       setColorError(updatedValues.length === 0);
+    }
+    if (field === 'sizes') {
+      setSizeError(updatedValues.length === 0);
     }
   };
   var handleFileChange = function handleFileChange(e, field) {
@@ -91159,328 +92636,364 @@ var EditModal = function EditModal(_ref) {
       });
     }
   };
+  var showSuccess = function showSuccess(message) {
+    setSuccessMessage(message);
+    setIsSuccessVisible(true);
+  };
+
+  // Check if the form is valid
+  var isFormValid = function isFormValid() {
+    return formData.product_name && formData.category_id && formData.brand_id && formData.product_type_id && formData.colors.length > 0 && formData.sizes.length > 0 && formData.price > 0 && formData.description && !colorError && !sizeError;
+  };
   var handleSubmit = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(e) {
       var newErrors, payload, response, _error$response, _error$response2;
-      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-        while (1) switch (_context2.prev = _context2.next) {
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
           case 0:
             e.preventDefault();
-
-            // Validate required fields
             newErrors = {};
             if (!formData.product_name) newErrors.product_name = ['Product name is required'];
             if (!formData.category_id) newErrors.category_id = ['Category is required'];
             if (!formData.brand_id) newErrors.brand_id = ['Brand is required'];
-            if (!formData.product_type) newErrors.product_type = ['Product type is required'];
-            if (!formData.colors) newErrors.colors = ['At least one color is required'];
+            if (!formData.product_type_id) newErrors.product_type_id = ['Product type is required'];
+            if (formData.colors.length === 0) newErrors.colors = ['At least one color is required'];
             if (!formData.price || formData.price <= 0) newErrors.price = ['Price must be a positive number'];
             if (!formData.description) newErrors.description = ['Description is required'];
-            if (!formData.sizes) newErrors.sizes = ['At least one size is required'];
+            if (formData.sizes.length === 0) newErrors.sizes = ['At least one size is required'];
             if (!(Object.keys(newErrors).length > 0)) {
-              _context2.next = 14;
+              _context3.next = 15;
               break;
             }
             setErrors(newErrors);
-            setColorError(!formData.colors);
-            return _context2.abrupt("return");
-          case 14:
+            setColorError(formData.colors.length === 0);
+            setSizeError(formData.sizes.length === 0);
+            return _context3.abrupt("return");
+          case 15:
             payload = new FormData();
             payload.append('product_name', formData.product_name);
             payload.append('category_id', parseInt(formData.category_id));
             payload.append('brand_id', parseInt(formData.brand_id));
-            payload.append('product_type', formData.product_type);
-            payload.append('colors', formData.colors);
-            payload.append('sizes', formData.sizes);
+            payload.append('product_type_id', parseInt(formData.product_type_id));
+
+            // Updated to match the backend expected format for sizes and colors
+            formData.sizes.forEach(function (sizeId) {
+              return payload.append('size_ids[]', sizeId);
+            });
+            formData.colors.forEach(function (colorId) {
+              return payload.append('color_ids[]', colorId);
+            });
             payload.append('price', parseFloat(formData.price));
             payload.append('status', formData.status);
             payload.append('description', formData.description);
             if (formData.image_1) payload.append('image_1', formData.image_1);
             if (formData.image_2) payload.append('image_2', formData.image_2);
-            payload.append('_method', 'PUT'); // Laravel requires this for PUT requests in FormData
-
+            payload.append('_method', 'PUT');
             setLoading(true);
-            _context2.prev = 28;
-            _context2.next = 31;
+            _context3.prev = 29;
+            _context3.next = 32;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("http://localhost:8000/api/products/".concat(productId), payload, {
               headers: {
                 Authorization: "Bearer ".concat(token),
                 'Content-Type': 'multipart/form-data'
               }
             });
-          case 31:
-            response = _context2.sent;
+          case 32:
+            response = _context3.sent;
             console.log('Product updated:', response.data);
-            onClose();
-            if (onProductUpdated) onProductUpdated(); // Trigger table refresh
-            _context2.next = 41;
+            showSuccess('Product Updated Successfully!');
+            setTimeout(function () {
+              onClose();
+              if (onProductUpdated) onProductUpdated();
+            }, 1000);
+            _context3.next = 42;
             break;
-          case 37:
-            _context2.prev = 37;
-            _context2.t0 = _context2["catch"](28);
-            console.error('Error updating product:', ((_error$response = _context2.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context2.t0.message);
-            if (((_error$response2 = _context2.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.status) === 422) {
-              setErrors(_context2.t0.response.data.errors || {});
+          case 38:
+            _context3.prev = 38;
+            _context3.t0 = _context3["catch"](29);
+            console.error('Error submitting form:', ((_error$response = _context3.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context3.t0.message);
+            if (((_error$response2 = _context3.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.status) === 422) {
+              setErrors(_context3.t0.response.data.errors || {});
             }
-          case 41:
-            _context2.prev = 41;
+          case 42:
+            _context3.prev = 42;
             setLoading(false);
-            return _context2.finish(41);
-          case 44:
+            return _context3.finish(42);
+          case 45:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
-      }, _callee2, null, [[28, 37, 41, 44]]);
+      }, _callee3, null, [[29, 38, 42, 45]]);
     }));
     return function handleSubmit(_x) {
-      return _ref3.apply(this, arguments);
+      return _ref4.apply(this, arguments);
     };
   }();
-  if (!isOpen) return null;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "edit-modal__overlay",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "edit-modal",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "edit-modal__header",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
-          children: "Edit Product"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-          className: "edit-modal__close-button",
-          onClick: onClose,
-          children: "\xD7"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
-        className: "edit-modal__form",
-        onSubmit: handleSubmit,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "edit-modal__image-upload",
-          children: ['image_1', 'image_2'].map(function (field) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "edit-modal__image-field",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                children: field === 'image_1' ? 'MAIN IMAGE' : 'HOVER IMAGE'
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "edit-modal__upload-placeholder",
-                children: [imagePreviews[field] ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-                  src: imagePreviews[field],
-                  alt: "Preview",
-                  className: "edit-modal__image-preview"
-                }) : formData[field] ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  children: formData[field].name
-                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                    size: 24
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                    children: "Upload image"
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                  type: "file",
-                  accept: "image/*",
-                  onChange: function onChange(e) {
-                    return handleFileChange(e, field);
-                  },
-                  className: "edit-modal__file-input"
-                })]
-              }), errors[field] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-                className: "edit-modal__error",
-                children: errors[field][0]
-              })]
-            }, field);
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "edit-modal__field",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-            children: "PRODUCT NAME"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "text",
-            name: "product_name",
-            value: formData.product_name,
-            onChange: handleInputChange,
-            required: true
-          }), errors.product_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            className: "edit-modal__error",
-            children: errors.product_name[0]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "edit-modal__field-row",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "edit-modal__field",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-              children: "CATEGORY"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
-              name: "category_id",
-              value: formData.category_id,
-              onChange: handleInputChange,
-              required: true,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                value: "",
-                children: "Select Category"
-              }), categoryOptions.map(function (c) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                  value: c.id,
-                  children: c.name
-                }, c.id);
-              })]
-            }), errors.category_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-              className: "edit-modal__error",
-              children: errors.category_id[0]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "edit-modal__field",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-              children: "BRAND"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
-              name: "brand_id",
-              value: formData.brand_id,
-              onChange: handleInputChange,
-              required: true,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                value: "",
-                children: "Select Brand"
-              }), brandOptions.map(function (b) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                  value: b.id,
-                  children: b.name
-                }, b.id);
-              })]
-            }), errors.brand_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-              className: "edit-modal__error",
-              children: errors.brand_id[0]
-            })]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "edit-modal__field",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-            children: "PRODUCT TYPE"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
-            name: "product_type",
-            value: formData.product_type,
-            onChange: handleInputChange,
-            required: true,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-              value: "",
-              children: "Select Type"
-            }), ['TOPS', 'BOTTOMS', 'JACKET', 'SWIMWEAR'].map(function (type) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                value: type,
-                children: type
-              }, type);
-            })]
-          }), errors.product_type && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            className: "edit-modal__error",
-            children: errors.product_type[0]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "edit-modal__field",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-            children: "COLORS"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-            className: "edit-modal__checkbox-group",
-            children: colorOptions.map(function (color) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-                className: "edit-modal__checkbox-label",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                  type: "checkbox",
-                  value: color,
-                  checked: formData.colors.split(',').includes(color),
-                  onChange: function onChange(e) {
-                    return handleCheckboxChange(e, 'colors');
-                  }
-                }), color]
-              }, color);
-            })
-          }), colorError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            className: "edit-modal__error",
-            children: "Please select at least one color."
-          }), errors.colors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            className: "edit-modal__error",
-            children: errors.colors[0]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "edit-modal__field",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-            children: "PRICE"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "number",
-            name: "price",
-            value: formData.price,
-            onChange: handleInputChange,
-            required: true
-          }), errors.price && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            className: "edit-modal__error",
-            children: errors.price[0]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "edit-modal__field",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-            children: "STATUS"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
-            name: "status",
-            value: formData.status,
-            onChange: handleInputChange,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-              value: "available",
-              children: "Available"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-              value: "archived",
-              children: "Archived"
-            })]
-          }), errors.status && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            className: "edit-modal__error",
-            children: errors.status[0]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "edit-modal__field",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-            children: "SIZES"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-            className: "edit-modal__checkbox-group",
-            children: ['XS', 'S', 'M', 'L', 'XL', 'XXL'].map(function (size) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-                className: "edit-modal__checkbox-label",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                  type: "checkbox",
-                  value: size,
-                  checked: formData.sizes.split(',').includes(size),
-                  onChange: function onChange(e) {
-                    return handleCheckboxChange(e, 'sizes');
-                  }
-                }), size]
-              }, size);
-            })
-          }), errors.sizes && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            className: "edit-modal__error",
-            children: errors.sizes[0]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "edit-modal__field",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-            children: "DESCRIPTION"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
-            name: "description",
-            value: formData.description,
-            onChange: handleInputChange
-          }), errors.description && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            className: "edit-modal__error",
-            children: errors.description[0]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "edit-modal__actions",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            type: "button",
-            className: "edit-modal__button edit-modal__button--secondary",
+  if (!isOpen && !isSuccessVisible) return null;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "product-modal__overlay",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "product-modal",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "product-modal__header",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+            children: "Edit Product"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+            className: "product-modal__close-button",
             onClick: onClose,
-            children: "Cancel"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            type: "submit",
-            className: "edit-modal__button edit-modal__button--primary",
-            disabled: loading,
-            children: loading ? 'Updating Product...' : 'Update Product'
+            children: "\xD7"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+          className: "product-modal__form",
+          onSubmit: handleSubmit,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "product-modal__image-upload",
+            children: ['image_1', 'image_2'].map(function (field) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "product-modal__image-field",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                  children: field === 'image_1' ? 'MAIN IMAGE' : 'HOVER IMAGE'
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "product-modal__upload-placeholder",
+                  children: [imagePreviews[field] ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                    src: imagePreviews[field],
+                    alt: "Preview",
+                    className: "product-modal__image-preview"
+                  }) : formData[field] ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                    children: formData[field].name
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                      size: 24
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                      children: "Upload image"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    type: "file",
+                    accept: "image/*",
+                    onChange: function onChange(e) {
+                      return handleFileChange(e, field);
+                    },
+                    className: "product-modal__file-input"
+                  })]
+                }), errors[field] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+                  className: "product-modal__error",
+                  children: errors[field][0]
+                })]
+              }, field);
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "product-modal__field",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              children: "PRODUCT NAME"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              type: "text",
+              name: "product_name",
+              value: formData.product_name,
+              onChange: handleInputChange,
+              required: true
+            }), errors.product_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: errors.product_name[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "product-modal__field-row",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "product-modal__field",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                children: "CATEGORY"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+                name: "category_id",
+                value: formData.category_id,
+                onChange: handleInputChange,
+                required: true,
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                  value: "",
+                  children: "Select Category"
+                }), categoryOptions.map(function (c) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                    value: c.id,
+                    children: c.name
+                  }, c.id);
+                })]
+              }), errors.category_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+                className: "product-modal__error",
+                children: errors.category_id[0]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "product-modal__field",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                children: "BRAND"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+                name: "brand_id",
+                value: formData.brand_id,
+                onChange: handleInputChange,
+                required: true,
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                  value: "",
+                  children: "Select Brand"
+                }), brandOptions.map(function (b) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                    value: b.id,
+                    children: b.name
+                  }, b.id);
+                })]
+              }), errors.brand_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+                className: "product-modal__error",
+                children: errors.brand_id[0]
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "product-modal__field",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              children: "PRODUCT TYPE"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+              name: "product_type_id",
+              value: formData.product_type_id,
+              onChange: handleInputChange,
+              required: true,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                value: "",
+                children: "Select Type"
+              }), productTypeOptions.map(function (type) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                  value: type.id,
+                  children: type.type_name
+                }, type.id);
+              })]
+            }), errors.product_type_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: errors.product_type_id[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "product-modal__field",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              children: "COLORS"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "product-modal__checkbox-group",
+              children: colorOptions.map(function (color) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+                  className: "product-modal__checkbox-label",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    type: "checkbox",
+                    value: color.id,
+                    checked: formData.colors.includes(String(color.id)),
+                    onChange: function onChange(e) {
+                      return handleCheckboxChange(e, 'colors');
+                    }
+                  }), color.color_name]
+                }, color.id);
+              })
+            }), colorError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: "Please select at least one color."
+            }), errors.colors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: errors.colors[0]
+            }), errors.color_ids && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: errors.color_ids[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "product-modal__field",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              children: "SIZES"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "product-modal__checkbox-group",
+              children: sizeOptions.map(function (size) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+                  className: "product-modal__checkbox-label",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    type: "checkbox",
+                    value: size.id,
+                    checked: formData.sizes.includes(String(size.id)),
+                    onChange: function onChange(e) {
+                      return handleCheckboxChange(e, 'sizes');
+                    }
+                  }), size.size_name]
+                }, size.id);
+              })
+            }), sizeError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: "Please select at least one size."
+            }), errors.sizes && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: errors.sizes[0]
+            }), errors.size_ids && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: errors.size_ids[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "product-modal__field",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              children: "PRICE"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              type: "number",
+              name: "price",
+              value: formData.price,
+              onChange: handleInputChange,
+              required: true,
+              min: "0",
+              step: "0.01"
+            }), errors.price && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: errors.price[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "product-modal__field",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              children: "STATUS"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+              name: "status",
+              value: formData.status,
+              onChange: handleInputChange,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                value: "available",
+                children: "Available"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                value: "archived",
+                children: "Archived"
+              })]
+            }), errors.status && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: errors.status[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "product-modal__field",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              children: "DESCRIPTION"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("textarea", {
+              name: "description",
+              value: formData.description,
+              onChange: handleInputChange,
+              required: true
+            }), errors.description && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: errors.description[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "product-modal__actions",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              type: "button",
+              className: "product-modal__button product-modal__button--secondary",
+              onClick: onClose,
+              children: "Cancel"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              type: "submit",
+              className: "product-modal__button product-modal__button--primary",
+              disabled: loading || !isFormValid(),
+              children: loading ? 'Updating Product...' : 'Update Product'
+            })]
           })]
         })]
-      })]
-    })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SuccessUpload__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      message: successMessage,
+      isVisible: isSuccessVisible,
+      onClose: function onClose() {
+        return setIsSuccessVisible(false);
+      }
+    })]
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditModal);
@@ -93034,6 +94547,244 @@ var Inventory = function Inventory(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/components/AdminContent/LocationManagement.js":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/AdminContent/LocationManagement.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/pen.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/archive.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/rotate-ccw.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+var LocationManagement = function LocationManagement(_ref) {
+  var token = _ref.token,
+    openModal = _ref.openModal,
+    handleModalSubmit = _ref.handleModalSubmit,
+    handleArchive = _ref.handleArchive,
+    handleRestore = _ref.handleRestore;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    countries = _useState2[0],
+    setCountries = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('all'),
+    _useState4 = _slicedToArray(_useState3, 2),
+    countryFilter = _useState4[0],
+    setCountryFilter = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState6 = _slicedToArray(_useState5, 2),
+    countryPage = _useState6[0],
+    setCountryPage = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState8 = _slicedToArray(_useState7, 2),
+    successMessage = _useState8[0],
+    setSuccessMessage = _useState8[1];
+  var itemsPerPage = 5;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchCountries();
+  }, []);
+  var fetchCountries = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var res, mappedCountries;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/countries', {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 3:
+            res = _context.sent;
+            mappedCountries = res.data.map(function (country) {
+              return _objectSpread(_objectSpread({}, country), {}, {
+                status: country.archived_at ? 'archived' : 'active'
+              });
+            }).sort(function (a, b) {
+              return new Date(b.created_at) - new Date(a.created_at);
+            });
+            setCountries(mappedCountries);
+            setCountryPage(1);
+            _context.next = 13;
+            break;
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](0);
+            console.error('Failed to fetch countries:', _context.t0);
+            setSuccessMessage('Failed to load countries.');
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0, 9]]);
+    }));
+    return function fetchCountries() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var toggleCountryFilter = function toggleCountryFilter() {
+    setCountryFilter(function (prev) {
+      if (prev === 'all') return 'active';
+      if (prev === 'active') return 'archived';
+      return 'all';
+    });
+    setCountryPage(1);
+  };
+  var filteredCountries = countries.filter(function (country) {
+    if (countryFilter === 'all') return true;
+    return country.status === countryFilter;
+  });
+  var totalCountryPages = Math.ceil(filteredCountries.length / itemsPerPage);
+  var paginatedCountries = filteredCountries.slice((countryPage - 1) * itemsPerPage, countryPage * itemsPerPage);
+  var goToPreviousCountryPage = function goToPreviousCountryPage() {
+    if (countryPage > 1) {
+      setCountryPage(function (prev) {
+        return prev - 1;
+      });
+    }
+  };
+  var goToNextCountryPage = function goToNextCountryPage() {
+    if (countryPage < totalCountryPages) {
+      setCountryPage(function (prev) {
+        return prev + 1;
+      });
+    }
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: [successMessage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "settings__message ".concat(successMessage.includes('Failed') ? 'settings__error' : 'settings__success'),
+      children: successMessage
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "settings__section settings__section--boxed",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "settings__section-header",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+          children: "Country Management"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "settings__header-actions",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
+            onClick: toggleCountryFilter,
+            className: "settings__filter-button",
+            children: ["Showing: ", countryFilter === 'all' ? 'All' : countryFilter === 'active' ? 'Active' : 'Archived']
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            onClick: function onClick() {
+              return openModal('addCountry');
+            },
+            className: "settings__add-button",
+            children: "+ Add Country"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "settings__table-container",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
+          className: "settings__table",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                style: {
+                  width: '120px'
+                },
+                children: "Actions"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: "Name"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                style: {
+                  width: '120px'
+                },
+                children: "Status"
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
+            children: paginatedCountries.length > 0 ? paginatedCountries.map(function (country) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("td", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                    className: "settings__action-icon",
+                    onClick: function onClick() {
+                      return openModal('editCountry', country.id, country.name);
+                    }
+                  }), country.status === 'active' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                    className: "settings__action-icon",
+                    onClick: function onClick() {
+                      return handleArchive('country', country.id, fetchCountries);
+                    }
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                    className: "settings__action-icon",
+                    onClick: function onClick() {
+                      return handleRestore('country', country.id, fetchCountries);
+                    }
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: country.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                    className: "settings__status settings__status--".concat(country.status),
+                    children: country.status === 'active' ? 'Active' : 'Archived'
+                  })
+                })]
+              }, country.id);
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                colSpan: "3",
+                children: "No countries available"
+              })
+            })
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "settings__pagination",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "settings__pagination-button",
+          onClick: goToPreviousCountryPage,
+          disabled: countryPage === 1,
+          children: "Previous"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
+          className: "settings__pagination-info",
+          children: ["Page ", countryPage, " of ", totalCountryPages, " | Showing ", Math.min((countryPage - 1) * itemsPerPage + 1, filteredCountries.length), "-", Math.min(countryPage * itemsPerPage, filteredCountries.length), " of ", filteredCountries.length]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "settings__pagination-button",
+          onClick: goToNextCountryPage,
+          disabled: countryPage === totalCountryPages,
+          children: "Next"
+        })]
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LocationManagement);
+
+/***/ }),
+
 /***/ "./resources/js/components/AdminContent/Orders.js":
 /*!********************************************************!*\
   !*** ./resources/js/components/AdminContent/Orders.js ***!
@@ -93436,7 +95187,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SuccessUpload__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SuccessUpload */ "./resources/js/components/AdminContent/SuccessUpload.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
@@ -93469,11 +95219,11 @@ var ProductModal = function ProductModal(_ref) {
       product_name: '',
       category_id: '',
       brand_id: '',
-      product_type: '',
-      colors: '',
+      product_type_id: '',
+      colors: [],
       price: '',
       status: 'available',
-      sizes: '',
+      sizes: [],
       description: '',
       image_1: null,
       image_2: null
@@ -93496,63 +95246,113 @@ var ProductModal = function ProductModal(_ref) {
     _useState8 = _slicedToArray(_useState7, 2),
     brandOptions = _useState8[0],
     setBrandOptions = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState10 = _slicedToArray(_useState9, 2),
-    errors = _useState10[0],
-    setErrors = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    sizeOptions = _useState10[0],
+    setSizeOptions = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState12 = _slicedToArray(_useState11, 2),
-    colorError = _useState12[0],
-    setColorError = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    colorOptions = _useState12[0],
+    setColorOptions = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState14 = _slicedToArray(_useState13, 2),
-    loading = _useState14[0],
-    setLoading = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    productTypeOptions = _useState14[0],
+    setProductTypeOptions = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState16 = _slicedToArray(_useState15, 2),
-    successMessage = _useState16[0],
-    setSuccessMessage = _useState16[1];
+    errors = _useState16[0],
+    setErrors = _useState16[1];
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState18 = _slicedToArray(_useState17, 2),
-    isSuccessVisible = _useState18[0],
-    setIsSuccessVisible = _useState18[1];
-
-  // Predefined color options (similar to sizes)
-  var colorOptions = ['Red', 'Blue', 'Green', 'Black', 'White', 'Yellow'];
+    colorError = _useState18[0],
+    setColorError = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState20 = _slicedToArray(_useState19, 2),
+    sizeError = _useState20[0],
+    setSizeError = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState22 = _slicedToArray(_useState21, 2),
+    loading = _useState22[0],
+    setLoading = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState24 = _slicedToArray(_useState23, 2),
+    successMessage = _useState24[0],
+    setSuccessMessage = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState26 = _slicedToArray(_useState25, 2),
+    isSuccessVisible = _useState26[0],
+    setIsSuccessVisible = _useState26[1];
   var fetchOptions = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var _yield$Promise$all, _yield$Promise$all2, categoriesRes, brandsRes, activeCategories, activeBrands;
+      var _yield$Promise$all, _yield$Promise$all2, categoriesRes, brandsRes, sizesRes, colorsRes, productTypesRes, activeCategories, activeBrands, activeSizes, activeColors, activeProductTypes;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return Promise.all([axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://localhost:8000/api/categories'), axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://localhost:8000/api/brands')]);
+            return Promise.all([axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://localhost:8000/api/categories', {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            }), axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://localhost:8000/api/brands', {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            }), axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://localhost:8000/api/sizes', {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            }), axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://localhost:8000/api/colors', {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            }), axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://localhost:8000/api/product-types', {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            })]);
           case 3:
             _yield$Promise$all = _context.sent;
-            _yield$Promise$all2 = _slicedToArray(_yield$Promise$all, 2);
+            _yield$Promise$all2 = _slicedToArray(_yield$Promise$all, 5);
             categoriesRes = _yield$Promise$all2[0];
             brandsRes = _yield$Promise$all2[1];
-            // Filter out archived categories and brands
+            sizesRes = _yield$Promise$all2[2];
+            colorsRes = _yield$Promise$all2[3];
+            productTypesRes = _yield$Promise$all2[4];
             activeCategories = categoriesRes.data.filter(function (category) {
               return !category.archived_at;
             });
             activeBrands = brandsRes.data.filter(function (brand) {
               return !brand.archived_at;
             });
-            setCategoryOptions(activeCategories); // Set only active categories
-            setBrandOptions(activeBrands); // Set only active brands
-            _context.next = 16;
+            activeSizes = sizesRes.data.filter(function (size) {
+              return !size.archived_at;
+            });
+            activeColors = colorsRes.data.filter(function (color) {
+              return !color.archived_at;
+            });
+            activeProductTypes = productTypesRes.data.filter(function (type) {
+              return !type.archived_at;
+            });
+            setCategoryOptions(activeCategories);
+            setBrandOptions(activeBrands);
+            setSizeOptions(activeSizes);
+            setColorOptions(activeColors);
+            setProductTypeOptions(activeProductTypes);
+            _context.next = 26;
             break;
-          case 13:
-            _context.prev = 13;
+          case 22:
+            _context.prev = 22;
             _context.t0 = _context["catch"](0);
             console.error('Error fetching options:', _context.t0);
-          case 16:
+            setErrors({
+              fetch: ['Failed to load options']
+            });
+          case 26:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 13]]);
+      }, _callee, null, [[0, 22]]);
     }));
     return function fetchOptions() {
       return _ref2.apply(this, arguments);
@@ -93560,7 +95360,7 @@ var ProductModal = function ProductModal(_ref) {
   }();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (isOpen) fetchOptions();
-  }, [isOpen]);
+  }, [isOpen, token]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!isOpen) {
       setImagePreviews({
@@ -93571,18 +95371,19 @@ var ProductModal = function ProductModal(_ref) {
         product_name: '',
         category_id: '',
         brand_id: '',
-        product_type: '',
-        colors: '',
+        product_type_id: '',
+        colors: [],
         price: '',
         status: 'available',
-        sizes: '',
+        sizes: [],
         description: '',
         image_1: null,
         image_2: null
       });
       setErrors({});
       setColorError(false);
-      setIsSuccessVisible(false); // Reset success pop-up visibility
+      setSizeError(false);
+      setIsSuccessVisible(false);
     }
   }, [isOpen]);
   var handleInputChange = function handleInputChange(e) {
@@ -93600,15 +95401,18 @@ var ProductModal = function ProductModal(_ref) {
     var _e$target2 = e.target,
       value = _e$target2.value,
       checked = _e$target2.checked;
-    var currentValues = formData[field].split(',').filter(Boolean);
+    var currentValues = formData[field];
     var updatedValues = checked ? [].concat(_toConsumableArray(currentValues), [value]) : currentValues.filter(function (item) {
       return item !== value;
     });
     setFormData(function (prev) {
-      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, field, updatedValues.join(',')));
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, field, updatedValues));
     });
     if (field === 'colors') {
       setColorError(updatedValues.length === 0);
+    }
+    if (field === 'sizes') {
+      setSizeError(updatedValues.length === 0);
     }
   };
   var handleFileChange = function handleFileChange(e, field) {
@@ -93630,9 +95434,14 @@ var ProductModal = function ProductModal(_ref) {
     setSuccessMessage(message);
     setIsSuccessVisible(true);
   };
+
+  // Check if the form is valid
+  var isFormValid = function isFormValid() {
+    return formData.product_name && formData.category_id && formData.brand_id && formData.product_type_id && formData.colors.length > 0 && formData.sizes.length > 0 && formData.price > 0 && formData.description && !colorError && !sizeError;
+  };
   var handleSubmit = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
-      var newErrors, payload, _iterator, _step, _step$value, key, value, response, _error$response, _error$response2;
+      var newErrors, payload, response, _error$response, _error$response2;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -93643,82 +95452,73 @@ var ProductModal = function ProductModal(_ref) {
             if (!formData.product_name) newErrors.product_name = ['Product name is required'];
             if (!formData.category_id) newErrors.category_id = ['Category is required'];
             if (!formData.brand_id) newErrors.brand_id = ['Brand is required'];
-            if (!formData.product_type) newErrors.product_type = ['Product type is required'];
-            if (!formData.colors) newErrors.colors = ['At least one color is required'];
+            if (!formData.product_type_id) newErrors.product_type_id = ['Product type is required'];
+            if (formData.colors.length === 0) newErrors.colors = ['At least one color is required'];
+            if (formData.sizes.length === 0) newErrors.sizes = ['At least one size is required'];
             if (!formData.price || formData.price <= 0) newErrors.price = ['Price must be a positive number'];
             if (!formData.description) newErrors.description = ['Description is required'];
-            if (!formData.sizes) newErrors.sizes = ['At least one size is required'];
             if (!(Object.keys(newErrors).length > 0)) {
               _context2.next = 15;
               break;
             }
             setErrors(newErrors);
-            setColorError(!formData.colors);
-            console.log('Validation errors:', newErrors);
+            setColorError(formData.colors.length === 0);
+            setSizeError(formData.sizes.length === 0);
             return _context2.abrupt("return");
           case 15:
             payload = new FormData();
             payload.append('product_name', formData.product_name);
             payload.append('category_id', parseInt(formData.category_id));
             payload.append('brand_id', parseInt(formData.brand_id));
-            payload.append('product_type', formData.product_type);
-            payload.append('colors', formData.colors);
-            payload.append('sizes', formData.sizes);
+            payload.append('product_type_id', parseInt(formData.product_type_id));
+
+            // Fix: Changed to match the backend expected format for sizes and colors
+            formData.sizes.forEach(function (sizeId) {
+              return payload.append('size_ids[]', sizeId);
+            });
+            formData.colors.forEach(function (colorId) {
+              return payload.append('color_ids[]', colorId);
+            });
             payload.append('price', parseFloat(formData.price));
             payload.append('status', formData.status);
             payload.append('description', formData.description);
             if (formData.image_1) payload.append('image_1', formData.image_1);
             if (formData.image_2) payload.append('image_2', formData.image_2);
-
-            // Log FormData for debugging
-            _iterator = _createForOfIteratorHelper(payload.entries());
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                _step$value = _slicedToArray(_step.value, 2), key = _step$value[0], value = _step$value[1];
-                console.log(key, value);
-              }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
             setLoading(true);
-            _context2.prev = 30;
-            _context2.next = 33;
+            _context2.prev = 28;
+            _context2.next = 31;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post('http://localhost:8000/api/products', payload, {
               headers: {
                 Authorization: "Bearer ".concat(token),
                 'Content-Type': 'multipart/form-data'
               }
             });
-          case 33:
+          case 31:
             response = _context2.sent;
             console.log('Product added:', response.data);
             showSuccess('Product Added Successfully!');
             setTimeout(function () {
               onClose();
-              if (onProductAdded) onProductAdded(); // Trigger parent refresh
-            }, 1000); // Delay closing to ensure pop-up is visible
-            _context2.next = 44;
+              if (onProductAdded) onProductAdded();
+            }, 1000);
+            _context2.next = 41;
             break;
-          case 39:
-            _context2.prev = 39;
-            _context2.t0 = _context2["catch"](30);
+          case 37:
+            _context2.prev = 37;
+            _context2.t0 = _context2["catch"](28);
             console.error('Error submitting form:', ((_error$response = _context2.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context2.t0.message);
-            console.log('Full error:', _context2.t0.response);
             if (((_error$response2 = _context2.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.status) === 422) {
               setErrors(_context2.t0.response.data.errors || {});
-              console.log('Validation errors from server:', _context2.t0.response.data.errors);
             }
-          case 44:
-            _context2.prev = 44;
+          case 41:
+            _context2.prev = 41;
             setLoading(false);
-            return _context2.finish(44);
-          case 47:
+            return _context2.finish(41);
+          case 44:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[30, 39, 44, 47]]);
+      }, _callee2, null, [[28, 37, 41, 44]]);
     }));
     return function handleSubmit(_x) {
       return _ref3.apply(this, arguments);
@@ -93843,22 +95643,22 @@ var ProductModal = function ProductModal(_ref) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
               children: "PRODUCT TYPE"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
-              name: "product_type",
-              value: formData.product_type,
+              name: "product_type_id",
+              value: formData.product_type_id,
               onChange: handleInputChange,
               required: true,
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
                 value: "",
                 children: "Select Type"
-              }), ['TOPS', 'BOTTOMS', 'JACKET', 'SWIMWEAR'].map(function (type) {
+              }), productTypeOptions.map(function (type) {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                  value: type,
-                  children: type
-                }, type);
+                  value: type.id,
+                  children: type.type_name
+                }, type.id);
               })]
-            }), errors.product_type && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+            }), errors.product_type_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
               className: "product-modal__error",
-              children: errors.product_type[0]
+              children: errors.product_type_id[0]
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "product-modal__field",
@@ -93871,13 +95671,13 @@ var ProductModal = function ProductModal(_ref) {
                   className: "product-modal__checkbox-label",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                     type: "checkbox",
-                    value: color,
-                    checked: formData.colors.split(',').includes(color),
+                    value: color.id,
+                    checked: formData.colors.includes(String(color.id)),
                     onChange: function onChange(e) {
                       return handleCheckboxChange(e, 'colors');
                     }
-                  }), color]
-                }, color);
+                  }), color.color_name]
+                }, color.id);
               })
             }), colorError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
               className: "product-modal__error",
@@ -93885,6 +95685,38 @@ var ProductModal = function ProductModal(_ref) {
             }), errors.colors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
               className: "product-modal__error",
               children: errors.colors[0]
+            }), errors.color_ids && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: errors.color_ids[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "product-modal__field",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              children: "SIZES"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "product-modal__checkbox-group",
+              children: sizeOptions.map(function (size) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+                  className: "product-modal__checkbox-label",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    type: "checkbox",
+                    value: size.id,
+                    checked: formData.sizes.includes(String(size.id)),
+                    onChange: function onChange(e) {
+                      return handleCheckboxChange(e, 'sizes');
+                    }
+                  }), size.size_name]
+                }, size.id);
+              })
+            }), sizeError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: "Please select at least one size."
+            }), errors.sizes && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: errors.sizes[0]
+            }), errors.size_ids && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "product-modal__error",
+              children: errors.size_ids[0]
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "product-modal__field",
@@ -93895,7 +95727,9 @@ var ProductModal = function ProductModal(_ref) {
               name: "price",
               value: formData.price,
               onChange: handleInputChange,
-              required: true
+              required: true,
+              min: "0",
+              step: "0.01"
             }), errors.price && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
               className: "product-modal__error",
               children: errors.price[0]
@@ -93922,34 +95756,12 @@ var ProductModal = function ProductModal(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "product-modal__field",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-              children: "SIZES"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-              className: "product-modal__checkbox-group",
-              children: ['XS', 'S', 'M', 'L', 'XL', 'XXL'].map(function (size) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                  className: "product-modal__checkbox-label",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                    type: "checkbox",
-                    value: size,
-                    checked: formData.sizes.split(',').includes(size),
-                    onChange: function onChange(e) {
-                      return handleCheckboxChange(e, 'sizes');
-                    }
-                  }), size]
-                }, size);
-              })
-            }), errors.sizes && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-              className: "product-modal__error",
-              children: errors.sizes[0]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "product-modal__field",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
               children: "DESCRIPTION"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("textarea", {
               name: "description",
               value: formData.description,
-              onChange: handleInputChange
+              onChange: handleInputChange,
+              required: true
             }), errors.description && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
               className: "product-modal__error",
               children: errors.description[0]
@@ -93964,7 +95776,7 @@ var ProductModal = function ProductModal(_ref) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
               type: "submit",
               className: "product-modal__button product-modal__button--primary",
-              disabled: loading,
+              disabled: loading || !isFormValid(),
               children: loading ? 'Adding Product...' : 'Add Product'
             })]
           })]
@@ -93980,6 +95792,191 @@ var ProductModal = function ProductModal(_ref) {
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductModal);
+
+/***/ }),
+
+/***/ "./resources/js/components/AdminContent/ProductTypeManagement.js":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/AdminContent/ProductTypeManagement.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/pen.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+var ProductTypeManagement = function ProductTypeManagement(_ref) {
+  var token = _ref.token,
+    openModal = _ref.openModal,
+    handleModalSubmit = _ref.handleModalSubmit;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    productTypes = _useState2[0],
+    setProductTypes = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState4 = _slicedToArray(_useState3, 2),
+    productTypePage = _useState4[0],
+    setProductTypePage = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState6 = _slicedToArray(_useState5, 2),
+    successMessage = _useState6[0],
+    setSuccessMessage = _useState6[1];
+  var itemsPerPage = 5;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchProductTypes();
+  }, []);
+  var fetchProductTypes = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var res, mappedProductTypes;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/product-types', {
+              headers: {
+                Authorization: "Bearer ".concat(token)
+              }
+            });
+          case 3:
+            res = _context.sent;
+            mappedProductTypes = res.data.sort(function (a, b) {
+              return new Date(b.created_at) - new Date(a.created_at);
+            });
+            setProductTypes(mappedProductTypes);
+            setProductTypePage(1);
+            _context.next = 13;
+            break;
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](0);
+            console.error('Failed to fetch product types:', _context.t0);
+            setSuccessMessage('Failed to load product types.');
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0, 9]]);
+    }));
+    return function fetchProductTypes() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var totalProductTypePages = Math.ceil(productTypes.length / itemsPerPage);
+  var paginatedProductTypes = productTypes.slice((productTypePage - 1) * itemsPerPage, productTypePage * itemsPerPage);
+  var goToPreviousProductTypePage = function goToPreviousProductTypePage() {
+    if (productTypePage > 1) {
+      setProductTypePage(function (prev) {
+        return prev - 1;
+      });
+    }
+  };
+  var goToNextProductTypePage = function goToNextProductTypePage() {
+    if (productTypePage < totalProductTypePages) {
+      setProductTypePage(function (prev) {
+        return prev + 1;
+      });
+    }
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: [successMessage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "settings__message ".concat(successMessage.includes('Failed') ? 'settings__error' : 'settings__success'),
+      children: successMessage
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "settings__section settings__section--boxed",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "settings__section-header",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+          children: "Product Type Management"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "settings__header-actions",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            onClick: function onClick() {
+              return openModal('addProductType');
+            },
+            className: "settings__add-button",
+            children: "+ Add Product Type"
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "settings__table-container",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
+          className: "settings__table",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                style: {
+                  width: '120px'
+                },
+                children: "Actions"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: "Name"
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
+            children: paginatedProductTypes.length > 0 ? paginatedProductTypes.map(function (type) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                    className: "settings__action-icon",
+                    onClick: function onClick() {
+                      return openModal('editProductType', type.id, type.type_name);
+                    }
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: type.type_name
+                })]
+              }, type.id);
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                colSpan: "2",
+                children: "No product types available"
+              })
+            })
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "settings__pagination",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "settings__pagination-button",
+          onClick: goToPreviousProductTypePage,
+          disabled: productTypePage === 1,
+          children: "Previous"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
+          className: "settings__pagination-info",
+          children: ["Page ", productTypePage, " of ", totalProductTypePages, " | Showing ", Math.min((productTypePage - 1) * itemsPerPage + 1, productTypes.length), "-", Math.min(productTypePage * itemsPerPage, productTypes.length), " of ", productTypes.length]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "settings__pagination-button",
+          onClick: goToNextProductTypePage,
+          disabled: productTypePage === totalProductTypePages,
+          children: "Next"
+        })]
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductTypeManagement);
 
 /***/ }),
 
@@ -94076,8 +96073,9 @@ var Products = function Products(_ref) {
     setSuccessMessage = _useState22[1];
   var productsPerPage = 10;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log('useEffect triggered with showArchived:', showArchived);
     fetchProducts();
-  }, [showArchived]);
+  }, [showArchived, token]);
   var fetchProducts = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var res, _filteredProducts, _err$response, _err$response2;
@@ -94085,32 +96083,34 @@ var Products = function Products(_ref) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _context.next = 3;
+            console.log('Fetching products, showArchived:', showArchived);
+            _context.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://localhost:8000/api/products', {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
             });
-          case 3:
+          case 4:
             res = _context.sent;
-            console.log('Products:', res.data);
+            console.log('API response products:', res.data);
             _filteredProducts = showArchived ? res.data.filter(function (product) {
               return product.status === 'archived';
-            }) : res.data;
+            }) : res.data; // Show all products when showArchived is false
+            console.log('Filtered products count:', _filteredProducts.length);
             setProducts(_filteredProducts);
             setErrorMessage('');
-            _context.next = 14;
+            _context.next = 16;
             break;
-          case 10:
-            _context.prev = 10;
+          case 12:
+            _context.prev = 12;
             _context.t0 = _context["catch"](0);
             console.error('Failed to fetch products:', ((_err$response = _context.t0.response) === null || _err$response === void 0 ? void 0 : _err$response.data) || _context.t0.message);
             setErrorMessage("Failed to fetch products: ".concat(((_err$response2 = _context.t0.response) === null || _err$response2 === void 0 || (_err$response2 = _err$response2.data) === null || _err$response2 === void 0 ? void 0 : _err$response2.message) || _context.t0.message));
-          case 14:
+          case 16:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 10]]);
+      }, _callee, null, [[0, 12]]);
     }));
     return function fetchProducts() {
       return _ref2.apply(this, arguments);
@@ -94123,27 +96123,28 @@ var Products = function Products(_ref) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
+            console.log("Attempting to ".concat(action, " product ").concat(productId));
             if (!(action === 'restore')) {
-              _context2.next = 8;
+              _context2.next = 9;
               break;
             }
-            _context2.next = 4;
+            _context2.next = 5;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().patch("http://localhost:8000/api/products/".concat(productId, "/restore"), {}, {
               headers: {
                 Authorization: "Bearer ".concat(token)
               }
             });
-          case 4:
+          case 5:
             res = _context2.sent;
             console.log('Restore response:', res.data);
-            _context2.next = 13;
+            _context2.next = 14;
             break;
-          case 8:
+          case 9:
             if (!(action === 'archive')) {
-              _context2.next = 13;
+              _context2.next = 14;
               break;
             }
-            _context2.next = 11;
+            _context2.next = 12;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().patch("http://localhost:8000/api/products/".concat(productId, "/archive"), {
               status: 'archived'
             }, {
@@ -94151,25 +96152,25 @@ var Products = function Products(_ref) {
                 Authorization: "Bearer ".concat(token)
               }
             });
-          case 11:
+          case 12:
             _res = _context2.sent;
             console.log('Archive response:', _res.data);
-          case 13:
+          case 14:
             setSuccessMessage("Product ".concat(action, "d successfully!"));
             setIsSuccessVisible(true);
             fetchProducts();
-            _context2.next = 22;
+            _context2.next = 23;
             break;
-          case 18:
-            _context2.prev = 18;
+          case 19:
+            _context2.prev = 19;
             _context2.t0 = _context2["catch"](0);
             console.error("Failed to ".concat(action, " product:"), ((_err$response3 = _context2.t0.response) === null || _err$response3 === void 0 ? void 0 : _err$response3.data) || _context2.t0.message);
             setErrorMessage("Failed to ".concat(action, " product: ").concat(((_err$response4 = _context2.t0.response) === null || _err$response4 === void 0 || (_err$response4 = _err$response4.data) === null || _err$response4 === void 0 ? void 0 : _err$response4.message) || _context2.t0.message));
-          case 22:
+          case 23:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 18]]);
+      }, _callee2, null, [[0, 19]]);
     }));
     return function handleAction(_x, _x2, _x3) {
       return _ref3.apply(this, arguments);
@@ -94180,8 +96181,8 @@ var Products = function Products(_ref) {
     setIsEditModalOpen(true);
   };
   var filteredProducts = products.filter(function (product) {
-    var _product$category, _product$brand;
-    return product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) || ((_product$category = product.category) === null || _product$category === void 0 || (_product$category = _product$category.name) === null || _product$category === void 0 ? void 0 : _product$category.toLowerCase().includes(searchTerm.toLowerCase())) || '' || product.product_type.toLowerCase().includes(searchTerm.toLowerCase()) || ((_product$brand = product.brand) === null || _product$brand === void 0 || (_product$brand = _product$brand.name) === null || _product$brand === void 0 ? void 0 : _product$brand.toLowerCase().includes(searchTerm.toLowerCase())) || '';
+    var _product$category, _product$product_type, _product$brand;
+    return product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) || ((_product$category = product.category) === null || _product$category === void 0 || (_product$category = _product$category.name) === null || _product$category === void 0 ? void 0 : _product$category.toLowerCase().includes(searchTerm.toLowerCase())) || '' || ((_product$product_type = product.product_type) === null || _product$product_type === void 0 || (_product$product_type = _product$product_type.type_name) === null || _product$product_type === void 0 ? void 0 : _product$product_type.toLowerCase().includes(searchTerm.toLowerCase())) || '' || ((_product$brand = product.brand) === null || _product$brand === void 0 || (_product$brand = _product$brand.name) === null || _product$brand === void 0 ? void 0 : _product$brand.toLowerCase().includes(searchTerm.toLowerCase())) || '';
   });
   var totalProducts = filteredProducts.length;
   var totalPages = Math.ceil(totalProducts / productsPerPage);
@@ -94197,6 +96198,13 @@ var Products = function Products(_ref) {
         return id !== productId;
       }) : [].concat(_toConsumableArray(prev), [productId]);
     });
+  };
+  var toggleShowArchived = function toggleShowArchived() {
+    setShowArchived(function (prev) {
+      console.log('Toggling showArchived from', prev, 'to', !prev);
+      return !prev;
+    });
+    setCurrentPage(1); // Reset to first page when toggling
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "products",
@@ -94230,9 +96238,7 @@ var Products = function Products(_ref) {
           className: "products__actions",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
             className: "products__button products__button--secondary",
-            onClick: function onClick() {
-              return setShowArchived(!showArchived);
-            },
+            onClick: toggleShowArchived,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
               size: 16,
               className: "products__button-icon"
@@ -94310,6 +96316,9 @@ var Products = function Products(_ref) {
                 children: "Sizes"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
                 scope: "col",
+                children: "Colors"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                scope: "col",
                 children: "Price"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
                 scope: "col",
@@ -94318,7 +96327,7 @@ var Products = function Products(_ref) {
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tbody", {
             children: currentProducts.length > 0 ? currentProducts.map(function (product) {
-              var _product$category2, _product$brand2;
+              var _product$category2, _product$brand2, _product$product_type2;
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
@@ -94341,9 +96350,14 @@ var Products = function Products(_ref) {
                       return handleAction(product.id, product.status, product.status === 'archived' ? 'restore' : 'archive');
                     },
                     children: product.status === 'archived' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_10__["default"], {
-                      size: 16
+                      size: 16,
+                      style: {
+                        color: '#4CAF50'
+                      },
+                      title: "Restore product"
                     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                      size: 16
+                      size: 16,
+                      title: "Archive product"
                     })
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
@@ -94362,9 +96376,15 @@ var Products = function Products(_ref) {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
                   children: ((_product$brand2 = product.brand) === null || _product$brand2 === void 0 ? void 0 : _product$brand2.name) || 'N/A'
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
-                  children: product.product_type
+                  children: ((_product$product_type2 = product.product_type) === null || _product$product_type2 === void 0 ? void 0 : _product$product_type2.type_name) || 'N/A'
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
-                  children: Array.isArray(product.sizes) ? product.sizes.join(', ') : product.sizes || 'N/A'
+                  children: Array.isArray(product.sizes) ? product.sizes.map(function (size) {
+                    return size.size_name;
+                  }).join(', ') : 'N/A'
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: Array.isArray(product.colors) ? product.colors.map(function (color) {
+                    return color.color_name;
+                  }).join(', ') : 'N/A'
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("td", {
                   children: ["$", parseFloat(product.price).toLocaleString('en-US', {
                     minimumFractionDigits: 2
@@ -94378,7 +96398,7 @@ var Products = function Products(_ref) {
               }, product.id);
             }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tr", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
-                colSpan: "10",
+                colSpan: "11",
                 children: "No products available"
               })
             })
@@ -94931,880 +96951,6 @@ var Reviews = function Reviews() {
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Reviews);
-
-/***/ }),
-
-/***/ "./resources/js/components/AdminContent/Settings.js":
-/*!**********************************************************!*\
-  !*** ./resources/js/components/AdminContent/Settings.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/upload.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/chevron-down.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/calendar.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/eye-off.js");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/eye.js");
-/* harmony import */ var _AdminSettings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AdminSettings */ "./resources/js/components/AdminContent/AdminSettings.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
-function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
-function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
-function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-
-
-
-
-
-var Settings = function Settings() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('account'),
-    _useState2 = _slicedToArray(_useState, 2),
-    activeTab = _useState2[0],
-    setActiveTab = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState4 = _slicedToArray(_useState3, 2),
-    showCurrentPassword = _useState4[0],
-    setShowCurrentPassword = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState6 = _slicedToArray(_useState5, 2),
-    showNewPassword = _useState6[0],
-    setShowNewPassword = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState8 = _slicedToArray(_useState7, 2),
-    showConfirmPassword = _useState8[0],
-    setShowConfirmPassword = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState10 = _slicedToArray(_useState9, 2),
-    showCalendar = _useState10[0],
-    setShowCalendar = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState12 = _slicedToArray(_useState11, 2),
-    isEditing = _useState12[0],
-    setIsEditing = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-      first_name: '',
-      middle_name: '',
-      last_name: '',
-      suffix: '',
-      email: '',
-      role: '',
-      gender: '',
-      date_of_birth: '',
-      profile_image: null
-    }),
-    _useState14 = _slicedToArray(_useState13, 2),
-    profile = _useState14[0],
-    setProfile = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-      current_password: '',
-      new_password: '',
-      confirm_password: ''
-    }),
-    _useState16 = _slicedToArray(_useState15, 2),
-    password = _useState16[0],
-    setPassword = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('/imgs/profile.svg'),
-    _useState18 = _slicedToArray(_useState17, 2),
-    imagePreview = _useState18[0],
-    setImagePreview = _useState18[1];
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
-    _useState20 = _slicedToArray(_useState19, 2),
-    errors = _useState20[0],
-    setErrors = _useState20[1];
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
-    _useState22 = _slicedToArray(_useState21, 2),
-    successMessage = _useState22[0],
-    setSuccessMessage = _useState22[1];
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
-    _useState24 = _slicedToArray(_useState23, 2),
-    isLoading = _useState24[0],
-    setIsLoading = _useState24[1];
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState26 = _slicedToArray(_useState25, 2),
-    isSavingProfile = _useState26[0],
-    setIsSavingProfile = _useState26[1];
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState28 = _slicedToArray(_useState27, 2),
-    isSavingPassword = _useState28[0],
-    setIsSavingPassword = _useState28[1];
-  var BASE_IMAGE_URL = "http://127.0.0.1:8000/storage";
-
-  // Fetch profile information
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var fetchProfile = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var token, response, profileData, userData, fetchedProfile, _error$response;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
-            case 0:
-              setIsLoading(true);
-              _context.prev = 1;
-              token = localStorage.getItem('token');
-              console.log('Fetching profile with token:', token);
-              if (token) {
-                _context.next = 6;
-                break;
-              }
-              throw new Error('No authentication token found. Please log in.');
-            case 6:
-              _context.next = 8;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/profile', {
-                headers: {
-                  Accept: 'application/json',
-                  Authorization: "Bearer ".concat(token)
-                }
-              });
-            case 8:
-              response = _context.sent;
-              console.log('Profile response:', response.data);
-              profileData = response.data.profile || response.data;
-              userData = response.data.user || response.data;
-              fetchedProfile = {
-                first_name: profileData.first_name || '',
-                middle_name: profileData.middle_name || '',
-                last_name: profileData.last_name || '',
-                suffix: profileData.suffix || '',
-                email: userData.email || '',
-                role: userData.role || profileData.role || '',
-                gender: profileData.gender || '',
-                date_of_birth: profileData.date_of_birth || '',
-                profile_image: null
-              };
-              setProfile(fetchedProfile);
-              setImagePreview(profileData.profile_pic ? "".concat(BASE_IMAGE_URL, "/").concat(profileData.profile_pic) : '/imgs/profile.svg');
-              _context.next = 21;
-              break;
-            case 17:
-              _context.prev = 17;
-              _context.t0 = _context["catch"](1);
-              console.error('Failed to fetch profile:', ((_error$response = _context.t0.response) === null || _error$response === void 0 ? void 0 : _error$response.data) || _context.t0.message);
-              setErrors({
-                general: _context.t0.message || 'Failed to load profile information. Please try again later.'
-              });
-            case 21:
-              _context.prev = 21;
-              setIsLoading(false);
-              return _context.finish(21);
-            case 24:
-            case "end":
-              return _context.stop();
-          }
-        }, _callee, null, [[1, 17, 21, 24]]);
-      }));
-      return function fetchProfile() {
-        return _ref.apply(this, arguments);
-      };
-    }();
-    fetchProfile();
-  }, []);
-  var toggleCurrentPassword = function toggleCurrentPassword() {
-    return setShowCurrentPassword(!showCurrentPassword);
-  };
-  var toggleNewPassword = function toggleNewPassword() {
-    return setShowNewPassword(!showNewPassword);
-  };
-  var toggleConfirmPassword = function toggleConfirmPassword() {
-    return setShowConfirmPassword(!showConfirmPassword);
-  };
-  var toggleCalendar = function toggleCalendar() {
-    return setShowCalendar(!showCalendar);
-  };
-  var handleDateSelect = function handleDateSelect(date) {
-    var formattedDate = "".concat((date.getMonth() + 1).toString().padStart(2, '0'), "/").concat(date.getDate().toString().padStart(2, '0'), "/").concat(date.getFullYear());
-    setProfile(_objectSpread(_objectSpread({}, profile), {}, {
-      date_of_birth: formattedDate
-    }));
-    setShowCalendar(false);
-  };
-  var handleProfileChange = function handleProfileChange(e) {
-    var _e$target = e.target,
-      name = _e$target.name,
-      value = _e$target.value;
-    setProfile(_objectSpread(_objectSpread({}, profile), {}, _defineProperty({}, name, value)));
-    setErrors(function (prev) {
-      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, null));
-    });
-  };
-  var handlePasswordChange = function handlePasswordChange(e) {
-    var _e$target2 = e.target,
-      name = _e$target2.name,
-      value = _e$target2.value;
-    setPassword(_objectSpread(_objectSpread({}, password), {}, _defineProperty({}, name, value)));
-  };
-  var handlePhotoUpload = function handlePhotoUpload(e) {
-    var file = e.target.files[0];
-    if (!file) return;
-
-    // Validate file type and size
-    var validTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'];
-    var maxSize = 2 * 1024 * 1024; // 2MB
-    if (!validTypes.includes(file.type) || file.size > maxSize) {
-      setErrors({
-        general: 'Please select a valid image file (PNG, JPG, JPEG, GIF) under 2MB.'
-      });
-      return;
-    }
-    setProfile(_objectSpread(_objectSpread({}, profile), {}, {
-      profile_image: file
-    }));
-
-    // Set image preview immediately
-    var reader = new FileReader();
-    reader.onload = function () {
-      return setImagePreview(reader.result);
-    };
-    reader.readAsDataURL(file);
-  };
-  var handleEditProfile = function handleEditProfile(e) {
-    e.preventDefault();
-    setIsEditing(true);
-    setErrors({});
-    setSuccessMessage('');
-  };
-  var handleCancelEdit = function handleCancelEdit(e) {
-    e.preventDefault();
-    setIsEditing(false);
-  };
-  var handleUpdateProfile = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
-      var formData, _response$data$profil, _response$data$profil2, _response$data$profil3, _response$data$profil4, _response$data$user, _response$data$user2, _response$data$profil5, _response$data$profil6, _response$data$profil7, _response$data$profil8, token, response, _error$response2, _error$response3;
-      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-        while (1) switch (_context2.prev = _context2.next) {
-          case 0:
-            e.preventDefault();
-            setIsSavingProfile(true);
-            setErrors({});
-            setSuccessMessage('');
-            formData = new FormData();
-            formData.append('first_name', profile.first_name);
-            formData.append('middle_name', profile.middle_name);
-            formData.append('last_name', profile.last_name);
-            formData.append('suffix', profile.suffix);
-            formData.append('email', profile.email);
-            formData.append('role', profile.role);
-            formData.append('gender', profile.gender);
-            formData.append('date_of_birth', profile.date_of_birth);
-            if (profile.profile_image) {
-              formData.append('profile_image', profile.profile_image);
-            }
-            formData.append('_method', 'PUT');
-            _context2.prev = 15;
-            token = localStorage.getItem('token');
-            if (token) {
-              _context2.next = 19;
-              break;
-            }
-            throw new Error('No authentication token found. Please log in.');
-          case 19:
-            console.log('Updating profile with data:', Object.fromEntries(formData));
-            _context2.next = 22;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('http://127.0.0.1:8000/api/update-profile', formData, {
-              headers: {
-                Authorization: "Bearer ".concat(token),
-                Accept: 'application/json'
-              }
-            });
-          case 22:
-            response = _context2.sent;
-            console.log('Update profile response:', response.data);
-            setSuccessMessage(response.data.message || 'Profile updated successfully');
-            setProfile(_objectSpread(_objectSpread({}, profile), {}, {
-              first_name: ((_response$data$profil = response.data.profile) === null || _response$data$profil === void 0 ? void 0 : _response$data$profil.first_name) || profile.first_name,
-              middle_name: ((_response$data$profil2 = response.data.profile) === null || _response$data$profil2 === void 0 ? void 0 : _response$data$profil2.middle_name) || profile.middle_name,
-              last_name: ((_response$data$profil3 = response.data.profile) === null || _response$data$profil3 === void 0 ? void 0 : _response$data$profil3.last_name) || profile.last_name,
-              suffix: ((_response$data$profil4 = response.data.profile) === null || _response$data$profil4 === void 0 ? void 0 : _response$data$profil4.suffix) || profile.suffix,
-              email: ((_response$data$user = response.data.user) === null || _response$data$user === void 0 ? void 0 : _response$data$user.email) || profile.email,
-              role: ((_response$data$user2 = response.data.user) === null || _response$data$user2 === void 0 ? void 0 : _response$data$user2.role) || ((_response$data$profil5 = response.data.profile) === null || _response$data$profil5 === void 0 ? void 0 : _response$data$profil5.role) || profile.role,
-              gender: ((_response$data$profil6 = response.data.profile) === null || _response$data$profil6 === void 0 ? void 0 : _response$data$profil6.gender) || profile.gender,
-              date_of_birth: ((_response$data$profil7 = response.data.profile) === null || _response$data$profil7 === void 0 ? void 0 : _response$data$profil7.date_of_birth) || profile.date_of_birth,
-              profile_image: null
-            }));
-            setImagePreview((_response$data$profil8 = response.data.profile) !== null && _response$data$profil8 !== void 0 && _response$data$profil8.profile_pic ? "".concat(BASE_IMAGE_URL, "/").concat(response.data.profile.profile_pic, "?t=").concat(Date.now()) : '/imgs/profile.svg');
-            setIsEditing(false);
-            _context2.next = 34;
-            break;
-          case 30:
-            _context2.prev = 30;
-            _context2.t0 = _context2["catch"](15);
-            console.error('Failed to update profile:', ((_error$response2 = _context2.t0.response) === null || _error$response2 === void 0 ? void 0 : _error$response2.data) || _context2.t0.message);
-            if (_context2.t0.response && _context2.t0.response.data.errors) {
-              setErrors(_context2.t0.response.data.errors);
-            } else {
-              setErrors({
-                general: ((_error$response3 = _context2.t0.response) === null || _error$response3 === void 0 ? void 0 : _error$response3.data.message) || 'Failed to update profile'
-              });
-            }
-          case 34:
-            _context2.prev = 34;
-            setIsSavingProfile(false);
-            return _context2.finish(34);
-          case 37:
-          case "end":
-            return _context2.stop();
-        }
-      }, _callee2, null, [[15, 30, 34, 37]]);
-    }));
-    return function handleUpdateProfile(_x) {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-  var handleChangePassword = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(e) {
-      var formData, token, response, _error$response4, _error$response5;
-      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-        while (1) switch (_context3.prev = _context3.next) {
-          case 0:
-            e.preventDefault();
-            setIsSavingPassword(true);
-            setErrors({});
-            setSuccessMessage('');
-            if (!(password.new_password !== password.confirm_password)) {
-              _context3.next = 8;
-              break;
-            }
-            setErrors({
-              confirm_password: ['Passwords do not match']
-            });
-            setIsSavingPassword(false);
-            return _context3.abrupt("return");
-          case 8:
-            formData = new FormData();
-            formData.append('current_password', password.current_password);
-            formData.append('new_password', password.new_password);
-            formData.append('new_password_confirmation', password.confirm_password);
-            _context3.prev = 12;
-            token = localStorage.getItem('token');
-            if (token) {
-              _context3.next = 16;
-              break;
-            }
-            throw new Error('No authentication token found. Please log in.');
-          case 16:
-            console.log('Changing password with data:', Object.fromEntries(formData));
-            _context3.next = 19;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('http://127.0.0.1:8000/api/change-password', formData, {
-              headers: {
-                Authorization: "Bearer ".concat(token),
-                Accept: 'application/json'
-              }
-            });
-          case 19:
-            response = _context3.sent;
-            console.log('Change password response:', response.data);
-            setSuccessMessage(response.data.message || 'Password changed successfully');
-            setPassword({
-              current_password: '',
-              new_password: '',
-              confirm_password: ''
-            });
-            _context3.next = 29;
-            break;
-          case 25:
-            _context3.prev = 25;
-            _context3.t0 = _context3["catch"](12);
-            console.error('Failed to change password:', ((_error$response4 = _context3.t0.response) === null || _error$response4 === void 0 ? void 0 : _error$response4.data) || _context3.t0.message);
-            if (_context3.t0.response && _context3.t0.response.data.errors) {
-              setErrors(_context3.t0.response.data.errors);
-            } else {
-              setErrors({
-                general: ((_error$response5 = _context3.t0.response) === null || _error$response5 === void 0 ? void 0 : _error$response5.data.message) || 'Failed to change password'
-              });
-            }
-          case 29:
-            _context3.prev = 29;
-            setIsSavingPassword(false);
-            return _context3.finish(29);
-          case 32:
-          case "end":
-            return _context3.stop();
-        }
-      }, _callee3, null, [[12, 25, 29, 32]]);
-    }));
-    return function handleChangePassword(_x2) {
-      return _ref3.apply(this, arguments);
-    };
-  }();
-
-  // Simple calendar component
-  var SimpleCalendar = function SimpleCalendar(_ref4) {
-    var onSelect = _ref4.onSelect;
-    var today = new Date();
-    var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date()),
-      _useState30 = _slicedToArray(_useState29, 2),
-      viewDate = _useState30[0],
-      setViewDate = _useState30[1];
-    var getDaysInMonth = function getDaysInMonth(year, month) {
-      return new Date(year, month + 1, 0).getDate();
-    };
-    var getFirstDayOfMonth = function getFirstDayOfMonth(year, month) {
-      return new Date(year, month, 1).getDay();
-    };
-    var days = getDaysInMonth(viewDate.getFullYear(), viewDate.getMonth());
-    var firstDay = getFirstDayOfMonth(viewDate.getFullYear(), viewDate.getMonth());
-    var prevMonth = function prevMonth() {
-      setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1));
-    };
-    var nextMonth = function nextMonth() {
-      setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1));
-    };
-    var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var renderDays = function renderDays() {
-      var dayElements = [];
-      for (var i = 0; i < firstDay; i++) {
-        dayElements.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "calendar__day empty"
-        }, "empty-".concat(i)));
-      }
-      var _loop = function _loop() {
-        var dayDate = new Date(viewDate.getFullYear(), viewDate.getMonth(), _i);
-        dayElements.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "calendar__day ".concat(dayDate <= today ? 'selectable' : 'disabled'),
-          onClick: function onClick() {
-            return dayDate <= today ? onSelect(dayDate) : null;
-          },
-          children: _i
-        }, "day-".concat(_i)));
-      };
-      for (var _i = 1; _i <= days; _i++) {
-        _loop();
-      }
-      return dayElements;
-    };
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "calendar",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "calendar__header",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-          onClick: prevMonth,
-          children: "<"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          children: [monthNames[viewDate.getMonth()], " ", viewDate.getFullYear()]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-          onClick: nextMonth,
-          children: ">"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "calendar__weekdays",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          children: "Su"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          children: "Mo"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          children: "Tu"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          children: "We"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          children: "Th"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          children: "Fr"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          children: "Sa"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "calendar__days",
-        children: renderDays()
-      })]
-    });
-  };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    className: "settings",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
-      className: "settings__title",
-      children: "Settings"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "settings__tabs",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-        className: "settings__tab ".concat(activeTab === 'account' ? 'active' : ''),
-        onClick: function onClick() {
-          return setActiveTab('account');
-        },
-        children: "Account"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-        className: "settings__tab ".concat(activeTab === 'admin' ? 'active' : ''),
-        onClick: function onClick() {
-          return setActiveTab('admin');
-        },
-        children: "Admin Settings"
-      })]
-    }), activeTab === 'account' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "settings__content",
-      children: [isLoading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "settings__loading",
-        children: "Loading profile..."
-      }), successMessage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "settings__success",
-        children: successMessage
-      }), errors.general && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "settings__error",
-        children: errors.general
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "settings__section settings__section--boxed",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
-          className: "settings__section-title",
-          children: "Profile Information"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "settings__profile-photo",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "settings__photo-placeholder",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
-              src: imagePreview,
-              alt: "Profile",
-              className: "settings__photo-preview"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-              type: "file",
-              accept: "image/*",
-              onChange: handlePhotoUpload,
-              style: {
-                display: 'none'
-              },
-              id: "profile-photo-upload",
-              disabled: isLoading || isSavingProfile || !isEditing
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-              htmlFor: "profile-photo-upload",
-              className: "settings__photo-label",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "settings__upload-overlay",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                  size: 18,
-                  className: "settings__upload-icon"
-                })
-              })
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
-          className: "settings__form",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "settings__form-row",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "settings__form-group",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "First Name"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "first_name",
-                placeholder: "First name",
-                value: profile.first_name,
-                onChange: handleProfileChange,
-                disabled: isLoading || isSavingProfile || !isEditing
-              }), errors.first_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: "settings__error",
-                children: errors.first_name[0]
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "settings__form-group",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Middle Name"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "middle_name",
-                placeholder: "Middle name",
-                value: profile.middle_name,
-                onChange: handleProfileChange,
-                disabled: isLoading || isSavingProfile || !isEditing
-              }), errors.middle_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: "settings__error",
-                children: errors.middle_name[0]
-              })]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "settings__form-row",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "settings__form-group",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Last Name"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "last_name",
-                placeholder: "Last name",
-                value: profile.last_name,
-                onChange: handleProfileChange,
-                disabled: isLoading || isSavingProfile || !isEditing
-              }), errors.last_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: "settings__error",
-                children: errors.last_name[0]
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "settings__form-group",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Suffix"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
-                name: "suffix",
-                placeholder: "Suffix (e.g., Jr., Sr.)",
-                value: profile.suffix,
-                onChange: handleProfileChange,
-                disabled: isLoading || isSavingProfile || !isEditing
-              }), errors.suffix && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: "settings__error",
-                children: errors.suffix[0]
-              })]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "settings__form-row",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "settings__form-group",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Email"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "email",
-                name: "email",
-                placeholder: "Email address",
-                value: profile.email,
-                onChange: handleProfileChange,
-                disabled: isLoading || isSavingProfile || !isEditing
-              }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: "settings__error",
-                children: errors.email[0]
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "settings__form-group settings__form-group--with-icon",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Role"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                className: "settings__input-wrapper",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
-                  name: "role",
-                  value: profile.role,
-                  onChange: handleProfileChange,
-                  disabled: isLoading || isSavingProfile || !isEditing,
-                  className: "settings__dropdown",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                    value: "",
-                    children: "Select Role"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                    value: "admin",
-                    children: "Admin"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                    value: "user",
-                    children: "User"
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                  size: 16,
-                  className: "settings__input-icon"
-                })]
-              }), errors.role && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: "settings__error",
-                children: errors.role[0]
-              })]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "settings__form-row",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "settings__form-group settings__form-group--with-icon",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Gender"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                className: "settings__input-wrapper",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
-                  name: "gender",
-                  value: profile.gender,
-                  onChange: handleProfileChange,
-                  disabled: isLoading || isSavingProfile || !isEditing,
-                  className: "settings__dropdown",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                    value: "",
-                    children: "Select Gender"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                    value: "Male",
-                    children: "Male"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                    value: "Female",
-                    children: "Female"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                    value: "Other",
-                    children: "Other"
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                  size: 16,
-                  className: "settings__input-icon"
-                })]
-              }), errors.gender && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: "settings__error",
-                children: errors.gender[0]
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "settings__form-group settings__form-group--with-icon",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                children: "Date of Birth"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                className: "settings__input-wrapper",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                  type: "text",
-                  name: "date_of_birth",
-                  placeholder: "mm/dd/yyyy",
-                  value: profile.date_of_birth,
-                  onChange: handleProfileChange,
-                  disabled: isLoading || isSavingProfile || !isEditing
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                  size: 16,
-                  className: "settings__input-icon",
-                  onClick: isEditing ? toggleCalendar : null
-                }), showCalendar && isEditing && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                  className: "settings__calendar-popup",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(SimpleCalendar, {
-                    onSelect: handleDateSelect
-                  })
-                })]
-              }), errors.date_of_birth && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: "settings__error",
-                children: errors.date_of_birth[0]
-              })]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            className: "settings__form-actions",
-            children: isEditing ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-                type: "button",
-                className: "settings__submit-button",
-                onClick: handleUpdateProfile,
-                disabled: isLoading || isSavingProfile,
-                children: isSavingProfile ? 'Saving...' : 'Save Changes'
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-                type: "button",
-                className: "settings__cancel-button",
-                onClick: handleCancelEdit,
-                disabled: isLoading || isSavingProfile,
-                children: "Cancel"
-              })]
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-              type: "button",
-              className: "settings__submit-button",
-              onClick: handleEditProfile,
-              disabled: isLoading,
-              children: "Edit Profile"
-            })
-          })]
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "settings__section settings__section--boxed",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
-          className: "settings__section-title",
-          children: "Change Password"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
-          onSubmit: handleChangePassword,
-          className: "settings__form",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "settings__form-group settings__form-group--with-icon",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-              children: "Current Password"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "settings__input-wrapper",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: showCurrentPassword ? 'text' : 'password',
-                name: "current_password",
-                placeholder: "Current Password",
-                value: password.current_password,
-                onChange: handlePasswordChange,
-                disabled: isLoading || isSavingPassword
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "settings__password-toggle",
-                children: showCurrentPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                  size: 16,
-                  className: "settings__input-icon",
-                  onClick: toggleCurrentPassword
-                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                  size: 16,
-                  className: "settings__input-icon",
-                  onClick: toggleCurrentPassword
-                })
-              })]
-            }), errors.current_password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              className: "settings__error",
-              children: errors.current_password[0]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "settings__form-group settings__form-group--with-icon",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-              children: "New Password"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "settings__input-wrapper",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: showNewPassword ? 'text' : 'password',
-                name: "new_password",
-                placeholder: "New Password",
-                value: password.new_password,
-                onChange: handlePasswordChange,
-                disabled: isLoading || isSavingPassword
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "settings__password-toggle",
-                children: showNewPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                  size: 16,
-                  className: "settings__input-icon",
-                  onClick: toggleNewPassword
-                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                  size: 16,
-                  className: "settings__input-icon",
-                  onClick: toggleNewPassword
-                })
-              })]
-            }), errors.new_password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              className: "settings__error",
-              children: errors.new_password[0]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "settings__form-group settings__form-group--with-icon",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-              children: "Confirm New Password"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "settings__input-wrapper",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: showConfirmPassword ? 'text' : 'password',
-                name: "confirm_password",
-                placeholder: "Confirm New Password",
-                value: password.confirm_password,
-                onChange: handlePasswordChange,
-                disabled: isLoading || isSavingPassword
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "settings__password-toggle",
-                children: showConfirmPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                  size: 16,
-                  className: "settings__input-icon",
-                  onClick: toggleConfirmPassword
-                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                  size: 16,
-                  className: "settings__input-icon",
-                  onClick: toggleConfirmPassword
-                })
-              })]
-            }), errors.confirm_password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              className: "settings__error",
-              children: errors.confirm_password[0]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            className: "settings__form-actions",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-              type: "submit",
-              className: "settings__submit-button",
-              disabled: isLoading || isSavingPassword,
-              children: isSavingPassword ? 'Saving...' : 'Change Password'
-            })
-          })]
-        })]
-      })]
-    }), activeTab === 'admin' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_AdminSettings__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Settings);
 
 /***/ }),
 

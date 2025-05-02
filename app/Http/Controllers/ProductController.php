@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Size;
+use App\Models\Color;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,13 +14,16 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['category', 'brand'])->get();
+        // Change product_type to productType to match the relationship name in the model
+        $products = Product::with(['category', 'brand', 'productType', 'sizes', 'colors'])->get();
         return response()->json($products);
     }
 
+
     public function show($id)
     {
-        $product = Product::with(['category', 'brand'])->find($id);
+        // Change product_type to productType here as well
+        $product = Product::with(['category', 'brand', 'productType', 'sizes', 'colors'])->find($id);
 
         if (!$product) {
             return response()->json(['message' => 'Product not found'], 404);
@@ -34,9 +39,9 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'brand_id' => 'required|exists:brands,id',
             'product_name' => 'required|string|max:255',
-            'product_type' => 'required|string|max:255',
-            'colors' => 'required|string|max:255',
-            'sizes' => 'required|string|max:255',
+            'product_type_id' => 'required|exists:product_types,id',
+            'color_ids' => 'required|array', // Use array for colors
+            'size_ids' => 'required|array',  // Use array for sizes
             'image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|in:available,archived',
@@ -68,6 +73,10 @@ class ProductController extends Controller
         // Create the product
         $product = Product::create($validated);
 
+        // Attach sizes and colors
+        $product->sizes()->sync($request->size_ids);
+        $product->colors()->sync($request->color_ids);
+
         return response()->json($product, 201);
     }
 
@@ -78,9 +87,9 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'brand_id' => 'required|exists:brands,id',
             'product_name' => 'required|string|max:255',
-            'product_type' => 'required|string|max:255',
-            'colors' => 'required|string|max:255',
-            'sizes' => 'required|string|max:255',
+            'product_type_id' => 'required|exists:product_types,id',
+            'color_ids' => 'required|array', // Use array for colors
+            'size_ids' => 'required|array',  // Use array for sizes
             'image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|in:available,archived',
@@ -123,7 +132,12 @@ class ProductController extends Controller
             $validated['image_2'] = $request->file('image_2')->store('products', 'public');
         }
 
+        // Update the product
         $product->update($validated);
+
+        // Sync sizes and colors
+        $product->sizes()->sync($request->size_ids);
+        $product->colors()->sync($request->color_ids);
 
         return response()->json($product);
     }

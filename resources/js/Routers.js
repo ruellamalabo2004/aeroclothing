@@ -13,7 +13,8 @@ import Dashboard from './components/AdminContent/Dashboard';
 import Products from './components/AdminContent/Products';
 import Orders from './components/AdminContent/Orders';
 import Inventory from './components/AdminContent/Inventory';
-import Settings from './components/AdminContent/Settings';
+import AccountSettings from './components/AdminContent/AccountSettings';
+import AdminSettings from './components/AdminContent/AdminSettings';
 import Homepage from './components/CustomerPage/Homepage';
 import Shop from './components/CustomerPage/Shop';
 import Customer from './components/AdminContent/Customer';
@@ -70,7 +71,9 @@ const App = () => {
                 <Route path="inbox" element={<Inbox />} />
                 <Route path="customer-support" element={<CustomerSupport />} />
                 <Route path="reports" element={<Reports />} />
-                <Route path="settings" element={<Settings />} />
+                <Route path="settings" element={<Navigate to="settings/account" replace />} />
+                <Route path="settings/account" element={<AccountSettings />} />
+                <Route path="settings/admin" element={<AdminSettings />} />
               </Route>
             </Route>
 

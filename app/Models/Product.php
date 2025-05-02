@@ -14,9 +14,7 @@ class Product extends Model
         'category_id',
         'brand_id',
         'product_name',
-        'product_type',
-        'sizes',
-        'colors', // Added to fillable
+        'product_type_id',
         'image_1',
         'image_2',
         'status',
@@ -24,31 +22,12 @@ class Product extends Model
         'price',
     ];
 
-    // Accessor to get sizes as an array
-    public function getSizesAttribute($value)
-    {
-        return $value ? explode(',', $value) : [];
-    }
+    protected $dates = ['created_at', 'updated_at', 'archived_at'];
 
-    // Mutator to store sizes as a comma-separated string
-    public function setSizesAttribute($value)
-    {
-        $this->attributes['sizes'] = is_array($value) ? implode(',', $value) : $value;
-    }
+    // Override the soft delete column name
+    const DELETED_AT = 'archived_at';
 
-    // Accessor to get colors as an array
-    public function getColorsAttribute($value)
-    {
-        return $value ? explode(',', $value) : [];
-    }
-
-    // Mutator to store colors as a comma-separated string
-    public function setColorsAttribute($value)
-    {
-        $this->attributes['colors'] = is_array($value) ? implode(',', $value) : $value;
-    }
-
-    // Define relationships with category and brand
+    // Relationships
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -57,5 +36,22 @@ class Product extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function productType()
+    {
+        return $this->belongsTo(ProductType::class, 'product_type_id');
+    }
+
+    public function sizes()
+    {
+        return $this->belongsToMany(Size::class, 'product_size')
+                    ->withTimestamps();
+    }
+
+    public function colors()
+    {
+        return $this->belongsToMany(Color::class, 'product_color')
+                    ->withTimestamps();
     }
 }

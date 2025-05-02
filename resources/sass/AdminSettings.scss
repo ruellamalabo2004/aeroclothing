@@ -1,34 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600&display=albert+sans');
 
-.admin-settings {
+.settings {
   font-family: 'Albert Sans', sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: auto;
+  flex: 1 1 auto;
+
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 20px 0;
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    padding: 3px;
+    width: fit-content;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  &__tab {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &.active {
+      background: #ffffff;
+      color: #333;
+    }
+
+    &:hover {
+      background: #f0f0f0;
+      color: #333;
+    }
+  }
 
   &__content {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
-
-  &__success {
-    background-color: #e6f4ea;
-    color: #2e7d32;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-
-  &__message {
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-
-  &__error {
-    background-color: #fee2e2;
-    color: #dc2626;
   }
 
   &__section {
@@ -39,10 +67,42 @@
     &--boxed {
       background: #ffffff;
       border: 1px solid #e0e0e0;
-      border-radius: 8px;
+      border-radius: 5px;
       padding: 20px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     }
+  }
+
+  &__section-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+
+  &__subsection {
+    margin-bottom: 20px;
+  }
+
+  &__subsection h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  &__placeholder {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+  }
+
+  &__placeholder p {
+    margin-bottom: 10px;
+    color: #6c757d;
+    font-size: 14px;
   }
 
   &__section-header {
@@ -55,112 +115,76 @@
   &__header-actions {
     display: flex;
     gap: 10px;
-    align-items: center;
-  }
-
-  &__section-title {
-    font-size: 24px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin: 0;
-  }
-
-  &__add-button {
-    padding: 10px 20px;
-    background-color: #3AA6B9;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    &:hover {
-      background-color: #2a8291;
-    }
-
-    &:disabled {
-      background-color: #cccccc;
-      cursor: not-allowed;
-    }
   }
 
   &__filter-button {
-    padding: 10px 20px;
-    background-color: #f1f5f9;
-    color: #1a1a1a;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
+    padding: 8px 16px;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #e5e5e5;
+      color: #333;
+    }
+  }
+
+  &__add-button {
+    padding: 8px 16px;
+    background-color: #3AA6B9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #e2e8f0;
-      border-color: #3AA6B9;
+      background-color: #2a8291;
     }
   }
 
   &__table-container {
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   }
 
   &__table {
     width: 100%;
-    min-width: 500px; /* Ensures table is wide enough to trigger scrollbar */
     border-collapse: collapse;
-    table-layout: fixed;
+    margin-bottom: 15px;
 
     th,
     td {
-      padding: 12px 15px;
+      padding: 10px;
       text-align: left;
       border-bottom: 1px solid #e0e0e0;
-      font-size: 14px;
-      vertical-align: middle;
-    }
-
-    th:first-child,
-    td:first-child {
-      width: 120px; /* Actions column */
-    }
-
-    th:last-child,
-    td:last-child {
-      width: 120px; /* Status column */
     }
 
     th {
-      background: #f8fafc;
-      font-weight: 500;
-      color: #1a1a1a;
+      font-weight: 600;
+      color: #333;
+      background: #f8f9fa;
     }
 
     td {
+      font-size: 14px;
       color: #333;
-    }
-
-    tr:last-child td {
-      border-bottom: none;
     }
   }
 
   &__action-icon {
-    width: 16px !important;
-    height: 16px !important;
-    font-size: 16px !important; /* Fallback for SVG rendering */
-    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
     cursor: pointer;
-    transition: color 0.2s;
     color: #666;
-    display: inline-block;
-    vertical-align: middle;
+    transition: color 0.3s ease;
 
     &:hover {
       color: #3AA6B9;
@@ -168,21 +192,19 @@
   }
 
   &__status {
-    font-size: 13px;
-    font-weight: 500;
     padding: 4px 8px;
     border-radius: 12px;
-    text-transform: capitalize;
-    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
 
     &--active {
-      background-color: #e6f4ea;
-      color: #2e7d32;
+      background: #E8F5E9;
+      color: #2E7D32;
     }
 
     &--archived {
-      background-color: #fee2e2;
-      color: #dc2626;
+      background: #FFEBEE;
+      color: #C62828;
     }
   }
 
@@ -190,198 +212,226 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 15px;
-    gap: 10px;
+    margin-top: 10px;
   }
 
   &__pagination-button {
     padding: 8px 16px;
-    background-color: #3AA6B9;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     font-size: 14px;
     font-weight: 500;
+    color: #666;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.3s ease;
 
-    &:hover:not(:disabled) {
-      background-color: #2a8291;
+    &:hover {
+      background: #e5e5e5;
+      color: #333;
     }
 
     &:disabled {
-      background-color: #cccccc;
+      background: #f9f9f9;
+      color: #aaa;
+      border-color: #ddd;
       cursor: not-allowed;
     }
   }
 
   &__pagination-info {
     font-size: 14px;
-    color: #333;
-  }
-
-  &__form-group {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    min-width: 200px;
-
-    label {
-      font-size: 14px;
-      font-weight: 500;
-      color: #1a1a1a;
-    }
-
-    input {
-      padding: 10px 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 6px;
-      font-size: 14px;
-      color: #1a1a1a;
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-
-      &:focus {
-        border-color: #3AA6B9;
-        box-shadow: 0 0 0 3px rgba(58, 166, 185, 0.1);
-      }
-
-      &:disabled {
-        background-color: #f5f5f5;
-        cursor: not-allowed;
-      }
-    }
-
-    .admin-settings__input--error {
-      border-color: #ef4444;
-    }
-  }
-
-  &__error {
-    font-size: 12px;
-    color: #ef4444;
-    margin-top: 4px;
+    color: #666;
   }
 
   &__modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     z-index: 1000;
-    animation: fadeIn 0.2s ease-out;
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
   }
 
   &__modal {
     background: #ffffff;
-    border-radius: 8px;
-    padding: 24px;
-    width: 400px;
-    max-width: 90%;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
-    animation: slideUp 0.2s ease-out;
-
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
   }
 
   &__modal-close {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 10px;
+    right: 10px;
     background: none;
     border: none;
     cursor: pointer;
     color: #666;
-    transition: color 0.2s;
 
     &:hover {
-      color: #1a1a1a;
+      color: #333;
     }
   }
 
   &__modal-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
-    color: #1a1a1a;
-    margin: 0 0 20px 0;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    input {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      color: #333;
+      outline: none;
+      transition: border-color 0.3s ease;
+      background-color: #fff;
+
+      &:focus {
+        border-color: #3AA6B9;
+      }
+
+      &:disabled {
+        background-color: #f5f5f5;
+        cursor: not-allowed;
+      }
+
+      &.settings__input--error {
+        border-color: #C62828;
+      }
+    }
   }
 
   &__modal-actions {
     display: flex;
     justify-content: flex-end;
-    gap: 12px;
-    margin-top: 24px;
+    gap: 10px;
   }
 
   &__modal-button {
     padding: 10px 20px;
-    border-radius: 6px;
+    border-radius: 5px;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-
-    &:hover:not(:disabled) {
-      transform: translateY(-1px);
-    }
-
-    &:disabled {
-      background-color: #e0e0e0;
-      color: #999;
-      cursor: not-allowed;
-    }
-
-    &--cancel {
-      background-color: #f1f5f9;
-      color: #1a1a1a;
-      border: none;
-
-      &:hover:not(:disabled) {
-        background-color: #e2e8f0;
-      }
-    }
+    transition: all 0.3s ease;
 
     &--submit {
       background-color: #3AA6B9;
       color: #fff;
       border: none;
 
-      &:hover:not(:disabled) {
+      &:hover {
         background-color: #2a8291;
       }
+
+      &:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+      }
     }
+
+    &--cancel {
+      background-color: #f5f5f5;
+      color: #666;
+      border: 1px solid #ccc;
+
+      &:hover {
+        background-color: #e5e5e5;
+        color: #333;
+      }
+
+      &:disabled {
+        background-color: #f9f9f9;
+        color: #aaa;
+        border-color: #ddd;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__success {
+    padding: 10px;
+    background-color: #E8F5E9;
+    color: #2E7D32;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  &__error {
+    padding: 10px;
+    background-color: #FFEBEE;
+    color: #C62828;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
   }
 }
 
 @media (max-width: 768px) {
-  .admin-settings {
-    &__content {
-      gap: 15px;
+  .settings {
+    padding: 15px;
+
+    &__title {
+      font-size: 20px;
     }
 
-    &__success,
-    &__error {
-      font-size: 13px;
-      padding: 8px 12px;
+    &__section-title {
+      font-size: 20px;
     }
 
     &__section--boxed {
       padding: 15px;
+    }
+
+    &__tabs {
+      gap: 4px;
+      padding: 2px;
+    }
+
+    &__tab {
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+
+    &__subsection {
+      margin-bottom: 15px;
+    }
+
+    &__subsection h3 {
+      font-size: 16px;
+    }
+
+    &__placeholder {
+      padding: 15px;
+    }
+
+    &__placeholder p {
+      font-size: 13px;
     }
 
     &__section-header {
@@ -391,159 +441,119 @@
     }
 
     &__header-actions {
-      flex-direction: column;
       width: 100%;
-      gap: 8px;
+      justify-content: flex-end;
     }
 
-    &__section-title {
-      font-size: 20px;
-    }
-
-    &__add-button,
-    &__filter-button {
-      padding: 8px 16px;
+    &__filter-button,
+    &__add-button {
+      padding: 6px 12px;
       font-size: 13px;
-      width: 100%;
     }
 
     &__table {
       th,
       td {
-        padding: 8px 10px;
-        font-size: 13px;
-      }
-
-      th:first-child,
-      td:first-child {
-        width: 100px;
-      }
-
-      th:last-child,
-      td:last-child {
-        width: 100px;
+        padding: 8px;
       }
     }
 
-    &__action-icon {
-      width: 14px !important;
-      height: 14px !important;
-      font-size: 14px !important;
-      margin-right: 8px;
-    }
-
-    &__status {
-      font-size: 12px;
-      padding: 3px 6px;
-    }
-
-    &__pagination {
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    &__pagination-button {
+     &__pagination-button {
       padding: 6px 12px;
       font-size: 13px;
-      width: 100%;
     }
 
     &__pagination-info {
       font-size: 13px;
     }
 
-    &__form-group {
-      min-width: 100%;
-      gap: 5px;
-
-      label {
-        font-size: 13px;
-      }
-
-      input {
-        padding: 8px 10px;
-        font-size: 13px;
-      }
-    }
-
     &__modal {
-      padding: 20px;
-      width: 90%;
+      max-width: 350px;
+      padding: 15px;
     }
 
     &__modal-title {
-      font-size: 18px;
+      font-size: 16px;
     }
 
-    &__modal-actions {
-      gap: 10px;
+    &__form-group {
+      input {
+        padding: 6px 10px;
+        font-size: 13px;
+      }
     }
 
     &__modal-button {
       padding: 8px 16px;
       font-size: 13px;
     }
-  }
 }
 
 @media (max-width: 480px) {
-  .admin-settings {
-    &__content {
-      gap: 12px;
-    }
+  .settings {
+    padding: 10px;
 
-    &__success,
-    &__error {
-      font-size: 12px;
-      padding: 6px 10px;
-    }
-
-    &__section--boxed {
-      padding: 12px;
-    }
-
-    &__section-header {
-      gap: 8px;
+    &__title {
+      font-size: 18px;
     }
 
     &__section-title {
       font-size: 18px;
     }
 
-    &__add-button,
-    &__filter-button {
-      padding: 6px 12px;
+    &__section--boxed {
+      padding: 10px;
+    }
+
+    &__tabs {
+      gap: 3px;
+      padding: 1px;
+    }
+
+    &__tab {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    &__subsection {
+      margin-bottom: 10px;
+    }
+
+    &__subsection h3 {
+      font-size: 14px;
+    }
+
+    &__placeholder {
+      padding: 10px;
+    }
+
+    &__placeholder p {
+      font-size: 12px;
+    }
+
+    &__filter-button,
+    &__add-button {
+      padding: 5px 10px;
       font-size: 12px;
     }
 
     &__table {
       th,
       td {
-        padding: 6px 8px;
+        padding: 6px;
         font-size: 12px;
-      }
-
-      th:first-child,
-      td:first-child {
-        width: 80px;
-      }
-
-      th:last-child,
-      td:last-child {
-        width: 80px;
       }
     }
 
     &__action-icon {
-      width: 12px !important;
-      height: 12px !important;
-      font-size: 12px !important;
-      margin-right: 6px;
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
     }
 
     &__status {
+      padding: 3px 6px;
       font-size: 11px;
-      padding: 2px 5px;
     }
 
     &__pagination-button {
@@ -555,37 +565,30 @@
       font-size: 12px;
     }
 
-    &__form-group {
-      gap: 4px;
+    &__modal {
+      max-width: 300px;
+      padding: 10px;
+    }
 
+    &__modal-title {
+      font-size: 14px;
+    }
+
+    &__form-group {
       label {
         font-size: 12px;
       }
 
       input {
-        padding: 6px 8px;
+        padding: 5px 8px;
         font-size: 12px;
       }
-    }
-
-    &__modal {
-      padding: 16px;
-    }
-
-    &__modal-title {
-      font-size: 16px;
-      margin-bottom: 16px;
-    }
-
-    &__modal-actions {
-      gap: 8px;
-      flex-direction: column-reverse;
     }
 
     &__modal-button {
       padding: 6px 12px;
       font-size: 12px;
-      width: 100%;
     }
-  }
+}
+}
 }

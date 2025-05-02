@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Color extends Model
+class Size extends Model
 {
     // Define the many-to-many relationship with products
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_color');
+        return $this->belongsToMany(Product::class, 'product_size');
     }
 }

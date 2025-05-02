@@ -20,20 +20,23 @@ const Products = ({ token }) => {
   const productsPerPage = 10;
 
   useEffect(() => {
+    console.log('useEffect triggered with showArchived:', showArchived);
     fetchProducts();
-  }, [showArchived]);
+  }, [showArchived, token]);
 
   const fetchProducts = async () => {
     try {
+      console.log('Fetching products, showArchived:', showArchived);
       const res = await axios.get('http://localhost:8000/api/products', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log('Products:', res.data);
+      console.log('API response products:', res.data);
       const filteredProducts = showArchived
         ? res.data.filter((product) => product.status === 'archived')
-        : res.data;
+        : res.data; // Show all products when showArchived is false
+      console.log('Filtered products count:', filteredProducts.length);
       setProducts(filteredProducts);
       setErrorMessage('');
     } catch (err) {
@@ -44,6 +47,7 @@ const Products = ({ token }) => {
 
   const handleAction = async (productId, status, action) => {
     try {
+      console.log(`Attempting to ${action} product ${productId}`);
       if (action === 'restore') {
         const res = await axios.patch(
           `http://localhost:8000/api/products/${productId}/restore`,
@@ -81,7 +85,7 @@ const Products = ({ token }) => {
     (product) =>
       product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (product.category?.name?.toLowerCase().includes(searchTerm.toLowerCase()) || '') ||
-      product.product_type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (product.product_type?.type_name?.toLowerCase().includes(searchTerm.toLowerCase()) || '') ||
       (product.brand?.name?.toLowerCase().includes(searchTerm.toLowerCase()) || '')
   );
 
@@ -101,6 +105,14 @@ const Products = ({ token }) => {
         ? prev.filter((id) => id !== productId)
         : [...prev, productId]
     );
+  };
+
+  const toggleShowArchived = () => {
+    setShowArchived((prev) => {
+      console.log('Toggling showArchived from', prev, 'to', !prev);
+      return !prev;
+    });
+    setCurrentPage(1); // Reset to first page when toggling
   };
 
   return (
@@ -126,7 +138,7 @@ const Products = ({ token }) => {
           <div className="products__actions">
             <button
               className="products__button products__button--secondary"
-              onClick={() => setShowArchived(!showArchived)}
+              onClick={toggleShowArchived}
             >
               <Archive size={16} className="products__button-icon" />
               {showArchived ? 'View All' : 'View Archived'}
@@ -179,6 +191,7 @@ const Products = ({ token }) => {
                 <th scope="col">Brand</th>
                 <th scope="col">Type</th>
                 <th scope="col">Sizes</th>
+                <th scope="col">Colors</th>
                 <th scope="col">Price</th>
                 <th scope="col">Status</th>
               </tr>
@@ -210,7 +223,11 @@ const Products = ({ token }) => {
                           )
                         }
                       >
-                        {product.status === 'archived' ? <RotateCcw size={16} /> : <Archive size={16} />}
+                        {product.status === 'archived' ? (
+                          <RotateCcw size={16} style={{ color: '#4CAF50' }} title="Restore product" />
+                        ) : (
+                          <Archive size={16} title="Archive product" />
+                        )}
                       </span>
                     </td>
                     <td>
@@ -226,11 +243,16 @@ const Products = ({ token }) => {
                     <td>{product.product_name}</td>
                     <td>{product.category?.name || 'N/A'}</td>
                     <td>{product.brand?.name || 'N/A'}</td>
-                    <td>{product.product_type}</td>
+                    <td>{product.product_type?.type_name || 'N/A'}</td>
                     <td>
                       {Array.isArray(product.sizes)
-                        ? product.sizes.join(', ')
-                        : product.sizes || 'N/A'}
+                        ? product.sizes.map((size) => size.size_name).join(', ')
+                        : 'N/A'}
+                    </td>
+                    <td>
+                      {Array.isArray(product.colors)
+                        ? product.colors.map((color) => color.color_name).join(', ')
+                        : 'N/A'}
                     </td>
                     <td>
                       ${parseFloat(product.price).toLocaleString('en-US', { minimumFractionDigits: 2 })}
@@ -244,7 +266,7 @@ const Products = ({ token }) => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="10">No products available</td>
+                  <td colSpan="11">No products available</td>
                 </tr>
               )}
             </tbody>
