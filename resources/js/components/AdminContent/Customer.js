@@ -14,7 +14,7 @@ const Customers = ({ token }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCustomers, setSelectedCustomers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [errorMessage, setErrorMessage] = useState(''); // State for error messages
+    const [errorMessage, setErrorMessage] = useState('');
     const [isSuccessVisible, setIsSuccessVisible] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const customersPerPage = 10;
@@ -31,7 +31,21 @@ const Customers = ({ token }) => {
                 },
             });
             console.log('Fetched customers:', res.data);
-            setCustomers(res.data.data || res.data || []);
+            
+            const processedCustomers = Array.isArray(res.data) ? res.data : (res.data.data || []);
+            
+            const normalizedCustomers = processedCustomers.map(customer => ({
+                ...customer,
+                roles: customer.roles ? customer.roles : ['customer'],
+                status: customer.status ? (
+                    customer.status.charAt(0).toUpperCase() + customer.status.slice(1).toLowerCase()
+                ) : 'Active',
+                full_name: customer.full_name || (
+                    `${customer.profile?.first_name || ''} ${customer.profile?.middle_name || ''} ${customer.profile?.last_name || ''} ${customer.profile?.suffix || ''}`
+                ).trim()
+            }));
+            
+            setCustomers(normalizedCustomers);
             setErrorMessage('');
         } catch (err) {
             console.error('Failed to fetch customers:', err.response?.data || err.message);
@@ -47,19 +61,28 @@ const Customers = ({ token }) => {
 
             const res = await axios.patch(
                 url,
-                action === 'archive' ? { status: 'archived' } : {},
-                { headers: { Authorization: `Bearer ${token}` } }
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
+                }
             );
 
             console.log(`${action} response:`, res.data);
             setCustomers((prev) =>
                 prev.map((c) =>
-                    c.id === customerId ? { ...c, status: action === 'archive' ? 'archived' : 'active' } : c
+                    c.id === customerId ? { 
+                        ...c, 
+                        status: action === 'archive' ? 'Archived' : 'Active' 
+                    } : c
                 )
             );
             setSuccessMessage(`Customer ${action}d successfully!`);
             setIsSuccessVisible(true);
-            fetchCustomers();
+            fetchCustomers(); // Refresh in the background
         } catch (err) {
             console.error(`Failed to ${action} customer:`, err.response?.data || err.message);
             setErrorMessage(`Failed to ${action} customer: ${err.response?.data?.message || err.message}`);
@@ -76,8 +99,14 @@ const Customers = ({ token }) => {
             const archivePromises = selectedCustomers.map((customerId) =>
                 axios.patch(
                     `http://localhost:8000/api/users/${customerId}/archive`,
-                    { status: 'archived' },
-                    { headers: { Authorization: `Bearer ${token}` } }
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json',
+                        }
+                    }
                 )
             );
 
@@ -92,13 +121,13 @@ const Customers = ({ token }) => {
                 setIsSuccessVisible(true);
                 setCustomers((prev) =>
                     prev.map((c) =>
-                        selectedCustomers.includes(c.id) ? { ...c, status: 'archived' } : c
+                        selectedCustomers.includes(c.id) ? { ...c, status: 'Archived' } : c
                     )
                 );
             }
 
             setSelectedCustomers([]);
-            fetchCustomers();
+            fetchCustomers(); // Refresh in the background
         } catch (err) {
             console.error('Failed to bulk archive customers:', err.response?.data || err.message);
             setErrorMessage(`Failed to bulk archive customers: ${err.response?.data?.message || err.message}`);
@@ -112,6 +141,9 @@ const Customers = ({ token }) => {
 
     const handleCustomerUpdated = (updatedCustomer) => {
         console.log('Customer updated, updating local state:', updatedCustomer);
+        
+        const roles = updatedCustomer.roles || ['customer'];
+        
         setCustomers((prev) =>
             prev.map((c) =>
                 c.id === updatedCustomer.id
@@ -119,26 +151,29 @@ const Customers = ({ token }) => {
                           ...c,
                           email: updatedCustomer.email,
                           status: updatedCustomer.status,
-                          first_name: updatedCustomer.profile?.first_name,
-                          middle_name: updatedCustomer.profile?.middle_name,
-                          last_name: updatedCustomer.profile?.last_name,
-                          suffix: updatedCustomer.profile?.suffix,
-                          gender: updatedCustomer.profile?.gender,
-                          date_of_birth: updatedCustomer.profile?.date_of_birth,
-                          profile_pic: updatedCustomer.profile?.profile_pic,
-                          full_name: `${updatedCustomer.profile?.first_name || ''} ${updatedCustomer.profile?.middle_name || ''} ${updatedCustomer.profile?.last_name || ''} ${updatedCustomer.profile?.suffix || ''}`.trim(),
+                          first_name: updatedCustomer.first_name || updatedCustomer.profile?.first_name,
+                          middle_name: updatedCustomer.middle_name || updatedCustomer.profile?.middle_name,
+                          last_name: updatedCustomer.last_name || updatedCustomer.profile?.last_name,
+                          suffix: updatedCustomer.suffix || updatedCustomer.profile?.suffix,
+                          gender: updatedCustomer.gender || updatedCustomer.profile?.gender,
+                          date_of_birth: updatedCustomer.date_of_birth || updatedCustomer.profile?.date_of_birth,
+                          profile_pic: updatedCustomer.profile_pic || updatedCustomer.profile?.profile_pic,
+                          full_name: `${(updatedCustomer.first_name || updatedCustomer.profile?.first_name || '')} ${(updatedCustomer.middle_name || updatedCustomer.profile?.middle_name || '')} ${(updatedCustomer.last_name || updatedCustomer.profile?.last_name || '')} ${(updatedCustomer.suffix || updatedCustomer.profile?.suffix || '')}`.trim(),
+                          roles: roles,
                       }
                     : c
             )
         );
-        fetchCustomers();
+        setSuccessMessage('Customer updated successfully!');
+        setIsSuccessVisible(true);
+        fetchCustomers(); // Refresh in the background
     };
 
     const filteredCustomers = customers.filter(
         (customer) =>
             (customer.full_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
              customer.email?.toLowerCase().includes(searchTerm.toLowerCase())) &&
-            (showArchived ? customer.status === 'archived' : customer.status === 'active')
+            (showArchived ? customer.status === 'Archived' : customer.status === 'Active')
     );
 
     const totalCustomers = filteredCustomers.length;
@@ -162,6 +197,14 @@ const Customers = ({ token }) => {
         if (!dateString) return 'N/A';
         const date = new Date(dateString);
         return date.toLocaleDateString();
+    };
+
+    const normalizeStatus = (status) => {
+        if (!status) return 'N/A';
+        return {
+            cssClass: status.toLowerCase(),
+            displayText: status
+        };
     };
 
     return (
@@ -254,67 +297,78 @@ const Customers = ({ token }) => {
                                 <th>Email</th>
                                 <th>Gender</th>
                                 <th>Date of Birth</th>
+                                <th>Role</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             {currentCustomers.length > 0 ? (
-                                currentCustomers.map((customer) => (
-                                    <tr key={customer.id}>
-                                        <td>
-                                            <input
-                                                type="checkbox"
-                                                checked={selectedCustomers.includes(customer.id)}
-                                                onChange={() => handleCheckboxChange(customer.id)}
-                                            />
-                                        </td>
-                                        <td>
-                                            <Edit2
-                                                className="action-img"
-                                                size={16}
-                                                onClick={() => handleEdit(customer.id)}
-                                            />
-                                            <span
-                                                className="action-img"
-                                                onClick={() =>
-                                                    handleAction(
-                                                        customer.id,
-                                                        customer.status,
-                                                        customer.status === 'archived' ? 'restore' : 'archive'
-                                                    )
-                                                }
-                                            >
-                                                {customer.status === 'archived' ? <RotateCcw size={16} /> : <Archive size={16} />}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            {customer.profile_pic ? (
-                                                <img
-                                                    src={`http://localhost:8000/storage/${customer.profile_pic}`}
-                                                    alt={customer.full_name}
-                                                    className="customer-image"
-                                                    onError={(e) => {
-                                                        e.target.src = '/api/placeholder/40/40';
-                                                    }}
+                                currentCustomers.map((customer) => {
+                                    const status = normalizeStatus(customer.status);
+                                    const roleDisplay = customer.roles?.[0] || 'customer';
+                                    
+                                    return (
+                                        <tr key={customer.id}>
+                                            <td>
+                                                <input
+                                                    type="checkbox"
+                                                    checked={selectedCustomers.includes(customer.id)}
+                                                    onChange={() => handleCheckboxChange(customer.id)}
                                                 />
-                                            ) : (
-                                                <User size={24} className="customer-icon" />
-                                            )}
-                                        </td>
-                                        <td>{customer.full_name?.trim() || 'N/A'}</td>
-                                        <td>{customer.email}</td>
-                                        <td>{customer.gender || 'N/A'}</td>
-                                        <td>{formatDate(customer.date_of_birth)}</td>
-                                        <td>
-                                            <span className={`status-frame status-${customer.status}`}>
-                                                {customer.status.toLowerCase()}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))
+                                            </td>
+                                            <td>
+                                                <Edit2
+                                                    className="action-img"
+                                                    size={16}
+                                                    onClick={() => handleEdit(customer.id)}
+                                                />
+                                                <span
+                                                    className="action-img"
+                                                    onClick={() =>
+                                                        handleAction(
+                                                            customer.id,
+                                                            customer.status,
+                                                            customer.status === 'Archived' ? 'restore' : 'archive'
+                                                        )
+                                                    }
+                                                >
+                                                    {customer.status === 'Archived' ? <RotateCcw size={16} /> : <Archive size={16} />}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {customer.profile_pic ? (
+                                                    <img
+                                                        src={`http://localhost:8000/storage/${customer.profile_pic}`}
+                                                        alt={customer.full_name}
+                                                        className="customer-image"
+                                                        onError={(e) => {
+                                                            e.target.src = '/api/placeholder/40/40';
+                                                        }}
+                                                    />
+                                                ) : (
+                                                    <User size={24} className="customer-icon" />
+                                                )}
+                                            </td>
+                                            <td>{customer.full_name?.trim() || 'N/A'}</td>
+                                            <td>{customer.email}</td>
+                                            <td>{customer.gender || 'N/A'}</td>
+                                            <td>{formatDate(customer.date_of_birth)}</td>
+                                            <td>
+                                                <span className={`role-frame role-${roleDisplay.toLowerCase()}`}>
+                                                    {roleDisplay}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span className={`status-frame status-${status.cssClass}`}>
+                                                    {status.displayText}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
                             ) : (
                                 <tr>
-                                    <td colSpan="8">No customers available</td>
+                                    <td colSpan="9">No customers available</td>
                                 </tr>
                             )}
                         </tbody>

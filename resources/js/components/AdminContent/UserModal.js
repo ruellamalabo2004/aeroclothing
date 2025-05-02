@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { X } from 'lucide-react';
+import Success from '../LoginContent/Success'; // Assuming this is the correct path
 
 const UserModal = ({ isOpen, onClose, token, onUserAdded }) => {
   const initialFormData = {
@@ -20,6 +21,8 @@ const UserModal = ({ isOpen, onClose, token, onUserAdded }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isSuccessVisible, setIsSuccessVisible] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
     if (!isOpen) {
@@ -31,6 +34,8 @@ const UserModal = ({ isOpen, onClose, token, onUserAdded }) => {
     setFormData(initialFormData);
     setPreviewImage(null);
     setErrors({});
+    setIsSuccessVisible(false);
+    setSuccessMessage('');
   };
 
   const handleChange = (e) => {
@@ -90,8 +95,12 @@ const UserModal = ({ isOpen, onClose, token, onUserAdded }) => {
       );
 
       console.log('User added:', res.data);
-      onUserAdded();
-      onClose();
+      setSuccessMessage('User added successfully!');
+      setIsSuccessVisible(true);
+      onUserAdded(); // Refresh the parent component's user list
+      setTimeout(() => {
+        onClose();
+      }, 1000); // Close after 1 second to allow success message to be seen
     } catch (err) {
       console.error('Failed to add user:', err.response?.data);
       if (err.response?.status === 422) {
@@ -122,6 +131,13 @@ const UserModal = ({ isOpen, onClose, token, onUserAdded }) => {
 
         <form onSubmit={handleSubmit} className="modal-form">
           {errors.general && <div className="form-error">{errors.general}</div>}
+          {isSuccessVisible && (
+            <Success
+              message={successMessage}
+              isVisible={isSuccessVisible}
+              onClose={() => setIsSuccessVisible(false)}
+            />
+          )}
 
           <div className="form-group">
             <label htmlFor="email">Email *</label>

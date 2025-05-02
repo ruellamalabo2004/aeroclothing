@@ -55,10 +55,13 @@ const Login = () => {
 
       console.log('Login successful:', response.data);
       
+      // Check if user role is provided correctly
+      const userRoleName = response.data.user.role;
+      
       // Store the authentication data
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
-      setUserRole(response.data.user.role);
+      setUserRole(userRoleName);
       
       // Sync the cart with the server
       await handleLogin(response.data.token, response.data.user);
@@ -66,11 +69,13 @@ const Login = () => {
       setShowSuccess(true);
     } catch (err) {
       console.error('Login failed:', err);
-      console.error('Error response:', err.response);
       if (err.response?.status === 400 && err.response?.data?.errors) {
         setErrors(err.response.data.errors);
       } else if (err.response?.status === 401) {
         setErrors({ general: err.response?.data?.message || 'Invalid email or password' });
+      } else if (err.response?.status === 500) {
+        // Handle server errors gracefully
+        setErrors({ general: 'A server error occurred. Please try again later.' });
       } else {
         setErrors({ general: err.response?.data?.message || 'An error occurred during login' });
       }
@@ -79,11 +84,20 @@ const Login = () => {
 
   const handleSuccessClose = () => {
     setShowSuccess(false);
-    if (userRole === 'admin') {
-      navigate('/admin-dashboard');
-    } else {
+    // Get fresh user data from localStorage to ensure we have the latest
+    try {
       const user = JSON.parse(localStorage.getItem('user'));
-      navigate('/homepage', { state: { user } });
+      const role = user?.role;
+      
+      if (role === 'admin') {
+        navigate('/admin-dashboard');
+      } else {
+        navigate('/homepage', { state: { user } });
+      }
+    } catch (err) {
+      console.error('Navigation error:', err);
+      // Fallback navigation
+      navigate('/homepage');
     }
   };
 

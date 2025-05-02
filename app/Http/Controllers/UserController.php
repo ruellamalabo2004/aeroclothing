@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -11,39 +12,47 @@ class UserController extends Controller
 {
     // Fetch all users with profile information
     public function index()
-{
-    $users = User::leftJoin('profiles', 'users.id', '=', 'profiles.user_id')
-        ->select(
-            'users.id',
-            'users.email',
-            'users.role',
-            'users.status',
-            'users.created_at',
-            'profiles.first_name',
-            'profiles.middle_name',
-            'profiles.last_name',
-            'profiles.suffix',
-            'profiles.gender',
-            'profiles.date_of_birth',
-            'profiles.profile_pic',
-            DB::raw("CONCAT(COALESCE(profiles.first_name, ''), ' ', COALESCE(profiles.middle_name, ''), ' ', COALESCE(profiles.last_name, ''), ' ', COALESCE(profiles.suffix, '')) AS full_name")
-        )
-        ->get();
+    {
+        $users = User::leftJoin('profiles', 'users.id', '=', 'profiles.user_id')
+            ->leftJoin('roles', 'users.role_id', '=', 'roles.id')
+            ->select(
+                'users.id',
+                'users.email',
+                'roles.name as role',
+                'users.status',
+                'users.created_at',
+                'profiles.first_name',
+                'profiles.middle_name',
+                'profiles.last_name',
+                'profiles.suffix',
+                'profiles.gender',
+                'profiles.date_of_birth',
+                'profiles.profile_pic',
+                DB::raw("CONCAT(COALESCE(profiles.first_name, ''), ' ', COALESCE(profiles.middle_name, ''), ' ', COALESCE(profiles.last_name, ''), ' ', COALESCE(profiles.suffix, '')) AS full_name")
+            )
+            ->get();
 
-    return response()->json($users, 200);
-}
+        return response()->json($users, 200);
+    }
 
     // Fetch customers (users with role 'customer')
     public function getCustomers()
     {
         try {
-            $customers = User::where('role', 'customer')
+            $customerRoleId = Role::where('name', 'customer')->first()->id ?? null;
+            
+            if (!$customerRoleId) {
+                return response()->json(['message' => 'Customer role not found'], 404);
+            }
+            
+            $customers = User::where('role_id', $customerRoleId)
                 ->with('profile')
                 ->leftJoin('profiles', 'users.id', '=', 'profiles.user_id')
+                ->leftJoin('roles', 'users.role_id', '=', 'roles.id')
                 ->select(
                     'users.id',
                     'users.email',
-                    'users.role',
+                    'roles.name as role',
                     'users.status',
                     'profiles.first_name',
                     'profiles.middle_name',
@@ -68,11 +77,12 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::leftJoin('profiles', 'users.id', '=', 'profiles.user_id')
+            ->leftJoin('roles', 'users.role_id', '=', 'roles.id')
             ->where('users.id', $id)
             ->select(
                 'users.id',
                 'users.email',
-                'users.role',
+                'roles.name as role',
                 'users.status',
                 'profiles.first_name',
                 'profiles.middle_name',
@@ -97,7 +107,7 @@ class UserController extends Controller
         $request->validate([
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
-            'role' => 'nullable|string|in:customer,admin',
+            'role' => 'nullable|string|exists:roles,name',
             'first_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -109,11 +119,17 @@ class UserController extends Controller
 
         DB::beginTransaction();
         try {
+            // Get the role_id based on the provided role name
+            $role = Role::where('name', $request->role ?? 'customer')->first();
+            if (!$role) {
+                return response()->json(['message' => 'Invalid role specified'], 400);
+            }
+
             $user = User::create([
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
-                'role' => $request->role ?? 'customer',
-                'status' => 'active',
+                'role_id' => $role->id,
+                'status' => 'Active',
             ]);
 
             $profileData = [
@@ -133,11 +149,15 @@ class UserController extends Controller
 
             DB::commit();
 
-            Log::info('User created successfully:', ['id' => $user->id, 'user' => $user->load('profile')->toArray()]);
+            // Load the role relationship to get the role name
+            $userData = $user->load(['profile', 'role'])->toArray();
+            $userData['role_name'] = $user->role->name;
+
+            Log::info('User created successfully:', ['id' => $user->id, 'user' => $userData]);
 
             return response()->json([
                 'message' => 'User created successfully',
-                'data' => $user->load('profile')
+                'data' => $user->load(['profile', 'role'])
             ], 201);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -149,9 +169,15 @@ class UserController extends Controller
     public function getCustomerCount()
     {
         try {
-            $customers = User::where('role', 'customer')->get();
-            Log::info('Fetched customers for count:', ['count' => $customers->count()]);
-            return response()->json(['total_customers' => $customers->count()], 200);
+            $customerRoleId = Role::where('name', 'customer')->first()->id ?? null;
+            
+            if (!$customerRoleId) {
+                return response()->json(['message' => 'Customer role not found'], 404);
+            }
+            
+            $customers = User::where('role_id', $customerRoleId)->count();
+            Log::info('Fetched customers for count:', ['count' => $customers]);
+            return response()->json(['total_customers' => $customers], 200);
         } catch (\Exception $e) {
             Log::error('Error fetching customer count:', ['error' => $e->getMessage()]);
             return response()->json(['error' => 'Failed to fetch customer count'], 500);
@@ -176,8 +202,8 @@ class UserController extends Controller
 
         $request->validate([
             'email' => 'required|email|unique:users,email,' . $id,
-            'role' => 'nullable|string|in:customer,admin',
-            'status' => 'in:active,archived',
+            'role' => 'nullable|string|exists:roles,name',
+            'status' => 'in:Active,Archived',
             'first_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -190,11 +216,20 @@ class UserController extends Controller
         Log::info('Updating user:', ['id' => $id, 'request_data' => $request->all()]);
 
         try {
-            $user->update([
+            $updateData = [
                 'email' => $request->email,
-                'role' => $request->role ?? $user->role,
                 'status' => $request->status ?? $user->status,
-            ]);
+            ];
+            
+            // Update role_id if role is provided
+            if ($request->has('role')) {
+                $role = Role::where('name', $request->role)->first();
+                if ($role) {
+                    $updateData['role_id'] = $role->id;
+                }
+            }
+            
+            $user->update($updateData);
 
             $profileData = [
                 'first_name' => $request->first_name,
@@ -214,11 +249,11 @@ class UserController extends Controller
                 $profileData
             );
 
-            Log::info('User updated successfully:', ['id' => $id, 'user' => $user->load('profile')->toArray()]);
+            Log::info('User updated successfully:', ['id' => $id, 'user' => $user->load(['profile', 'role'])->toArray()]);
 
             return response()->json([
                 'message' => 'User updated successfully',
-                'data' => $user->load('profile')
+                'data' => $user->load(['profile', 'role'])
             ], 200);
         } catch (\Exception $e) {
             Log::error('Error updating user:', ['id' => $id, 'error' => $e->getMessage()]);
@@ -232,10 +267,13 @@ class UserController extends Controller
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
-        if ($user->status === 'archived') {
+        if ($user->status === 'Archived') {
             return response()->json(['message' => 'User is already archived'], 400);
         }
-        $user->update(['status' => 'archived']);
+        
+        // Using the custom archive method from the User model
+        $user->archive();
+        
         return response()->json(['message' => 'User archived successfully', 'data' => $user], 200);
     }
 
@@ -245,10 +283,13 @@ class UserController extends Controller
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
-        if ($user->status === 'active') {
+        if ($user->status === 'Active') {
             return response()->json(['message' => 'User is already active'], 400);
         }
-        $user->update(['status' => 'active']);
+        
+        // Using the custom restore method from the User model
+        $user->restore();
+        
         return response()->json(['message' => 'User restored successfully', 'data' => $user], 200);
     }
 
@@ -258,16 +299,20 @@ class UserController extends Controller
         if (!$user) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-        if ($user->role !== 'customer') {
+        
+        // Check if user has customer role
+        $customerRole = Role::where('name', 'customer')->first();
+        if (!$customerRole || $user->role_id !== $customerRole->id) {
             return response()->json(['message' => 'Access denied. Only customers can view profiles.'], 403);
         }
 
         $customer = User::where('users.id', $user->id)
             ->leftJoin('profiles', 'users.id', '=', 'profiles.user_id')
+            ->leftJoin('roles', 'users.role_id', '=', 'roles.id')
             ->select(
                 'users.id',
                 'users.email',
-                'users.role',
+                'roles.name as role',
                 'users.status',
                 'profiles.first_name',
                 'profiles.middle_name',
@@ -283,6 +328,7 @@ class UserController extends Controller
             return response()->json(['message' => 'User not found'], 404);
         }
 
+        // Create default profile if none exists
         if (!$customer->first_name && !$customer->last_name) {
             $profile = new \App\Models\Profile();
             $profile->user_id = $user->id;
@@ -292,10 +338,11 @@ class UserController extends Controller
 
             $customer = User::where('users.id', $user->id)
                 ->leftJoin('profiles', 'users.id', '=', 'profiles.user_id')
+                ->leftJoin('roles', 'users.role_id', '=', 'roles.id')
                 ->select(
                     'users.id',
                     'users.email',
-                    'users.role',
+                    'roles.name as role',
                     'users.status',
                     'profiles.first_name',
                     'profiles.middle_name',
@@ -317,7 +364,10 @@ class UserController extends Controller
         if (!$user) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-        if ($user->role !== 'customer') {
+        
+        // Check if user has customer role
+        $customerRole = Role::where('name', 'customer')->first();
+        if (!$customerRole || $user->role_id !== $customerRole->id) {
             return response()->json(['message' => 'Access denied. Only customers can update profiles.'], 403);
         }
 
@@ -355,10 +405,13 @@ class UserController extends Controller
 
             Log::info('User profile updated successfully:', ['id' => $user->id, 'profile' => $profile->toArray()]);
 
+            // Get role name for the response
+            $roleName = $user->role ? $user->role->name : null;
+
             $updatedData = [
                 'id' => $user->id,
                 'email' => $user->email,
-                'role' => $user->role,
+                'role' => $roleName,
                 'status' => $user->status,
                 'first_name' => $profile->first_name,
                 'middle_name' => $profile->middle_name,
@@ -371,7 +424,7 @@ class UserController extends Controller
 
             return response()->json([
                 'message' => 'Profile updated successfully',
-                'user' => $user,
+                'user' => $user->load('role'),
                 'profile' => $updatedData
             ], 200);
         } catch (\Exception $e) {

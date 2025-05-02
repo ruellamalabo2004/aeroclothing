@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Role;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -33,14 +34,25 @@ class AuthController extends Controller
             return response()->json(['errors' => $validator->errors()], 400);
         }
 
-        // Assign role based on email domain
-        $role = str_ends_with($request->email, '@admin.com') ? 'admin' : 'customer';
+        // Get role ID based on email domain
+        $roleName = str_ends_with($request->email, '@admin.com') ? 'admin' : 'customer';
+        $role = Role::where('name', $roleName)->first();
+        
+        if (!$role) {
+            // Fallback to customer role if admin role doesn't exist
+            $role = Role::where('name', 'customer')->first();
+            
+            // If no roles exist at all, return an error
+            if (!$role) {
+                return response()->json(['message' => 'System error: Role not found. Please contact administrator.'], 500);
+            }
+        }
 
         // Create new user
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $role,
+            'role_id' => $role->id,
             'status' => 'Active', // Ensure new users are Active
         ]);
 
@@ -61,12 +73,58 @@ class AuthController extends Controller
             'user' => [
                 'id' => $user->id,
                 'email' => $user->email,
-                'role' => $user->role
+                'role' => $role->name // Return role name instead of ID for frontend
             ]
         ], 201);
     }
 
-    // Change user password
+    // Login method needs updating to return role name instead of role_id
+    public function login(Request $request)
+    {
+        // Validate incoming login request
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        // If validation fails, return error response
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Invalid credentials', 'errors' => $validator->errors()], 400);
+        }
+
+        // Check if user exists with provided email
+        $user = User::with('role')->where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json(['message' => 'Invalid email or password'], 401);
+        }
+
+        // Check if the user's account is archived
+        if ($user->status === 'Archived') {
+            return response()->json([
+                'message' => 'Your account was suspended, please contact support'
+            ], 403);
+        }
+
+        // Generate access token
+        $token = $user->createToken('MyApp')->accessToken;
+
+        // Fetch user profile
+        $profile = Profile::where('user_id', $user->id)->first();
+
+        return response()->json([
+            'message' => 'Login successful',
+            'token' => $token,
+            'user' => [
+                'id' => $user->id,
+                'email' => $user->email,
+                'role' => $user->role ? $user->role->name : null,
+                'profile' => $profile
+            ]
+        ], 200);
+    }
+
+    // The rest of the methods remain unchanged...
     public function changePassword(Request $request)
     {
         // Validate current and new password
@@ -92,7 +150,6 @@ class AuthController extends Controller
         return response()->json(['message' => 'Password updated successfully'], 200);
     }
 
-    // Get the authenticated user's profile
     public function profile()
     {
         $user = Auth::user();
@@ -110,7 +167,6 @@ class AuthController extends Controller
         ], 200);
     }
 
-    // Update the authenticated user's profile
     public function updateProfile(Request $request)
     {
         $user = Auth::user();
@@ -172,7 +228,6 @@ class AuthController extends Controller
         ]);
     }
 
-    // Log out the authenticated user
     public function logout(Request $request)
     {
         $request->user()->token()->revoke();
@@ -181,50 +236,4 @@ class AuthController extends Controller
             'message' => 'Successfully logged out'
         ]);
     }
-
-    // Log in an existing user
-    public function login(Request $request)
-{
-    // Validate incoming login request
-    $validator = Validator::make($request->all(), [
-        'email' => 'required|email',
-        'password' => 'required'
-    ]);
-
-    // If validation fails, return error response
-    if ($validator->fails()) {
-        return response()->json(['message' => 'Invalid credentials', 'errors' => $validator->errors()], 400);
-    }
-
-    // Check if user exists with provided email
-    $user = User::where('email', $request->email)->first();
-
-    if (!$user || !Hash::check($request->password, $user->password)) {
-        return response()->json(['message' => 'Invalid email or password'], 401);
-    }
-
-    // Check if the user's account is archived
-    if ($user->status === 'Archived') {
-        return response()->json([
-            'message' => 'Your account was suspended, please contact support'
-        ], 403);
-    }
-
-    // Generate access token
-    $token = $user->createToken('MyApp')->accessToken;
-
-    // Fetch user profile
-    $profile = Profile::where('user_id', $user->id)->first();
-
-    return response()->json([
-        'message' => 'Login successful',
-        'token' => $token,
-        'user' => [
-            'id' => $user->id,
-            'email' => $user->email,
-            'role' => $user->role,
-            'profile' => $profile  // 🔥 Inject profile directly inside user
-        ]
-    ], 200);
-}
 }

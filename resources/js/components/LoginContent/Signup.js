@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Added useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, ChevronDown } from 'lucide-react';
 import axios from 'axios';
-import Success from './Success'; // Imported Success component
+import Success from './Success';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +11,7 @@ const Signup = () => {
     lastName: '',
     suffix: 'None',
     gender: '',
-    dateOfBirth: '', // Renamed from birthdate to match backend
+    dateOfBirth: '',
     email: '',
     password: '',
     passwordConfirmation: '',
@@ -19,8 +19,8 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
   const [errors, setErrors] = useState({});
-  const [showSuccess, setShowSuccess] = useState(false); // Added state for success pop-up
-  const navigate = useNavigate(); // Added useNavigate for redirection
+  const [showSuccess, setShowSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,7 +57,7 @@ const Signup = () => {
       });
 
       console.log('Registration successful:', response.data);
-      setShowSuccess(true); // Show success pop-up
+      setShowSuccess(true);
     } catch (err) {
       console.error('Registration failed:', err);
       console.error('Error response:', err.response);
@@ -73,7 +73,8 @@ const Signup = () => {
 
   const handleSuccessClose = () => {
     setShowSuccess(false);
-    navigate('/login'); // Redirect to login page after pop-up closes
+    // Add a small delay before redirecting for better UX
+    setTimeout(() => navigate('/login'), 500);
   };
 
   return (

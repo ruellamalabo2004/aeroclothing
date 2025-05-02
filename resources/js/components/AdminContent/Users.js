@@ -31,12 +31,35 @@ const Users = ({ token }) => {
                 },
             });
             console.log('Fetched users:', res.data);
-            setUsers(res.data || []);
+
+            const processedUsers = Array.isArray(res.data) ? res.data.map(user => ({
+                ...user,
+                roles: user.role ? [user.role] : ['N/A'],
+                full_name: user.profile 
+                    ? [
+                          user.profile.first_name || '',
+                          user.profile.middle_name || '',
+                          user.profile.last_name || '',
+                          user.profile.suffix || ''
+                      ].filter(Boolean).join(' ').trim() 
+                    : formatFullName(user) || 'N/A'
+            })) : [];
+            
+            setUsers(processedUsers);
             setErrorMessage('');
         } catch (err) {
             console.error('Failed to fetch users:', err.response?.data || err.message);
             setErrorMessage(`Failed to fetch users: ${err.response?.data?.message || err.message}`);
+            setUsers([]);
         }
+    };
+
+    const formatFullName = (user) => {
+        const firstName = user.first_name || (user.profile?.first_name) || '';
+        const middleName = user.middle_name || (user.profile?.middle_name) || '';
+        const lastName = user.last_name || (user.profile?.last_name) || '';
+        const suffix = user.suffix || (user.profile?.suffix) || '';
+        return `${firstName} ${middleName} ${lastName} ${suffix}`.trim() || 'N/A';
     };
 
     const handleAction = async (userId, status, action) => {
@@ -60,12 +83,12 @@ const Users = ({ token }) => {
             console.log(`${action} response:`, res.data);
             setUsers((prev) =>
                 prev.map((u) =>
-                    u.id === userId ? { ...u, status: action === 'archive' ? 'archived' : 'active' } : u
+                    u.id === userId ? { ...u, status: action === 'archive' ? 'Archived' : 'Active' } : u
                 )
             );
             setSuccessMessage(`User ${action}d successfully!`);
             setIsSuccessVisible(true);
-            fetchUsers();
+            fetchUsers(); // Refresh in the background
         } catch (err) {
             console.error(`Failed to ${action} user:`, err.response?.data || err.message);
             setErrorMessage(`Failed to ${action} user: ${err.response?.data?.message || err.message}`);
@@ -102,15 +125,10 @@ const Users = ({ token }) => {
             } else {
                 setSuccessMessage(`Selected users (${selectedUsers.length}) archived successfully!`);
                 setIsSuccessVisible(true);
-                setUsers((prev) =>
-                    prev.map((u) =>
-                        selectedUsers.includes(u.id) ? { ...u, status: 'archived' } : u
-                    )
-                );
             }
 
             setSelectedUsers([]);
-            fetchUsers();
+            fetchUsers(); // Refresh in the background
         } catch (err) {
             console.error('Failed to bulk archive users:', err.response?.data || err.message);
             setErrorMessage(`Failed to bulk archive users: ${err.response?.data?.message || err.message}`);
@@ -124,34 +142,43 @@ const Users = ({ token }) => {
 
     const handleUserUpdated = (updatedUser) => {
         console.log('User updated, updating local state:', updatedUser);
+
+        // Update local state immediately
         setUsers((prev) =>
             prev.map((u) =>
                 u.id === updatedUser.id
                     ? {
                           ...u,
-                          email: updatedUser.email,
-                          role: updatedUser.role,
-                          status: updatedUser.status,
-                          first_name: updatedUser.first_name,
-                          middle_name: updatedUser.middle_name,
-                          last_name: updatedUser.last_name,
-                          suffix: updatedUser.suffix,
-                          gender: updatedUser.gender,
-                          date_of_birth: updatedUser.date_of_birth,
-                          profile_pic: updatedUser.profile_pic,
-                          full_name: `${updatedUser.first_name || ''} ${updatedUser.middle_name || ''} ${updatedUser.last_name || ''} ${updatedUser.suffix || ''}`.trim(),
+                          email: updatedUser.email || u.email,
+                          status: updatedUser.status || u.status,
+                          full_name: updatedUser.profile
+                              ? [
+                                    updatedUser.profile.first_name || '',
+                                    updatedUser.profile.middle_name || '',
+                                    updatedUser.profile.last_name || '',
+                                    updatedUser.profile.suffix || ''
+                                ].filter(Boolean).join(' ').trim()
+                              : formatFullName(updatedUser) || u.full_name || 'N/A'
                       }
                     : u
             )
         );
+
+        // Close modal and show success immediately
+        setIsEditModalOpen(false);
+        setSelectedUserId(null);
+        setSuccessMessage('User updated successfully!');
+        setIsSuccessVisible(true);
+
+        // Refresh data in the background
         fetchUsers();
     };
 
     const filteredUsers = users.filter(
         (user) =>
-            (user.full_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-             user.email?.toLowerCase().includes(searchTerm.toLowerCase())) &&
-            (showArchived ? user.status === 'archived' : user.status === 'active')
+            ((user.full_name?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
+             (user.email?.toLowerCase() || '').includes(searchTerm.toLowerCase())) &&
+            (showArchived ? user.status === 'Archived' : user.status === 'Active')
     );
 
     const totalUsers = filteredUsers.length;
@@ -173,8 +200,21 @@ const Users = ({ token }) => {
 
     const formatDate = (dateString) => {
         if (!dateString) return 'N/A';
-        const date = new Date(dateString);
-        return date.toLocaleDateString();
+        try {
+            const date = new Date(dateString);
+            return date.toLocaleDateString();
+        } catch (error) {
+            console.error('Error formatting date:', error);
+            return 'Invalid Date';
+        }
+    };
+
+    const normalizeStatus = (status) => {
+        if (!status) return { cssClass: 'unknown', displayText: 'N/A' };
+        return {
+            cssClass: status.toLowerCase(),
+            displayText: status
+        };
     };
 
     return (
@@ -273,64 +313,66 @@ const Users = ({ token }) => {
                         </thead>
                         <tbody>
                             {currentUsers.length > 0 ? (
-                                currentUsers.map((user) => (
-                                    <tr key={user.id}>
-                                        <td>
-                                            <input
-                                                type="checkbox"
-                                                checked={selectedUsers.includes(user.id)}
-                                                onChange={() => handleCheckboxChange(user.id)}
-                                            />
-                                        </td>
-                                        <td>
-                                            <Edit2
-                                                className="action-img"
-                                                size={16}
-                                                onClick={() => handleEdit(user.id)}
-                                            />
-                                            <span
-                                                className="action-img"
-                                                onClick={() =>
-                                                    handleAction(
-                                                        user.id,
-                                                        user.status,
-                                                        user.status === 'archived' ? 'restore' : 'archive'
-                                                    )
-                                                }
-                                            >
-                                                {user.status === 'archived' ? <RotateCcw size={16} /> : <Archive size={16} />}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            {user.profile_pic ? (
-                                                <img
-                                                    src={`http://localhost:8000/storage/${user.profile_pic}`}
-                                                    alt={user.full_name}
-                                                    className="user-image"
-                                                    onError={(e) => {
-                                                        e.target.src = '/api/placeholder/40/40';
-                                                    }}
+                                currentUsers.map((user) => {
+                                    if (!user || typeof user !== 'object') return null;
+                                    const status = normalizeStatus(user.status);
+                                    return (
+                                        <tr key={user.id}>
+                                            <td>
+                                                <input
+                                                    type="checkbox"
+                                                    checked={selectedUsers.includes(user.id)}
+                                                    onChange={() => handleCheckboxChange(user.id)}
                                                 />
-                                            ) : (
-                                                <User size={24} className="user-icon" />
-                                            )}
-                                        </td>
-                                        <td>{user.full_name?.trim() || 'N/A'}</td>
-                                        <td>{user.email}</td>
-                                        <td>{user.gender || 'N/A'}</td>
-                                        <td>{formatDate(user.date_of_birth)}</td>
-                                        <td>
-                                            <span className={`role-frame role-${user.role}`}>
-                                                {user.role || 'N/A'}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className={`status-frame status-${user.status}`}>
-                                                {user.status}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))
+                                            </td>
+                                            <td>
+                                                <Edit2
+                                                    className="action-img"
+                                                    size={16}
+                                                    onClick={() => handleEdit(user.id)}
+                                                />
+                                                <span
+                                                    className="action-img"
+                                                    onClick={() =>
+                                                        handleAction(
+                                                            user.id,
+                                                            user.status,
+                                                            user.status === 'Archived' ? 'restore' : 'archive'
+                                                        )
+                                                    }
+                                                >
+                                                    {user.status === 'Archived' ? <RotateCcw size={16} /> : <Archive size={16} />}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {user.profile_pic ? (
+                                                    <img
+                                                        src={`http://localhost:8000/storage/${user.profile_pic}`}
+                                                        alt={user.full_name || "User"}
+                                                        className="user-image"
+                                                        onError={(e) => { e.target.src = '/api/placeholder/40/40'; }}
+                                                    />
+                                                ) : (
+                                                    <User size={24} className="user-icon" />
+                                                )}
+                                            </td>
+                                            <td>{user.full_name || 'N/A'}</td>
+                                            <td>{user.email || 'N/A'}</td>
+                                            <td>{user.gender || 'N/A'}</td>
+                                            <td>{formatDate(user.date_of_birth)}</td>
+                                            <td>
+                                                <span className={`role-frame role-${(user.role || user.roles?.[0] || 'N/A').toLowerCase()}`}>
+                                                    {user.role || user.roles?.[0] || 'N/A'}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span className={`status-frame status-${status.cssClass}`}>
+                                                    {status.displayText}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
                             ) : (
                                 <tr>
                                     <td colSpan="9">No users available</td>

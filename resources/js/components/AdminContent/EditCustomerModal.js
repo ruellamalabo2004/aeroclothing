@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { X } from 'lucide-react';
+import Success from '../LoginContent/Success'; // Assuming this is the correct path
 
 const EditCustomerModal = ({ isOpen, onClose, customerId, token, onCustomerUpdated }) => {
   const initialFormData = {
@@ -21,6 +22,7 @@ const EditCustomerModal = ({ isOpen, onClose, customerId, token, onCustomerUpdat
   const [loading, setLoading] = useState(false);
   const [fetchingCustomer, setFetchingCustomer] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isSuccessVisible, setIsSuccessVisible] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
@@ -123,7 +125,6 @@ const EditCustomerModal = ({ isOpen, onClose, customerId, token, onCustomerUpdat
 
     setLoading(true);
     setErrors({});
-    setSuccessMessage('');
 
     try {
       const formDataToSend = new FormData();
@@ -157,9 +158,12 @@ const EditCustomerModal = ({ isOpen, onClose, customerId, token, onCustomerUpdat
 
       console.log('Customer updated response:', res.data);
       if (res.data.message === 'User updated successfully' && res.data.data) {
-        setSuccessMessage('Customer updated successfully.');
+        setSuccessMessage('Customer updated successfully!');
+        setIsSuccessVisible(true);
         onCustomerUpdated(res.data.data);
-        setTimeout(onClose, 1500);
+        setTimeout(() => {
+          onClose();
+        }, 1000); // Close after 1 second to show success notification
       } else {
         throw new Error('Unexpected response: ' + JSON.stringify(res.data));
       }
@@ -197,11 +201,11 @@ const EditCustomerModal = ({ isOpen, onClose, customerId, token, onCustomerUpdat
                 {errors.general}
               </div>
             )}
-            {successMessage && (
-              <div className="form-success" style={{ color: 'green', marginBottom: '10px', fontWeight: 'bold', padding: '10px', background: '#d4edda', borderRadius: '4px' }}>
-                {successMessage}
-              </div>
-            )}
+            <Success
+              message={successMessage}
+              isVisible={isSuccessVisible}
+              onClose={() => setIsSuccessVisible(false)}
+            />
 
             <div className="form-group">
               <label htmlFor="email">Email *</label>

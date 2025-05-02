@@ -2,30 +2,50 @@
 import React, { useState } from 'react';
 import { useCart } from '../Notifs/CartContext';
 
+// Color mapping helper function
+const getColorHexCode = (colorName) => {
+  const colorMap = {
+    'Red': '#FF0000',
+    'Blue': '#0000FF',
+    'Black': '#000000',
+    'Green': '#008000',
+    'Gray': '#808080',
+    'White': '#FFFFFF',
+    'Yellow': '#FFFF00',
+    'Purple': '#800080',
+    'Pink': '#FFC0CB',
+    'Orange': '#FFA500',
+    'Brown': '#A52A2A',
+    'Navy': '#000080',
+    'Teal': '#008080',
+    'Maroon': '#800000',
+    'Olive': '#808000',
+    'Cyan': '#00FFFF',
+    'Silver': '#C0C0C0',
+    'Gold': '#FFD700',
+    'Beige': '#F5F5DC',
+    'Coral': '#FF7F50',
+    'Turquoise': '#40E0D0',
+    'Lavender': '#E6E6FA',
+    'Indigo': '#4B0082',
+  };
+  
+  // If the color exists in our map, return it, otherwise default to a light gray
+  return colorMap[colorName] || '#CCCCCC';
+};
+
 const CartModal = ({ product, onClose, onAddToCart }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
 
-  const colorMap = {
-    Red: '#FF0000',
-    Blue: '#0000FF',
-    Black: '#000000',
-    Green: '#008000',
-    Gray: '#808080',
-    White: '#FFFFFF',
-    Yellow: '#FFFF00',
-  };
+  // Using the new structure from ViewProduct.js
+  const availableSizes = product.sizes || [];
+  const availableColors = product.colors || [];
 
-  const sizes = product.sizes || [];
-  const colors = (product.colors || []).map((colorName) => ({
-    name: colorName,
-    value: colorMap[colorName] || '#000000',
-  }));
-
-  const handleSizeChange = (e) => {
-    setSelectedSize(e.target.value);
+  const handleSizeChange = (size) => {
+    setSelectedSize(size);
   };
 
   const handleColorSelect = (color) => {
@@ -37,18 +57,24 @@ const CartModal = ({ product, onClose, onAddToCart }) => {
   };
 
   const handleAddToCart = () => {
-    if (!selectedSize || !selectedColor) {
+    if ((availableSizes.length > 0 && !selectedSize) || 
+        (availableColors.length > 0 && !selectedColor)) {
       alert('Please select a size and color.');
       return;
     }
+    
     const cartItem = {
-      ...product,
-      selectedSize,
-      selectedColor,
+      id: parseInt(product.id),
+      productName: product.productName,
+      price: product.price,
+      imagePreview: product.imagePreview,
+      selectedSize: selectedSize,
+      selectedColor: selectedColor,
       quantity,
     };
+    
     addToCart(cartItem);
-    onAddToCart(cartItem); // Keep this for backward compatibility
+    onAddToCart && onAddToCart(cartItem); // Keep this for backward compatibility
     onClose();
   };
 
@@ -75,49 +101,45 @@ const CartModal = ({ product, onClose, onAddToCart }) => {
           </div>
         </div>
 
-        <div className="cart-modal__option">
-          <label className="cart-modal__label">Size</label>
-          <select
-            className="cart-modal__select"
-            value={selectedSize}
-            onChange={handleSizeChange}
-          >
-            <option value="" disabled>Select size</option>
-            {sizes.length > 0 ? (
-              sizes.map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))
-            ) : (
-              <option value="" disabled>No sizes available</option>
-            )}
-          </select>
-        </div>
-
-        <div className="cart-modal__option">
-          <label className="cart-modal__label">Color</label>
-          <div className="cart-modal__color-grid">
-            {colors.length > 0 ? (
-              colors.map((color) => (
-                <div key={color.name} className="cart-modal__color-item">
-                  <div
-                    className={`cart-modal__color ${
-                      selectedColor === color.name ? 'cart-modal__color--selected' : ''
-                    } ${color.name.toLowerCase() === 'white' ? 'cart-modal__color--white' : ''}`}
-                    style={{ backgroundColor: color.value }}
-                    onClick={() => handleColorSelect(color.name)}
-                    title={color.name}
-                  />
-                  <span className="cart-modal__color-label">{color.name.toUpperCase()}</span>
-                </div>
-              ))
-            ) : (
-              <span>No colors available</span>
-              
-            )}
+        {availableSizes.length > 0 && (
+          <div className="cart-modal__option">
+            <label className="cart-modal__label">Size</label>
+            <div className="cart-modal__sizes">
+              {availableSizes.map((size) => (
+                <button
+                  key={size.id || size.size_id}
+                  className={`cart-modal__size-btn ${selectedSize === size.size_name ? 'cart-modal__size-btn--selected' : ''}`}
+                  onClick={() => handleSizeChange(size.size_name)}
+                >
+                  {size.size_name}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
+        {availableColors.length > 0 && (
+          <div className="cart-modal__option">
+            <label className="cart-modal__label">Color</label>
+            <div className="cart-modal__colors">
+              {availableColors.map((color) => (
+                <div
+                  key={color.id || color.color_id}
+                  className={`cart-modal__color-btn ${selectedColor === color.color_name ? 'cart-modal__color-btn--selected' : ''}`}
+                  onClick={() => handleColorSelect(color.color_name)}
+                >
+                  <div 
+                    className="cart-modal__color-btn-circle"
+                    style={{ 
+                      backgroundColor: getColorHexCode(color.color_name) 
+                    }}
+                  ></div>
+                  <span className="cart-modal__color-btn-label">{color.color_name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="cart-modal__option">
           <label className="cart-modal__label">Quantity</label>
@@ -144,9 +166,12 @@ const CartModal = ({ product, onClose, onAddToCart }) => {
         <button
           className="cart-modal__add-btn"
           onClick={handleAddToCart}
-          disabled={!selectedSize || !selectedColor}
+          disabled={(availableSizes.length > 0 && !selectedSize) || 
+                   (availableColors.length > 0 && !selectedColor)}
         >
-          {selectedSize && selectedColor ? 'Add to Cart' : 'Please Select Options'}
+          {((availableSizes.length === 0 || selectedSize) && 
+            (availableColors.length === 0 || selectedColor)) 
+            ? 'Add to Cart' : 'Please Select Options'}
         </button>
       </div>
     </div>

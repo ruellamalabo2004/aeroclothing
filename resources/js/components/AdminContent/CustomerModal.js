@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { X } from 'lucide-react';
+import Success from '../LoginContent/Success'; // Adjust path as needed
 
 const CustomerModal = ({ isOpen, onClose, token, onCustomerAdded }) => {
   const initialFormData = {
@@ -20,6 +21,8 @@ const CustomerModal = ({ isOpen, onClose, token, onCustomerAdded }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isSuccessVisible, setIsSuccessVisible] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
     if (!isOpen) {
@@ -31,6 +34,8 @@ const CustomerModal = ({ isOpen, onClose, token, onCustomerAdded }) => {
     setFormData(initialFormData);
     setPreviewImage(null);
     setErrors({});
+    setIsSuccessVisible(false);
+    setSuccessMessage('');
   };
 
   const handleChange = (e) => {
@@ -65,7 +70,6 @@ const CustomerModal = ({ isOpen, onClose, token, onCustomerAdded }) => {
 
     try {
       const formDataToSend = new FormData();
-      // Send flat fields as expected by the backend
       formDataToSend.append('email', formData.email);
       formDataToSend.append('password', formData.password);
       formDataToSend.append('role', formData.role);
@@ -91,8 +95,12 @@ const CustomerModal = ({ isOpen, onClose, token, onCustomerAdded }) => {
       );
 
       console.log('Customer added:', res.data);
+      setSuccessMessage('Customer added successfully!');
+      setIsSuccessVisible(true);
       onCustomerAdded();
-      onClose();
+      setTimeout(() => {
+        onClose();
+      }, 1000); // Close after 1 second to show success notification
     } catch (err) {
       console.error('Failed to add customer:', err.response?.data);
       if (err.response?.status === 422) {
@@ -123,6 +131,11 @@ const CustomerModal = ({ isOpen, onClose, token, onCustomerAdded }) => {
 
         <form onSubmit={handleSubmit} className="modal-form">
           {errors.general && <div className="form-error">{errors.general}</div>}
+          <Success
+            message={successMessage}
+            isVisible={isSuccessVisible}
+            onClose={() => setIsSuccessVisible(false)}
+          />
 
           <div className="form-group">
             <label htmlFor="email">Email *</label>

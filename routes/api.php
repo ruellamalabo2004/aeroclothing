@@ -84,6 +84,9 @@ Route::middleware('auth:api')->group(function () {
     Route::patch('/order-details/{id}/restore', [OrderDetailController::class, 'restore']);
     Route::get('/order-details', [OrderController::class, 'getOrderDetails']);
 
+
+    //
+    
     // Courier
     Route::post('/couriers', [CourierController::class, 'store']);
     Route::put('/couriers/{id}', [CourierController::class, 'update']);
