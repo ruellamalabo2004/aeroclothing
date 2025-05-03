@@ -47,6 +47,7 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 Route::post('password/reset', [ResetPasswordController::class, 'reset']);
 
 // New routes for sizes, colors, and product types
+Route::apiResource('product_types', ProductTypeController::class);
 Route::apiResource('sizes', SizeController::class);
 Route::patch('/sizes/{id}/restore', [SizeController::class, 'restore']);
 Route::apiResource('colors', ColorController::class);

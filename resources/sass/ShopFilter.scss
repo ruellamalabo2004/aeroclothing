@@ -27,6 +27,36 @@
     }
   }
 
+  .clear-filters-button,
+  .toggle-sections-button {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 0; /* Consistent with other buttons */
+    background-color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+
+    &:hover {
+      background-color: #333;
+      color: white;
+      border-color: #333;
+      transform: scale(1.02);
+    }
+
+    &:active {
+      background-color: #222;
+      border-color: #222;
+    }
+  }
+
   .filter-section {
     margin-bottom: 20px;
     
@@ -140,6 +170,12 @@
     
     .filter-section {
       margin-bottom: 16px;
+    }
+
+    .clear-filters-button,
+    .toggle-sections-button {
+      padding: 6px 10px;
+      margin-bottom: 12px;
     }
   }
 }

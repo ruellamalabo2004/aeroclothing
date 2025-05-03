@@ -25,6 +25,8 @@ import Reviews from './components/AdminContent/Reviews';
 import CustomerSupport from './components/AdminContent/CustomerSupport';
 import Reports from './components/AdminContent/Reports';
 import ProductMain from './components/CustomerPage/ProductMain';
+import Checkout from './components/CustomerPage/Checkout';
+import Carts from './components/CustomerPage/Carts'; // Added Carts import
 
 // Import ProtectedRoute
 import ProtectedRoute from './components/ProtectedRouters/ProtectedRoute';
@@ -55,6 +57,12 @@ const App = () => {
 
             {/* Product Route for individual product pages */}
             <Route path="/product/:productId" element={<ProductMain />} />
+
+            {/* Checkout Route for regular users */}
+            <Route path="/checkout" element={<Checkout />} />
+
+            {/* Carts Route for regular users */}
+            <Route path="/carts" element={<Carts />} />
 
             {/* Admin Dashboard Route with nested routes, protected by role */}
             <Route element={<ProtectedRoute requiredRole="admin" />}>

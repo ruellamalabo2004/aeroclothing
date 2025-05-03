@@ -1,0 +1,74 @@
+.carts {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f5f5f5;
+  
+    .carts-content {
+      flex: 1;
+      padding: calc(var(--header-height, 56px) + 2rem) 2rem 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+  
+      .carts-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #333;
+        text-align: left;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+      }
+    }
+  
+    .carts-layout {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      align-items: stretch; // Ensures both columns stretch to the same height
+  
+      .view-cart {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+      }
+  
+      .cart-summary {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; // Aligns to the bottom
+      }
+    }
+  
+    @media (max-width: 992px) {
+      .carts-layout {
+        flex-direction: column;
+  
+        .cart-summary {
+          justify-content: flex-start; // Reset to top on mobile
+          margin-top: 2rem;
+        }
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .carts-content {
+        padding: calc(var(--header-height, 48px) + 1.5rem) 1rem 1rem 1rem;
+  
+        .carts-title {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .carts-content {
+        padding: calc(var(--header-height, 40px) + 1.25rem) 0.75rem 0.75rem 0.75rem;
+  
+        .carts-title {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }

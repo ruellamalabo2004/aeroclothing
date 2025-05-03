@@ -1,4 +1,3 @@
-// src/Notifs/CartSidebar.js
 import React from 'react';
 import { ShoppingCart, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -66,6 +65,11 @@ const CartSidebar = ({ isOpen, onClose }) => {
 
   const handleProceedToCheckout = () => {
     navigate('/checkout');
+    onClose();
+  };
+
+  const handleViewCart = () => {
+    navigate('/carts'); // Updated to navigate to /carts
     onClose();
   };
 
@@ -144,6 +148,9 @@ const CartSidebar = ({ isOpen, onClose }) => {
             <span className="cart-sidebar__subtotal-label">Subtotal</span>
             <span className="cart-sidebar__subtotal-value">${calculateSubtotal().toFixed(2)}</span>
           </div>
+          <button className="cart-sidebar__view-cart-btn" onClick={handleViewCart}>
+            View Cart
+          </button>
           <button className="cart-sidebar__checkout-btn" onClick={handleProceedToCheckout}>
             Proceed to Checkout
           </button>
