@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../HeaderContent/Header';
-import Footer from '../FooterContent/Footer';
 import CheckoutForm from './CheckoutForm';
 import CheckoutSummary from './CheckoutSummary';
 
@@ -19,8 +18,7 @@ const Checkout = () => {
             <CheckoutSummary />
           </div>
         </div>
-      </div>
-      <Footer />
+      </div>  
     </div>
   );
 };

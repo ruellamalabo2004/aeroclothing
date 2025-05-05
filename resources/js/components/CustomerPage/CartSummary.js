@@ -1,9 +1,10 @@
 import React from 'react';
 import { useCart } from '../Notifs/CartContext';
-
+import { useNavigate } from 'react-router-dom';
 
 const CartSummary = () => {
   const { cart } = useCart();
+  const navigate = useNavigate();
 
   // Calculate subtotal
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
@@ -11,6 +12,10 @@ const CartSummary = () => {
   const shipping = 'Calculated at checkout';
   // Total (assuming no taxes for now, adjust as needed)
   const total = subtotal;
+
+  const handleProceedToCheckout = () => {
+    navigate('/checkout');
+  };
 
   return (
     <div className="cart-summary">
@@ -24,12 +29,11 @@ const CartSummary = () => {
         <span>{shipping}</span>
       </div>
       <div className="cart-summary__row cart-summary__total">
-        <span>Total</span>
+        <span>Total including taxes</span>
         <span>${total}</span>
       </div>
-      <div className="cart-summary__tax-note">Including taxes</div>
-      <button className="cart-summary__checkout-btn">
-        Proceed to Checkout <span className="arrow">→</span>
+      <button className="cart-summary__checkout-btn" onClick={handleProceedToCheckout}>
+        Proceed to Checkout →
       </button>
     </div>
   );

@@ -1,0 +1,210 @@
+.profile-sidebar {
+  width: 250px; /* Slightly reduced width */
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px 0 0 8px; /* Rounded corners only on left side */
+  padding: 1.5rem; /* Reduced padding */
+  font-family: "Albert Sans", sans-serif;
+  height: 100%; /* Make it take full height of parent */
+  margin-right: 0; /* No right margin */
+  border-right: 1px solid #eee; /* Subtle separator */
+
+  &-loading {
+    text-align: center;
+    color: #666;
+    padding: 1rem;
+  }
+
+  &-profile {
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  &-profile-pic-container {
+    margin-bottom: 1rem;
+  }
+
+  &-profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &-profile-initials {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #3aa6b9;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  &-profile-info {
+    text-align: center;
+  }
+
+  &-profile-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 0.5rem;
+  }
+
+  &-profile-email {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+    word-break: break-all;
+  }
+
+  &-nav {
+    &-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    &-item {
+      border-bottom: 1px solid #e5e5e5;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &.active {
+        .profile-sidebar-nav-link {
+          color: #3aa6b9;
+        }
+
+        .profile-sidebar-nav-link svg {
+          color: #3aa6b9;
+        }
+      }
+    }
+
+    &-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      text-decoration: none;
+      color: #333;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      cursor: pointer;
+      text-transform: capitalize;
+
+      &:hover {
+        color: #3aa6b9;
+      }
+
+      svg {
+        color: #333;
+        width: 18px;
+        height: 18px;
+        transition: color 0.3s ease;
+      }
+
+      &:hover svg {
+        color: #3aa6b9;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-right: none;
+
+    &-profile {
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    &-profile-pic-container {
+      margin-bottom: 0.75rem;
+    }
+
+    &-profile-pic,
+    &-profile-initials {
+      width: 64px;
+      height: 64px;
+    }
+
+    &-profile-initials {
+      font-size: 1.2rem;
+    }
+
+    &-profile-name {
+      font-size: 1.1rem;
+    }
+
+    &-profile-email {
+      font-size: 0.9rem;
+    }
+
+    &-nav {
+      &-link {
+        padding: 0.6rem 0;
+        font-size: 0.9rem;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+
+    &-profile {
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    &-profile-pic-container {
+      margin-bottom: 0.5rem;
+    }
+
+    &-profile-pic,
+    &-profile-initials {
+      width: 56px;
+      height: 56px;
+    }
+
+    &-profile-initials {
+      font-size: 1rem;
+    }
+
+    &-profile-name {
+      font-size: 1rem;
+    }
+
+    &-profile-email {
+      font-size: 0.85rem;
+    }
+
+    &-nav {
+      &-link {
+        padding: 0.5rem 0;
+        font-size: 0.85rem;
+
+        svg {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+  }
+}

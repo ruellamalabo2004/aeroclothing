@@ -1,0 +1,94 @@
+.profile {
+  font-family: "Futura Medium", "Futura", sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  padding-top: var(--header-height, 56px);
+
+  &-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333;
+    margin: 1.5rem 0 1rem;
+    text-transform: none;
+  }
+
+  &-content {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 1rem 2rem;
+    box-sizing: border-box;
+  }
+
+  &-layout {
+    display: flex;
+    gap: 0; /* Set to 0 to eliminate any gap */
+    align-items: flex-start;
+    padding-top: 0;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  &-main {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  &-description {
+    font-size: 1rem;
+    color: #666;
+    margin: 0 0 2rem;
+  }
+
+  &-main-content {
+    flex: 3;
+    min-height: 300px;
+  }
+
+  @media (max-width: 768px) {
+    padding-top: var(--header-height, 48px);
+
+    &-title {
+      font-size: 1.3rem;
+      margin: 1rem 0 0.75rem;
+    }
+
+    &-content {
+      padding: 0 1rem 1.5rem;
+    }
+
+    &-main {
+      padding: 1.5rem;
+    }
+
+    &-description {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding-top: var(--header-height, 40px);
+
+    &-title {
+      font-size: 1.2rem;
+      margin: 0.75rem 0 0.5rem;
+    }
+
+    &-content {
+      padding: 0 0.75rem 1rem;
+    }
+
+    &-main {
+      padding: 1rem;
+    }
+
+    &-description {
+      font-size: 0.85rem;
+    }
+  }
+}

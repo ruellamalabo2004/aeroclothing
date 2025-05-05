@@ -466,10 +466,10 @@ const ShopMain = ({ activeFilters }) => {
         </div>
 
         <div className="shop-main__products-header">
-          <h2 className="shop-main__products-count">
-            {filteredProducts.length} {filteredProducts.length === 1 ? 'Product' : 'Products'} Available
-          </h2>
-        </div>
+  <h2 className="shop-main__products-count">
+    Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'Product' : 'Products'}
+  </h2>
+</div>
 
         <div className="shop-main__products">
           {currentProducts.length > 0 ? currentProducts.map((product) => (

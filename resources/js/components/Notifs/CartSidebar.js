@@ -9,37 +9,26 @@ const CartSidebar = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const API_URL = "http://127.0.0.1:8000/api";
 
-  // Update the cart quantity by sending the full quantity value
-  const handleQuantityChange = async (itemId, size, color, delta) => {
-    const updatedQuantity = getUpdatedQuantity(itemId, size, color, delta);
-
-    // Always update the local state first
-    updateQuantity(itemId, size, color, delta);
-
-    const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        await axios.post(
-          `${API_URL}/cart/update`,
-          { product_id: itemId, size, color, quantity: updatedQuantity },
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
-      } catch (error) {
-        console.error('Error updating quantity:', error.response?.data || error.message);
-        if (error.response?.status === 401) {
-          localStorage.removeItem('token');
-          navigate('/login');
-        }
-      }
-    }
-  };
-
-  // Get new quantity based on delta
-  const getUpdatedQuantity = (itemId, size, color, delta) => {
-    const item = cart.find(
+  // Directly set quantity instead of using delta
+  const handleQuantityChange = async (itemId, size, color, newQuantity) => {
+    // Ensure quantity is at least 1
+    newQuantity = Math.max(1, newQuantity);
+    
+    // Find current item in cart
+    const currentItem = cart.find(
       (i) => i.id === itemId && i.size === size && i.color === color
     );
-    return item ? item.quantity + delta : 1;
+    
+    if (!currentItem) {
+      console.error('Item not found in cart');
+      return;
+    }
+    
+    // Only proceed if quantity changes
+    if (newQuantity === currentItem.quantity) return;
+    
+    // Update with the new absolute quantity, not delta
+    updateQuantity(itemId, size, color, newQuantity);
   };
 
   // Remove item from cart and server
@@ -69,7 +58,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
   };
 
   const handleViewCart = () => {
-    navigate('/carts'); // Updated to navigate to /carts
+    navigate('/carts');
     onClose();
   };
 
@@ -111,8 +100,8 @@ const CartSidebar = ({ isOpen, onClose }) => {
                 <div className="cart-sidebar__quantity">
                   <button
                     className="cart-sidebar__quantity-btn"
-                    onClick={() => handleQuantityChange(item.id, item.size, item.color, -1)}
-                    disabled={item.quantity === 1}
+                    onClick={() => handleQuantityChange(item.id, item.size, item.color, item.quantity - 1)}
+                    disabled={item.quantity <= 1}
                     aria-label="Decrease quantity"
                   >
                     −
@@ -120,7 +109,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   <span className="cart-sidebar__quantity-value">{item.quantity}</span>
                   <button
                     className="cart-sidebar__quantity-btn"
-                    onClick={() => handleQuantityChange(item.id, item.size, item.color, 1)}
+                    onClick={() => handleQuantityChange(item.id, item.size, item.color, item.quantity + 1)}
                     aria-label="Increase quantity"
                   >
                     +

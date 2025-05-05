@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Heart, Bell, ShoppingBag, ChevronDown, Menu, User, Settings, LogOut, X, CheckCircle, Trash2, ShoppingCart } from 'lucide-react';
+import { Search, Heart, Bell, ShoppingBag, ChevronDown, Menu, User, Settings, LogOut, X, CheckCircle, Trash2, ShoppingCart, Package } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import CartSidebar from '../Notifs/CartSidebar';
@@ -270,17 +270,21 @@ const Header = () => {
               </div>
               {isProfileDropdownOpen && (
                 <div className="header__profile-dropdown">
-                  <Link to="/profile" className="header__dropdown-item">
-                    <User size={16} className="header__dropdown-icon" />
+                  <Link to="/profile" className="header__dropdown-item" onClick={toggleProfileDropdown}>
+                    <User size={18} className="header__dropdown-icon" />
                     My Profile
                   </Link>
-                  <Link to="/settings" className="header__dropdown-item">
-                    <Settings size={16} className="header__dropdown-icon" />
-                    Settings
+                  <Link to="/orders" className="header__dropdown-item" onClick={toggleProfileDropdown}>
+                    <Package size={18} className="header__dropdown-icon" />
+                    My Orders
+                  </Link>
+                  <Link to="/cart" className="header__dropdown-item" onClick={toggleProfileDropdown}>
+                    <ShoppingCart size={18} className="header__dropdown-icon" />
+                    My Cart
                   </Link>
                   <div className="header__dropdown-separator"></div>
-                  <button className="header__dropdown-item" onClick={handleLogout}>
-                    <LogOut size={16} className="header__dropdown-icon" />
+                  <button className="header__dropdown-item" onClick={() => { handleLogout(); toggleProfileDropdown(); }}>
+                    <LogOut size={18} className="header__dropdown-icon" />
                     Logout
                   </button>
                 </div>
@@ -352,7 +356,7 @@ const Header = () => {
           </div>
         ) : (
           <div className="header__sidebar-login">
-            <Link to="/login" className="header__sidebar-login-btn" onClick={toggleMenu}>
+            <Link to="/loginSteam" className="header__sidebar-login-btn" onClick={toggleMenu}>
               <User size={20} />
               <span>LOGIN / REGISTER</span>
             </Link>

@@ -1,0 +1,188 @@
+.profile-address-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+  }
+  
+  .profile-address-modal {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 1.25rem;
+    position: relative;
+  }
+  
+  .profile-address-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .profile-address-modal-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+  }
+  
+  .profile-address-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: #666;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+  
+  .profile-address-modal-close:hover {
+    color: #333;
+  }
+  
+  .profile-address-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .profile-address-modal-form-row {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .profile-address-modal-form-group {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .profile-address-modal-form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.3rem;
+  }
+  
+  .profile-address-modal-form-group.profile-address-modal-checkbox {
+    display: flex;
+    align-items: center;
+    margin-top: 0.25rem;
+  }
+  
+  .profile-address-modal-form-group.profile-address-modal-checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #333;
+    margin: 0;
+    cursor: pointer;
+  }
+  
+  .profile-address-modal-form-group.profile-address-modal-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  
+  .profile-address-modal-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 0.85rem;
+    color: #333;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .profile-address-modal-input:focus {
+    outline: none;
+    border-color: #3aa6b9;
+    box-shadow: 0 0 0 2px rgba(58, 166, 185, 0.1);
+  }
+  
+  /* Added specific styling for the textarea */
+  .profile-address-modal-textarea {
+    min-height: 80px;
+    resize: vertical;
+    line-height: 1.4;
+    font-family: inherit;
+  }
+  
+  .profile-address-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  
+  .profile-address-modal-button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .profile-address-modal-cancel {
+    background: none;
+    border: 1px solid #3aa6b9;
+    color: #3aa6b9;
+  }
+  
+  .profile-address-modal-cancel:hover {
+    background-color: rgba(58, 166, 185, 0.1);
+  }
+  
+  .profile-address-modal-submit {
+    background-color: #3aa6b9;
+    border: none;
+    color: #fff;
+  }
+  
+  .profile-address-modal-submit:hover {
+    background-color: #2d8999;
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 576px) {
+    .profile-address-modal {
+      padding: 1rem;
+      max-width: 100%;
+    }
+    
+    .profile-address-modal-form-row {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .profile-address-modal-form-group {
+      width: 100%;
+    }
+    
+    .profile-address-modal-actions {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .profile-address-modal-button {
+      width: 100%;
+      text-align: center;
+    }
+  }
