@@ -1,37 +1,137 @@
 import React, { useEffect, useState } from 'react';
 import { ClipboardList, Package, RefreshCw, Truck, PackageCheck, CheckCircle, XCircle, RotateCcw, Search, Edit2, Archive } from 'lucide-react';
+import axios from 'axios';
 
 const Orders = () => {
     const [orders, setOrders] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedOrders, setSelectedOrders] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [orderStats, setOrderStats] = useState({
+        total: 0,
+        pending: 0,
+        processing: 0,
+        shipped: 0,
+        delivered: 0,
+        completed: 0,
+        canceled: 0,
+        returned: 0
+    });
     const ordersPerPage = 10;
 
-    // Hardcoded sample order data (replace with API fetch later)
+    // Configure axios defaults
     useEffect(() => {
-        const sampleOrders = [
-            { id: 1, order_number: 'ORD001', customer_name: 'John Doe', payment_method: 'Credit Card', date: '2025-04-18', total_price: 150.00, status: 'Processing' },
-            { id: 2, order_number: 'ORD002', customer_name: 'Jane Smith', payment_method: 'PayPal', date: '2025-04-17', total_price: 200.50, status: 'Shipped' },
-            { id: 3, order_number: 'ORD003', customer_name: 'Alice Johnson', payment_method: 'Debit Card', date: '2025-04-16', total_price: 99.99, status: 'Delivered' },
-            { id: 4, order_number: 'ORD004', customer_name: 'Bob Brown', payment_method: 'Credit Card', date: '2025-04-15', total_price: 300.00, status: 'Completed' },
-            { id: 5, order_number: 'ORD005', customer_name: 'Charlie Davis', payment_method: 'PayPal', date: '2025-04-14', total_price: 75.25, status: 'Canceled' },
-            { id: 6, order_number: 'ORD006', customer_name: 'Diana Evans', payment_method: 'Credit Card', date: '2025-04-13', total_price: 120.00, status: 'Returned' },
-            { id: 7, order_number: 'ORD007', customer_name: 'Ethan Wilson', payment_method: 'Debit Card', date: '2025-04-12', total_price: 180.75, status: 'Pending' },
-            { id: 8, order_number: 'ORD008', customer_name: 'Fiona Clark', payment_method: 'PayPal', date: '2025-04-11', total_price: 250.00, status: 'Processing' },
-            { id: 9, order_number: 'ORD009', customer_name: 'George Harris', payment_method: 'Credit Card', date: '2025-04-10', total_price: 90.00, status: 'Shipped' },
-            { id: 10, order_number: 'ORD010', customer_name: 'Hannah Lewis', payment_method: 'Debit Card', date: '2025-04-09', total_price: 110.00, status: 'Delivered' },
-        ];
-        setOrders(sampleOrders);
+        const token = localStorage.getItem('token');
+        if (token) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        }
     }, []);
+
+    // Fetch orders from the backend
+    const fetchOrders = async () => {
+        try {
+            setLoading(true);
+            const token = localStorage.getItem('token');
+            if (!token) {
+                setError('Authentication required. Please login.');
+                return;
+            }
+
+            const response = await axios.get('/api/admin/orders', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const ordersData = response.data;
+            setOrders(ordersData);
+            
+            // Calculate order stats
+            const stats = {
+                total: ordersData.length,
+                pending: ordersData.filter(order => order.status === 'Pending').length,
+                processing: ordersData.filter(order => order.status === 'Processing').length,
+                shipped: ordersData.filter(order => order.status === 'Shipped').length,
+                delivered: ordersData.filter(order => order.status === 'Delivered').length,
+                completed: ordersData.filter(order => order.status === 'Completed').length,
+                canceled: ordersData.filter(order => order.status === 'Canceled').length,
+                returned: ordersData.filter(order => order.status === 'Returned').length
+            };
+            setOrderStats(stats);
+        } catch (err) {
+            if (err.response?.status === 401) {
+                setError('Session expired. Please login again.');
+            } else {
+                setError('Failed to fetch orders. Please try again later.');
+            }
+            console.error('Error fetching orders:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchOrders();
+    }, []);
+
+    // Update order status
+    const handleStatusUpdate = async (orderId, newStatus) => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                setError('Authentication required. Please login.');
+                return;
+            }
+
+            await axios.put(`/api/orders/${orderId}/status/${newStatus}`, {}, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            fetchOrders(); // Refresh orders after update
+        } catch (err) {
+            if (err.response?.status === 401) {
+                setError('Session expired. Please login again.');
+            } else {
+                setError('Failed to update order status. Please try again.');
+            }
+            console.error('Error updating order status:', err);
+        }
+    };
+
+    // Archive order
+    const handleArchive = async (orderId) => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                setError('Authentication required. Please login.');
+                return;
+            }
+
+            await axios.patch(`/api/orders/${orderId}/archive`, {}, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            fetchOrders(); // Refresh orders after archive
+        } catch (err) {
+            if (err.response?.status === 401) {
+                setError('Session expired. Please login again.');
+            } else {
+                setError('Failed to archive order. Please try again.');
+            }
+            console.error('Error archiving order:', err);
+        }
+    };
 
     // Filter orders based on search term
     const filteredOrders = orders.filter(
         (order) =>
-            order.order_number.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            order.customer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            order.id.toString().includes(searchTerm) ||
+            (order.profile?.name || 'N/A').toLowerCase().includes(searchTerm.toLowerCase()) ||
             order.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            order.payment_method.toLowerCase().includes(searchTerm.toLowerCase())
+            (order.payment_method?.name || 'N/A').toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     // Pagination logic
@@ -53,22 +153,30 @@ const Orders = () => {
         );
     };
 
-    const orderStats = [
-        { title: 'Total Orders', count: 241, icon: <ClipboardList className="orders__card-icon" /> },
-        { title: 'Pending', count: 12, icon: <Package className="orders__card-icon" /> },
-        { title: 'Processing', count: 8, icon: <RefreshCw className="orders__card-icon" /> },
-        { title: 'Shipped', count: 15, icon: <Truck className="orders__card-icon" /> },
-        { title: 'Delivered', count: 45, icon: <PackageCheck className="orders__card-icon" /> },
-        { title: 'Completed', count: 156, icon: <CheckCircle className="orders__card-icon" /> },
-        { title: 'Canceled', count: 3, icon: <XCircle className="orders__card-icon" /> },
-        { title: 'Returned', count: 2, icon: <RotateCcw className="orders__card-icon" /> },
+    const stats = [
+        { title: 'Total Orders', count: orderStats.total, icon: <ClipboardList className="orders__card-icon" /> },
+        { title: 'Pending', count: orderStats.pending, icon: <Package className="orders__card-icon" /> },
+        { title: 'Processing', count: orderStats.processing, icon: <RefreshCw className="orders__card-icon" /> },
+        { title: 'Shipped', count: orderStats.shipped, icon: <Truck className="orders__card-icon" /> },
+        { title: 'Delivered', count: orderStats.delivered, icon: <PackageCheck className="orders__card-icon" /> },
+        { title: 'Completed', count: orderStats.completed, icon: <CheckCircle className="orders__card-icon" /> },
+        { title: 'Canceled', count: orderStats.canceled, icon: <XCircle className="orders__card-icon" /> },
+        { title: 'Returned', count: orderStats.returned, icon: <RotateCcw className="orders__card-icon" /> },
     ];
+
+    if (loading) {
+        return <div className="orders__loading">Loading orders...</div>;
+    }
+
+    if (error) {
+        return <div className="orders__error">{error}</div>;
+    }
 
     return (
         <div className="orders">
             <h1 className="orders__title">Orders Management</h1>
             <div className="orders__grid">
-                {orderStats.map((stat, index) => (
+                {stats.map((stat, index) => (
                     <div className="orders__card" key={index}>
                         <div className="orders__card-content">
                             <h2 className="orders__card-title">{stat.title}</h2>
@@ -138,20 +246,20 @@ const Orders = () => {
                                             <Edit2
                                                 className="action-img"
                                                 size={16}
-                                                onClick={() => console.log('Edit action not implemented yet')}
+                                                onClick={() => handleStatusUpdate(order.id, 'Processing')}
                                             />
                                             <Archive
                                                 className="action-img"
                                                 size={16}
-                                                onClick={() => console.log('Archive action not implemented yet')}
+                                                onClick={() => handleArchive(order.id)}
                                             />
                                         </td>
-                                        <td>{order.order_number}</td>
-                                        <td>{order.customer_name}</td>
-                                        <td>{order.payment_method}</td>
-                                        <td>{order.date}</td>
+                                        <td>#{order.id}</td>
+                                        <td>{order.profile?.name || 'N/A'}</td>
+                                        <td>{order.payment_method?.name || 'N/A'}</td>
+                                        <td>{new Date(order.order_date).toLocaleDateString()}</td>
                                         <td>
-                                            ${parseFloat(order.total_price).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                                            ${parseFloat(order.total_amount).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                                         </td>
                                         <td>
                                             <span className={`status-frame status-${order.status.toLowerCase()}`}>

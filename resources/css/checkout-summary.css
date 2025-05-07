@@ -1,0 +1,268 @@
+/* Loading Modal */
+.loading-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-modal__content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.loading-modal__spinner {
+  animation: spin 1s linear infinite;
+  color: #4CAF50;
+  margin-bottom: 1rem;
+}
+
+.loading-modal__text {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 0;
+}
+
+/* Order Success Modal */
+.order-success-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.order-success-modal__content {
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 90%;
+}
+
+.order-success-modal__icon {
+  margin-bottom: 1.5rem;
+}
+
+.order-success-modal__title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.order-success-modal__order-number {
+  font-size: 1.2rem;
+  color: #4CAF50;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.order-success-modal__shipping-info {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.order-success-modal__buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.order-success-modal__track-btn,
+.order-success-modal__shop-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.order-success-modal__track-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.order-success-modal__shop-btn {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.order-success-modal__track-btn:hover {
+  background-color: #45a049;
+}
+
+.order-success-modal__shop-btn:hover {
+  background-color: #e0e0e0;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Existing Checkout Summary Styles */
+.checkout-summary {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.summary-header {
+  margin-bottom: 1.5rem;
+}
+
+.summary-header h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.summary-items {
+  margin-bottom: 1.5rem;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 1rem;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-details h3 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.item-specs {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.item-specs p {
+  margin: 0.25rem 0;
+}
+
+.item-price {
+  font-weight: 500;
+  color: #333;
+}
+
+.summary-totals {
+  margin: 1.5rem 0;
+  padding-top: 1rem;
+  border-top: 2px solid #eee;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: #666;
+}
+
+.total-row.total {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.summary-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.view-cart-btn,
+.confirm-btn {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-cart-btn {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.confirm-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.view-cart-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.confirm-btn:hover {
+  background-color: #45a049;
+}
+
+.confirm-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.terms-note {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.error {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+} 

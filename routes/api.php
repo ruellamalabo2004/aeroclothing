@@ -25,7 +25,9 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductTypeController;
-
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\PaymentMethodController; // Added for payment methods
+use App\Http\Controllers\ShippingMethodController;
 // Public routes
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
@@ -45,11 +47,14 @@ Route::patch('/users/{id}/restore', [UserController::class, 'restore']);
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset']);
-
+Route::get('/countries', [CountryController::class, 'index']);
+Route::get('/payment-methods', [PaymentMethodController::class, 'index']);
+Route::get('/shipping-methods', [ShippingMethodController::class, 'index']);
 // New routes for sizes, colors, and product types
 Route::apiResource('product_types', ProductTypeController::class);
 Route::apiResource('sizes', SizeController::class);
 Route::patch('/sizes/{id}/restore', [SizeController::class, 'restore']);
+Route::patch('/sizes/{id}/archive', [SizeController::class, 'archive']);
 Route::apiResource('colors', ColorController::class);
 Route::patch('/colors/{id}/restore', [ColorController::class, 'restore']);
 Route::apiResource('product-types', ProductTypeController::class);
@@ -85,9 +90,6 @@ Route::middleware('auth:api')->group(function () {
     Route::patch('/order-details/{id}/restore', [OrderDetailController::class, 'restore']);
     Route::get('/order-details', [OrderController::class, 'getOrderDetails']);
 
-
-    //
-    
     // Courier
     Route::post('/couriers', [CourierController::class, 'store']);
     Route::put('/couriers/{id}', [CourierController::class, 'update']);
@@ -119,7 +121,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/wishlist', [WishlistController::class, 'store']);
     Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy']);
 
-    // User Management
+    // User fManagement
     Route::get('/users/count', [UserController::class, 'getTotalUsers']);
     
     // Address

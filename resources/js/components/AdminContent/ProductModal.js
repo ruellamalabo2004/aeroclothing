@@ -180,17 +180,19 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
 
     const payload = new FormData();
     payload.append('product_name', formData.product_name);
-    payload.append('category_id', parseInt(formData.category_id));
-    payload.append('brand_id', parseInt(formData.brand_id));
-    payload.append('product_type_id', parseInt(formData.product_type_id));
+    payload.append('category_id', formData.category_id);
+    payload.append('brand_id', formData.brand_id);
+    payload.append('product_type_id', formData.product_type_id);
     
-    // Fix: Changed to match the backend expected format for sizes and colors
-    formData.sizes.forEach((sizeId) => payload.append('size_ids[]', sizeId));
-    formData.colors.forEach((colorId) => payload.append('color_ids[]', colorId));
+    // Convert arrays to strings and append them
+    formData.sizes.forEach(sizeId => payload.append('size_ids[]', sizeId));
+    formData.colors.forEach(colorId => payload.append('color_ids[]', colorId));
     
-    payload.append('price', parseFloat(formData.price));
+    payload.append('price', formData.price);
     payload.append('status', formData.status);
     payload.append('description', formData.description);
+    
+    // Only append images if they exist
     if (formData.image_1) payload.append('image_1', formData.image_1);
     if (formData.image_2) payload.append('image_2', formData.image_2);
 
@@ -201,6 +203,7 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json'
         },
       });
       console.log('Product added:', response.data);
@@ -212,7 +215,9 @@ const ProductModal = ({ isOpen, onClose, token, onProductAdded }) => {
     } catch (error) {
       console.error('Error submitting form:', error.response?.data || error.message);
       if (error.response?.status === 422) {
-        setErrors(error.response.data.errors || {});
+        const errorData = error.response.data;
+        console.log('Validation errors:', errorData);
+        setErrors(errorData.errors || {});
       }
     } finally {
       setLoading(false);

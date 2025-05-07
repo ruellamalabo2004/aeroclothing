@@ -17,6 +17,10 @@ class Inventory extends Model
         'last_stock_update',
     ];
 
+    protected $dates = ['archive_at'];
+
+    const DELETED_AT = 'archive_at'; // Override default deleted_at column
+
     protected static function booted()
     {
         static::creating(function ($inventory) {

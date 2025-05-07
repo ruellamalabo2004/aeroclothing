@@ -1,15 +1,16 @@
+
 import React, { useState } from 'react';
 
-const ProfileAddressModal = ({ onClose, onAddAddress }) => {
+const ProfileAddressModal = ({ onClose, onAddAddress, countries }) => {
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
-    phone: '',
-    country: '',
-    state: '',
+    phone_number: '',
+    country_id: '',
+    region: '',
     city: '',
-    zip: '',
-    street_name: '',
+    postal_code: '',
+    street_address: '',
     is_default: false,
   });
 
@@ -64,8 +65,8 @@ const ProfileAddressModal = ({ onClose, onAddAddress }) => {
             <label>Phone Number</label>
             <input
               type="tel"
-              name="phone"
-              value={formData.phone}
+              name="phone_number"
+              value={formData.phone_number}
               onChange={handleChange}
               required
               className="profile-address-modal-input"
@@ -74,21 +75,27 @@ const ProfileAddressModal = ({ onClose, onAddAddress }) => {
           <div className="profile-address-modal-form-row">
             <div className="profile-address-modal-form-group">
               <label>Country</label>
-              <input
-                type="text"
-                name="country"
-                value={formData.country}
+              <select
+                name="country_id"
+                value={formData.country_id}
                 onChange={handleChange}
                 required
                 className="profile-address-modal-input"
-              />
+              >
+                <option value="">Select Country</option>
+                {countries.map((country) => (
+                  <option key={country.id} value={country.id}>
+                    {country.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="profile-address-modal-form-group">
               <label>Province/Region</label>
               <input
                 type="text"
-                name="state"
-                value={formData.state}
+                name="region"
+                value={formData.region}
                 onChange={handleChange}
                 required
                 className="profile-address-modal-input"
@@ -108,11 +115,11 @@ const ProfileAddressModal = ({ onClose, onAddAddress }) => {
               />
             </div>
             <div className="profile-address-modal-form-group">
-              <label>Zip Code</label>
+              <label>Postal Code</label>
               <input
                 type="text"
-                name="zip"
-                value={formData.zip}
+                name="postal_code"
+                value={formData.postal_code}
                 onChange={handleChange}
                 required
                 className="profile-address-modal-input"
@@ -120,10 +127,10 @@ const ProfileAddressModal = ({ onClose, onAddAddress }) => {
             </div>
           </div>
           <div className="profile-address-modal-form-group">
-            <label>Street Name</label>
+            <label>Street Address</label>
             <textarea
-              name="street_name"
-              value={formData.street_name}
+              name="street_address"
+              value={formData.street_address}
               onChange={handleChange}
               required
               className="profile-address-modal-input profile-address-modal-textarea"

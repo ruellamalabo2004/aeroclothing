@@ -72,14 +72,15 @@ const App = () => {
             {/* Product Route for individual product pages */}
             <Route path="/product/:productId" element={<ProductMain />} />
 
-            {/* Checkout Route for regular users */}
-            <Route path="/checkout" element={<Checkout />} />
-
-            {/* Carts Route for regular users */}
-            <Route path="/carts" element={<Carts />} />
-
-            {/* Profile Route for authenticated users with nested routes */}
+            {/* Protected Routes for authenticated users */}
             <Route element={<ProtectedRoute />}>
+              {/* Checkout Route */}
+              <Route path="/checkout" element={<Checkout />} />
+
+              {/* Carts Route */}
+              <Route path="/carts" element={<Carts />} />
+
+              {/* Profile Route with nested routes */}
               <Route path="/profile" element={<Profile />}>
                 <Route index element={<ProfileDetails />} /> {/* Default to ProfileDetails */}
                 <Route path="address" element={<ProfileAddress />} /> {/* Nested route for addresses */}

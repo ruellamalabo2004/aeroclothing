@@ -274,11 +274,11 @@ const Header = () => {
                     <User size={18} className="header__dropdown-icon" />
                     My Profile
                   </Link>
-                  <Link to="/orders" className="header__dropdown-item" onClick={toggleProfileDropdown}>
+                  <Link to="/profile/orders" className="header__dropdown-item" onClick={toggleProfileDropdown}>
                     <Package size={18} className="header__dropdown-icon" />
                     My Orders
                   </Link>
-                  <Link to="/cart" className="header__dropdown-item" onClick={toggleProfileDropdown}>
+                  <Link to="/profile/cart" className="header__dropdown-item" onClick={toggleProfileDropdown}>
                     <ShoppingCart size={18} className="header__dropdown-icon" />
                     My Cart
                   </Link>

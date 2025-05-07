@@ -1,13 +1,15 @@
 .checkout-form {
   width: 100%;
-  max-width: 100%;
-  padding: 0 1rem;
+  max-width: none; /* Remove max-width constraint to allow full expansion */
+  margin: 0 auto;
 
   .checkout-section {
+    width: 100%; /* Ensures the section takes full width of its container */
+    min-width: 750px; /* Add a minimum width to the section */
     background: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
     padding: 1.5rem;
 
@@ -18,7 +20,7 @@
 
       .section-icon {
         margin-right: 0.75rem;
-        color: #3aa6b9;
+        color: #000; /* Changed to black */
       }
 
       h2 {
@@ -49,7 +51,7 @@
     }
 
     .shipping-info {
-      padding: 1.5rem;
+      padding: 1rem;
       border: 1px solid #e0e0e0;
       border-radius: 4px;
       background-color: #f9f9f9;
@@ -64,6 +66,21 @@
         margin: 0.5rem 0;
         color: #333;
         font-size: 1rem;
+      }
+
+      button {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background: #3aa6b9;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+
+        &:hover {
+          background: darken(#3aa6b9, 10%);
+        }
       }
     }
 
@@ -81,7 +98,7 @@
           flex: 1;
 
           &.full-width {
-            flex: 2; /* Takes full width for single-field rows */
+            flex: 2;
           }
         }
 
@@ -94,10 +111,10 @@
 
       input, select, textarea {
         width: 100%;
-        padding: 0.75rem;
+        padding: 0.5rem; /* Reduced padding for normal size */
         border: 1px solid #e0e0e0;
         border-radius: 4px;
-        font-size: 1rem;
+        font-size: 0.9rem; /* Reduced font size for normal size */
         
         &:focus {
           outline: none;
@@ -121,16 +138,16 @@
         
         select {
           appearance: none;
-          padding-right: 40px; /* Space for the icon arrow */
+          padding-right: 40px;
         }
       }
 
       .street-address-input {
-        min-height: 100px; /* Make the textarea taller */
-        padding: 1rem;
-        font-size: 1rem;
+        min-height: 100px;
+        padding: 0.5rem; /* Reduced padding */
+        font-size: 0.9rem; /* Reduced font size */
         line-height: 1.5;
-        resize: vertical; /* Allow vertical resizing */
+        resize: vertical;
       }
 
       .checkbox-label {
@@ -163,31 +180,127 @@
     }
 
     .payment-options {
-      .payment-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-      }
-
-      label {
-        display: flex;
-        align-items: center;
-        padding: 0.75rem;
-        border: 1px solid #e0e0e0;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: border-color 0.3s ease;
-
-        input {
-          margin-right: 0.75rem;
+      &.modern {
+        padding: 1rem 0;
+        
+        .payment-tabs {
+          display: flex;
+          gap: 0.75rem;
+          margin-bottom: 1.5rem;
+          
+          .payment-tab {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 1rem;
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            color: #555;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            
+            svg {
+              margin-right: 0.5rem;
+            }
+            
+            &.active {
+              background: #3aa6b9;
+              color: white;
+              border-color: #3aa6b9;
+            }
+            
+            &:hover:not(.active) {
+              background: #e5e5e5;
+            }
+          }
         }
+        
+        .payment-details-form {
+          padding: 1.5rem 0;
+          
+          .form-group {
+            margin-bottom: 1.25rem;
+            
+            label {
+              display: block;
+              font-size: 0.9rem;
+              font-weight: 500;
+              color: #333;
+              margin-bottom: 0.5rem;
+            }
+            
+            input {
+              width: 100%;
+              padding: 0.5rem; /* Reduced padding for normal size */
+              border: 1px solid #e0e0e0;
+              border-radius: 4px;
+              font-size: 0.9rem; /* Reduced font size for normal size */
+              transition: all 0.2s ease;
+              
+              &:focus {
+                outline: none;
+                border-color: #3aa6b9;
+                box-shadow: 0 0 0 2px rgba(58, 166, 185, 0.1);
+              }
+              
+              &::placeholder {
+                color: #bbb;
+              }
+            }
 
-        &.selected {
-          border-color: #3aa6b9;
-        }
+            .error {
+              color: #e74c3c;
+              font-size: 0.85rem;
+              margin-top: 0.25rem;
+              display: block;
+            }
+          }
+          
+          .form-row {
+            display: flex;
+            gap: 1rem;
+            
+            .form-group {
+              flex: 1;
+            }
+          }
+          
+          &.cod-message {
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            padding: 1.25rem;
+            
+            p {
+              margin: 0.5rem 0;
+              color: #555;
+              
+              &:first-child {
+                font-weight: 500;
+                color: #333;
+              }
+            }
+          }
 
-        &:hover {
-          background: #f5f5f5;
+          .save-payment-btn {
+            padding: 0.75rem 1.5rem;
+            background: #3aa6b9;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 1rem;
+
+            &:hover {
+              background: darken(#3aa6b9, 10%);
+            }
+          }
         }
       }
     }
@@ -243,10 +356,9 @@
     }
   }
 
-  @media (max-width: 768px) {
-    padding: 0;
-
+  @media (max-width: 992px) {
     .checkout-section {
+      min-width: auto; /* Remove min-width constraint on smaller screens */
       padding: 1rem;
       margin-bottom: 1.5rem;
       
@@ -256,7 +368,7 @@
 
           .form-field {
             &.full-width {
-              flex: 1; /* Reset to normal flex on mobile */
+              flex: 1;
             }
           }
         }
@@ -268,6 +380,26 @@
           gap: 0.5rem;
         }
       }
+      
+      .payment-options {
+        &.modern {
+          .payment-tabs {
+            flex-direction: column;
+            gap: 0.5rem;
+          }
+          
+          .payment-details-form {
+            .form-row {
+              flex-direction: column;
+              gap: 1rem;
+            }
+          }
+        }
+      }
     }
+  }
+
+  @media (max-width: 768px) {
+    padding: 0;
   }
 }
