@@ -2,32 +2,8 @@ import React, { useState } from 'react';
 import { useCart } from '../Notifs/CartContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Loader2, CheckCircle, Package, ShoppingBag } from 'lucide-react';
-
-const OrderSuccessModal = ({ orderId, shippingDescription, onTrackOrder, onShopMore }) => (
-  <div className="order-success-modal">
-    <div className="order-success-modal__content">
-      <div className="order-success-modal__icon">
-        <CheckCircle size={64} color="#4CAF50" />
-      </div>
-      <h2 className="order-success-modal__title">YOUR ORDER HAS BEEN PLACED!</h2>
-      <p className="order-success-modal__order-number">Order #{orderId}</p>
-      <p className="order-success-modal__shipping-info">
-        {shippingDescription ? shippingDescription : 'Please wait for your order to arrive'}
-      </p>
-      <div className="order-success-modal__buttons">
-        <button className="order-success-modal__track-btn" onClick={onTrackOrder}>
-          <Package size={20} />
-          Track Order
-        </button>
-        <button className="order-success-modal__shop-btn" onClick={onShopMore}>
-          <ShoppingBag size={20} />
-          Shop More
-        </button>
-      </div>
-    </div>
-  </div>
-);
+import { Loader2 } from 'lucide-react';
+import OrderSuccessModal from './OrderSuccessModal';
 
 const LoadingModal = () => (
   <div className="loading-modal">
@@ -61,12 +37,10 @@ const CheckoutSummary = ({ shippingMethod, paymentMethod, shippingFee, profileId
   const handleTrackOrder = () => navigate(`/profile/orders/${orderId}`);
   const handleShopMore = () => navigate('/shop');
 
-  // Helper to extract delivery info from shippingMethod (if it's an object)
   const getShippingDescription = () => {
     if (shippingMethod && typeof shippingMethod === 'object' && shippingMethod.description) {
       return shippingMethod.description;
     }
-    // If shippingMethod is just an ID, fallback
     return 'Please wait for your order to arrive';
   };
 

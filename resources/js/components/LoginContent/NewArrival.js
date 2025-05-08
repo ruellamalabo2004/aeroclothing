@@ -117,7 +117,7 @@ const NewArrival = () => {
   };
 
   const handleProductClick = (productId) => () => {
-    navigate(`/shop/${productId}`);
+    navigate(`/product/${productId}`);
   };
 
   const handleCloseModal = () => {

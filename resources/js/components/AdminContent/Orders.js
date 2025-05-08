@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ClipboardList, Package, RefreshCw, Truck, PackageCheck, CheckCircle, XCircle, RotateCcw, Search, Edit2, Archive } from 'lucide-react';
 import axios from 'axios';
+import OrdersModal from './OrdersModal';
 
 const Orders = () => {
     const [orders, setOrders] = useState([]);
@@ -19,6 +20,8 @@ const Orders = () => {
         canceled: 0,
         returned: 0
     });
+    const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+    const [selectedOrderId, setSelectedOrderId] = useState(null); // State for selected order ID
     const ordersPerPage = 10;
 
     // Configure axios defaults
@@ -36,36 +39,48 @@ const Orders = () => {
             const token = localStorage.getItem('token');
             if (!token) {
                 setError('Authentication required. Please login.');
+                setLoading(false);
                 return;
             }
 
+            console.log('Fetching orders with token:', token.substring(0, 10) + '...');
+            
             const response = await axios.get('/api/admin/orders', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
+            
+            console.log('Orders API response:', response);
+            
+            if (!response.data) {
+                throw new Error('No data returned from API');
+            }
+            
             const ordersData = response.data;
             setOrders(ordersData);
             
-            // Calculate order stats
+            // Calculate order stats with safe defaults
             const stats = {
                 total: ordersData.length,
-                pending: ordersData.filter(order => order.status === 'Pending').length,
-                processing: ordersData.filter(order => order.status === 'Processing').length,
-                shipped: ordersData.filter(order => order.status === 'Shipped').length,
-                delivered: ordersData.filter(order => order.status === 'Delivered').length,
-                completed: ordersData.filter(order => order.status === 'Completed').length,
-                canceled: ordersData.filter(order => order.status === 'Canceled').length,
-                returned: ordersData.filter(order => order.status === 'Returned').length
+                pending: ordersData.filter(order => (order.status || '').toLowerCase() === 'pending').length,
+                processing: ordersData.filter(order => (order.status || '').toLowerCase() === 'processing').length,
+                shipped: ordersData.filter(order => (order.status || '').toLowerCase() === 'shipped').length,
+                delivered: ordersData.filter(order => (order.status || '').toLowerCase() === 'delivered').length,
+                completed: ordersData.filter(order => (order.status || '').toLowerCase() === 'completed').length,
+                canceled: ordersData.filter(order => (order.status || '').toLowerCase() === 'canceled').length,
+                returned: ordersData.filter(order => (order.status || '').toLowerCase() === 'returned').length
             };
             setOrderStats(stats);
         } catch (err) {
+            console.error('Error fetching orders:', err);
+            console.error('Error details:', err.response?.data || err.message);
+            
             if (err.response?.status === 401) {
                 setError('Session expired. Please login again.');
             } else {
-                setError('Failed to fetch orders. Please try again later.');
+                setError(`Failed to fetch orders: ${err.response?.data?.message || err.message}`);
             }
-            console.error('Error fetching orders:', err);
         } finally {
             setLoading(false);
         }
@@ -91,12 +106,13 @@ const Orders = () => {
             });
             fetchOrders(); // Refresh orders after update
         } catch (err) {
+            console.error('Error updating order status:', err);
+            
             if (err.response?.status === 401) {
                 setError('Session expired. Please login again.');
             } else {
-                setError('Failed to update order status. Please try again.');
+                setError(`Failed to update order status: ${err.response?.data?.message || err.message}`);
             }
-            console.error('Error updating order status:', err);
         }
     };
 
@@ -116,22 +132,36 @@ const Orders = () => {
             });
             fetchOrders(); // Refresh orders after archive
         } catch (err) {
+            console.error('Error archiving order:', err);
+            
             if (err.response?.status === 401) {
                 setError('Session expired. Please login again.');
             } else {
-                setError('Failed to archive order. Please try again.');
+                setError(`Failed to archive order: ${err.response?.data?.message || err.message}`);
             }
-            console.error('Error archiving order:', err);
         }
     };
 
-    // Filter orders based on search term
+    // Handle opening the modal for editing
+    const handleEditOrder = (orderId) => {
+        setSelectedOrderId(orderId);
+        setIsModalOpen(true);
+    };
+
+    // Handle order update callback from the modal
+    const handleOrderUpdated = () => {
+        fetchOrders(); // Refresh orders after update
+        setIsModalOpen(false);
+        setSelectedOrderId(null);
+    };
+
+    // Filter orders based on search term - with null checks
     const filteredOrders = orders.filter(
         (order) =>
-            order.id.toString().includes(searchTerm) ||
-            (order.profile?.name || 'N/A').toLowerCase().includes(searchTerm.toLowerCase()) ||
-            order.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            (order.payment_method?.name || 'N/A').toLowerCase().includes(searchTerm.toLowerCase())
+            (order.id?.toString() || '').includes(searchTerm) ||
+            ((order.profile?.name || 'N/A').toLowerCase().includes(searchTerm.toLowerCase())) ||
+            ((order.status || '').toLowerCase().includes(searchTerm.toLowerCase())) ||
+            ((order.payment_method?.name || 'N/A').toLowerCase().includes(searchTerm.toLowerCase()))
     );
 
     // Pagination logic
@@ -169,7 +199,20 @@ const Orders = () => {
     }
 
     if (error) {
-        return <div className="orders__error">{error}</div>;
+        return (
+            <div className="orders__error">
+                <p>{error}</p>
+                <button 
+                    className="orders__retry-btn" 
+                    onClick={() => {
+                        setError(null);
+                        fetchOrders();
+                    }}
+                >
+                    Retry
+                </button>
+            </div>
+        );
     }
 
     return (
@@ -219,7 +262,7 @@ const Orders = () => {
                                                 setSelectedOrders(currentOrders.map((o) => o.id));
                                             }
                                         }}
-                                        checked={selectedOrders.length === currentOrders.length}
+                                        checked={selectedOrders.length === currentOrders.length && currentOrders.length > 0}
                                     />
                                 </th>
                                 <th scope="col">Actions</th>
@@ -246,7 +289,7 @@ const Orders = () => {
                                             <Edit2
                                                 className="action-img"
                                                 size={16}
-                                                onClick={() => handleStatusUpdate(order.id, 'Processing')}
+                                                onClick={() => handleEditOrder(order.id)} // Open modal on click
                                             />
                                             <Archive
                                                 className="action-img"
@@ -257,13 +300,15 @@ const Orders = () => {
                                         <td>#{order.id}</td>
                                         <td>{order.profile?.name || 'N/A'}</td>
                                         <td>{order.payment_method?.name || 'N/A'}</td>
-                                        <td>{new Date(order.order_date).toLocaleDateString()}</td>
+                                        <td>{order.order_date ? new Date(order.order_date).toLocaleDateString() : 'N/A'}</td>
                                         <td>
-                                            ${parseFloat(order.total_amount).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                                            ${order.total_amount 
+                                                ? parseFloat(order.total_amount).toLocaleString('en-US', { minimumFractionDigits: 2 })
+                                                : '0.00'}
                                         </td>
                                         <td>
-                                            <span className={`status-frame status-${order.status.toLowerCase()}`}>
-                                                {order.status.toUpperCase()}
+                                            <span className={`status-frame status-${(order.status || 'unknown').toLowerCase()}`}>
+                                                {(order.status || 'UNKNOWN').toUpperCase()}
                                             </span>
                                         </td>
                                     </tr>
@@ -299,6 +344,17 @@ const Orders = () => {
                     </button>
                 </div>
             )}
+
+            <OrdersModal
+                isOpen={isModalOpen}
+                onClose={() => {
+                    setIsModalOpen(false);
+                    setSelectedOrderId(null);
+                }}
+                orderId={selectedOrderId}
+                token={localStorage.getItem('token')}
+                onOrderUpdated={handleOrderUpdated}
+            />
         </div>
     );
 };

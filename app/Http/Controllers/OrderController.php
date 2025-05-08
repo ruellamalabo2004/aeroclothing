@@ -7,9 +7,11 @@ use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Review;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class OrderController extends Controller
 {
@@ -17,45 +19,67 @@ class OrderController extends Controller
     public function adminIndex(Request $request)
     {
         try {
-            // First, let's check if we can get any orders at all
-            $orders = Order::with([
-                'profile:id,first_name,last_name,email',
-                'paymentMethod:id,name',
-                'shippingMethod:id,name',
-                'orderDetails.product:id,name,price'
-            ])->get();
+            // Add more detailed logging to trace the issue
+            \Log::info('Starting adminIndex method in OrderController');
+            
+            \Log::info('Attempting to fetch orders with profile relationships');
+            
+            // Use a query builder approach to avoid potential relationship issues
+            $orders = Order::query()
+                ->leftJoin('profiles', 'orders.profile_id', '=', 'profiles.id')
+                ->leftJoin('payment_methods', 'orders.payment_method_id', '=', 'payment_methods.id')
+                ->leftJoin('shipping_methods', 'orders.shipping_method_id', '=', 'shipping_methods.id')
+                ->select(
+                    'orders.*',
+                    'profiles.first_name',
+                    'profiles.last_name',
+                    'profiles.user_id',
+                    'payment_methods.name as payment_method_name',
+                    'shipping_methods.name as shipping_method_name'
+                )
+                ->get();
 
             \Log::info('Orders retrieved:', ['count' => $orders->count()]);
             
-            // Format the orders data to include the full name
+            // Format the orders data safely
             $formattedOrders = $orders->map(function ($order) {
                 try {
-                    $orderData = $order->toArray();
+                    // Log individual order data to help debug
+                    \Log::debug('Processing order:', [
+                        'id' => $order->id,
+                        'profile_id' => $order->profile_id,
+                        'first_name' => $order->first_name,
+                        'last_name' => $order->last_name
+                    ]);
                     
-                    // Safely handle profile data
-                    if ($order->profile) {
-                        $firstName = $order->profile->first_name ?? '';
-                        $lastName = $order->profile->last_name ?? '';
-                        $orderData['profile']['name'] = trim($firstName . ' ' . $lastName);
-                    } else {
-                        $orderData['profile'] = ['name' => 'N/A'];
-                    }
-
-                    // Safely handle payment method
-                    if (!$order->paymentMethod) {
-                        $orderData['payment_method'] = ['name' => 'N/A'];
-                    }
-
-                    // Safely handle shipping method
-                    if (!$order->shippingMethod) {
-                        $orderData['shipping_method'] = ['name' => 'N/A'];
-                    }
-
-                    return $orderData;
+                    return [
+                        'id' => $order->id,
+                        'profile_id' => $order->profile_id,
+                        'profile' => [
+                            'id' => $order->profile_id,
+                            'name' => trim(($order->first_name ?? '') . ' ' . ($order->last_name ?? '')) ?: 'N/A',
+                            'user_id' => $order->user_id ?? null
+                        ],
+                        'payment_method' => [
+                            'id' => $order->payment_method_id,
+                            'name' => $order->payment_method_name ?? 'N/A'
+                        ],
+                        'shipping_method' => [
+                            'id' => $order->shipping_method_id,
+                            'name' => $order->shipping_method_name ?? 'N/A'
+                        ],
+                        'total_amount' => $order->total_amount,
+                        'order_date' => $order->order_date,
+                        'status' => $order->status,
+                        'tracking_info' => $order->tracking_info,
+                        'created_at' => $order->created_at,
+                        'updated_at' => $order->updated_at
+                    ];
                 } catch (\Exception $e) {
                     \Log::error('Error formatting order:', [
-                        'order_id' => $order->id,
-                        'error' => $e->getMessage()
+                        'order_id' => $order->id ?? 'unknown',
+                        'error' => $e->getMessage(),
+                        'trace' => $e->getTraceAsString()
                     ]);
                     return null;
                 }
@@ -68,11 +92,15 @@ class OrderController extends Controller
             
             return response()->json([
                 'message' => 'An error occurred while fetching orders',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine()
             ], 500);
         }
     }
 
+    // Rest of the controller methods remain the same...
+    
     // Show orders for the authenticated user
     public function index(Request $request)
     {
