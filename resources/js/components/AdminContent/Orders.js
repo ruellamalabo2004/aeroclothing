@@ -15,7 +15,7 @@ const Orders = () => {
         pending: 0,
         processing: 0,
         shipped: 0,
-        delivered: 0,
+        delivering: 0,
         completed: 0,
         canceled: 0,
         returned: 0
@@ -66,7 +66,7 @@ const Orders = () => {
                 pending: ordersData.filter(order => (order.status || '').toLowerCase() === 'pending').length,
                 processing: ordersData.filter(order => (order.status || '').toLowerCase() === 'processing').length,
                 shipped: ordersData.filter(order => (order.status || '').toLowerCase() === 'shipped').length,
-                delivered: ordersData.filter(order => (order.status || '').toLowerCase() === 'delivered').length,
+                delivering: ordersData.filter(order => (order.status || '').toLowerCase() === 'delivering').length,
                 completed: ordersData.filter(order => (order.status || '').toLowerCase() === 'completed').length,
                 canceled: ordersData.filter(order => (order.status || '').toLowerCase() === 'canceled').length,
                 returned: ordersData.filter(order => (order.status || '').toLowerCase() === 'returned').length
@@ -99,7 +99,24 @@ const Orders = () => {
                 return;
             }
 
-            await axios.put(`/api/orders/${orderId}/status/${newStatus}`, {}, {
+            // Map the status to the correct case
+            const statusMap = {
+                'pending': 'Pending',
+                'processing': 'Processing',
+                'shipped': 'Shipped',
+                'delivering': 'Delivering',
+                'completed': 'Completed',
+                'canceled': 'Canceled',
+                'returned': 'Returned'
+            };
+
+            const formattedStatus = statusMap[newStatus.toLowerCase()];
+            if (!formattedStatus) {
+                setError('Invalid status value');
+                return;
+            }
+
+            await axios.put(`/api/orders/${orderId}/status/${formattedStatus}`, {}, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -188,7 +205,7 @@ const Orders = () => {
         { title: 'Pending', count: orderStats.pending, icon: <Package className="orders__card-icon" /> },
         { title: 'Processing', count: orderStats.processing, icon: <RefreshCw className="orders__card-icon" /> },
         { title: 'Shipped', count: orderStats.shipped, icon: <Truck className="orders__card-icon" /> },
-        { title: 'Delivered', count: orderStats.delivered, icon: <PackageCheck className="orders__card-icon" /> },
+        { title: 'Delivering', count: orderStats.delivering, icon: <PackageCheck className="orders__card-icon" /> },
         { title: 'Completed', count: orderStats.completed, icon: <CheckCircle className="orders__card-icon" /> },
         { title: 'Canceled', count: orderStats.canceled, icon: <XCircle className="orders__card-icon" /> },
         { title: 'Returned', count: orderStats.returned, icon: <RotateCcw className="orders__card-icon" /> },

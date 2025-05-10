@@ -99,21 +99,46 @@ class OrderController extends Controller
         }
     }
 
-    // Rest of the controller methods remain the same...
-    
     // Show orders for the authenticated user
     public function index(Request $request)
     {
-        $orders = Order::where('profile_id', Auth::id()) // Fetch orders for the authenticated user
-            ->with('orderDetails.product') // Eager load order details with product
-            ->get();
-        return response()->json($orders);
+        try {
+            // Get the authenticated user's profile
+            $profile = Profile::where('user_id', Auth::id())->first();
+            
+            if (!$profile) {
+                \Log::error('Profile not found for user ID: ' . Auth::id());
+                return response()->json(['message' => 'Profile not found'], 404);
+            }
+
+            \Log::info('Fetching orders for profile ID: ' . $profile->id);
+
+            // Fetch orders for the user's profile
+            $orders = Order::where('profile_id', $profile->id)
+                ->with(['orderDetails.product', 'shippingMethod', 'paymentMethod'])
+                ->orderBy('created_at', 'desc')
+                ->get();
+
+            \Log::info('Found ' . $orders->count() . ' orders for profile ID: ' . $profile->id);
+
+            return response()->json($orders);
+        } catch (\Exception $e) {
+            \Log::error('Error fetching user orders: ' . $e->getMessage());
+            \Log::error('Stack trace: ' . $e->getTraceAsString());
+            return response()->json(['message' => 'Failed to fetch orders: ' . $e->getMessage()], 500);
+        }
     }
 
     // Show a single order with details
     public function show($id)
     {
-        $order = Order::with('orderDetails.product')->findOrFail($id);
+        $order = Order::with([
+            'orderDetails.product',
+            'shippingMethod',
+            'paymentMethod',
+            'profile.user'
+        ])->findOrFail($id);
+        
         return response()->json($order);
     }
 
@@ -177,7 +202,7 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
         $request->validate([
-            'status' => 'required|string|in:PENDING,PROCESSING,SHIPPING,DELIVERED,CANCELLED',
+            'status' => 'required|string|in:Pending,Processing,Shipped,Delivering,Completed,Canceled,Returned',
         ]);
         $order->update($request->only('status'));
 
@@ -226,13 +251,13 @@ class OrderController extends Controller
     public function cancel($id)
     {
         $order = Order::findOrFail($id);
-        
-        if ($order->status == 'PENDING') {
-            $order->update(['status' => 'CANCELLED']);
-            return response()->json(['message' => 'Order cancelled successfully.']);
+        // Allow case-insensitive check for 'pending'
+        if (strtolower($order->status) === 'pending') {
+            $order->update(['status' => 'Canceled']);
+            return response()->json(['message' => 'Order canceled successfully.']);
         }
 
-        return response()->json(['message' => 'Order cannot be cancelled'], 400);
+        return response()->json(['message' => 'Order cannot be canceled. Only pending orders can be canceled.'], 400);
     }
 
     // Submit a review for an order detail
@@ -265,8 +290,160 @@ class OrderController extends Controller
     public function updateOrderStatus($orderId, $newStatus)
     {
         $order = Order::findOrFail($orderId);
+        
+        // Validate the status against allowed values
+        $allowedStatuses = ['Pending', 'Processing', 'Shipped', 'Delivering', 'Completed', 'Canceled', 'Returned'];
+        if (!in_array($newStatus, $allowedStatuses)) {
+            return response()->json([
+                'message' => 'Invalid status value. Allowed values are: ' . implode(', ', $allowedStatuses)
+            ], 422);
+        }
+        
         $order->update(['status' => $newStatus]);
-
         return response()->json($order);
+    }
+
+    // API endpoint to fetch transactions for admin
+    public function transactions()
+    {
+        $orders = \App\Models\Order::with(['profile', 'paymentMethod'])
+            ->orderBy('order_date', 'desc')
+            ->get()
+            ->map(function ($order) {
+                return [
+                    'id' => $order->id,
+                    'transaction_id' => 'ORD-' . str_pad($order->id, 5, '0', STR_PAD_LEFT),
+                    'customer_name' => $order->profile ? trim(($order->profile->first_name ?? '') . ' ' . ($order->profile->last_name ?? '')) : 'N/A',
+                    'amount' => $order->total_amount,
+                    'payment_method' => $order->paymentMethod ? $order->paymentMethod->name : 'N/A',
+                    'date' => $order->order_date,
+                    'status' => $order->status,
+                ];
+            });
+
+        return response()->json($orders);
+    }
+
+    // API endpoint for product sales report
+    public function productSalesReport()
+    {
+        $products = \DB::table('order_details')
+            ->join('products', 'order_details.product_id', '=', 'products.id')
+            ->select(
+                'products.id',
+                'products.product_name',
+                \DB::raw('SUM(order_details.quantity) as total_quantity'),
+                \DB::raw('SUM(order_details.total) as total_sales')
+            )
+            ->groupBy('products.id', 'products.product_name')
+            ->orderByDesc('total_sales')
+            ->get();
+
+        return response()->json($products);
+    }
+    
+    // Mark an order as received by the customer
+    public function markAsReceived($id)
+    {
+        try {
+            $order = Order::findOrFail($id);
+            
+            // Ensure the order belongs to the authenticated user
+            $profile = Profile::where('user_id', Auth::id())->first();
+            if (!$profile || $order->profile_id !== $profile->id) {
+                return response()->json(['message' => 'Unauthorized. This order does not belong to your account.'], 403);
+            }
+            
+            // Check if the order status is 'Delivering'
+            if ($order->status !== 'Delivering') {
+                return response()->json(['message' => 'Only orders in Delivering status can be marked as received.'], 422);
+            }
+            
+            // Update the order status
+            $order->update(['status' => 'Completed']);
+            
+            return response()->json([
+                'message' => 'Order marked as received successfully.',
+                'order' => $order
+            ]);
+        } catch (\Exception $e) {
+            \Log::error('Error marking order as received: ' . $e->getMessage());
+            return response()->json(['message' => 'Failed to mark order as received: ' . $e->getMessage()], 500);
+        }
+    }
+    
+    // Submit a rating for an order
+    public function rateOrder(Request $request, $id)
+    {
+        try {
+            $order = Order::findOrFail($id);
+            
+            // Validate the request data
+            $request->validate([
+                'rating' => 'required|integer|between:1,5',
+                'feedback' => 'nullable|string',
+                'product_id' => 'required|exists:products,id',
+            ]);
+            
+            // Ensure the order belongs to the authenticated user
+            $profile = Profile::where('user_id', Auth::id())->first();
+            if (!$profile || $order->profile_id !== $profile->id) {
+                return response()->json(['message' => 'Unauthorized. This order does not belong to your account.'], 403);
+            }
+            
+            // Check if the order status is 'Completed'
+            if ($order->status !== 'Completed') {
+                return response()->json(['message' => 'Only completed orders can be rated.'], 422);
+            }
+            
+            // Verify that the product is part of this order
+            $orderDetail = $order->orderDetails()
+                ->where('product_id', $request->product_id)
+                ->first();
+                
+            if (!$orderDetail) {
+                return response()->json(['message' => 'This product is not part of the specified order.'], 404);
+            }
+            
+            // Check if this product has already been rated for this order
+            $existingReview = Review::where([
+                'user_id' => Auth::id(),
+                'product_id' => $request->product_id,
+                'order_id' => $order->id
+            ])->first();
+            
+            // Prepare review text
+            $reviewText = $request->feedback ?? 'Rated ' . $request->rating . ' stars';
+            
+            if ($existingReview) {
+                // Update the existing review
+                $existingReview->update([
+                    'review' => $reviewText,
+                    'rating' => $request->rating
+                ]);
+                
+                return response()->json([
+                    'message' => 'Product rating updated successfully.',
+                    'review' => $existingReview
+                ]);
+            }
+            
+            // Create a new review for the product
+            $review = Review::create([
+                'user_id' => Auth::id(),
+                'product_id' => $request->product_id,
+                'order_id' => $order->id,
+                'review' => $reviewText,
+                'rating' => $request->rating,
+            ]);
+            
+            return response()->json([
+                'message' => 'Product rated successfully.',
+                'review' => $review
+            ]);
+        } catch (\Exception $e) {
+            \Log::error('Error rating product: ' . $e->getMessage());
+            return response()->json(['message' => 'Failed to rate product: ' . $e->getMessage()], 500);
+        }
     }
 }

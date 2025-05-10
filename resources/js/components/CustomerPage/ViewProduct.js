@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Star, Heart, ShoppingCart } from 'lucide-react';
+import { Star, Heart, ShoppingCart, ThumbsUp, X } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 import { useCart } from '../Notifs/CartContext';
 import { useWishlist } from '../Notifs/WishlistContext';
@@ -48,6 +48,10 @@ const ViewProduct = () => {
   const [thumbnailImage, setThumbnailImage] = useState('');
   const [availableColors, setAvailableColors] = useState([]);
   const [availableSizes, setAvailableSizes] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [loadingReviews, setLoadingReviews] = useState(false);
+  const [enlargedImage, setEnlargedImage] = useState(null);
+  const [reviewStats, setReviewStats] = useState({ count: 0, average: 0 });
   const { addToCart } = useCart();
   const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
   const [wishlistLoading, setWishlistLoading] = useState(false);
@@ -157,6 +161,9 @@ const ViewProduct = () => {
           });
         }
 
+        // Fetch product reviews
+        await fetchProductReviews(productId);
+
         setLoading(false);
       } catch (err) {
         console.error('Product fetch error:', err);
@@ -193,6 +200,49 @@ const ViewProduct = () => {
 
     fetchProductData();
   }, [productId]);
+
+  // Fetch product reviews
+  const fetchProductReviews = async (productId) => {
+    try {
+      setLoadingReviews(true);
+      const response = await fetch(`${API_URL}/reviews/${productId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch reviews');
+      }
+      const reviewsData = await response.json();
+      console.log('Reviews data:', reviewsData);
+      
+      // Set the reviews
+      setReviews(reviewsData);
+      
+      // Calculate review statistics
+      if (reviewsData && reviewsData.length > 0) {
+        const total = reviewsData.reduce((sum, review) => sum + review.rating, 0);
+        const average = total / reviewsData.length;
+        const newStats = {
+          count: reviewsData.length,
+          average: Number(average.toFixed(1))
+        };
+        
+        // Update review stats
+        setReviewStats(newStats);
+        
+        // Also update product rating to match
+        if (product) {
+          setProduct(prevProduct => ({
+            ...prevProduct,
+            rating: newStats.average
+          }));
+        }
+        
+        console.log('Review stats:', newStats);
+      }
+    } catch (err) {
+      console.error('Error fetching reviews:', err);
+    } finally {
+      setLoadingReviews(false);
+    }
+  };
 
   // Function to swap images when thumbnail is clicked
   const handleThumbnailClick = () => {
@@ -335,6 +385,31 @@ const ViewProduct = () => {
     }
   }
 
+  // Format date for reviews
+  const formatDate = (dateString) => {
+    try {
+      const date = new Date(dateString);
+      return date.toISOString().split('T')[0].replace(/-/g, '-');
+    } catch (err) {
+      console.error('Error formatting date:', err);
+      return '';
+    }
+  };
+
+  // Get user initials from first and last names
+  const getInitials = (firstName, lastName) => {
+    const firstInitial = firstName ? firstName.charAt(0).toUpperCase() : '';
+    const lastInitial = lastName ? lastName.charAt(0).toUpperCase() : '';
+    
+    if (firstInitial && lastInitial) {
+      return `${firstInitial}.${lastInitial}.`;
+    } else if (firstInitial) {
+      return `${firstInitial}.`;
+    } else {
+      return 'Guest';
+    }
+  };
+
   if (loading) return <div className="product-view"><p>Loading...</p></div>;
   if (error) return <div className="product-view"><p>{error}</p></div>;
   if (!product) return <div className="product-view"><p>Product not found.</p></div>;
@@ -377,11 +452,11 @@ const ViewProduct = () => {
               <Star
                 key={index}
                 size={18}
-                fill={index < product.rating ? '#FFD700' : 'none'}
-                stroke={index < product.rating ? '#FFD700' : '#ccc'}
+                fill={index < reviewStats.average ? '#FFD700' : 'none'}
+                stroke={index < reviewStats.average ? '#FFD700' : '#ccc'}
               />
             ))}
-            <span>({product.rating || 0} reviews)</span>
+            <span>({reviewStats.count} reviews)</span>
           </div>
           
           <div className="product-view__price">
@@ -504,6 +579,134 @@ const ViewProduct = () => {
           )}
         </div>
       </div>
+
+      {/* Customer Reviews Section */}
+      <div className="customer-reviews">
+        <h2 className="customer-reviews__title">Customer Reviews</h2>
+        
+        {/* Review Statistics Summary */}
+        <div className="customer-reviews__stats">
+          {reviews.length > 0 ? (
+            <>
+              <div className="customer-reviews__stats-rating">
+                <span className="customer-reviews__stats-average">{reviewStats.average}</span>
+                <div className="customer-reviews__stats-stars">
+                  {[...Array(5)].map((_, index) => (
+                    <Star
+                      key={index}
+                      size={20}
+                      fill={index < reviewStats.average ? '#FFD700' : 'none'}
+                      stroke={index < reviewStats.average ? '#FFD700' : '#ccc'}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="customer-reviews__stats-count">
+                Based on {reviewStats.count} {reviewStats.count === 1 ? 'review' : 'reviews'}
+              </div>
+            </>
+          ) : (
+            <div className="customer-reviews__stats-empty">
+              No reviews yet
+            </div>
+          )}
+        </div>
+        
+        {loadingReviews ? (
+          <p className="customer-reviews__loading">Loading reviews...</p>
+        ) : reviews.length > 0 ? (
+          <div className="customer-reviews__list">
+            {reviews.map((review) => (
+              <div key={review.id} className="customer-reviews__item">
+                <div className="customer-reviews__header">
+                  <div className="customer-reviews__user-info">
+                    <div className="customer-reviews__avatar">
+                      <img 
+                        src={review.user?.profile_image} 
+                        alt="Profile"
+                        className="customer-reviews__avatar-img"
+                        onError={(e) => {
+                          console.log('Profile image failed to load, trying default image');
+                          e.target.src = 'http://127.0.0.1:8000/images/default-avatar.jpg';
+                        }}
+                      />
+                    </div>
+                    <div className="customer-reviews__user">
+                      {review.user?.masked_name || 
+                       `${review.user?.first_name || ''} ${review.user?.last_name || ''}`.trim()}
+                    </div>
+                  </div>
+                  <div className="customer-reviews__date">{formatDate(review.created_at)}</div>
+                </div>
+                
+                <div className="customer-reviews__rating">
+                  {[...Array(5)].map((_, index) => (
+                    <Star
+                      key={index}
+                      size={18}
+                      fill={index < review.rating ? '#FFD700' : 'none'}
+                      stroke={index < review.rating ? '#FFD700' : '#ccc'}
+                    />
+                  ))}
+                </div>
+                
+                <div className="customer-reviews__text">
+                  {review.review}
+                </div>
+                
+                {/* Review Images */}
+                {review.images && review.images.length > 0 && (
+                  <div className="customer-reviews__images">
+                    {review.images.map((image, index) => (
+                      <div key={image.id || index} className="customer-reviews__image-container">
+                        <img 
+                          src={image.url} 
+                          alt={`Review image ${index + 1}`} 
+                          className="customer-reviews__image"
+                          onClick={() => {
+                            setEnlargedImage(image.url);
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                <div className="customer-reviews__helpful">
+                  <button className="customer-reviews__helpful-btn">
+                    <ThumbsUp size={16} />
+                    Helpful {review.helpful_count ? `(${review.helpful_count})` : ''}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="customer-reviews__empty">No reviews yet. Be the first to review this product!</p>
+        )}
+      </div>
+      
+      {/* Image Lightbox */}
+      {enlargedImage && (
+        <div className="image-lightbox" onClick={() => setEnlargedImage(null)}>
+          <div className="image-lightbox__content">
+            <button 
+              className="image-lightbox__close" 
+              onClick={(e) => {
+                e.stopPropagation();
+                setEnlargedImage(null);
+              }}
+            >
+              <X size={24} />
+            </button>
+            <img 
+              src={enlargedImage} 
+              alt="Enlarged review image" 
+              className="image-lightbox__img"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

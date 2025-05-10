@@ -33,6 +33,11 @@ class Order extends Model
     {
         return $this->belongsTo(PaymentMethod::class);
     }
+    
+public function trackings()
+{
+    return $this->hasMany(OrderTracking::class);
+}
 
     public function orderDetails()
     {

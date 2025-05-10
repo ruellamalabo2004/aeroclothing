@@ -7,7 +7,7 @@ const OrdersModal = ({ isOpen, onClose, orderId, token, onOrderUpdated }) => {
   const initialFormData = {
     orderId: '',
     totalAmount: '',
-    status: 'pending',
+    status: 'Pending',
     datePlaced: '',
   };
 
@@ -33,8 +33,8 @@ const OrdersModal = ({ isOpen, onClose, orderId, token, onOrderUpdated }) => {
         },
       });
 
-      console.log('API Response for Order:', res); // Log the full response for debugging
-      const orderData = res.data; // The show method returns the order directly
+      console.log('API Response for Order:', res);
+      const orderData = res.data;
       
       if (!orderData) {
         throw new Error('No order data returned from API');
@@ -44,7 +44,7 @@ const OrdersModal = ({ isOpen, onClose, orderId, token, onOrderUpdated }) => {
       setFormData({
         orderId: orderData.id || '',
         totalAmount: orderData.total_amount || '',
-        status: (orderData.status || 'pending').toLowerCase(), // Normalize to lowercase for frontend
+        status: orderData.status || 'Pending', // Keep original case
         datePlaced: orderData.order_date || '',
       });
     } catch (err) {
@@ -87,11 +87,11 @@ const OrdersModal = ({ isOpen, onClose, orderId, token, onOrderUpdated }) => {
 
     try {
       const formDataToSend = new FormData();
-      formDataToSend.append('status', formData.status.toUpperCase()); // Convert to uppercase for backend
+      formDataToSend.append('status', formData.status); // Send status as is, no need to transform
       formDataToSend.append('_method', 'PUT');
 
       const res = await axios.post(
-        `/api/orders/${orderId}`, // Updated endpoint to match OrderController's show method
+        `/api/orders/${orderId}`,
         formDataToSend,
         {
           headers: {
@@ -103,13 +103,13 @@ const OrdersModal = ({ isOpen, onClose, orderId, token, onOrderUpdated }) => {
       );
 
       console.log('Order updated response:', res.data);
-      if (res.data.status) { // Check if the updated order is returned
+      if (res.data.status) {
         setSuccessMessage('Order updated successfully!');
         setIsSuccessVisible(true);
         onOrderUpdated(res.data);
         setTimeout(() => {
           onClose();
-        }, 1000); // Close after 1 second to show success notification
+        }, 1000);
       } else {
         throw new Error('Unexpected response: ' + JSON.stringify(res.data));
       }
@@ -201,11 +201,13 @@ const OrdersModal = ({ isOpen, onClose, orderId, token, onOrderUpdated }) => {
                 onChange={handleChange}
                 className={`orders-modal__field-input ${errors.status ? 'is-invalid' : ''}`}
               >
-                <option value="pending">Pending</option>
-                <option value="processing">Processing</option>
-                <option value="shipped">Shipped</option>
-                <option value="delivered">Delivered</option>
-                <option value="cancelled">Cancelled</option>
+                <option value="Pending">Pending</option>
+                <option value="Processing">Processing</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Delivering">Delivering</option>
+                <option value="Completed">Completed</option>
+                <option value="Canceled">Canceled</option>
+                <option value="Returned">Returned</option>
               </select>
               {errors.status && <div className="orders-modal__error">{errors.status[0]}</div>}
             </div>

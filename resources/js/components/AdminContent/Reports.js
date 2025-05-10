@@ -1,106 +1,133 @@
-import React from 'react';
-import { Download } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Reports = () => {
-  // Hardcoded data for stat cards (matching the screenshot)
-  const stats = {
-    totalSales: { value: 45231.89, change: 20.1, isPositive: true },
-    profitMargin: { value: 32.5, change: 2.4, isPositive: false },
-    totalOrders: { value: 1245, change: 12.5, isPositive: false },
-  };
+  const [activeTab, setActiveTab] = useState('orders');
+  const [orders, setOrders] = useState([]);
+  const [productSales, setProductSales] = useState([]);
+  const printRef = useRef();
 
-  // Hardcoded data for the monthly performance table (matching the screenshot)
-  const monthlyPerformance = [
-    { month: 'Jan', sales: 4000, profit: 2400, profitMargin: 60.0 },
-    { month: 'Feb', sales: 3000, profit: 1398, profitMargin: 46.6 },
-    { month: 'Mar', sales: 2000, profit: 980, profitMargin: 49.0 },
-    { month: 'Apr', sales: 2780, profit: 3908, profitMargin: 140.6 },
-    { month: 'May', sales: 1890, profit: 4800, profitMargin: 254.0 },
-    { month: 'Jun', sales: 2390, profit: 3800, profitMargin: 159.0 },
-  ];
+  useEffect(() => {
+    if (activeTab === 'orders') {
+      const fetchOrders = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch('/api/transactions', {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          const data = await response.json();
+          setOrders(data);
+        } catch (err) {
+          setOrders([]);
+        }
+      };
+      fetchOrders();
+    } else if (activeTab === 'product-sales') {
+      const fetchProductSales = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch('/api/reports/product-sales', {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          const data = await response.json();
+          setProductSales(data);
+        } catch (err) {
+          setProductSales([]);
+        }
+      };
+      fetchProductSales();
+    }
+  }, [activeTab]);
 
-  const handlePrintSavePDF = () => {
-    console.log('Print / Save PDF action not implemented yet');
+  const handlePrint = () => {
+    window.print();
   };
 
   return (
     <div className="reports">
       <div className="reports__header">
-        <h2 className="reports__title">Reports & Analytics</h2>
-        <button className="reports__print-save" onClick={handlePrintSavePDF}>
-          <Download className="reports__print-save-icon" size={16} />
+        <h2 className="reports__title">Reports</h2>
+        <div className="reports__tabs">
+          <button className={`reports__tab${activeTab === 'orders' ? ' active' : ''}`} onClick={() => setActiveTab('orders')}>Orders Report</button>
+          <button className={`reports__tab${activeTab === 'product-sales' ? ' active' : ''}`} onClick={() => setActiveTab('product-sales')}>Product Sales Report</button>
+        </div>
+        <button className="reports__print-save" onClick={handlePrint}>
           Print / Save PDF
         </button>
       </div>
-      <div className="reports__stats">
-        <div className="reports__stat-card">
-          <div className="reports__stat-content">
-            <div className="reports__stat-header">
-              <h3>Total Sales</h3>
-              <p>Monthly overview</p>
-            </div>
-            <p className="reports__stat-value">${stats.totalSales.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            <p className={`reports__stat-change ${stats.totalSales.isPositive ? 'positive' : 'negative'}`}>
-              {stats.totalSales.isPositive ? '+' : '-'}{stats.totalSales.change}% from last month
-            </p>
+      {activeTab === 'orders' && (
+        <div className="reports__table-section" ref={printRef}>
+          <div className="reports__table-header">
+            <h3>Order Report Table</h3>
+            <p>All orders with details</p>
           </div>
-        </div>
-        
-        <div className="reports__stat-card">
-          <div className="reports__stat-content">
-            <div className="reports__stat-header">
-              <h3>Profit Margin</h3>
-              <p>Monthly calculation</p>
-            </div>
-            <p className="reports__stat-value">{stats.profitMargin.value}%</p>
-            <p className={`reports__stat-change ${stats.profitMargin.isPositive ? 'positive' : 'negative'}`}>
-              {stats.profitMargin.isPositive ? '+' : '-'}{stats.profitMargin.change}% from last month
-            </p>
-          </div>
-        </div>
-        
-        <div className="reports__stat-card">
-          <div className="reports__stat-content">
-            <div className="reports__stat-header">
-              <h3>Total Orders</h3>
-              <p>Monthly summary</p>
-            </div>
-            <p className="reports__stat-value">{stats.totalOrders.value.toLocaleString()}</p>
-            <p className={`reports__stat-change ${stats.totalOrders.isPositive ? 'positive' : 'negative'}`}>
-              {stats.totalOrders.isPositive ? '+' : '-'}{stats.totalOrders.change}% from last month
-            </p>
-          </div>
-        </div>
-      </div>
-      
-      <div className="reports__table-section">
-        <div className="reports__table-header">
-          <h3>Monthly Performance Table</h3>
-          <p>Detailed view of monthly sales and profit data</p>
-        </div>
-        <div className="reports__table-container">
-          <table className="reports__table">
-            <thead>
-              <tr>
-                <th>Month</th>
-                <th>Sales ($)</th>
-                <th>Profit ($)</th>
-                <th>Profit Margin (%)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {monthlyPerformance.map((row, index) => (
-                <tr key={index}>
-                  <td>{row.month}</td>
-                  <td>{row.sales.toLocaleString()}</td>
-                  <td>{row.profit.toLocaleString()}</td>
-                  <td>{row.profitMargin.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</td>
+          <div className="reports__table-container">
+            <table className="reports__table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Order ID</th>
+                  <th>Customer Name</th>
+                  <th>Amount</th>
+                  <th>Payment Method</th>
+                  <th>Order Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {orders.length > 0 ? (
+                  orders.map((row) => (
+                    <tr key={row.id}>
+                      <td>{row.date}</td>
+                      <td>{row.transaction_id}</td>
+                      <td>{row.customer_name}</td>
+                      <td>${parseFloat(row.amount).toLocaleString('en-US', { minimumFractionDigits: 2 })}</td>
+                      <td>{row.payment_method}</td>
+                      <td>{row.status}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={6}>No data available</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      )}
+      {activeTab === 'product-sales' && (
+        <div className="reports__table-section" ref={printRef}>
+          <div className="reports__table-header">
+            <h3>Product Sales Report</h3>
+            <p>Aggregated sales by product</p>
+          </div>
+          <div className="reports__table-container">
+            <table className="reports__table">
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <th>Total Quantity Sold</th>
+                  <th>Total Sales</th>
+                </tr>
+              </thead>
+              <tbody>
+                {productSales.length > 0 ? (
+                  productSales.map((row) => (
+                    <tr key={row.id}>
+                      <td>{row.product_name}</td>
+                      <td>{row.total_quantity}</td>
+                      <td>${parseFloat(row.total_sales).toLocaleString('en-US', { minimumFractionDigits: 2 })}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={3}>No data available</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

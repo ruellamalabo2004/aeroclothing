@@ -1,37 +1,134 @@
 import React, { useState, useEffect } from 'react';
 import { Search, MessageSquareReply, Edit2, Archive } from 'lucide-react';
+import axios from 'axios';
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedReviews, setSelectedReviews] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
+    const [selectedReview, setSelectedReview] = useState(null);
+    const [replyText, setReplyText] = useState("");
     const reviewsPerPage = 10;
+    const API_URL = "http://127.0.0.1:8000/api";
 
-    // Hardcoded sample review data with status
+    // Fetch reviews from API
     useEffect(() => {
-        const sampleReviews = [
-            { id: 1, customer_name: 'John Doe', product_bought: 'Wireless Earbuds', review: 'Great sound quality!', rate: 5, date: '2025-04-18', status: 'Replied' },
-            { id: 2, customer_name: 'Jane Smith', product_bought: 'Smart Watch', review: 'Battery life could be better.', rate: 3, date: '2025-04-17', status: 'Replied' },
-            { id: 3, customer_name: 'Alice Johnson', product_bought: 'Portable Speaker', review: 'Stopped working after a week.', rate: 1, date: '2025-04-16', status: 'Archived' },
-            { id: 4, customer_name: 'Bob Brown', product_bought: 'Fitness Tracker', review: 'Very accurate tracking.', rate: 4, date: '2025-04-15', status: 'Replied' },
-            { id: 5, customer_name: 'Charlie Davis', product_bought: 'Laptop Stand', review: 'Sturdy but a bit bulky.', rate: 3, date: '2025-04-14', status: 'Archived' },
-            { id: 6, customer_name: 'Diana Evans', product_bought: 'Bluetooth Headphones', review: 'Amazing comfort and sound.', rate: 5, date: '2025-04-13', status: 'Replied' },
-            { id: 7, customer_name: 'Ethan Wilson', product_bought: 'USB-C Hub', review: 'Ports are unreliable.', rate: 2, date: '2025-04-12', status: 'Archived' },
-            { id: 8, customer_name: 'Fiona Clark', product_bought: 'Wireless Mouse', review: 'Smooth and responsive.', rate: 4, date: '2025-04-11', status: 'Replied' },
-            { id: 9, customer_name: 'George Harris', product_bought: 'Keyboard', review: 'Keys feel cheap.', rate: 2, date: '2025-04-10', status: 'Archived' },
-            { id: 10, customer_name: 'Hannah Lewis', product_bought: 'Monitor', review: 'Good display but average build.', rate: 3, date: '2025-04-09', status: 'Replied' },
-        ];
-        setReviews(sampleReviews);
+        fetchReviews();
     }, []);
+
+    const fetchReviews = async () => {
+        try {
+            setLoading(true);
+            console.log('Fetching reviews from API...');
+            
+            // Get token from localStorage
+            const token = localStorage.getItem('token');
+            console.log('Auth token available:', !!token);
+            
+            // Set headers with token if available
+            const headers = token ? { Authorization: `Bearer ${token}` } : {};
+            
+            // Get all reviews
+            const response = await axios.get(`${API_URL}/reviews`, { headers });
+            console.log('API Response:', response);
+            
+            if (response.data && response.data.length > 0) {
+                console.log(`Received ${response.data.length} reviews`);
+                
+                // Format the reviews data for display
+                const formattedReviews = response.data.map(review => {
+                    // Get user name from the user relationship
+                    let customerName = 'Anonymous';
+                    if (review.user) {
+                        if (review.user.name) {
+                            customerName = review.user.name;
+                        } else if (review.user.profile) {
+                            // Try to get from profile if exists
+                            const firstName = review.user.profile.first_name || '';
+                            const lastName = review.user.profile.last_name || '';
+                            if (firstName || lastName) {
+                                customerName = `${firstName} ${lastName}`.trim();
+                            }
+                        }
+                    }
+                    
+                    // Get product name from the product relationship
+                    let productName = 'Unknown Product';
+                    if (review.product && review.product.product_name) {
+                        productName = review.product.product_name;
+                    } else if (review.product_id) {
+                        productName = `Product #${review.product_id}`;
+                    }
+                    
+                    return {
+                        id: review.id,
+                        customer_name: customerName,
+                        product_bought: productName,
+                        review: review.review || "No review text",
+                        rating: review.rating || 0,
+                        reply: review.reply,
+                        status: review.reply ? "Replied" : "Pending",
+                        date: new Date(review.created_at).toLocaleDateString(),
+                        created_at: review.created_at,
+                        updated_at: review.updated_at,
+                        user_id: review.user_id,
+                        product_id: review.product_id,
+                        order_id: review.order_id
+                    };
+                });
+                
+                setReviews(formattedReviews);
+            } else {
+                console.log('No reviews found or invalid response format');
+                setReviews([]);
+            }
+            
+            setLoading(false);
+        } catch (err) {
+            console.error('Error fetching reviews:', err);
+            setError('Failed to fetch reviews. Please check the console for details.');
+            setLoading(false);
+        }
+    };
+
+    // Handle replying to a review
+    const handleReplyClick = (review) => {
+        setSelectedReview(review);
+        setReplyText(review.reply || "");
+    };
+    
+    // Close the modal
+    const handleCloseModal = () => {
+        setSelectedReview(null);
+        setReplyText("");
+    };
+    
+    // Save reply (would connect to backend in real implementation)
+    const handleSaveReply = () => {
+        if (!selectedReview || !replyText.trim()) return;
+        
+        // Update in local state for now (would connect to API in real implementation)
+        setReviews(reviews.map(review => 
+            review.id === selectedReview.id 
+                ? { ...review, reply: replyText, status: "Replied" } 
+                : review
+        ));
+        
+        // Close modal
+        setSelectedReview(null);
+        setReplyText("");
+    };
 
     // Filter reviews based on search term
     const filteredReviews = reviews.filter(
         (review) =>
-            review.customer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            review.product_bought.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            review.review.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            review.status.toLowerCase().includes(searchTerm.toLowerCase())
+            review.customer_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            review.product_bought?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            review.review?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            review.status?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     // Pagination logic
@@ -79,78 +176,84 @@ const Reviews = () => {
 
             <div className="reviews-table-wrapper">
                 <div className="reviews-table-container">
-                    <table className="reviews-table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <input
-                                        type="checkbox"
-                                        onChange={() =>
-                                            setSelectedReviews(
-                                                selectedReviews.length === currentReviews.length
-                                                    ? []
-                                                    : currentReviews.map((r) => r.id)
-                                            )
-                                        }
-                                        checked={selectedReviews.length === currentReviews.length && currentReviews.length > 0}
-                                    />
-                                </th>
-                                <th>Actions</th>
-                                <th>Customer Name</th>
-                                <th>Product Bought</th>
-                                <th>Review</th>
-                                <th>Rate</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {currentReviews.length > 0 ? (
-                                currentReviews.map((review) => (
-                                    <tr key={review.id}>
-                                        <td>
-                                            <input
-                                                type="checkbox"
-                                                checked={selectedReviews.includes(review.id)}
-                                                onChange={() => handleCheckboxChange(review.id)}
-                                            />
-                                        </td>
-                                        <td>
-                                            <MessageSquareReply
-                                                className="action-img"
-                                                size={16}
-                                                onClick={() => console.log('Reply action not implemented yet')}
-                                            />
-                                            <Edit2
-                                                className="action-img"
-                                                size={16}
-                                                onClick={() => console.log('Edit action not implemented yet')}
-                                            />
-                                            <Archive
-                                                className="action-img"
-                                                size={16}
-                                                onClick={() => console.log('Archive action not implemented yet')}
-                                            />
-                                        </td>
-                                        <td>{review.customer_name}</td>
-                                        <td>{review.product_bought}</td>
-                                        <td>{review.review}</td>
-                                        <td>{review.rate}</td>
-                                        <td>{review.date}</td>
-                                        <td>
-                                            <span className={`status-frame status-${review.status.toLowerCase()}`}>
-                                                {review.status}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))
-                            ) : (
+                    {loading ? (
+                        <p>Loading reviews...</p>
+                    ) : error ? (
+                        <p className="error-message">{error}</p>
+                    ) : (
+                        <table className="reviews-table">
+                            <thead>
                                 <tr>
-                                    <td colSpan="8">No reviews available</td>
+                                    <th>
+                                        <input
+                                            type="checkbox"
+                                            onChange={() =>
+                                                setSelectedReviews(
+                                                    selectedReviews.length === currentReviews.length
+                                                        ? []
+                                                        : currentReviews.map((r) => r.id)
+                                                )
+                                            }
+                                            checked={selectedReviews.length === currentReviews.length && currentReviews.length > 0}
+                                        />
+                                    </th>
+                                    <th>Actions</th>
+                                    <th>Customer</th>
+                                    <th>Product</th>
+                                    <th>Review</th>
+                                    <th>Rating</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
                                 </tr>
-                            )}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {currentReviews.length > 0 ? (
+                                    currentReviews.map((review) => (
+                                        <tr key={review.id}>
+                                            <td>
+                                                <input
+                                                    type="checkbox"
+                                                    checked={selectedReviews.includes(review.id)}
+                                                    onChange={() => handleCheckboxChange(review.id)}
+                                                />
+                                            </td>
+                                            <td>
+                                                <MessageSquareReply
+                                                    className="action-img"
+                                                    size={16}
+                                                    onClick={() => handleReplyClick(review)}
+                                                />
+                                                <Edit2
+                                                    className="action-img"
+                                                    size={16}
+                                                    onClick={() => console.log('Edit review')}
+                                                />
+                                                <Archive
+                                                    className="action-img"
+                                                    size={16}
+                                                    onClick={() => console.log('Archive review')}
+                                                />
+                                            </td>
+                                            <td>{review.customer_name}</td>
+                                            <td>{review.product_bought}</td>
+                                            <td>{review.review}</td>
+                                            <td>{review.rating}/5</td>
+                                            <td>{review.date}</td>
+                                            <td>
+                                                <span className={`status-frame status-${review.status.toLowerCase()}`}>
+                                                    {review.status}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan="8">No reviews available</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    )}
                 </div>
             </div>
 
@@ -173,6 +276,41 @@ const Reviews = () => {
                     >
                         Next
                     </button>
+                </div>
+            )}
+            
+            {/* Reply Modal */}
+            {selectedReview && (
+                <div className="reviews-modal-overlay">
+                    <div className="reviews-modal">
+                        <h2>Reply to Review</h2>
+                        <div className="reviews-modal-content">
+                            <div className="reviews-form-group">
+                                <label>Customer Review:</label>
+                                <div className="reviews-readonly-content">
+                                    {selectedReview.review}
+                                </div>
+                            </div>
+                            <div className="reviews-form-group">
+                                <label>Your Reply:</label>
+                                <textarea
+                                    value={replyText}
+                                    onChange={(e) => setReplyText(e.target.value)}
+                                    className="reviews-reply-input"
+                                    rows="4"
+                                    placeholder="Type your reply to the customer..."
+                                />
+                            </div>
+                            <div className="reviews-form-buttons">
+                                <button type="button" className="reviews-close-btn" onClick={handleCloseModal}>
+                                    Cancel
+                                </button>
+                                <button type="button" className="reviews-submit-reply-btn" onClick={handleSaveReply}>
+                                    Save Reply
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>

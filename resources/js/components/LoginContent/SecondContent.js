@@ -77,7 +77,7 @@ const SecondContent = () => {
   };
 
   const handleProductClick = (productId) => () => {
-    navigate(`/shop/${productId}`);
+    navigate(`/product/${productId}`);
   };
 
   if (loading) {

@@ -28,6 +28,12 @@ use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\PaymentMethodController; // Added for payment methods
 use App\Http\Controllers\ShippingMethodController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderTrackingController;
+
+Route::get('order-trackings/{order}', [OrderTrackingController::class, 'index']);
+
+
 // Public routes
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
@@ -62,9 +68,15 @@ Route::patch('/product-types/{id}/restore', [ProductTypeController::class, 'rest
 
 Route::get('/customers', [UserController::class, 'getCustomers']);
 Route::apiResource('users', UserController::class);
+// Public reviews API - accessible without login
 Route::get('/reviews/{productId}', [ReviewController::class, 'getReviews']);
+Route::get('/reviews', [ReviewController::class, 'index']);
 Route::get('/couriers', [CourierController::class, 'index']);
 Route::get('/admin/orders', [OrderController::class, 'adminIndex'])->middleware('auth:api');
+
+Route::get('/orders/{order}/trackings', [OrderTrackingController::class, 'index']);
+Route::get('/orders/{orderId}/tracking', [OrderTrackingController::class, 'getOrderTracking']);
+Route::post('/trackings', [OrderTrackingController::class, 'store']);
 
 // Protected routes (Require Authentication)
 Route::middleware('auth:api')->group(function () {
@@ -75,15 +87,17 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/orders/{id}/tracking', [OrderController::class, 'trackOrder']);
     Route::get('/orders/{id}/tracking', [OrderController::class, 'getTrackingStatus']);
     Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel']);
+    Route::post('/orders/{id}/received', [OrderController::class, 'markAsReceived']);
+    Route::post('/orders/{id}/rate', [OrderController::class, 'rateOrder']);
     Route::post('/orders/{orderId}/order-details/{orderDetailId}/review', [OrderController::class, 'submitReview']);
+    
+    // Reviews
     Route::post('/reviews', [ReviewController::class, 'store']);
     Route::get('/reviews/user', [ReviewController::class, 'userReviews']);
-    Route::get('/reviews/{productId}', [ReviewController::class, 'getReviews']);
     Route::put('/reviews/{id}', [ReviewController::class, 'updateReview']);
     Route::delete('/reviews/{id}', [ReviewController::class, 'deleteReview']);
-    Route::get('/notifications', [NotificationController::class, 'index']);
-    Route::put('/orders/{orderId}/status/{newStatus}', [OrderController::class, 'updateOrderStatus']);
-    
+    Route::get('/reviews/all', [ReviewController::class, 'getAllReviews']);
+
     // Order Details
     Route::apiResource('order-details', OrderDetailController::class);
     Route::patch('/order-details/{id}/archive', [OrderDetailController::class, 'archive']);
@@ -102,13 +116,9 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/{chat}/messages', [ChatController::class, 'getMessages']);
         Route::post('/{chat}/send', [ChatController::class, 'sendMessage']);
         Route::post('/{chat}/archive', [ChatController::class, 'archiveChat']);
-        Route::post('/{chat}/revert', [ChatController::class, 'revertChat']);
+        Route::post('/{chat}/revert', [ChatController::class, 'revertChat'])->middleware('admin');
     });
 
-    // Review
-    Route::get('/reviews', [ReviewController::class, 'index']);
-    Route::post('/reviews/{id}/reply', [ReviewController::class, 'reply']);
-    
     // Cart
     Route::get('/cart', [CartController::class, 'getCart']);
     Route::post('/cart/add', [CartController::class, 'addToCart']);
@@ -121,7 +131,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/wishlist', [WishlistController::class, 'store']);
     Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy']);
 
-    // User fManagement
+    // User Management
     Route::get('/users/count', [UserController::class, 'getTotalUsers']);
     
     // Address
@@ -132,18 +142,22 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/addresses/{id}', [AddressController::class, 'destroy']);
     Route::patch('/addresses/{id}/set-default', [AddressController::class, 'setDefault']);
 
-    // Reviews
-    Route::post('/reviews', [ReviewController::class, 'addReview']);
-    Route::put('/reviews/{id}', [ReviewController::class, 'updateReview']);
-    Route::delete('/reviews/{id}', [ReviewController::class, 'deleteReview']);
-
     // Profile
     Route::get('/profile', [AuthController::class, 'profile']);
     Route::put('/update-profile', [AuthController::class, 'updateProfile']);
     Route::post('/change-password', [ChangePasswordController::class, 'changePassword']);
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::get('/notifications', [NotificationController::class, 'index']);
+    Route::put('/orders/{orderId}/status/{newStatus}', [OrderController::class, 'updateOrderStatus']);
 });
 
 // Inventory
 Route::apiResource('inventories', InventoryController::class);
 Route::get('inventories/product/{id}', [InventoryController::class, 'getInventoryByProductId']);
+
+Route::get('/dashboard/statistics', [DashboardController::class, 'getStatistics']);
+
+Route::get('/transactions', [OrderController::class, 'transactions']);
+
+Route::get('/reports/product-sales', [OrderController::class, 'productSalesReport']);

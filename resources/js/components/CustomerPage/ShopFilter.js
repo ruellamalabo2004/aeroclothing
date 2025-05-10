@@ -1,69 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ChevronDown, ChevronUp, SlidersHorizontal } from 'lucide-react';
 
-const ShopFilter = ({ onFilterChange }) => {
+const ShopFilter = ({ onFilterChange, initialFilters }) => {
   const [openSections, setOpenSections] = useState({
     category: true,
     types: true,
+    brands: true,
     sizes: true,
     colors: true,
     price: true,
   });
   
-  const [selectedFilters, setSelectedFilters] = useState({
+  const [selectedFilters, setSelectedFilters] = useState(initialFilters || {
     categories: [],
     types: [],
+    brands: [],
     sizes: [],
     colors: [],
-    priceRanges: [],
+    priceRange: { min: 0, max: 1000 },
   });
 
   const [categories, setCategories] = useState([]);
   const [productTypes, setProductTypes] = useState([]);
+  const [brands, setBrands] = useState([]);
   const [sizes, setSizes] = useState([]);
   const [colors, setColors] = useState([]);
 
   const API_URL = "http://127.0.0.1:8000/api";
 
-  // Fetch categories, product types, sizes, and colors from API
+  // Update selectedFilters when initialFilters change
+  useEffect(() => {
+    if (initialFilters) {
+      setSelectedFilters(initialFilters);
+    }
+  }, [initialFilters]);
+
+  // Fetch filter data
   useEffect(() => {
     const fetchFilterData = async () => {
       try {
-        // Fetch categories
-        const categoriesResponse = await fetch(`${API_URL}/categories`);
-        if (categoriesResponse.ok) {
-          const categoriesData = await categoriesResponse.json();
-          console.log("Fetched categories:", categoriesData);
-          setCategories(categoriesData);
-        } else {
-          console.error("Failed to fetch categories:", categoriesResponse.status);
-        }
+        const [categoriesRes, typesRes, brandsRes, sizesRes, colorsRes] = await Promise.all([
+          fetch(`${API_URL}/categories`),
+          fetch(`${API_URL}/product_types`),
+          fetch(`${API_URL}/brands`),
+          fetch(`${API_URL}/sizes`),
+          fetch(`${API_URL}/colors`)
+        ]);
 
-        // Fetch product types
-        const productTypesResponse = await fetch(`${API_URL}/product_types`);
-        if (productTypesResponse.ok) {
-          const productTypesData = await productTypesResponse.json();
-          console.log("Fetched product types:", productTypesData);
-          setProductTypes(productTypesData);
-        } else {
-          console.error("Failed to fetch product types:", productTypesResponse.status);
-        }
-
-        // Fetch sizes
-        const sizesResponse = await fetch(`${API_URL}/sizes`);
-        if (sizesResponse.ok) {
-          const sizesData = await sizesResponse.json();
-          console.log("Fetched sizes:", sizesData);
-          setSizes(sizesData);
-        }
-
-        // Fetch colors
-        const colorsResponse = await fetch(`${API_URL}/colors`);
-        if (colorsResponse.ok) {
-          const colorsData = await colorsResponse.json();
-          console.log("Fetched colors:", colorsData);
-          setColors(colorsData);
-        }
+        if (categoriesRes.ok) setCategories(await categoriesRes.json());
+        if (typesRes.ok) setProductTypes(await typesRes.json());
+        if (brandsRes.ok) setBrands(await brandsRes.json());
+        if (sizesRes.ok) setSizes(await sizesRes.json());
+        if (colorsRes.ok) setColors(await colorsRes.json());
       } catch (error) {
         console.error("Error fetching filter data:", error);
       }
@@ -72,50 +60,72 @@ const ShopFilter = ({ onFilterChange }) => {
     fetchFilterData();
   }, []);
 
-  // When filters change, notify parent component
+  // Memoize the filter change handler
+  const handleFilterChange = useCallback((type, value) => {
+    setSelectedFilters(prev => {
+      const newFilters = { ...prev };
+      const current = prev[type];
+      
+      if (current.includes(value)) {
+        newFilters[type] = current.filter(item => item !== value);
+      } else {
+        newFilters[type] = [...current, value];
+      }
+      
+      return newFilters;
+    });
+  }, []);
+
+  // Notify parent of filter changes
   useEffect(() => {
-    if (onFilterChange) {
-      console.log("Sending filters to parent:", selectedFilters);
-      onFilterChange(selectedFilters);
-    }
+    onFilterChange(selectedFilters);
   }, [selectedFilters, onFilterChange]);
 
   const toggleSection = (section) => {
-    setOpenSections((prev) => ({
+    setOpenSections(prev => ({
       ...prev,
-      [section]: !prev[section],
+      [section]: !prev[section]
     }));
   };
 
-  const handleFilterChange = (type, value) => {
-    const normalizedValue = ['categories', 'types'].includes(type) ? Number(value) : value;
-    console.log(`Filter change: Type=${type}, Value=${normalizedValue} (original=${value})`);
-    setSelectedFilters((prev) => {
-      const current = prev[type];
-      if (current.includes(normalizedValue)) {
-        return { ...prev, [type]: current.filter((item) => item !== normalizedValue) };
+  const handlePriceChange = (type, value) => {
+    setSelectedFilters(prev => {
+      const newPriceRange = {
+        ...prev.priceRange,
+        [type]: Number(value)
+      };
+      
+      if (type === 'min' && newPriceRange.min > newPriceRange.max) {
+        newPriceRange.min = newPriceRange.max;
       }
-      return { ...prev, [type]: [...current, normalizedValue] };
+      if (type === 'max' && newPriceRange.max < newPriceRange.min) {
+        newPriceRange.max = newPriceRange.min;
+      }
+      
+      return {
+        ...prev,
+        priceRange: newPriceRange
+      };
     });
   };
 
   const clearAllFilters = () => {
-    console.log("Clearing all filters");
     setSelectedFilters({
       categories: [],
       types: [],
+      brands: [],
       sizes: [],
       colors: [],
-      priceRanges: [],
+      priceRange: { min: 0, max: 1000 },
     });
   };
 
   const toggleAllSections = () => {
-    console.log("Toggling all sections visibility");
     const allVisible = Object.values(openSections).every((visible) => visible);
     setOpenSections({
       category: !allVisible,
       types: !allVisible,
+      brands: !allVisible,
       sizes: !allVisible,
       colors: !allVisible,
       price: !allVisible,
@@ -169,7 +179,7 @@ const ShopFilter = ({ onFilterChange }) => {
                   <input
                     type="checkbox"
                     checked={selectedFilters.categories.includes(Number(category.id))}
-                    onChange={() => handleFilterChange('categories', category.id)}
+                    onChange={() => handleFilterChange('categories', Number(category.id))}
                   />
                   {category.name || category.category_name || `Category ${category.id}`}
                 </label>
@@ -204,13 +214,48 @@ const ShopFilter = ({ onFilterChange }) => {
                   <input
                     type="checkbox"
                     checked={selectedFilters.types.includes(Number(type.id))}
-                    onChange={() => handleFilterChange('types', type.id)}
+                    onChange={() => handleFilterChange('types', Number(type.id))}
                   />
                   {type.type_name || `Type ${type.id}`}
                 </label>
               ))
             ) : (
               <p className="loading-text">Loading types...</p>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Brands Section */}
+      <div className="filter-section">
+        <h3 className="filter-title" onClick={() => toggleSection('brands')}>
+          Brands
+          {openSections.brands ? (
+            <ChevronUp size={16} className="dropdown-arrow" />
+          ) : (
+            <ChevronDown size={16} className="dropdown-arrow" />
+          )}
+        </h3>
+        {openSections.brands && (
+          <div className="filter-options">
+            {brands.length > 0 ? (
+              brands.map((brand) => (
+                <label
+                  key={brand.id}
+                  className={`filter-option ${
+                    selectedFilters.brands.includes(Number(brand.id)) ? 'active' : ''
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={selectedFilters.brands.includes(Number(brand.id))}
+                    onChange={() => handleFilterChange('brands', Number(brand.id))}
+                  />
+                  {brand.name || brand.brand_name || brand.brandName || `Brand ${brand.id}`}
+                </label>
+              ))
+            ) : (
+              <p className="loading-text">Loading brands...</p>
             )}
           </div>
         )}
@@ -295,24 +340,32 @@ const ShopFilter = ({ onFilterChange }) => {
           )}
         </h3>
         {openSections.price && (
-          <div className="filter-options">
-            {['Under $50', '$50 – $100', '$100 – $200', '$200+'].map(
-              (range) => (
-                <label
-                  key={range}
-                  className={`filter-option ${
-                    selectedFilters.priceRanges.includes(range) ? 'active' : ''
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    checked={selectedFilters.priceRanges.includes(range)}
-                    onChange={() => handleFilterChange('priceRanges', range)}
-                  />
-                  {range}
-                </label>
-              )
-            )}
+          <div className="price-range-container">
+            <div className="price-inputs">
+              <div className="price-input">
+                <label>Min: ${selectedFilters.priceRange.min}</label>
+                <input
+                  type="range"
+                  min="0"
+                  max="1000"
+                  value={selectedFilters.priceRange.min}
+                  onChange={(e) => handlePriceChange('min', e.target.value)}
+                />
+              </div>
+              <div className="price-input">
+                <label>Max: ${selectedFilters.priceRange.max}</label>
+                <input
+                  type="range"
+                  min="0"
+                  max="1000"
+                  value={selectedFilters.priceRange.max}
+                  onChange={(e) => handlePriceChange('max', e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="price-display">
+              ${selectedFilters.priceRange.min} - ${selectedFilters.priceRange.max}
+            </div>
           </div>
         )}
       </div>

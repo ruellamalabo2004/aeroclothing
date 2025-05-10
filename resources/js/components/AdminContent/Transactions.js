@@ -8,21 +8,30 @@ const Transactions = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const transactionsPerPage = 10;
 
-    // Hardcoded sample transaction data
+    // Helper to determine payment status
+    const getPaymentStatus = (paymentMethod) => {
+        if (!paymentMethod) return 'Unpaid';
+        const paidMethods = ['Credit Card', 'PayPal'];
+        return paidMethods.includes(paymentMethod) ? 'Paid' : 'Unpaid';
+    };
+
+    // Fetch transactions from API
     useEffect(() => {
-        const sampleTransactions = [
-            { id: 1, transaction_id: 'TXN001', customer_name: 'John Doe', amount: 150.00, payment_method: 'Credit Card', date: '2025-04-18', status: 'Completed' },
-            { id: 2, transaction_id: 'TXN002', customer_name: 'Jane Smith', amount: 200.50, payment_method: 'PayPal', date: '2025-04-17', status: 'Pending' },
-            { id: 3, transaction_id: 'TXN003', customer_name: 'Alice Johnson', amount: 99.99, payment_method: 'Debit Card', date: '2025-04-16', status: 'Completed' },
-            { id: 4, transaction_id: 'TXN004', customer_name: 'Bob Brown', amount: 300.00, payment_method: 'Credit Card', date: '2025-04-15', status: 'Failed' },
-            { id: 5, transaction_id: 'TXN005', customer_name: 'Charlie Davis', amount: 75.25, payment_method: 'PayPal', date: '2025-04-14', status: 'Completed' },
-            { id: 6, transaction_id: 'TXN006', customer_name: 'Diana Evans', amount: 120.00, payment_method: 'Credit Card', date: '2025-04-13', status: 'Pending' },
-            { id: 7, transaction_id: 'TXN007', customer_name: 'Ethan Wilson', amount: 180.75, payment_method: 'Debit Card', date: '2025-04-12', status: 'Completed' },
-            { id: 8, transaction_id: 'TXN008', customer_name: 'Fiona Clark', amount: 250.00, payment_method: 'PayPal', date: '2025-04-11', status: 'Failed' },
-            { id: 9, transaction_id: 'TXN009', customer_name: 'George Harris', amount: 90.00, payment_method: 'Credit Card', date: '2025-04-10', status: 'Completed' },
-            { id: 10, transaction_id: 'TXN010', customer_name: 'Hannah Lewis', amount: 110.00, payment_method: 'Debit Card', date: '2025-04-09', status: 'Pending' },
-        ];
-        setTransactions(sampleTransactions);
+        const fetchTransactions = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch('/api/transactions', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const data = await response.json();
+                setTransactions(data);
+            } catch (err) {
+                setTransactions([]);
+            }
+        };
+        fetchTransactions();
     }, []);
 
     // Filter transactions based on search term
@@ -49,6 +58,12 @@ const Transactions = () => {
                 ? prev.filter((id) => id !== transactionId)
                 : [...prev, transactionId]
         );
+    };
+
+    // Helper for status frame class
+    const getStatusFrameClass = (status) => {
+        if (!status) return 'status-frame';
+        return `status-frame status-${status.toLowerCase()}`;
     };
 
     return (
@@ -100,7 +115,8 @@ const Transactions = () => {
                                 <th>Amount</th>
                                 <th>Payment Method</th>
                                 <th>Date</th>
-                                <th>Status</th>
+                                <th>Order Status</th>
+                                <th>Payment Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -134,15 +150,20 @@ const Transactions = () => {
                                         <td>{transaction.payment_method}</td>
                                         <td>{transaction.date}</td>
                                         <td>
-                                            <span className={`status-frame status-${transaction.status.toLowerCase()}`}>
+                                            <span className={getStatusFrameClass(transaction.status)}>
                                                 {transaction.status}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span className={`status-frame status-${getPaymentStatus(transaction.payment_method).toLowerCase()}`}>
+                                                {getPaymentStatus(transaction.payment_method)}
                                             </span>
                                         </td>
                                     </tr>
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="8">No transactions available</td>
+                                    <td colSpan="9">No transactions available</td>
                                 </tr>
                             )}
                         </tbody>

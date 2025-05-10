@@ -1,0 +1,123 @@
+.order-tracking-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // Ensure the page takes up the full viewport height
+
+  .order-tracking-content {
+    flex: 1; // Allow the content to grow and push the footer down
+    max-width: 1100px;
+    margin: 100px auto 20px; // Add top margin to push content below the header
+    font-family: Arial, sans-serif;
+
+    .order-tracking-title {
+      text-align: center;
+      padding: 20px 0;
+
+      h1 {
+        font-size: 24px;
+        color: #1a3c34; // Teal color from the image
+        margin: 0;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 14px;
+        color: #666; // Light gray for subtitle
+        margin: 5px 0 0;
+      }
+    }
+  }
+}
+
+.order-stepper {
+  width: 100%;
+  position: relative;
+  margin: 32px 0;
+
+  .order-stepper-bar {
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    z-index: 0;
+
+    .order-stepper-bar-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: #19b394;
+      border-radius: 2px;
+      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+      z-index: 1;
+    }
+  }
+
+  .order-stepper-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    height: 44px;
+  }
+
+  .order-stepper-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    color: #b0b0b0;
+
+    .order-stepper-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      font-size: 20px;
+      color: #b0b0b0;
+      border: 2px solid #e0e0e0;
+      transition: all 0.3s;
+    }
+    .order-stepper-label {
+      font-size: 15px;
+      font-weight: 500;
+      color: #222;
+      margin-bottom: 2px;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .order-stepper-date {
+      font-size: 13px;
+      color: #8b8b8b;
+      min-height: 18px;
+      text-align: center;
+    }
+    &.completed .order-stepper-circle {
+      background: #19b394;
+      color: #fff;
+      border: 2px solid #19b394;
+    }
+    &.completed .order-stepper-label {
+      color: #19b394;
+    }
+    &.active .order-stepper-circle {
+      background: #19b394;
+      color: #fff;
+      border: 3px solid #19b394;
+      box-shadow: 0 0 0 6px rgba(25,179,148,0.12);
+    }
+    &.active .order-stepper-label {
+      color: #19b394;
+    }
+  }
+}

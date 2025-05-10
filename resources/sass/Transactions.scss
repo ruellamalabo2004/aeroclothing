@@ -184,18 +184,44 @@
     border: none;
 
     &.status-completed {
-      background-color: #E8F5E9; /* Light green, like users status-active */
-      color: #2E7D32; /* Dark green */
+      background-color: #E8F5E9;
+      color: #2E7D32;
     }
 
     &.status-pending {
-      background-color: #FFF3E0; /* Light orange, like users role-customer */
-      color: #EF6C00; /* Dark orange */
+      background-color: #FFF3E0;
+      color: #EF6C00;
     }
 
     &.status-failed {
-      background-color: #FFEBEE; /* Light red, like users status-archived */
-      color: #C62828; /* Dark red */
+      background-color: #FFEBEE;
+      color: #C62828;
+    }
+
+    &.status-canceled {
+      background-color: #ffebee;
+      color: #c62828;
+    }
+
+    &.status-delivering {
+      background-color: #e3f2fd;
+      color: #1976d2;
+    }
+
+    &.status-processing {
+      background-color: #fffde7;
+      color: #fbc02d;
+    }
+
+    // Payment status
+    &.status-paid {
+      background-color: #e8f5e9;
+      color: #388e3c;
+    }
+
+    &.status-unpaid {
+      background-color: #fff3e0;
+      color: #ef6c00;
     }
   }
 }

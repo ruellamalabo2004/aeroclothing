@@ -1,0 +1,198 @@
+.order-tracking-status {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-bottom: 20px;
+
+  .shipment-status-section {
+    position: relative;
+    max-width: 100%;
+
+    .status-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+
+      h2 {
+        font-size: 20px;
+        color: #333;
+        margin: 0;
+      }
+
+      .status-pill {
+        background-color: #e6f7fa;
+        color: #3AA6B9;
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
+    .horizontal-timeline {
+      position: relative;
+      padding: 30px 20px 80px;
+      width: 100%;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .timeline-track {
+        position: absolute;
+        top: 56px;
+        left: 10%;
+        right: 10%;
+        height: 3px;
+        background-color: #e0e0e0;
+        z-index: 1;
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .timeline-progress {
+        position: absolute;
+        top: 56px;
+        left: 10%;
+        height: 3px;
+        background-color: #3AA6B9;
+        z-index: 2;
+        min-width: 0;
+        max-width: 80%;
+        transition: width 0.4s ease;
+      }
+
+      .timeline-steps {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        
+        .timeline-step {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 20%;
+          flex: 0 0 auto;
+          
+          .step-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            color: #fff;
+            transition: all 0.3s ease;
+            z-index: 4;
+          }
+
+          .step-label {
+            font-size: 15px;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 8px;
+            text-align: center;
+            width: 100%;
+          }
+
+          .step-date {
+            font-size: 13px;
+            color: #888;
+            min-height: 36px;
+            line-height: 1.4;
+            text-align: center;
+            width: 100%;
+          }
+
+          &.completed {
+            .step-icon {
+              background-color: #3AA6B9;
+              border-color: #3AA6B9;
+            }
+            .step-label {
+              color: #3AA6B9;
+            }
+          }
+
+          &.active {
+            .step-icon {
+              background-color: #3AA6B9;
+              border-color: #3AA6B9;
+              box-shadow: 0 0 0 5px rgba(58, 166, 185, 0.15);
+            }
+            .step-label {
+              color: #3AA6B9;
+              font-weight: 600;
+            }
+            .step-date {
+              color: #3AA6B9;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .order-tracking-status {
+    padding: 20px 15px;
+    
+    .shipment-status-section {
+      .horizontal-timeline {
+        overflow-x: auto;
+        padding-bottom: 80px;
+        
+        .timeline-steps {
+          min-width: 700px;
+          
+          .timeline-step {
+            .step-icon {
+              width: 48px;
+              height: 48px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .order-tracking-status {
+    .shipment-status-section {
+      .horizontal-timeline {
+        padding-bottom: 90px;
+        
+        .timeline-steps {
+          min-width: 500px;
+          
+          .timeline-step {
+            .step-icon {
+              width: 40px;
+              height: 40px;
+            }
+            .step-label {
+              font-size: 13px;
+            }
+            .step-date {
+              font-size: 11px;
+              min-height: 32px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

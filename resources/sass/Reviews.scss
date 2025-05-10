@@ -122,7 +122,7 @@
 /* 📌 Reviews Table */
 .reviews-table {
   width: 100%;
-  min-width: 800px; /* Same as inbox for consistency */
+  min-width: 800px; /* Same as transactions for consistency */
   border-collapse: collapse;
 
   th,
@@ -184,12 +184,17 @@
     border: none;
 
     &.status-replied {
-      background-color: #E8F5E9; /* Light green, like inbox status-read */
+      background-color: #E8F5E9; /* Light green */
       color: #2E7D32; /* Dark green */
     }
 
+    &.status-pending {
+      background-color: #FFF3E0; /* Light orange */
+      color: #EF6C00; /* Dark orange */
+    }
+
     &.status-archived {
-      background-color: #FFEBEE; /* Light red, like inbox status-archived */
+      background-color: #FFEBEE; /* Light red */
       color: #C62828; /* Dark red */
     }
   }
@@ -384,3 +389,117 @@
     }
   }
 }
+
+/* Review Modal Styles */
+.reviews-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.reviews-modal {
+  background-color: white;
+  border-radius: 8px;
+  padding: 24px;
+  width: 500px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
+  h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+    color: #333;
+  }
+}
+
+.reviews-modal-content {
+  margin-bottom: 20px;
+}
+
+.reviews-form-group {
+  margin-bottom: 16px;
+  
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
+  }
+}
+
+.reviews-readonly-content {
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  min-height: 60px;
+}
+
+.reviews-reply-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+  
+  &:focus {
+    outline: none;
+    border-color: #3aa6b9;
+  }
+}
+
+.reviews-form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.reviews-close-btn,
+.reviews-submit-reply-btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.reviews-close-btn {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  color: #444;
+  
+  &:hover {
+    background-color: #e9ecef;
+  }
+}
+
+.reviews-submit-reply-btn {
+  background-color: #3aa6b9;
+  border: none;
+  color: white;
+  
+  &:hover {
+    background-color: #2a8291;
+  }
+}
+
+.error-message {
+  padding: 15px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 4px;
+  margin-bottom: 20px;
+} 

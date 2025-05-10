@@ -15,6 +15,7 @@ const NewArrival = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [wishlistLoading, setWishlistLoading] = useState({});
+  const [reviewStats, setReviewStats] = useState({}); // Store review stats by product ID
   const { cart, addToCart } = useCart();
   const { wishlist, addToWishlist, removeFromWishlist, apiError } = useWishlist();
 
@@ -70,6 +71,12 @@ const NewArrival = () => {
           .slice(0, 8);
 
         setProducts(updatedProducts);
+        
+        // Fetch review statistics for each product
+        updatedProducts.forEach(product => {
+          fetchProductReviews(product.id);
+        });
+        
         setLoading(false);
       } catch (error) {
         console.error("Error fetching products:", error.response?.data || error.message);
@@ -84,6 +91,44 @@ const NewArrival = () => {
 
     fetchProducts();
   }, [navigate]);
+  
+  // Fetch reviews for a product and update review stats
+  const fetchProductReviews = async (productId) => {
+    try {
+      const response = await fetch(`${API_URL}/reviews/${productId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch reviews');
+      }
+      const reviewsData = await response.json();
+      
+      // Calculate review statistics
+      if (reviewsData && reviewsData.length > 0) {
+        const total = reviewsData.reduce((sum, review) => sum + review.rating, 0);
+        const average = total / reviewsData.length;
+        
+        setReviewStats(prevStats => ({
+          ...prevStats,
+          [productId]: {
+            count: reviewsData.length,
+            average: Number(average.toFixed(1))
+          }
+        }));
+      } else {
+        // No reviews for this product
+        setReviewStats(prevStats => ({
+          ...prevStats,
+          [productId]: { count: 0, average: 0 }
+        }));
+      }
+    } catch (err) {
+      console.error(`Error fetching reviews for product ${productId}:`, err);
+      // Set empty stats on error
+      setReviewStats(prevStats => ({
+        ...prevStats,
+        [productId]: { count: 0, average: 0 }
+      }));
+    }
+  };
 
   const handleAddToCart = (product) => (e) => {
     e.stopPropagation();
@@ -159,7 +204,18 @@ const NewArrival = () => {
         ) : (
           <div className="new-arrival__products">
             {products.map((product) => (
-              <div key={product.id} className="new-arrival__product" onClick={handleProductClick(product.id)}>
+              <div 
+                key={product.id} 
+                className="new-arrival__product" 
+                onClick={handleProductClick(product.id)}
+                role="button"
+                tabIndex={0}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handleProductClick(product.id)(e);
+                  }
+                }}
+              >
                 <div className="new-arrival__image-container">
                   <img
                     src={product.imagePreview}
@@ -207,10 +263,13 @@ const NewArrival = () => {
                     <Star
                       key={index}
                       size={16}
-                      fill={index < product.rating ? '#FFD700' : 'none'}
-                      stroke={index < product.rating ? '#FFD700' : '#ccc'}
+                      fill={index < (reviewStats[product.id]?.average || 0) ? '#FFD700' : 'none'}
+                      stroke={index < (reviewStats[product.id]?.average || 0) ? '#FFD700' : '#ccc'}
                     />
                   ))}
+                  <span className="new-arrival__rating-count">
+                    ({reviewStats[product.id]?.count || 0})
+                  </span>
                 </div>
               </div>
             ))}

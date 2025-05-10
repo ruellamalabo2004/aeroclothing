@@ -1,8 +1,9 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { CartProvider } from './components/Notifs/CartContext';
 import { WishlistProvider } from './components/Notifs/WishlistContext';
+import Chatbot from './components/CustomerPage/Chatbot'; // Import the Chatbot component
 
 // Import pages
 import Login from './components/LoginContent/Login';
@@ -33,6 +34,7 @@ import ProfileAddress from './components/CustomerPage/ProfileAddress';
 import ProfileCart from './components/CustomerPage/ProfileCart';
 import ProfileOrders from './components/CustomerPage/ProfileOrders';
 import ProfileWishlist from './components/CustomerPage/ProfileWishlist';
+import OrderTracking from './components/CustomerPage/OrderTracking'; // Import the new OrderTracking component
 
 // Import ProtectedRoute
 import ProtectedRoute from './components/ProtectedRouters/ProtectedRoute';
@@ -44,6 +46,17 @@ const PlaceholderComponent = ({ title }) => (
     <p>This section is under development.</p>
   </div>
 );
+
+// Custom component to conditionally render Chatbot
+const ChatbotWrapper = () => {
+  const location = useLocation();
+  const customerPaths = ['/homepage', '/shop', '/product', '/checkout', '/carts', '/profile', '/order-tracking'];
+
+  // Check if the current pathname starts with any customer path
+  const isCustomerPage = customerPaths.some(path => location.pathname.startsWith(path));
+
+  return isCustomerPage ? <Chatbot /> : null;
+};
 
 const App = () => {
   return (
@@ -85,9 +98,12 @@ const App = () => {
                 <Route index element={<ProfileDetails />} /> {/* Default to ProfileDetails */}
                 <Route path="address" element={<ProfileAddress />} /> {/* Nested route for addresses */}
                 <Route path="cart" element={<ProfileCart />} /> {/* Nested route for cart */}
-                <Route path="orders" element={<ProfileOrders />} /> {/* Placeholder */}
-                <Route path="wishlist" element={<ProfileWishlist />} /> {/* Placeholder */}
+                <Route path="orders" element={<ProfileOrders />} /> {/* Nested route for orders */}
+                <Route path="wishlist" element={<ProfileWishlist />} /> {/* Nested route for wishlist */}
               </Route>
+
+              {/* Order Tracking Route as a top-level page */}
+              <Route path="/order-tracking/:orderId" element={<OrderTracking />} />
             </Route>
 
             {/* Admin Dashboard Route with nested routes, protected by role */}
@@ -114,6 +130,7 @@ const App = () => {
             {/* Catch-all route */}
             <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
+          <ChatbotWrapper /> {/* Use ChatbotWrapper to conditionally render Chatbot */}
         </Router>
       </WishlistProvider>
     </CartProvider>
