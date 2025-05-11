@@ -79,50 +79,53 @@ class AuthController extends Controller
     }
 
     // Login method needs updating to return role name instead of role_id
-    public function login(Request $request)
-    {
-        // Validate incoming login request
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+   public function login(Request $request)
+{
+    // Validate incoming login request
+    $validator = Validator::make($request->all(), [
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
 
-        // If validation fails, return error response
-        if ($validator->fails()) {
-            return response()->json(['message' => 'Invalid credentials', 'errors' => $validator->errors()], 400);
-        }
-
-        // Check if user exists with provided email
-        $user = User::with('role')->where('email', $request->email)->first();
-
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Invalid email or password'], 401);
-        }
-
-        // Check if the user's account is archived
-        if ($user->status === 'Archived') {
-            return response()->json([
-                'message' => 'Your account was suspended, please contact support'
-            ], 403);
-        }
-
-        // Generate access token
-        $token = $user->createToken('MyApp')->accessToken;
-
-        // Fetch user profile
-        $profile = Profile::where('user_id', $user->id)->first();
-
-        return response()->json([
-            'message' => 'Login successful',
-            'token' => $token,
-            'user' => [
-                'id' => $user->id,
-                'email' => $user->email,
-                'role' => $user->role ? $user->role->name : null,
-                'profile' => $profile
-            ]
-        ], 200);
+    // If validation fails, return error response
+    if ($validator->fails()) {
+        return response()->json(['message' => 'Invalid credentials', 'errors' => $validator->errors()], 400);
     }
+
+    // Check if user exists with provided email
+    $user = User::with('role')->where('email', $request->email)->first();
+
+    if (!$user || !Hash::check($request->password, $user->password)) {
+        return response()->json(['message' => 'Invalid email or password'], 401);
+    }
+
+    // Check if the user's account is archived
+    if ($user->status === 'Archived') {
+        return response()->json([
+            'message' => 'Your account was suspended, please contact support'
+        ], 403);
+    }
+
+    // Generate access token
+    $token = $user->createToken('MyApp')->accessToken;
+
+    // Fetch user profile
+    $profile = Profile::where('user_id', $user->id)->first();
+
+    // Safely get role name with fallback
+    $roleName = optional($user->role)->name ?? 'customer'; // Fallback to 'customer' if role is null
+
+    return response()->json([
+        'message' => 'Login successful',
+        'token' => $token,
+        'user' => [
+            'id' => $user->id,
+            'email' => $user->email,
+            'role' => $roleName,
+            'profile' => $profile
+        ]
+    ], 200);
+}
 
     // The rest of the methods remain unchanged...
     public function changePassword(Request $request)
